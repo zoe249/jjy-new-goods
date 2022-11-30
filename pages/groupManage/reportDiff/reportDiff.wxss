@@ -1,0 +1,95 @@
+/* pages/groupManage/reportDiff/reportDiff.wxss */
+.report-diff-container{
+  padding-bottom: env(safe-area-inset-bottom);
+  margin-bottom: 112rpx;
+}
+.report-diff-tab-wrap{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.diff-item{
+  position: relative;
+  width: 686rpx;
+  border-radius: 16rpx;
+  margin: 16rpx auto 0;
+  background: #fff;
+  padding: 32rpx 16rpx 16rpx;
+  font-size: 22rpx;
+  color: var(--gray);
+}
+.diff-item-top{
+  display: flex;
+}
+.diff-item-img{
+  width: 145rpx;
+  height: 145rpx;
+}
+.diff-item-img image{
+  width: 100%;
+  height: 100%;
+  background: var(--bgGrayWhiteLight);
+  border-radius: 16rpx;
+}
+.diff-item-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 145rpx;
+  padding-left: 32rpx;
+  margin-right: auto;
+  flex: 1;
+  font-size: 22rpx;
+}
+.diff-item-info .diff-spc text{
+  margin-right: 32rpx;
+}
+.diff-goods-name{
+  font-size: 24rpx;
+  color: var(--black);
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+.diff-item-bottom{
+  padding-top: 16rpx;
+}
+.diff-state{
+  right: 32rpx;
+  bottom: 16rpx;
+  color: var(--blueLight);
+}
+.report-diff-btn{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  padding: 16rpx 32rpx 0;
+  /* box-sizing: content-box;
+  -webkit-box-sizing: content-box; */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.report-diff-btn text{
+  display: block;
+  width: 686rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: var(--blue);
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.diff-num .property-out-hiding{
+  width: 500rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

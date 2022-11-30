@@ -1,0 +1,466 @@
+.ma-custom .ma-bar .content {
+	position: absolute;
+	text-align: center;
+	width: calc(100% - 340rpx);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin: auto;
+	height: 60rpx;
+  font-size: 32rpx;
+  color: #fff;
+	line-height: 60rpx;
+	cursor: none;
+	pointer-events: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+  overflow: hidden;
+}
+
+.ma-custom .ma-bar.ios .content {
+	bottom: 7px;
+	height: 30px;
+	font-size: 32rpx;
+	line-height: 30px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10240;
+  background: rgba(255, 255, 255, 0);
+}
+
+.theme {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+}
+
+/* 自提点-搜索 */
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  color: #fff;
+}
+
+.c-not-theme {
+  background: #fff;
+  color: #0F3F69;
+}
+
+.not-theme {
+  color: #0F3F69;
+}
+
+.channel-wrap.not-theme {
+  color: #94969C;
+}
+
+.shop-info {
+  display: flex;
+  min-width: 206rpx;
+  align-items: center;
+}
+
+.shop-info image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.8) url('https://shgm.jjyyx.com/m/images/icon-default-shop.png?t=418') no-repeat center;
+  background-size: 48rpx;
+  box-shadow: 0rpx 3rpx 6rpx rgba(223, 223, 223, 0.16);
+}
+
+.shop-extract-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.shop-extract-area view {
+  max-width: 320rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  height: 32rpx;
+}
+
+.picker-forword {
+  margin-left: 24rpx;
+  font-size: 24rpx;
+  white-space: nowrap;
+  padding-right: 16rpx;
+}
+
+.search-btn {
+  flex: 1;
+  display: flex;
+  flex-shrink:1;
+  align-items: center;
+  height: 64rpx;
+  background: #f8f8f8;
+  padding: 0 16rpx;
+  border-radius: 64rpx;
+  transition: 0.3s;
+  margin-left: auto;
+  transition: all 0.4s;
+}
+
+.search-btn view {
+  flex: 1;
+  color: #94969c;
+  min-width: 130rpx;
+  height: 64rpx;
+  font-size: 24rpx;
+  line-height: 64rpx;
+  padding-left: 30rpx;
+  border-radius: 4rpx;
+}
+
+.search-btn text {
+  display: block;
+  width: 34rpx;
+  height: 34rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_w_search.png') no-repeat center;
+  background-size: 34rpx;
+}
+
+/*channel-tab*/
+.channel-tabs {
+  padding: 0 32rpx;
+}
+
+.channel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.iconClass {
+  position: absolute;
+  right: 0;
+  top: 22rpx;
+  font-size: 38rpx;
+}
+
+.channel-tabs .c-tab {
+  width: 100%;
+  flex: 1;
+  padding-right: 48rpx;
+}
+
+/* 焦点广告 */
+.banner {
+  position: relative;
+}
+
+.banner swiper {
+  height: 288rpx;
+  margin-top: 16rpx;
+}
+
+.banner swiper-item {
+  box-sizing: border-box;
+  padding: 0 15rpx;
+}
+
+.banner .img {
+  height: 288rpx;
+  width: 720rpx;
+  border-radius: 16rpx;
+  background: url("https://shgm.jjyyx.com/m/images/banner_w_bg.png") no-repeat center;
+  background-size: auto 288rpx;
+}
+
+.barrage-box {
+  height: 48rpx;
+  position: absolute;
+  left: 0;
+  bottom: -16rpx;
+  z-index: 7;
+}
+
+/* 分类 */
+.category {
+  position: relative;
+  margin: 16rpx 16rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx 0 0;
+}
+
+/* 快速入口 */
+.activity-fast-entry {
+  margin-top: 16rpx;
+}
+
+/* tab */
+.tab-box-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+}
+
+.tab-item-wrap {}
+
+.tab-item-space {
+  position: absolute;
+  left: 0;
+  top: -112rpx;
+  z-index: -1;
+  right: 0;
+  bottom: 112rpx;
+}
+
+.share-goods-container {
+  margin: 0 16rpx 16rpx;
+  overflow-x: hidden;
+}
+
+.share-goods-container.share-plate {
+  margin-top: 0;
+}
+
+/* 活动板块 */
+.plate {
+  display: flex;
+  width: 720rpx;
+  border-radius: 16rpx;
+  margin: 16rpx auto 0;
+  background: #fff;
+}
+
+.plate .new,
+.plate .hot {
+  flex: 1;
+  width: 360rpx;
+}
+
+.plate-title {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: var(--black);
+  padding: 11rpx 24rpx;
+}
+
+.new .plate-icon {
+  display: inline-block;
+  width: 48rpx;
+  height: 32rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_home_new.png) no-repeat center;
+  background-size: 48rpx 32rpx;
+  margin-left: 8rpx;
+}
+
+.hot .plate-icon {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_home_hot.png) no-repeat center;
+  background-size: 32rpx auto;
+  margin-left: 8rpx;
+}
+
+.plate-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx 16rpx;
+  text-align: center;
+  height: 246rpx;
+}
+
+.not-list {
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: var(--gray);
+}
+.plate-item{
+  position: relative;
+}
+
+.plate-item .image {
+  width: 144rpx;
+  height: 144rpx;
+  background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png') no-repeat center;
+  background-size: cover;
+}
+
+.pro-price {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  height: 32rpx;
+  font-weight: bold;
+}
+
+.add-btn {
+  display: inline-block;
+  padding: 0 24rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  text-align: center;
+  color: #FFFFFF;
+  background: var(--red);
+  border-radius: 24rpx;
+  margin-top: 6rpx;
+}
+
+/* 秒杀 */
+.start-time {
+  display: flex;
+  padding-left: 144rpx;
+  font-size: 24rpx;
+  color: #FF4752;
+  white-space:nowrap;
+}
+
+.start-time text {
+  display: inline-block;
+  background: #FF4752;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 36rpx;
+  width: 36rpx;
+  height: 36rpx;
+  margin: 0 7rpx;
+  border-radius: 18rpx;
+  text-align: center;
+}
+.panic,
+.group {
+  width: 720rpx;
+  margin: 16rpx auto 0;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 8rpx 0 0;
+}
+
+.panic-head {
+  display: flex;
+  align-items: center;
+  width: 696rpx;
+  height: 64rpx;
+  margin: 0 0 0 8rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_home_ms.png) no-repeat center;
+  background-size: cover;
+}
+
+.group-head {
+  width: 696rpx;
+  height: 64rpx;
+  margin: 0 0 0 8rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_home_pt.png) no-repeat center;
+  background-size: cover;
+}
+
+.panic-list {
+  width: 689rpx;
+  padding: 16rpx 8rpx;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #FCEEEF 0%, #FFFFFF 100%);
+}
+
+.panic .panic-list {
+  border-radius: 24rpx;
+}
+
+.mg-item {
+  margin: 0 8rpx;
+  text-align: center;
+  position: relative;
+}
+
+.mg-item .image {
+  width: 152rpx;
+  height: 152rpx;
+  background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png') no-repeat center;
+  background-size: cover;
+}
+
+.goods-playButton-block{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+}
+.goods-playButton-block .sku-playButton{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.panic-list .pro-price {
+  color: #E2303D;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.group-swiper-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 16rpx;
+}
+.group-swiper-dot view{
+  display: flex;
+  justify-content: center;
+
+}
+.group-swiper-dot text {
+  display: inline-block;
+  width: 32rpx;
+  height: 4rpx;
+  background: #F8F8F8;
+  border-radius: 2rpx;
+}
+.group-swiper-dot text.grunp-act{
+  background: #FF4752;
+}
+.soon{
+  background: #ededed;
+  color: var(--gray);
+  border: 1rpx solid #ededed;
+}
+.error-page-tpl{
+  position: absolute;
+  top: 50%;
+}
+/* 2022-04-25 新增周年庆跑酷活动开始 */
+.go_parkour_page {
+	position: fixed;
+	bottom: 200rpx;
+	right: 32rpx;
+	width: 120rpx;
+	height: 120rpx;
+	z-index: 200;
+	border-radius: 50%;
+	box-shadow: 0 0 3rpx 0 rgba(0, 0, 0, 0.33);
+}
+
+.go_parkour_page image {
+	width: 100%;
+	height: 100%;
+}
+
+/* 2022-04-25 周年庆跑酷活动结束 */

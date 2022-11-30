@@ -1,0 +1,271 @@
+/* gloabl.wxss */
+
+
+/**
+ * 底部 全局导航条样式
+ */
+
+.navigation-bar {}
+
+.navigation-bar .nav-placeholder {
+    width: 100%;
+    height: 130rpx;
+}
+
+.navigation-bar .nav-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    /*height: 100rpx;*/
+    border-top: 1px solid #e6e6e6;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}
+
+.navigation-bar .nav-container .nav-list {
+    display: flex;
+}
+
+.navigation-bar .nav-container .nav-list .nav-item {
+    flex: 1;
+    padding-top: 14rpx;
+    padding-bottom: 18rpx;
+    color: #666666;
+}
+
+.navigation-bar .nav-container .nav-list .nav-item.active {
+    color: #fc0d1b;
+}
+
+.navigation-bar .nav-container .nav-list .nav-item .nav-icon {}
+
+.navigation-bar .nav-container .nav-list .nav-item .nav-icon image {
+    position: relative;
+    width: 54rpx;
+    height: 45rpx;
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation-bar .nav-container .nav-list .nav-item .nav-icon .cart-goods-total-number {
+    position: absolute;
+    top: -6rpx;
+    right: 6rpx;
+    transform: translate3d(50%, 0, 0) scale(.5);
+    transform-origin: center top;
+    min-width: 48rpx;
+    padding: 24rpx 16rpx;
+    font-size: 36rpx;
+    text-align: center;
+    line-height: 0rpx;
+    border: 2rpx solid #fff;
+    border-radius: 48rpx;
+    background: #FF4752;
+    color: #fff;
+}
+
+.navigation-bar .nav-container .nav-list .nav-item .nav-text {
+    margin-top: 15rpx;
+    font-size: 20rpx;
+    line-height: 1;
+    text-align: center;
+
+}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(1) {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(2) {
+    /*width: 185rpx;
+  height: 83rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_cart_lg_half_circle.png") no-repeat top center;
+  margin-top: -30rpx;
+  padding-top: 41rpx;*/
+}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(3) {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(1) .nav-icon {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(2) .nav-icon {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(3) .nav-icon {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(1) .nav-icon image {}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(2) .nav-icon image {
+    /*width: 61rpx;
+  height: 47rpx;*/
+}
+
+.navigation-bar .nav-container .nav-list .nav-item:nth-of-type(3) .nav-icon image {}
+
+
+/**
+ * 提示层 - 没有更多了
+ */
+
+.noMore {
+    width: 100%;
+    font-size: 24rpx;
+    color: #CCC;
+    text-align: center;
+    padding: 20rpx 0;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+
+/**
+ * 提示层 - 暂无数据
+ */
+
+.error-page-tpl {
+    position: fixed;
+    left: 0;
+    top: 35%;
+    width: 100%;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.error-page-tpl image {
+    width: 400rpx;
+    height: 400rpx;
+}
+
+.error-page-tpl .error-tpl-msg {
+    margin-top: -30rpx;
+    font-size: 24rpx;
+    color: #999;
+    word-wrap: break-word;
+    word-break: normal;
+    width: 100%;
+    text-align: center;
+}
+.error-page-tpl .zb-back-live{
+    display: block;
+    /* width: 192rpx; */
+    height: 64rpx;
+    margin: 30rpx auto 0;
+    line-height: 64rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: var(--blueLight);
+    background: #fff;
+    border-radius: 32rpx;
+    border: 1rpx solid #7AA6CC;
+    padding: 0 32rpx;
+}
+
+/**
+ * 全局 toast 提示层样式
+ */
+
+.toast-container {
+    position: fixed;
+    left: 0;
+    bottom: 20%;
+    width: 100%;
+    transform: translate(0, -50%);
+    transform: translate3d(0, -50%, 10000rpx);
+    z-index: 99999;
+    text-align: center;
+    overflow: hidden;
+}
+
+.toast-container text {
+    display: inline-block;
+    padding: 20rpx;
+    font-size: 28rpx;
+    line-height: 1.2;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12rpx;
+}
+
+.modal-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transform: translateZ(100rpx);
+}
+
+.modal-container .modal-msg-container {
+    width: 540rpx;
+    background: #FFF;
+    border-radius: 20rpx;
+}
+
+.modal-container .modal-msg-container .modal-msg {
+    padding: 60rpx 20rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    color: #444;
+    text-align: center;
+}
+
+.modal-container .modal-msg-container .modal-btn-container {
+    border-top: 2rpx solid #ededed;
+    width: 100%;
+    height: 96rpx;
+    font-size: 32rpx;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-container .modal-msg-container .modal-btn-container view {
+    flex: 1;
+    text-align: center;
+    line-height: 0;
+    padding: 48rpx;
+}
+
+.modal-container .modal-msg-container .modal-btn-container .confirm-btn {
+    color: #FF4752;
+}
+
+.modal-container .modal-msg-container .modal-btn-container .cancel-btn {
+    border-right: 2rpx solid #ededed;
+}
+
+#global-loading {
+    z-index: 9999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#global-loading.hide-mask {
+    background: transparent;
+}
+
+#global-loading image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 99999999;
+}

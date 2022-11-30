@@ -1,0 +1,87 @@
+<!--pages/groupManage/customerOrder/customerOrder.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<view class='list-box'>
+  <block wx:if="{{showError}}">
+    <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:elif='{{list.length}}'>
+    <view class='list-cnt'>
+        <view class='list-ul'>
+          <block wx:for='{{list}}' wx:for-item='li' wx:key='*this'>
+            <template is="list-item" data="{{li:li,fromListType:fromListType,commissionMemberType:commissionMemberType}}"></template>
+          </block>
+        </view>
+      
+      <!-- 提示层 - 没有更多了 -->
+      <block wx:if='{{!hasNext&&list.length}}'>
+        <template is="noMore"></template>
+      </block>
+    </view>
+  </block>
+</view>
+<template name="list-item">
+<!-- 今日收入明细，自提点 -->
+  <block wx:if="{{fromListType=='today'&&commissionMemberType==4}}">
+      <view class='li'>
+      <view class='li-text1'>会员：{{li.nickName||'无'}} ({{li.newMemberTel||"无电话号"}})</view>
+      <view class='li-text2'><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+<!-- 累计收入明细，自提点 -->
+  <block wx:elif="{{fromListType=='total'&&commissionMemberType==4}}">
+      <view class='li'>
+      <view class='li-text1'>会员：{{li.nickName||'无'}} ({{li.newMemberTel||"无电话号"}})</view>
+      <view class='li-text2'><view class="li-tip">{{li.statusStr}}{{li.statusStr?'：':''}}</view><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+<!-- 我的收入明细，自提点 -->
+  <block wx:elif="{{fromListType=='my'&&commissionMemberType==4}}">
+      <view class='li'>
+      <!-- 提现 -->
+      <block wx:if='{{li.status<=3&&li.id}}'><view class='li-text1'>提现单号：{{li.id}}</view></block>
+      <!-- 结算为提现金 -->
+      <block wx:else><view class='li-text1'>会员：{{li.nickName||'无'}} ({{li.newMemberTel||"无电话号"}})</view></block>
+      <view class='li-text2'><view class="li-tip">{{li.statusStr}}{{li.statusStr?'：':''}}</view><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+
+  <!-- 今日收入明细，团长 -->
+  <block wx:elif="{{fromListType=='today'&&commissionMemberType==3}}">
+      <view class='li'>
+      <view class='li-text1'>订单号：{{li.orderId}}</view>
+      <view class='li-text2'><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+<!-- 累计收入明细，团长 -->
+  <block wx:elif="{{fromListType=='total'&&commissionMemberType==3}}">
+      <view class='li'>
+      <view class='li-text1'>订单号：{{li.orderId}}</view>
+      <view class='li-text2'><view class="li-tip">{{li.statusStr}}{{li.statusStr?'：':''}}</view><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+<!-- 我的收入明细，团长 -->
+  <block wx:elif="{{fromListType=='my'&&commissionMemberType==3}}">
+      <view class='li'>
+      <!-- 提现 -->
+      <block wx:if='{{li.status<=3&&li.id}}'><view class='li-text1'>提现单号：{{li.id}}</view></block>
+      <!-- 结算为提现金 -->
+      <block wx:else><view class='li-text1'>订单号：{{li.orderId}}</view></block>
+      <view class='li-text2'><view class="li-tip">{{li.statusStr}}{{li.statusStr?'：':''}}</view><view class="li-money{{li.brokerages<0?' fu-color':''}}">{{li.brokerages}}</view>
+      </view>
+      <view class='li-text3'>{{li.createTimeStr}}</view>
+    </view>
+  </block>
+
+</template>

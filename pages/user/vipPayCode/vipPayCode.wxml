@@ -1,0 +1,76 @@
+<import src="/templates/global/global.wxml" />
+<scroll-view id="container" scroll-y="{{true}}" class="section container">
+		<view class="div exclusive_code_header">
+				<view class="span">
+						<view class="a">
+								<image class="img" src="{{memberInfo.photo?memberInfo.photo:''}}" mode="aspectFit"></image>
+						</view>
+				</view>
+				<view class="div pos-a" bindtap='reloadOnShow'>
+						<view class="h3">会员：{{memberInfo.nickName?memberInfo.nickName:memberInfo.mobile}}</view>
+						<view class="p pos-r">{{memberInfo.mobile}}</view>
+				</view>
+		</view>
+		<view class="section my-item2 r1bb">
+				<view class="ul ui-flex">
+						<view class="li cell" bindtap="autoJump" data-url="/pages/myCard/myCard">
+								<view id="store_card" class="a pb10 pt10">
+										<view class="span">
+												<view class="i">
+														<text class="price-icon">￥</text>
+														<text>{{memberInfo.valueCard}}</text>
+												</view>
+												<view class="em">生活卡</view>
+										</view>
+								</view>
+						</view>
+						<view class="li cell r1bl" bindtap="autoJump" data-url="/pages/user/integral/integral">
+								<view id="integral_page" class="a pb10 pt10">
+										<view class="span">
+												<view class="i">{{memberInfo.account.scores?memberInfo.account.scores:0}}</view>
+												<view class="em">积分</view>
+										</view>
+								</view>
+						</view>
+						<view id="my_coupon" class="li cell r1bl" bindtap="autoJump" data-url="/pages/user/coupon/coupon">
+								<view class="a pb10 pt10">
+										<view class="span">
+												<view class="i">{{memberInfo.couponTotal}}</view>
+												<view class="em">优惠券</view>
+										</view>
+								</view>
+						</view>
+				</view>
+		</view>
+		<view class="bar_code" bindtap="reloadOnShow">
+				<canvas style="width: {{barcode.width}}; height: {{barcode.height}};" canvas-id="bar_code"><cover-view class="reload-tap" bindtap="reloadOnShow"></cover-view></canvas>
+				<view class="current-code" bindtap="showNumCode" wx:if="{{!showCurrentCode}}">点击可查看付款码数字</view>
+				<view class="current-code" wx:if="{{showCurrentCode}}">{{currentCode}}</view>
+		</view>
+		<!-- <view class="r1bt"></view> -->
+		<view class="qr_code">
+				<view id="qr_code" title="103121025380963923">
+						<!-- <canvas width="100" height="100" style="display: none;"></canvas>
+            <image mode="widthFix" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAFLUlEQVR4Xu2d23bqMAxE4f8/mi4oXQ1OLO9RZJKWOa8YR9HoMhq7nOvlcrldJv673X63v16v3Sct10XmtHvQ/aM9oz0q9lfce/eQAQmCxoAMwumjMoSWjXeXlOXzIhsjsFqbe+Wzan9aplo7XkqWAblcDAgNpee6Kof9uQyJGFHrw9ksRQGhh2+7B32/Ge8W7dktWdTguwNmGJ3tGwbEgDxioCqAnSGDHjYj+09TsiLqSV+c7kFp7ohTULv+ZIZQZ2bniYrm/w7C4gwRa3yPUFSpBKcFZPniSspTh2WYmpJlWZ3LgDRMkJbOUR8yIBsdmDqFRj5dN5q/snL/W2mvIkqO2M/P5x8DCHXInrTuObNC5hjZv+xZWWo7Q4w9VO01IOsJ34DskH6mZ8gozTOfZ8pBVLJmf1Y1a2R89dDEjjxTz5QsA5KF+vk9Z4jmQGfIjh6iuZqtvt4qOhN71urMoPfo7P0tRZTsyTZvdMem1wxIIzwakI04cYaITqk6M6Ali0atUrLopA6rsXR9KJSQej1EkcMzTKoV5yIp3oCIBzoGRLtg5wwZlGSqGFNJfSS4hoDQSZ1mQWQMVXGVaTwqdcvPaNlT7K94dni3l0ZARfN86DadvxcxIIBKOEPyfUI5hcTye48mRpEe0eOwjjaZU1HjqS3KDBT5JFvODEiDlAEBQ+lHZUj1YKiUot5apanPKBugpa6WKETnrXOIAfn2QJpmO0PyzquQe1ZzjwE5GSDLSZ2mWdVFgEyzptN+WzYoe6LrWrqv2BUpCJj20vSsUokzDT+aNaij6ToD8vS2Eok0AzPrpgGy7CFKdFdEMKWX1GFUi1s10oUyoMgcWTkpqjYvZ+oGRNOrDIh4cBY1z16UOkNA3fqokkVpb1btrXamUlZptNPSUyaPBD0L014Dsj5Qo3ObQiIMyI6rpNMBobSxangC7UNaklUQsmWVljrlJfBla2q0Ip0rhpK1BmTDSwZkp/xecQ0oFMvgFEwyYLTGGbKhLynUMHMNqEJAHAHb+zzbO5XnlfSQbHMzIGuoDIgQvqfKEGo3nY7v+/Uyq2KPqLRF76I4PVJt6YySvkpqQPJKsBIAuGQZEAOyGQMV1FaJ2IyE35Zj5XnTfw2oIrPoHlmwZsxRVJVeDdI9+Z1uGDVn6kglopRoo3KPAdnwKmUlBmSn8yiNpHd0W3Oy5zRK9v6szdLxyObVZ5mSpUSzAdmYxoP/aSjV1A3I2MlKNr0MmJkzdSXdqWGZBjyLDCjvt3ctZllK3YuMMiAxZAZkwz8Kxd+bEe33DcjZATny97J60aaQhpeGOOGvd6ktysFcZPOhv5dlQDZ+JtYZojXd3uqyDKGXHLLNbDbLinSoinJGj6ezxCBs6lmnH0l7DYiImjNEK4nlJ4Yjnt0rI9lJ/V9nCKV4EeYVzS1rh3JA1XtGhf0jSSdUqKmWRStVxQsZkKe3s46gbIZmVtaOf50hCo2roIa0+Wd7FGWCynvTqkGffV+XOg+JnKJEabYhV3yvt4cBAeWSnjq2gUKdW8HwstmC1V76Mi2jcIZo0JwWkOoyNKKePbcp2UgvZijM8zQ9xIB8e8CANKniDNlo6lKKwz+ZUxxNyxklA6s+kfnhgCObugEBUUqHmwqWZUAMCOKqFcH2aNyZkoUs3FikRHemVkfDX4UGJtX74EoolYLwHGJAnjQ0imYDsg4TOpxFARaWkCMByWYFbfhUa8qWHur07BSv7J/2yVlundBJPRs0Fb3NgGS9P4lsGJAPBOQLcdvc3c7u5EgAAAAASUVORK5CYII=" style="display: block;"></image> -->
+						<canvas style="width: {{qrcode.width}}; height: {{qrcode.height}};" canvas-id="qr_code"></canvas>
+				</view>
+		</view>
+		<view class='vip-code-val-footer'>
+				<view class='quicker-pay-code' bindtap="getpayWXCode">
+					<image src="https://m.fulaishiji.com/m/images/icon_pay_wx_w.png"></image>
+					<text>微信支付</text>
+				</view>
+				<view class='vip-code-val-footer-wrap'>
+						<view class="check-order" bindtap="autoJump" data-url="/pages/order/list/list?from=exclusive">
+								<text>查看订单</text>
+						</view>
+						<view class='quicker-scan' bindtap="autoJump" data-url="/pages/cart/lightningPayCart/lightningPayCart">
+								<text>闪电付</text>
+						</view>
+            <!-- <view class='quicker-scan' bindtap="getpayWXCode" data-url="/pages/cart/lightningPayCart/lightningPayCart">
+								<text>付款码</text>
+						</view> -->
+				</view>
+		</view>
+</scroll-view>
+<template is="toast" data="{{...toastData}}"></template>

@@ -1,0 +1,102 @@
+/* component/actionSheet/actionSheet.wxss */
+.bottom-modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 11110;
+	opacity: 0;
+	outline: 0;
+	text-align: center;
+	-ms-transform: scale3d(1.185,1.185,1.185);
+	transform: scale3d(1.185,1.185,1.185);
+	backface-visibility: hidden;
+	perspective: 2000rpx;
+	background: rgba(0, 0, 0, 0.6);
+	transition: all 0.2s ease-in-out 0s;
+	pointer-events: none;
+	visibility: hidden;
+}
+.bottom-modal-mask{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.bottom-modal::before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.modal-action.show{
+	opacity: 1;
+	transition-duration: 0.2s;
+	-ms-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+	overflow-x: hidden;
+	overflow-y: auto;
+	pointer-events: auto;
+	visibility: visible;
+}
+
+.bottom-dialog {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+	width: 540rpx;
+	max-width: 100%;
+	background-color: var(--white);
+	border-radius: 10rpx;
+	overflow: hidden;
+	z-index: 1120;
+}
+.bottom-modal.modal-action::before {
+	vertical-align: bottom;
+}
+
+.bottom-modal.modal-action .bottom-dialog {
+	width: 100%;
+	border-radius: 0;
+}
+
+.bottom-modal.modal-action {
+	margin-bottom: -1000rpx;
+}
+
+.bottom-modal.modal-action.show {
+	margin-bottom: 0;
+}
+/* ---- */
+
+.action-sheet-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 96rpx;
+  background: var(--bgGray);
+}
+.action-sheet-btn{
+  padding: 0 32rpx;
+  font-size: 32rpx;
+}
+.action-sheet-confirm{
+  color: var(--thMain);
+}
+.action-sheet-item{
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  color: var(--gray);
+}
+.action-sheet-item.active{
+  font-size: 32rpx;
+  color: var(--black);
+  font-weight: bold;
+}

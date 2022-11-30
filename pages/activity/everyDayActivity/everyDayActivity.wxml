@@ -1,0 +1,39 @@
+<import src="/templates/global/global.wxml" />
+
+
+<block wx:if="{{moduleList.length}}" wx:for="{{moduleList}}" wx:key="this_key">
+  <view class='banner' wx:if="{{item.sectionType == 1326}}">
+    <!-- <block wx:if="{{item.recommendList.length>1}}">
+    <swiper>
+        <swiper-item wx:for="{{item.recommendList}}" wx:for-item="bannerItem"><image src='{{bannerItem.imgUrl}}'></image></swiper-item>
+      </swiper>
+    </block>
+    <block wx:elif="{{item.recommendList.length == 1}}"> -->
+    <image src='{{item.recommendList[0].imgUrl || "https://shgm.jjyyx.com/m/images/group_list_banner_default.png"}}' mode='widthFix' bindtap="goOtherLink" data-item="{{item.recommendList[0]}}"></image>
+    <!-- </block>
+    <block wx:else>
+       <image class='empty-banner' src='' mode='widthFix'></image>
+    </block> -->
+  </view>
+  <block wx:if="{{item.sectionType == 909 && item.recommendList}}">
+    <view class='activity-goods-wrap'>
+      <block wx:for="{{item.recommendList}}" wx:for-item='goodsItem' wx:key="thiskey">
+        <block wx:if="{{goodsItem.bizType == 17}}">
+        <view class="bizType-banner">
+          <image mode="widthFix" class="bizType-banner-img" src='{{goodsItem.imgUrl}}'></image>
+        </view>
+        </block>
+        <block wx:else>
+          <view class='activity-goods-list'>
+            <three-goods-item goods="{{goodsItem.extendJson}}" bind:change-cart="changeCartCount" currentLogId="{{currentLogId}}" log-type-detail="409" log-type="410"></three-goods-item>
+          </view>
+        </block>
+      </block>
+    </view>
+    <template wx:if="{{item.recommendList.length > 4}}" is="noMore"></template>
+  </block>
+</block>
+
+
+<component-go-cart cart-count="{{cartCount}}" position-style="{{positionStyle}}"></component-go-cart>
+<template is="toast" data="{{...toastData}}"></template>

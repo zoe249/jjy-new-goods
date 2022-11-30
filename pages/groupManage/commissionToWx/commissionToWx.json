@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "提现至微信",
+  "usingComponents": {
+    "component-global-modal": "/component/cuModal/cuModal"
+  }
+  
+}

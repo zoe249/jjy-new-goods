@@ -1,0 +1,39 @@
+<!--数据量不大时，不用swiper 避免出现拖拉 可滑动情况 -->
+<!-- -->
+<block wx:if="{{cateArray && cateArray.length<=pageShowSize }}">
+    <view class="ma-category-grid">
+        <view class="ma-category-grid-item  col-{{colSize}}" wx:for="{{cateArray}}" wx:key="recommendId" bindtap="_autoJump" data-item="{{item}}"  data-index="{{index}}">
+            <view class="ma-category-grid-item-wrap">
+                <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+                <text class="ma-category-value">{{item.recommendTitle}}</text>
+            </view>
+        </view>
+    </view>
+</block>
+
+<!--数据分页-->
+<block wx:elif="{{cateArray && cateArray.length > pageShowSize}}">
+    <swiper id="class_swiper" bindchange="classSwiper" style="height: {{initSwiperHeight}};">
+        <swiper-item wx:for="{{_cateArrayGroupList}}" wx:for-item="groupItem" wx:for-index="groupIndex" wx:if="{{groupIndex<20}}" wx:key="groupIndex" data-postion="1">
+            <view class="view_all" style="height: {{initSwiperHeight}};">
+
+                <view class="ma-category-grid ma-category-grid-group">
+                    <view class="ma-category-grid-item  col-{{colSize}}" wx:for="{{groupItem.cateArray}}" wx:key="recommendId" data-url="{{item.linkUrl}}" bindtap="_autoJump" data-item="{{item}}"  data-index="{{index}}" >
+                        <view class="ma-category-grid-item-wrap">
+                            <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+                            <text class="ma-category-value">{{item.recommendTitle}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </swiper-item>
+    </swiper>
+    <view class="indicator-container" wx:if="{{_cateArrayGroupList.length > 1 && indicatorShow}}">
+        <view class="indicator-container-wrap">
+            <block wx:for="{{_cateArrayGroupList}}" wx:key="groupId">
+                <view class="indicator-item {{index==0?'firstIndicatorItem':index==_cateArrayGroupList.length-1?'endIndicatorItem':''}}" style="{{indicatorStyle}};{{_swipperIndex == index ? indicatorActStyle:''}}"></view>
+            </block>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,16 @@
+<!--pages/goods/classifyScreen/classifyScreen.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<!-- <template is="globalLoading" data="{{globalLoading}}"></template> -->
+
+<scroll-view class='container' id='box' style="background-color:{{banner.backgroundColor}};">
+  <!-- 提示层 - 暂无数据 -->
+  <block wx:if='{{showError}}'>
+    <template is="empty" data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:else>
+    <view class='waiting-box'><image src='https://shgm.jjyyx.com/m/images/error_img3.png' mode='widthFix'></image><view class='waiting-text'>正在全力加载中...</view></view>
+  </block>
+</scroll-view>
+
+<template is="globalLoading" data="{{globalLoading}}"></template>

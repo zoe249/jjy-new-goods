@@ -1,0 +1,82 @@
+<!-- <template is="recommendPlate"></template> -->
+<!-- <template is="scrollNav"></template> -->
+<import src="/templates/global/global.wxml" />
+<!-- <view class="header">
+        <view class='shop-info'>
+          <image></image>
+          <view class='shop-picker'>
+            <view>{{gInfo.address.provinceName}} {{gInfo.address.cityName}} {{gInfo.address.areaName}} {{gInfo.address.address}}</view>
+          </view>
+        </view>
+
+      </view> -->
+
+<!-- <view class='banner'>
+        <swiper autoplay circular current="{{current}}" bindchange="swiperChange">
+          <block wx:if="{{bannerArr.length>0}}">
+            <swiper-item wx:for="{{bannerArr}}" wx:for-item='imgItem' wx:key="this_{{index}}">
+              <image catchtap='goBanner' data-item="{{imgItem}}" data-link="{{imgItem.linkUrl||''}}" class='img' src="{{imgItem.imgUrl}}"></image>
+            </swiper-item>
+            </block>
+            <block wx:else>
+            <swiper-item>
+              <image class='img' src=""></image>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='dic' wx:if="{{bannerArr.length}}">{{current+1}}/{{bannerArr.length}}</view>
+      </view> -->
+<view class='top-banner'>
+  <image src='https://shgm.jjyyx.com/m/images/group/yuexuan_banner.png?t={{reloadTime}}' mode="widthFix"></image>
+</view>
+
+<block
+  wx:if="{{promotionForGoodOutputLis || buyingPromotionForGoodsOutputList || directOffPromotionForGoodsOutputList}}">
+  <view class='share-goods-container share-plate'>
+
+    <view class='share-goods-list' style="padding-top:{{hasGoods?'16rpx':'0'}}">
+      <block wx:for="{{goodsList}}" wx:for-item="goodsItem" wx:key="pro" >
+        <goods-item goods="{{goodsItem}}" bind:bindPartakeGroup="bindPartakeGroup"></goods-item>
+      </block>
+    </view>
+    <template is="noMore" wx:if="{{goodsList.length > 0}}"></template>
+    <template is="empty" wx:if="{{empty}}"></template>
+  </view>
+</block>
+
+<!--分享按钮-->
+
+<view class='shareHomePage {{isIphoneX?"shareHomePageX":""}}' bindtap="shareHome" wx:if="{{isExtend > 0}}">
+  <image src='http://m.lyzlcloud.com/m/images/yunguo/icon_jl_share.png'></image>
+</view>
+
+<actionSheet show="{{showExtension}}" mask="limpid" isMaskClose="{{true}}">
+  <view class="share-sheet-pupop">
+    <button class="share-sheet-item" open-type='share' data-types="{{shareType}}">
+      <text class="iconfont iconCoverwx"></text>
+      <view>微信好友</view>
+    </button>
+   
+    <view class="share-sheet-item" bindtap="bindDrawShare">
+      <text class="iconfont iconPic"></text>
+      <view>生成海报</view>
+    </view>
+  </view>
+  <view class="share-sheet-cancel" bindtap="closeExtension">取消</view>
+</actionSheet>
+<!-- 分享图 下载本地 -->
+<actionSheet show="{{downLoaclFlag}}" isMaskClose="{{true}}" dialogStyle="background: transparent">
+  <view class="down-loacl-page">
+    <view class="down-cover" bindtap="hideDownLoadImg"></view>
+    <view class="down-info">
+      <image src="{{downLoaclImg}}" mode="widthFix"></image>
+      <view class="down-img-btn" bindtap="headlerSave">保存图片</view>
+    </view>
+  </view>
+</actionSheet>
+<painter palette="{{drawJson}}"  customStyle='position: absolute; left: -9999rpx;' bind:imgOK="onImgOK" />
+
+
+<navigator class='back-home' open-type="redirect" url='/pages/groupManage/home/home'></navigator>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

@@ -1,0 +1,45 @@
+<import src="/templates/global/global.wxml" />
+<view class="report-diff-container">
+  <view class="report-diff-tab-wrap">
+    <tabs-component tabs="{{tabs}}" activeClass="report-diff-act" tabActiveTextColor="#0F3F69"
+      partClass="report-diff-tab r1bt" bindtabclick="switchDiffTab" activeTab="{{activeTab}}"></tabs-component>
+  </view>
+
+  <view class="diff-item pos-r" wx:for="{{list}}" bindtap="jumpDetails" data-item="{{item}}">
+    <view class="diff-item-top">
+      <view class="diff-item-img">
+        <image src="{{item.goodsImage}}"></image>
+      </view>
+      <view class="diff-item-info">
+        <view class="diff-goods-name">{{item.skuName}}</view>
+        <view class="diff-goods-bt">
+          <block wx:if="{{item.materielType == 30}}">
+            <view class="diff-num"><text class="property-out-hiding">{{item.materielExtPropertyStr}}</text></view>
+          </block>
+          <view class="diff-spc"><text>规格：{{item.goodsUnit}}</text><text>单价：{{item.salePrice}}{{item.goodsUnit?'/'+item.goodsUnit:''}}</text></view>
+          <block wx:if="{{item.pricingMethod == 391}}">
+            <view class="diff-num"> 差异重量：{{item.num}}g</view>
+          </block>
+          <block wx:else>
+            <view class="diff-num"> 差异数量：{{item.num}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="diff-item-bottom">
+      <view class="bitch-id">批次号：{{item.batchId}}</view>
+      <view class="bitch-time">上报日期：{{item.createTime}}</view>
+    </view>
+    <block wx:if="{{activeTab==2}}">
+      <view class="diff-state pos-a {{item.status == 3 && item.approvedStatus == 2 ?'color-red':''}}">{{item.status == 3?approvedStatus[item.approvedStatus-1]:statusDis[item.status]}}</view>
+    </block>
+  </view>
+  <view class="report-diff-btn" bindtap="jumpToReport"><text>上报差异</text></view>
+  <block wx:if="{{list.length> 3}}">
+    <template is="noMore" data="{{noMoreMes}}"></template>
+  </block>
+</view>
+
+<template is="empty" wx:if="{{empty}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+  <view class="loading-cnt">
+    <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+  </view>
+</view>
+
+
+<view class="container order-index">
+  <!-- <view class='search-box'><view class='search-input'><input bindinput='bindinputHandler' value='{{namePhone}}' placeholder='购买人姓名或手机号' /></view><view class='btn-search' catchtap='confirmSearch' data-order-state="{{orderStatus}}">搜索</view></view> -->
+  <view class='search-box'>
+    <view class='search-input'>
+      <input bindinput='bindinputHandler' bindconfirm='confirmSearch' data-order-state="{{orderStatus}}" value='{{namePhone}}' placeholder='购买人手机号' />
+    </view>
+  </view>
+  <view class="order-nav">
+    <scroll-view scroll-x='true' scroll-with-animation='true' class="order-nav-cnt">
+      <!-- orderStatus (integer, optional): 0:全部;1:待支付;2:待配送;3:待收货;4:待自提;5:售后退款 , -->
+      <view class="nav-item{{orderStatus==0?' active':''}}" data-order-state="0" catchtap="navSetOrderStatus">
+        <icon></icon>全部</view>
+      <view class="nav-item{{orderStatus==1?' active':''}}" data-order-state="1" catchtap="navSetOrderStatus">
+        <icon></icon>待支付</view>
+      <view class="nav-item{{orderStatus==2?' active':''}}" data-order-state="2" catchtap="navSetOrderStatus">
+        <icon></icon>待配送</view>
+      <view class="nav-item{{orderStatus==3?' active':''}}" data-order-state="3" catchtap="navSetOrderStatus">
+        <icon></icon>待收货</view>
+      <view class="nav-item{{orderStatus==4?' active':''}}" data-order-state="4" catchtap="navSetOrderStatus">
+        <icon></icon>待自提</view>
+      <view class="nav-item{{orderStatus==952?' active':''}}" data-order-state="952" catchtap="toRecord">
+        <icon></icon>已售后</view>
+    </scroll-view>
+  </view>
+  <block wx:if="{{result.length>0}}">
+    <view class="list-wrap hasNav">
+      <template is="list" data="{{list:result}}"></template>
+    </view>
+    <view class="bottom" wx:if="{{!hasNextPage&&result.length>=3}}">已经到底啦~</view>
+  </block>
+  <block wx:elif="{{showNoData}}">
+    <template is="empty" data="{{emptyMsg:'您暂无相关订单',errorImageName:'error_img5.png'}}"></template>
+  </block>
+</view>
+
+<template name="list">
+  <view class="list-box">
+    <block wx:for="{{list}}" wx:key="list{{li.orderId}}{{li.orderStoreId}}" wx:for-item="li" wx:for-index="index">
+      <component-group-manage-order-list-new bind:manageCancelOrder='manageCancelOrder' li='{{li}}' orderStatus='{{orderStatus}}' setGroupNowOrderType='1'></component-group-manage-order-list-new>
+    </block>
+  </view>
+</template>
+<template is="modal" data="{{...modalData}}"></template>

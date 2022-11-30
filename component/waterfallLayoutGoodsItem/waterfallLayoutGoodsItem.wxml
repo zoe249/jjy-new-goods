@@ -1,0 +1,96 @@
+<!--component/goodsItem/goodsItem.wxml-->
+<view class="goods-item" catchtap="goGoodsDetail" data-goods="{{goods}}" data-from="{{from}}">
+  <view class="goods-image">
+    <image src="{{goods.coverImage}}" data-goods="{{goods}}" class="goods-cover" mode="scaleToFill" lazy-load="{{true}}"></image>
+    <block wx:if="{{goods.promotionList && goods.promotionList.length}}">
+      <block wx:if="{{goods.promotionList[0].proTag}}">
+        <image class="goods-left-proTag" src="{{goods.promotionList[0].proTag}}"></image>
+      </block>
+
+      <block wx:if="{{false}}">
+        <text class="goods-proInfo">{{goods.promotionList[0].proInfo}}</text>
+      </block>
+    </block>
+
+    <block wx:if="{{goods.isMember==1}}">
+      <image class="goods-right-proTag" src="https://m.fulaishiji.com/m/images/huiyuanjia.png"></image>
+    </block>
+  </view>
+  <view class="goods-all-info-wrap">
+    <block wx:if="{{formType == 1}}">
+      <view class="goods-name-contaienr">
+        <block wx:if="{{goods.produceIcon}}">
+          <image class="produce-icon" src="{{goods.produceIcon}}"></image>
+        </block>
+        {{goods.shortTitle||goods.goodsName||""}}
+      </view>
+    </block>
+    <block wx:else>
+      <view class="goods-name">{{goods.shortTitle||goods.goodsName||""}}</view>
+    </block>
+
+    <view class="goods-tags" wx:if="{{goods.goodsTag}}">{{goods.goodsTag||""}}</view>
+    <!-- <view class="goods-tags"> mao{{goods.goodsTag||""}}</view> -->
+    <!-- <text class="goods-tags-type-item">秒杀</text> -->
+    <block wx:if="{{formType == 1}}">
+
+    </block>
+    <block wx:else>
+      <view class="goods-tags-type" wx:if="{{!!goods.proType}}">
+        <block wx:if="{{goods.proType == 1821}}">
+          <text class="goods-tags-type-item">{{goods.promotionList[0].groupBuyResultOutput.needJoinCount}}人团</text>
+        </block>
+        <block wx:if="{{goods.proType == 999}}">
+          <text class="goods-tags-type-item">{{goods.promotionList[0].groupBuyResultOutput.needJoinCount}}人参团</text>
+        </block>
+        <block wx:if="{{(goods.proType == 998 || goods.proType == 1178)&& goods.promotionList[0].proStatus == 1}}">
+          <text class="goods-tags-type-item">秒杀</text>
+        </block>
+        <!-- <block wx:if="{{goods.proType == 1178 && goods.promotionList[0].proStatus == 1}}">
+          <text class="goods-tags-type-item">抢购</text>
+        </block> -->
+      </view>
+    </block>
+    <view class="goods-info-container">
+      <view class="goods-price-container">
+        <view class="goods-price">
+          <!-- proPrice -->
+          <block wx:if="{{goods.proPrice}}">
+            <text class="prime-price" wx:if="{{goods.proPrice && (goods.proPrice < goods.salePrice)}}">{{goods.proPrice < goods.salePrice ? "￥" + goods.salePrice :
+          ""}}</text>
+          </block>
+          <!-- primePrice 原价 -->
+          <block wx:if="{{goods.primePrice}}">
+            <text class="prime-price" wx:if="{{goods.primePrice && (goods.primePrice > goods.salePrice)}}">{{goods.primePrice > goods.salePrice ? "￥" + goods.primePrice :
+          ""}}</text>
+          </block>
+           <text class="big-font">￥{{goods.proPrice?goods.proPrice:goods.salePrice}}</text>
+          <block wx:if="{{goods.salesUnit}}">
+            <!-- <text class="sales-unit">/{{goods.salesUnit}}</text> -->
+          </block>
+          <!-- <block wx:if="{{(goods.proType == 998 && goods.promotionList[0].proStatus == 1) || goods.proType == 999}}">
+            <text class="prime-price">￥{{goods.primePrice}}</text>
+          </block> -->
+        </view>
+      </view>
+      <block wx:if="{{goods.proType == 1821 || goods.proType == 999}}">
+        <block wx:if="{{goods.promotionList[0].groupBuyResultOutput.myGroup}}">
+          <text class="join-group">查看团</text>
+        </block>
+        <block wx:else>
+          <text class="join-group">去拼团</text>
+        </block>
+      </block>
+      <block wx:elif="{{goods.proType == 998 && goods.promotionList[0].proStatus == 1}}">
+        <text class="join-group">立即抢</text>
+      </block>
+      <block wx:elif="{{goods.goodsStock}}">
+        <view class="add-cart"  data-goods="{{goods}}" catchtap="addCart"></view>
+        <!-- <image class="add-cart" src="https://m.fulaishiji.com/m/images/icon_add.png" data-goods="{{goods}}" catchtap="addCart"></image> -->
+      </block>
+      <block wx:else>
+        <view class="shouqing-text">已售罄</view>
+      </block>
+    </view>
+  </view>
+</view>

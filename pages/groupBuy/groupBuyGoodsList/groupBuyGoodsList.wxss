@@ -1,0 +1,334 @@
+/* pages/groupBuy/groupBuyGoodsList/groupBuyGoodsList.wxss */
+
+.main {
+    background: #f4f4f4;
+}
+
+.header-container {
+    position: relative;
+    width: 720rpx;
+    height: 256rpx;
+    overflow: hidden;
+    margin: 16rpx auto 0;
+    border-radius: 16rpx;
+}
+
+.header-container .header-image {
+    width: 100%;
+    height: auto;
+}
+
+.header-container .swiper-container .swiper-image {
+    width: 100%;
+    height: 256rpx;
+}
+
+.group-goods-list-container {
+    width: 720rpx;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.group-goods-list-container .goods-item-container {
+    position: relative;
+    margin-top: 16rpx;
+    width: 100%;
+    padding: 30rpx 32rpx;
+    display: flex;
+    align-items: stretch;
+    background: #FFF;
+    border-radius: 16rpx;
+}
+
+.group-goods-list-container .goods-item-container .is-new {
+    position: absolute;
+    left: 32rpx;
+    top: 30rpx;
+    width: 60rpx;
+    height: 60rpx;
+    z-index: 999;
+}
+
+.group-goods-list-container .goods-item-container .goods-cover-image {
+    position: relative;
+    width: 240rpx;
+    height: 240rpx;
+}
+
+.group-goods-list-container .goods-item-container.group-sold-out .goods-cover-image:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2) url("https://shgm.jjyyx.com/m/images/groupBuy/group_sold_out.png") no-repeat center;
+    background-size: 100rpx auto;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container {
+    position: relative;
+    flex: 1;
+    margin-left: 46rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-name-container {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    height: 80rpx;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    color: #444;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-name-container .goods-produce {
+    display: inline-block;
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 10rpx;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-msg-container {
+    margin-top: 12rpx;
+    width: 100%;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-msg-container .need-count {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-msg-container .sales-volume {
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-name {
+    width: 100%;
+    height: 38rpx;
+    font-size: 30rpx;
+    color: #444;
+    line-height: 38rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-tag {
+    margin-top: 20rpx;
+    width: 100%;
+    height: 24rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-prime-price-container {
+    margin-top: 20rpx;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-price-container {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .price-msg {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-prime-price {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1;
+    text-decoration: line-through;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-price-container .symbol {
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .goods-price-container .sale-price {
+    font-size: 32rpx;
+    color: #FF4752;
+    line-height: 0.9
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .min-buy-count {
+    margin-top: 20rpx;
+    font-size: 40rpx;
+    line-height: 0;
+    color: #FFA601;
+    padding: 26rpx 32rpx;
+    text-align: center;
+    border: 2rpx solid #FFA800;
+    border-radius: 26rpx;
+    transform-origin: 0 0;
+    transform: scale(0.5);
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-price-container {
+    margin: 6rpx 0 10rpx 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-price-container .need-count {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #444;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-price-container .symbol {
+    margin-left: 20rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-price-container .sale-price {
+    font-size: 38rpx;
+    line-height: 0.9;
+    color: #FF4752;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .sale-price-container .sale-unit {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .group-msg-container {
+    margin-top: 20rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .group-msg-container .sales-volume {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.group-goods-list-container .goods-item-container .goods-info-container .group-msg-container .join-btn {
+    width: 180rpx;
+    padding: 25rpx 0;
+    text-align: center;
+    color: #FFF;
+    line-height: 0;
+    font-size: 28rpx;
+    background: #FF4752;
+    border-radius: 25rpx;
+}
+
+.group-goods-list-container .goods-item-container.group-sold-out .goods-info-container .group-msg-container .join-btn {
+    background: #ccc;
+}
+
+.last-group-container {
+    width: 100%;
+    padding: 32rpx 32rpx 24rpx 32rpx;
+    background: #FFF;
+    border-top: 1rpx solid #ededed;
+}
+
+.last-group-container .last-group-msg {
+    width: 100%;
+    font-size: 20rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.last-group-container .grouper-list-container {
+    margin-top: 22rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.last-group-container .grouper-list-container .member-item-header {
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 10rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    background: url("https://shgm.jjyyx.com/m/images/my_head_default.png?t=418") no-repeat center;
+    background-size: contain;
+}
+
+.last-group-container .need-join-msg {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #777;
+}
+
+.last-group-container .join-group-btn {
+    flex: 1;
+    text-align: right;
+}
+
+.last-group-container .join-group-btn .join-group-text {
+    display: inline-block;
+    width: 180rpx;
+    line-height: 0;
+    padding: 25rpx 0;
+    text-align: center;
+    border: 1rpx solid #FF4752;
+    border-radius: 25rpx;
+    color: #FF4752;
+    font-size: 28rpx;
+}
+
+.last-group-container .need-join-num {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-empty-container {
+    margin-top: 16rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60rpx 0;
+    background: #FFF;
+}
+
+.group-empty-container .empty-icon {
+    width: 400rpx;
+    height: 400rpx;
+}
+
+.group-empty-container .empty-msg {
+    margin-top: -30rpx;
+    line-height: 1;
+    color: #999;
+    font-size: 24rpx;
+}

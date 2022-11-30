@@ -1,0 +1,301 @@
+<view class="page" wx:if="{{!errText}}">
+	<import src="/templates/global/global.wxml" />
+	<!-- 滚动吸顶导航 -->
+	<view class="scrollNav" style="opacity: {{opacity}};" wx:if="{{opacity!=0}}">
+		<!-- 滚动容器 -->
+		<scroll-view class="scroll_navs" scroll-into-view="nav{{nav_index}}" scroll-x scroll-with-animation>
+			<!-- 最左边用来定位的导航 -->
+			<view id="nav0"></view>
+			<!-- 正常的导航按钮 -->
+			<view class="ul box dis_f_l_c">
+				<block wx:for="{{nav_list}}" wx:key="index">
+					<!-- 判断nav的id是否相同添加类型active     通过index给nav添加id -->
+					<view wx:if="{{item.id!=100}}" class="li dis_f_co_c_c" id="nav{{index+1}}" bindtap="nav_fun" data-item="{{item}}"
+						data-index="{{index}}">
+						<text class="{{nav_item.id==item.id?'active':''}}">{{item.name}}</text>
+						<image src="{{$.img_src}}/RecipeDetails/top_xz.png" mode="aspectFit"
+							style="opacity: {{nav_item.id==item.id?'1':'0'}};" />
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+	</view>
+	<!-- 顶部导航部分 -->
+	<view class="header">
+		<!-- 轮播 -->
+		<view class="swiper">
+			<swiper bindchange="swiper_change" circular>
+				<block wx:for="{{swiper_list}}" wx:key="index">
+					<swiper-item wx:if="{{item.type==1}}">
+						<video id='myVideo' src="{{item.url}}" object-fit="fill" enable-progress-gesture="{{false}}"
+							play-btn-position="center" poster="{{item.icon}}"/>
+					</swiper-item>
+					<swiper-item bindtap="swiper_fun" data-item="{{item.url}}" wx:if="{{item.type==2}}">
+						<image src="{{item.url}}" mode="aspectFill" />
+					</swiper-item>
+				</block>
+			</swiper>
+			<view class="swiper_ul">
+				<view class="swiper_li dis_f_c_c">
+					<image class="bg" src="{{$.img_src}}/ArticleDetails/lbt_ym_bg.png" mode="aspectFit" />
+					<view class="left dis_f_c_c">
+						<image class="left_bg" src="{{$.img_src}}/ArticleDetails/lbt_ym_xz.png" mode="aspectFit" />
+						<text>{{swiper_index+1}}</text>
+					</view>
+					<view class="right dis_f_c_c">
+						<text>{{swiper_list.length}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 顶部标题部分 -->
+		<view class="top_title dis_f_co_sb_c box">
+			<view class="title slh_one">{{listDetail.title}}</view>
+			<view class="content slh_one">{{listDetail.introduce}}</view>
+		</view>
+	</view>
+	<!-- 正文显示部分 -->
+	<view class="section">
+		<!-- 商品清单部分 -->
+		<view class="product_list" wx:if="{{shopList.length!=0}}">
+			<view class="top dis_f_sb_c">
+				<view class="top_left dis_f_l_c">
+					<view class="Wire"></view>
+					<view class="title">商品清单</view>
+					<view class="number">/共{{moreShopList.length}}件</view>
+				</view>
+				<view class="top_right dis_f_c_c" bindtap="OneAddCart">
+					<text>一键加购</text>
+				</view>
+			</view>
+			<view class="bottom">
+				<swiper bindchange="product_list_swiper_change"  style="{{shopList[0].length<=3?'height:400rpx':''}}">
+					<block wx:for="{{shopList}}" wx:key="index">
+						<swiper-item>
+							<view class="ul dis_f_w_l_c" style="padding: 10rpx;">
+								<block wx:for="{{item}}" wx:for-item="items" wx:for-index="indexs" wx:key="indexs">
+									<view class="shop_li" catchtap="goGoodsDetail" data-goods="{{items.goodsList[0].goods}}" data-indexs="{{indexs}}">
+										<view wx:if="{{items.goodsList[0].goods.coverImage}}" class="top_img">
+											<image src="{{items.goodsList[0].goods.coverImage}}" mode="aspectFill" />
+											<!-- 已售罄 -->
+											<view class="SoldOut dis_f_c_c" wx:if="{{items.goodsList[0].goods.goodsStock<=0}}">
+												<view class="dis_f_c_c">
+													<text>已售罄</text>
+												</view>
+											</view>
+										</view>
+										<view wx:else class="top_img">
+											<view class="no_img dis_f_co_c_c">
+												<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+												<text>暂无图片</text>
+											</view>
+											<!-- 已售罄 -->
+											<view class="SoldOut dis_f_c_c" wx:if="{{items.goodsList[0].goods.goodsStock<=0}}">
+												<view class="dis_f_c_c">
+													<text>已售罄</text>
+												</view>
+											</view>
+										</view>
+										<view class="title slh_two">
+											{{items.goodsList[0].goods.materielParentName||items.goodsList[0].goods.goodsPromotionName||items.goodsList[0].goods.shortTitle||items.goodsList[0].goods.goodsName||""}}
+										</view>
+										<view class="price_btn dis_f_sb_c">
+											<view class="price slh_one">
+												<text>￥</text>
+												<text class="whole">{{items.goodsList[0].goods.salePrice[0]}}</text>
+												<text class="whole1" wx:if="{{items.goodsList[0].goods.salePrice[1]}}">.{{items.goodsList[0].goods.salePrice[1]}}</text>
+												<text class="unit">/{{items.goodsList[0].goods.salesUnit}}</text>
+											</view>
+											<view class="btn"
+												wx:if="{{items.goodsList[0].goods.proType == 1821||items.goodsList[0].goods.proType == 1888}}">
+												<image src="{{$.img_src}}/yx_index/baopin_pin.png" mode="aspectFit" />
+											</view>
+											<view class="btn" wx:else data-goods="{{items.goodsList[0]}}"
+												catchtap="addCart">
+												<image src="{{$.img_src}}/yx_index/baopin_gwc.png" mode="aspectFit" />
+											</view>
+										</view>
+									</view>
+								</block>
+							</view>
+						</swiper-item>
+					</block>
+				</swiper>
+				<view class="shop_list_dian dis_f_c_c" wx:if="{{shopList.length>1}}">
+					<block wx:for="{{shopList}}" wx:key="index">
+						<view class="li {{product_list_swiper_index==index?'active':''}}"></view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<!-- 文章详情部分 -->
+		<view class="article" wx:if="{{listDetail.modularList.length!=0}}">
+			<view class="top dis_f_l_c">
+				<view class="Wire"></view>
+				<view class="title">文章正文</view>
+			</view>
+			<view class="details">
+				<block wx:for="{{listDetail.modularList}}" wx:key="index">
+					<view class="li" wx:if="{{item.type==643}}">
+						<image class="img" src="{{item.imgUrl}}" mode="widthFix" bindtap="swiper_fun" data-item="{{item.imgUrl}}"/>
+					</view>
+					<view class="li" wx:if="{{item.type==642}}">
+						<rich-text nodes="{{item.text}}"></rich-text>
+					</view>
+				</block>
+			</view>
+		</view>
+		<!-- 相关菜谱 -->
+		<view class="recommend" wx:if="{{listDetail.completeList.length!=0}}">
+			<view class="top">
+				<view class="top_left dis_f_l_c">
+					<view class="Wire"></view>
+					<view class="title">相关推荐</view>
+				</view>
+			</view>
+			<view class="content dis_f_w_l_c">
+				<block wx:for="{{listDetail.completeList}}" wx:key="index">
+					<view class="li" catchtap="goDetails" data-goods="{{item}}">
+						<view wx:if="{{item.imageCover}}" class="li_top">
+							<image src="{{item.imageCover}}" mode="aspectFill" />
+						</view>
+						<view wx:else class="top_img dis_f_co_c_c">
+							<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+							<text>暂无图片</text>
+						</view>
+						<view class="li_bottom" wx:if="{{item.type==603}}">
+							<view class="title slh_one">{{item.title}}</view>
+							<view class="word slh_one" wx:if="{{item.main_ingredient}}">{{item.main_ingredient}}</view>
+							<view wx:else style="opacity: 0;">占位</view>
+						</view>
+						<view class="li_bottom" wx:else>
+							<view class="title slh_two">{{item.title}}</view>
+							<view class="word slh_one" wx:if="{{item.introduce}}">{{item.introduce}}</view>
+							<view wx:else style="opacity: 0;">占位</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<component-iphone-x-patcher></component-iphone-x-patcher>
+	</view>
+	<!-- 底部部分 -->
+	<view class="footer">
+		<!-- 底部导航部分 -->
+		<view class="bottom_nav dis_f_sb_c">
+			<view class="left dis_f_l_c">
+				<view class="li dis_f_co_c_c" bindtap="btnCollect">
+					<image  wx:if="{{listDetail.isCollect==1}}"
+						src="{{$.img_src}}/two_img/collect_yes.png" mode="aspectFit" />
+					<image  wx:else src="{{$.img_src}}/two_img/collect_no.png"
+						mode="aspectFit" />
+					<text>收藏</text>
+				</view>
+				<view class="li">
+					<button class="dis_f_co_c_c" open-type="share" >
+						<image src="{{$.img_src}}/ArticleDetails/share.png" mode="aspectFit" />
+						<text>分享</text>
+					</button>
+				</view>
+				<view class="cartXF li dis_f_co_c_c" bindtap="GoCart">
+					<image  src="{{$.img_src}}/ArticleDetails/cart.png" mode="aspectFit" />
+					<text>购物车</text>
+					<view class="number dis_f_c_c" wx:if="{{CartCount!=0}}">{{CartCount}}</view>
+				</view>
+			</view>
+			<view class="right dis_f_c_c" bindtap="ScrollFunY" wx:if="{{shopList.length!=0}}">
+				<text>相关商品</text>
+			</view>
+		</view>
+		<component-iphone-x-patcher></component-iphone-x-patcher>
+	</view>
+	<!-- 底部折叠展开部分 -->
+	<view class="fold_expand">
+		<view class="dis_f_l_b">
+			<view class="content {{Scrolltip=='show'?'show':'hide'}}" wx:if="{{ScrollShow}}">
+				<view class="top_title dis_f_c_c">
+					<view>食材</view>
+					<image src="{{$.img_src}}/RecipeDetails/clone_btn.png" mode="aspectFit" bindtap="ScrollFunN" />
+				</view>
+				<scroll-view class="scroll_one" scroll-y scroll-with-animation>
+					<block wx:for="{{moreShopList}}" wx:key="index">
+						<view class="ul">
+							<view class="titles">{{item.goodsGroupName}}</view>
+							<scroll-view class="scroll_two" scroll-x scroll-with-animation>
+								<view class="dis_f_l_c" style="padding: 10rpx;">
+									<block wx:for="{{item.goodsList}}" wx:for-item="items" wx:for-index="indexs"
+										wx:key="indexs">
+										<view class="li" catchtap="goGoodsDetail" data-goods="{{items.goods}}" data-indexs="{{indexs}}">
+											<view wx:if="{{items.goods.coverImage}}" class="top_img">
+												<image src="{{items.goods.coverImage}}" mode="aspectFill" />
+												<!-- 已售罄 -->
+												<view class="SoldOut dis_f_c_c" wx:if="{{items.goods.goodsStock<=0}}">
+													<view class="dis_f_c_c">
+														<text>已售罄</text>
+													</view>
+												</view>
+											</view>
+											<view wx:else class="top_img">
+												<view class="no_img dis_f_co_c_c">
+													<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+													<text>暂无图片</text>
+												</view>
+												<!-- 已售罄 -->
+												<view class="SoldOut dis_f_c_c" wx:if="{{items.goods.goodsStock<=0}}">
+													<view class="dis_f_c_c">
+														<text>已售罄</text>
+													</view>
+												</view>
+											</view>
+											<view class="title slh_two">
+												{{items.goods.materielParentName||items.goods.goodsPromotionName||items.goods.shortTitle||items.goods.goodsName||""}}
+											</view>
+											<view class="price_btn dis_f_sb_c">
+												<view class="price slh_one">
+													<text>￥</text>
+													<text class="whole">{{items.goods.salePrice[0]}}</text>
+													<text class="whole1" wx:if="{{items.goods.salePrice[1]}}">.{{items.goods.salePrice[1]}}</text>
+													<text class="unit">/{{items.goods.salesUnit}}</text>
+												</view>
+												<view class="btn"
+													wx:if="{{items.goods.proType == 1821||items.goods.proType == 1888}}">
+													<image src="{{$.img_src}}/yx_index/baopin_pin.png" mode="aspectFit" />
+												</view>
+												<view class="btn" wx:else data-goods="{{items}}"
+													catchtap="addCart" data-type="ingredients">
+													<image src="{{$.img_src}}/yx_index/baopin_gwc.png" mode="aspectFit" />
+												</view>
+											</view>
+										</view>
+									</block>
+								</view>
+							</scroll-view>
+						</view>
+					</block>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="iphonex" style="z-index: 300;">
+			<component-iphone-x-patcher></component-iphone-x-patcher>
+		</view>
+		<!-- 遮盖部分 -->
+		<view class="ZG" wx:if="{{Scrolltip=='show'}}" bindtap="ScrollFunN"></view>
+	</view>
+	<!-- 加入购物车动画 -->
+	<CartAnimation id="cartAnimation" background="#FF4752"></CartAnimation>
+	<!-- 提示框组件 -->
+	<block wx:if="{{ti_shi_show}}">
+		<template is="toast" data="{{...toastData}}"></template>
+	</block>
+</view>
+<block wx:else>
+	<view class="page-container">
+		<view class="auth-box">
+			<view class="icon-box"></view>
+			<view class="text-box">{{errText}}</view>
+			<view class="dis_f_c_c">
+				<view class="selectShop" bindtap="errclick">查看其他内容</view>
+			</view>
+		</view>
+	</view>
+</block>

@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "我的佣金",
+    "usingComponents": {
+        "component-backstage-footer-nav": "/component/backstageFooterNav/backstageFooterNav"
+    }
+}

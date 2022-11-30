@@ -1,0 +1,842 @@
+<!--index.wxml-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+  <view class="loading-cnt">
+    <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+  </view>
+</view>
+<block wx:if="{{showCouponPop}}">
+  <view class="pop-coupon-box" catchtap="closeCouponPop">
+    <view class="pop-coupon-cnt">
+      <view class="close" catchtap="closeCouponPop"></view>
+      <view class="coupon-head">
+        <image src="https://shgm.jjyyx.com/m/images/popOrderCoupon.jpg" mode='widthFix'></image>
+      </view>
+      <view class="ul">
+        <block wx:for="{{couponListJson}}">
+          <template is="couponItem" data="{{item}}"></template>
+        </block>
+      </view>
+      <view class="btn-box">
+        <view class="btn-coupon" catchtap="toUrlCoupon">去我的优惠券查看</view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{showRedBagPop}}">
+  <view id="pop-red-bag" catchtap="closeRedBagPop">
+    <view class="pop-cnt">
+      <view class="head">
+        <image class="img" src="https://shgm.jjyyx.com/m/images/popRedBagBg.jpg"></image>
+      </view>
+      <view class="cnt">
+        <!-- <view class="p1">{{redBagJson.nameTitle}}</view>
+        <view class="p2">{{redBagJson.nameCnt}}</view> -->
+        <view class="p3">{{redBagJson.name||'分享抢红包'}}</view>
+        <view class="money-box">
+          <!-- <image class="money-img" src="https://shgm.jjyyx.com/m/images/bgmax@2x.png"></image> -->
+          <view class="money">
+            <view class="span">¥</view>
+            <view class="em">{{redBagJson.totalPrice}}</view>
+          </view>
+        </view>
+        <button id="btn-pop-red" catchtap="shareRedBagPop" open-type="share" data-red-bag-json="{{redBagJson}}">抢最大红包</button>
+      </view>
+      <view id="pop-close" catchtap="closeRedBagPop"></view>
+    </view>
+  </view>
+</block>
+<view class="container order-index">
+  <block wx:if="{{fromUrlOrderType==0}}">
+    <view class="order-head">
+      <text catchtap="navShow">{{orderMessage}}</text>
+    </view>
+  </block>
+  <block wx:if="{{showNav}}">
+    <view class="order-nav" catchtap="navHide">
+      <block wx:if="{{isGroupType==1}}">
+        <view class="order-nav-cnt">
+          <view class="order-head-nav">
+            <text class="active" catchtap="navHide">{{orderMessage}}</text>
+          </view>
+          <view class="nav-item{{orderStatus==999?' active':''}}" data-order-state="999" catchtap="navSetOrderStatus">
+            <icon></icon>拼团订单</view>
+          <view class="nav-item{{orderStatus==51?' active':''}}" data-order-state="51" catchtap="navSetOrderStatus">
+            <icon></icon>拼团待付款</view>
+          <view class="nav-item{{orderStatus==41?' active':''}}" data-order-state="41" catchtap="navSetOrderStatus">
+            <icon></icon>拼团待发货</view>
+          <view class="nav-item{{orderStatus==44?' active':''}}" data-order-state="44" catchtap="navSetOrderStatus">
+            <icon></icon>拼团待自提</view>
+          <view class="nav-item{{orderStatus==45?' active':''}}" data-order-state="45" catchtap="navSetOrderStatus">
+            <icon></icon>拼团待取餐</view>
+          <view class="nav-item{{orderStatus==1852?' active':''}}" data-order-state="1852" catchtap="navSetOrderStatus">
+            <icon></icon>拼团中</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="order-nav-cnt">
+          <view class="order-head-nav">
+            <text class="active" catchtap="navHide">{{orderMessage}}</text>
+          </view>
+          <view class="nav-item{{orderStatus==0?' active':''}}" data-order-state="0" catchtap="navSetOrderStatus">
+            <icon></icon>全部订单</view>
+          <view class="nav-item{{orderStatus==999?' active':''}}" data-order-state="999" catchtap="navSetOrderStatus">
+            <icon></icon>拼团订单</view>
+          <!-- <view class="nav-item{{orderStatus==2?' active':''}}" data-order-state="2" catchtap="navSetOrderStatus">
+            <icon></icon>线下订单</view>
+          <view class="nav-item{{orderStatus==1707?' active':''}}" data-order-state="1707" catchtap="navSetOrderStatus">
+            <icon></icon>活动订单</view> -->
+          <view class="nav-item{{orderStatus==46?' active':''}}" data-order-state="46" catchtap="navSetOrderStatus">
+            <icon></icon>已完成订单</view>
+          <view class="nav-item{{orderStatus==48?' active':''}}" data-order-state="48" catchtap="navSetOrderStatus">
+            <icon></icon>已取消订单</view>
+          <view class="nav-item{{orderStatus==952?' active':''}}" data-order-state="952" catchtap="toRecord">
+            <icon></icon>售后订单</view>
+        </view>
+      </block>
+
+    </view>
+  </block>
+  <block wx:if="{{result.length>0}}">
+    <view class="{{fromUrlOrderType==0?'pt90':''}}">
+      <template is="list" data="{{list:result,reportSubmit:reportSubmit}}"></template>
+    </view>
+    <view class="bottom" wx:if="{{!hasNextPage&&result.length>=3}}">已经到底啦~</view>
+  </block>
+  <block wx:elif="{{showNoData}}">
+    <template is="empty" data="{{emptyMsg:'您暂无相关订单',errorImageName:'error_img5.png'}}"></template>
+  </block>
+
+</view>
+<block wx:if="{{showPhone}}">
+  <view id="phone-pop">
+    <view class="phone-cnt">
+      <view class="phone-num">{{phoneNum}}</view>
+      <view class="phone-btn">
+        <view class="phone-cancel" catchtap="closePhonePop">取消</view>
+        <view class="phone-confirm" catchtap="confirmPhone">呼叫</view>
+      </view>
+    </view>
+  </view>
+</block>
+<template name="list">
+  <view class="list-box">
+    <block wx:for="{{list}}" wx:key="orderId{{li.orderId}}" wx:for-item="li" wx:for-index="index">
+      <view class="li">
+        <view class="head" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-store-type="{{li.storeType}}" data-store-id="{{li.storeId}}" catchtap="toshopInfo">
+          <!-- <image class="shopIcon" src="{{li.storeIcon}}"></image> -->
+          <view class="text">
+          <block wx:if="{{li.storeType==1634}}">
+              云超特卖（{{li.storeName}}）
+          </block>
+          <block wx:else>
+            {{li.storeName}}
+          </block>
+            
+             <!-- <block wx:if="{{(li.proType>0&&li.proType!=1&&li.proType!=1821)||li.proType==1178||li.proType==1888}}">
+              <view class="span">自提</view>
+            </block>
+            <block wx:elif="{{li.offlineOrderType==1182}}">
+              <view class="span">闪电付</view>
+            </block> -->
+
+            <block wx:if="{{li.offlineOrderType==1182}}">
+              <view class="span">闪电付</view>
+            </block>
+            <block wx:elif="{{li.offlineOrderType==1184}}">
+              <view class="span">推广</view>
+            </block>
+            <block wx:elif="{{li.offlineOrderType==1122}}">
+              <view class="span">门店</view>
+            </block>
+            <block wx:elif="{{li.storeType==1037}}">
+              <!-- <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_kexuan.png"></image> -->
+              <view class="span">
+              海外淘
+              </view>
+            </block>
+            <block wx:elif="{{li.storeType==1634&&li.orderShippingType==111}}">
+              <view class="span">
+              自提
+              </view>
+            </block>
+            <block wx:elif="{{li.storeType==1634&&li.orderShippingType==110}}">
+              <view class="span">
+              配送
+              </view>
+            </block>
+            <block wx:elif="{{li.shippingType==111&&li.cabinetAddrId>0}}">
+              <view class="span">自提柜</view>
+            </block>
+
+            <!-- <block wx:elif="{{li.storeType==1634}}">
+              <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_zhenpinkexuan.png"></image>
+            </block> -->
+            <block wx:elif="{{li.orderStatus==952||li.orderStatus==439}}">
+              <view class="customer-service span">售后</view>
+            </block>
+            <block wx:elif="{{li.shippingType==110||li.shippingType==112||li.shippingType==540}}">
+              <view class="span">配送</view>
+            </block>
+            <block wx:elif="{{li.shippingType==111}}">
+              <view class="span">自提</view>
+            </block>
+            <block wx:elif="{{li.shippingType==113}}">
+              <view class="span">堂食</view>
+            </block>
+            <block wx:elif="{{li.isCardFlag==1709}}">
+              <view class="span">活动</view>
+            </block>
+          </view>
+          <block wx:if="{{li.distributeType==80&&(li.shippingType==110||li.shippingType==112||li.shippingType==540)}}">
+            <view class="icon-light">
+              <image src="https://shgm.jjyyx.com/m/images/icon_lightning.png"></image>
+            </view>
+          </block>
+        </view>
+        <view class="cnt" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">         <block wx:if="{{li.isCardFlag==999||li.isCardFlag==1821||li.proType==1888||li.groupMode}}">
+              <view class="icon-pintuan"></view>
+            </block>
+          <block wx:if="{{li.goodsInfoList.length>1}}">
+            <scroll-view class="more" scroll-x>
+              <block wx:key="{{li.orderId}}goodsInfoList{{goodsList.goodsId}}{{goodsList.isGift}}" wx:for="{{li.goodsInfoList}}" wx:for-item="goodsList" wx:for-index="goodsIndex">
+                <view class="image">
+                  <block wx:if="{{goodsList.isGift==1}}">
+                    <view class="i">赠品</view>
+                  </block>
+                  <block wx:elif="{{goodsList.isGift==2}}">
+                    <view class="i">换购</view>
+                  </block>
+                  <image class="scroll-view-item" src="{{goodsList.goodsImage}}"></image>
+                </view>
+              </block>
+            </scroll-view>
+          </block>
+          <block wx:else>
+            <view class="one">
+              <view class="image">
+                <block wx:if="{{goodsList.isGift==1}}">
+                  <view class="i">赠品</view>
+                </block>
+                <block wx:elif="{{goodsList.isGift==2}}">
+                  <view class="i">换购</view>
+                </block>
+                <image src="{{li.goodsInfoList[0].goodsImage}}"></image>
+              </view>
+              <text>{{li.goodsInfoList[0].goodsPromotionName||li.goodsInfoList[0].goodsName}}</text>
+            </view>
+          </block>
+        </view>
+        <view class="total-item">
+          <view class="total-item1 clearfix">
+            <text class="fl">共<text>{{li.goodsNum}}</text>件商品</text>
+            <block wx:if="{{li.offlineOrderType==1182||li.offlineOrderType==1184}}">
+              <block wx:if="{{li.checkFlag==0}}">
+                <text class="fr color-7dc825">待核验</text>
+              </block>
+              <block wx:elif="{{li.checkFlag==1}}">
+                <text class="fr color-7dc825">已完成</text>
+              </block>
+              <block wx:elif="{{li.checkFlag==2}}">
+                <text class="fr c-color">核验失败</text>
+              </block>
+            </block>
+            <block wx:elif="{{li.offlineOrderType==1122}}">
+              <text class="fr color-7dc825">已完成</text>
+            </block>
+            <block wx:else>
+              <text class="fr{{li.orderStatus==1088||li.orderStatus==46||li.orderStatus==45||li.orderStatus==44||li.orderStatus==42||li.orderStatus==41||li.orderStatus==4||li.orderStatus==1?' color-FF4752':''}}{{li.orderStatus==952||li.orderStatus==439?' color-3B9DF0':''}}{{li.orderStatus==47||li.orderStatus==48||li.orderStatus==51||li.orderStatus==49||li.orderStatus==115||li.orderStatus==116?' color-FF4752':''}}">{{li.statusName}}</text>
+            </block>
+          </view>
+          <view class="total-item2 clearfix">
+            <text class="fl time">{{li.createTimeStr}}</text>
+            <text class="fr color-464646">实付款：￥{{li.payAmountStr}}</text>
+          </view>
+        </view>
+        <block wx:if="{{li.orderStatus==51}}">
+          <view class="time-tip">
+            <view class="time-tip-text">订单将于
+              <text class="time-tip-cnt">{{li.remainingTime}}</text>后自动关闭
+              <icon></icon>
+            </view>
+          </view>
+        </block>
+        <view class="btn">
+          <block wx:if="{{li.isShowCardShare==1&&li.proType!=1}}">
+            <view class="one-btn" catchtap="cardShareBind" data-goods-num="{{li.goodsNum}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}">绑定分享</view>
+          </block>
+          <block wx:elif="{{(li.offlineOrderType==1182||li.offlineOrderType==1184)&&li.checkFlag!=10000}}">
+            <block wx:if="{{li.checkFlag==0||li.checkFlag==2}}">
+              <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                <view class="two-btn bl color-ff5c33" catchtap="toUrlVipPayCode">去核验</view>
+              </block>
+              <block wx:else>
+                <!--<view class="two-btn" catchtap="phoneService" data-servicePhone="{{li.servicePhone}}">联系客服</view>-->
+                <view class="one-btn bl color-ff5c33" catchtap="toUrlVipPayCode">去核验</view>
+              </block>
+
+            </block>
+            <block wx:elif="{{li.isReturnFlag==1}}">
+              <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              </block>
+              <block wx:else>
+                <view class="two-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+              </block>
+              <block wx:if="{{0&&li.isEvaluate==364&&!li.proType}}">
+                <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+              </block>
+              <block wx:elif='{{0&&!li.proType}}'>
+                <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              </block>
+              <block wx:else>
+                <!-- <view class="one-btn" catchtap="phoneService" data-servicePhone="{{li.servicePhone}}">联系客服</view>-->
+                <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+              </block>
+            </block>
+          </block>
+          <block wx:elif="{{li.offlineOrderType==1122||li.offlineOrderType==1184}}">
+            <block wx:if="{{li.isReturnFlag==1}}">
+              <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              </block>
+              <block wx:else>
+                <view class="two-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+              </block>
+              <block wx:if="{{0&&li.isEvaluate==364&&!li.proType}}">
+                <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+              </block>
+              <block wx:elif='{{0&&!li.proType}}'>
+                <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              </block>
+              <block wx:else>
+                <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+              </block>
+            </block>
+
+          </block>
+          <block wx:elif="{{li.orderStatus==51}}">
+            <view class="two-btn" catchtap="cancelOrder" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">取消订单</view>
+            <view class="two-btn bl color-155C99" catchtap="toPaying" data-pay-amount-str="{{li.payAmountStr}}" data-pay-time-left="{{li.payTimeLeft}}" data-orderId="{{li.orderId}}">立即支付</view>
+          </block>
+          <!--海外直邮或保税仓发货，参团的，没有传证件-->
+          <block wx:elif="{{li.isCardFlag==999&&li.shippingType==1023&&li.orderStatus==1}}">
+            <block wx:if="{{li.isGroupOkFlag!=1}}">
+              <view class="two-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+              <view class="two-btn bl" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+            </block>
+          </block>
+          <!--国内发货-->
+          <block wx:elif="{{li.isCardFlag==999&&li.shippingType==1023&&li.orderStatus==2}}">
+            <block wx:if="{{li.isGroupOkFlag!=1}}">
+              <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+            </block>
+            <block wx:elif="{{li.beforeSendGoods2CancelFlag==1}}">
+              <view class="two-btn" catchtap="globalDirectCancelOrder" data-addr-name="{{li.addrName}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}">取消订单</view>
+              <view class="two-btn bl" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+          </block>
+          <block wx:elif="{{li.isCardFlag==999&&li.shippingType==1023&&li.orderStatus==3}}">
+            <block wx:if="{{li.isGroupOkFlag==1}}">
+              <view class="one-btn" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+            </block>
+            <block wx:else>
+              <view class="two-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+              <view class="two-btn bl" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+            </block>
+          </block>
+          <!--参团的，组团中-->
+          <block wx:elif="{{li.isCardFlag==999&&li.orderStatus==4}}">
+            <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+          </block>
+          <!--海外直邮或保税仓发货没有上传证件的-->
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==1&&li.beforeSendGoods2CancelFlag==1}}">
+            <view class="two-btn" catchtap="globalDirectCancelOrder" data-addr-name="{{li.addrName}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}">取消订单</view>
+            <view class="two-btn bl" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==1}}">
+            <view class="one-btn" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==2&&li.beforeSendGoods2CancelFlag==1||li.shippingType==1022&&li.orderStatus==1&&li.beforeSendGoods2CancelFlag==1}}">
+            <view class="one-btn" catchtap="globalDirectCancelOrder" data-addr-name="{{li.addrName}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}">取消订单</view>
+          </block>
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==2||li.shippingType==1022&&li.orderStatus==1}}">
+            <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+          </block>
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==3&&li.beforeSendGoods2CancelFlag==1}}">
+            <view class="two-btn" catchtap="globalDirectCancelOrder" data-addr-name="{{li.addrName}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}">取消订单</view>
+            <view class="two-btn bl" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:elif="{{li.shippingType==1023&&li.orderStatus==3}}">
+            <view class="one-btn" data-customs-doc-id="{{li.customsDocId}}" data-addr-name="{{li.addrName}}" data-id-card-no="{{li.idCardNo}}" catchtap="upId">上传身份证</view>
+          </block>
+          <!--集单前可取消订单-->
+          <block wx:elif="{{li.beforeJD2CancelFlag&&li.isB2C!=1037&&li.isB2C!=1634&&li.isCardFlag!=1821&&li.proType!=1888}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}" >抢红包</view>
+              <view class="two-btn bl" catchtap="toApplyRefund" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}"  data-isb2c="{{li.isB2C}}">取消订单</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" catchtap="toApplyRefund" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-isb2c="{{li.isB2C}}" >取消订单</view>
+            </block>
+          </block>
+          <!--苛选或者海购配送中-->
+          <block wx:elif="{{li.storeType==1037&&li.orderStatus==42||li.storeType==1634&&li.orderStatus==42}}">
+            <block wx:if="{{li.isCardFlag==999}}">
+              <block wx:if="{{li.delayDeliveryState&&li.delayDeliveryState==1}}">
+                <view catchtap="goLogistics" data-deliver-type="{{li.deliverType}}" data-multiple-shipments-counts="{{li.multipleShipmentsCounts}}" data-develiy-no="{{li.develiyNo}}" data-order-store-id="{{li.orderStoreId}}" data-delivery-parcel-num="{{li.deliveryParcelNum}}" data-isB2C="{{li.isB2C}}" data-orderId="{{li.orderId}}"
+                  data-deliver-region-id-list="{{li.deliverRegionIdList}}" class="three-btn r1br orderList-logistic-btn">查看物流</view>
+                <view data-delay-delivery-hints="{{li.delayDeliveryHints}}" catchtap="delayReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}" wx:if="{{li.storeType!=1634}}" class="three-btn r1br bl orderList-delay-btn">延迟收货</view>
+                <view class="three-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+              <block wx:else>
+                  <view catchtap="goLogistics" data-deliver-type="{{li.deliverType}}" data-multiple-shipments-counts="{{li.multipleShipmentsCounts}}" data-develiy-no="{{li.develiyNo}}" data-order-store-id="{{li.orderStoreId}}" data-delivery-parcel-num="{{li.deliveryParcelNum}}" data-isB2C="{{li.isB2C}}" data-orderId="{{li.orderId}}"
+                  data-deliver-region-id-list="{{li.deliverRegionIdList}}" class="three-btn r1br orderList-logistic-btn">查看物流</view>
+                <view class="three-btn bl" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                <view class="three-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{li.delayDeliveryState&&li.delayDeliveryState==1&&(li.storeType==1037||li.storeType==1634)}}">
+                <view catchtap="goLogistics" data-deliver-type="{{li.deliverType}}" data-multiple-shipments-counts="{{li.multipleShipmentsCounts}}" data-develiy-no="{{li.develiyNo}}" data-order-store-id="{{li.orderStoreId}}" data-delivery-parcel-num="{{li.deliveryParcelNum}}" data-isB2C="{{li.isB2C}}" data-orderId="{{li.orderId}}"
+                  data-deliver-region-id-list="{{li.deliverRegionIdList}}" class="three-btn r1br orderList-logistic-btn">查看物流</view>
+                <view data-delay-delivery-hints="{{li.delayDeliveryHints}}" catchtap="delayReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}" wx:if="{{li.storeType!=1634}}" class="three-btn bl r1br orderList-delay-btn">延迟收货</view>
+                <view class="three-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+              <block wx:elif="{{li.delayDeliveryState&&li.delayDeliveryState==1}}">
+                <view data-delay-delivery-hints="{{li.delayDeliveryHints}}" catchtap="delayReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}" wx:if="{{li.storeType!=1634}}" class="two-btn r1br orderList-delay-btn">延迟收货</view>
+                <view class="two-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+              <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                <view class="two-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+              <block wx:elif="{{li.storeType==1037||li.storeType==1634}}">
+                <view catchtap="goLogistics" data-deliver-type="{{li.deliverType}}" data-multiple-shipments-counts="{{li.multipleShipmentsCounts}}" data-develiy-no="{{li.develiyNo}}" data-order-store-id="{{li.orderStoreId}}" data-delivery-parcel-num="{{li.deliveryParcelNum}}" data-isB2C="{{li.isB2C}}" data-orderId="{{li.orderId}}"
+                  data-deliver-region-id-list="{{li.deliverRegionIdList}}" class="three-btn r1br orderList-logistic-btn">查看物流</view>
+                <view class="two-btn bl confirm-receipt" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+              <block wx:else>
+                <view class="one-btn confirm-receipt" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+              </block>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==42&&li.isCardFlag==999}}">
+            <view class="two-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            <view class="two-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+          </block>
+          <block wx:elif="{{li.orderStatus==42&&li.proType==1888}}">
+            <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+
+          </block>
+          <!--020拼团订单组团中-->
+          <block wx:elif="{{(li.isB2C==0&&li.isCardFlag==1821&&li.orderStatus==4)||(li.proType==1888&&li.orderStatus==4)}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">邀请参团</view>
+            </block>
+          </block>
+          <!--020拼团订单待配送-->
+          <block wx:elif="{{(li.isB2C==0&&li.isCardFlag==1821&&li.orderStatus==41)||(li.proType==1888&&li.orderStatus==41)}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+          </block>
+          <!--020拼团订单配送中-->
+          <block wx:elif="{{(li.isB2C==0&&li.isCardFlag==1821&&li.orderStatus==42)||(li.proType==1888&&li.orderStatus==42)}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <!--拼团配送中-->
+          <block wx:elif="{{li.orderStatus==42&&li.isCardFlag==999}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              <view class="two-btn confirm-receipt bl" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+            </block>
+            <block wx:else>
+              <!--<view class="two-btn" catchtap="phoneService" data-servicePhone="{{li.servicePhone}}">联系客服</view>-->
+              <view class="one-btn confirm-receipt" catchtap="confirmReceipt" data-order-id="{{li.orderId}}" data-order-store-id="{{li.orderStoreId}}">确认收货</view>
+            </block>
+          </block>
+          <!--可选海购配送中-->
+          <block wx:elif="{{li.orderStatus==41&&(li.storeType==1037||li.storeType==1634)}}">
+            <block wx:if="{{li.isCardFlag==999&&li.beforeSendGoods2CancelFlag==1}}">
+              <view class="two-btn" catchtap="refundCancelOrder" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-isb2c="{{li.isB2C}}">取消订单</view>
+              <view class="two-btn bl" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:elif="{{li.isCardFlag==999}}">
+              <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:elif="{{li.beforeSendGoods2CancelFlag==1}}">
+              <view class="one-btn" catchtap="refundCancelOrder" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-isb2c="{{li.isB2C}}">取消订单</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==41}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==42}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==44}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&(li.isCardFlag==1821||li.proType==1888)}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:elif="{{li.isCardFlag==1821||li.proType==1888}}">
+              <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+            <!-- <view class="two-btn bl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" catchtap="confirmPickUp">确认自提</view>-->
+          </block>
+          <block wx:elif="{{li.orderStatus==45}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&(li.isCardFlag==1821||li.proType==1888)}}">
+              <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+              <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:elif="{{li.isCardFlag==1821||li.proType==1888}}">
+              <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+            <!-- <view class="two-btn bl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" catchtap="confirmPickUp">立即取餐</view>-->
+          </block>
+          <!--全球苛选已送达-->
+          <block wx:elif="{{(li.storeType==1037||li.storeType==1634)&&li.orderStatus==46||(li.storeType==1037||li.storeType==1634)&&li.orderStatus==1088}}">
+            <block wx:if="{{li.isCardFlag==999}}">
+              <block wx:if="{{li.isReturnFlag==1}}">
+                <view class="two-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                <block wx:if="{{0&&li.isEvaluate==364&&!li.proType}}">
+                  <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                </block>
+                <!-- <block wx:else>
+                  <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                </block> -->
+              </block>
+              <block wx:elif="{{li.isEvaluate==365}}">
+                <view class="two-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                <!-- <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view> -->
+              </block>
+              <block wx:else>
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <view class="two-btn bl" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                </block>
+                <block wx:else>
+                  <view class="one-btn" catchtap="detailGlobalGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                </block>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{li.isReturnFlag==1}}">
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <block wx:if="{{0&&li.isEvaluate==364&&!li.proType}}">
+                    <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                  </block>
+                  <block wx:elif='{{0&&!li.proType}}'>
+                    <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                </block>
+                <block wx:if="{{0&&li.isEvaluate==364&&!li.proType}}">
+                  <view class="one-btn" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                </block>
+                <block wx:elif='{{0&&!li.proType}}'>
+                  <view class="one-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                </block>
+              </block>
+              <block wx:elif="{{li.isEvaluate==365}}">
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <block wx:if='{{0&&!li.proType}}'>
+                    <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                </block>
+                <block wx:elif='{{0&&!li.proType}}'>
+                  <view class="one-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                </block>
+                <block wx:else>
+                  <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+                </block>
+              </block>
+            </block>
+          </block>
+          <!--交易完成-->
+          <block wx:elif="{{li.orderStatus==46||li.orderStatus==1088}}">
+            <block wx:if="{{li.isCardFlag==1821||li.proType==1888}}">
+              <block wx:if="{{li.isReturnFlag!=1}}">
+                <block wx:if="{{li.isEvaluate==365}}">
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                    </block>
+                  </block>
+                  <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:else>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                    </block>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:else>
+                    <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                </block>
+              </block>
+              <block wx:elif="{{li.isEvaluate==364}}">
+                <block wx:if="{{li.isCardFlag==1||li.isCardFlag==1479}}">
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:else>
+                    <view class="one-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                    </block>
+                  </block>
+                  <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                  <block wx:else>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                    </block>
+                    <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                  </block>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                </block>
+                <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <block wx:if='{{0&&!li.proType}}'>
+                    <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                </block>
+                <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                  <view class="one-btn" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                </block>
+                <block wx:else>
+                  <block wx:if='{{0&&!li.proType}}'>
+                    <view class="two-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                  <view class="two-btn bl" catchtap="detailO2oGroup" data-group-id="{{li.groupId}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}" data-share-member-id="{{li.groupMemberId||''}}">拼团详情</view>
+                </block>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{li.isReturnFlag!=1}}">
+                <block wx:if="{{li.isEvaluate==365}}">
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  </block>
+                  <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                    </block>
+                  </block>
+                  <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看订单</view>
+                  </block>
+                  <block wx:else>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="one-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                    </block>
+                    <block wx:else>
+                      <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看订单</view>
+                    </block>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  </block>
+                  <block wx:else>
+                    <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+                  </block>
+                </block>
+              </block>
+              <block wx:elif="{{li.isEvaluate==364}}">
+                <block wx:if="{{li.isCardFlag==1||li.isCardFlag==1479}}">
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  </block>
+                  <block wx:else>
+                    <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+                  </block>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  </block>
+                  <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                    <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="two-btn bl" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                    </block>
+                  </block>
+                  <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                    <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+                  </block>
+                  <block wx:else>
+                    <block wx:if='{{0&&!li.proType}}'>
+                      <view class="one-btn" catchtap="addEvaluate" data-isb2c="{{li.isB2C}}" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">立即评价</view>
+                    </block>
+                    <block wx:else>
+                      <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看订单</view>
+                    </block>
+                  </block>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if="{{li.isShareFlag&&li.isShareFlag==1&&li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                  <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                </block>
+                <block wx:elif="{{li.isShareFlag&&li.isShareFlag==1}}">
+                  <view class="two-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+                  <block wx:if='{{0&&!li.proType}}'>
+                    <view class="two-btn bl" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                </block>
+                <block wx:elif="{{li.isViewCardPackageFlag&&li.isViewCardPackageFlag==1}}">
+                  <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看订单</view>
+                </block>
+                <block wx:else>
+                  <block wx:if='{{0&&!li.proType}}'>
+                    <view class="one-btn" catchtap="lookEvaluate" data-order-store-id="{{li.orderStoreId}}" data-order-id="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看评价</view>
+                  </block>
+                  <block wx:else>
+                    <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}" data-pro-type="{{li.proType||''}}">查看订单</view>
+                  </block>
+                </block>
+              </block>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==46}}">
+            <!-- <view class="two-btn {{li.isCardFlag==1?'isCardFlag':''}}" catchtap="againOrder">再来一单</view>-->
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <block wx:elif="{{li.orderStatus==439||li.orderStatus==952||li.orderStatus==47||li.orderStatus==49||li.orderStatus==48||li.orderStatus==115||li.orderStatus==116}}">
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+          <block wx:else>
+            <block wx:if="{{li.isShareFlag&&li.isShareFlag==1}}">
+              <view class="one-btn color-ff5d3d" catchtap="getRedBag" data-order-store-id="{{li.orderStoreId}}" data-warehouse-id="{{li.warehouseId}}" data-shop-id="{{li.shopId}}" data-order-id="{{li.orderId}}">抢红包</view>
+            </block>
+            <block wx:else>
+              <view class="one-btn" data-detailUrl="../detail/detail" catchtap="detailUrl" data-orderStoreId="{{li.orderStoreId}}" data-orderId="{{li.orderId}}">查看订单</view>
+            </block>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>
+<template is="modal" data="{{...modalData}}"></template>
+<!-- pop弹框 -->
+<block wx:if="{{showPopFlag}}">
+  <view class="pop-container">
+    <view class="pop-msg-container">
+      <view class="pop-msg">{{popMsg}}</view>
+      <view class="pop-btn-container">
+        <block wx:if="{{showPopCancel}}">
+          <view class="cancel-btn" catchtap="{{btnCacleName}}">{{popCancelText||'取消'}}</view>
+        </block>
+        <view class="confirm-btn" catchtap="{{btnConfirmName}}">{{popConfirmText||'确定'}}</view>
+      </view>
+    </view>
+  </view>
+</block>

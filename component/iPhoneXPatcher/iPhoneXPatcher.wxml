@@ -1,0 +1,4 @@
+<!--component/iPhoneXPatcher/iPhoneXPatcher.wxml-->
+<view>
+    <view wx:if="{{isIphoneX}}" class="iphone-x-patcher"></view>
+</view>

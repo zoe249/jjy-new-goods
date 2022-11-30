@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "合伙人",
+    "usingComponents": {
+        "component-backstage-footer-nav": "/component/backstageFooterNav/backstageFooterNav",
+        "component-grid": "/component/grid/grid"
+    }
+}

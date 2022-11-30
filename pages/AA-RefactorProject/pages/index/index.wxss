@@ -1,0 +1,72 @@
+@import "index.skeleton.wxss";
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+/* 配送范围重叠门店选择 */
+.sel-shop-pop {
+  padding: 60rpx 80rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  border-radius: 60rpx 0;
+  color: var(--thMain);
+  font-size: 36rpx;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.sel-shop-item {
+  margin-bottom: 8rpx;
+}
+
+.sel-shop-item:last-child {
+  margin-bottom: 0;
+}
+
+
+.sel-shop-title {
+  width: 100%;
+  font-size: 28rpx;
+  color: #94969C;
+  line-height: 96rpx;
+}
+
+.sel-shop-item-wrap {
+  padding: 12rpx 48rpx 12rpx;
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.sel-shop-item {
+  padding: 20rpx 48rpx 20rpx 0;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 42rpx;
+  color: #0C0C21;
+  text-align: left;
+  background: url(https://shgm.jjyyx.com/m/images/icon_check.png) no-repeat right center;
+  background-size: 32rpx;
+}
+
+.sel-shop-item.act {
+  background: url(https://shgm.jjyyx.com/m/images/icon_check_active.png) no-repeat right center;
+  background-size: 32rpx;
+}
+
+.sel-shop-btn {
+  width: 592rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  background: #EC414D;
+  border-radius: 8rpx;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 36rpx;
+  margin-bottom: 24rpx;
+  margin-top: 10rpx;
+}
+.bgThemeUrl{
+  position: absolute;
+  z-index: -10;
+}

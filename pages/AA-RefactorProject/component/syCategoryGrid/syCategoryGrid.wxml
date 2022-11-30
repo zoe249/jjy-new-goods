@@ -1,0 +1,48 @@
+<view class="view_top" style="{{}}">
+    <image class="view_top_bg" src="{{$.img_src}}/yx_index/flq_bg.png" mode="widthFix"></image>
+
+    <image class="view_top_logo" src="{{$.img_src}}/yx_index/flq_bg_logo.png" mode="widthFix"></image>
+    <image class="hlj_img" src="{{$.img_src}}/yx_index/flq_hlj.png" mode="widthFix"></image>
+    <view class="hlj_tv">居民的好邻居</view>
+    <image class="hbs_img" src="{{$.img_src}}/yx_index/flq_hbs.png" mode="widthFix"></image>
+    <view class="hbs_tv">家庭的好帮手</view>
+</view>
+<!--数据量不大时，不用swiper 避免出现拖拉 可滑动情况 -->
+<!-- -->
+<block wx:if="{{cateArray && cateArray.length<=pageShowSize }}">
+    <view class="ma-category-grid">
+        <view class="ma-category-grid-item  col-{{colSize}}" wx:for="{{cateArray}}" wx:key="recommendId" bindtap="_autoJump" data-item="{{item}}"  data-index="{{index}}">
+            <view class="ma-category-grid-item-wrap">
+                <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+                <text class="ma-category-value">{{item.recommendTitle}}</text>
+            </view>
+        </view>
+    </view>
+</block>
+
+<!--数据分页-->
+<block wx:elif="{{cateArray && cateArray.length > pageShowSize}}">
+    <swiper id="class_swiper" bindchange="classSwiper" style="height: {{initSwiperHeight}};">
+        <swiper-item wx:for="{{_cateArrayGroupList}}" wx:for-item="groupItem" wx:for-index="groupIndex" wx:if="{{groupIndex<20}}" wx:key="groupIndex" data-postion="1">
+            <view class="view_all" style="height: {{initSwiperHeight}};">
+
+                <view class="ma-category-grid ma-category-grid-group">
+                    <view class="ma-category-grid-item  col-{{colSize}}" wx:for="{{groupItem.cateArray}}" wx:key="recommendId" data-url="{{item.linkUrl}}" bindtap="_autoJump" data-item="{{item}}"  data-index="{{index}}" >
+                        <view class="ma-category-grid-item-wrap">
+                            <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+                            <text class="ma-category-value">{{item.recommendTitle}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </swiper-item>
+    </swiper>
+    <view class="indicator-container" wx:if="{{_cateArrayGroupList.length > 1 && indicatorShow}}">
+        <view class="indicator-container-wrap">
+            <block wx:for="{{_cateArrayGroupList}}" wx:key="groupId">
+                <view class="indicator-item" style="{{indicatorStyle}};{{_swipperIndex == index ? indicatorActStyle:''}}"></view>
+            </block>
+        </view>
+    </view>
+</block>

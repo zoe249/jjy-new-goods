@@ -1,0 +1,319 @@
+/* pages/order/lookInvoice/lookInvoice.wxss */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+
+/*错误页面*/
+
+
+/*loading*/
+
+#loading {
+    z-index: 999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#loading .loading-cnt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 9999999;
+}
+
+#loading .loading-cnt image {
+    width: 180rpx;
+    height: 180rpx;
+}
+
+
+/*添加评价 */
+
+.add-evaluate {
+    background-color: #fff;
+    padding: 0 0 100rpx 32rpx;
+}
+
+.evaluate-score {
+    border-bottom: 1rpx solid #ededed;
+}
+
+.add-evaluate .avatar {
+    padding: 22rpx 32rpx 40rpx 0;
+    height: 112rpx;
+    line-height: 50rpx;
+}
+
+.add-evaluate .avatar image {
+    float: left;
+    height: 50rpx;
+    width: 50rpx;
+    border-radius: 12rpx;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate_default_avatar.png") no-repeat center;
+    background-size: 100%;
+}
+
+.add-evaluate .evaluate-shop .avatar image {
+    background: url("https://shgm.jjyyx.com/m/images/jisuchaoshi.png") no-repeat center;
+    background-size: 100%;
+}
+
+.add-evaluate .avatar .span {
+    float: left;
+    padding: 0 0 0 20rpx;
+    font-size: 28rpx;
+}
+
+.add-evaluate .avatar .em {
+    float: right;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.add-evaluate .evaluate {
+    position: relative;
+    padding: 0 0 40rpx;
+    height: 90rpx;
+    line-height: 50rpx;
+}
+
+.add-evaluate .evaluate .span {
+    float: left;
+    font-size: 28rpx;
+    padding: 0 30rpx 0 0
+}
+
+.add-evaluate .evaluate .i {
+    display: block;
+    position: absolute;
+    right: 32rpx;
+    top: 0;
+    height: 50rpx;
+    line-height: 50rpx;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.add-evaluate .evaluate .em {
+    float: left;
+    height: 50rpx;
+    width: 50rpx;
+    margin-right: 26rpx;
+    background: url("https://shgm.jjyyx.com/m/images/add_evaluate.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.add-evaluate .evaluate .em.active {
+    background: url("https://shgm.jjyyx.com/m/images/add_evaluate_active.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.add-evaluate .evaluate-score .label {
+    padding: 0 0 8rpx;
+}
+
+.add-evaluate .evaluate-score .label .span {
+    float: left;
+    padding: 0 32rpx 0;
+    margin: 0 28rpx 30rpx 0;
+    border: 1px solid #ededed;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    border-radius: 30rpx;
+}
+
+.add-evaluate .evaluate-score .label .span.active {
+    color: #FF4752;
+    border: 1rpx solid #FF4752;
+}
+
+.add-evaluate .evaluate-goods {
+    position: relative;
+    border-bottom: 1rpx solid #ededed;
+    min-height: 108rpx;
+    line-height: 32rpx;
+    padding: 38rpx 32rpx 38rpx 0;
+}
+
+.add-evaluate .evaluate-goods .text {
+    padding: 0 260rpx 0 0;
+    font-size: 28rpx;
+}
+
+.add-evaluate .evaluate-result {
+    position: absolute;
+    right: 32rpx;
+    top: 50%;
+    margin-top: -54rpx;
+    color: #999;
+    height: 108rpx;
+    line-height: 108rpx;
+    font-size: 24rpx;
+}
+
+.add-evaluate .evaluate-result .bad {
+    float: right;
+    padding: 0 0 0 108rpx;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-bad.png") no-repeat 60rpx center;
+    background-size: 26rpx auto;
+    -webkit-background-size: 26rpx auto;
+}
+
+.add-evaluate .evaluate-result .bad.active {
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-bad_active.png") no-repeat 60rpx center;
+    background-size: 26rpx auto;
+    -webkit-background-size: 26rpx auto;
+}
+
+.add-evaluate .evaluate-result .good {
+    float: right;
+    padding: 0 0 0 46rpx;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-good.png") no-repeat 0 center;
+    background-size: 26rpx auto;
+    -webkit-background-size: 26rpx auto;
+}
+
+.add-evaluate .evaluate-result .good.active {
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-good_active.png") no-repeat 0 center;
+    background-size: 26rpx auto;
+    -webkit-background-size: 26rpx auto;
+    color: #FF4752;
+}
+
+.add-evaluate .evaluate-input {
+    position: relative;
+    padding: 24rpx 32rpx 54rpx 0;
+    border-bottom: 1rpx solid #ededed;
+    line-height: 36rpx;
+    padding: 20rpx 32rpx 20rpx 0;
+    font-size: 28rpx;
+}
+
+.add-evaluate .evaluate-input textarea {
+    width: 100%;
+    display: block;
+    font-size: 28rpx;
+    color: #444;
+    line-height: 42rpx;
+    min-height: 168rpx;
+}
+
+.add-evaluate .evaluate-input .evaluate-tip {
+    position: absolute;
+    right: 32rpx;
+    bottom: 28rpx;
+    line-height: 28rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.add-evaluate .upload-img {
+    border-bottom: 1rpx solid #ededed;
+    padding: 32rpx 32rpx 0 0;
+    box-sizing: content-box;
+}
+
+.add-evaluate .upload-img .images {
+    float: left;
+    width: 100%;
+}
+
+.add-evaluate .upload-img .li {
+    float: left;
+    position: relative;
+    padding: 0 15rpx 32rpx 0;
+}
+
+.add-evaluate .upload-img .li:nth-child(4),
+.add-evaluate .upload-img .li:nth-child(8) {
+    padding: 0 0 32rpx 0;
+}
+
+.add-evaluate .upload-img .del-img {
+    position: absolute;
+    top: -16rpx;
+    right: 8rpx;
+    width: 32rpx;
+    height: 32rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico_upload_close.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.add-evaluate .upload-img image {
+    display: block;
+    width: 160rpx;
+    height: 160rpx;
+    object-fit: cover;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.add-evaluate .upload-btn {
+    width: 160rpx;
+    height: 160rpx;
+    float: left;
+    margin: 0 0 32rpx 0;
+    background: url("https://shgm.jjyyx.com/m/images/upload_img.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.add-evaluate .upload-text {
+    float: left;
+    height: 160rpx;
+    line-height: 160rpx;
+    margin: 0 0 32rpx 0;
+    padding: 0 0 0 20rpx;
+    font-size: 28rpx;
+    color: #4e4e4e;
+}
+
+.add-evaluate .upload-text .span {
+    display: inline-block;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.add-evaluate-btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    background-color: #ccc;
+    text-align: center;
+    font-size: 32rpx;
+    color: #fff;
+}
+
+.add-evaluate-btn.active {
+    background-color: #FF4752;
+}

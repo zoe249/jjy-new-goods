@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "今日秒杀",
+  "usingComponents": {
+    "component-qianggou-goods-item": "/component/fullGoodsItem/fullGoodsItem"
+  }
+}

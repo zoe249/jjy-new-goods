@@ -1,0 +1,7 @@
+<!--component/goCart/goCart.wxml-->
+<view class='go-cart-btn' catchtap='goCart' style="{{positionStringStyle}}">
+  <image src='https://shgm.jjyyx.com/m/images/icon-fixed-cart.png' mode="widthFix"></image>
+  <block wx:if="{{cartCount > 0}}">
+    <text class="cart-count">{{cartCount}}</text>
+  </block>
+</view>

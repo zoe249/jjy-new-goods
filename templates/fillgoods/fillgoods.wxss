@@ -1,0 +1,793 @@
+.c-color {
+    color: #FF4752 !important;
+}
+
+.c-color-9 {
+    color: #999 !important;
+}
+
+.c-orange-color {
+    color: #ffa601 !important;
+}
+
+.bg-orange-color {
+    background: #FF4752 !important;
+}
+
+.pos-r {
+    position: relative !important;
+}
+
+.pos-a {
+    position: absolute !important;
+}
+
+.b-row {
+    display: block;
+}
+
+.tfY50 {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.pdtb28 {
+    padding-top: 28rpx !important;
+    padding-bottom: 28rpx !important;
+}
+
+.pdlr32 {
+    padding-left: 32rpx !important;
+    padding-right: 32rpx !important;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.bg-jiange {
+    height: 16rpx;
+    background: #f4f4f4;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.r1bb {
+    border-bottom: 1px solid #ededed;
+}
+
+.r1bt {
+    border-top: 1px solid #ededed;
+}
+
+.bg-caitiao {
+    width: 100%;
+    height: 4rpx;
+    background: #7AA6CC;
+    display: none;
+}
+
+.store-title .title {
+    position: relative;
+    padding: 0 32rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    background: #fff;
+}
+
+.store-name {
+    /* margin-left: 16rpx; */
+    color: var(--blueLight);
+    font-weight: bold;
+}
+
+.store-logo {
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+    margin-right: 16rpx;
+}
+
+.fill-goods-item {
+    padding: 28rpx 32rpx;
+}
+.fill-goods-wrap .mutil-li{
+  padding: 0 0 0 16rpx;
+  margin: 0 16rpx;
+  background:#F8F8F8;
+  border-radius: 4rpx;
+}
+
+.fill-goods-name {
+    display: block;
+    padding-right: 296rpx;
+}
+
+.fill-goods-item .price {
+    right: 148rpx;
+    top: 50%;
+}
+
+.fill-goods-item .quantity {
+    right: 32rpx;
+    top: 50%;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.fill-remark input {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    padding-left: 110rpx;
+    padding-right: 32rpx;
+}
+
+.fill-goods-tatol-box {
+    white-space: nowrap;
+}
+
+.fill-goods-tatol {
+    position: relative;
+    font-size: 38rpx;
+    padding-left: 26rpx;
+}
+
+.fill-goods-tatol::before {
+    content: '￥';
+    position: absolute;
+    left: 0rpx;
+    bottom: 2rpx;
+    font-size: 26rpx;
+}
+
+
+/* 多个商品 */
+
+.li {
+    padding: 0 16rpx;
+}
+
+.goods-scroll-box {
+    padding: 0 0 32rpx;
+    height: 194rpx;
+    white-space: nowrap;
+}
+
+.scroll-goods {
+    position: relative;
+    display: inline-block;
+    width: 130rpx;
+    height: 130rpx;
+    margin: 32rpx 16rpx 0 0;
+    border: 1px solid #ededed;
+}
+
+.scroll-goods .zp-no-goodsStock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130rpx;
+    height: 130rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #fff;
+    line-height: 130rpx;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.scroll-goods .img {
+    width: 126rpx;
+    height: 126rpx;
+    object-fit: cover;
+    background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+    background-size: 126rpx 126rpx;
+}
+
+.scroll-goods .zp-tips,
+.scroll-goods .is-add-price-goods {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    line-height: 0;
+    padding: 28rpx 20rpx;
+    border-radius: 32rpx;
+    color: var(--blue);
+    font-size: 40rpx;
+    background-color: #F0F3F6;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    transform: scale(0.5);
+    z-index: 1;
+}
+
+.scroll-goods .em {
+    position: absolute;
+    right: -10rpx;
+    top: -14rpx;
+    font-size: 20rpx;
+    height: 0;
+    line-height: 0;
+    text-align: center;
+    color: #fff;
+    padding: 14rpx 8rpx 12rpx;
+    background: #FF4752;
+    -webkit-border-radius: 18rpx;
+    border-radius: 18rpx;
+    z-index: 2;
+}
+
+.bill-details {
+    right: 0;
+    top: 0;
+    text-align: center;
+    width: 140rpx;
+    height: 196rpx;
+    line-height: 196rpx;
+    padding-right: 32rpx;
+    font-size: 24rpx;
+    color: #94969C;
+}
+
+.bill-details .em {
+    margin-right: 24rpx;
+}
+
+.bill-details .txt {
+    color: #FF4752;
+}
+
+
+/* 单个商品*/
+
+.single-goods {
+    padding: 32rpx 16rpx;
+    color: #999;
+    background: #F9FAFB;
+    border-radius: 4rpx;
+}
+
+.g-img {
+    width: 130rpx;
+    height: 130rpx;
+    border: 1px solid #ededed;
+    background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+    background-size: 130rpx 130rpx;
+}
+
+.g-img image.img {
+    width: 126rpx;
+    height: 126rpx;
+}
+
+.g-info {
+    position: relative;
+    margin-left: 150rpx;
+    margin-right: 100rpx;
+}
+
+.g-info .strong,
+.g-info .span,
+.g-info.em {
+    display: block;
+    font-size: 24rpx;
+}
+
+.g-info .strong {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    height: 64rpx;
+    line-height: 32rpx;
+    font-size: 24rpx;
+    color: #444;
+}
+
+.g-info .span {
+    height: 38rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.g-info .em {
+    font-size: 24rpx;
+    white-space: nowrap;
+}
+
+.g-info .em .price {
+    display: inline-block;
+    margin-left: 20rpx;
+    white-space: nowrap;
+}
+
+.goodsPrice {
+    top: 32rpx;
+    right: 16rpx;
+    color: #313031;
+}
+
+.is-seven-return {
+    height: 54rpx;
+    line-height: 54rpx;
+    text-align: center;
+    background: #fff9f5;
+    color: #777;
+    font-size: 24rpx;
+}
+
+.goodsPrimePrice {
+    margin-left: 32rpx;
+    text-decoration: line-through;
+    white-space: nowrap;
+}
+
+.dqg-numbox-wrap {
+    height: 96rpx;
+    padding: 0 0 0 32rpx;
+}
+
+.dqg-numbox-wrap .munber-tips {
+    float: left;
+    height: 96rpx;
+    line-height: 96rpx;
+}
+
+.dqg-btn-wrap {
+    padding: 22rpx;
+}
+
+.dqg-numbox {
+    position: relative;
+    display: inline-block;
+    width: 164rpx;
+    height: 50rpx;
+    padding: 0 50rpx 0 50rpx;
+    vertical-align: middle;
+    border: solid 2rpx #ccc;
+    border-radius: 20rpx;
+    -webkit-border-radius: 20rpx;
+    overflow: hidden;
+}
+
+.dqg-numbox [class*=numbox-btn],
+.dqg-numbox [class*=btn-numbox] {
+    font-size: 36rpx;
+    font-weight: normal;
+    line-height: 100%;
+    font-family: Helvetica;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    width: 50rpx;
+    height: 100%;
+    padding: 0;
+    color: #ff5c33;
+    border: none;
+    border-radius: 0;
+    background-color: #fff;
+    outline: none;
+}
+
+.dqg-numbox button,
+.dqg-numbox button::after {
+    border: 0;
+}
+
+.dqg-numbox-btn-plus,
+.dqg-btn-numbox-plus {
+    right: 0;
+    border-top-right-radius: 20rpx;
+    border-bottom-right-radius: 20rpx;
+}
+
+.dqg-numbox-btn-minus,
+.dqg-btn-numbox-minus {
+    left: 0;
+    border-top-left-radius: 20rpx;
+    border-bottom-left-radius: 20rpx;
+    text-indent: -9999px;
+}
+
+.dqg-numbox-btn-minus::before,
+.dqg-numbox-btn-plus::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+    -webkit-transform: scale(2, 1);
+    transform: scale(2, 1);
+    width: 8rpx;
+    background-color: #ff5c33;
+    height: 4rpx;
+    margin-top: -2rpx;
+    margin-left: -4rpx;
+    display: block;
+}
+
+.dqg-numbox-btn-plus::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+    -webkit-transform: scale(1, 2);
+    transform: scale(1, 2);
+    height: 8rpx;
+    background-color: #ff5c33;
+    width: 4rpx;
+    margin-top: -4rpx;
+    margin-left: -2rpx;
+    display: block;
+}
+
+.dqg-numbox-input,
+.dqg-input-numbox {
+    display: inline-block;
+    overflow: hidden;
+    width: 100% !important;
+    height: 100%;
+    margin: 0;
+    padding: 0 6rpx !important;
+    text-align: center;
+    text-overflow: ellipsis;
+    word-break: normal;
+    border: none !important;
+    border-right: solid 1px #ccc !important;
+    border-left: solid 1px #ccc !important;
+    border-radius: 0 !important;
+}
+
+.dqg-numbox-input {
+    background: transparent;
+    -webkit-text-fill-color: black;
+    -webkit-opacity: 1;
+    opacity: 1;
+}
+
+.recommend-card-title {
+    font-size: 24rpx;
+    color: #D4B871;
+    /* text-decoration: underline; */
+}
+
+.recommend-card-title .forword::after {
+    right: -20rpx;
+    border-left: 2rpx solid #D4B871;
+    border-bottom: 2rpx solid #D4B871;
+}
+
+.time {
+    position: relative;
+    font-size: 28rpx;
+}
+
+.time::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.pay-type-btn {
+    /* display: flex; */
+    position: relative;
+}
+
+.pay-type-btn::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -28rpx;
+    width: 160rpx;
+    height: 100%;
+    min-height: 90rpx;
+}
+
+.pay-type-btn text {
+    font-size: 20rpx;
+}
+
+.time {
+    position: relative;
+    font-size: 28rpx;
+}
+
+.time::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+
+/* 海购 */
+
+.invoice-nav {
+    position: relative;
+    height: 96rpx;
+    line-height: 96rpx;
+    font-size: 24rpx;
+    padding: 0 32rpx;
+    background: #fff;
+}
+
+.invoice-nav .invoice-select-state {
+    position: absolute;
+    right: 32rpx;
+    top: 0;
+}
+
+.invoice-nav .invoice-select-state.c-color-9,
+.invoice-nav .invoice-select-state.c-color {
+    right: 64rpx;
+}
+
+.invoice-nav.cross-border .invoice-select-state {
+    right: 32rpx;
+}
+
+.fill-money-item.tax_price image,
+.tips-img {
+    display: inline-block;
+    width: 28rpx;
+    height: 28rpx;
+    margin: 0 20rpx 0;
+    vertical-align: middle;
+}
+
+.use-card-container {
+    padding: 40rpx 64rpx;
+    height: 260rpx;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.use-card-container .li {
+    position: relative;
+    font-size: 28rpx;
+    color: #777;
+    padding: 6rpx 0 6rpx 20rpx;
+}
+
+.use-card-container .li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8rpx;
+    height: 8rpx;
+    -webkit-border-radius: 8rpx;
+    border-radius: 8rpx;
+    background: #3b9df0;
+}
+
+.slot-default-list {
+    padding: 32rpx;
+}
+
+.slot-default-list .li {
+    font-size: 32rpx;
+}
+
+
+/*税费*/
+
+.mask-list {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0 2rpx;
+}
+
+.mask-list .ul {
+    padding: 30rpx;
+    white-space: nowrap;
+    font-size: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mask-list .li {
+    display: inline-block;
+    width: 130rpx;
+    height: 130rpx;
+    margin-right: 30rpx;
+}
+
+.mask-list .li image {
+    width: 126rpx;
+    height: 126rpx;
+}
+
+.mask-list .span {
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 44rpx;
+    line-height: 44rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.taxation {
+    font-size: 24rpx;
+    padding: 0 32rpx;
+    height: 64rpx;
+    line-height: 54rpx;
+    padding-bottom: 10rpx;
+    text-align: right;
+}
+
+.taxation .i {
+    font-size: 24rpx;
+}
+
+.taxation .span {
+    display: inline-block;
+    font-size: 38rpx;
+}
+
+.taxation-tips {
+    background: #fff9f5;
+    color: #999;
+    text-align: center;
+    font-size: 24rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+}
+
+.customs-doc-state {
+    display: inline-block;
+    width: 104rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-left: 20rpx;
+}
+
+.kexuan-xieyi {
+    display: block;
+    width: 100%;
+    height: 60rpx;
+    font-size: 24rpx;
+    color: #777;
+    line-height: 60rpx;
+    text-align: center;
+    background: #fff9f5;
+}
+
+.kexuan-xieyi .em {
+    display: inline-block;
+    width: 26rpx;
+    height: 26rpx;
+    background: url(https://shgm.jjyyx.com/m/images/icon_check_active.png) no-repeat right center;
+    -webkit-background-size: 26rpx;
+    background-size: 26rpx;
+    vertical-align: middle;
+    margin: -4rpx 16rpx 0 0;
+}
+
+.kexuan-logo {
+    display: inline-block;
+    margin-left: 10rpx;
+    width: 110rpx;
+    height: 32rpx;
+    vertical-align: middle;
+}
+
+
+/* 超市拼团商品配送方式 */
+
+ /* 超市拼团商品配送方式 */
+  
+ .collage-nav {
+    height: 130rpx;
+    padding: 40rpx 32rpx;
+    margin: 0 0;
+  }
+  
+  .collage-nav .h2 {
+    float: left;
+    line-height: 50rpx;
+    font-size: 30rpx;
+    color: #999;
+  }
+  
+  .collage-nav .switch-toggle {
+    float: right;
+    height: 50rpx;
+  }
+  
+  .collage-nav .switch-toggle .wrap {
+    position: relative;
+    right: 0;
+    top: 0;
+    height: 50rpx;
+    font-size: 0;
+  }
+  
+  .collage-nav .switch-toggle .wrap .a {
+    display: inline-block;
+    width: 80rpx;
+    height: 50rpx;
+    margin: 0 0 0 20rpx;
+    line-height: 46rpx;
+    font-size: 24rpx;
+    -webkit-border-radius: 46rpx;
+    border-radius: 46rpx;
+    border: 2rpx solid #ededed;
+    background: #fff;
+    text-align: center;
+  }
+  
+  .collage-nav .switch-toggle .wrap .a.active {
+    width: 80rpx;
+    height: 50rpx;
+    line-height: 46rpx;
+    background: var(--blueLight);
+    border: 2rpx solid var(--blueLight);
+    color: #fff;
+  }
+  
+  .collage-nav .switch-toggle .wrap .a.disabled {
+    border: 1rpx solid #ededed;
+    color: #fff !important;
+    background-color: #ccc !important;
+  }
+  .jjy-font-black{
+    color: #313031;
+  }
+  .jjy-font-gray{
+    color: #94969C;
+  }
+  .jjy-font-normal{
+    color: #777;
+  }
+  .yg-jin-color{
+    color: #D4B871;
+  }
+  
+  .pay-btn-wrap{
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .pay-btn-wrap .c-color-9{
+    font-size: 20rpx;
+  }
+  .charges-msg{
+      color: #ccc;
+  }
+  .deliveryWay-info{
+      background: #fff;
+  }

@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "CartAnimation":"../../component/CartAnimation/index",
+		"Loading":"../../component/Loading/index"
+    }
+}

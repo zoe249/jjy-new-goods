@@ -1,0 +1,8 @@
+{
+	"usingComponents": {
+
+	},
+	"disableScroll": true,
+	"enablePullDownRefresh": false,
+	"navigationBarTitleText": "家家悦周年庆跑酷活动"
+}

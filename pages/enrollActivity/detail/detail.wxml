@@ -1,0 +1,44 @@
+
+<!-- <view class="card-details-wrap pos-r {{if states == 1721}}card-details-h-a{{/if}}">
+    <view class="card-top">
+        <view class="card-cover-info">
+            <image src="{{cardCover}}" onerror="kabaoListErrImg(this)" alt=""></image>
+            <view class="p">{{cardName}}</view>
+        </view>
+    </view>
+
+    <block wx:if="{{states != 1721}}">
+    <view class="invalid-card info pos-a">
+        <view class="h3">- 卡片信息 -</view>
+        <view class="ul">
+            <view class="li instro" data-intro="{{cardInstructions}}">卡片说明 <text class="fr pos-r forword">&nbsp;</text></view>
+            <view class="li">剩余次数 <text class="fr"><block wx:if="{{frequencyType == 0}}">无限</block><block else>{{surplusFrequency}}</block>次</text></view>
+            <view class="li records" data-no="{{cardNo}}" data-name="{{cardName}}" data-num="{{cardUseTime}}">使用记录 <text class="fr pos-r {{cardUseTime > 0?'forword':''}}{{cardUseTime}}次</text></view>
+            <view class="li">有效时间 <text class="fr">{{validStartDate}}-{{validEndDate}}</text></view>
+        </view>
+    </view>
+    </block>
+    <block wx:else>
+    <view class="available-card-code bg-white">
+        <view id="qr_code"></view>
+        <view class="number">{{cardNo}}</view>
+        <view class="card-tips">使用时，出示此码</view>
+    </view>
+    <view class="info available-card">
+        <view class="h3">- 卡片信息 -</view>
+        <view class="ul">
+            <view class=" li instro" data-intro="{{cardInstructions}}">卡片说明 <text class="fr pos-r forword">&nbsp;</text></view>
+            <view>剩余次数 <text class="fr"><block wx:if="{{frequencyType == 0}}">无限</block><block wx:else>{{surplusFrequency}}</block>次</text></view>
+            <view class="li records" data-no="{{cardNo}}" data-name="{{cardName}}" data-num="{{cardUseTime}}">使用记录 <text class="fr pos-r {{if cardUseTime > 0}}forword{{/if}}">{{cardUseTime}}次</text></view>
+            <view>有效时间 <text class="fr">{{validStartDate}}-{{validEndDate }}</text></view>
+        </view>
+    </view>
+    </block>
+</view> -->
+
+    <!-- <view class="empty-container">
+        <view class="empty_infor">
+            <img src="../../images/error_img3.png"/><span>{{errorMsg}}</span>
+        </view>
+    </view> -->
+

@@ -1,0 +1,6 @@
+/* component/iPhoneXPatcher/iPhoneXPatcher.wxss */
+.iphone-x-patcher {
+  width: 750rpx;
+  padding-bottom: 68rpx;
+  clear:both; /* 用于清除浮动(如: 提交订单页的底部 fixed 工具条) */
+}

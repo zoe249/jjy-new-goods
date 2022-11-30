@@ -1,0 +1,79 @@
+<import src="/templates/global/global.wxml" />
+<view view class="credentials-container">
+    <block wx:for="{{customsDocList}}" wx:key="*thisItem">
+    <view class="credentials-wrap">
+        <view class="credentials-item">
+        <view class="item-info"><text class="span">{{item.name}}</text><text class="em">身份证：{{item.idCard}}</text></view>
+        <view class="item-card r1bb" bindtap="checkInfo" data-id="{{item.customsDocId}}">
+            <view class="card-positive fl pos-r edit_link" data-id="{{item.customsDocId}}" data-state="{{item.state}}">
+                <view class="span auditing-tips pos-a {{item.idPhotoFront?'':'hide'}}"><image src="https://shgm.jjyyx.com/m/images/icon_water_mark.png"></image></view>
+                <image class="img id-card-p" src="{{item.idPhotoFront?item.idPhotoFront:'https://shgm.jjyyx.com/m/images/cardzheng.png'}}"></image>
+                <block wx:if="{{item.idPhotoFront}}">
+                    <view class="pos-a pass">正面</view>
+                </block>
+                <block wx:else>
+                    <view class="need-add pos-a"><text>+</text>点击添加</view>
+                </block>
+            </view>
+            <view class="card-reverse fl pos-r edit_link" data-id="{{item.customsDocId}}" data-state="{{item.state}}">
+                <view class="span auditing-tips pos-a {{item.idPhotoFront?'':'hide'}}"><image src="https://shgm.jjyyx.com/m/images/icon_water_mark.png"></image></view>
+                <image class="img id-card-r" src="{{item.idPhotoRear?item.idPhotoRear:'https://shgm.jjyyx.com/m/images/cardbei.png'}}"></image>
+                <block wx:if="{{item.idPhotoRear}}">
+                    <view class="pos-a pass">背面</view>
+                </block>
+                <block wx:else>
+                    <view class="need-add pos-a"><text>+</text>点击添加</view>
+                </block>
+            </view>
+        </view>
+        <view class="item-bottom clearfix">
+            <view class="auditing-state {{item.state == 1020?'pass-state':item.state == 1021?'butongguo':''}} fl">{{item.state==1019?'待审核':item.state == 1020?'审核通过':item.state == 1021?'审核未通过':''}}</view>
+            <view class="card-op fr">
+            <block wx:if="{{item.state != 1020}}">
+            <text class="edit edit_link" bindtap="editInfo" data-id="{{item.customsDocId}}"></text>
+            </block>
+            <text class="del" bindtap="deletItem" data-id="{{item.customsDocId}}"></text>
+            </view>
+        </view>
+        </view>
+        <view class="bg-space"></view>
+    </view>
+    </block>
+</view>
+
+<block wx:if="{{noData}}">
+<view class="zhengjian-empty pos-f transformY50">
+    <view class="empty_logo">
+        <image src="https://shgm.jjyyx.com/m/images/error_img3.png?20190704"></image>
+    </view>
+    <view class="h3">您还没有上传过清关证件哦~</view>
+    <view class="zj-e-tips">
+        <view class="h4">悄悄告诉你：</view>
+        <view class="p">1. 现在仅支持身份证作为清关证件。</view>
+        <view class="p">2. 根据海关规定，个人包裹需上传收件人身份证件，供海关记录及核对身份信息。</view>
+    </view>
+</view>
+</block>
+
+<navigator class="add-info pos-f" url='/pages/user/addIdentityCard/addIdentityCard'>添加实名信息</navigator>
+
+<template is="toast" data="{{...toastData}}"></template>
+
+<!--弹窗组件-->
+<component-global-modal
+        is-visible="{{modalConfig.isVisible}}"
+
+        header="{{modalConfig.header}}"
+        content="{{modalConfig.content}}"
+        content-style="{{modalConfig.contentStyle}}"
+        footer="{{modalConfig.footer}}"
+
+        bind:modalconfirm="modalCallbackHandler"
+        event-detail="{{modalConfig.eventDetail}}"
+>
+    <view slot="customContent" wx:if="{{modalConfig.slot}}">
+        
+    </view>
+</component-global-modal>
+<!--loading 组件-->
+<loading id="globalLoading"></loading>

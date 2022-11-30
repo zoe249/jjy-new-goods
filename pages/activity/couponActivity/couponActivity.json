@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "component-go-cart": "/component/goCart/goCart"
+  }
+}

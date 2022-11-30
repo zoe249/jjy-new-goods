@@ -1,0 +1,27 @@
+<import src="/templates/global/global.wxml" />
+<view class='wx-logo-wrap'>
+  <image src='https://shgm.jjyyx.com/m/images/logo.png?t=418'></image>
+  <!-- <navigator url='/pages/user/login/login?pages={{backLink}}'>调试使用入口</navigator> -->
+  <button bindtap="pswMsgToLogin" type="default" class='wx-login-btn pws-msg-login'>登录</button>
+  <button  type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='wx-login-btn'>微信手机号快捷登录 / 注册</button>
+  <button class="wx-login-btn no-login-btn" catchtap="noLogin">暂不登录</button>
+</view>
+<view class="protocol-tips clearfix">登录代表您已同意<text class="prot-link" bindtap="jumpAgreement" data-mod="regAgreement">《家家悦优鲜用户协议》</text></view>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<!-- 退出登录 -->
+<cu-modal
+    modalName="{{modalName}}" dialogBoxStyle="width:686rpx">
+  <view slot="customCenter">
+    <view class="modal-header pos-r r1bb">授权</view>
+    <view class="modal-cont">
+      <image class="modal-icon" src="https://shgm.jjyyx.com/m/images/logo.png"></image>
+      <view class="allow-title">家家悦优鲜 申请获取得以下权限</view>
+      <view class="allow-info">获取你的公开信息（昵称、头像、地区以及性别）</view>
+    </view>
+    <view class="modal-foot">
+      <view class="btn-cancel" bindtap="hideModal">拒绝</view>
+      <view class="btn-comfirm" catchtap="hideModal"><button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">允许</button></view>
+    </view>
+  </view>
+</cu-modal>

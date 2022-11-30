@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "云店",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "tabs": "/component/tabs/tabs",
+    "component-yunchao-footer": "/component/yunchaoFooter/yunchaoFooter",
+    "goods-item": "/component/goodsItem/goodsItem",
+    "goods-item-yunchao": "/component/goodsItemYunchao/goodsItem",
+    "three-goods-item-copy": "/component/threeGoodsItemCopy/threeGoodsItem"
+  }
+}

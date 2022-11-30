@@ -1,0 +1,67 @@
+.card-item {
+  position: relative;
+  width: 686rpx;
+  height: 400rpx;
+  margin: 60rpx auto;
+  background: url("https://shgm.jjyyx.com/m/images/myCard/share_card_bg_win.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+  letter-spacing: 2rpx;
+  text-shadow: 0 0 2rpx rgba(0, 0, 0, .2);
+}
+
+.card-item .card-value {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  top: 156rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.card-item .card-value .unit,
+.card-item .card-value .number {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.card-item .card-value .unit {
+  font-size: 60rpx;
+  line-height: 60rpx;
+  margin-right: 5rpx;
+  vertical-align: 2rpx;
+}
+
+.card-item .card-value .number {
+  font-size: 136rpx;
+  line-height: 136rpx;
+}
+
+.card-item .card-sn {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  top: 308rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 38rpx;
+  font-size: 38rpx;
+}
+
+.btn-primary {
+  margin: 60rpx auto;
+  width: 686rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 35rpx;
+  text-align: center;
+  background-color: #FF4752;
+  color: #fff;
+}
+
+.btn-primary.disabled {
+  background-color: #999;
+  color: #fff;
+}
+

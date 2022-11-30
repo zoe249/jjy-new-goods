@@ -1,0 +1,89 @@
+
+<view class="tg-container pos-r r1bb {{len?'no-hr':''}} {{item.surplusStock <= 0 ? 'group-sold-out' : ''}}"
+  data-goods="{{item}}">
+  <view class='tg-item-wrap'>
+    <block wx:if="{{item.isNew == 1}}">
+      <image class="pos-a tg-new {{item.privateGroup || item.surplusStock <= 0 ? 'tg-not-stock':''}}"
+        src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+    </block>
+    <view class="tg-cover">
+      <image class="tg-cover-image"
+        src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+    </view>
+    <view class="tg-goods pos-r">
+      <block wx:if='{{item.privateGroup}}'>
+        <view class="tg-item-sy"></view>
+      </block>
+      <view class="tg-goods-name typo-elips">{{item.materielParentName||item.goodsPromotionName||item.shortTitle||item.goodsName||""}}</view>
+      <view class="tg-goods-tag typo-elips">{{item.goodsTag}}</view>
+      <view class="tg-goods-prime">
+        <text class="tg-goods-msg">单价：</text>
+        <text class="tg-goods-price">￥{{item.goodsPrimePrice}}</text>
+        <text class="tg-goods-unit" wx:if="{{item.salesUnit}}">/{{item.salesUnit}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='tg-goods-bottom'>
+    <view class="tg-goods-bill">
+      <view class="tg-goods-bill-wrap">
+        <block wx:if="{{item.proType == 1888 && item.groupMode != 2029}}">
+          <view class="tg-goods-count">{{item.needJoinCount}}团</view>
+          <view class="tg-goods-count"><text class="text tg-t-goods-count">￥{{item.goodsPrice}}</text></view>
+          <view class="tg-goods-amount">赚￥{{item.commissionAmount}}</view>
+        </block>
+        <block wx:elif="{{item.proType == 1178}}">
+          <view class="tg-goods-count">秒杀价 <text class="text">￥{{item.goodsPrice}}</text></view>
+          <view class="tg-goods-amount">赚￥{{item.commissionAmount}}</view>
+        </block>
+        <block wx:elif="{{item.proType == 1888 && item.groupMode == 2029}}">
+          <view class="tg-goods-count">接龙价 <text>￥{{item.goodsPrice}}</text></view>
+          <view class="tg-goods-amount">赚￥{{item.commissionAmount}}</view>
+        </block>
+        <block wx:else>
+          <view class="tg-goods-count">特惠价 <text>￥{{item.goodsPrice}}</text></view>
+          <view class="tg-goods-amount">赚￥{{item.commissionAmount}}</view>
+        </block>
+      </view>
+      <block wx:if="{{isSoon}}">
+        <view wx:if="{{item.proType == 1888 && item.groupMode != 2029}}" class="tg-goods-btn">即将开团</view>
+        <view wx:elif="{{item.proType == 1888 && item.groupMode == 2029}}" class="tg-goods-btn">即将开抢</view>
+        <view wx:elif="{{item.proType == 1178}}" class="tg-goods-btn">即将开抢</view>
+        <view wx:else class="tg-goods-btn">即将开始</view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.surplusStock>0 || item.ratio < 100 }}">
+          <view class="tg-join-btn" catchtap='extensionEvt' data-more="4" data-item="{{item}}"
+            data-more="{{item.isMyGroup == 0?1:4}}">推广</view>
+        </block>
+        <block wx:else>
+          <view class="tg-goods-btn">售罄</view>
+        </block>
+      </block>
+    </view>
+    <view class="tg-goods-timer">
+      <block wx:if="{{!isSoon}}">
+        <view class='buyers-number' wx:if="{{item.proType == 1888 && item.groupMode != 2029}}">已{{item.buyersNumber}}人拼团</view>
+        <view class='tg-goods-end' wx:if="{{countDownTime}}">距结束仅剩
+          <text class='tg-goods-time' wx:if="{{countDownTime.d_str}}">{{countDownTime.d_str}}</text>
+          <text wx:if="{{countDownTime.d_str}}">天</text>
+          <text class='tg-goods-time'>{{countDownTime.str}}</text>
+        </view>
+      </block>
+
+      <block wx:if="{{isSoon}}">
+        <block wx:if="{{item.proType == 1888 && item.groupMode == 2029}}">
+          <view class='buyers-number'>{{beginTime}} 开始接龙</view>
+        </block>
+        <block wx:elif="{{item.proType == 1888 && item.groupMode != 2029}}">
+          <view class='buyers-number'>{{beginTime}} 开团</view>
+        </block>
+        <block wx:elif="{{item.proType == 1178}}">
+          <view class='buyers-number'>{{beginTime}} 开抢</view>
+        </block>
+        <block wx:else>
+          <view class='buyers-number'>{{beginTime}} 开始</view>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

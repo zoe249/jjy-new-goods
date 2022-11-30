@@ -1,0 +1,115 @@
+<view class="page">
+	<!-- 滑动时顶部吸顶标题 -->
+	<view class="top_nav_title"
+		style="padding:{{menuButtonInfo.top}}px 0 25rpx 25rpx;opacity:{{opacity}};z-index: {{opacity==0?'-1':'100'}};">
+		<view class="dis_f_l_c" style="height:{{menuButtonInfo.height}}px;">
+			<image class="back" src="{{$.img_src}}/Explosives/backB.png" mode="aspectFit" bindtap="back"></image>
+			<text class="TitleWord"
+				wx:if="{{listObj.LivingHallTitle.recommendList[0].recommendTitle}}">{{listObj.LivingHallTitle.recommendList[0].recommendTitle}}</text>
+			<text class="TitleWord" wx:else>家家悦生活馆</text>
+		</view>
+	</view>
+	<!-- 顶部导航部分 -->
+	<view class="header">
+		<!-- 顶部背景图 -->
+		<view class="top_img">
+			<image wx:if="{{listObj.LivingHallImg.recommendList[0].imgUrl}}"
+				src="{{listObj.LivingHallImg.recommendList[0].imgUrl}}" mode="widthFix" />
+			<image wx:else src="{{$.img_src}}/two_img/top_bg.jpg" mode="widthFix" />
+		</view>
+		<!-- 顶部黑色返回按钮 -->
+		<view wx:if="{{opacity==0}}" class="img_back_btn dis_f_l_c" bindtap="back"
+			style="background: rgba(255,255,255,.8);border-radius: 50%;top:{{menuButtonInfo.top}}px;height:{{menuButtonInfo.height}}px;width:{{menuButtonInfo.height}}px">
+			<image style="padding: 0 0 0 10rpx;height:70%" src="{{$.img_src}}/Explosives/backB.png" mode="aspectFit"></image>
+		</view>
+	</view>
+	<!-- 正文显示部分 -->
+	<Ceiling scrollTop="{{scrollTop}}" offsetTop="{{nan_top_height}}" enable="{{true}}">
+		<view class="section">
+			<view class="scrollNav">
+				<!-- 滚动容器 -->
+				<scroll-view class="scroll_navs" scroll-into-view="nav{{nav_index}}" scroll-x scroll-with-animation>
+					<!-- 最左边用来定位的导航 -->
+					<view id="nav0"></view>
+					<!-- 正常的导航按钮 -->
+					<view class="ul box dis_f_l_c">
+						<block wx:for="{{nav_list}}" wx:key="index">
+							<!-- 判断nav的id是否相同添加类型active     通过index给nav添加id -->
+							<view class="li dis_f_co_c_c" id="nav{{index+1}}" bindtap="nav_fun" data-item="{{item}}"
+								data-index="{{index}}">
+								<text class="{{nav_item.id==item.id?'active':''}}">{{item.name}}</text>
+								<image src="{{$.img_src}}/RecipeDetails/top_xz.png" mode="aspectFit"
+									style="opacity: {{nav_item.id==item.id?'1':'0'}};" />
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+				<!-- 左右边展开按钮 -->
+				<view class="right_btn dis_f_c_c" bindtap="ScrollFunY">
+					<image class="{{Scrolltip=='show'?'':'active'}}" src="{{$.img_src}}/LivingHall/nav_zk_btn.png"
+						mode="aspectFit" />
+				</view>
+			</view>
+			<!-- 滑动转开部分 -->
+			<view class="expand dis_f_w_l_c {{Scrolltip=='hide'?'hide':'show'}}" wx:if="{{ScrollShow}}">
+				<block wx:for="{{nav_list}}" wx:key="index">
+					<view class="expand_li {{nav_item.id==item.id?'active':''}} dis_f_c_c" bindtap="nav_fun"
+						data-item="{{item}}" data-index="{{index}}">
+						<text>{{item.name}}</text>
+					</view>
+				</block>
+			</view>
+			<!-- 遮盖部分 -->
+			<view class="coverUp" wx:if="{{Scrolltip=='show'}}" bindtap="ScrollFunN"></view>
+		</view>
+	</Ceiling>
+	<!-- 底部部分 -->
+	<view class="footer">
+		<view class="list" wx:if="{{true}}">
+			<view class="footer_ul" style="height:{{height}}px">
+				<block wx:for="{{list}}" wx:key="index">
+					<view class="footer_li" style="top:{{item.top}}px;left:{{item.left}}px;" catchtap="goDetails"
+						data-goods="{{item}}" data-index="{{index}}">
+						<view class="li_section">
+							<view class="image" wx:if="{{item.imageCover}}">
+								<image src="{{item.imageCover}}" mode="aspectFill" />
+							</view>
+							<view wx:else class="top_img dis_f_co_c_c">
+								<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+								<text>暂无图片</text>
+							</view>
+							<view class="title slh_two">
+								<text>{{item.title}}</text>
+							</view>
+							<view class="content slh_one" wx:if="{{item.main_ingredient&&item.type==603}}">
+								<text>{{item.main_ingredient}}</text>
+							</view>
+							<view class="content slh_one" wx:if="{{item.introduce&&item.type==602}}">
+								<text>{{item.introduce}}</text>
+							</view>
+							<view class="word dis_f_r_c">
+								<view class="dis_f_c_c">
+									<text>{{item.readNumber}}</text>
+									<image src="{{$.img_src}}/CouponCenter/eye.png" mode="aspectFit"></image>
+								</view>
+								<view class="fgx"></view>
+								<view class="dis_f_c_c">
+									<text>{{item.collectNumber}}</text>
+									<image src="{{$.img_src}}/two_img/collect_no.png" mode="aspectFit"></image>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!-- 触底加载组件 -->
+			<MoreData more="{{more_data}}"></MoreData>
+		</view>
+		<!-- 列表空状态 -->
+		<view wx:else>
+			<NoList></NoList>
+		</view>
+	</view>
+	<!-- 加载中动画 -->
+	<Loading wx:if="{{loadingShow}}"></Loading>
+</view>

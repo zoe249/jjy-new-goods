@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "pop-group-num":"/component/popGroupNum/popGroupNum"
+  }
+}

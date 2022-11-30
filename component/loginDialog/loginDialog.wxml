@@ -1,0 +1,40 @@
+<!--component/loginDialog/loginDialog.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<view class="login-dialog-container">
+  <form class="login-dialog">
+    <view class="login-title"><text>{{title}}</text></view>
+    <view class="input-item-container">
+      <view class="input-container">
+        <input type="number" class="mobile-input" confirm-type="next" placeholder="请输入您的手机号码" value="" maxlength="11" bindinput="mobileInput" />
+      </view>
+    </view>
+    <view class="input-item-container">
+      <view class="input-container">
+        <input type="text" class="code-input" placeholder="请输入验证码" value="" maxlength="6" bindinput="codeInput" />
+      </view>
+      <block wx:if="{{dialogMsg.checkMobile && !dialogMsg.countDowning}}">
+        <text class="get-code" bindtap="getCode">{{dialogMsg.codeMsg}}</text>
+      </block>
+      <block wx:elif="{{dialogMsg.countDowning}}">
+        <text class="get-code count-downing">{{dialogMsg.codeMsg}}</text>
+      </block>
+      <block wx:else>
+        <text class="get-code disable">{{dialogMsg.codeMsg}}</text>
+      </block>
+
+    </view>
+    <block wx:if="{{dialogMsg.checkCode}}">
+      <button class="submit-btn" with-credentials plain hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{submitText}}</button>
+    </block>
+    <block wx:else>
+      <view class="submit-btn disable">
+        <text>{{submitText}}</text>
+      </view>
+    </block>
+
+  </form>
+  <view class="close-btn" bindtap="closeDialog"></view>
+</view>
+
+<template is="toast" data="{{...toastData}}"></template>

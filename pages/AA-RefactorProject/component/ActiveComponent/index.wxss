@@ -1,0 +1,22 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.section{
+	position: fixed;
+    bottom: 430rpx;
+    right: 130rpx;
+    z-index: 10;
+    width: 1rpx;
+    height: 1rpx;
+}
+.section .li{
+	width: 100rpx;
+	padding: 20rpx 0;
+}
+.section .li image{
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+.section .li image:last-child{
+	margin-bottom: 0;
+}

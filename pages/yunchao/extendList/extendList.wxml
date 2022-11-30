@@ -1,0 +1,45 @@
+<!-- <template is="recommendPlate"></template> -->
+<!-- <template is="scrollNav"></template> -->
+<import src="/templates/global/global.wxml" />
+
+<view class='top-banner'>
+  <image src='https://shgm.jjyyx.com/m/images/yc/share_list.png?t={{reloadTime}}' mode="widthFix"></image>
+</view>
+<block
+  wx:if="{{extendList}}">
+  <view class='share-goods-container share-plate'>
+
+    <view class='share-goods-list' style="padding-top:{{hasGoods?'16rpx':'0'}}">
+
+      <block wx:for="{{extendList}}" wx:key="buy">
+        <view class='goods-item' catchtap='bindPartakeGroup' data-item="{{item}}">
+          <view class='goods-img'>
+            <image src='{{item.coverImage}}'></image>
+          </view>
+          <view class='goods-info'>
+            <view class='goods-title'>{{item.shortTitle||item.goodsName||""}}</view>
+            <view class='goods-dec'>{{item.goodsTag}}</view>
+
+            <view class="goods-pro-labal">
+              <view class='goods-type'>秒杀</view>
+              <view class="sales-volume" wx:if="{{!!item.totalSalesVolumeMsg}}">{{item.totalSalesVolumeMsg}}</view>
+            </view>
+            <view class='goods-price'>
+              <view class='p-price'>¥ {{item.goodsPrice}}</view>
+              <view class='o-price'>市场价
+                <text>¥{{item.goodsPrimePrice}}</text>
+              </view>
+            </view>
+            <button class='join'>{{item.proType == 1888?"去拼团":item.proType == 1178?"去抢购":"去购买"}}</button>
+          </view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{isNoMore}}">
+      <template is="noMore"></template>
+    </block>
+  </view>
+</block>
+<navigator class='back-home' open-type="redirect" url='/pages/yunchao/home/home'></navigator>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "店铺主页",
+  "usingComponents": {
+    "component-goods-item": "/component/goodsItem/goodsItem",
+    "goods-item-yunchao": "/component/goodsItemYunchao/goodsItem",
+    "component-go-cart": "/component/goCart/goCart"
+  }
+}

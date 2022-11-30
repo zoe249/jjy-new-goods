@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "促销列表",
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

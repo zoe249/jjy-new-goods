@@ -1,0 +1,87 @@
+.wx-logo-wrap image{
+  width: 304rpx;
+  height: 304rpx;
+  margin: 180rpx auto 60rpx;
+}
+.wx-logo-wrap button{
+  height: 96rpx;
+  line-height: 96rpx;
+  width: 686rpx;
+  border-radius: 10rpx;
+  margin: 40rpx auto 0;
+  font-size: 38rpx;
+}
+/* .wx-logo-wrap button::after{
+  border:0;
+} */
+.login-btn{
+  background: #ededed;
+  color: #444;
+}
+.protocol-tips{
+  margin: 54rpx auto;
+  text-align: center;
+  font-size: 24rpx;
+}
+.protocol-tips .prot-link{
+  color: #3d9bf0 !important
+}
+.no-login-btn{
+  height: 96rpx;
+  line-height: 96rpx;
+  width: 686rpx;
+  border-radius: 96rpx;
+  margin: 40rpx auto 0;
+  font-size: 18px;
+  color: #bfbebf;
+  background: #fcfbfd;
+  text-align: center;
+}
+.pws-msg-login{
+  background-color: #D6D5D6;
+  color: #000;
+}
+
+.modal-header{
+  font-size: 38rpx;
+  color: var(--black);
+  line-height: 96rpx;
+  font-weight: bold;
+}
+.modal-cont .modal-icon{
+  width: 96rpx;
+  height: 96rpx;
+  margin: 16rpx auto 0;
+}
+.allow-title{
+  font-size: 34rpx;
+  color: var(--black);
+  margin-top: 24rpx;
+}
+.allow-info{
+  font-size: 30rpx;
+  color: var(--gray);
+  padding: 68rpx 48rpx;
+}
+.modal-foot{
+  display: flex;
+
+}
+.modal-foot view{
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 34rpx;
+}
+.modal-foot .btn-comfirm{
+  background: var(--red);
+}
+.modal-foot .btn-comfirm button{
+  background: transparent;
+  color: #fff;
+  border: 0;
+  outline: none;
+}
+.modal-foot .btn-comfirm button::after{
+  border: 0;
+}

@@ -1,0 +1,74 @@
+<template name="soonGoodsList">
+    <view class="goods-item-container group-soon-begin {{len?'no-hr':''}}" data-goods="{{item}}" catchtap="jumpGroupGoods">
+        <view class='goods-item-wrap'>
+        <block wx:if='{{item.privateGroup}}'>
+          <text class="private-group-flag">私</text>
+        </block>
+        <block wx:if="{{item.isNew == 1}}">
+            <image class="is-new" src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+        </block>
+        <image class="goods-cover-image"
+                src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+        <view class="goods-info-container">
+            <text class="goods-name">{{item.shortTitle||item.goodsName||""}}</text>
+            <!-- <text class='pro-type' wx:if="{{item.proType == 1888}}">{{item.proType == 1888?"社区自提":""}}</text> -->
+            <text class="goods-tag">{{item.goodsTag}}</text>
+            <view class="goods-prime-price-container">
+                <text class="price-msg">单价</text>
+                <text class="symbol">￥</text>
+                <text class="sale-price">{{item.goodsPrimePrice}}</text>
+                <text class="sale-unit">/{{item.salesUnit}}</text>
+            </view>
+        </view>
+        </view>
+        <view class='goods-item-wrap-bottom'>
+        <view class="sale-price-container">
+            <text class="need-count">{{item.needJoinCount}}人团</text>
+            <text class="goods-prime-price">￥{{item.goodsPrice}}</text>
+            <text class="commission-amount">赚￥{{item.commissionAmount}}</text>
+            <text class="join-btn">{{swiperNavActive == 0 ? '即将开团' : '即将开抢'}}</text>
+        </view>
+        <view class="group-msg-container">
+            <!-- <view class='buyers-number'>已{{item.buyersNumber}}人拼团</view> -->
+            <view class='pro-end-time'>{{item.beginTime}} 开团</view>
+        </view> 
+        </view>
+    </view>
+
+</template>
+
+
+<template name="soonRushGoodsList">
+    <view class="goods-item-container group-soon-begin {{len?'no-hr':''}}" data-goods="{{item}}" catchtap="jumpGroupGoods">
+        <view class='goods-item-wrap'>
+        <block wx:if="{{item.isNew == 1}}">
+            <image class="is-new" src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+        </block>
+        <image class="goods-cover-image"
+                src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+        <view class="goods-info-container">
+            <text class="goods-name">{{item.shortTitle||item.goodsName||""}}</text>
+            <!-- <text class='pro-type' wx:if="{{item.proType == 1888}}">{{item.proType == 1888?"社区自提":""}}</text> -->
+            <text class="goods-tag">{{item.goodsTag}}</text>
+            <view class="goods-prime-price-container">
+                <text class="price-msg">单价</text>
+                <text class="symbol">￥</text>
+                <text class="sale-price">{{item.goodsPrimePrice}}</text>
+                <text class="sale-unit">/{{item.salesUnit}}</text>
+            </view>
+        </view>
+        </view>
+        <view class='goods-item-wrap-bottom'>
+        <view class="sale-price-container">
+            <text class="need-count">{{item.proType != 1178? '特惠价': '抢购价'}} <text class="goods-prime-price">￥{{item.goodsPrice}}</text></text>
+            <text class="commission-amount">赚￥{{item.commissionAmount}}</text>
+            <text class="join-btn">{{swiperNavActive == 0 ? '即将开团' : '即将开抢'}}</text>
+        </view>
+        <view class="group-msg-container">
+            <!-- <view class='buyers-number'>已{{item.buyersNumber}}人拼团</view> -->
+            <view class='pro-end-time'>{{item.beginTime}} 开抢</view>
+        </view> 
+        </view>
+    </view>
+
+</template>

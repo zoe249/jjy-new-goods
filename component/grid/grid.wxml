@@ -1,0 +1,16 @@
+<view class="ma-grid" wx:if="{{grids && grids.length > 0}}">
+
+  <block wx:for="{{grids}}" wx:key="index">
+    <view class="ma-gird-item ma-gird-col-{{colSize}}" wx:if="{{!item.discard}}" bindtap="_autoJump"
+      data-item="{{item}}">
+      <view class="ma-gird-i-wp {{gridItemClass}}" style="{{gridItemStyle}}">
+        <view class="ma-grid-icon" style="{{gridIconStyle}}">
+          <image class="ma-grid-img" mode="widthFix" src="{{item.image+'?t='+t}}"></image>
+          <view class="ma-grid-sup" style="{{gridSupStyle}}" wx:if="{{item.supValue}}">{{item.supValue}}</view>
+        </view>
+        <view class="ma-grid-text" style="{{gridItemTextStyle}}">{{item.title}}</view>
+        <!-- <view class="ma-grid-sup" wx:if="{{item.supValue}}">{{item.supValue}}</view> -->
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+/* 初始化 */
+
+
+/* 通用样式 */
+
+.background100,
+.add-address .ul>.li .s {
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.forword,
+.add-address .ul>.li.place .a:after {
+    position: absolute;
+    right: 4rpx;
+    top: 50%;
+    width: 16rpx;
+    height: 16rpx;
+    content: "";
+    border-left: 2rpx solid #999;
+    border-bottom: 2rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.submit-btn,
+button[disabled][type="default"],
+wx-button[disabled]:not([type]) {
+    width: 100%;
+    height: 96rpx;
+    line-height: 96rpx;
+    color: #fff;
+    font-size: 38rpx;
+    background: #ccc;
+    -webkit-border-radius: 48rpx;
+    border-radius: 48rpx;
+}
+
+.submit-btn.done,
+button[disabled][type="default"].done,
+wx-button[disabled]:not([type]).done {
+    background: #FF4752;
+}
+
+
+/* 页面样式 */
+
+.add-address {
+    margin-bottom: 20rpx;
+    /*  padding-left: rem(12px); */
+    background: #ededed;
+}
+
+.add-address .ul {
+    background: #fff;
+    padding-left: 32rpx;
+    margin-bottom: 20rpx;
+    /*  & > li:first-child{
+         padding: rem(21px) rem(28px) rem(11px) rem(75px);
+     } */
+}
+
+.add-address .ul>.li {
+    background: #fff;
+    position: relative;
+    padding: 22rpx 56rpx 22rpx 150rpx;
+    font-size: 30rpx;
+    line-height: 46rpx;
+}
+
+.add-address .ul>.li .i {
+    position: absolute;
+    left: 176rpx;
+    top: 50%;
+    margin-top: -22rpx;
+    color: #222;
+}
+
+.add-address .ul>.li .s {
+    position: absolute;
+    right: 24rpx;
+    top: 50%;
+    display: block;
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: -15rpx;
+    background-image: url("https://shgm.jjyyx.com/m/images/del.png");
+    visibility: hidden;
+}
+
+.add-address .ul>.li .s.visible {
+    visibility: visible;
+}
+
+.add-address .ul>.li.place {
+    padding: 0;
+}
+
+.add-address .ul>.li.place .a {
+    position: relative;
+    display: block;
+    padding: 20rpx 40rpx 20rpx 150rpx;
+}
+
+.add-address .ul>.li.place .a.select {
+    height: 86rpx;
+    line-height: 86rpx;
+    padding: 0 60rpx 0 170rpx;
+}
+
+.add-address .ul>.li.place .a.select .select {
+    width: 100%;
+    text-align: right;
+    line-height: 86rpx;
+    font-size: 30rpx;
+    color: #444;
+    opacity: 0;
+}
+
+.add-address .ul>.li .common-em {
+    position: absolute;
+    left: 24rpx;
+    top: 22rpx;
+    color: #444;
+}
+
+.add-address .ul>.li input,
+.add-address .ul>.li textarea {
+    display: block;
+    width: 100%;
+    height: 46rpx;
+    padding: 0 20rpx;
+    font-size: 30rpx;
+    color: #222;
+}
+
+.add-address .ul>.li textarea {
+    padding: 0 0 0 24rpx;
+    min-height: 46rpx;
+    line-height: 46rpx;
+    resize: none;
+}
+
+.add-address .ul>.li .map_address {
+    display: block;
+    padding-left: 48rpx;
+    margin-left: 20rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_location.png") no-repeat left 4rpx;
+    -webkit-background-size: 38rpx;
+    background-size: 38rpx;
+}
+
+.add-address .ul>.li .no_address {
+    color: #ccc;
+}
+
+.add-address .ul>.li.note .span {
+    display: inline-block;
+    width: 100rpx;
+    height: 56rpx;
+    font-size: 30rpx;
+    line-height: 56rpx;
+    text-align: center;
+    color: #999;
+    margin-left: 20rpx;
+    border: 1px solid #999;
+    border-radius: 28rpx;
+}
+
+.add-address .ul>.li.note .cur {
+    color: #FF4752;
+    border: 1px solid #FF4752;
+}
+
+.add-address .ul .select_map_local:after {
+    position: absolute;
+    right: 32rpx;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    content: "";
+    border-left: 0.125rem solid #999;
+    border-bottom: 0.125rem solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.submit-btn-wrap {
+    padding: 0 30rpx;
+    text-align: center;
+}
+
+.submit-btn-wrap .submit-btn {
+    display: block;
+}
+
+
+/*# sourceMappingURL=add.wxss.map */

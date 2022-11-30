@@ -1,0 +1,156 @@
+page {
+  background: #f4f4f4;
+}
+
+
+.header {
+  display: flex;
+  width: 100%;
+  padding: 16rpx 16rpx 0 30rpx;
+}
+
+.shop-info {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.shop-info image {
+  width: 40rpx;
+  height: 40rpx;
+  background: #94969c;
+  margin-right: 16rpx;
+  border-radius: 20rpx;
+}
+.shop-extract-area {
+  display: inline-block;
+  position: relative;
+}
+
+.shop-extract-area view{
+  width: 600rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  line-height: 32rpx;
+  height: 32rpx;
+  color: var(--blue);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.picker-forword{
+  display: inline-block;
+  position: absolute;
+  right: -32rpx;
+  top: 40%;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-45deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-45deg);
+}
+
+.search-btn {
+  width: 50%;
+}
+
+.search-btn view {
+  background: #fff;
+  color: #94969c;
+  width: 100%;
+  height: 64rpx;
+  font-size: 24rpx;
+  line-height: 64rpx;
+  padding-left: 80rpx;
+  border-radius: 4rpx;
+}
+
+/*当前自提点*/
+
+.current-extract-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 45rpx 0;
+  margin: 16rpx 16rpx 0;
+  text-align: center;
+}
+
+.current-extract-info image {
+  width: 145rpx;
+  height: 145rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50%;
+  margin-bottom: 24rpx;
+}
+
+.current-extract-info text {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #777;
+}
+
+.current-extract-name {
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #313031;
+}
+
+.current-extract-address {
+  font-size: 20rpx;
+  font-weight: 300;
+  line-height: 36rpx;
+  color: #777;
+  margin-top: 33rpx;
+}
+
+.extract-list-wrap {
+  background: #fff;
+  padding: 0 48rpx;
+  border-radius: 16rpx;
+  margin: 16rpx;
+}
+
+.extract-list {
+  position: relative;
+  padding: 16rpx 0 32rpx;
+}
+.hr-b{
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.extract-list-wrap .extract-title {
+  font-size: 24rpx;
+  font-weight: 400;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: var(--blue);
+}
+
+.extract-list-name {
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #313031;
+}
+
+.extract-list-address {
+  font-size: 20rpx;
+  font-weight: 300;
+  color: #777;
+  margin-top: 8rpx;
+}
+
+.extract-list-distance{
+  position: absolute;
+  right: 0;
+  top:16rpx;
+  font-size:24rpx;
+  font-weight:400;
+  line-height:24rpx;
+  color:#FF4752;
+}

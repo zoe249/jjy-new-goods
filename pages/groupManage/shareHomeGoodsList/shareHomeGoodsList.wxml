@@ -1,0 +1,202 @@
+<import src="/templates/global/global.wxml" />
+<block wx:if="{{types == 'qiangGou'}}">
+  <view class='activity-head' wx:if="{{showHeaderNav}}">
+    <view class='share-goods-container'>
+      <view class='market-nav'>
+        <view wx:for="{{swiperNavItem}}" wx:key="index" bindtap='swiperNav'
+          class='market-nav-item {{navActive == index?"active":""}}' data-index='{{index}}'>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view class='container {{showHeaderNav? "proGoodsList": "" }} {{navActive == 0?"show-box":""}}' scroll-y
+    bindscrolltolower="scrollProGoodsList" lower-threshold="80">
+    <block wx:for="{{multipleProList}}" wx:for-item="proList" wx:key="c_index">
+      <block wx:if="{{!proList.disableActivity}}">
+        <view class="activity-time-wrap">
+          <view class=''>正在秒杀，先下单先得哦</view>
+          <view class='activity-time'>
+            <view class='tips-text'>距结束剩余</view>
+            <view class="timer">
+              <text wx:if="{{proList.downTime.day}}">{{proList.downTime.day}}天</text>
+              <text>{{proList.downTime.hour}}</text>:
+              <text>{{proList.downTime.minute}}</text>:
+              <text>{{proList.downTime.second}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='share-goods-container'>
+          <block wx:if="{{proList.goodsList}}">
+            <view class='share-goods-list'>
+              <block wx:for="{{proList.goodsList}}" wx:key="index">
+                <view class='goods-item' catchtap='bindPartakeGroup' data-item="{{item}}">
+                  <view class='goods-img'>
+                    <image src='{{item.coverImage}}'></image>
+                  </view>
+                  <view class='goods-info'>
+                    <view class='goods-title'>{{item.shortTitle||item.goodsName||""}}</view>
+                    <view class='goods-dec'>{{item.goodsTag}}</view>
+                    <!-- <view class='goods-type'>{{item.proType == 1888?"拼团":"秒杀"}}</view> -->
+                    <view class="sales-volume {{!!item.totalSalesVolumeMsg?'val':''}}">{{item.totalSalesVolumeMsg}}</view>
+                    <view class='goods-price'>
+                      <view class='p-price'>秒杀价
+                        <text>¥ {{item.goodsPrice}}</text>
+                      </view>
+                      <view class='o-price'>市场价
+                        <text> ¥{{item.goodsPrimePrice}}</text>
+                      </view>
+                    </view>
+                    <view class='stock-state'>
+                      <text>{{item.ratio >= 100 ? '已售罄' : item.ratio > 85 ? '即将售罄' : item.ratio == 0 ? '热卖中' : '本场已抢'+item.buyStock+'件'}}</text>
+                      <view class='progress'>
+                        <view class='progressing' style='width:{{item.ratio}}%;'></view>
+                      </view>
+                    </view>
+                    <button class='join' catchtap='bindPartakeGroup'
+                      data-item="{{item}}">{{item.proType == 1888?"去拼团":item.proType == 1178?"去抢购":"去购买"}}</button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{load && (!multipleProList || multipleProList.length == 0)}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+    <template is="noMore" wx:if="{{morePage && multipleProList && multipleProList.length > 0}}"></template>
+  </scroll-view>
+  <scroll-view class='container soonGoodsList {{navActive == 1?"show-box":""}}' scroll-y
+    bindscrolltolower="scrollSoonGoodsList" lower-threshold="80">
+    <block wx:for="{{soonMultipleProList}}" wx:for-item="proList" wx:key="s_index">
+      <block wx:if="{{!proList.disableActivity}}">
+        <view class="activity-time-wrap">
+          <view class=''>即将开始，先下单先得哦</view>
+          <view class='activity-time'>
+            <view class='tips-text'>距结束开始</view>
+            <view class="timer">
+              <text wx:if="{{proList.downTime.day}}">{{proList.downTime.day}}天</text>
+              <text>{{proList.downTime.hour}}</text>:
+              <text>{{proList.downTime.minute}}</text>:
+              <text>{{proList.downTime.second}}</text>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{proList.goodsList}}">
+          <view class='share-goods-list'>
+            <block wx:for="{{proList.goodsList}}" wx:key="p_index">
+              <view class='goods-item' data-item="{{item}}">
+                <view class='goods-img'>
+                  <image src='{{item.coverImage}}'></image>
+                </view>
+                <view class='goods-info'>
+                  <view class='goods-title'>{{item.shortTitle||item.goodsName||""}}</view>
+                  <view class='goods-dec'>{{item.goodsTag}}</view>
+                  <view class="sales-volume {{!!item.totalSalesVolumeMsg?'val':''}}">{{item.totalSalesVolumeMsg}}</view>
+                  <!-- <view class='goods-type'>{{item.proType == 1888?"拼团":"秒杀"}}</view> -->
+                  <view class='goods-price'>
+                    <view class='p-price'>秒杀价
+                      <text>¥ {{item.goodsPrice}}</text>
+                    </view>
+                    <view class='o-price'>市场价
+                      <text> ¥{{item.goodsPrimePrice}}</text>
+                    </view>
+                  </view>
+                  <view class='stock-state'>
+                    <text>{{item.ratio >= 100 ? '已售罄' : item.ratio > 85 ? '即将售罄' : item.ratio == 0 ? '热卖中' : '本场已抢'+item.buyStock+'件'}}</text>
+                    <view class='progress'>
+                      <view class='progressing' style='width:{{item.ratio}}%;'></view>
+                    </view>
+                  </view>
+                  <button class='join soon'>即将开始</button>
+                </view>
+              </view>
+            </block>
+          </view>
+        </block>
+      </block>
+    </block>
+    <block wx:if="{{load && (!soonMultipleProList || soonMultipleProList.length == 0)}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+    <template is="noMore" wx:if="{{moreSoonPage && soonMultipleProList && soonMultipleProList.length > 0}}"></template>
+  </scroll-view>
+</block>
+<block wx:else>
+  <scroll-view class='tuanProGoodsList' style="height: 100vh;" scroll-y bindscrolltolower="scrollTuanProGoodsList"
+    lower-threshold="80">
+    <image class="banner-img" wx:if="{{types == 'tuanGou'}}" mode="widthFix" src="https://shgm.jjyyx.com/m/images/group/shequ_tuan_top_banner.png">
+    </image>
+    <view class='share-goods-container'>
+      <block wx:if="{{tuanProGoodsList}}">
+        <block wx:for="{{tuanProGoodsList}}" wx:key="t_index">
+          <view class='share-goods-list'>
+
+            <view class='goods-item g-list' catchtap='bindPartakeGroup' data-item="{{item}}">
+              <view class='goods-img'>
+                <image src='{{item.coverImage}}'></image>
+              </view>
+              <view class='goods-info'>
+                <view class='goods-title'>{{item.shortTitle||item.goodsName||""}}</view>
+                <view class='goods-dec'>{{item.goodsTag}}</view>
+
+                <!-- <view class='goods-type'>{{item.proType == 1888?"拼团":"秒杀"}}</view> -->
+                <view class='goods-price'>
+                  <!-- <view class='p-price'>秒杀价
+                      <text>¥ {{item.goodsPrice}}</text>
+                    </view>
+                    <view class='o-price'>市场价
+                      <text> ¥{{item.goodsPrimePrice}}</text>
+                    </view> -->
+                  <view class='o-price'>单买价
+                    <text> ¥{{item.goodsPrimePrice}}</text>
+                  </view>
+                </view>
+                <view class="sales-volume {{!!item.totalSalesVolumeMsg?'val':''}}">{{item.totalSalesVolumeMsg}}</view>
+                <!-- <view class='stock-state'>
+                  <text>已抢64件</text>
+                  <view class='progress'>
+                    <view class='progressing' style='width:20%;'></view>
+                  </view>
+                </view> -->
+                <view class='need-buy'>
+                  <view class='need-num'>{{item.needJoinCount}}人团</view>
+                  <view class='goods-prime-price'>¥ {{item.goodsPrice}}</view>
+                </view>
+                <view class='buyers-number'>本场已拼{{item.buyersNumber}}件</view>
+                <button class='join' catchtap='bindPartakeGroup' data-item="{{item}}">去拼团</button>
+              </view>
+            </view>
+            <view wx:if="{{item.lastGroup && item.lastGroup.memberList }}" class='join-group-model'
+              bindtap='toJoinGroupDetails' data-item="{{item}}">
+              <view class='join-group'>TA的拼团快要过期了，快来拼团～</view>
+              <view class='join-group-user'>
+                <block wx:for="{{item.lastGroup.memberList}}" wx:for-item="list" wx:key="l_key">
+                  <image class='df-img' src='{{list}}'></image>
+                </block>
+                <view class='join-group-need-user'>还差 <text>{{item.lastGroup.oddJoinCount}}</text> 人</view>
+              </view>
+              <view class='join-group-btn' bindtap='joinOtherGroup' data-item='{{item}}'>立即参团</view>
+            </view>
+
+          </view>
+        </block>
+
+      </block>
+
+    </view>
+    <block wx:if="{{load && (!tuanProGoodsList || tuanProGoodsList.length == 0)}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+    <template is="noMore" wx:if="{{moreTuanPage && tuanProGoodsList && tuanProGoodsList.length > 0}}"></template>
+  </scroll-view>
+</block>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<block wx:if='{{showPopGroupNum}}'>
+  <pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'>
+  </pop-group-num>
+</block>

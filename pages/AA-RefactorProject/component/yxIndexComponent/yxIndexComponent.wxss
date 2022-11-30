@@ -1,0 +1,372 @@
+/**
+ * 毛玻璃
+ */
+@import '../../common/css/css.wxss';
+ 
+.top_bg
+{
+    background-image: url(http://118.190.148.187/images/recommend/14208/big/c83fe9ae-c10d-4d84-b135-e85b621443ea_688x288.png);
+    height: 500rpx;
+    width: 100vw;
+    position: absolute;
+    top: 0rpx;
+    left: 0rpx;
+    background-position: center;
+    background-size: 400% 400%;
+    filter: blur(16px);
+    -webkit-filter: blur(16px);
+
+}
+/**
+ * 首页轮播图
+ */
+
+ .banner {
+	position: relative;
+	height: 256rpx;
+    margin: 4rpx 0 16rpx;
+    margin-top: 230rpx;
+}
+/**
+ * 首页分类
+ */
+
+ .category {
+	position: relative;
+     height: 430rpx;  
+     /* height: 430rpx;   */
+	margin: 0 20rpx 20rpx 20rpx;
+	background: #fff;
+	border-radius: 28rpx;
+    padding: 0rpx 0 20rpx;
+
+}
+ .activityCategory {
+	position: relative;
+     height: 420rpx;  
+     /* height: 430rpx;   */
+	margin: 0 20rpx 20rpx 20rpx;
+	/* background: red; */
+	border-radius: 28rpx;
+    padding: 35rpx 0 0 0 ;
+
+}
+/**
+ * 消息提醒
+ */
+
+.message_container
+{
+    margin: 0 20rpx 20rpx 20rpx;
+   height: 65rpx;
+   line-height: 65rpx;
+   border-radius: 32.5rpx;
+   display: flex;
+   align-items: center;
+   background-color: white;
+
+}
+.message_container .message_img
+{
+  width: 22rpx;
+  height: 26rpx;
+  margin-left: 20rpx;
+}
+.message_container .message_lin
+{
+    width: 2rpx;
+    height: 26rpx;
+    margin-left: 10rpx;
+    background-color: #efefef;
+}
+.message_container .swiper-message
+{
+    margin-left: 10rpx;
+    width: 90%;
+    font-size: 24rpx;
+    color: #6C6C6C;
+    height: 100%;
+}
+.message_container .swiper-message .swiper-item-message
+{
+
+}
+.message_container .swiper-message .swiper-item-message .message_tv
+{
+    
+
+}
+.to-reg-win {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	opacity: 0.3;
+	visibility: hidden;
+	transition: 0.4s all;
+}
+
+.to-reg-win-show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.to-reg-win-mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.to-reg-win-img {
+	position: absolute;
+	left: 50%;
+	top: 42.8%;
+	width: 592rpx;
+	height: 784rpx;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+.to-reg-win-img-wrap {
+	width: 100%;
+	height: 100%;
+	position: relative;
+    display: flex;
+}
+.to-reg-win-img-bg{
+    margin:auto;
+}
+
+.to-reg-win-img-close {
+	position: absolute;
+	bottom: -128rpx;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 56rpx;
+	height: 56rpx;
+}
+.hot{
+    margin-bottom: 20rpx;
+}
+/**
+ * 到店吃
+ */
+ .ddc_group{
+    display: flex;
+    padding:0 20rpx;
+    margin-bottom: 20rpx;
+ }
+ .ddc_group .ddc_group_container
+ {
+     flex:1;
+     margin-right: 20rpx;
+ }
+ .ddc_group .ddc_group_container:last-child{
+    margin-right: 0;
+ }
+ .ddc_group .ddc_one
+ {
+    height: 130rpx;
+    background: white;
+    border-radius: 10rpx;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .ddc_two {
+    height: 130rpx;
+ }
+ /**
+ * 必买爆品
+ */
+ .add_container
+ {
+   width: 100vw;
+   padding-left: 20rpx;
+   padding-right: 20rpx;
+   margin-bottom: 20rpx;
+   height:234rpx;
+
+ }
+ .add_container .ddc_img
+ {
+    height:234rpx;
+
+ }
+.getCoupon{
+    margin: 0 20rpx 20rpx;
+    width: 710rpx;
+    height: 264rpx;
+    position: relative;
+    border-radius: 20rpx;
+}
+.backgroundImg{
+    width: 710rpx;
+    height: 264rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20rpx;
+}
+.couponContent{
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+}
+.coupon{
+    margin-right: 20rpx;
+    width: 172rpx;
+    height: 162rpx;
+    display:inline-block;
+    position: relative;
+    padding: 10rpx;
+    text-align: center;
+}
+.firstCoupon{
+    margin-left: 20rpx;
+}
+.baoguoImg{
+    width: 172rpx;
+    height: 162rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.wordContent{
+    position: relative;
+    display: flex;
+    margin-bottom: 28rpx;
+    padding: 13rpx 0 0 20rpx;
+}
+.bigTitle{
+    color: #fff;
+    font-weight: bold;
+    font-size: 36rpx;
+    margin-right: 20rpx;
+}
+.smallTitle{
+    color: #fff;
+    font-size: 28rpx;
+}
+.couponTitle{
+    position: relative;
+    width: 152rpx;
+    white-space: nowrap;
+    color: #ff7a6c;
+    font-size: 24rpx;
+    height: 62rpx;
+    line-height: 62rpx;
+}
+.couponDeductionAmount{
+    height: 70rpx;
+    position: relative;
+    color: #ff432e;
+    font-size: 60rpx;
+    font-weight: bold;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.couponUnit{
+    font-size: 28rpx;
+}
+.moreCoupon{
+    position: relative;
+    color: #ff3923;
+    font-size: 39rpx;
+    font-weight: bold;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.lifeCenter{
+    margin: 0 20rpx 20rpx;
+    width: 710rpx;
+    height: 763rpx;
+    position: relative;
+    border-radius: 20rpx;
+    padding: 255rpx 18rpx 0;
+    display: flex;
+    justify-content:space-between;
+}
+.lifeBgImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 710rpx;
+    height: 763rpx;
+}
+.lifeWrap{
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    margin-left:15rpx;
+    margin-right: 15rpx;
+}
+.lifeInfoContent{
+    width: 333rpx;
+    height: 488rpx;
+    background-color:#fff;
+    padding: 15rpx;
+    position: relative;
+    border-radius: 12rpx;
+}
+.lifeImg{
+    width: 304rpx;
+    height: 304rpx; 
+    margin-bottom: 22rpx;
+    border-radius: 12rpx;
+}
+.iconContent{
+    display: flex;
+    justify-content:flex-end;
+    padding: 0 20rpx;
+}
+.lifeNum{
+    margin-right: 10rpx;
+}
+.lifeIcon{
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 30rpx;
+}
+.lifeBigTitle{
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    line-height: 30rpx;
+    margin-bottom: 12rpx;
+    padding: 0 20rpx;
+    height: 30rpx;
+}
+.lifeSmallTitle{
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+    line-height: 24rpx;
+    margin-bottom: 15rpx;
+    padding: 0 20rpx;
+}
+.showMoreImg{
+    position: relative;
+    width: 60rpx;
+    height: 60rpx;
+    margin: 20rpx auto 30rpx;
+}
+.showMoreText{
+    position: relative;
+}

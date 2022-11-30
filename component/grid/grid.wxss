@@ -1,0 +1,58 @@
+/* component/grid/grid.wxss */
+@import './_grid.wxss';
+.ma-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ma-gird-col-2{
+  width: 50%;
+}
+.ma-gird-col-3{
+  width: 33.333%;
+}
+.ma-gird-col-4{
+  width: 25%;
+}
+.ma-gird-col-5{
+  width: 20%;
+}
+.ma-gird-i-wp{
+  position: relative;
+  text-align: center;
+}
+.ma-grid-icon{
+  position: relative;
+  align-items: center;
+  margin: 0 auto;
+  width: 56rpx;
+  height: 56rpx;
+}
+.ma-gird-i-wp .ma-grid-img{
+  display: block;
+  height: auto;
+}
+
+.ma-grid-text{
+  font-size: 22rpx;
+  color: var(--black);
+  font-weight: 300;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.ma-grid-sup{
+  position: absolute;
+  left: 100%;
+  top: -14rpx;
+  transform: translateX(-54%);
+  display: inline-block;
+  font-size: 22rpx;
+  font-weight: 300;
+  height: 0;
+  line-height: 0;
+  padding: 14rpx 8rpx;
+  color: #fff;
+  -webkit-border-radius: 14rpx;
+  border-radius: 14rpx;
+  background: var(--red);
+}

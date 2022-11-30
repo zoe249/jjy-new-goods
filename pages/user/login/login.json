@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "loading": "/component/loading/loading"
+  }
+}

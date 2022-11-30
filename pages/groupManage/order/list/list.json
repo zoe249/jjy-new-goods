@@ -1,0 +1,11 @@
+ {
+  "backgroundColor":  "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "订单管理",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "component-group-manage-order-list-new": "/component/groupManageOrderListNew/groupManageOrderListNew"
+  } 
+}

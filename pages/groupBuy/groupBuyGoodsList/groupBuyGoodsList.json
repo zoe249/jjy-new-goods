@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "特价拼团",
+  "usingComponents": {
+    "pop-group-num":"/component/popGroupNum/popGroupNum",
+    "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+    "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+    "component-group-footer-nav": "/component/groupFooterNav/groupFooterNav"
+  }
+}

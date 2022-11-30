@@ -1,0 +1,1606 @@
+<import src="/templates/global/global.wxml" />
+<car-tab selId="0"></car-tab>
+<view id="loading" hidden="{{loadingHidden}}">
+  <view class="loading-cnt">
+    <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+  </view>
+</view>
+<view class="del-cart-wrap">
+  <view wx:if="{{batchDelGoodsFlag}}" class='del-cart-item' bindtap="batchDelGoods">删除</view>
+  <view wx:if="{{undercarriageFlag}}" class="del-cart-xj" bindtap="batchDelUndercarriage">清空已下架商品</view>
+</view>
+<!-- cart.wxml -->
+<view class="cart-body" id="cart-body">
+  <view id="container" class="container">
+    <block wx:if="{{cartNoData}}">
+      <template is="cart-empty-tpl"></template>
+    </block>
+    <block wx:elif='{{showCartError}}'>
+    <template is="cart-error-tpl" data='{{errorMsg:errorMsg}}'></template>
+    </block>
+    <block wx:else>
+      <!-- <view class="shop-promotion">
+      <view class="span">全场免运费（仅限北京地区）全场免运费全场免运费</view>
+     <view id="edit_cart">编辑</view>
+ </view> -->
+      <!-- <view class="bg-caitiao"></view> -->
+      <view class="address-box" catchtap="toAddress">
+        <block wx:if="{{newCartJson.fillAddress}}">
+          <view class="name-box"><view class="span">提货点：{{newCartJson.fillAddress.addrTag||''}}</view>
+          </view>
+          <view class="detail-address">提货点地址：{{newCartJson.fillAddress.provinceName||''}}{{newCartJson.fillAddress.cityName||''}}{{newCartJson.fillAddress.areaName||''}}{{newCartJson.fillAddress.address||''}}</view>
+        </block>
+        <block wx:else>
+          <view class="location-address">提货点：{{newCartJson.detailAddress||''}}</view>
+        </block>
+      </view>
+      <block wx:if="{{newCartJson.newStoreList.length>0}}">
+        <view class="shop-group bg-white" id="canyin">
+          <view class="nav clearfix">
+            <view class="h2">餐饮美食</view>
+            <view class="switch-toggle">
+              <view class="aside wrap" id="canyin_choose">
+                <block wx:if="{{newCartJson.foodDeliveryValid==2||newCartJson.foodDeliveryValid==3||newCartJson.foodDeliveryValid==6||newCartJson.foodDeliveryValid==7}}">
+                  <view class="a noCanChoose active{{foodDelivery=='1'?' active':''}}" data-food-delivery="1">外卖</view>
+                </block>
+                <block wx:else><view class="a noCanChoose active{{foodDelivery=='1'?' active':''}}" data-food-delivery="1">外卖</view></block>
+                <block wx:if="{{newCartJson.foodDeliveryValid==4||newCartJson.foodDeliveryValid==5||newCartJson.foodDeliveryValid==6||newCartJson.foodDeliveryValid==7}}">
+                  <view class="a noCanChoose active{{foodDelivery=='0'?' active':''}}" data-food-delivery="0">堂食</view>
+                </block>
+                <block wx:else><view class="a noCanChoose active{{foodDelivery=='0'?' active':''}}" data-food-delivery="0">堂食</view></block>
+                <block wx:if="{{newCartJson.foodDeliveryValid==1||newCartJson.foodDeliveryValid==3||newCartJson.foodDeliveryValid==5||newCartJson.foodDeliveryValid==7}}"><view class="a canChoose{{foodDelivery=='2'?' active':''}}" data-food-delivery="2">自提</view>
+                </block>
+                <block wx:else><view class="a noCanChoose active{{foodDelivery=='2'?' active':''}}" data-food-delivery="2">自提</view>
+                </block>
+              </view>
+            </view>
+          </view>
+          <block wx:for="{{newCartJson.newStoreList}}" wx:for-item="storeL" wx:for-index="i" wx:key="{{i}}newCartJson{{storeL.storeId}}">
+            <block wx:if="{{storeL.canBuy!=3}}">
+              <view class="shop-group-item">
+                <view class="store-title r1bt r1bb">
+                  <view class="wrap">
+                    <view class="check-wrapper shop_check">
+                      <view catchtap="checkedGoodsHandler" data-store-type="{{storeL.storeType}}" data-now-select-status="{{storeL.storeSelectStatus}}" data-can-select="{{storeL.canBuy}}" data-select-type="store" data-store-id="{{storeL.storeId}}" class="span{{storeL.canBuy!=1?' noCan-icon':storeL.canBuy==1?' canBuy-icon':''}}{{storeL.canBuy==1&&storeL.storeSelectStatus==1?' checked':''}}">店铺全选/不选</view>
+                    </view>
+                    <view catchtap="toStoreIndex" data-store-id="{{storeL.storeId}}" data-shop-id="{{storeL.shopId}}" class="a title">
+                      <!-- <image src="{{storeL.storeIcon}}" mode="aspectFill"></image> -->
+                      <view class="span">{{storeL.storeName}}</view>
+                      <block wx:if="{{storeL.storeStatus!=1}}">
+                        <view class="storeStatusStop">休息中</view>
+                      </block>
+                    </view>
+                  </view>
+                </view>
+                <view class="shop-cart-list">
+                  <block wx:for="{{storeL.newGoodsList}}" wx:for-item="list" wx:for-index="k" wx:key="{{i}}newCartJsonStoreL{{k}}">
+                    <!-- 促销的类型start -->
+                    <!-- <block wx:if="{{list.length>0&&k!=0&&(list[0].promotionList.length>0||list[0].isAddPriceGoods==1)&&list[0].canBuy==1&&list[0].proType!=999&&list[0].proType!=289&&list[0].proType!=1178}}">
+                      <view class="cart-promotion clearfix r1bt overShort">
+                        <block wx:if='{{list[0].isAddPriceGoods==1}}'>
+                          <view class="pro-title fl">
+                            <view class="i manjian">加价购</view>
+                            <view class="span">
+                              <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[k]&&newCartJson.orderPromotionRegResultOutputMap[k]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[k]["message"]}}
+                              </block>
+                              <block wx:else>加价购促销</block>
+                            </view>
+                          </view>
+                        </block>
+                        <block wx:else>
+                          <block wx:for="{{list[0].promotionList}}" wx:for-item="proIdLi" wx:for-index="proIdIndex" wx:key="{{storeL.storeId}}newCartJsonStoreLproIdLi{{proIdIndex}}">
+                            <block wx:if="{{list[0].proId==proIdLi.proId}}">
+                              <view class="pro-title fl">
+                                <view class="i manjian">{{proIdLi.proInfo}}</view>
+                                <view class="span">
+                                  <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]["message"]}}
+                                  </block>
+                                  <block wx:else>{{proIdLi.proDesc}}</block>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <view class="pro-link">
+                          <view class="a" catchtap="{{(value[0].proType==1178)?'toUrlQianggou':'toPromotionIndex'}}" data-pro-id="{{k}}" data-food-delivery="{{foodDelivery}}" data-goods-delivery="{{newMarketList.length>0?goodsDelivery:0}}" data-goods-bc-delivery="{{goodsB2CDelivery}}"><block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]['conform']==1}}">去选购</block>
+                            <block wx:else>去凑单</block>
+                          </view>
+                        </view>
+                      </view>
+                    </block> -->
+                    <!-- 促销的类型end -->
+                    <!-- 商品列表start -->
+                    <block wx:for="{{list}}" wx:for-item="li" wx:for-index="j" wx:key="{{j}}newCartJsonLi{{li.goodsId}}">
+                      <block wx:if="{{li.isAddPriceGoods==1}}">
+                        <view class="li gift-pro addPrice can-del" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check"></view>
+                              <view catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" class="a cart-item" data-pro-id="{{li.proId}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="span mark-type bg-ff4182">会员价</view></block><block wx:else><view class="span">换购</view></block>{{li.goodsPromotionName||li.goodsName||"无"}}</view>
+                                  <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}</view>
+                                    <block wx:if="{{li.pricingMethod==391}}"><view class="icon-info" catchtap="weightPop"></view></block>
+                                  </block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}<block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray">/{{li.salesUnit}}</view></block></view>
+                                  </view>
+                                  <view class="gift-num">{{li.num}}</view>
+                                </view>
+                              </view>
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class="li can-del">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                               <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check">
+                                <view catchtap="checkedGoodsHandler" data-store-type="{{li.storeType}}" data-now-select-status="{{li.isSelect}}" data-select-type="one" data-can-select="{{li.canBuy}}" data-store-id="{{storeL.storeId}}" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span{{li.canBuy!=1?' noCan-icon':''}}{{li.canBuy==1?' canBuy-icon':''}}{{li.isSelect==1?' checked':''}}">商品选择/不选</view>
+                              </view>
+                              <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <block wx:if="{{li.proType==1178&&li.usePro&&li.usePro==1}}">
+                                    <view class="cart-qiang-icon"></view>
+                                  </block>
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="span mark-type bg-ff4182">会员价</view></block><block wx:if="{{li.isDeliveryLighting==1}}"></block>{{li.goodsPromotionName||li.goodsName||"无"}}
+                                  </view>
+                                  <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}<block wx:if="{{li.pricingMethod==391}}"><view class="icon-info" catchtap="weightPop"></view></block>
+                                    </view>
+                                  </block>
+                                  <block wx:if="{{li.goodsPrimePrice&&li.goodsPrimePrice!=li.goodsPrice}}">
+                                    <view class="del-price">{{li.goodsPrimePrice}}</view>
+                                  </block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}<block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray">/{{li.salesUnit}}</view></block></view>
+                                  </view>
+                                  <block wx:if="{{li.canBuy==1}}">
+                                    <block wx:if="{{li.pricingMethod==391}}">
+                                      <view class="item-quantity r1b item-quantity-weight" catchtap="stopPropagation"><view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" data-pro-id="{{li.proId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.weightValue}}g</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <block wx:else>
+                                      <view class="item-quantity r1b" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" data-pro-id="{{li.proId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.num}}</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span increase r1bl">+</view></view>
+                                    </block>
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==2}}">
+                                    <view class="no-Distribution">不支持<block wx:if="{{foodDelivery==0}}">堂食</block><block wx:elif="{{foodDelivery==1}}">外卖 </block><block wx:else>自提</block></view></block>
+                                  <block wx:elif="{{li.canBuy==0&&li.goodsStock==0}}">
+                                    <view class="no-Distribution">商品已售罄</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0}}">
+                                    <view class="no-Distribution">商品已下架</view>
+                                  </block>
+                                </view>
+                              </view>
+                              <!-- <block wx:if="{{li.pricingMethod==391&&li.canBuy==1&&li.isChangeStock}}">
+                                <view class="change-stock-tip changeWeight-stock-tip">已达购买上限</view>
+                              </block>
+                              <block wx:if="{{li.pricingMethod!=391&&li.canBuy==1&&li.isChangeStock||li.pricingMethod!=391&&li.canBuy==1&&li.goodsStock<showStockTipNum}}">
+                                <view class="change-stock-tip">仅剩{{li.goodsStock}}件</view>
+                              </block> -->
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                          <!-- <block wx:if="{{li.promotionList.length>1}}">
+                            <view class="edit-promotion" data-promotion-list="{{li.promotionList}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                              <block wx:for="{{li.promotionList}}" wx:for-item="selectProId" wx:for-index="selectIndex" wx:key="{{selectIndex}}">
+                                <block wx:if="{{li.proId==selectProId.proId}}">
+                                  <view class="pro-title fl">
+                                    <view class="manjian i">优惠</view>
+                                    <view class="span">{{(li.proId==0||li.proId==null)?'未选择优惠':selectProId.proDesc}}</view>
+                                  </view>
+                                </block>
+                              </block>
+                              <view class="pro-link fr">
+                                <view class="a" catchtap="selectProId" data-store-type="{{li.storeType}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" data-promotion-list="{{li.promotionList}}" data-pro-type="{{li.proType}}" data-pro-id="{{li.proId}}">修改</view>
+                              </view>
+                            </view>
+                          </block> -->
+                        </view>
+                        <!-- 赠品的循环start -->
+                        <block wx:if="{{newCartJson.newPresentArr.length>0}}">
+                          <block wx:for="{{newCartJson.newPresentArr}}" wx:for-item="liPresent" wx:for-index="liPresentIndex" wx:key="newPresentArr{{liPresent.newSkuId}}">
+                            <block wx:if="{{li.storeId==liPresent.newStoreId&&liPresent.newSkuId==li.skuId}}">
+                              <view class="li gift-pro">
+                                <view class="wrap">
+                                  <view class="check-wrapper good_check"></view>
+                                  <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{liPresent.storeType}}" data-pro-id="{{liPresent.proId}}" data-goods-id="{{liPresent.goodsId}}" data-store-id="{{liPresent.storeId}}" data-sku-id="{{liPresent.skuId}}" data-shop-id="{{liPresent.shopId}}">
+                                    <view class="item-img">
+                                      <block wx:if="{{liPresent.showPresentMasker}}">
+                                        <view class="no-Present">
+                                          <block wx:if="{{liPresent.goodsStock}}">还剩{{liPresent.goodsStock}}件</block>
+                                          <block wx:else>已赠完</block>
+                                        </view>
+                                      </block>
+                                      <image wx:key="liPresentCoverImg{{liPresent.skuId}}" src="{{liPresent.coverImg}}" mode="aspectFill"></image>
+                                    </view>
+                                    <view class="item-info">
+                                      <view class="h3"><view class="span">赠品</view>{{liPresent.goodsName.length>0?liPresent.goodsName:'无'}}</view>
+                                      <block wx:if="{{liPresent.specName}}"><view class="h4">规格：{{liPresent.specName.length>0?liPresent.specName:'无'}}</view></block>
+                                      <block wx:if="{{liPresent.goodsPrimePrice&&liPresent.goodsPrimePrice!=li.goodsPrice}}"><view class="del-price">{{liPresent.goodsPrimePrice}}</view></block>
+                                      <view class="p price"><view class="em">0<block wx:if="{{liPresent.salesUnit}}">/{{liPresent.salesUnit}}</block></view>
+                                      </view>
+                                      <view class="gift-num">{{liPresent.num}}</view>
+                                    </view>
+                                  </view>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <!-- 赠品的循环end -->
+                      </block>
+                    </block>
+                    <!-- 商品列表end -->
+                  </block>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{newCartJson.newMarketList.length>0}}">
+        <view class="shop-group mt8 bg-white" id="chaoshi">
+          <view class="nav clearfix">
+          <!-- 社区团购分色分码 -->
+            <view class="h2">生活超市</view>
+            <view class="switch-toggle">
+              <view class="aside wrap" id="chaoshi_choose"><block wx:if="{{newCartJson.goodsDeliveryValid==2||newCartJson.goodsDeliveryValid==3}}">
+                  <view class="{{goodsDelivery==1?'active ':''}}a noCanChoose active" data-goods-delivery="1">送货</view></block>
+                <block wx:else><view class="{{goodsDelivery==1?'active ':''}}a noCanChoose active" data-goods-delivery="1">送货</view></block>
+                <block wx:if="{{newCartJson.goodsDeliveryValid==1||newCartJson.goodsDeliveryValid==3}}"><view class="{{goodsDelivery==0?'active ':''}}a canChoose" data-goods-delivery="0">自提</view></block>
+                <block wx:else><view class="{{goodsDelivery==0?'active ':''}}a noCanChoose" data-goods-delivery="0">自提</view></block>
+              </view>
+            </view>
+          </view>
+          <block wx:for="{{newCartJson.newMarketList}}" wx:for-item="marketList" wx:for-index="marketListIndex" wx:key="newMarketList{{marketListIndex}}">
+            <block wx:if="{{marketList.canBuy!=3}}">
+              <view class="shop-group-item">
+                <view class="store-title r1bt r1bb">
+                  <view class="wrap">
+                    <view class="check-wrapper shop_check">
+                      <view catchtap="checkedGoodsHandler" data-store-type="{{marketList.storeType}}" data-now-select-status="{{marketList.storeSelectStatus}}" data-can-select="{{marketList.canBuy}}" data-store-id="{{marketList.storeId}}" data-select-type="store" class="span{{marketList.canBuy==2||marketList.canBuy==0?' noCan-icon':marketList.canBuy==1?' canBuy-icon ':''}}{{marketList.storeSelectStatus==1?' checked':''}}">店铺全选/不选</view>
+                    </view>
+                    <view class="title a">
+                      <!-- <image src="{{marketList.storeIcon}}" mode="aspectFill"></image> -->
+                      <view class="span">{{marketList.storeName}}</view>
+                    </view>
+                  </view>
+                </view>
+                <view class="shop-cart-list">
+                  <block wx:for="{{marketList.newGoodsList}}" wx:for-item="value" wx:for-index="key" wx:key="{{marketListIndex}}newMarketList{{key}}">
+                    <!-- <block wx:if="{{value.length>0&&key!=0&&(value[0].promotionList.length>0||value[0].isAddPriceGoods==1)&&value[0].canBuy==1&&value[0].proType!=999&&value[0].proType!=289&&value[0].proType!=1178}}">
+                      <view class="cart-promotion r1bt clearfix overShort">
+
+                        <block wx:if='{{value[0].isAddPriceGoods==1}}'>
+                          <view class="pro-title fl">
+                            <view class="i manjian">加价购</view>
+                            <view class="span">
+                              <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[key]&&newCartJson.orderPromotionRegResultOutputMap[key]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[key]["message"]}}</block>
+                              <block wx:else>加价购促销</block>
+                            </view>
+                          </view>
+                        </block>
+                        <block wx:else>
+                          <block wx:for="{{value[0].promotionList}}" wx:for-item="proIdLi" wx:for-index="proIdIndex" wx:key="{{marketListIndex}}{{key}}newMarketListProIdLi{{proIdLi.proId}}">
+                            <block wx:if="{{value[0].proId==proIdLi.proId}}">
+                              <view class="pro-title fl">
+                                <view class="i manjian">{{proIdLi.proInfo}}</view>
+                                <view class="span">
+                                  <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]["message"]}}</block>
+                                  <block wx:else>{{proIdLi.proDesc}}</block>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <view class="pro-link">
+                          <view class="a" catchtap="{{value[0].proType==1178?'toUrlQianggou':'toPromotionIndex'}}" data-pro-id="{{key}}" data-food-delivery="{{newStoreList.length>0?foodDelivery:0}}" data-goods-delivery="{{goodsDelivery}}" data-goods-bc-delivery="{{goodsB2CDelivery}}">
+                            {{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[key]&&newCartJson.orderPromotionRegResultOutputMap[key].conform?'去选购':'去凑单'}}
+                          </view>
+                        </view>
+                      </view>
+                    </block> -->
+                    <block wx:for="{{value}}" wx:for-item="li" wx:for-index="n" wx:key="{{li.goodsId}}newMarketList{{n}}">
+                     <!-- 加价购商品 -->
+                      <block wx:if="{{li.isAddPriceGoods==1}}">
+                        <view class="li gift-pro addPrice can-del" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check"></view>
+                              <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img"><image src="{{li.coverImage}}" mode="aspectFill"></image></view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="mark-type bg-ff4182">会员价</view></block>
+                                    <view class="span">换购</view>{{li.goodsPromotionName||li.goodsName||"无"}}</view>
+                                  <block wx:if="{{li.materielType=='30'}}">
+                                    <view class="materiel-ext-property-groupManageCart-select" catchtap="showSkuSelect"
+                                      data-showSKUSelectGoodeDetail="{{li}}">
+                                      <text class="materiel-ext-property-groupManageCart-text">{{li.materielExtPropertyOne}}</text>
+                                      <text class="materiel-ext-property-groupManageCart-text"> /</text>
+                                      <text class="materiel-ext-property-groupManageCart-text">{{li.materielExtPropertyTwo}} </text>
+                                      <text class="materiel-ext-property-groupManageCart-text" wx:if="{{li.canBuy!=0&&li.goodsStock>0}}" >∨</text>
+                                    </view>
+                                  </block>
+                                  <block wx:else>
+                                    <block wx:if="{{li.specName}}">
+                                      <view class="h4">规格：{{li.specName?li.specName:'无'}}<block wx:if="{{li.pricingMethod==391}}">
+                                          <view class="icon-info" catchtap="weightPop"></view>
+                                        </block>
+                                      </view>
+                                    </block>
+                                  </block>
+
+                                  <!-- <block wx:if="{{li.goodsPrimePrice&&li.goodsPrimePrice!=li.goodsPrice}}">
+                                                                        <view class="del-price">{{li.goodsPrimePrice}}</view>
+                                                                    </block> -->
+                                  <view class="price p"><view class="em">{{li.goodsPrice?li.goodsPrice:'无'}}<block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray">/{{li.salesUnit}}</view>
+                                      </block>
+                                    </view>
+                                  </view>
+                                  <view class="gift-num">{{li.num}}</view>
+                                </view>
+                              </view>
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                        </view>
+                      </block>
+                      <!-- 非加价购商品，加价购和抢购互融 -->
+                      <block wx:else>
+                        <view class="li can-del">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check">
+                                <view catchtap="checkedGoodsHandler" data-store-type="{{li.storeType}}" data-now-select-status="{{li.isSelect}}" data-select-type="one" data-can-select="{{li.canBuy}}" data-sku-id="{{li.skuId}}" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}"
+                                  data-store-id="{{marketList.storeId}}" data-goods-id="{{li.goodsId}}" class="span{{li.canBuy==2||li.canBuy==0?' noCan-icon':li.canBuy==1?' canBuy-icon':''}}{{li.isSelect?' checked':''}}">商品选择/不选</view></view>
+                              <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <block wx:if="{{li.proType==1178&&li.usePro&&li.usePro==1}}">
+                                    <view class="cart-qiang-icon"></view>
+                                  </block>
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3" style="margin-bottom: -15rpx;">
+                                    <block wx:if="{{li.isMember&&li.isMember==1}}">
+                                      <view class="mark-type bg-ff4182">会员价</view>
+                                    </block>
+                                    <block wx:if="{{li.isDeliveryLighting==1}}"></block>{{li.goodsPromotionName||li.goodsName||"无"}}
+                                  </view>
+                                  <block wx:if="{{li.materielType=='30'}}">
+                                    <view class="materiel-ext-property-groupManageCart-select" catchtap="showSkuSelect" style=" margin-bottom: 10rpx; "
+                                      data-showSKUSelectGoodeDetail="{{li}}">
+                                      <view style=" background-color: rgb(235, 233, 233); border-radius: 10%; padding: 0rpx 20rpx 0rpx;">
+                                      <view class="materiel-ext-property-groupManageCart-text">{{li.materielExtPropertyOne}}</view>
+                                      <view class="materiel-ext-property-groupManageCart-text">/</view>
+                                      <view class="materiel-ext-property-groupManageCart-text">{{li.materielExtPropertyTwo}}</view>
+                                      <view class="materiel-ext-property-groupManageCart-text"
+                                        style="color: rgb(0, 0, 0); margin-left: 10rpx;  font-size: 60%; " wx:if="{{li.canBuy!=0&&li.goodsStock>0}}">▼
+                                      </view>
+                                      </view>
+                    
+                                    </view>
+                                  </block>
+                                  <block wx:else>
+                                    <block wx:if="{{li.specName}}">
+                                    <view style="font-size: 22rpx; color: #94969C;">规格：{{li.specName?li.specName:'无'}}<block wx:if="{{li.pricingMethod==391}}"><view class="icon-info" catchtap="weightPop"></view></block></view>
+                                  </block>
+                                  </block>
+                                    <view style="display: flex; flex-direction: row;justify-content: flex-start; ">
+                                      <view class="price p" style="position: relative;" >
+                                        <view class="em">{{li.goodsPrice?li.goodsPrice:0}}</view>
+                                        <block wx:if="{{li.salesUnit}}">
+                                          <view class="s salesUnit-gray">/{{li.salesUnit}}</view>
+                                        </block>
+                                      </view>
+                                      <block wx:if="{{li.goodsPrimePrice&&li.goodsPrimePrice!=li.goodsPrice}}">
+                                        <view class="del-price" style="line-height:52rpx;" >{{li.goodsPrimePrice}}</view>
+                                      </block>
+                                    </view>
+                                  <block wx:if="{{li.canBuy==1}}">
+                                    <block wx:if="{{li.pricingMethod==391}}">
+                                      <view class="item-quantity r1b item-quantity-weight" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-sku-id="{{li.skuId}}" data-goods-id="{{li.goodsId}}" data-store-id="{{marketList.storeId}}" data-num="{{li.num}}" data-pro-id="{{li.proId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.weightValue}}g</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-sku-id="{{li.skuId}}" data-goods-id="{{li.goodsId}}" data-store-id="{{li.storeId}}" data-num="{{li.num}}" data-stock="{{li.goodsStock}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <block wx:else>
+                                      <view class="item-quantity r1b" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-sku-id="{{li.skuId}}" data-goods-id="{{li.goodsId}}" data-store-id="{{marketList.storeId}}" data-num="{{li.num}}" data-pro-id="{{li.proId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.num}}</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-sku-id="{{li.skuId}}" data-goods-id="{{li.goodsId}}" data-store-id="{{li.storeId}}" data-num="{{li.num}}" data-stock="{{li.goodsStock}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==2}}">
+                                    <view class="no-Distribution">{{goodsDelivery==1?'不支持送货':'不支持自提'}}</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0&&li.goodsStock<=0}}">
+                                    <view class="no-Distribution">商品已售罄</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0}}">
+                                    <view class="no-Distribution">商品已下架</view>
+                                  </block>
+                                </view>
+                              </view>
+                              <!-- <block wx:if="{{li.pricingMethod==391&&li.canBuy==1&&li.isChangeStock}}">
+                                <view class="change-stock-tip changeWeight-stock-tip">已达购买上限</view>
+                              </block>
+                              <block wx:if="{{li.pricingMethod!=391&&li.canBuy==1&&li.isChangeStock||li.pricingMethod!=391&&li.canBuy==1&&li.goodsStock<showStockTipNum}}">
+                                <view class="change-stock-tip">仅剩{{li.goodsStock}}件</view>
+                              </block> -->
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                          <!-- <block wx:if="{{li.promotionList.length>1}}">
+                            <view class="edit-promotion">
+                              <block wx:for="{{li.promotionList}}" wx:key="{{li.goodsId}}newMarketList{{selectProId.proId}}" wx:for-item="selectProId" wx:for-index="selectIndex">
+                                <block wx:if="{{li.proId==selectProId.proId}}">
+                                  <view class="pro-title fl">
+                                    <view class="i manjian">优惠</view>
+                                    <view class="span">{{(li.proId==0||li.proId==null)?'未选择优惠':selectProId.proDesc}}</view>
+                                  </view>
+                                </block>
+                              </block>
+                              <view class="pro-link fr">
+                                <view class="a" catchtap="selectProId" data-store-type="{{li.storeType}}" data-promotion-list="{{li.promotionList}}" data-sku-id="{{li.skuId}}" data-store-id="{{marketList.storeId}}" data-goods-id="{{li.goodsId}}" data-pro-type="{{li.proType}}" data-pro-id="{{li.proId}}">修改</view>
+                              </view>
+                            </view>
+                          </block> -->
+                        </view>
+                        <!-- 赠品的循环start -->
+                        <block wx:if="{{newCartJson.newPresentArr.length>0}}">
+                          <block wx:for="{{newCartJson.newPresentArr}}" wx:for-item="liPresent" wx:for-index="liPresentIndex" wx:key="{{li.skuId}}newMarketListNewPresentArr{{liPresent.newSkuId}}">
+                            <block wx:if="{{li.storeId==liPresent.newStoreId&&liPresent.newSkuId==li.skuId}}">
+                              <view class="li gift-pro">
+                                <view class="wrap">
+                                  <view class="check-wrapper good_check"></view>
+                                  <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{liPresent.storeType}}" data-pro-id="{{liPresent.proId}}" data-goods-id="{{liPresent.goodsId}}" data-store-id="{{liPresent.storeId}}" data-sku-id="{{liPresent.skuId}}" data-shop-id="{{liPresent.shopId}}">
+                                    <view class="item-img">
+                                      <block wx:if="{{liPresent.showPresentMasker}}">
+                                        <view class="no-Present">
+                                          <block wx:if="{{liPresent.goodsStock}}">还剩{{liPresent.goodsStock}}件</block>
+                                          <block wx:else>已赠完</block>
+                                        </view>
+                                      </block>
+                                      <image wx:key="*this" src="{{liPresent.coverImg}}" mode="aspectFill"></image>
+                                    </view>
+                                    <view class="item-info">
+                                      <view class="h3">
+                                        <view class="span">赠品</view>{{liPresent.goodsName.length>0?liPresent.goodsName:'无'}}</view><block wx:if="{{liPresent.specName}}">
+                                        <view class="h4">规格：{{liPresent.specName.length>0?liPresent.specName:'无'}}</view>
+                                      </block>
+                                      <block wx:if="{{liPresent.goodsPrimePrice&&liPresent.goodsPrimePrice!=li.goodsPrice}}"><view class="del-price">{{liPresent.goodsPrimePrice}}</view></block>
+                                      <view class="p price"><view class="em">0<block wx:if="{{0&&liPresent.salesUnit}}">/{{liPresent.salesUnit}}</block></view></view>
+                                      <view class="gift-num">{{liPresent.num}}</view>
+                                    </view>
+                                  </view>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <!-- 赠品的循环end -->
+                      </block>
+                    </block>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{newCartJson.newGlobalList.length>0}}">
+        <view class="shop-group bg-white" id="cart-global">
+          <view class="nav clearfix">
+            <view class="h2">比邻海购</view>
+          </view>
+          <block wx:for="{{newCartJson.newGlobalList}}" wx:for-item="storeL" wx:for-index="i" wx:key="newGlobalList{{i}}">
+            <block wx:if="{{storeL.canBuy!=3}}">
+              <view class="shop-group-item">
+                <view class="store-title r1bt r1bb">
+                  <view class="wrap">
+                    <view class="check-wrapper shop_check">
+                      <view catchtap="checkedGoodsHandler" data-store-type="{{storeL.storeType}}" data-now-select-status="{{storeL.storeSelectStatus}}" data-can-select="{{storeL.canBuy}}" data-select-type="store" data-store-id="{{storeL.storeId}}" class="span{{storeL.canBuy!=1?' noCan-icon':storeL.canBuy==1?' canBuy-icon':''}}{{storeL.canBuy==1&&storeL.storeSelectStatus==1?' checked':''}}">店铺全选/不选</view>
+                    </view>
+                    <view data-store-id="{{storeL.storeId}}" data-shop-id="{{storeL.shopId}}" class="a title">
+                      <!-- <image src="{{storeL.storeIcon}}" mode="aspectFill"></image> -->
+                      <view class="span">{{storeL.storeName}}
+                        <!-- <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_kexuan.png"></image> -->
+                      </view>
+                      <block wx:if="{{storeL.storeStatus!=1}}">
+                        <view class="storeStatusStop">休息中</view>
+                      </block>
+                    </view>
+                  </view>
+                </view>
+                <view class="shop-cart-list">
+                  <block wx:for="{{storeL.newGoodsList}}" wx:for-item="list" wx:for-index="k" wx:key="{{i}}newGlobalList{{k}}">
+                    <!-- 促销的类型start -->
+                    <!-- <block wx:if="{{list.length>0&&k!=0&&(list[0].promotionList.length>0||list[0].isAddPriceGoods==1)&&list[0].canBuy==1&&list[0].proType!=999&&list[0].proType!=289&&list[0].proType!=1178}}">
+                      <view class="cart-promotion clearfix r1bt overShort">
+                        <block wx:if='{{list[0].isAddPriceGoods==1}}'>
+                          <view class="pro-title fl">
+                            <view class="i manjian">加价购</view>
+                            <view class="span">
+                              <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[k]&&newCartJson.orderPromotionRegResultOutputMap[k]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[k]["message"]}}</block><block wx:else>加价购促销</block>
+                            </view>
+                          </view>
+                        </block>
+                        <block wx:else>
+                          <block wx:for="{{list[0].promotionList}}" wx:for-item="proIdLi" wx:for-index="proIdIndex" wx:key="{{k}}{{i}}newGlobalListProIdIndex{{proIdLi.proId}}">
+                            <block wx:if="{{list[0].proId==proIdLi.proId}}">
+                              <view class="pro-title fl">
+                                <view class="i manjian">{{proIdLi.proInfo}}</view>
+                                <view class="span">
+                                  <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]['message']}}">{{newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]["message"]}}
+                                  </block>
+                                  <block wx:else>{{proIdLi.proDesc}}</block>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <view class="pro-link">
+                          <view class="a" catchtap="{{value[0].proType==1178?'toUrlQianggou':'toPromotionIndex'}}" data-pro-id="{{k}}" data-food-delivery="{{foodDelivery}}" data-goods-delivery="{{newMarketList.length>0?goodsDelivery:0}}" data-goods-bc-delivery="{{goodsB2CDelivery}}">
+                            <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]['conform']==1}}">去选购
+                            </block>
+                            <block wx:else>去凑单</block>
+                          </view>
+                        </view>
+                      </view>
+                    </block> -->
+                    <!-- 促销的类型end -->
+                    <!-- 商品列表start -->
+                    <block wx:for="{{list}}" wx:for-item="li" wx:for-index="j" wx:key="{{li.storeId}}newGlobalList{{li.goodsId}}">
+                      <block wx:if="{{li.isAddPriceGoods==1}}">
+                        <view class="li gift-pro addPrice can-del" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check"></view>
+                              <view catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" class="a cart-item" data-pro-id="{{li.proId}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="span mark-type bg-ff4182">会员价</view></block><block wx:else><view class="span">换购</view></block>{{li.goodsName?li.goodsName:'无'}}</view>
+                                  <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}</view>
+                                    <block wx:if="{{li.pricingMethod==391}}"><view class="icon-info" catchtap="weightPop"></view></block>
+                                  </block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}
+                                      <block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray"> /{{li.salesUnit}}</view></block>
+                                    </view>
+                                  </view>
+                                  <view class="gift-num">{{li.num}}</view>
+                                </view>
+                              </view>
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class="li can-del">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check">
+                                <view catchtap="checkedGoodsHandler" data-store-type="{{li.storeType}}" data-now-select-status="{{li.isSelect}}" data-select-type="one" data-can-select="{{li.canBuy}}" data-store-id="{{storeL.storeId}}" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}"
+                                  data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span{{li.canBuy!=1?' noCan-icon':''}}{{li.canBuy==1?' canBuy-icon':''}}{{li.isSelect==1?' checked':''}}">
+                                  商品选择/不选
+                                </view>
+                              </view>
+                              <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <block wx:if="{{li.proType==1178&&li.usePro&&li.usePro==1}}">
+                                    <view class="cart-qiang-icon"></view>
+                                  </block>
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3">
+                                    <block wx:if="{{li.isMember&&li.isMember==1}}">
+                                      <view class="span mark-type bg-ff4182">会员价</view>
+                                    </block>
+                                    <block wx:if="{{li.isDeliveryLighting==1}}"></block>{{li.goodsName?li.goodsName:'无'}}
+                                  </view>
+                                  <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}
+                                      <block wx:if="{{li.pricingMethod==391}}">
+                                        <view class="icon-info" catchtap="weightPop"></view>
+                                      </block>
+                                    </view>
+                                  </block>
+                                  <block wx:if="{{li.goodsPrimePrice&&li.goodsPrimePrice!=li.goodsPrice}}">
+                                    <view class="del-price">{{li.goodsPrimePrice}}</view>
+                                  </block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}
+                                      <block wx:if="{{li.salesUnit}}">
+                                        <view class="s salesUnit-gray">/{{li.salesUnit}}</view>
+                                      </block>
+                                    </view>
+                                  </view>
+                                  <block wx:if="{{li.canBuy==1}}">
+                                    <block wx:if="{{li.pricingMethod==391}}">
+                                      <view class="item-quantity r1b item-quantity-weight" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-pro-id="{{li.proId}}" data-sku-id="{{li.skuId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.weightValue}}g</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <block wx:else>
+                                      <view class="item-quantity r1b" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-pro-id="{{li.proId}}" data-sku-id="{{li.skuId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.num}}</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==2}}">
+                                    <view class="no-Distribution">配送地址不可购买</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0&&li.goodsStock==0}}">
+                                    <view class="no-Distribution">商品已售罄</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0}}">
+                                    <view class="no-Distribution">商品已下架</view>
+                                  </block>
+                                </view>
+                              </view>
+                              <!-- <block wx:if="{{li.pricingMethod==391&&li.canBuy==1&&li.isChangeStock}}">
+                                <view class="change-stock-tip changeWeight-stock-tip">已达购买上限</view>
+                              </block>
+                              <block wx:if="{{li.pricingMethod!=391&&li.canBuy==1&&li.isChangeStock||li.pricingMethod!=391&&li.canBuy==1&&li.goodsStock<showStockTipNum}}">
+                                <view class="change-stock-tip">仅剩{{li.goodsStock}}件</view>
+                              </block> -->
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                          <block wx:if="{{storeL.deliveryWay==1022&&li.goodsTax!=-1||storeL.deliveryWay==1023&&li.goodsTax!=-1}}">
+                            <view class="global-taxation">
+                              <block wx:if="{{li.goodsTax==0}}">税费商家承担</block>
+                              <block wx:else>税费：¥{{li.goodsTax}}</block>
+                            </view>
+                          </block>
+                          <!-- <block wx:if="{{li.promotionList.length>1}}">
+                            <view class="edit-promotion" data-promotion-list="{{li.promotionList}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                              <block wx:for="{{li.promotionList}}" wx:for-item="selectProId" wx:for-index="selectIndex" wx:key="{{li.goodsId}}newGlobalListselectProId{{selectProId.proId}}">
+                                <block wx:if="{{li.proId==selectProId.proId}}">
+                                  <view class="pro-title fl">
+                                    <view class="manjian i">优惠</view>
+                                    <view class="span">{{(li.proId==0||li.proId==null)?'未选择优惠':selectProId.proDesc}}</view>
+                                  </view>
+                                </block>
+                              </block>
+                              <view class="pro-link fr">
+                                <view class="a" catchtap="selectProId" data-store-type="{{li.storeType}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" data-promotion-list="{{li.promotionList}}" data-pro-type="{{li.proType}}" data-pro-id="{{li.proId}}">修改</view>
+                              </view>
+                            </view>
+                          </block> -->
+                        </view>
+                        <!-- 赠品的循环start -->
+                        <block wx:if="{{newCartJson.newPresentArr.length>0}}">
+                          <block wx:for="{{newCartJson.newPresentArr}}" wx:for-item="liPresent" wx:for-index="liPresentIndex" wx:key="{{li.skuId}}newGlobalListnewPresentArr{{liPresent.newSkuId}}">
+                            <block wx:if="{{li.storeId==liPresent.newStoreId&&liPresent.newSkuId==li.skuId}}">
+                              <view class="li gift-pro">
+                                <view class="wrap">
+                                  <view class="check-wrapper good_check"></view>
+                                  <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{liPresent.storeType}}" data-pro-id="{{liPresent.proId}}" data-goods-id="{{liPresent.goodsId}}" data-store-id="{{liPresent.storeId}}" data-sku-id="{{liPresent.skuId}}" data-shop-id="{{liPresent.shopId}}">
+                                    <view class="item-img">
+                                      <block wx:if="{{liPresent.showPresentMasker}}">
+                                        <view class="no-Present">
+                                          <block wx:if="{{liPresent.goodsStock}}">还剩{{liPresent.goodsStock}}件</block><block wx:else>已赠完</block>
+                                        </view>
+                                      </block>
+                                      <image wx:key="{{liPresentIndex}}newGlobalListliPresent{{liPresent.coverImg}}" src="{{liPresent.coverImg}}" mode="aspectFill"></image>
+                                    </view>
+                                    <view class="item-info">
+                                      <view class="h3">
+                                        <view class="span">赠品</view>{{liPresent.goodsName.length>0?liPresent.goodsName:'无'}}</view>
+                                      <block wx:if="{{liPresent.specName}}">
+                                        <view class="h4">规格：{{liPresent.specName.length>0?liPresent.specName:'无'}}</view>
+                                      </block>
+                                      <block wx:if="{{liPresent.goodsPrimePrice&&liPresent.goodsPrimePrice!=li.goodsPrice}}">
+                                        <view class="del-price">{{liPresent.goodsPrimePrice}}</view>
+                                      </block>
+                                      <view class="p price">
+                                        <view class="em">0<block wx:if="{{liPresent.salesUnit}}">/{{liPresent.salesUnit}}</block></view>
+                                      </view>
+                                      <view class="gift-num">{{liPresent.num}}</view>
+                                    </view>
+                                  </view>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <!-- 赠品的循环end -->
+                      </block>
+                    </block>
+                    <!-- 商品列表end -->
+                  </block>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{newCartJson.newHiGlobalList.length>0}}">
+        <view class="shop-group bg-white" id="hi-cart-global">
+          <view class="nav clearfix">
+            <view class="h2">臻品苛选</view>
+          </view>
+          <block wx:for="{{newCartJson.newHiGlobalList}}" wx:for-item="storeL" wx:for-index="i" wx:key="newHiGlobalList{{i}}">
+            <block wx:if="{{storeL.canBuy!=3}}">
+              <view class="shop-group-item">
+                <view class="store-title r1bt r1bb">
+                  <view class="wrap">
+                    <view class="check-wrapper shop_check">
+                      <view catchtap="checkedGoodsHandler" data-store-type="{{storeL.storeType}}" data-now-select-status="{{storeL.storeSelectStatus}}" data-can-select="{{storeL.canBuy}}" data-select-type="store" data-store-id="{{storeL.storeId}}" class="span{{storeL.canBuy!=1?' noCan-icon':storeL.canBuy==1?' canBuy-icon':''}}{{storeL.canBuy==1&&storeL.storeSelectStatus==1?' checked':''}}">
+                        店铺全选/不选
+                      </view>
+                    </view>
+                    <view data-store-id="{{storeL.storeId}}" data-shop-id="{{storeL.shopId}}" class="a title">
+                      <!-- <image src="{{storeL.storeIcon}}" mode="aspectFill"></image> -->
+                      <view class="span">{{storeL.storeName}}
+                        <!-- <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_zhenpinkexuan.png"></image> -->
+                      </view>
+                      <block wx:if="{{storeL.storeStatus!=1}}">
+                        <view class="storeStatusStop">休息中</view>
+                      </block>
+                    </view>
+                  </view>
+                </view>
+                <view class="shop-cart-list">
+                  <block wx:for="{{storeL.newGoodsList}}" wx:for-item="list" wx:for-index="k" wx:key="{{i}}newHiGlobalList{{k}}">
+                    <!-- 促销的类型start -->
+                    <!-- <block wx:if="{{list.length>0&&k!=0&&(list[0].promotionList.length>0||list[0].isAddPriceGoods==1)&&list[0].canBuy==1&&list[0].proType!=999&&list[0].proType!=289&&list[0].proType!=1178}}">
+                      <view class="cart-promotion clearfix r1bt overShort">
+                        <block wx:if='{{list[0].isAddPriceGoods==1}}'>
+                          <view class="pro-title fl">
+                            <view class="i manjian">加价购</view>
+                            <view class="span">
+                              <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[k]&&newCartJson.orderPromotionRegResultOutputMap[k]['message']}}">
+                                {{newCartJson.orderPromotionRegResultOutputMap[k]["message"]}}
+                              </block>
+                              <block wx:else>加价购促销</block>
+                            </view>
+                          </view>
+                        </block>
+                        <block wx:else>
+                          <block wx:for="{{list[0].promotionList}}" wx:for-item="proIdLi" wx:for-index="proIdIndex" wx:key="{{i}}{{k}}newHiGlobalList{{proIdLi.proId}}">
+                            <block wx:if="{{list[0].proId==proIdLi.proId}}">
+                              <view class="pro-title fl">
+                                <view class="i manjian">{{proIdLi.proInfo}}</view>
+                                <view class="span">
+                                  <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]&&newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]['message']}}">
+                                    {{newCartJson.orderPromotionRegResultOutputMap[proIdLi.proId]["message"]}}
+                                  </block>
+                                  <block wx:else>{{proIdLi.proDesc}}</block>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <view class="pro-link">
+                          <view class="a" catchtap="{{value[0].proType==1178?'toUrlQianggou':'toPromotionIndex'}}" data-pro-id="{{k}}" data-food-delivery="{{foodDelivery}}" data-goods-delivery="{{newMarketList.length>0?goodsDelivery:0}}" data-goods-bc-delivery="{{goodsB2CDelivery}}">
+                            <block wx:if="{{newCartJson.orderPromotionRegResultOutputMap&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]&&newCartJson.orderPromotionRegResultOutputMap[list[0].proId]['conform']==1}}">去选购</block>
+                            <block wx:else>去凑单</block>
+                          </view>
+                        </view>
+                      </view>
+                    </block> -->
+                    <!-- 促销的类型end -->
+                    <!-- 商品列表start -->
+                    <block wx:for="{{list}}" wx:for-item="li" wx:for-index="j" wx:key="{{i}}newHiGlobalListLi{{li.goodsId}}">
+                      <block wx:if="{{li.isAddPriceGoods==1}}">
+                        <view class="li gift-pro addPrice can-del" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check"></view>
+                              <view catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" class="a cart-item" data-pro-id="{{li.proId}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="span mark-type bg-ff4182">会员价</view></block><block wx:else><view class="span">换购</view></block>{{li.goodsName?li.goodsName:'无'}}</view>
+                                  <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}</view>
+                                    <block wx:if="{{li.pricingMethod==391}}">
+                                      <view class="icon-info" catchtap="weightPop"></view>
+                                    </block>
+                                  </block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}
+                                      <block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray">/{{li.salesUnit}}</view></block>
+                                    </view>
+                                  </view>
+                                  <view class="gift-num">{{li.num}}</view>
+                                </view>
+                              </view>
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class="li can-del">
+                          <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{li.storeType}}" data-is-add-price-goods='{{li.isAddPriceGoods}}' data-store-id="{{li.storeId}}" data-sku-id="{{li.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==li.storeId&&delShow.skuId==li.skuId&&delShow.storeType==li.storeType&&delShow.isAddPriceGoods==li.isAddPriceGoods?scrollLeft:0}}">
+                            <view class="wrap">
+                              <block wx:if='{{li.errMsg&&li.errMsg!==null}}'><div class="limit-tip">{{li.errMsg}}</div></block>
+                              <view class="check-wrapper good_check">
+                                <view catchtap="checkedGoodsHandler" data-store-type="{{li.storeType}}" data-now-select-status="{{li.isSelect}}" data-select-type="one" data-can-select="{{li.canBuy}}" data-store-id="{{storeL.storeId}}" data-goods-obj="{{li}}" data-is-delivery-lighting="{{li.isDeliveryLighting}}"
+                                  data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span{{li.canBuy!=1?' noCan-icon':''}}{{li.canBuy==1?' canBuy-icon':''}}{{li.isSelect==1?' checked':''}}">
+                                  商品选择/不选
+                                </view>
+                              </view>
+                              <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{li.storeType}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                                <view class="item-img">
+                                  <block wx:if="{{li.proType==1178&&li.usePro&&li.usePro==1}}">
+                                    <view class="cart-qiang-icon"></view>
+                                  </block>
+                                  <image src="{{li.coverImage}}" mode="aspectFill"></image>
+                                </view>
+                                <view class="item-info">
+                                  <view class="h3"><block wx:if="{{li.isMember&&li.isMember==1}}"><view class="span mark-type bg-ff4182">会员价</view></block>
+                                    <!-- <block wx:if="{{li.isDeliveryLighting==1}}"><image src="https://shgm.jjyyx.com/m/images/icon_lightning.png"></image></block>{{li.goodsName?li.goodsName:'无'}}</view> -->
+                                 {{li.goodsName?li.goodsName:'无'}}</view>
+                                 <block wx:if="{{li.specName}}">
+                                    <view class="h4">规格：{{li.specName?li.specName:'无'}}<block wx:if="{{li.pricingMethod==391}}"><view class="icon-info" catchtap="weightPop"></view></block></view>
+                                  </block>
+                                  <block wx:if="{{li.goodsPrimePrice&&li.goodsPrimePrice!=li.goodsPrice}}"><view class="del-price">{{li.goodsPrimePrice}}</view></block>
+                                  <view class="p price">
+                                    <view class="em">{{li.goodsPrice?li.goodsPrice:0}}<block wx:if="{{li.salesUnit}}"><view class="s salesUnit-gray">/{{li.salesUnit}}</view></block></view>
+                                  </view>
+                                  <block wx:if="{{li.canBuy==1}}">
+                                    <block wx:if="{{li.pricingMethod==391}}">
+                                      <view class="item-quantity r1b item-quantity-weight" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-pro-id="{{li.proId}}" data-sku-id="{{li.skuId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.weightValue}}g</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <block wx:else>
+                                      <view class="item-quantity r1b" catchtap="stopPropagation">
+                                        <view catchtap="cartNumChangeDecrease" data-item="{{li}}" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-pro-id="{{li.proId}}" data-sku-id="{{li.skuId}}" class="span decrease r1br{{li.num<=1?' off':''}}"></view>
+                                        <view class="input quantity">{{li.num}}</view>
+                                        <view catchtap="cartNumChangeAdd" data-item="{{li}}" data-err-msg="{{li.errMsg||''}}" data-store-type="{{li.storeType}}" data-stock="{{li.goodsStock}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-num="{{li.num}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}"
+                                          class="span increase r1bl">+</view>
+                                      </view>
+                                    </block>
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==2}}">
+                                    <view class="no-Distribution">配送地址不可购买</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0&&li.goodsStock==0}}">
+                                    <view class="no-Distribution">商品已售罄</view>
+                                  </block>
+                                  <block wx:elif="{{li.canBuy==0}}">
+                                    <view class="no-Distribution">商品已下架</view>
+                                  </block>
+                                </view>
+                              </view>
+                              <!-- <block wx:if="{{li.pricingMethod==391&&li.canBuy==1&&li.isChangeStock}}">
+                                <view class="change-stock-tip changeWeight-stock-tip">已达购买上限</view>
+                              </block>
+                              <block wx:if="{{li.pricingMethod!=391&&li.canBuy==1&&li.isChangeStock||li.pricingMethod!=391&&li.canBuy==1&&li.goodsStock<showStockTipNum}}">
+                                <view class="change-stock-tip">仅剩{{li.goodsStock}}件</view>
+                              </block> -->
+                              <view class="btn-del" catchtap="delGoods" data-store-type="{{li.storeType}}" data-is-add-price-goods="{{li.isAddPriceGoods}}" data-pro-id="{{li.proId}}" data-shop-id="{{li.shopId}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">删除</view>
+                            </view>
+                          </scroll-view>
+                          <block wx:if="{{storeL.deliveryWay==1022&&li.goodsTax!=-1||storeL.deliveryWay==1023&&li.goodsTax!=-1}}">
+                            <view class="global-taxation">
+                              <block wx:if="{{li.goodsTax==0}}">税费商家承担</block>
+                              <block wx:else>税费：¥{{li.goodsTax}}</block>
+                            </view>
+                          </block>
+                          <!-- <block wx:if="{{li.promotionList.length>1}}">
+                            <view class="edit-promotion" data-promotion-list="{{li.promotionList}}" data-store-id="{{storeL.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}">
+                              <block wx:for="{{li.promotionList}}" wx:for-item="selectProId" wx:for-index="selectIndex" wx:key="{{li.goodsId}}newHiGlobalListLiSelectProId{{selectProId.proId}}">
+                                <block wx:if="{{li.proId==selectProId.proId}}">
+                                  <view class="pro-title fl">
+                                    <view class="manjian i">优惠</view>
+                                    <view class="span">{{(li.proId==0||li.proId==null)?'未选择优惠':selectProId.proDesc}}</view>
+                                  </view>
+                                </block>
+                              </block>
+                              <view class="pro-link fr">
+                                <view class="a" catchtap="selectProId" data-store-type="{{li.storeType}}" data-store-id="{{li.storeId}}" data-goods-id="{{li.goodsId}}" data-sku-id="{{li.skuId}}" data-promotion-list="{{li.promotionList}}" data-pro-type="{{li.proType}}" data-pro-id="{{li.proId}}">修改</view>
+                              </view>
+                            </view>
+                          </block> -->
+                        </view>
+                        <!-- 赠品的循环start -->
+                        <block wx:if="{{newCartJson.newPresentArr.length>0}}">
+                          <block wx:for="{{newCartJson.newPresentArr}}" wx:for-item="liPresent" wx:for-index="liPresentIndex" wx:key="newHiGlobalListNewPresentArr{{liPresent.newSkuId}}">
+                            <block wx:if="{{li.storeId==liPresent.newStoreId&&liPresent.newSkuId==li.skuId}}">
+                              <view class="li gift-pro">
+                                <view class="wrap">
+                                  <view class="check-wrapper good_check"></view>
+                                  <view class="a cart-item" catchtap="toGoodsDetail" data-store-type="{{liPresent.storeType}}" data-pro-id="{{liPresent.proId}}" data-goods-id="{{liPresent.goodsId}}" data-store-id="{{liPresent.storeId}}" data-sku-id="{{liPresent.skuId}}" data-shop-id="{{liPresent.shopId}}">
+                                    <view class="item-img">
+                                      <block wx:if="{{liPresent.showPresentMasker}}">
+                                        <view class="no-Present">
+                                          <block wx:if="{{liPresent.goodsStock}}">还剩{{liPresent.goodsStock}}件</block>
+                                          <block wx:else>已赠完</block>
+                                        </view>
+                                      </block>
+                                      <image wx:key="*this" src="{{liPresent.coverImg}}" mode="aspectFill"></image>
+                                    </view>
+                                    <view class="item-info">
+                                      <view class="h3">
+                                        <view class="span">赠品</view>{{liPresent.goodsName.length>0?liPresent.goodsName:'无'}}</view>
+                                      <block wx:if="{{liPresent.specName}}">
+                                        <view class="h4">规格：{{liPresent.specName.length>0?liPresent.specName:'无'}}</view>
+                                      </block>
+                                      <block wx:if="{{liPresent.goodsPrimePrice&&liPresent.goodsPrimePrice!=li.goodsPrice}}">
+                                        <view class="del-price">{{liPresent.goodsPrimePrice}}</view>
+                                      </block>
+                                      <view class="p price">
+                                        <view class="em">0<block wx:if="{{liPresent.salesUnit}}">/{{liPresent.salesUnit}}
+</block>
+                                        </view>
+                                      </view>
+                                      <view class="gift-num">{{liPresent.num}}</view>
+                                    </view>
+                                  </view>
+                                </view>
+                              </view>
+                            </block>
+                          </block>
+                        </block>
+                        <!-- 赠品的循环end -->
+                      </block>
+                    </block>
+                    <!-- 商品列表end -->
+                  </block>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{newCartJson.loseBuyProMarket.length>0||newCartJson.loseBuyProFood.length>0||newCartJson.loseBuyHiGlobal.length>0||newCartJson.loseBuyProGlobal.length>0}}">
+        <view id="loseBuy-box" class="mt8">
+          <view class="loseBuy-title bg-white r1bb">
+            当前收货地址不支持配送
+            <!-- <view id="loseBuy-arrow" catchtap="loseBuyShow" classs="{{loseBuyShow?'active':''}}"></view> -->
+          </view>
+          <block wx:if="{{loseBuyShow}}">
+            <view id="loseBuy-list">
+              <!-- 餐饮的失效商品 start -->
+              <block wx:if="{{newCartJson.loseBuyProFood.length>0}}">
+                <view class="shop-group bg-white{{newCartJson.loseBuyProMarket.length>0?'':' r1bb'}}" id="canyin-lose">
+                  <view class="nav clearfix r1bb">
+                    <view class="h2">餐饮美食</view>
+                    <view class="switch-toggle">
+                      <view class="aside wrap" id="canyin_choose_lose">
+                        <block wx:if="{{newCartJson.foodDeliveryValid==2||newCartJson.foodDeliveryValid==3||newCartJson.foodDeliveryValid==6||newCartJson.foodDeliveryValid==7}}">
+                          <view class="a noCanChoose active{{foodDelivery=='1'?' active':''}}" data-food-delivery="1">外卖</view></block>
+                        <block wx:else><view class="a noCanChoose active{{foodDelivery=='1'?' active':''}}" data-food-delivery="1">外卖</view></block>
+                        <block wx:if="{{newCartJson.foodDeliveryValid==4||newCartJson.foodDeliveryValid==5||newCartJson.foodDeliveryValid==6||newCartJson.foodDeliveryValid==7}}"><view class="a noCanChoose active{{foodDelivery=='0'?' active':''}}" data-food-delivery="0">堂食</view>
+                        </block>
+                        <block wx:else><view class="a noCanChoose active{{foodDelivery=='0'?' active':''}}" data-food-delivery="0">堂食</view></block>
+                        <block wx:if="{{newCartJson.foodDeliveryValid==1||newCartJson.foodDeliveryValid==3||newCartJson.foodDeliveryValid==5||newCartJson.foodDeliveryValid==7}}">
+                          <view class="a canChoose{{foodDelivery=='2'?' active':''}}" data-food-delivery="2">自提</view>
+                        </block>
+                        <block wx:else><view class="a noCanChoose{{foodDelivery=='2'?' active':''}}" data-food-delivery="2">自提</view></block>
+                      </view>
+                    </view>
+                  </view>
+                  <block wx:for="{{newCartJson.loseBuyProFood}}" wx:for-item="loseShop" wx:for-index="loseShopIndex" wx:key="loseBuyProFood{{loseShopIndex}}">
+                    <view class="shop-group-item">
+                      <view class="store-title r1bb">
+                        <view class="wrap">
+                          <view class="check-wrapper shop_check">
+                            <view data-now-select-status="{{loseShop.storeSelectStatus}}" class="lose-icon span">店铺全选/不选</view>
+                          </view>
+                          <view class="a title">
+                            <!-- <image src="{{loseShop.storeIcon}}" mode="aspectFill" class="img"></image> -->
+                            <view class="span">{{loseShop.storeName}}</view>
+                            <block wx:if="{{loseShop.storeStatus!=1}}"><view class="storeStatusStop">休息中</view></block>
+                          </view>
+                        </view>
+                      </view>
+                      <view class="shop-cart-list">
+                        <!-- 商品列表start -->
+                        <block wx:for="{{loseShop.goodsList}}" wx:for-item="loseShopLi" wx:for-index="loseShopLiIndex" wx:key="{{loseShopLiIndex}}loseBuyProFood{{loseShopLi.goodsId}}">
+                          <view class="li can-del">
+                            <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods='{{loseShopLi.isAddPriceGoods}}' data-store-id="{{loseShopLi.storeId}}" data-sku-id="{{loseShopLi.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==loseShopLi.storeId&&delShow.skuId==loseShopLi.skuId&&delShow.storeType==loseShopLi.storeType&&delShow.isAddPriceGoods==loseShopLi.isAddPriceGoods?scrollLeft:0}}">
+                              <view class="wrap">
+                                <view class="check-wrapper good_check">
+                                  <view class="lose-icon span">商品选择/不选</view>
+                                </view>
+                                <view class="a cart-item">
+                                  <view class="item-img">
+                                    <image src="{{loseShopLi.coverImage}}" mode="aspectFill"></image>
+                                  </view>
+                                  <view class="item-info">
+                                    <view class="h3">{{loseShopLi.goodsName?loseShopLi.goodsName:'无'}}</view>
+                                    <block wx:if="{{loseShopLi.specName}}">
+                                      <view class="h4">规格：{{loseShopLi.specName?loseShopLi.specName:'无'}}</view>
+                                    </block>
+                                    <view class="p price">
+                                      <view class="em">{{loseShopLi.goodsPrice?loseShopLi.goodsPrice:0}}<block wx:if="{{loseShopLi.salesUnit}}"><view class="s">/{{loseShopLi.salesUnit}}</view></block></view>
+                                    </view>
+                                    <!-- <view class="item-quantity r1b" catchtap="stopPropagation">
+                                                                            <view class="span decrease r1br{{loseShopLi.num<=1?' off ':''}}"></view>
+                                                                            <view  class="input quantity">{{loseShopLi.num}}</view>
+                                                                            <view class="span increase r1bl">+</view>
+                                                                        </view> -->
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </view>
+                                </view>
+                                <view class="btn-del" catchtap="delGoods" data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods="{{loseShopLi.isAddPriceGoods}}" data-pro-id="{{loseShopLi.proId}}" data-shop-id="{{loseShopLi.shopId}}" data-store-id="{{loseShopLi.storeId}}"
+                                  data-goods-id="{{loseShopLi.goodsId}}" data-sku-id="{{loseShopLi.skuId}}">删除</view>
+                              </view>
+                            </scroll-view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <!-- 餐饮的失效商品 end -->
+              <!-- 超市的失效商品 start -->
+              <block wx:if="{{newCartJson.loseBuyProMarket.length>0}}">
+                <view class="shop-group bg-white r1bt" id="chaoshi-lose">
+                  <view class="nav clearfix r1bb">
+                    <view class="h2">生活超市</view>
+                    <view class="switch-toggle">
+                      <view class="wrap aside" id="chaoshi_choose_lose">
+                        <block wx:if="{{newCartJson.goodsDeliveryValid==2||newCartJson.goodsDeliveryValid==3}}">
+                        <view class="{{goodsDelivery==1?'active ':''}}a noCanChoose active" data-goods-delivery="1">送货</view>
+                        </block>
+                        <block wx:else><view class="{{goodsDelivery==1?'active ':''}}a noCanChoose active" data-goods-delivery="1">送货</view></block>
+                        <block wx:if="{{newCartJson.goodsDeliveryValid==1||newCartJson.goodsDeliveryValid==3}}"><view class="{{goodsDelivery==0?'active ':''}}a canChoose" data-goods-delivery="0">自提</view></block>
+                        <block wx:else><view class="{{goodsDelivery==0?'active ':''}}a noCanChoose" data-goods-delivery="0">自提</view></block>
+                      </view>
+                    </view>
+                  </view>
+                  <block wx:for="{{newCartJson.loseBuyProMarket}}" wx:for-item="loseShop" wx:for-index="loseShopIndex" wx:key="loseBuyProMarket{{loseShopIndex}}">
+                    <view class="shop-group-item">
+                      <view class="store-title r1bb">
+                        <view class="wrap">
+                          <view class="check-wrapper shop_check">
+                            <view storeId="{{loseShop.storeId}}" class="lose-icon span">店铺全选/不选</view>
+                          </view>
+                          <view class="a title">
+                            <!-- <image src="{{loseShop.storeIcon}}" mode="aspectFill"></image> -->
+                            <view class="span">{{loseShop.storeName}}</view>
+                          </view>
+                        </view>
+                      </view>
+                      <view class="shop-cart-list">
+                        <!-- 商品列表start -->
+                        <block wx:for="{{loseShop.goodsList}}" wx:for-item="loseShopLi" wx:for-index="loseShopLiIndex" wx:key="{{loseShopIndex}}loseBuyProMarket{{loseShopLi.goodsId}}">
+                          <view class="li can-del">
+                            <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods='{{loseShopLi.isAddPriceGoods}}' data-store-id="{{loseShopLi.storeId}}" data-sku-id="{{loseShopLi.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==loseShopLi.storeId&&delShow.skuId==loseShopLi.skuId&&delShow.storeType==loseShopLi.storeType&&delShow.isAddPriceGoods==loseShopLi.isAddPriceGoods?scrollLeft:0}}">
+                              <view class="wrap">
+                                <view class="check-wrapper good_check">
+                                  <view class="lose-icon span">商品选择/不选</view>
+                                </view>
+                                <view class="cart-item a">
+                                  <view class="item-img">
+                                    <image src="{{loseShopLi.coverImage}}" mode="aspectFill"></image>
+                                  </view>
+                                  <view class="item-info">
+                                    <view class="h3">
+                                      <block wx:if="{{loseShopLi.isMember&&loseShopLi.isMember==1}}">
+                                        <view class="mark-type bg-ff4182">会员价</view>
+                                      </block>
+                                      {{loseShopLi.goodsName?loseShopLi.goodsName:'无'}}
+                                    </view>
+                                    <block wx:if="{{loseShopLi.specName}}">
+                                      <view class="h4">规格：{{loseShopLi.specName?loseShopLi.specName:'无'}}</view>
+                                    </block>
+                                    <view class="p price">
+                                      <view class="em">
+                                        {{loseShopLi.goodsPrice?loseShopLi.goodsPrice:0}}
+                                        <block wx:if="{{loseShopLi.salesUnit}}">
+                                          <view class="s">/{{loseShopLi.salesUnit}}</view>
+                                        </block>
+                                      </view>
+                                    </view>
+                                    <!-- <view class="item-quantity r1b" catchtap="stopPropagation">
+                                                                            <view class="span decrease r1br{{loseShopLi.num<=1?' off':''}}"></view>
+                                                                            <view class="input quantity">{{loseShopLi.num}}</view>
+                                                                            <view stock="{{loseShopLi.goodsStock}}" class="span increase r1bl">+</view>
+                                                                        </view> -->
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </view>
+                                </view>
+                                <view class="btn-del" catchtap="delGoods" data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods="{{loseShopLi.isAddPriceGoods}}" data-pro-id="{{loseShopLi.proId}}" data-shop-id="{{loseShopLi.shopId}}" data-store-id="{{loseShopLi.storeId}}"
+                                  data-goods-id="{{loseShopLi.goodsId}}" data-sku-id="{{loseShopLi.skuId}}">删除</view>
+                              </view>
+                            </scroll-view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <!-- 超市的失效商品 end -->
+              <!-- 全球海购的失效商品 start -->
+              <block wx:if="{{newCartJson.loseBuyProGlobal.length>0}}">
+                <view class="shop-group bg-white r1bt" id="global-lose">
+                  <view class="nav clearfix r1bb">
+                    <view class="h2">比邻海购</view>
+                  </view>
+                  <block wx:for="{{newCartJson.loseBuyProGlobal}}" wx:for-item="loseShop" wx:for-index="loseShopIndex" wx:key="{{loseShopIndex}}loseBuyProGlobal{{loseShop.storeId}}">
+                    <view class="shop-group-item">
+                      <view class="store-title r1bb">
+                        <view class="wrap">
+                          <view class="check-wrapper shop_check">
+                            <view storeId="{{loseShop.storeId}}" class="lose-icon span">店铺全选/不选</view>
+                          </view>
+                          <view class="a title">
+                            <!-- <image src="{{loseShop.storeIcon}}" mode="aspectFill"></image> -->
+                            <view class="span">{{loseShop.storeName}}
+                              <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_kexuan.png"></image>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                      <view class="shop-cart-list">
+                        <!-- 商品列表start -->
+                        <block wx:for="{{loseShop.goodsList}}" wx:for-item="loseShopLi" wx:for-index="loseShopLiIndex" wx:key="loseBuyProGlobalLi{{loseShopLi.goodsId}}">
+                          <view class="li can-del">
+                            <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods='{{loseShopLi.isAddPriceGoods}}' data-store-id="{{loseShopLi.storeId}}" data-sku-id="{{loseShopLi.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==loseShopLi.storeId&&delShow.skuId==loseShopLi.skuId&&delShow.storeType==loseShopLi.storeType&&delShow.isAddPriceGoods==loseShopLi.isAddPriceGoods?scrollLeft:0}}">
+                              <view class="wrap">
+                                <view class="check-wrapper good_check">
+                                  <view class="lose-icon span">商品选择/不选</view>
+                                </view>
+                                <view class="cart-item a">
+                                  <view class="item-img">
+                                    <image src="{{loseShopLi.coverImage}}" mode="aspectFill"></image>
+                                  </view>
+                                  <view class="item-info">
+                                    <view class="h3"><block wx:if="{{loseShopLi.isMember&&loseShopLi.isMember==1}}"><view class="mark-type bg-ff4182">会员价</view></block>{{loseShopLi.goodsName?loseShopLi.goodsName:'无'}}</view>
+                                    <block wx:if="{{loseShopLi.specName}}"><view class="h4">规格：{{loseShopLi.specName?loseShopLi.specName:'无'}}</view></block>
+                                    <view class="p price">
+                                      <view class="em">{{loseShopLi.goodsPrice?loseShopLi.goodsPrice:0}}<block wx:if="{{loseShopLi.salesUnit}}"><view class="s">/{{loseShopLi.salesUnit}}</view></block></view>
+                                    </view>
+                                    <!-- <view class="item-quantity r1b" catchtap="stopPropagation">
+                                                                            <view class="span decrease r1br{{loseShopLi.num<=1?' off':''}}"></view>
+                                                                            <view class="input quantity">{{loseShopLi.num}}</view>
+                                                                            <view stock="{{loseShopLi.goodsStock}}" class="span increase r1bl">+</view>
+                                                                        </view> -->
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </view>
+                                </view>
+                                <view class="btn-del" catchtap="delGoods" data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods="{{loseShopLi.isAddPriceGoods}}" data-pro-id="{{loseShopLi.proId}}" data-shop-id="{{loseShopLi.shopId}}" data-store-id="{{loseShopLi.storeId}}"
+                                  data-goods-id="{{loseShopLi.goodsId}}" data-sku-id="{{loseShopLi.skuId}}">删除</view>
+                              </view>
+                            </scroll-view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <!-- 全球海购的失效商品 end -->
+              <!-- 苛选的失效商品 start -->
+              <block wx:if="{{newCartJson.loseBuyHiGlobal.length>0}}">
+                <view class="shop-group bg-white r1bt" id="hi-global-lose">
+                  <view class="nav clearfix r1bb">
+                    <view class="h2">臻品苛选</view>
+                  </view>
+                  <block wx:for="{{newCartJson.loseBuyHiGlobal}}" wx:for-item="loseShop" wx:for-index="loseShopIndex" wx:key="loseBuyHiGlobal{{loseShopIndex}}">
+                    <view class="shop-group-item">
+                      <view class="store-title r1bb">
+                        <view class="wrap">
+                          <view class="check-wrapper shop_check">
+                            <view storeId="{{loseShop.storeId}}" class="lose-icon span">店铺全选/不选</view>
+                          </view>
+                          <view class="a title">
+                            <!-- <image src="{{loseShop.storeIcon}}" mode="aspectFill"></image> -->
+                            <view class="span">{{loseShop.storeName}}
+                              <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_zhenpinkexuan.png"></image>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                      <view class="shop-cart-list">
+                        <!-- 商品列表start -->
+                        <block wx:for="{{loseShop.goodsList}}" wx:for-item="loseShopLi" wx:for-index="loseShopLiIndex" wx:key="loseBuyHiGlobalLi{{loseShopLi.goodsId}}">
+                          <view class="li can-del">
+                            <scroll-view scroll-x="true" style="height: 210rpx;" scroll-with-animation='true' bindscroll='scrollDelBind' data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods='{{loseShopLi.isAddPriceGoods}}' data-store-id="{{loseShopLi.storeId}}" data-sku-id="{{loseShopLi.skuId}}" scroll-left="{{delShow.showBtn&&delShow.storeId==loseShopLi.storeId&&delShow.skuId==loseShopLi.skuId&&delShow.storeType==loseShopLi.storeType&&delShow.isAddPriceGoods==loseShopLi.isAddPriceGoods?scrollLeft:0}}">
+                              <view class="wrap">
+                                <view class="check-wrapper good_check">
+                                  <view class="lose-icon span">商品选择/不选</view>
+                                </view>
+                                <view class="cart-item a">
+                                  <view class="item-img">
+                                    <image src="{{loseShopLi.coverImage}}" mode="aspectFill"></image>
+                                  </view>
+                                  <view class="item-info">
+                                    <view class="h3">
+                                      <block wx:if="{{loseShopLi.isMember&&loseShopLi.isMember==1}}"><view class="mark-type bg-ff4182">会员价</view></block>{{loseShopLi.goodsName?loseShopLi.goodsName:'无'}}
+                                    </view>
+                                    <block wx:if="{{loseShopLi.specName}}"><view class="h4">规格：{{loseShopLi.specName?loseShopLi.specName:'无'}}</view></block>
+                                    <view class="p price">
+                                      <view class="em">{{loseShopLi.goodsPrice?loseShopLi.goodsPrice:0}}<block wx:if="{{loseShopLi.salesUnit}}"><view class="s">/{{loseShopLi.salesUnit}}</view></block></view>
+                                    </view>
+                                    <!-- <view class="item-quantity r1b" catchtap="stopPropagation">
+                                                                            <view class="span decrease r1br{{loseShopLi.num<=1?' off':''}}"></view>
+                                                                            <view class="input quantity">{{loseShopLi.num}}</view>
+                                                                            <view stock="{{loseShopLi.goodsStock}}" class="span increase r1bl">+</view>
+                                                                        </view> -->
+                                    <view class="stopPropagation" catchtap="stopPropagation"></view>
+                                  </view>
+                                </view>
+                                <view class="btn-del" catchtap="delGoods" data-store-type="{{loseShopLi.storeType}}" data-is-add-price-goods="{{loseShopLi.isAddPriceGoods}}" data-pro-id="{{loseShopLi.proId}}" data-shop-id="{{loseShopLi.shopId}}" data-store-id="{{loseShopLi.storeId}}" data-goods-id="{{loseShopLi.goodsId}}" data-sku-id="{{loseShopLi.skuId}}">删除</view>
+                              </view>
+                            </scroll-view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <!-- 苛选的失效商品 end -->
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{newCartJson.skuNum>=3||newCartJson.loseBuyShow&&newCartJson.totalSkuNum>3}}">
+        <!-- <view class="down-tips">
+          <view class="span">已经到底啦~</view>
+        </view> -->
+        <template is='noMore'></template>
+      </block>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+      <view class="cart-footer r1bt bg-white{{isIphoneX ? ' iphone-x-patcher-container' : ''}}" id="cart-footer">
+        <view class="wrap">
+          <view class="check-price clearfix">
+            <view class="all-check-wrapper">
+              <view catchtap="checkedGoodsHandler" data-store-type="" data-select-type="all" data-now-select-status="{{newCartJson.allCheck}}" class="all-check {{newCartJson.allCheck?' checked':''}}" id="all_check">全选</view>
+            </view>
+            <block wx:if="{{newCartJson.totalProPrice>0}}">
+              <view class="total-price-wrapper two-line}}">
+                <view class="span total-price" id="total_price">
+                  <view class="i">合计<block wx:if="{{newCartJson.newGlobalList.length>0&&newCartJson.newGlobalListHasSelect}}">(不含税)</block>：</view>
+                  <view class="em">{{newCartJson.realPayPrice}}</view>
+                </view>
+                <block wx:if="{{newCartJson.totalProPrice>0}}">
+                  <view class="promotion-msg">已优惠：￥{{newCartJson.totalProPrice}}\t</view>
+                </block>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="total-price-wrapper">
+                <view class="span total-price" id="total_price">
+                  <view class="i">合计<block wx:if="{{newCartJson.newGlobalList.length>0&&newCartJson.newGlobalListHasSelect}}">(不含税)</block>：</view>
+                  <view class="em">{{newCartJson.realPayPrice}}</view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view id="settle_accounts" catchtap="settleAccounts" data-minDiffAmount="{{newCartJson.minDiffAmount}}" data-minBCDiffAmount="{{newCartJson.minBCDiffAmount}}" class="a settle-accounts">去结算</view>
+        </view>
+        <component-iphone-x-patcher></component-iphone-x-patcher>
+      </view>
+    </block>
+  </view>
+  <template is="toast" data="{{...toastData}}"></template>
+</view>
+<!-- showLimitErrMsgArrPop弹窗商品限制购买等错误 -->
+<block wx:if='{{showLimitErrMsgArrPop}}'>
+<template is="pop-limitErrMsgArr-tpl" data="{{limitErrMsgArr:limitErrMsgArr}}"></template>
+</block>
+<!-- showStockLessGoodsList弹窗 库存不足商品列表 -->
+<block wx:if='{{showStockLessGoodsList}}'>
+<template is="pop-stockLessGoodsList-tpl" data="{{stockLessGoodsList:stockLessGoodsList}}"></template>
+</block>
+<!-- 极速单闪电达结算的时候共存时候 -->
+<block wx:if="{{popDistribution}}">
+  <template is="pop-distribution-tpl" data="{{...newCartJson,nowSelectType}}"></template>
+</block>
+<!-- 改变促销的窗口 -->
+<block wx:if="{{proIdChange.selectProIdPop}}">
+  <template is="select-proId-tpl" data="{{...proIdChange}}"></template>
+</block>
+<!-- 删除某件商品 -->
+<block wx:if="{{popDel}}">
+  <template is="cart-del-pop" data="{{delData}}"></template>
+</block>
+<!-- 不满足结算条件的时候 -->
+<block wx:if="{{cartPricePop}}">
+  <template is="price-pop-tpl" data="{{...getPayJson}}"></template>
+</block>
+<!-- 不满足自提条件的时候 -->
+<block wx:if="{{minDiffSelfAmountPop}}">
+  <template is="price-alert-tpl" data="{{...getPayJson}}"></template>
+</block>
+<block wx:if="{{weightPopShow}}">
+  <template is="weight-pop-tpl" data="{{...weightNotice}}"></template>
+</block>
+<!-- 海购超出价格 -->
+<block wx:if="{{globalOverPricePop}}">
+  <template is="pop-overseas-tpl" data="{{globalOverPrice}}"></template>
+</block>
+<!-- showStockLessGoodsList弹窗 库存不足商品列表 -->
+<template name="pop-stockLessGoodsList-tpl">
+  <view id="pop-stockLessGoodsList">
+    <view class="pop-stockLessGoodsList-cnt">
+      <view class="pop-stockLessGoodsList-head r1bb">以下商品库存不足</view>
+      <view class="ul">
+        <block wx:for="{{stockLessGoodsList}}" wx:for-item="item" wx:for-index="index" wx:key='stockLessGoodsList{{index}}'>
+          <view class="li">{{item.skuName||item.goodsName}}</view>
+        </block>
+      </view>
+      <view class="btn-close-box">
+        <view class="btn-close" catchtap="hideStockLessGoodsList">关闭</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- limitErrMsgArr弹窗 商品级别限制错误 -->
+<template name="pop-limitErrMsgArr-tpl">
+  <view id="pop-stockLessGoodsList">
+    <view class="pop-stockLessGoodsList-cnt">
+      <view class="pop-stockLessGoodsList-head r1bb">提示</view>
+      <view class="ul">
+        <block wx:for="{{limitErrMsgArr}}" wx:for-item="item" wx:for-index="index" wx:key='limitErrMsgArr{{index}}'>
+          <view class="li">
+          <view class="limitGoodsName">商品：{{item.goodsName||""}}</view>
+          <view class="limitGoodsErrmsg">{{item.errMsg}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="btn-close-box">
+        <view class="btn-close" catchtap="hideLimitErrMsgArrPop">关闭</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<template name="pop-overseas-tpl">
+  <view id="pop-overseas">
+    <view class="pop-overseas-cnt">
+      <view class="pop-overseas-head r1bb">以下各店商品总价已超过国家政策规定的最高可购买限额，请您从中挑选部分商品分开下单</view>
+      <view class="ul">
+        <block wx:for="{{globalOverPrice}}" wx:for-item="store" wx:for-index="index" wx:key='globalOverPrice{{index}}'>
+          <view class="li r1bb">
+            <view class="shop-title">{{store.storeName}}</view>
+            <view class="over-tip">已超限额2000元</view>
+            <view class="goods-list">
+              <block wx:for="{{store.goodsList}}" wx:for-item="list" wx:for-index="indexList" wx:for-index='globalOverPriceStore{{indexList}}'>
+                <block wx:if="{{list.canBuy==1&&list.isSelect==1}}">
+                  <view class="goods-item">
+                    <image src="{{list.coverImage}}"></image>
+                    <!-- <div class="text"><span class="price">￥{{list.goodsPrice}}</span><em class="num">×{{list.num}}</em></div> -->
+                  </view>
+                </block>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="back-btn-box">
+        <view class="back-btn" catchtap="globalOverPriceClose">返回修改</view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- //校验全球购和家家悦优鲜全部存在的时候 -->
+<template name="pop-distribution-tpl">
+  <view class="pop-distribution">
+    <view class="pop-distribution-cnt">
+      <view class="pop-distribution-title">请分开结算以下商品</view>
+      <view class="ul {{nowSelectType}}nowSelectType">
+        <block wx:if="{{marketNum||foodNum}}">
+          <view class="li distribution-check-market distribution-check-li{{marketNum||foodNum?' can-select':' no-select'}}" catchtap="selectDistributionSettle" data-distribution="-1">
+            <view class="distribution-check{{nowSelectType==-1?' active':''}}" data-distribution="-1"></view>
+            <view class="distribution-text">GO! 集市</view>
+            <block wx:if="{{marketNum}}">
+              <view class="distribution-goods-num">
+                <view class="tag clearfix">
+                  <view class="tag-left">超市</view>
+                  <view class="tag-right">送货</view>
+                </view>
+                含商品 {{marketNum}}件
+              </view>
+            </block>
+            <block wx:if="{{foodNum}}">
+              <view class="distribution-food-num">
+                <view class="tag clearfix">
+                  <view class="tag-left">餐饮</view>
+                  <view class="tag-right">堂食</view>
+                </view>
+                含商品 {{foodNum}}件
+              </view>
+            </block>
+          </view>
+        </block>
+        <block wx:if="{{b2cNum}}">
+          <view class="li distribution-check-li{{b2cNum?' can-select':' no-select'}}" catchtap="selectDistributionSettle" data-distribution="1037">
+            <view class="distribution-check{{nowSelectType==1037?' active':''}}" data-distribution="1037"></view>
+            <view class="distribution-text">YO！海购</view>
+            <view class="distribution-num">{{b2cNum}}件</view>
+          </view>
+        </block>
+        <block wx:if="{{b2cHsNum}}">
+          <view class="li distribution-check-li{{b2cHsNum?' can-select':' no-select'}}" catchtap="selectDistributionSettle" data-distribution="1634">
+            <view class="distribution-check{{nowSelectType==1634?' active':''}}" data-distribution="1634"></view>
+            <view class="distribution-text">HI！苛选</view>
+            <view class="distribution-num">{{b2cHsNum}}件</view>
+          </view>
+        </block>
+      </view>
+      <view class="distribution-btn clearfix">
+        <view class="a distribution-btn-back" id="distribution-btn-back" catchtap="distributionBack">
+          返回购物车
+        </view>
+        <view class="a distribution-btn-order" id="distribution-btn-order" catchtap="distributionSettle">
+          去结算
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 购物车渲染 -->
+<!-- 购物车为空 -->
+<template name="cart-empty-tpl">
+  <view class="cart-empty">
+    <view class="aside">
+      <image class="image" src="https://shgm.jjyyx.com/m/images/empty_cart.png?20190704" mode='widthFix'></image>
+    </view>
+    <view class="p">您的购物车太空啦</view>
+    <view class="a" catchtap="toIndex">戳我去逛逛</view>
+  </view>
+</template>
+<!-- 购物车首次进入错误 -->
+<template name="cart-error-tpl">
+  <view class="cart-empty cart-error">
+    <view class="aside">
+      <image src="https://shgm.jjyyx.com/m/images/error_img3.png?20190704" mode='widthFix'></image>
+    </view>
+    <view class="p">{{errorMsg}}</view>
+    <view class="a" catchtap="reloadErrorPage">点我刷新</view>
+  </view>
+</template>
+<!-- 促销更改弹窗 -->
+<template name="select-proId-tpl">
+  <view id="cart-select-proId" catchtap="confirmProId">
+    <view class="select-proId-box">
+      <view class="proId-title">
+        修改优惠
+        <view class="proId-close" catchtap="confirmProId"></view>
+      </view>
+      <view class="ul" data-pro-id="{{nowProId}}" data-old-pro-id="{{oldProId}}">
+        <block wx:for="{{selectProIdData}}" wx:for-item="list" wx:for-index="i" wx:key="{{i}}selectProIdDat{{list.proId}}">
+          <view catchtap="clickProId" data-pro-type="{{list.proType}}" data-pro-id="{{list.proId}}" class="r1bt li{{list.proId==nowProId?' checked ':''}}">
+            <view class="proId-btn"></view>
+            <view class="proId-text">{{list.proDesc}}</view>
+          </view>
+        </block>
+      </view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+  </view>
+</template>
+<!-- 删除当前商品弹窗 -->
+<template name="cart-del-pop">
+  <view class="cart-del-pop" id="cart-del-pop">
+    <view class="box">
+      <view class="p">您确定删除当前商品吗？</view>
+      <view class="pop-cart-btn">
+        <view class="cancel-del-btn div" catchtap="cancelDelGoods" id="cancel-del-btn">
+          取消
+        </view>
+        <view class="confirm-del-btn div" catchtap="confirmDelGoods" id="confirm-del-btn">
+          确认
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- 没有满足起送条件 -->
+<template name="price-pop-tpl">
+  <view class="cart-price-pop" id="cart-price-pop">
+    <view class="box">
+      <view class="p">
+        配送订单不满
+        <view class="span">
+          {{_data.minB2CAmount>0?_data.minB2CAmount:_data.minAmount}}
+        </view>
+        元无法提交，请您加购其他商品或更改配送方式
+      </view>
+      <view class="price-close-btn" id="price-close-btn" catchtap="popPriceClose">再逛逛</view>
+    </view>
+  </view>
+</template>
+<!-- 没有满足自提条件minDiffSelfAmount -->
+<template name="price-alert-tpl">
+  <view class="cart-price-pop" id="cart-price-pop">
+    <view class="box">
+      <view class="p">
+        <view class="span">{{_data.errMsg}}</view>
+      </view>
+      <view class="price-close-btn" id="price-close-btn" catchtap="alertPriceClose">再逛逛</view>
+    </view>
+  </view>
+</template>
+<!-- 计重商品说明弹窗 -->
+<template name="weight-pop-tpl">
+  <view class="fadeInUp-box">
+    <view class="fadeInUp-cont">
+      <view class="fadeInUp-title r1bb">
+        {{title||'购买说明'}}
+        <view class="close" catchtap="closeWeightPop">
+          <image src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image>
+        </view>
+      </view>
+      <view class="fadeInUp-list">
+        <block wx:for="{{contentList}}" wx:for-item="li" wx:for-index="i" wx:key="contentList{{i}}">
+          <view class="li">{{li.content}}</view>
+        </block>
+      </view>
+      <view class="fadeInUp-btn close" catchtap="closeWeightPop">关闭</view>
+    </view>
+  </view>
+</template>
+<cu-modal modalName="{{modalName}}" dialogBoxStyle="width:656rpx;">
+  <view slot="customCenter" class="compare-list">
+    <view class="compare-title r1bb pos-r">请确认您的提货点 <view bindtap="hideModal" class="pos-a close-icon"></view></view>
+    <view class="compare-item-wrap">
+      <block wx:if="{{compareList.length>1}}">
+        <view class="compare-item {{compareAddrIndex == index?'act':''}}" bindtap="switchCompareAddr" data-idx="{{index}}" wx:for="{{compareList}}">{{item.addrTag}}</view>
+      </block>
+      <block wx:else><view class="compare-item act" bindtap="switchCompareAddr" data-idx="0" >{{compareList[0].addrTag}}</view></block>
+    </view>
+    <view class="compare-btn" bindtap="comfirmCompareAddress">确定</view>
+    <view class="compare-btn-switch" bindtap="toAddress">换个提货点</view>
+  </view>
+</cu-modal>
+<template is="modal" data="{{...modalData}}"></template>
+<template is="toast" data="{{...toastData}}"></template>
+<!-- 底部全局导航条(tabBar) -->
+<block wx:if="{{!showSKUSelect}}">
+  <component-group-footer groupHomeCurrent="3" groupManageCartNum="{{groupManageCartNum}}" isAddNavigation="{{tabStatus.isAddNavigation}}"></component-group-footer>
+</block>
+<block wx:if="{{showSKUSelect}}">
+  <select-sku class="select-sku" groupManageCartSelectFlag="true" bind:exitSkuSelect="exitSkuSelect" bind:updateGroupManageCart="updateGroupManageCart"
+    selectedOneProperty="{{showSKUSelectGoodeDetail.materielExtPropertyOne}}" selectedTwoProperty="{{showSKUSelectGoodeDetail.materielExtPropertyTwo}}"
+    shopId="{{showSKUSelectGoodeDetail.shopId}}" goodsId="{{showSKUSelectGoodeDetail.goodsId}}" linkProId="{{showSKUSelectGoodeDetail.proId}}"></select-sku>
+</block>

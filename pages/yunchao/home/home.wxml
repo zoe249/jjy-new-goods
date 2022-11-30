@@ -1,0 +1,241 @@
+<import src="/templates/global/global.wxml" />
+<!-- <view class="header">
+	<view class='shop-info' bindtap='chooseExtract'>
+		<image src='{{selfMentionPoint.photo}}'></image>
+		<view class="shop-extract-area">
+			<view>{{selfMentionPoint.addrTag}}</view>
+			<text class='picker-forword'></text>
+		</view>
+	</view>
+	<view class="shop-loga">
+		<image wx:if="{{shopLoga.imgUrl}}" src="{{shopLoga.imgUrl}}"></image>
+	</view>
+</view> -->
+
+<!-- <scroll-view class="home-container" scroll-y bindscroll="onScroll">   -->
+<!-- scroll-into-view="idx-{{dynamicIndex}}" -->
+	<view bindtouchmove="onTouchomve">
+		<block wx:if="{{!moduleList}}">
+			<template is="empty"></template>
+		</block>
+		<block wx:else>
+			<view class="theme">
+				<block wx:if="{{theme.recommendList[0] && theme.recommendList[0].imgUrl}}">
+					<view class="">
+						<image src="{{theme.recommendList[0].imgUrl}}" mode="widthFix"></image>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="page-top-bg" style="background: {{theme.sectionBgcolor?theme.sectionBgcolor:''}}"></view>
+				</block>
+			</view>
+			<!-- 顶部 搜索 -->
+			<view class="header"
+				style="padding-top:{{capsule.top}}px;padding-right: {{capsule.width+8}}px;background: {{theme.sectionBgcolor?theme.sectionBgcolor:''}}">
+				<image class="hd-bg" mode="widthFix" wx:if="{{theme.recommendList && theme.recommendList[0].imgUrl}}"
+					src="{{theme.recommendList[0].imgUrl}}"></image>
+				<view class="logas" style="height:{{capsule.height}}px">
+					<block wx:if="{{storeLogo.imgUrl}}">
+						<image class="loga-img" src="{{storeLogo.imgUrl}}"></image>
+					</block>
+					<block wx:else>
+						<text class="loga-txt">云超</text>
+					</block>
+				</view>
+				<view class='search-btn' style="height:{{capsule.height}}px" bindtap='toSearch'>
+					<text class="iconfont iconSearch"></text>
+					<view>搜索商品</view>
+				</view>
+			</view>
+			<block wx:for="{{moduleList}}" wx:key="index" wx:for-item="modeleItem">
+			  <view class="channel-tabs"  wx:if="{{modeleItem.sectionType == 1925 && modeleItem.recommendList.length>0}}">
+					<view class="channel-wrap {{modeleItem.recommendList.length>0?'':'not-theme'}}">
+						<view class="c-tab">
+							<tabs bindtabclick="navClick" notTrigger="{{true}}" partClass="home-channel-tabs"
+								activeClass="{{theme.recommendList.length>0?'channel-tab-act':'not-theme-channel-tab'}}"
+								tabs="{{modeleItem.recommendList}}" tabUnderlineColor="#fff"
+								tabActiveTextColor="{{theme.recommendList.length>0?'#fff':'#fff'}}" setTitle="recommendTitle"></tabs>
+						</view>
+					</view>
+				</view>
+				<view class='banner' wx:if="{{modeleItem.sectionType == 25}}">
+					<swiper autoplay circular>
+						<block wx:if="{{modeleItem.recommendList.length}}">
+							<swiper-item wx:for="{{modeleItem.recommendList}}" wx:for-item='imgItem' wx:key="recommendId">
+								<image catchtap='goBanner' data-item="{{imgItem}}" data-log-type="" data-link="{{imgItem.linkUrl||''}}"
+									class='img' src="{{imgItem.imgUrl}}"></image>
+							</swiper-item>
+						</block>
+						<block wx:else>
+							<swiper-item>
+								<image catchtap='goBanner' class='img' src=""></image>
+							</swiper-item>
+						</block>
+					</swiper>
+				</view>
+				<block wx:if="{{modeleItem.sectionType == 1704}}">
+					<block wx:for="{{modeleItem.recommendList}}" wx:key="key">
+						<image class="homesolt" mode="widthFix" src="{{item.imgUrl}}"></image>
+					</block>
+				</block>
+
+				<!-- 海外购 -->
+				<view class="overseas-buy" wx:if="{{modeleItem.sectionType == 1639&& modeleItem.overseasGoods.length>0 }}">
+					<view class="overseas-tit" bindtap="toOverseas" data-sectionId="{{modeleItem.sectionId}}">
+						<image mode="widthFix" class="overseas-titimg" src="{{modeleItem.sectionTitleimg}}"></image>
+					</view>
+					<view class="overseas-goods">
+						<block wx:for="{{modeleItem.overseasGoods}}" wx:key="index" wx:if="{{index<3}}">
+
+							<view class="overseas-buy-item">
+								<three-goods-item-copy describle="{{item.describle}}" goods="{{item.extendJson}}"
+									bind:change-cart="changeCartCount"></three-goods-item-copy>
+							</view>
+						</block>
+					</view>
+				</view>
+
+
+
+				<!-- 占位 -->
+				<!-- <view class="seat-box"
+					wx:if="{{modeleItem.sectionType == 1703 && !!modeleItem.recommendList && modeleItem.recommendList.length> 0}}">
+					<view class="seat-item">
+						<image src="{{modeleItem.recommendList[0].imgUrl}}"></image>
+					</view>
+				</view> -->
+
+
+				<!-- flash sale -->
+				<view class="flash-sale" wx:if="{{isSale&&(modeleItem.sectionType == 1636||modeleItem.contentJson.length>0)}}">
+					<view class="flash-sale-timer" bindtap="auotJump" data-url="/pages/yunchao/qianggou/qianggou">
+						<image mode="widthFix" class="flash-titimg" src="{{modeleItem.sectionTitleimg}}"></image>
+						<!--	限时抢购-->
+						<view class="time-wrap"><text class="time">{{surplusTime.hour}}</text>:<text
+								class="time">{{surplusTime.minute}}</text>:<text class="time">{{surplusTime.second}}</text></view>
+					</view>
+					<view class="flash-sale-list">
+						<view class="flash-sale-goods {{item.totalStock > 0?'':'not-stock'}}" wx:for="{{modeleItem.contentJson}}" wx:key="index" wx:if="{{index<4}}"
+							catchtap="goGoodsDetail" data-goods="{{item}}">
+							<image class="img" src="{{item.coverImage}}"></image>
+							<view class="price">¥ {{item.goodsPrice|| item.goodsPrimePrice}}{{item.salesUnit?'/'+item.salesUnit:''}}
+							</view>
+							<view class="btn">{{item.totalStock > 0?'立即抢':'已售罄'}}</view>
+						</view>
+					</view>
+				</view>
+
+
+				<!-- 新上、热卖-->
+				<view class="plate" wx:if="{{modeleItem.sectionType == 2031}}">
+					<view class="new" bindtap="autoJump" data-url="/pages/yunchao/storeList/storeList">
+						<view class="plate-title">心选店铺<view class="user-flex">
+								<image class="user-icon" wx:for="{{storeAvater}}" wx:key="key" wx:if="{{index < 3}}"
+									src="{{item.photo}}"></image><text class="plate-txt">...关注</text>
+							</view>
+						</view>
+						<view class="plate-flex">
+							<block wx:if="{{modeleItem.contentObj.storeList.length>0}}">
+								<view class='plate-item' wx:for="{{modeleItem.contentObj.storeList}}" wx:key="cidx"
+									wx:if="{{index < 3}}">
+									<image class="image" src="{{item.storeDetail.storeIcon}}"></image>
+								</view>
+							</block>
+							<block wx:else>
+								<view class="not-list">暂无活动</view>
+							</block>
+						</view>
+					</view>
+					<view class="hot" bindtap="autoJump" data-url="/pages/yunchao/storeHot/storeHot">
+						<view class="plate-title">热卖榜单<view class="user-flex">
+								<image class="user-icon" wx:for="{{goodsAvater}}" wx:key="key" wx:if="{{index < 3}}"
+									src="{{item.photo}}"></image><text class="plate-txt">...在买</text>
+							</view>
+						</view>
+						<view class="plate-flex">
+							<block wx:if="{{modeleItem.contentObj.goodsList.length>0}}">
+								<view class='plate-item' wx:for="{{modeleItem.contentObj.goodsList}}" wx:key="cidx"
+									wx:if="{{index < 3}}">
+									<image class="image" src="{{item.goods.coverImage}}"></image>
+								</view>
+							</block>
+							<block wx:else>
+								<view class="not-list">暂无活动</view>
+							</block>
+						</view>
+					</view>
+				</view>
+
+				<!-- 营销广告 -->
+				<view class="home-ad"
+					wx:if="{{modeleItem.sectionType == 1638 && !!modeleItem.recommendList && modeleItem.recommendList.length> 0}}">
+					<block wx:for="{{modeleItem.recommendList}}" wx:key="index">
+						<image mode="widthFix" src="{{item.imgUrl}}"></image>
+					</block>
+				</view>
+				<!-- TAB -->
+				<block wx:if="{{modeleItem.sectionType == 2030}}">
+					<view class="scroll-nav-container" style="top:{{capsule.top+capsule.height+8}}px">
+						<scroll-view class="scroll-nav" id="scroll-nav" scroll-with-animation="{{true}}"
+							scroll-into-view="nav-{{tapIdx>0?tapIdx-2:''}}" scroll-x scroll-left="{{true}}">
+							<view class='scroll-nav-wrap'>
+								<view bindtap='onTabClick' wx:for="{{modeleItem.contentObj.categoryList}}" wx:key="ind"
+									class='{{tapIdx == index?"scroll-nav-act":""}}' data-idx="{{index}}" data-id="idx-{{item.cateId}}"
+									id="nav-{{index}}">
+									<text>{{item.cateName}}</text>
+								</view>
+							</view>
+						</scroll-view>
+					</view>
+					<!-- LIST -->
+					<view class='share-goods-container' style="padding-bottom:{{isIphoneX?'198rpx':'114rpx'}}">
+						<view class='share-goods-list' wx:for="{{modeleItem.contentObj.goodsList}}" wx:key="for_i"
+							wx:for-item="proItem" id="{{index}}">
+							<view class="sp-idx" id="idx-{{index}}" style="top:-{{CustomBar+20}}px"></view>
+							<view class="share-goods-list-view">
+								<block wx:for="{{proItem}}" wx:key="s_idx" wx:for-index="idx">
+
+									<goods-item-yunchao goods="{{item.goods}}" bind:bindPartakeGroup="jumpGoodsDetail">
+									</goods-item-yunchao>
+
+									<!-- <view class='goods-item' bindtap='bindPartakeGroup' data-item="{{item.goods}}">
+										<view class='goods-img' data-item="{{item}}">
+											<image mode="widthFix" src='{{item.goods.coverImage}}' lazy-load></image>
+										</view>
+										<view class='goods-info'>
+											<view class='goods-title'>
+												<view class='goods-type {{item.goods.proId?"":"goods-type-not"}}' wx:if="{{item.goods.proId}}">
+													{{item.goods.proId?'秒杀':''}}</view>
+												{{item.goods.shortTitle||item.goods.goodsName||item.goods.skuName||''}}
+											</view>
+											<view class='goods-dec'>{{item.goods.goodsTag || ''}}</view>
+											<view class='goods-price'>
+												<view class='o-price'>
+													<text wx:if="{{item.goods.primePrice}}">¥{{item.goods.primePrice}}</text>
+												</view>
+												<view class='p-price'>¥{{item.goods.salePrice}}</view>
+											</view>
+
+										</view>
+									</view> -->
+								</block>
+							</view>
+
+						</view>
+						<block wx:if="{{modeleItem.contentObj.goodsList && modeleItem.contentObj.goodsList.length> 0}}">
+							<template is="noMore"></template>
+						</block>
+						<block wx:elif="{{!modeleItem.contentObj.categoryList || !modeleItem.contentObj.goodsList }}">
+							<template is="empty"></template>
+						</block>
+					</view>
+					<!-- 商品列表 END -->
+				</block>
+			</block>
+		</block>
+	</view>
+<!-- </scroll-view> -->
+<template is="empty" wx:if="{{emptyState && moduleList.length==0}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>
+<component-yunchao-footer tabStatus="{{tabStatus}}"></component-yunchao-footer>

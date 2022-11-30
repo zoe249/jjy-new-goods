@@ -1,0 +1,18 @@
+<template name="purchases">
+    <view class="ul">
+        <block wx:if="{{list}}">
+            <block wx:for="{{list}}" for-item="item" wx:key="*thisitem">
+                <view class="li r1bb pos-r">
+                    <view class="p">{{item.purchaseTitle}}</view>
+                    <view class="span">{{item.purchaseDate}}</view>
+                    <block wx:if="{{item.purchaseVal > 0}}">
+                        <view class="em">+{{item.purchaseVal}}</view>
+                    </block>
+                    <block wx:else>
+                        <view class="em c-green-color">{{item.purchaseVal}}</view>
+                    </block>
+                </view>
+            </block>
+        </block>
+    </view>
+</template>

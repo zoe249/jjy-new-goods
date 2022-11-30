@@ -1,0 +1,8 @@
+{
+	
+	"usingComponents": {
+		"component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+		"CartAnimation":"../../component/CartAnimation/index",
+		"Loading":"../../component/Loading/index"
+	}
+}

@@ -1,0 +1,27 @@
+<import src="/templates/global/global.wxml" />
+
+<!--当前自提点-->
+<view class='current-extract-area'>
+  <view class='current-extract-info'>
+    <image src='{{selfMentionPoint.photo}}'></image>
+    <text>当前提货点</text>
+    <view class='current-extract-name'>{{selfMentionPoint.addrTag}}</view>
+  </view>
+  <view class='current-extract-address'>
+    <view class='current-extract-region'>{{selfMentionPoint.provinceName}}{{selfMentionPoint.cityName}}{{selfMentionPoint.areaName}}</view>
+    <view class='current-extract-full-address'>{{selfMentionPoint.address}}</view>
+  </view>
+</view>
+
+<block wx:if="{{extractList.length}}">
+  <view class='extract-list-wrap nearby-extract-wrap'>
+    <view class='extract-title'>我的提货点</view>
+    <block wx:for="{{extractList}}" wx:key="this">
+      <view class='extract-list {{extractList.length-1 == index ? "":"hr-b"}}' bindtap="selectExtract" data-item="{{item}}">
+        <view class='extract-list-name'>{{item.addrTag}}</view>
+        <view class='extract-list-address'>{{item.provinceName}} {{item.cityName}} {{item.areaName}} {{item.address}}</view>
+      </view>
+    </block>
+  </view>
+</block>
+<template is="noMore"></template>

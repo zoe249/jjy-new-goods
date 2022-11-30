@@ -1,0 +1,88 @@
+.fill-info-container{
+    border-top: 1rpx solid #E7E7E7;
+    padding: 16rpx 32rpx;
+    color: #777777;
+    font-size: 24rpx;
+}
+.form-inoput{
+    position: relative;
+    display: flex;
+    color: #777777;
+    padding: 22rpx 0;
+    border-bottom: 1rpx solid #E7E7E7;
+}
+.form-inoput .title,.form-inoput input{
+    display: inline-block;
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    min-height: 48rpx;
+    margin: 0;
+}
+.form-inoput input{
+    float: left;
+    width: 100%;
+}
+/* 外加样式 */
+.fill-info-container .title{
+    width: 177rpx;
+    padding-left: 16rpx;
+}
+.updata-title{
+    font-size:24rpx;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:#777;
+    padding: 32rpx 16rpx;
+}
+.photo-box{
+    width: 100%;
+    padding: 0 16rpx 20rpx;
+    text-align: center;
+    border-bottom: 1rpx solid #E7E7E7;
+}
+.photo-box image{
+    width: 320rpx;
+    height: 192rpx;
+    border: 1rpx dashed #E7E7E7;
+}
+.photo-box .back{
+    margin-left: 15rpx;
+}
+.photo-box text{
+    display: block;
+    padding:16rpx 0;
+}
+.get-code{
+    position: absolute;
+    right: 16rpx;
+    top:50%;
+    width:192rpx;
+    height:64rpx;
+    line-height: 64rpx;
+    background:rgba(255,166,1,1);
+    padding: 0;
+    border-radius:4rpx;
+    border: 0;
+    color: #fff;
+    font-size: 30rpx;
+    transform: translateY(-50%);
+}
+.sending{
+    background: #ccc;
+}
+.get-code::after{
+    border: 0;
+}
+.submit-btn{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:750rpx;
+    height:112rpx;
+    line-height: 112rpx;
+    font-size: 30rpx;
+    color: #313031;
+    background:#fff;
+    border-radius: 0;
+}

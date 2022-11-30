@@ -1,0 +1,8 @@
+<view class="component">
+	<view style="height: {{isFixed ? height + 'px' : 'auto'}}">
+		<view class="f__sticky {{isFixed?'statusFixed':''}}"
+			style="top:{{offsetTop}}px;z-index: {{zIndex}};width: {{width == 'auto' ? 'auto' : width + 'px'}}">
+			<slot></slot>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,411 @@
+/* pages/invoice/invoice.wxss */
+
+.box-space {
+    height: 16rpx;
+    background: #ededed;
+}
+
+.explain {
+    padding: 0 32rpx;
+    font-size: 30rpx;
+    line-height: 80rpx;
+    text-align: right;
+    background: #ededed;
+    color: #777;
+}
+
+.tips-mod {
+    position: relative;
+    padding: 0 74rpx 0 32rpx;
+    background: #fff9f5;
+    font-size: 24rpx;
+    line-height: 80rpx;
+    color: #999;
+}
+
+.tips-mod .scroll-marquee-box {
+    position: relative;
+    height: 80rpx;
+}
+
+.icon-laba {
+    position: absolute;
+    left: 32rpx;
+    top: 50%;
+    display: block;
+    width: 36rpx;
+    height: 36rpx;
+    transform: translateY(-50%);
+    background: url(https://shgm.jjyyx.com/m/images/icon_laba.png) no-repeat left center;
+    -webkit-background-size: 36rpx;
+    background-size: 36rpx;
+    z-index: 2;
+}
+
+.tips-mod .tips-swiper {
+    padding-left: 52rpx;
+}
+
+.tips-mod-close {
+    top: 50%;
+    right: 32rpx;
+    width: 32rpx;
+    height: 32rpx;
+    transform: translateY(-50%);
+    background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+    -webkit-background-size: 22rpx;
+    background-size: 22rpx;
+}
+
+.tips-mod-close::after, .tips-mod-close::before {
+    content: "";
+    position: absolute;
+    right: -32rpx;
+    top: -28rpx;
+    width: 80rpx;
+    height: 80rpx;
+}
+
+/* .tips-mod-close::before{
+   background: #fff9f5;
+   z-index: 0;
+ } */
+
+.invoice-swiper {
+    height: 96rpx;
+    line-height: 96rpx;
+    padding: 0 18rpx 0 32rpx;
+}
+
+.invoice-swiper switch {
+    zoom: 0.9;
+}
+
+.invoice-type .h3 {
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 32rpx;
+}
+
+.sel-type {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    padding: 0 32rpx;
+}
+
+.sel-type view {
+    flex: 0 1 auto;
+    width: 210rpx;
+    height: 64rpx;
+    font-size: 26rpx;
+    line-height: 64rpx;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-bottom: 32rpx;
+    margin-right: 30rpx;
+    border-radius: 32rpx;
+    -webkit-border-radius: 32rpx;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.sel-type view:nth-child(3n), .sel-type view.min-w:nth-child(4n) {
+    margin-right: 0;
+}
+
+.sel-type view.min-w {
+    width: 160rpx;
+    margin-right: 15rpx;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.sel-type .sel {
+    color: #FF4752;
+    border: 1px solid #FF4752;
+}
+
+.save-btn {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 32rpx 0;
+    background: #fff;
+}
+
+.save-btn button {
+    display: block;
+    width: 646rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    font-size: 34rpx;
+    margin: 0 auto;
+    background: #FF4752;
+    color: #fff;
+    -webkit-border-radius: 48rpx;
+    border-radius: 48rpx;
+}
+
+.issue-address {
+    color: #999;
+    font-size: 24rpx;
+    padding: 32rpx 32rpx 186rpx 32rpx;
+}
+
+.cross-border {
+    padding-bottom: 186rpx;
+}
+
+.invoice-alert, .explain {
+    display: inline-block;
+    position: relative;
+    padding-left: 40rpx;
+    margin-bottom: 20rpx;
+    vertical-align: middle;
+}
+.explain {
+    margin: 1rpx 0 0 12rpx;
+}
+.invoice-alert image, .explain image {
+    position: absolute;
+    left: 0;
+    top: 46%;
+    transform: translateY(-50%);
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.invoice-title-detail {
+    padding: 0 32rpx 32rpx;
+}
+
+.invoice-title-detail .item {
+    margin-bottom: 30rpx;
+    padding-right: 60rpx;
+    border: 1px solid #ededed;
+    border-radius: 20rpx;
+}
+
+.invoice-title-detail .item.number {
+    padding-right: 120rpx;
+}
+
+.invoice-title-detail .item:last-child {
+    margin: 0;
+}
+
+.invoice-title-detail .invoice-record {
+    left: 0;
+    top: 90rpx;
+    width: 100%;
+    padding: 0 32rpx;
+    font-size: 26rpx;
+    color: #999;
+    background: #f5f5f5;
+    -webkit-border-radius: 20rpx;
+    border-radius: 20rpx;
+    border: 1px solid #e1e1e1;
+    height: 230rpx;
+    box-shadow: 0 0 20rpx #c1c1c1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 33;
+}
+
+.invoice-record view {
+    padding: 20rpx 0;
+    border-bottom: 1px solid #ededed;
+}
+
+.invoice-title-detail input {
+    width: 100%;
+    height: 80rpx;
+    line-height: 1;
+    font-size: 28rpx;
+    padding: 0 60rpx 0 32rpx;
+    border-radius: 20rpx;
+}
+
+.invoice-title-detail .del_btn {
+    position: absolute;
+    right: 18rpx;
+    top: 50%;
+    display: block;
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: -15rpx;
+    background: url(https://shgm.jjyyx.com/m/images/del.png) no-repeat center;
+    -webkit-background-size: 30rpx;
+    background-size: 30rpx;
+    z-index: 2;
+}
+
+.invoice-title-detail  .number .del_btn {
+    right: 72rpx;
+}
+
+.del_btn::after {
+    content: '';
+    position: absolute;
+    left: -30rpx;
+    top: -22rpx;
+    width: 60rpx;
+    height: 80rpx;
+}
+
+.invoiceNo-tips {
+    display: block;
+    position: absolute;
+    right: 16rpx;
+    top: 50%;
+    margin-top: -14rpx;
+    width: 28rpx;
+    height: 28rpx;
+    z-index: 2;
+}
+
+.invoiceNo-tips::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -26rpx;
+    width: 60rpx;
+    height: 80rpx;
+}
+
+.invoiceNo-tips image {
+    width: 28rpx;
+    height: 28rpx;
+}
+
+.tips-mask {
+    position: fixed;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    transition: all 0.6s;
+}
+
+.fadeInUp-box {
+    top: 0;
+    -webkit-animation: fadeInUp 0.6s;
+    animation: fadeInUp 0.6s;
+}
+
+.tips-mask .mask {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    z-index: 999;
+    transform: translateY(-50%);
+    border-radius: 16rpx;
+    background: #fff;
+}
+
+.tips-mask .h3 {
+    height: 96rpx;
+    line-height: 96rpx;
+    font-size: 34rpx;
+    text-align: center;
+}
+
+.tips-mask .mask-wrap {
+    height: 310rpx;
+}
+
+.tips-mask .p {
+    padding: 40rpx 32rpx;
+    font-size: 28rpx;
+    color: #777;
+}
+
+.mask-cancel {
+    color: #fff;
+    font-size: 32rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
+    border-bottom-left-radius: 16rpx;
+    border-bottom-right-radius: 16rpx;
+    background: #FF4752;
+}
+
+/**
+  * fadeInUp
+ */
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+@keyframes marque-animation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    position: relative;
+    font-size: 28rpx;
+}
+
+.marquee .content {
+    display: inline-block;
+    position: relative;
+    padding-right: 0px;
+    animation: marque-animation 11.3s linear infinite;
+    white-space: nowrap;
+}
+.marquee .content text{
+    font-size: 14px;
+}

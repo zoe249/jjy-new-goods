@@ -1,0 +1,48 @@
+<import src="/templates/global/global.wxml" />
+<form bindsubmit='bindApplyLeader'>
+    <view class='fill-info-container'>
+        <view class='form-inoput'>
+            <view class='title'>真实姓名</view>
+            <view class='input-box'>
+                <input name="name" data-types="name" bindinput="inputChange" placeholder='请输入您的真实姓名' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class='form-inoput'>
+            <view class='title'>手机号码</view>
+            <view class='input-box'>
+                <input name="mobile" data-types="mobile" bindinput="inputChange" placeholder='请输入您的手机号码' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class='form-inoput'>
+            <view class='title'>身份证</view>
+            <view class='input-box'>
+                <input name="idCard" data-types="idCard" bindinput="inputChange" placeholder='请输入您的身份证号码' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class='updata-img'>
+            <view class='updata-title'>请拍摄并上传身份证</view>
+            <view class='photo-box ui-flex'>
+                <view class='front' bindtap='getIdPhotoFront'>
+                    <image src='{{idPhotoFront}}'></image>
+                    <text>点击上传带头像一面</text>
+                </view>
+                <view class='back' bindtap='getIdPhotoRear'>
+                    <image src='{{idPhotoRear}}'></image>
+                    <text>点击上传带国徽的一面</text>
+                </view>
+            </view>
+            <view class='form-inoput'>
+                <view class='title'>
+                    <text>验证码</text>
+                </view>
+                <view class='input-box'>
+                    <input name="code" data-types="code" bindinput="inputChange" placeholder='请输入您的验证码'></input>
+                </view>
+                <button class='get-code {{sending?"":"sending"}}' catchtap='{{sending?"getCode":""}}'>{{sending?"获取验证码":"重新获取("+second+")"}}</button>
+            </view>
+        </view>
+        <button form-type="submit" class='submit-btn'>下一步</button>
+    </view>
+</form>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

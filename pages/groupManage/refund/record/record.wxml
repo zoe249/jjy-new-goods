@@ -1,0 +1,65 @@
+<!--pages/refund/record/record.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view class="refund-record">
+        <block wx:for="{{listArr}}" wx:for-item="li" wx:for-index="i" wx:key='li{i}'>
+            <view class="refund-record-li">
+                <view class="head">
+                    <view class="orderId clearfix"><view class="span">退款单号</view><view class="em">{{li.id}}</view></view>
+                    <view class="time clearfix"><view class="span">申请时间</view><view class="em">{{li.newTime}}</view></view>
+                </view>
+                <view class="list">
+                    <block wx:for="{{li.detailOutputList}}" wx:for-item="product" wx:for-index="j" wx:key='{{i}}product{{j}}'>
+                        <view class="pro r1bt">
+                            <image class="img" src="{{product.goodsImage}}"></image>
+                            <view class="pro-name">{{product.goodsName}}</view>
+                            <view class="pro-num">申请数量：{{product.refundGoodsCount}}</view>
+                        </view>
+                    </block>
+                </view>
+                <view class="state-box r1bt" data-id="{{li.id}}" catchtap="toRefundDetail">
+                    <block wx:if="{{li.currentState==115||li.currentState==444||li.currentState==443||li.isCancel==true||li.currentState==170}}">
+                        <view class="state">已完成</view>
+                    </block>
+                    <block wx:else>
+                        <view class="state stateing">进行中</view>
+                    </block>
+                    <view class="state-text">{{li.content}}</view>
+                </view>
+                <!-- <block wx:if="{{li.isShow==true}}">
+                    <view class="cancel-btn r1bt" catchtap="showCancel" data-order-type="{{li.orderType}}" data-id="{{li.id}}">取消申请</view>
+                </block> -->
+                <block wx:if="{{li.currentState != 170 && li.currentState != 115}}">
+                    <view class="receipt-flag-btn {{li.selfPointReceiptFlag?'allow':''}}" data-index="{{i}}" data-item="{{li}}" bindtap="{{li.selfPointReceiptFlag?'selfPointReceipt':''}}">{{li.selfPointReceiptFlag?'收货':'已签收'}}</view>
+                </block>
+            </view>
+        </block>
+        <block wx:if="{{!hasNextPage&&listJson.length>=3}}">
+            <view class="bottom">已经到底啦~</view>
+        </block>
+    </view>
+</block>
+<block wx:if="{{showDelGoodsPop}}">
+    <template is="del-goods-tpl"></template>
+</block>
+<!--是否删除该商品-->
+<template name="del-goods-tpl">
+    <view class="del-goods-pop">
+        <view class="del-goods-box">
+            <view class="del-goods-text">您确定要取消申请吗？</view>
+            <view class="del-goods-btn clearfix">
+                <view class="del-goods-cancel" catchtap="cancelDelGoods">取消</view>
+                <view class="del-goods-confirm" catchtap="confirmDelGoods">确定</view>
+            </view>
+        </view>
+    </view>
+</template>

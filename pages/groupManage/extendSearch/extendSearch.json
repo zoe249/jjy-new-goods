@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "推荐",
+  "usingComponents": {
+      "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+      "extend-goods":"/component/extendGoods/index",
+      "component-backstage-footer-nav": "/component/backstageFooterNav/backstageFooterNav",
+      "component-share-popup": "/component/sharePopup/sharePopup"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的消息",
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher"
+  }
+}

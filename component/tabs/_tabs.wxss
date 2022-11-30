@@ -1,0 +1,86 @@
+/* 社区首页 频道 */
+.home-channel-tabs .ma-tabs-bar-item{
+  margin-right: 54rpx;
+  padding: 20rpx 0 16rpx;
+}
+.channel-tab-act{
+  position: relative;
+  font-size: 30rpx;
+}
+.channel-tab-act::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8rpx;
+  transform: translateX(-50%);
+  width: 32rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+  z-index: 1;
+  background: #fff;
+}
+.not-theme-channel-tab{
+  position: relative;
+}
+.not-theme-channel-tab::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8rpx;
+  transform: translateX(-50%);
+  width: 32rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+  z-index: 1;
+  background: #FF4752;
+}
+
+/* 社区首页 tab*/
+.community-home {
+  background-color: #f4f4f4;
+}
+.community-home .ma-tabs-bar-value {
+  display: inline-block;
+  padding:0 32rpx;
+  height: 112rpx;
+  line-height: 112rpx;
+  color: #444444;
+  font-weight: 300;
+}
+.community-home .tab-bar-title-selected .ma-tabs-bar-value{
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--blue);
+}
+/*差异列表*/
+.report-diff-tab {
+  background: #fff;
+  padding: 0 32rpx;
+}
+.report-diff-tab .ma-tabs-bar-content{
+  display: flex;
+}
+
+.report-diff-tab .ma-tabs-bar-item{
+  flex: 1;
+
+}
+.report-diff-tab .ma-tabs-bar-title{
+  width: 100%;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 5rpx solid #E7E7E7;
+}
+.report-diff-tab .ma-tabs-bar-title.report-diff-act{
+  border-bottom: 5rpx solid var(--blue);
+}
+/* flex */
+.ma-tabs-bar-content.flex-tab{
+  display: flex;
+}
+
+.ma-tabs-bar-content.flex-tab .ma-tabs-bar-item{
+  flex: 1;
+  text-align: center;
+}

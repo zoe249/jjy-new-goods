@@ -1,0 +1,42 @@
+<!--component/groupFooterNav/groupFooterNav.wxml-->
+<view class="footer-seat"></view>
+<view class="footer-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}} {{isBlack?'blackWhite':''}}">
+  <view class="footer-item-container {{groupHomeCurrent == 0 ? ' active' : ''}}"  catchtap="jumpToGroupPage" data-url="/pages/groupManage/home/home" data-grouphomecurrent="0" data-buried-id="D1016">
+    <view class="nav-icon">
+        <image src="/images/tabBar/icon_1{{groupHomeCurrent == 0 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
+    </view>
+    <view class="nav-text">首页</view>
+  </view>
+  <block wx:for="{{isAddNavigation}}" wx:key="index" >
+    <view class="footer-item-container {{groupHomeCurrent == 1 ? ' active' : ''}}" wx:if="{{item.channel_type == '2170'}}"  catchtap="jumpToGroupPage" data-item="{{item}}" data-grouphomecurrent="1" data-buried-id="D1017" data-nav-link-url="{{item}}" >
+      <view class="nav-icon">
+          <image src="{{item.img_url}}" mode="aspectFit"></image>
+      </view>
+      <view class="nav-text">{{item.title}}</view>
+    </view>
+  </block>
+
+  
+  <view class="footer-item-container f-scan{{groupHomeCurrent == 2 ? ' active' : ''}}" catchtap="jumpToGroupPage" data-submsg="{{true}}" data-url="/pages/user/vipPayCode/vipPayCode" data-type="nav" data-grouphomecurrent="2" data-buried-id="D1018">
+    <view class="scan-jump">
+      <view class="scan-qr"><image src="{{$.img_src}}/yx_index/qr_code.png"  mode="aspectFit"/></view>
+      <text class="text">会员码</text>
+    </view>
+    <!-- <text class="nav-msg">取货</text> -->
+  </view>
+  <view class="footer-item-container navShoppingCart {{groupHomeCurrent == 3 ? ' active' : ''}}" catchtap="jumpToGroupPage" data-url="/pages/cart/groupManageCart/groupManageCart" data-grouphomecurrent="3"  data-buried-id="D1019">
+    <view class="nav-icon">
+        <image src="/images/tabBar/icon_4{{groupHomeCurrent == 3 ? '_focus' : ''}}@2x.png" mode="aspectFit">
+            <text class="cart-goods-total-number" style="display: {{groupManageCartNum <= 0 ? 'none' : ''}};">{{groupManageCartNum}}</text>
+        </image>
+    </view>
+    <view class="nav-text">购物车</view>
+  </view>
+  <view class="footer-item-container {{groupHomeCurrent == 4 ? ' active' : ''}}" catchtap="jumpToGroupPage" data-submsg="{{true}}" data-url="/pages/user/user" data-grouphomecurrent="4"  data-buried-id="D1020">
+      <view class="nav-icon">
+          <image src="/images/tabBar/icon_5{{groupHomeCurrent == 4 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
+      </view>
+      <view class="nav-text">我的</view>
+  </view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</view>

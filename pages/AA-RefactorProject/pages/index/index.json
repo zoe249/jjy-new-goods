@@ -1,0 +1,13 @@
+{
+  "navigationStyle": "custom",
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "yx-index-content-component": "/pages/AA-RefactorProject/component/yxIndexComponent/yxIndexComponent",
+    "active-component": "/pages/AA-RefactorProject/component/ActiveComponent/index",
+    "back-top": "/pages/AA-RefactorProject/component/BackTop/index",
+    "cuModal":"/component/cuModal/cuModal"
+  }
+}

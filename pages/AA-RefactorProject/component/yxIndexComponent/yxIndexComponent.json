@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "category-grid-component":"../syCategoryGrid/syCategoryGrid",
+        "activity-category-grid":"../ActivityCategory/index",
+        "yx-index-lower-half":"../yxIndexLowerHalf/yxIndexLowerHalf",
+        "yx-index-title":"../yxIndexTitle/yxIndexTitle",
+        "yx-need-hot-component":"../NeedHot/NeedHot"
+    }
+}

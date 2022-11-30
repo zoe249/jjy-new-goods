@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "component-goods-item": "/component/activityGoodsItem/activityGoodsItem",
+    "component-full-goods-item": "/component/activityFullGoodsItem/activityFullGoodsItem",
+    "component-three-goods-item": "/component/threeGoodsItem/threeGoodsItem",
+    "component-go-cart": "/component/goCart/goCart"
+  }
+}

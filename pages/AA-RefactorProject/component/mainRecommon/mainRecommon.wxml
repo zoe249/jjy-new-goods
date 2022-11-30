@@ -1,0 +1,48 @@
+<view class="page" bindtap="toClassification" data-item="{{mainData}}">
+	<!-- 顶部标题部分 -->
+	<view class="top dis_f_l_c">
+		<image class="topBg"
+			src="{{itemIndex%2==0?$.img_src+'/yx_index/main_t_bg_1.png':$.img_src+'/yx_index/main_t_bg_2.png'}}"
+			mode="aspectFill"></image>
+		<view class="title">{{mainData.titleObj.recommendTitle}}</view>
+		<view class="content" wx:if="{{mainData.titleObj.describle}}">
+			<image class="contentBg" src="{{mainData.titleObj.imgBackGroundUrl}}" mode="aspectFill"></image>
+			<view class="btn" style="background:{{itemIndex%2==0?'#FF3819':'#ffd29b'}}">
+				<view>{{mainData.titleObj.describle}}</view>
+				<image src="{{$.img_src}}/yx_index/more_5.png" mode="widthFix"></image>
+			</view>
+		</view>
+	</view>
+	<!-- 底部商品部分 -->
+	<view class="bottom dis_f_sb_c">
+		<block wx:for="{{mainData.commodityObj}}" wx:key="index">
+			<view class="errShop dis_f_co_c_c" wx:if="{{item.noShop}}">
+				<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+				<text>暂无商品</text>
+			</view>
+			<view class="li" wx:else>
+				<view class="left" wx:if="{{item.extendJson.coverImage}}">
+					<image class="goods_img" src="{{item.extendJson.coverImage}}" mode="scaleToFill">
+					</image>
+					<!-- 视频图标 -->
+					<view class="videoIcon dis_f_c_c"
+						wx:if="{{item.extendJson.videoAddress!=null && item.extendJson.videoAddress!=''}}">
+						<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit">
+						</image>
+					</view>
+				</view>
+				<view wx:else class="noGoodImg dis_f_co_c_c">
+					<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+					<text>暂无图片</text>
+				</view>
+				<view class="title slh_one">
+					{{item.extendJson.materielParentName||item.extendJson.goodsPromotionName||item.extendJson.shortTitle||item.extendJson.goodsName||""}}
+				</view>
+				<view class="price dis_f_l_c slh_one">
+					<text class="slh_one">¥ {{item.extendJson.goodsPrice}}</text>
+					<text class="unit slh_one">{{item.extendJson.salesUnit?'/'+item.extendJson.salesUnit:''}}</text>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>

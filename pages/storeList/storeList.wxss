@@ -1,0 +1,86 @@
+/* pages/shopList/shopList.wxss */
+@import '/templates/storeItem/storeItem.wxss';
+ .wrapper {
+    background: #fff;
+    height: 100vh;
+   
+}
+
+.hidden {
+    display: none;
+}
+
+.search-top-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 750rpx;
+    z-index: 999;
+    padding: 22rpx 32rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid #ededed;
+    background: #fff;
+}
+
+.search-container {
+    flex: 1;
+    background: #F4F4F4;
+    border-radius: 20rpx;
+    margin-right: 32rpx;
+    padding: 0 80rpx;
+    position: relative;
+}
+
+.search-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 64rpx;
+    height: 64rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+    background-size: 30rpx 30rpx;
+}
+
+
+
+.search-container .clear-search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 64rpx;
+    height: 64rpx;
+    background: url('https://shgm.jjyyx.com/m/images/del.png') no-repeat center;
+    background-size: 28rpx 28rpx;
+}
+
+.search-container .search-input {
+    width: 100%;
+    height: 64rpx;
+    font-size: 26rpx;
+}
+.container {
+    padding-top: 110rpx;
+    min-height: 100vh;
+}
+.searchView
+{
+    position: relative;
+    width: 100rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    align-items: center;
+    text-align: center;
+    font-weight: bold
+}
+.searchBtn
+{
+    background: #155c99;
+    color: white;
+    border-radius: 6rpx;
+}
+.cancleBtn
+{
+    color: #ff4752;
+}

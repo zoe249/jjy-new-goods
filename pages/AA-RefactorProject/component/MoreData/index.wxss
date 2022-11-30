@@ -1,0 +1,46 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.more_data {
+	min-height: 90rpx;
+	font-size: 28rpx;
+	color: #aaa;
+}
+
+.more_data .icon {
+	width: 32rpx;
+	height: 32rpx;
+	margin-right: 10rpx;
+	animation: loading 2s linear infinite;
+}
+
+.more_data .no_more {
+	width: 220rpx;
+	height: 30rpx;
+}
+
+
+@keyframes loading {
+	from {
+		transform: rotate(0deg)
+	}
+
+	to {
+		transform: rotate(360deg)
+	}
+}
+
+/* 分类页样式 */
+.Explosives .xian{
+	width: 126rpx;
+	height: 1rpx;
+	background: #FFFFFF;
+}
+.Explosives .zi{
+	font-size: 24rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	margin: 0 77rpx;
+}
+

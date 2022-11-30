@@ -1,0 +1,188 @@
+<!--pages/activity/index/index.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<scroll-view class='container' id="container" bindscroll="scrollFunc" scroll-into-view="{{scrollIntoViewId}}" scroll-y="true" style='background:{{pageBgSectionStyle}}'>
+  <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem" wx:for-index="moduleIndex">
+    <!-- 头图 start -->
+    <!-- <block wx:if="{{moduleItem.sectionType == 1326 && moduleItem.recommendList.length}}">
+      <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+        <view class='activity-title' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+          <image class='title-image' src='{{recommendItem.imgUrl}}' mode="widthFix"></image>
+        </view>
+      </block>
+    </block> -->
+    <!-- <block wx:elif="{{moduleItem.sectionType == 1812 && moduleItem.recommendList.length}}">
+      <block wx:if="{{moduleItem.sectionStyle == 1813}}">
+        <swiper class="swiper-container {{moduleItem.recommendList.length == 1 ? 'one-coupon' : ''}}"
+                display-multiple-items="{{moduleItem.recommendList.length == 1 ? '1' : '1.08'}}">
+          <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-index="idx">
+            <swiper-item>
+              <view
+                class="coupon-item-container {{item.extendObj[0].couponType == 4 ? 'free-shipping' : ''}} {{item.extendObj[0].status != 1 ? 'dis' : ''}}"
+                catchtap="receiveCoupon" data-coupon-id="{{item.extendObj[0].couponId}}" data-batch-type="271"
+                data-index="{{idx}}" data-module-index="{{moduleIndex}}"
+                data-section-style="{{moduleItem.sectionStyle}}">
+                <view class="coupon-left-container">
+                  <block
+                    wx:if="{{item.extendObj[0].couponType == 1 || item.extendObj[0].couponType == 2 || item.extendObj[0].couponType == 5}}">
+                    <text class="coupon-value">{{item.extendObj[0].couponValue}}</text>
+                    <text class="coupon-label">{{item.extendObj[0].label}}</text>
+                  </block>
+                  <block wx:elif="{{item.extendObj[0].couponType == 3}}">
+                    <text class="coupon-discount-value">{{item.extendObj[0].couponValue}}折</text>
+                    <text class="coupon-label">{{item.extendObj[0].label}}</text>
+                  </block>
+                  <block wx:elif="{{item.extendObj[0].couponType == 4}}">
+                    <text class="coupon-free-shipping-value">包邮券</text>
+                  </block>
+                </view>
+
+                <view class="coupon-right-container">
+                  <text class="coupon-desc">{{item.extendObj[0].describle}}</text>
+                  <text class="coupon-title">{{item.extendObj[0].title}}</text>
+                </view>
+
+                <block wx:if="{{item.extendObj[0].status == 1}}">
+                  <view class="coupon-btn"></view>
+                </block>
+                <block wx:elif="{{item.extendObj[0].status == 2}}">
+                  <view class="coupon-btn not-begin"></view>
+                </block>
+                <block wx:elif="{{item.extendObj[0].status == 3}}">
+                  <view class="coupon-btn end"></view>
+                </block>
+                <block wx:elif="{{item.extendObj[0].status == 4}}">
+                  <view class="coupon-btn sold-out"></view>
+                </block>
+                <block wx:elif="{{item.extendObj[0].status == 5}}">
+                  <view class="coupon-btn received"></view>
+                </block>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </block>
+    </block> -->
+  </block>
+  <!-- 头图 end -->
+
+  <!-- 导航 start  -->
+  <!-- <block wx:if="{{!navStyle.noNav && navList.length > 1}}">
+    <view class='nav-seat-container {{fiexdFlag ? "" : "no-height"}}'></view>
+    <scroll-view class='nav-container {{fiexdFlag ? "fixed_class" : ""}}' scroll-x="true" style='background-color: {{navStyle.bgItemColor}}'>
+      <view class='nav-list-container'>
+        <block wx:for="{{navList}}" wx:for-index="index" wx:key="sectionId" wx:for-item="navItem">
+          <block wx:if="{{navItem.sectionId == currSectionId || (currSectionId == 0 && index == 0)}}">
+          <text class='nav-item active' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}" style='background-color:{{navStyle.bgActiveColor||""}}; color: {{navStyle.activeColor||""}}'>{{navItem.sectionName}}</text>
+          </block>
+          <block wx:else>
+          <text class='nav-item' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}" style='background-color:{{navStyle.bgItemColor||""}}; color: {{navStyle.color||""}}'>{{navItem.sectionName}}</text>
+          </block>
+        </block>
+      </view>
+    </scroll-view>
+
+  </block> -->
+  <!-- 导航 end  -->
+
+  <view class='module-goods-list'>
+    <!-- <block wx:if="{{formType == 1}}">
+      <view class='goods-list-container' id="section_{{moduleItem.sectionId}}">
+        <block wx:for="{{moduleList}}" wx:key="recommendId" wx:for-item="recommentItem">
+          <block wx:if="{{recommentItem.bizType == 17 && recommentItem.imgUrl}}">
+            <view class='module-header-image' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+              <image src='{{recommentItem.imgUrl}}' mode='widthFix'></image>
+            </view>
+          </block>
+          <block wx:else>
+            <component-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"
+                                  bind:change-cart="changeCartCount" form-type="{{formType}}"></component-goods-item>
+          </block>
+        </block>
+      </view>
+    </block>
+    <block wx:else> -->
+      <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+        <block wx:if="{{moduleItem.sectionType == 1703 && moduleItem.recommendList.length}}">
+          <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId">
+            <block wx:if="{{item.imgUrl}}">
+              <view class='bottom-link' data-link="{{item.linkUrl}}" bindtap='goOtherLink'>
+                <image src="{{item.imgUrl}}" mode="widthFix"></image>
+              </view>
+            </block>
+          </block>
+        </block>
+        <block wx:elif="{{moduleItem.sectionType == 1703 && moduleItem.recommendList.length}}">
+          <block wx:if="{{moduleItem.sectionStyle == 1259}}">
+            <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+              <view data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+                <image src="{{recommendItem.imgUrl}}" mode="widthFix" class="module-image"></image>
+              </view>
+            </block>
+          </block>
+          <block wx:elif="{{moduleItem.sectionStyle == 1261}}">
+            <view class="pic-module-container">
+              <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+                <view class="pic-item" data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+                  <image src="{{recommendItem.imgUrl}}" mode="widthFix" class="pic"></image>
+                </view>
+              </block>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{moduleItem.sectionType == 909 && moduleItem.recommendList.length}}">
+          <view class='goods-list-container' id="section_{{moduleItem.sectionId}}" style='background-color: {{moduleItem.sectionBgcolor}}'>
+            <block wx:for="{{moduleItem.recommendList}}" wx:for-item="recommentItem" wx:key="recommendId"
+                   wx:for-index="recommendIndex">
+              <block wx:if="{{recommentItem.bizType == 17 && recommentItem.imgUrl}}">
+                <view class='module-header-image' data-link="{{recommendItem.linkUrl}}" bindtap="autoJump" data-item="{{recommentItem}}" >
+                  <image src='{{recommentItem.imgUrl}}' mode='widthFix'></image>
+                </view>
+              </block>
+              <block wx:else>
+                <!-- <block wx:if="{{moduleItem.sectionStyle == 1261}}">
+                  <view class="goods-normal-item">
+
+                  </view>
+                  <component-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}" bind:change-cart="changeCartCount"></component-goods-item>
+                </block>
+                <block wx:elif="{{moduleItem.sectionStyle == 1259}}">
+                <view class="goods-normal-item">
+                  
+                  </view>
+                  <component-full-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"  bind:change-cart="changeCartCount"></component-full-goods-item>
+                </block>
+                <block wx:elif="{{moduleItem.sectionStyle == 1919}}">
+                <view class="goods-normal-item">
+                  
+                  </view>
+                  <three-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"  bind:change-cart="changeCartCount"></three-goods-item>
+                </block>
+                <block wx:elif="{{moduleItem.sectionStyle == 1404}}">
+                  <block wx:if="{{recommendIndex == 1}}">
+                  <view class="goods-normal-item">
+                  
+                  </view>
+                    <component-full-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"  bind:change-cart="changeCartCount"></component-full-goods-item>
+                  </block>
+                  <block wx:else>
+                  <view class="goods-normal-item">
+                  
+                  </view>
+                    <component-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}" bind:change-cart="changeCartCount"></component-goods-item>
+                  </block>
+                </block> -->
+              </block>
+            </block>
+          </view>
+        </block>
+        <block wx:elif=""></block>
+      </block>
+    <!-- </block> -->
+  </view>
+  <!-- <block wx:if="{{navStyle.showGoCartFlag !== false}}">
+    <component-go-cart cart-count="{{cartCount}}"></component-go-cart>
+  </block> -->
+  <template is="empty" wx:if="{{empty}}"></template>
+  <template is="toast" data="{{...toastData}}"></template>
+</scroll-view>

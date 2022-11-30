@@ -1,0 +1,12 @@
+
+<view class='poster-container {{visible?"isVisible":""}}'>
+    <view class='mask' catchtap='closeSharePoster'></view>
+    <view class='poster-wrap'>
+        <view class='poster-info'>
+            <button open-type='share' data-types='posrer'>
+                <image src='https://shgm.jjyyx.com/m/images/group/activty/page_poster.png'></image>
+            </button>
+        </view>
+    </view>
+</view>
+

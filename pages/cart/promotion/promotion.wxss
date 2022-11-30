@@ -1,0 +1,374 @@
+/* promotion.wxss */
+
+.wrapper {
+    height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.search-top-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 750rpx;
+    height: 100rpx;
+    z-index: 999;
+    padding: 22rpx 32rpx;
+    display: flex;
+    border-bottom: 2rpx solid #ededed;
+    background: #fff;
+}
+
+.search-container {
+    flex: 1;
+    background: #f5f5f5;
+    border-radius: 28rpx;
+    padding: 0 56rpx;
+    position: relative;
+}
+
+.search-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56rpx;
+    height: 56rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+    background-size: 30rpx 30rpx;
+}
+
+.search-container.focus::before {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_search_active.png');
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 56rpx;
+    height: 56rpx;
+    background: url('https://shgm.jjyyx.com/m/images/del.png') no-repeat center;
+    background-size: 28rpx 28rpx;
+}
+
+.search-input {
+    width: 100%;
+    height: 56rpx;
+    font-size: 26rpx;
+}
+
+.search-cancel {
+    font-size: 30rpx;
+    color: #777;
+    line-height: 0;
+    padding: 28rpx 0;
+}
+
+.content {
+    /* padding-top: 100rpx; */
+    min-height: 100vh;
+}
+
+.promotion-head-container {
+    position: relative;
+    padding: 30rpx 30rpx 24rpx 72rpx;
+    background-color: #fff;
+}
+
+.promotion-head-container::before {
+    content: '';
+    display: block;
+    width: 30rpx;
+    height: 28rpx;
+    position: absolute;
+    left: 30rpx;
+    top: 32rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_laba.png") no-repeat center;
+    background-size: contain;
+}
+
+.promotion-head-container .pro-info {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.promotion-head-container .pro-info .name,
+.promotion-head-container .pro-info .desc {
+    flex: none;
+    line-height: 1.5;
+    color: #777;
+    font-size: 24rpx
+}
+
+.promotion-head-container .pro-info .desc {
+    flex: 1;
+}
+
+.promotion-title {
+    color: #444;
+}
+
+.goods-list-container {
+  position: relative;
+  display: flex;
+  flex-flow: wrap;
+  width: 720rpx;
+  justify-content: space-between;
+  margin: 16rpx auto;
+  padding: 0 0rpx 20rpx;
+}
+.goods-list-container::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2rpx;
+  height: 100%;
+  background: #f4f4f4;
+  z-index: 3;
+}
+.bottom-container {
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 90rpx;
+    z-index: 999;
+    border-top: 1rpx solid #ededed;
+}
+
+.bottom-container.iphone-x-patcher-container {
+    flex-wrap: wrap;
+    height: auto;
+    background-color: #fff;
+}
+
+.bottom-container.iphone-x-patcher-container component-iphone-x-patcher {
+    width: 100%;
+}
+
+.bottom-msg-container {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding:10rpx 16rpx 0;
+    background: #fff;
+}
+
+.bottom-msg-container .price-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.bottom-msg-container .price-container .price-title {
+    color: #444;
+    font-size: 24rpx;
+    line-height: 1;
+}
+
+.bottom-msg-container .price-container .price-symbol {
+    color: #FF4752;
+    font-size: 24rpx;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.bottom-msg-container .price-container .price-int {
+    color: #FF4752;
+    font-size: 38rpx;
+    line-height: 0;
+    padding: 16rpx 0;
+}
+
+.bottom-msg-container .price-container .price-float {
+    color: #FF4752;
+    font-size: 28rpx;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.bottom-msg-container .current-state {
+    font-size: 20rpx;
+    color: #999;
+    line-height: 1.1;
+    padding: 10rpx 0;
+}
+
+.bottom-container .see-buy-btn,
+.bottom-container .go-cart-btn {
+    width: 210rpx;
+    color: #fff;
+    padding: 45rpx 0;
+    line-height: 0;
+    text-align: center;
+    font-size: 32rpx;
+    background: #FF4752;
+}
+
+.bottom-container .see-buy-btn {
+    background: #ffa601;
+}
+
+.markup-price-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+}
+
+.markup-price-container .markup-top-container {
+    position: relative;
+    width: 100%;
+    padding: 48rpx 0;
+    background: #fff;
+    text-align: center;
+    font-size: 28rpx;
+    color: #444;
+    line-height: 0;
+    border-bottom: 2rpx solid #ededed;
+}
+
+.markup-price-container .markup-top-container .markup-close-btn {
+    position: absolute;
+    top: 38rpx;
+    right: 20rpx;
+    width: 22rpx;
+    height: 20rpx;
+}
+
+.markup-price-container .markup-mid-container {
+    width: 100%;
+    max-height: 712rpx;
+    background: #fff;
+}
+
+.markup-price-container .markup-mid-container .markup-goods-item {
+    width: 100%;
+    height: 178rpx;
+    border-top: 2rpx solid #ededed;
+    display: flex;
+    align-items: stretch;
+    padding: 24rpx 32rpx;
+}
+
+.markup-price-container .markup-mid-container .markup-goods-item.no-border {
+    border: none;
+}
+
+.markup-mid-container .check-icon {
+    width: 30rpx;
+    height: 100%;
+    background: url('https://shgm.jjyyx.com/m/images/icon_check.png') no-repeat center;
+    background-size: contain;
+    margin-right: 14rpx;
+}
+
+.markup-mid-container .check-icon.acitve {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_check_active.png');
+}
+
+.markup-mid-container .check-icon.disabled {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_check_no.png');
+}
+
+.markup-mid-container .markup-goods-image {
+    width: 130rpx;
+    height: 130rpx;
+    margin-right: 20rpx;
+    border: 2rpx solid #ededed;
+    background: #fff no-repeat center;
+    background-size: contain;
+}
+
+.markup-price-container .markup-goods-msg-container {
+    flex: 1;
+    max-width: 500rpx;
+    display: flex;
+    flex-flow: column;
+}
+
+.markup-goods-msg-container .markup-goods-name {
+    height: 28rpx;
+    font-size: 26rpx;
+    color: #4e4e4e;
+    line-height: 28rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.markup-goods-msg-container .markup-goods-spec {
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.markup-goods-msg-container .markup-goods-price {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    font-size: 24rpx;
+    color: #FF4752;
+}
+
+.markup-goods-msg-container .markup-goods-price .price-symbol,
+.markup-goods-msg-container .markup-goods-price .sales-unit {
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.markup-goods-msg-container .markup-goods-price .price {
+    font-size: 38rpx;
+    line-height: 0;
+    padding: 16rpx 0;
+}
+
+.markup-goods-msg-container .markup-goods-price .markup-state {
+    text-align: right;
+    flex: 1;
+    color: #444;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.markup-price-container .markup-bottom-container {
+    width: 100%;
+    height: 90rpx;
+    background: #fff;
+    padding-left: 32rpx;
+    display: flex;
+    align-items: center;
+    border-top: 2rpx solid #ededed;
+}
+
+.markup-price-container .markup-bottom-container .check-msg {
+    flex: 1;
+    font-size: 28rpx;
+    color: #444;
+    line-height: 0;
+    padding: 14rpx 0;
+}
+
+.markup-price-container .markup-bottom-container .check-btn {
+    width: 210rpx;
+    background: #FF4752;
+    color: #fff;
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 0;
+    padding: 45rpx 0;
+}

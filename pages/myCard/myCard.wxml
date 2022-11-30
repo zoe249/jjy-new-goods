@@ -1,0 +1,127 @@
+<import src="/templates/global/global.wxml" />
+<!-- 生活卡余额 -->
+<view class="store_card_infor pos-r">
+    <!-- <image src="https://shgm.jjyyx.com/m/images/icon_store_card_bg.png" style='height:{{scrollFix}}rpx'></image> -->
+    <view class="p pos-a plr16 store_card_tips">
+        <view class="span">生活卡余额（元）：</view>
+        <view class="a fr" bindtap="jumpPage" data-url="/pages/myCard/balanceDetails/balanceDetails">
+            余额明细
+        </view>
+    </view>
+    <view class="pos-a detail">
+        <view class="strong">￥{{MyCardData.valueCard?MyCardData.valueCard:'0'}}</view>
+        <view class="span">可用卡 {{MyCardData.listNum?MyCardData.listNum:'0'}} 张</view>
+    </view>
+    <view class="haoshika-info pos-a" bindtap="jumpDocument" data-mod="haoshika">使用说明</view>
+</view>
+<!-- tab -->
+<view class="head_is_fixed">
+    <view class="head_is_fixed_wrap r1bb {{isFixed?'is_fixed':''}}">
+        <view class="store_card_nav">
+            <view class="ui-flex">
+                <navigator class="cell2 {{modeId == 1?'active-nav':''}}" data-act='1' url="/pages/myCard/myCard" open-type="redirectTo">
+                    <view class="span pos-r" data-act='1'>购卡</view>
+                </navigator>
+                <navigator class="cell2 {{modeId == 2?'active-nav':''}}" data-act='2' url="/pages/myCard/cardBag/cardBag" open-type="redirectTo">
+                    <view class="span pos-r" data-act='2'>卡包</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 购卡 -->
+<block wx:for="{{storeCardList}}" wx:for-item="list" wx:key="*thisitem">
+    <block wx:if="{{list.sectionType == 25}}">
+        <block wx:for="{{list.recommendList}}" wx:for-item="bannerImg" wx:key="*thisitems">
+            <image class="box-banner" bindtap="jumpPage" data-url="{{bannerImg.linkUrl}}" src="{{bannerImg.imgUrl}}" mode='aspectFit'></image>
+        </block>
+    </block>
+    <block wx:elif="{{list.recommendList.length>0}}">
+        <view class="goods-column2">
+            <block wx:for="{{list.recommendList}}" wx:for-item="item" wx:key="*thisitems">
+                <view class="card_goods_list r1b pos-r" bindtap="buyCards" data-item="{{item.extendJson}}">
+                    <view class='goods_list_wrap'>
+                        <block wx:if="{{item.extendData.promotionList.length > 0 }}">
+                            <view class="leftUpTag-box">
+                                <image class="img" src="{{item.extendData.promotionList[0].proTag}}"></image>
+                            </view>
+                        </block>
+                        <view class="good-img" data-rec="{{item.recommendId}}">
+                            <image class="img" src="{{item.extendData.coverImage||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+                        </view>
+                        <view class="good-info">
+                            <view class="h3 ellipsis">{{item.extendData.shortTitle||""}}</view>
+                            <view class="h4 ellipsis c-gray-color">
+                                {{item.extendData.goodsTag}}
+                            </view>
+                            <view class='p'>
+                                <text class="em">{{item.extendData.salePrice}}</text>
+                                <text class="panic_buying">购买</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </block>
+</block>
+<!-- 购卡记录列表 -->
+<view class="section-container">
+    <view class="link-group">
+        <view class="link-item" bindtap="jumpPage" data-url="/pages/myCard/list/list">
+            <view class="text forword">查看购卡历史</view>
+            <!-- <view class="icon icon-arrow-right"><view class="mask"></view></view> -->
+        </view>
+    </view>
+</view>
+<!-- 没有更多了 -->
+<view style="width: 100%; display: {{true || noMore ? '' : 'none'}};">
+    <template is="noMore"></template>
+</view>
+<component-iphone-x-patcher></component-iphone-x-patcher>
+<!-- 历史生活卡 -->
+<block wx:if="{{historyCard.length > 0 && modeId == 2}}">
+    <view class="history-wrap pos-f {{show?'show-history fadeInUp':''}}{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+        <view class='head-title' bindtap='showHistoryCard' data-show='{{show}}' bindtap='showHistoryCard'>
+            <text class='pos-r'>{{title}}</text>
+            <text class='rotate-arrow'></text>
+        </view>
+        <component-iphone-x-patcher></component-iphone-x-patcher>
+        <scroll-view class='history-card-list' scroll-y="{{show}}" bindscrolltolower="bindscrolltolowerCardList">
+            <view class='my_store_card_list'>
+                <block wx:for="{{historyCard}}" wx:key="*thisitem">
+                    <view class="li mlr16 pos-r isExpire" bindtap='recordDetails' data-id="{{item.valueCardCode}}">
+                        <image class="img" src="{{item.valueCardImage||'https://shgm.jjyyx.com/m/images/wuxiaokabg.png'}}"></image>
+                        <view class="card_top_right pos-a">
+                            <view class="span">
+                                <text class="i">余额：</text>
+                                <text class="em pos-r pl16">{{item.valueCardBalance}}</text>
+                            </view>
+                            <view>{{item.valueCardName}}</view>
+                        </view>
+                        <view class="card_infor pos-a">
+                            <view class="p card_number">
+                                NO.
+                                <text class='em'>{{item.valueCardCode}}</text>
+                            </view>
+                            <view class="span">有效期至:{{item.valueCardEndTime}}</view>
+                        </view>
+                        <view class="card_record pos-a">
+                            <text class="button pr16 color-red" bindtap='recordDetails' data-id="{{item.valueCardCode}}">
+                                {{item.isExpire == 1?'已过期':'已使用'}}
+                            </text>
+                        </view>
+                    </view>
+                </block>
+            </view>
+            <!-- 没有更多了~ -->
+            <view style="display: {{noMoreHistory ? '' : 'none'}};">
+                <template is="noMore"></template>
+            </view>
+        </scroll-view>
+    </view>
+</block>
+<block wx:if="{{otherMes == 'empty'}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+</block>
+<template is="toast" data="{{...toastData}}"></template>

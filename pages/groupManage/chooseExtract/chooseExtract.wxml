@@ -1,0 +1,85 @@
+<import src="/templates/global/global.wxml" />
+<!-- <view class='search-tpl' bindtap='mapSelectLocation'>
+  <view class='search-tpl-wrap'>
+    <image class='search-tpl-img' src='https://shgm.jjyyx.com/m/images/icon_search_g.png'></image>
+    <view class='search-tpl-input'>
+      <view class="input">搜索地址附近提货点/提货点地址</view>
+    </view>
+  </view>
+</view> -->
+<view class="search-tpl" id="search_outer">
+  <view class="search-tpl-wrap">
+    <view class="picker-btn"><picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcancel="bindMultiPickerCancel" bindcolumnchange="bindMultiPickerColumnChange" value="{{selectedMultiIndex}}" range="{{selectedMultiArray}}" range-key="{{'name'}}">
+      <view class="local_area">{{selectedMultiArray[1][selectedMultiIndex[1]].name}}</view>
+    </picker></view>
+    <view class="search-inner{{isSearchBoxActive ? ' active' : ''}}" id="search_form" name="search_form" action="" method="get">
+      <image class='search-tpl-img' src='https://shgm.jjyyx.com/m/images/icon_search_g.png'></image>
+      <input class="input" id="key_word" type="text" value="{{searchText}}" confirm-type="search" bindconfirm="search" bindinput="onSearchBoxInput" bindfocus="onSearchBoxFocus" bindblur="onSearchBoxBlur" placeholder="搜索地址附近提货点/提货点地址"></input>
+      <view class="i" id="del" bindtap="clearSearchBox" style="display:{{showClearSearchButton ? '' : 'none'}}"></view>
+    </view>
+  </view>
+</view>
+<!--当前自提点-->
+<view class='current-extract-area' wx:if="{{!selectSearch && showNow}}">
+  <view class='current-extract-info'>
+    <image src='{{selfMentionPoint.photo}}'></image>
+    <text>当前提货点</text>
+    <view class='current-extract-name'>{{selfMentionPoint.addrTag}}</view>
+  </view>
+  <view class='current-extract-address'>
+    <view class='current-extract-region'>{{selfMentionPoint.provinceName}}{{selfMentionPoint.cityName}}{{selfMentionPoint.areaName}}</view>
+    <view class='current-extract-full-address'>{{selfMentionPoint.address}}</view>
+  </view>
+</view>
+
+<!--历史访问自提点-->
+<block wx:if="{{selfMentionPointHistory.length && !selectSearch}}">
+  <view class='extract-list-wrap history-extract-wrap'>
+    <view class='extract-title'>最近访问的提货点</view>
+    <block wx:for="{{selfMentionPointHistory}}" wx:key="this">
+      <view class='extract-list {{selfMentionPointHistory.length-1 == index?"":"hr-b"}}' bindtap="selectExtract" data-item="{{item}}">
+        <image class="extract-list-image" src='{{item.photo}}'></image>
+        <view class='extract-list-lists'>
+          <view class='extract-list-name'>{{item.addrTag}}</view>
+          <view class='extract-list-address'>{{item.provinceName}} {{item.cityName}} {{item.areaName}} {{item.address}}</view>
+        </view>
+
+      </view>
+    </block>
+  </view>
+</block>
+
+<block wx:if="{{extractList.length}}">
+  <view class='extract-list-wrap nearby-extract-wrap'>
+    <view class='extract-title'>附近的提货点</view>
+    <block wx:for="{{extractList}}" wx:key="this">
+      <view class='extract-list {{extractList.length-1 == index ? "":"hr-b"}}' bindtap="selectExtract" data-item="{{item}}">
+        <image class="extract-list-image" src='{{item.photo}}'></image>
+        <view class='extract-list-lists'>
+        <view class='extract-list-name'>{{item.addrTag}}</view>
+        <view class='extract-list-address'>{{item.provinceName}} {{item.cityName}} {{item.areaName}} {{item.address}}</view>
+        </view>
+        <view class='extract-list-distance'>距离{{item.distance}}</view>
+      </view>
+    </block>
+  </view>
+</block>
+
+
+<!-- 搜索结果列表 -->
+<view class="choice-address-result {{showSearchList ? '' : ' hidden'}}">
+  <view class="ul" id="search_list">
+    <view class="li r1bt" wx:for="{{searchList}}" wx:key="uid" wx:if="{{item.longitude && item.latitude}}">
+      <view class="a" bindtap="chooseSearchItem" data-location-info="{{item}}" data-from="{{'searchListLocation'}}">
+        <view class="em">{{item.name}}</view>
+        <view class="p">{{item.city}} {{item.district}} {{item.name}}</view>
+      </view>
+    </view>
+    
+    <template is="noMore" wx:if="{{searchList}}"></template>
+  </view>
+</view>
+
+<template is="noMore"></template>
+
+<template is="globalLoading" data="{{globalLoading}}"></template>

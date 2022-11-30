@@ -1,0 +1,416 @@
+page{
+  background:#fa8501;
+}
+.luck-draw-container {
+	position:relative;
+}
+
+.luck-draw-container .wrapper .head {
+	height: 210rpx;
+}
+.luck-draw-container .wrapper .body .prize-container .prize-mask {
+	position:absolute;
+	top: 192rpx;
+	left: 11rpx;
+	z-index:2;
+	width: 728rpx;
+	height: 728rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/fenkuang@2x.png") no-repeat center center;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .prize-led {
+	position:absolute;
+	top: 184rpx;
+	left: 11rpx;
+	z-index:3;
+	width: 728rpx;
+	height: 728rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/deng1@2x.png") no-repeat center center;
+	background-size:contain;
+	animation:led-flash 1.5s steps(1) infinite
+}
+.luck-draw-container .wrapper .body .prize-container .prize-led.running {
+	animation:led-flash 0.5s steps(1) infinite
+}
+@keyframes led-flash {
+	50% {
+	background-image:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/deng1-alt@2x.png")
+}
+}.luck-draw-container .wrapper .body .prize-container .prize-inner-bg {
+	position:absolute;
+	top: 266rpx;
+	left: 77rpx; /** 2.34375rem; */
+	width: 598rpx;
+	height: 598rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/neikuang@2x.png") no-repeat center center;
+	background-size:contain;
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list {
+	position:absolute;
+	top: 292rpx;
+	left: 110rpx;
+	z-index: 1;
+	width: 530rpx;
+	height: 530rpx;
+  border-radius: 26rpx;
+  overflow: hidden;
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item {
+	width: 76rpx;
+	height:76rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/quanxiexiecanyu@2x.png") no-repeat center center;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item:before {
+	content:'';
+	display:block;
+	width:76rpx;
+	height:76rpx;
+	background-color:rgba(0,0,0,0.38);
+	opacity:1;
+	transition:background .3s ease
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.active:before {
+	opacity:0;
+	transition:none
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-1 {
+	position:absolute;
+	left:0;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-2 {
+	position:absolute;
+	left:76rpx;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-3 {
+	position:absolute;
+	left:152rpx;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-4 {
+	position:absolute;
+	left:228rpx;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-5 {
+	position:absolute;
+	left:304rpx;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-6 {
+	position:absolute;
+	left:380rpx;
+	top:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-7 {
+	position:absolute;
+	right:0;
+	top:0;
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-8 {
+	position:absolute;
+	right:0;
+	top:76rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-9 {
+	position:absolute;
+	right:0;
+	top:152rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-10 {
+	position:absolute;
+	right:0;
+	top:228rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-11 {
+	position:absolute;
+	right:0;
+	top:304rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-12 {
+	position:absolute;
+	right:0;
+	top:380rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-13 {
+	position:absolute;
+	right:0rem;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-14 {
+	position:absolute;
+	right:76rpx;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-15 {
+	position:absolute;
+	right:152rpx;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-16 {
+	position:absolute;
+	right:228rpx;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-17 {
+	position:absolute;
+	right:304rpx;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-18 {
+	position:absolute;
+	right: 380rpx;
+	bottom:0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-19 {
+	position:absolute;
+	left:0;
+	bottom: 0
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-20 {
+	position:absolute;
+	left:0;
+	bottom:76rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-21 {
+	position:absolute;
+	left:0;
+	bottom:152rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-22 {
+	position:absolute;
+	left:0;
+	bottom:228rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-23 {
+	position:absolute;
+	left:0;
+	bottom:304rpx
+}
+.luck-draw-container .wrapper .body .prize-container .prize-list .item.item-24 {
+	position:absolute;
+	left:0;
+	bottom:380rpx
+}
+.luck-draw-container .wrapper .body .prize-container .user-info {
+	position:absolute;
+	top: 402rpx;
+	left: 204rpx;
+	width: 342rpx;
+	height: 326rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/maijiaxinxi@2x.png") no-repeat center top;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .user-info .avatar {
+	position:absolute;
+	top: 84rpx;
+	left:50%;
+	transform:translate3d(-50%,0,0);
+	text-align:center;
+	width: 116rpx;
+	height: 116rpx;
+	border-radius:50%;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/avatar.jpg") no-repeat center center;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .user-info .nickname {
+	position:absolute;
+	top: 216rpx;
+	left: 50%;
+	transform:translate3d(-50%,0,0);
+	width: 85%;
+	text-align:center;
+	font-size: 30rpx;
+	color:#464646;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis
+}
+.luck-draw-container .wrapper .body .prize-container .user-info .chance {
+	position:absolute;
+	top: 263rpx;
+	left:50%;
+	transform:translate3d(-50%,0,0);
+	width:85%;
+	text-align:center;
+	font-size: 24rpx;
+	color:#a45900;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis
+}
+.luck-draw-container .wrapper .body .prize-container .user-info .chance .number {
+	color:#e31d01
+}
+.luck-draw-container .wrapper .body .prize-container .award-info {
+	position:absolute;
+	top: 402rpx;
+	left: 204rpx;
+	width: 342rpx;
+	height: 326rpx;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/benqidajiang@2x.png") no-repeat center top;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .award-info .coupon {
+	position:absolute;
+	top: 114rpx;
+	left: 50%;
+	transform:translate3d(-50%,0,0);
+	text-align:center;
+	width: 230rpx;
+	height: 113rpx;
+	background:no-repeat center center;
+	background-size:contain
+}
+.luck-draw-container .wrapper .body .prize-container .award-info .award-tips {
+	position:absolute;
+	top: 248rpx;
+	left:50%;
+	transform:translate3d(-50%,0,0);
+	width: 85%;
+	text-align:center;
+	font-size: 28rpx;
+	color:#464646;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis
+}
+.luck-draw-container .wrapper .body .button-container {
+	position:absolute;
+	top: 940rpx;
+	left: 50%;
+	transform:translate3d(-50%,0,0)
+}
+.luck-draw-container .wrapper .body .button-container .btn-start-draw {
+	width:19.03125rem;
+	height:3.9375rem;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/choujianganniu@2x.png") no-repeat 0 0;
+	background-size:cover
+}
+.luck-draw-container .wrapper .body .button-container .btn-start-draw.btn-start-draw-pressed,.luck-draw-container .wrapper .body .button-container .btn-start-draw:active {
+	background-position:0 -3.9375rem;
+	background-size:cover
+}
+.luck-draw-container .wrapper .body .button-container .btn-start-draw.btn-start-draw-disabled,.luck-draw-container .wrapper .body .button-container .btn-start-draw.btn-start-draw-disabled:active {
+	background-position:0 -7.875rem;
+	background-size:cover
+}
+
+.draw-rule-img{
+  position:absolute;
+	top: 1160rpx;
+	left:0;
+	width:100%;
+	text-align:center
+}
+.draw-rule-img .d-rule-img{
+  display: inline-block;
+  width: 648rpx;
+  height: 182rpx;
+}
+.draw-rule-img .gzh-code{
+  position: absolute;
+  right: 72rpx;
+  top: 62rpx;
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+}
+.luck-draw-container .wrapper .foot {
+	position:absolute;
+	top:34.375rem;
+	left:0;
+	width:100%;
+	height:1.875rem;
+	line-height:1.875rem;
+	text-align:center
+}
+.luck-draw-container .wrapper .foot a {
+	color:#f95c20
+}
+.luck-draw-popup {
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:1000;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.62)
+}
+.luck-draw-popup .box-lose {
+	position:absolute;
+	top:7.5rem;
+	left:50%;
+	transform:translate3d(-50%,0,0) !important;
+	width:15.78125rem;
+	height:19.21875rem;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/weizhongjiang@2x.png") no-repeat center center;
+	background-size:contain
+}
+.luck-draw-popup .box-lose .text {
+	position:absolute;
+	top:11.9375rem;
+	left:50%;
+	transform:translate3d(-50%,0,0) !important;
+	text-align:center;
+	font-size:1.5625rem;
+	color:#a3660c
+}
+.luck-draw-popup .box-win {
+	position:absolute;
+	top:7.5rem;
+	left:50%;
+	transform:translate3d(-50%,0,0) !important;
+	width:15.78125rem;
+	height:19.21875rem;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/zhongjiang@2x.png") no-repeat center center;
+	background-size:contain
+}
+.luck-draw-popup .box-win .coupon {
+	position:absolute;
+	top:10.9375rem;
+	left:50%;
+	transform:translate3d(-50%,0,0) !important;
+	width:7.1875rem;
+	height:3.53125rem;
+	background:no-repeat center center;
+	background-size:contain
+}
+.luck-draw-popup .extra-text {
+	position:absolute;
+	top:24rem;
+	left:50%;
+	transform:translate3d(-50%,0,0) !important;
+	text-align:center;
+	font-size:.8125rem;
+	color:#fff
+}
+.right-fixed-container {
+	position:fixed;
+	right:0;
+	bottom:4.0625rem;
+	width:3.125rem;
+	height:auto;
+	display:flex;
+	flex-direction:column;
+	justify-content:flex-end;
+	z-index:999;
+	transform:translatez(999)
+}
+.right-fixed-container .back-home {
+	display:none;
+	width:2.5rem;
+	height:5rem;
+	background:url("https://shgm.jjyyx.com/m/html/activity/luckDraw/images/back_home.png") no-repeat center;
+	background-size:contain
+}
+.right-fixed-container .back-top {
+	display:none;
+	width:2.5rem;
+	height:2.5rem;
+	margin-top:.9375rem;
+	background:url("https://shgm.jjyyx.com/m/images/icon_toTop.png") no-repeat center;
+	background-size:contain
+}

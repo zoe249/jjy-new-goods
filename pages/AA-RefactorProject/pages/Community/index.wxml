@@ -1,0 +1,18 @@
+<view class="page">
+    <import src="/templates/global/global.wxml" />
+    <view class="{{is_black?'blackWhite':''}}" style="width:100%;height:690px;position:absolute;top:0;z-index:-1;background:{{bgTheme}};background-size:100% 100%;"></view>
+    <view bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd">
+        <!-- 社团首页组件 -->
+        <community-index-component bind:_noBottomData="noBottomData" bind:_showGoTop="showGoTop" bind:_getFixHeightData="getFixHeightData"  titleOpacity="{{titleOpacity}}" bgTheme="{{bgTheme}}" isBlack="{{is_black}}" class="homePage" bind:_updateCartTotal="updateCartTotal" bind:checkoutNextTheme="checkoutTheme" allData="{{allData}}"  productList="{{productList}}" pictureList="{{pictureList}}" listLoading="{{listLoading}}" scrollTop="{{scrollTop}}"></community-index-component>
+        <back-top  isBlack="{{is_black}}" wx:if="{{showGoToTop}}" />
+        <!-- 底部全局导航条(tabBar) -->
+        <!-- wx:if="{{(canAppGetUserLocation || locatePositionByManual)}}" -->
+        <component-group-footer isBlack="{{is_black}}" groupHomeCurrent="0" groupManageCartNum="{{groupManageCartNum}}" isAddNavigation="{{tabStatus.isAddNavigation}}"></component-group-footer>
+	    <template is="modal" data="{{...modalData}}"></template>
+        <component-iphone-x-patcher></component-iphone-x-patcher>
+        <!-- 骨架屏 -->
+        <import src="index.skeleton.wxml" />
+        <template is="skeleton" wx:if="{{skeletonLoading}}" data="{{src:$.img_src}}" />
+	    <template is="toast" data="{{...toastData}}"></template>
+    </view>
+</view>

@@ -1,0 +1,72 @@
+.item{
+    padding:0 32rpx;
+    background: #fff;
+    font-size: 24rpx;
+    color: #777;
+    border-radius: 16rpx;
+}
+.hr-16{
+    height: 16rpx;
+}
+.item-wrap{
+    padding: 30rpx 0;
+    border-bottom:1rpx solid #E7E7E7;
+}
+.item-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 31.5rpx 0;
+    
+}
+.set-left,.set-right{
+    height: 34rpx;
+    padding-left: 48rpx;
+}
+.set-right{
+    display: flex;
+}
+.set-d{
+    position: relative;
+}
+.set-d::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top:50%;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 32rpx;
+    border: 2rpx solid #707070;
+    transform: translateY(-50%);
+}
+.set-d.act::before{
+    content: "";
+    position: absolute;
+    left: 14rpx;
+    top:50%;
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 8rpx;
+    background: #313031;
+    transform: translateY(-50%);
+}
+.set-edit,.set-del{
+    padding-left: 48rpx;
+    margin-left: 32rpx;
+}
+.set-edit{
+    background: url("https://shgm.jjyyx.com/m/images/group/icon_edit.png") no-repeat left center;
+    background-size: 34rpx auto;
+}
+.set-del{
+    background: url("https://shgm.jjyyx.com/m/images/group/icon_del.png") no-repeat left center;
+    background-size: 40rpx auto;
+}
+
+
+.name{
+    font-size: 30rpx;
+}
+.address{
+    margin-top: 20rpx;
+}

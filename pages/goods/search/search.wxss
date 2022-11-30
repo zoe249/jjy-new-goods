@@ -1,0 +1,132 @@
+/* pages/goods/search/search.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.wrapper {
+  background: #fff;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.search-top-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 750rpx;
+  height: 100rpx;
+  z-index: 999;
+  padding: 16rpx 32rpx;
+  display: flex;
+  border-top: 2rpx solid #e7e7e7;
+  /* border-bottom: 2rpx solid #e7e7e7; */
+  background: #fff;
+}
+
+.search-container {
+  flex: 1;
+  background: #f4f4f4;
+  border-radius: 4rpx;
+  padding: 0 64rpx;
+  position: relative;
+}
+
+.search-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 64rpx;
+  height: 64rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+  background-size: 30rpx 30rpx;
+}
+
+.search-container.focus::before {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png');
+}
+
+.search-container .clear-search-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 64rpx;
+  height: 64rpx;
+  background: url('https://shgm.jjyyx.com/m/images/del.png') no-repeat center;
+  background-size: 28rpx 28rpx;
+}
+
+.search-container .search-input {
+  width: 100%;
+  height: 64rpx;
+  font-size: 28rpx;
+}
+
+.search-top-container .search-cancel {
+  font-size: 30rpx;
+  color: #777;
+  line-height: 0;
+  padding: 28rpx 0;
+  margin-left: 32rpx;
+}
+
+.hot-search-container {
+  padding-top: 100rpx;
+}
+
+.hot-search-container .hot-search-title {
+  margin-left: 32rpx;
+  padding: 48rpx 0;
+  font-size: 28rpx;
+  line-height: 0;
+  color: #999;
+}
+
+.hot-search-container .hot-label-container {
+  display: flex;
+  flex-flow: wrap;
+  padding: 0 32rpx;
+  /* margin-bottom: 8rpx;
+    border-bottom: 16rpx solid #ededed; */
+}
+
+.hot-search-container .hot-label-container .hot-label {
+  padding: 32rpx 24rpx;
+  margin-right: 24rpx;
+  margin-bottom: 32rpx;
+  border: 2rpx solid #ededed;
+  border-radius: 32rpx;
+  line-height: 0;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.history-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* height: 96rpx; */
+  padding: 32rpx 32rpx 0;
+  font-size: 28rpx;
+  color: #999;
+  /* border-bottom: 2rpx solid #ededed; */
+}
+
+.history-title-container .clear-history-icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.search-history-container .history-item {
+  text-align: left;
+  margin-left: 32rpx;
+  border-bottom: 2rpx solid #ededed;
+  line-height: 0;
+  padding: 48rpx 0;
+  font-size: 28rpx;
+  color: #444;
+}

@@ -1,0 +1,28 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<block wx:if="{{showError}}">
+<template is="empty" data="{{emptyMsg}}"></template>
+</block>
+<block wx:else>
+  <view class='message-box'>
+  <block wx:if="{{noReadNum}}"><view id="read_all" catchtap='ignoreRead'>忽略未读</view></block>
+    <view class='list my-news-wrap'>
+      <block wx:for='{{list}}' wx:for-item='item' wx:key='item'>
+       <view class="news-item" data-item='{{item}}' catchtap='goList'>
+        <view  class="news-item-icon" style="background-image:url('{{item.icon}}')"></view>
+            <view  class="news-item-message-container">
+                <view class="news-type-container">
+                    <view class="news-type">{{item.newstypeName}}</view>
+                    <block wx:if='{{item.newsNumber&&noReadNum}}'><view class="news-number">{{item.newsNumber}}</view></block>
+                    <view class="news-create-time">{{item.dateStr}}</view>
+                </view>
+                <view class="news-title">{{item.title}}</view>
+            </view >
+        </view>
+      </block>
+    </view>
+  </view>
+</block>

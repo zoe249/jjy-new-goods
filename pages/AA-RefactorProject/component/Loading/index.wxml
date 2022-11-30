@@ -1,0 +1,10 @@
+<view class="section dis_f_c_c">
+	<view class="li dis_f_co_sb_c">
+		<view class="dis_f_c_c">
+			<image src="{{$.img_src}}/components/YXicon.png" mode="aspectFit"></image>
+		</view>
+		<view class="dis_f_c_c">
+			<view class="shadow"></view>
+		</view>
+	</view>
+</view>

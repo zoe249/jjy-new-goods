@@ -1,0 +1,61 @@
+/* pages/user/balanceDetails/balanceDetails.wxss */
+
+@import '/templates/purchases/purchases.wxss';
+page{
+  background: #fff;
+}
+.store_card_infor {
+    width: 720rpx;
+    height: 272rpx;
+    font-size: 28rpx;
+    line-height: 1;
+    margin: 16rpx auto;
+    border-radius: 16rpx;
+    color: #fff;
+    background: #FFBD4F;
+}
+
+.store_card_infor image {
+    height: 262rpx;
+}
+
+.store_card_infor .store_card_tips {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 12rpx;
+    font-size: 24rpx;
+    line-height: 30rpx;
+}
+
+.store_card_infor .store_card_tips .span {
+    display: inline-block;
+    line-height: 30rpx;
+    padding-left: 16rpx;
+    /* color: #444; */
+}
+
+.store_card_infor .detail {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.store_card_infor .detail .strong {
+    display: block;
+    font-size: 72rpx;
+    padding-bottom: 16rpx
+}
+
+.store_card_infor .detail .span {
+    font-size: 24rpx;
+}
+
+.store_card_infor .balance_explain {
+    bottom: 32rpx;
+    right: 32rpx;
+    color: #999;
+}

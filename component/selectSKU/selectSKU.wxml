@@ -1,0 +1,147 @@
+<!--component/selectSKU/selectSKU.wxml-->
+
+
+<view class="pop-up-layer">
+
+  <view catchtap="exit" style="  width: 100%; height: 20%;"></view>
+  <view class="materiel-ext-property-page-container">
+  <!-- 关闭按钮 -->
+  <view style="display: flex; flex-direction: row; justify-content: flex-end;">
+    <view class="btn-cancel" catchtap="exit">❌</view>
+  </view>
+  <!-- 已选择商品 -->
+  <view wx:if="{{goodsDetail}}"  class="materiel-ext-property-content">
+    <image style="width: 200rpx;height: 200rpx; margin-bottom: 10rpx; border: 1rpx solid #ededed"
+      src='{{goodsDetail.goods.coverImage}}' lazy-load></image>
+    <!-- 价格 -->
+    <view class="price-container">
+      <text class="price-mes">￥</text>
+      <text class="price">{{goodsDetail.goods.skus[0].salePrice}}</text>
+      <block wx:if="{{goodsDetail.goods.skus[0].salesUnit}}">
+        <text class="price-mes salesUnit">/{{goodsDetail.goods.skus[0].salesUnit}}</text>
+      </block>
+      <block
+        wx:if="{{goodsDetail.goods.skus[0].salePrice!=goodsDetail.goods.skus[0].primePrice&&goodsDetail.goods.skus[0].primePrice}}">
+        <text class="prime-price">￥{{goodsDetail.goods.skus[0].primePrice}}</text>
+      </block>
+      <block wx:if='{{goodsDetail.goods.skus[0].proType == 1178 || goodsDetail.goods.skus[0].proType == 998}}'>
+        <view></view>
+      </block>
+    </view>
+  </view>
+  <!--扩展属性选择  -->
+  <scroll-view class="materiel-ext-property-container" scroll-y="true" enable-flex="true" enhanced="true"
+    showScrollbar="false">
+    <view class="materiel-ext-property-content-title">规格1</view>
+    <view class="materiel-ext-property-content">
+      <block wx:for="{{propertyOneList}}" wx:for-index="index" wx:for-item="item">
+
+        <!-- 是否可选 -->
+        <block
+          wx:if="{{!selectedTwoProperty||(selectedTwoProperty&&subCodeGoodsDetailMap[item+'-'+selectedTwoProperty])}}">
+          <!-- 是否选中 -->
+          <block wx:if="{{selectedOneProperty===item}}">
+            <!--是否缺货  -->
+            <block>
+            </block>
+            <view class="materiel-ext-property-content-item materiel-ext-property-content-item-select"
+              catchtap="selectedOneProperty" data-selected-one-property='{{item}}'>
+              <view>{{item}}</view>
+            </view>
+          </block>
+
+          <block wx:else>
+            <view class="materiel-ext-property-content-item" catchtap="selectedOneProperty"
+              data-selected-one-property='{{item}}'>
+              <view>{{item}}</view>
+            </view>
+          </block>
+
+        </block>
+        <block wx:else>
+          <view class="materiel-ext-property-content-item materiel-ext-property-content-item-disable"
+            data-selected-one-property='{{item}}'>
+            <view>{{item}}</view>
+          </view>
+        </block>
+      </block>
+    </view>
+
+    <view class="divLine"></view>
+
+    <view class="materiel-ext-property-content-title">规格2</view>
+    <view class="materiel-ext-property-content">
+      <block wx:for="{{propertyTwoList}}" wx:for-index="index" wx:for-item="item">
+        <!-- 是否可选 -->
+        <block
+          wx:if="{{!selectedOneProperty||(selectedOneProperty&&subCodeGoodsDetailMap[selectedOneProperty+'-'+item])}}">
+          <!-- 是否选中 -->
+          <block wx:if="{{selectedTwoProperty===item}}">
+            <view class="materiel-ext-property-content-item materiel-ext-property-content-item-select"
+              catchtap="selectedTwoProperty" data-selected-two-property='{{item}}'>
+              <view>{{item}}</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="materiel-ext-property-content-item" catchtap="selectedTwoProperty"
+              data-selected-two-property='{{item}}'>
+              <view>{{item}}</view>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="materiel-ext-property-content-item materiel-ext-property-content-item-disable"
+            data-selected-two-property='{{item}}'>
+            <view>{{item}}</view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </scroll-view>
+  <!-- 加入购物车、一键拼团 -->
+
+  <view style="display: flex; flex-direction: row; justify-content: center;align-items: center;">
+    <view class="materiel-ext-property-content-button">
+      <block wx:if="{{selectedOneProperty&&selectedTwoProperty}}">
+        <!-- 团长分享的秒杀 privateGroup=1 私有团，秒杀privateGroup=0 公有团，秒杀-->
+        <block
+          wx:if='{{goodsDetail.goods.skus[0].promotionList&&(goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1178||goodsDetail.goods.skus[0].promotionList[currProIndex].proType != 1888)}}'>
+          <block
+            wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proStock > 0&&goodsDetail.goods.skus[0].promotionList[currProIndex].ratio<100}}">
+            <view class="materiel-ext-property-content-button-item" catchtap="skuSelectedAddCart"
+              data-store-type="{{goodsDetail.store.storeType}}" data-goods="{{goodsDetail.goods.skus[0]}}">加入购物车</view>
+          </block>
+          <block wx:else>
+            <view class="materiel-ext-property-content-button-item materiel-ext-property-content-button-item-disable">已抢光</view>
+          </block>
+        </block>
+        <!-- 其他 -->
+        <block
+          wx:elif="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1821||goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1888}}">
+          <block
+            wx:if="{{1==1||goodsDetail.goods.skus[0].promotionList[currProIndex].goodsStock>0&&goodsDetail.goods.skus[0].isCanSale==1}}">
+            <view class="materiel-ext-property-content-button-item" catchtap="skuSelectCreateNewGroup"
+              data-sku='{{goodsDetail.goods.skus[0]}}'
+              data-pro='{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}'
+              data-share-member-id='{{privateShareMemberId}}'
+              data-private-group="{{goodsDetail.goods.skus[0].promotionList[currProIndex].privateGroup||0}}"
+              data-store-type="{{goodsDetail.store.storeType}}" data-goods="{{goodsDetail.goods.skus[0]}}">
+              <block wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.myGroup}}">
+                <text>查看我的团</text>
+              </block>
+
+              <block wx:else>
+                <text>一键拼团</text>
+              </block>
+            </view>
+          </block>
+        </block>
+      </block>
+      <block wx:else>
+        <view class="materiel-ext-property-content-button-item materiel-ext-property-content-button-item-disable" >请选择商品规格</view>
+      </block>
+    </view>
+  </view>
+
+</view>
+</view>

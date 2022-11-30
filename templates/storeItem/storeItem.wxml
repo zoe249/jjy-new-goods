@@ -1,0 +1,8 @@
+<!--templates/storeItem/storeItem.wxml-->
+<template name="storeItem">
+  <view class='store-item-container' bindtap='relocateByShopLocation' data-isGroupManage="{{isGroupManage}}" data-item="{{store}}">
+    <image class='cover-image' src="{{store.shopCover ||'https://shgm.jjyyx.com/m/images/bg_df_store.png?t=418'}}" mode="widthFix"></image>
+    <text class='shop-name'>{{store.shopName}}</text>
+    <text class='address'>{{store.shopAddress}}</text>
+  </view>
+</template>

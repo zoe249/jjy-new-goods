@@ -1,0 +1,15 @@
+<!--component/cabinetPop/cabinetPop.wxml-->
+<view class="cabinet-mask" hidden="{{flag}}">
+  <view class="cabinet-pop">
+    <text class="tit">选择自提柜</text>
+    <scroll-view scroll-y="true">
+        <block wx:for="{{cabinetList}}" wx:key="index">
+          <view bindtap="_bindcabinet" data-id="{{item.id}}" data-gridCount="{{item.gridCount}}" data-index="{{index}}" class="{{index==cabindex?'on':''}}">{{item.address}}</view>
+        </block>
+    </scroll-view>
+    <view class="btn-view">
+      <view class="hui" bindtap="_error">取消</view>
+      <view class="{{cabindex==-1?'hui':'bilu'}}" bindtap="_success">确定</view>
+    </view>
+  </view>
+</view>

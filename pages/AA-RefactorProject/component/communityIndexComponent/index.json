@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+      "yx-index-title":"../yxIndexTitle/yxIndexTitle",
+      "yx-need-hot-component":"../NeedHot/NeedHot",
+      "Loading":"../../component/Loading/index",
+      "mian-recommon":"../mainRecommon/mainRecommon",
+      "MoreData":"../MoreData/index",
+      "CartAnimation":"../../component/CartAnimation/index",
+      "no-list":"../../component/NoList/index"
+  }
+}

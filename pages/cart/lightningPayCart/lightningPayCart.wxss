@@ -1,0 +1,1056 @@
+
+.r1bb {
+  border-bottom: 1rpx solid #ededed;
+}
+
+.r1bl {
+  border-left: 1rpx solid #ededed;
+}
+
+.r1br {
+  border-right: 1rpx solid #ededed;
+}
+
+.r1b {
+  border: 1px solid #ededed;
+}
+
+.fr {
+  float: right;
+}
+
+.span, .i, .em, .input, .s, .del {
+  display: inline-block;
+}
+
+.bl {
+  border-left: 1rpx solid #ededed;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.lightningPay-box {
+  min-height: 100vh;
+}
+
+.lightningPay-box .cnt {
+  padding: 240rpx 0 0;
+}
+
+.lightningPay-box .cnt .foot-padding {
+  height: 90rpx;
+}
+
+.lightningPay-box .cnt .head {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 240rpx;
+  background-color: var(--blueLight);
+}
+
+.lightningPay-box .cnt .head-cnt {
+  /* background:#ff7a03 url("https://shgm.jjyyx.com/m/images/lightningPayCart/bg@2x.png") center no-repeat;
+    background-size: 100% auto; */
+  height: 200rpx;
+}
+
+.lightningPay-box .cnt .head .shopName {
+  color: #7aa6cc;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  padding: 30rpx 130rpx 0 32rpx;
+}
+
+.lightningPay-box .cnt .head .clear-cart {
+  color: #fff;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  font-size: 20rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayCart/qingkong@2x.png") right 1rpx no-repeat;
+  background-size: 38rpx auto;
+  padding-right: 40rpx;
+}
+
+.lightningPay-box .cnt .head .head-tip {
+  width: 720rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 96rpx;
+  left: 16rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.lightningPay-box .cnt .head .head-tip .hand-tap {
+  float: left;
+  padding: 0 30rpx 0 96rpx;
+  line-height: 64rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayCart/shoudong@2x.png") 24rpx center no-repeat;
+  background-size: 48rpx auto;
+}
+
+.lightningPay-box .cnt .head .head-tip .total-num {
+  line-height: 66rpx;
+  color: #999;
+  font-size: 24rpx;
+  float: right;
+}
+
+.lightningPay-box .cnt .goods-list {
+  background-color: #fff;
+  margin: 16rpx 15rpx 0;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.lightningPay-box .cnt .goods-list .li {
+  position: relative;
+  padding: 0 32rpx 0 180rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  height: 210rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li:last-child {
+  border: none;
+}
+
+.lightningPay-box .cnt .goods-list .li.addBackgroundClass {
+  /*  animation: mymove 4s 1;
+    -webkit-animation: mymove 4s 1;*/
+  background: #fef8e7;
+}
+
+/*@keyframes mymove
+{
+    from {background: #fef8e7;}
+    to {background: #fff;}
+}
+@-webkit-keyframes mymove !* Safari 和 Chrome *!
+{
+    from {background: #fef8e7;}
+    to {background: #fff;}
+}*/
+
+.lightningPay-box .cnt .goods-list .li .cover-image {
+  position: absolute;
+  top: 40rpx;
+  left: 32rpx;
+  border: 1rpx solid #e6e6e6;
+  width: 130rpx;
+  height: 130rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+
+.lightningPay-box .cnt .goods-list .li .cover-image image {
+  width: 100%;
+  height: 100%;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-name {
+  padding: 36rpx 0 0;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-name .tag {
+  display: inline-block;
+  padding: 0 10rpx;
+  background-color: #ffa601;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  border-radius: 16rpx;
+  margin-right: 10rpx;
+  position: relative;
+  top: -2rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-spec {
+  color: #999;
+  font-size: 22rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color: #999;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-price {
+  padding: 10rpx 0 0;
+  color: #999;
+  font-size: 22rpx;
+  line-height: 30rpx;
+  height: 40rpx;
+  color: #999;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-spec .weight {
+  display: inline-block;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-spec .spec {
+  display: inline-block;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-price .unit {
+  display: inline-block;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-price .single-price {
+  display: inline-block;
+}
+
+.lightningPay-box .cnt .goods-list .li .goods-price .del-price {
+  text-decoration: line-through;
+  display: inline-block;
+  margin-left: 15rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .price {
+  font-size: 26rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  color: #ff4752;
+  display: inline-block;
+}
+
+.lightningPay-box .cnt .goods-list .li .price .mark {
+  font-size: 24rpx;
+  color: #ff4752;
+  display: inline-block;
+  line-height: 40rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box {
+  line-height: 48rpx;
+  border: 1rpx solid #ededed;
+  width: 160rpx;
+  position: absolute;
+  right: 32rpx;
+  bottom: 36rpx;
+  border-radius: 50rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num-minus {
+  float: left;
+  height: 48rpx;
+  position: relative;
+  width: 48rpx;
+  text-indent: -9999rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num-minus:before {
+  content: "";
+  width: 20rpx;
+  position: absolute;
+  top: 23rpx;
+  left: 15rpx;
+  background-color: var(--blueLight);
+  height: 4rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num-minus.off:before {
+  content: "";
+  width: 20rpx;
+  position: absolute;
+  top: 23rpx;
+  left: 15rpx;
+  background-color: #999;
+  height: 4rpx;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num {
+  float: left;
+  width: 60rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  border-right: 1rpx solid #ededed;
+  border-left: 1rpx solid #ededed;
+  text-align: center;
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num-plus {
+  float: left;
+  line-height: 48rpx;
+  height: 48rpx;
+  width: 48rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: var(--blueLight);
+}
+
+.lightningPay-box .cnt .goods-list .li .num-box .num-plus.off {
+  color: #999;
+}
+
+.lightningPay-box .cnt .foot {
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+
+.lightningPay-box .cnt .foot .foot-scan {
+  z-index: 99;
+  position: absolute;
+  left: -2rpx;
+  top: -48rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayCart/saomagouwu@2x.png") no-repeat center;
+  background-size: 100%;
+}
+
+.lightningPay-box .cnt .foot .foot-box {
+  height: 112rpx;
+  border-top: 1rpx solid #e6e6e6;
+  background-color: #fff;
+  position: relative;
+  padding-right: 230rpx;
+}
+
+.lightningPay-box .cnt .foot .foot-left {
+  text-align: right;
+  padding-right: 20rpx;
+  background-color: #fff;
+}
+
+.lightningPay-box .cnt .foot .total-price {
+  padding: 6rpx 0 0;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}
+
+.lightningPay-box .cnt .foot .mark {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #ff4752;
+  line-height: 40rpx;
+}
+
+.lightningPay-box .cnt .foot .price-big {
+  display: inline-block;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #ff4752;
+}
+
+.lightningPay-box .cnt .foot .price-small {
+  display: inline-block;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #ff4752;
+}
+
+.lightningPay-box .cnt .foot .foot-left.on-line .total-price {
+  padding: 0 0 0;
+  line-height: 112rpx;
+  font-size: 24rpx;
+}
+
+.lightningPay-box .cnt .foot .foot-left.on-line .mark {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #ff4752;
+  line-height: 90rpx;
+}
+
+.lightningPay-box .cnt .foot .foot-left.on-line .price-big {
+  display: inline-block;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  color: #ff4752;
+}
+
+.lightningPay-box .cnt .foot .foot-left.on-line .price-small {
+  display: inline-block;
+  line-height: 90rpx;
+  font-size: 24rpx;
+  color: #ff4752;
+}
+
+.lightningPay-box .cnt .foot .promotion-price {
+  display: inline-block;
+  line-height: 40rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.lightningPay-box .cnt .foot .go-pay {
+  position: absolute;
+  right: 30rpx;
+  top: 16rpx;
+  width: 160rpx;
+  background-color: var(--blueLight);
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 40rpx;
+}
+
+.lightningPay-box .cnt .foot .go-pay.off {
+  background-color: #ccc;
+}
+
+.lightningPay-box .cnt .cart-empty {
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayCart/buzhou@2x.png?111") no-repeat center;
+  background-size: 750rpx;
+  height: 100%;
+  width: 100%;
+  min-height: 800rpx;
+}
+
+/*购物袋弹窗*/
+
+.shopping-bag-pop {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.shopping-bag-pop .shopping-bag-box {
+  position: absolute;
+  top: 50%;
+  left: 95rpx;
+  width: 560rpx;
+  margin-top: -325rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.shopping-bag-pop .shopping-bag-box .shopping-bag-title {
+  text-align: center;
+  padding: 20rpx 0 0;
+  line-height: 58rpx;
+  font-size: 34rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .shopping-bag-tip {
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag {
+  padding: 46rpx 0 60rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-box {
+  text-align: center;
+  float: left;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-img {
+  position: relative;
+  width: 138rpx;
+  height: 138rpx;
+  border: 1rpx solid #e6e6e6;
+  margin: 0 70rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-img.on {
+  border: 1rpx solid #ff4752;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-img image {
+  width: 135rpx;
+  height: 135rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff4752;
+  line-height: 28rpx;
+  padding: 0 10rpx;
+  border-radius: 14rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-name {
+  padding: 10rpx 0 0;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  width: 280rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.shopping-bag-pop .shopping-bag-box .tow-bag .bag-price {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  width: 280rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag {
+  text-align: center;
+  margin: 0 auto;
+  padding: 46rpx 0 60rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag .bag-box {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag .bag-img {
+  position: relative;
+  width: 138rpx;
+  height: 138rpx;
+  border: 1rpx solid #ff4752;
+  margin: 0 auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag .bag-img image {
+  width: 135rpx;
+  height: 135rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag .bag-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff4752;
+  line-height: 28rpx;
+  padding: 0 10rpx;
+  border-radius: 14rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .one-bag .bag-price {
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag {
+  width: 240rpx;
+  height: 80rpx;
+  border: 1rpx solid #e6e6e6;
+  margin: 0 auto;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag .bag-minus {
+  float: left;
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/lightningPayCart/shandiangou_gouwudai_minus_kexuan.png") no-repeat center;
+  background-size: 20rpx auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag .bag-minus.off {
+  background: #fff url("https://shgm.jjyyx.com/m/images/lightningPayCart/shandiangou_gouwudai_minus.png") no-repeat center;
+  background-size: 20rpx auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag .change-num {
+  width: 76rpx;
+  height: 68rpx;
+  text-align: center;
+  line-height: 68rpx;
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  float: left;
+  border-left: 1rpx solid #e6e6e6;
+  border-right: 1rpx solid #e6e6e6;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag .bag-plus {
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/lightningPayCart/shandiangou_gouwudai_add.png") no-repeat center;
+  background-size: 20rpx auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .change-bag .bag-plus.off {
+  background: #fff url("https://shgm.jjyyx.com/m/images/lightningPayCart/shandiangou_gouwudai_add_bukexuan.png") no-repeat center;
+  background-size: 20rpx auto;
+}
+
+.shopping-bag-pop .shopping-bag-box .bag-btn {
+  width: 100%;
+  border-top: 1rpx solid #ededed;
+  margin-top: 40rpx;
+  height: 96rpx;
+  overflow: hidden;
+}
+
+.shopping-bag-pop .shopping-bag-box .bag-btn .bag-cancel {
+  float: left;
+  width: 50%;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 32rpx;
+  height: 96rpx;
+}
+
+.shopping-bag-pop .shopping-bag-box .bag-btn .bag-confirm {
+  float: left;
+  width: 50%;
+  color: #fff;
+  background-color: #ff4752;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 32rpx;
+  height: 96rpx;
+}
+
+/*定位失败*/
+
+.location-fail-pop {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.location-fail-pop .location-fail-box {
+  position: absolute;
+  top: 50%;
+  left: 80rpx;
+  width: 590rpx;
+  margin-top: -190rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.location-fail-pop .location-fail-box .location-fail-title {
+  line-height: 96rpx;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.location-fail-pop .location-fail-box .text1 {
+  line-height: 52rpx;
+  font-size: 32rpx;
+  padding: 40rpx 0 0;
+}
+
+.location-fail-pop .location-fail-box .text2 {
+  line-height: 44rpx;
+  font-size: 24rpx;
+  padding: 20rpx 0 30rpx;
+  color: #999;
+}
+
+.location-fail-pop .location-fail-box .location-fail-btn {
+  line-height: 96rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #ff4752;
+}
+
+/*门店信息变化提示*/
+
+.shop-change-pop {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.shop-change-pop .shop-change-box {
+  position: absolute;
+  top: 50%;
+  left: 80rpx;
+  width: 590rpx;
+  margin-top: -250rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.shop-change-pop .shop-change-box .shop-change-title {
+  line-height: 96rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  font-size: 32rpx;
+}
+
+.shop-change-pop .shop-change-box .text1 {
+  padding: 10rpx 0 0;
+  font-size: 28rpx;
+  line-height: 56rpx;
+}
+
+.shop-change-pop .shop-change-box .text2 {
+  font-size: 30rpx;
+  line-height: 36rpx;
+  color: #ffa001;
+  padding: 10rpx 30rpx;
+}
+
+.shop-change-pop .shop-change-box .text3 {
+  font-size: 28rpx;
+  line-height: 36rpx;
+  padding: 14rpx 30rpx 0;
+}
+
+.shop-change-pop .shop-change-box .text4 {
+  font-size: 24rpx;
+  line-height: 36rpx;
+  padding: 20rpx 0 40rpx;
+  color: #999;
+}
+
+.shop-change-pop .shop-change-box .shop-change-btn {
+  line-height: 96rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #ff4752;
+}
+
+/*清空闪电付购物车*/
+
+.clear-cart-pop {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.clear-cart-pop .clear-cart-box {
+  position: absolute;
+  top: 50%;
+  left: 80rpx;
+  width: 590rpx;
+  margin-top: -180rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.clear-cart-pop .clear-cart-box .clear-cart-text {
+  padding: 80rpx 20rpx;
+  line-height: 36rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.clear-cart-pop .clear-cart-box .clear-cart-btn {
+  border-top: 1rpx solid #e6e6e6;
+  line-height: 86rpx;
+  text-align: center;
+  font-size: 32rpx;
+  height: 86rpx;
+  overflow: hidden;
+}
+
+.clear-cart-pop .clear-cart-box .clear-cart-btn .clear-cart-cancel {
+  float: left;
+  width: 50%;
+  height: 86rpx;
+}
+
+.clear-cart-pop .clear-cart-box .clear-cart-btn .clear-cart-confirm {
+  float: left;
+  width: 50%;
+  color: #fff;
+  background-color: #ff4752;
+  height: 86rpx;
+}
+
+/*删除单个商品*/
+
+.del-goods-pop {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.del-goods-pop .del-goods-box {
+  position: absolute;
+  top: 50%;
+  left: 80rpx;
+  width: 590rpx;
+  margin-top: -180rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.del-goods-pop .del-goods-box .del-goods-text {
+  padding: 80rpx 20rpx;
+  line-height: 36rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.del-goods-pop .del-goods-box .del-goods-btn {
+  border-top: 1rpx solid #e6e6e6;
+  line-height: 86rpx;
+  text-align: center;
+  font-size: 32rpx;
+  height: 86rpx;
+  overflow: hidden;
+}
+
+.del-goods-pop .del-goods-box .del-goods-btn .del-goods-cancel {
+  float: left;
+  width: 50%;
+  height: 86rpx;
+}
+
+.del-goods-pop .del-goods-box .del-goods-btn .del-goods-confirm {
+  float: left;
+  width: 50%;
+  color: #fff;
+  background-color: #ff4752;
+  height: 86rpx;
+}
+
+.input-bar-box {
+  height: 100vh;
+}
+
+.input-bar-box .btn-finish-box {
+  border-top: 1rpx solid #f4f4f4;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  height: 90rpx;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.input-bar-box .btn-finish-box view {
+  flex: 1;
+  background-color: #fff;
+}
+
+.input-bar-box .btn-finish-box .btn-finish-input {
+  color: #fff;
+  background-color: var(--blueLight);
+}
+
+.iphone-x-patcher-container .input-bar-box .btn-finish-box {
+  height:158rpx;
+}
+
+.input-bar-box .head {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 240rpx;
+  background-color: var(--blueLight);
+}
+
+.input-bar-box .head .head-cnt {
+  /* background:#ff7a03 url("https://shgm.jjyyx.com/m/images/lightningPayCart/bg@2x.png") center no-repeat;
+    background-size: 100% auto; */
+  height: 200rpx;
+}
+
+.input-bar-box .head .head-cnt .shopName {
+  color: #7aa6cc;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  padding: 30rpx 130rpx 0 32rpx;
+}
+
+.input-bar-box .head .head-input-box {
+  width: 720rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 96rpx;
+  left: 15rpx;
+  border-radius: 20rpx;
+  height: 120rpx;
+}
+
+.input-bar-box .head .input-box {
+  padding: 32rpx 100rpx 32rpx 30rpx;
+}
+
+.input-bar-box .head .input-box input {
+  height: 56rpx;
+  padding: 0 20rpx;
+  background-color: #f5f5f5;
+  width: 100%;
+  border-radius: 28rpx;
+}
+
+.input-bar-box .head .input-scan {
+  position: absolute;
+  background: #fff url("https://shgm.jjyyx.com/m/images/lightningPayCart/saoma@2x.png") center no-repeat;
+  background-size: 100% 100%;
+  top: 40rpx;
+  right: 30rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.location-fail-page {
+  height: 100vh;
+  background-color: #fff;
+}
+
+.location-fail-page .fail-page-box {
+  padding: 240rpx 0 0;
+  text-align: center;
+}
+
+.location-fail-page .fail-page-box .fail-image {
+  margin: 0 175rpx;
+  width: 400rpx;
+  height: 275rpx;
+}
+
+.location-fail-page .fail-page-box .location-btn {
+  width: 320rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  border: 1rpx solid #ff4752;
+  color: #ff4752;
+  text-align: center;
+  font-size: 28rpx;
+  margin: auto 215rpx;
+  background-color: #fff;
+}
+
+.location-fail-page .fail-page-box .location-btn::after {
+  border: none;
+}
+
+.location-fail-page .fail-page-box .text1 {
+  margin: 40rpx auto;
+  line-height: 60rpx;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.location-fail-page .fail-page-box .text2 {
+  padding: 50rpx 0 0;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+
+.location-fail-page .fail-page-box .text3 {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+
+/*错误页面*/
+
+/* .error-box {
+    padding: 40% 0 0;
+    text-align: center;
+    background-color: #fff;
+    height:100vh;
+}
+
+.error-box .error-img {
+    width: 400rpx;
+    height: 276rpx;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.error-box .error-text {
+    padding: 20rpx 0 0;
+    text-align: center;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #999;
+} */
+
+/*loading*/
+
+#loading {
+  z-index: 999999;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#loading .loading-cnt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180rpx;
+  height: 180rpx;
+  -webkit-transform: translate(-90rpx, -90rpx);
+  transform: translate(-90rpx, -90rpx);
+  z-index: 9999999;
+}
+
+#loading .loading-cnt image {
+  width: 180rpx;
+  height: 180rpx;
+}

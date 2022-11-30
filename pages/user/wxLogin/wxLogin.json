@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cu-modal": "/component/cuModal/cuModal"
+  }
+}

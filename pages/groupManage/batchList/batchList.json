@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "差异上报",
+  "usingComponents": {
+    "cuModal": "/component/cuModal/cuModal"
+  }
+}

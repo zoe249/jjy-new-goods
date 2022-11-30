@@ -1,0 +1,18 @@
+<import src="/templates/global/global.wxml" />
+<picker mode="selector" bindchange="bindSelectorChange" value="{{shopSelecsstorIndex}}" range="{{shopSelectorArray}}">
+    <view class="current-shop" bindtap='clickPicker'>
+        <image src='/image/icon-detault.png'></image>
+        <view>{{shopSelectorArray[shopSelectorIndex]}}
+            <text></text>
+        </view>
+    </view>
+</picker>
+<view class='ex-container'>
+    <block wx:for="{{list}}" wx:key="*_{{index}}">
+        <component-address-list bind:editAddress="editAddress" bind:setDefault="setDefault" bind:delAddress="delAddress" item="{{item}}"></component-address-list>
+    </block>
+    <template wx:if="{{list.length > 0}}" is="noMore"></template>
+    <template wx:if="{{!list.length}}" is="empty"></template>
+</view>
+
+<view class='add-btn' bindtap='addAddress'>新增自提点</view>

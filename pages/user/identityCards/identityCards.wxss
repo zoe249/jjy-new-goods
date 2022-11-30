@@ -1,0 +1,215 @@
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.bg-space{
+  height: 16rpx;
+  background: #ededed !important;
+}
+.credentials-container{
+    padding-bottom: 180rpx;
+}
+.save-info{
+  display: block;
+  width: 680rpx;
+  height: 90rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color:#fff;
+  margin: 0  auto  80rpx;
+  background: #FF4752;
+  border-radius:  12rpx;
+  line-height:  90rpx;
+}
+.credentials-item{
+    position: relative;
+    padding: 50rpx  32rpx 0;
+}
+.credentials-item .item-card{
+  padding: 20rpx 0  30rpx;
+  height: 176rpx;
+  position: relative;
+}
+.item-card::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+.credentials-item .card-positive,.credentials-item .card-reverse{
+  width: 190rpx;
+  height: 120rpx;
+  margin-right:  30rpx;
+  -webkit-border-radius:  8rpx;
+  border-radius:  8rpx;
+  overflow: hidden;
+}
+.credentials-item .img{
+  width: 190rpx;
+  height: 120rpx;
+  object-fit: cover;
+}
+.credentials-item .need-add{
+  bottom: 0;
+  left:0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.credentials-item  .pass{
+    left:0;
+    bottom:0;
+    color:#fff;
+    font-size: 24rpx;
+    line-height: 0;
+    padding: 20rpx 0  14rpx;
+    width: 60rpx;
+    text-align:center;
+    background: #000;
+    opacity: .35;
+    -webkit-border-radius:  3rpx;
+    border-radius:  3rpx;
+  }
+.credentials-item .item-bottom{
+    height: 96rpx;
+    padding: 24rpx 0;
+  }
+.credentials-item .auditing-state{
+    width:50%;
+    padding-left:  40rpx;
+    font-size: 24rpx;
+    color:#999;
+    background:url(https://shgm.jjyyx.com/m/images/daishenhe.png) no-repeat left center;
+    -webkit-background-size: 30rpx;
+    background-size: 30rpx;
+  }
+.credentials-item .auditing-state.pass-state{
+    color:#7dc81d;
+    background:url(https://shgm.jjyyx.com/m/images/shenhetongguo.png) no-repeat left center;
+    -webkit-background-size: 30rpx;
+    background-size: 30rpx;
+  }
+.credentials-item .auditing-state.butongguo {
+    color: #ffa701;
+    background:url(https://shgm.jjyyx.com/m/images/icon_shenhebutongguo.png) no-repeat left center;
+    -webkit-background-size: 30rpx;
+    background-size: 30rpx;
+  }
+  .card-op{
+      position: absolute;
+      right: 32rpx;
+      bottom: 30rpx;
+      z-index: 4;
+  }
+.credentials-item .edit{
+    display: inline-block;
+    width: 30rpx;
+    height: 30rpx;
+    background:url(https://shgm.jjyyx.com/m/images/icon_edit.png) no-repeat left center;
+    -webkit-background-size: 30rpx;
+    background-size: 30rpx;
+    margin-right: 40rpx;
+  }
+.credentials-item .del{
+    display: inline-block;
+    width: 30rpx;
+    height: 30rpx;
+    background:url(https://shgm.jjyyx.com/m/images/icon_clear.png) no-repeat left center;
+    -webkit-background-size: 30rpx  28rpx;
+    background-size: 30rpx  28rpx;
+  }
+
+
+
+
+
+.item-info{
+  line-height: 1;
+  
+  
+}
+.item-info .span{
+  font-size: 32rpx;
+  margin-right:  20rpx;
+}
+.item-info  .em{
+  font-size:  26rpx;
+  color:#999;
+}
+.add-info{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 30rpx;
+  text-align: center;
+  background: #ff5c33;
+  color:#fff;
+  z-index: 9;
+}
+.auditing-tips{
+  width: 100rpx;
+  height: 86rpx;
+  right: 16rpx;
+  top:0;
+}
+.auditing-tips image{
+  width:100% !important;
+  height: 100% !important;
+}
+
+.zhengjian-empty {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.zhengjian-empty .empty_logo image {
+    width: 400rpx;
+    height: 400rpx;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.zhengjian-empty .h3 {
+    font-size: 24rpx;
+    text-align: center;
+    color: #999;
+    margin: -30rpx 0 60rpx;
+}
+
+.zhengjian-empty .zj-e-tips {
+    width: 640rpx;
+    margin: 0 auto;
+    border: 2px dashed #ededed;
+    padding: 20rpx;
+    -webkit-border-radius: 10rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    color: #ddd;
+}
+
+.zhengjian-empty .zj-e-tips .h4 {
+    font-size: 30rpx;
+    padding-bottom: 6rpx;
+}

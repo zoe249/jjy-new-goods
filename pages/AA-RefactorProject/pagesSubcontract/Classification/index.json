@@ -1,0 +1,10 @@
+{
+	"navigationStyle": "custom",
+	"disableScroll":true,
+	"usingComponents": {
+		"MoreData":"../../component/MoreData/index",
+		"Loading":"../../component/Loading/index",
+		"NoList":"../../component/NoList/index",
+		"CartAnimation":"../../component/CartAnimation/index"
+	}
+}

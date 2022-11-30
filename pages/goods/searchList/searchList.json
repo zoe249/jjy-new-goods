@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索结果",
+  "usingComponents": {
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

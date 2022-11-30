@@ -1,0 +1,128 @@
+/* components/sortGrid/sortGrid.wxss */
+.view_all
+{
+    display: block;
+ 
+}
+.view_top
+{
+    height: 50rpx;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    font-size: 24rpx;
+    color: #a0a0a0;
+
+}
+.view_top .view_top_bg
+{
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+ 
+}
+.view_top .view_top_logo
+{
+    width: 130rpx;
+    margin-left: 20rpx;
+    z-index: 2;
+ 
+
+}
+.view_top  .hlj_img
+{
+    margin-left: 30rpx;
+    width: 36rpx;
+    margin-right: 8rpx;
+    z-index: 2;
+
+}
+.view_top .hlj_tv
+{
+    z-index: 2;
+  
+
+}
+.view_top .hbs_img
+{
+    margin-left: 30rpx;
+    width: 36rpx;
+    margin-right: 8rpx;
+    z-index: 2;
+}
+.view_top .hbs_tv
+{
+    z-index: 2;
+  
+}
+.ma-category-grid{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col-2{
+    width: 50%;
+  }
+  .col-3{
+    width: 33.333%;
+  }
+  .col-4{
+    width: 25%;
+  }
+  .col-5{
+    width: 20%;
+  }
+  .ma-category-grid-item-wrap{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-size: 22rpx;
+  }
+  .ma-category-grid-img{
+    width: 110rpx;
+    height: 110rpx;
+   
+  }
+  .ma-category-grid .ma-category-value{
+    margin: 14rpx auto 18rpx;
+    min-height: 34rpx;
+    font-size: 24rpx;
+    color:white;
+  }
+  .indicator-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14rpx 0;
+  }
+  .indicator-container-wrap{
+    display: flex;
+    align-items: center;
+  }
+  .indicator-item {
+    width: 32rpx;
+    height: 8rpx;
+    background: var(--grey);
+    /* margin-right: 8rpx; */
+    border-radius: 10rpx;
+  }
+  .firstIndicatorItem{
+    border-radius: 10rpx 0 0 10rpx;
+  }
+  .endIndicatorItem{
+    border-radius: 0 10rpx 10rpx 0;
+  }
+  .indicator-item.active {
+    background: var(--gray);
+  }
+  
+  
+  /* 社区首页 分类 */
+  
+  .home-cate .ma-category-grid-img{
+    width: 96rpx;
+    height: 112rpx;
+  }
+  .home-cate text{
+    margin-top: 16rpx;
+  }
+  /* .ma-category-grid-item-wrap */

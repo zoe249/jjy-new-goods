@@ -1,0 +1,8 @@
+{
+  "backgroundColor": "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "售后详情",
+  "enablePullDownRefresh": false
+}

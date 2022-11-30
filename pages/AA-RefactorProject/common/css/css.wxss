@@ -1,0 +1,223 @@
+/* placeholder的样式 */
+.placeholder {
+	font-size: 24rpx;
+	color: #ccc;
+}
+
+.placeholderClass {
+	font-size: 30rpx;
+	color: #ccc;
+}
+
+/* 富文本中的图片样式 */
+.fwb_image {
+	display: block;
+	max-width: 100%;
+	margin: auto;
+}
+
+/* 编辑器中的图片样式 */
+.bian_ji_qi .biao_qing {
+	vertical-align: bottom;
+	width: 44rpx;
+	height: 44rpx;
+}
+
+.bian_ji_qi .image {
+	display: block;
+	max-width: 100%;
+	margin: auto;
+}
+
+/* 点击穿透 */
+.click_true {
+	pointer-events: none;
+}
+
+.click_false {
+	pointer-events: auto;
+}
+
+/* 盒阴影 */
+.hyy {
+	box-shadow: 0 0 50rpx 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 换行 */
+.hh {
+	word-break: break-all;
+	overflow-wrap: break-word;
+}
+
+/* 超出省略的样式 */
+.slh_one {
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.slh_two {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.slh_three {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+/* 怪异盒模型 */
+.box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* 弹性布局 */
+.dis_f {
+	display: flex;
+}
+
+.dis_f_l_c {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.dis_f_l_b {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.dis_f_c_b {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.dis_f_c_c {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dis_f_r_c {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.dis_f_r {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.dis_f_sb {
+	display: flex;
+	justify-content: space-between;
+}
+
+.dis_f_sb_b {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.dis_f_sb_c {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dis_f_sa_c {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.dis_f_w {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.dis_f_w_l_c {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.dis_f_w_l_b {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.dis_f_w_c_c {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.dis_f_w_sb_c {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dis_f_co {
+	display: flex;
+	flex-direction: column;
+}
+
+.dis_f_co_c_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.dis_f_co_l_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.dis_f_co_r_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.dis_f_co_sb {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.dis_f_co_sb_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.blackWhite {
+	filter: grayscale(100%);
+}
+
+.iphonex {
+	position: relative;
+	background: #FFFFFF;
+}

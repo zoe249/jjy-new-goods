@@ -1,0 +1,24 @@
+<!--pages/shopList/shopList.wxml-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/storeItem/storeItem.wxml" />
+<scroll-view class="wrapper" scroll-y scroll-top="{{scrollTop}}" bindscrolltolower="freshStoreList" lower-threshold="100"
+  enable-back-to-top>
+    <view class="search-top-container">
+        <form class="search-container ">
+            <input type="text" value="{{inputContent}}" class="search-input" placeholder="寻找门店"   bindinput="searchInput"   bindconfirm="getStoreList" />
+            <view class="clear-search-btn {{inputContent ? '' : 'hidden'}}" bindtap="clearSearch"></view>
+        </form>
+            <view wx:if="{{inputContent==''}}" class="searchView searchBtn" bindtap="getStoreList">搜索</view>
+            <view wx:else class="searchView cancleBtn" bindtap="clearSearch">取消</view>
+    </view>
+    <view class='container'>
+        <block wx:for="{{storeListUIShow}}" wx:key="shopId">
+            <template is="storeItem" data="{{store: item, isGroupManage}}"></template>
+        </block>
+        <template wx:if="{{storeListUIShow.length == storeListSearchResult.length}}" is="noMore"></template> 
+    </view>
+    <block wx:if="{{emptyData}}">
+        <template is="empty"></template>
+    </block>
+
+</scroll-view>

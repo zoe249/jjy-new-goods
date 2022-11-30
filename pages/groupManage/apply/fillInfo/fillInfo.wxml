@@ -1,0 +1,74 @@
+<import src="/templates/global/global.wxml" />
+<form bindsubmit='bindApplyLeader'>
+    <view class='fill-info-container'>
+        <view class='form-inoput'>
+            <view class='title'>真实姓名</view>
+            <view class='input-box'>
+                <input name="name" maxlength="10" data-types="name" bindinput="inputChange" placeholder='请输入您的真实姓名' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class='form-inoput'>
+            <view class='title'>手机号码</view>
+            <view class='input-box'>
+                <input name="mobile" maxlength="11" data-types="mobile" bindinput="inputChange" placeholder='请输入您的手机号码' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class='form-inoput'>
+            <view class='title'>身份证</view>
+            <view class='input-box'>
+                <input name="idCard" maxlength="18" data-types="idCard" bindinput="inputChange" placeholder='请输入您的身份证号码' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+            </view>
+        </view>
+        <view class="has-experience">
+          <view class='title'>是否有相关社群经营经验</view>
+            <radio-group class="radio-group" bindchange="radioChange">
+              <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                <text>{{item.value}}</text>
+              </radio>
+            </radio-group>
+        </view>
+        <view class='form-inoput exp-info-input-wrap' wx:if="{{isCheck}}">
+          <view class='title'>平台名称</view>
+          <view class='input-box'>
+            <input adjust-position="true" maxlength="20" cursor-spacing="50" class="exp-info-input" name="platformName" placeholder='请输入平台名称' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+          </view>
+        </view>
+        <view class='form-inoput exp-info-input-wrap' wx:if="{{isCheck}}">
+          <view class='title'>社群数量</view>
+          <view class='input-box'>
+          <input adjust-position="true" maxlength="8" type="number" cursor-spacing="50" class="exp-info-input" name="communitySize" placeholder='请输入社群数量' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+          </view>
+        </view>
+        <view class='form-inoput exp-info-input-wrap' wx:if="{{isCheck}}">
+          <view class='title'>月销售额</view>
+          <view class='input-box'>
+          <input adjust-position="true" maxlength="8" type="number" cursor-spacing="50" class="exp-info-input" name="monthlySales" placeholder='请输入月销售额' placeholder-style="font-size:24rpx;color:#E7E7E7;"></input>
+          </view>
+        </view>
+        <view class='updata-img'>
+            <view class='updata-title'>请拍摄并上传身份证</view>
+            <view class='photo-box ui-flex'>
+                <view class='front' bindtap='getIdPhotoFront'>
+                    <image src='{{idPhotoFront}}'></image>
+                    <text>点击上传带头像一面</text>
+                </view>
+                <view class='back' bindtap='getIdPhotoRear'>
+                    <image src='{{idPhotoRear}}'></image>
+                    <text>点击上传带国徽的一面</text>
+                </view>
+            </view>
+            <view class='form-inoput'>
+                <view class='title'>
+                    <text>验证码</text>
+                </view>
+                <view class='input-box valite-code'>
+                    <input name="code" data-types="code" bindinput="inputChange" placeholder='请输入您的验证码' maxlength="6"></input>
+                </view>
+                <button class='get-code {{sending?"":"sending"}}' catchtap='{{sending?"getCode":""}}'>{{sending?"获取验证码":"重新获取("+second+")"}}</button>
+            </view>
+        </view>
+        <button form-type="submit" class='submit-btn'>提交</button>
+    </view>
+</form>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

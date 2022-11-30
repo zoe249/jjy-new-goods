@@ -1,0 +1,19 @@
+<import src="/templates/global/global.wxml"/>
+<view class="item" wx:for="{{list}}">
+  <view class="img">
+    <image class="img-cover" src="{{item.goodsImage}}"></image>
+  </view>
+  <view class="info">
+    <view class="sku-id">SKU ID：{{item.goodsSkuId}}</view>
+    <view class="goods-name">{{item.goodsName}}</view>
+    <block wx:if="{{item.materielType == 30}}">
+        <view class="goods-property"><text class="property-out-hiding">{{item.materielExtPropertyStr}}</text></view>
+    </block>
+    <view class="stock-state"><view class="stock-verification">待核销：<text>{{item.totalWaitCheckNum}}</text></view><view class="stock-warehousing">已售后：<text>{{item.totalWaitRefundNum}}</text></view></view>
+    <view class="stock-total">合计：<text>{{item.totalWaitCheckNum + item.totalWaitRefundNum}}</text></view>
+  </view>
+</view>
+
+<template is="noMore" wx:if="{{list.length>= 3 && noMoreData}}"></template>
+<template is="empty" wx:if="{{list.length<=0 && empty > 0}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

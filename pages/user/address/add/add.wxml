@@ -1,0 +1,44 @@
+<import src="/templates/global/global.wxml"/>
+
+<view class="page-container">
+    <view class="section add-address add_address r1bb r1bt">
+        <view class="ul">
+            <view class="li r1bb pt20">
+                <view class="em common-em pt10">联系人</view>
+                <input bindinput="userInputChanged" bindblur="userInputBlur" data-type="name" name="name" type="text" value="{{formData_addrName}}" placeholder="您的姓名" maxlength="32" data-msg="您填写联系人不能超过32个字"></input>
+                <view class="s" style="visibility: {{shippingAddress_Name ? 'visible' : 'hidden'}}"></view>
+            </view>
+            <view class="li">
+                <view class="em common-em">手机号码</view>
+                <input bindinput="userInputChanged" bindblur="userInputBlur" data-type="phone" name="phone" value="" type="number" maxlength="11" value="{{formData_addrPhone}}" placeholder="请输入您的手机号" data-msg="请您输入正确的手机号码"></input>
+                <view class="s mt6" style="visibility: {{shippingAddress_Phone ? 'visible' : 'hidden'}}"></view>
+            </view>
+        </view>
+        <view class="ul">
+            <view class="li r1bb select_map_local">
+                <input class="hidden" bindinput="userInputChanged" bindblur="userInputBlur" data-type="map_address" name="map_address" id="map_address" value="{{formData_mapAddress}}"></input>
+                <view class="em common-em">收货地址</view>
+                <view bindtap="mapSelectLocation" class="a map_address{{formData_mapAddress.address || ' no_address'}}">{{formData_mapAddress.address || '请选择小区、大厦或学校'}}</view>
+            </view>
+            <view class="li">
+                <view class="em common-em">门牌号</view>
+                <input bindinput="userInputChanged" bindblur="userInputBlur" data-type="address" type="text" name="address" value="{{formData_poiAddr}}" placeholder="具体信息(如楼号/楼层/房号)" maxlength="50" data-msg="您填写地址不能超过50个字"></input>
+                <view class="s" style="visibility: {{shippingAddress_Address ? 'visible' : 'hidden'}}"></view>
+            </view>
+        </view>
+        <view class="ul">
+            <view class="li note">
+                <input class="hidden" name="addrtag" value="{{formData_addrTag}}" id="note" data-type="addrtag"></input>
+                <view class="em common-em">标签</view>
+                <view class="span{{formData_addrTag == 0 ? ' cur' : '' }}" bindtap="userSelectChanged" data-type="addrtag" data-addrtag="0">无</view>
+                <view class="span{{formData_addrTag == 1 ? ' cur' : '' }}" bindtap="userSelectChanged" data-type="addrtag" data-addrtag="1">公司</view>
+                <view class="span{{formData_addrTag == 2 ? ' cur' : '' }}" bindtap="userSelectChanged" data-type="addrtag" data-addrtag="2">家</view>
+            </view>
+        </view>
+    </view>
+    <view class="div submit-btn-wrap">
+        <button bindtap="saveAddress" class="a submit-btn" style="background: {{isSubmitButtonDisabled ? '' : '#FF4752'}};" disabled="{{isSubmitButtonDisabled}}">确定</button>
+    </view>
+
+    <template is="toast" data="{{...toastData}}"></template>
+</view>

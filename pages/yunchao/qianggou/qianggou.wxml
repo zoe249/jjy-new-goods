@@ -1,0 +1,115 @@
+<import src="/templates/global/global.wxml" />
+<view class='activity-head' wx:if="{{showHeaderNav}}">
+	<view class='share-goods-container'>
+		<view class='market-nav'>
+			<view wx:for="{{swiperNavItem}}" wx:key="this_{{index}}" bindtap='swiperNav' class='market-nav-item {{navActive == index?"active":""}}' data-index='{{index}}'>
+				<text>{{item}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+<scroll-view class='{{showHeaderNav? "proGoodsList": "" }} {{navActive == 0?"show-box":""}}' style="height:100vh" scroll-y bindscrolltolower="scrollProGoodsList" lower-threshold="80">
+	<view>
+		<view class="activity-time-wrap" wx:if="{{proGoodsList.length> 0}}">
+			<view class=''>正在秒杀，先下单先得哦</view>
+			<view class='activity-time'>
+				<view class='tips-text'>距结束剩余</view>
+				<view class="timer">
+					<!-- <text wx:if="{{day}}">{{day}}天</text> -->
+					<text>{{hour?hour:'00'}}</text>:
+					<text>{{minute?minute:'00'}}</text>:
+					<text>{{second?second:'00'}}</text>
+				</view>
+			</view>
+		</view>
+		<view class='share-goods-container'>
+			<block wx:if="{{proGoodsList && proGoodsList.length}}">
+				<view class='share-goods-list'>
+					<block wx:for="{{proGoodsList}}" wx:key="for_{{index}}">
+						<view class='goods-item {{item.totalStock > 0?"":"not-stock"}}' catchtap='bindPartakeGroup' data-item="{{item}}">
+							<view class='goods-img'>
+								<image src='{{item.coverImage}}'></image>
+							</view>
+							<view class='goods-info'>
+								<view class='goods-title'>{{item.shortTitle||item.goodsName||item.skuName||''}}</view>
+								<view class='goods-dec'>{{item.goodsTag}}</view>
+								<!-- <view class='goods-type'>{{item.proType == 1888?"拼团":"秒杀"}}</view> -->
+								<view class='goods-price'>
+									<view class='p-price'>秒杀价
+										<text>¥ {{item.goodsPrice}}</text>
+									</view>
+									<view class='o-price'>市场价
+										<text> ¥{{item.goodsPrimePrice}}</text>
+									</view>
+								</view>
+								<view class='stock-state'>
+									<text>{{item.buyStock >= item.totalStock ? '已售罄' : item.ratio > 85 ? '即将售罄' : item.buyStock == 0 ? '热卖中' : '已抢'+item.buyStock+'件'}}</text>
+									<view class='progress'>
+										<view class='progressing' style='width:{{item.ratio}}%;'></view>
+									</view>
+								</view>
+								<button class='join' data-item="{{item}}">{{item.totalStock > 0?'去抢购':'已售罄'}}</button>
+							</view>
+						</view>
+					</block>
+				</view>
+				<template is="noMore" wx:if="{{proGoodsList.length> 0}}"></template>
+			</block>
+			<block wx:else>
+				<template is="empty"></template>
+			</block>
+		</view>
+	</view>
+</scroll-view>
+<scroll-view class='soonGoodsList {{navActive == 1?"show-box":""}}' scroll-y bindscrolltolower="scrollSoonGoodsList" lower-threshold="80">
+	<block wx:if="{{soonGoodsList && soonGoodsList.length}}">
+		<view>
+			<view class="activity-time-wrap">
+				<view class=''>即将开始秒杀，先下单先得哦</view>
+				<view class='activity-time'>
+					<view class='tips-text'>距开始剩余</view>
+					<view class="timer">
+						<!-- <text wx:if="{{day}}">{{day}}天</text> -->
+						<text>{{SoonHour?SoonHour:'00'}}</text>:
+						<text>{{SoonMinute?SoonMinute:'00'}}</text>:
+						<text>{{SoonSecond?SoonSecond:'00'}}</text>
+					</view>
+				</view>
+			</view>
+			<view class='share-goods-list'>
+				<block wx:for="{{soonGoodsList}}" wx:key="for_{{index}}">
+					<view class='goods-item' data-item="{{item}}">
+						<view class='goods-img'>
+							<image src='{{item.coverImage}}'></image>
+						</view>
+						<view class='goods-info'>
+							<view class='goods-title'>{{item.shortTitle||item.goodsName||item.skuName||''}}</view>
+							<view class='goods-dec'>{{item.goodsTag}}</view>
+							<!-- <view class='goods-type'>{{item.proType == 1888?"拼团":"秒杀"}}</view> -->
+							<view class='goods-price'>
+								<view class='p-price'>秒杀价
+									<text>¥ {{item.goodsPrice}}</text>
+								</view>
+								<view class='o-price'>市场价
+									<text> ¥{{item.goodsPrimePrice}}</text>
+								</view>
+							</view>
+							<view class='stock-state' wx:if="{{false}}">
+								<text>{{item.buyStock >= item.totalStock ? '已售罄' : item.buyStock/item.totalStock > 85 ? '即将售罄' : item.buyStock == 0 ? '热卖中' : '已抢'+item.buyStock+'件'}}</text>
+								<view class='progress'>
+									<view class='progressing' style='width:{{item.ratio}}%;'></view>
+								</view>
+							</view>
+							<button class='join soon'>即将开始</button>
+						</view>
+					</view>
+				</block>
+			</view>
+			<template is="noMore" wx:if="{{soonGoodsList.length>0}}"></template>
+		</view>
+	</block>
+	<block wx:else>
+		<template is="empty"></template>
+	</block>
+</scroll-view>
+<template is="globalLoading" data="{{globalLoading}}"></template>

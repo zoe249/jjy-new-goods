@@ -1,0 +1,126 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<import src="/templates/fillgoods/fillgoods.wxml" />
+<block wx:if="{{!emptyMsg}}">
+<view>
+  <view class="bg-caitiao"></view>
+  <block wx:for="{{resData.storeList}}"  wx:for-item="storeData"  wx:key="goodsIndex" wx:for-index="childIndex">
+      <template is="goodslist" data="{{...storeData,quickOrder}}"></template>
+  </block>
+  <!-- <view class="bg-jiange"></view> -->
+<view class="fill-coupon-total">
+    <view class="{{couponLength?'forword':'no-coupon'}} has-coupon-list pdlr32 pdt14 pos-r">
+        <block wx:if="{{couponLength}}">
+            <view class="coupon" bindtap="toggleCoupon">
+                <text class="title">优惠券</text>
+                <text class="isSelectCoupon c-color fr ellipsis">{{couponTag}}</text>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="coupon" bindtap='toggleUnUseCoupon'>
+                <text class="title">优惠券</text>
+                <text class="isSelectCoupon fr c-color-9 ellipsis forword pdlr32">{{couponTag}}</text>
+            </view>
+        </block>
+    </view>
+    <block wx:if="{{userInfo.valueCard > 0}}">
+        <view class="fill-payoff pdlr32 pdb14 pos-r {{selectPayInfo.isCardPay == 1?'act':''}}" >
+        <view class="cardvalue" catchtap="onPayWay" data-paytype="card" data-valid="{{selectPayInfo.isCardPay}}">生活卡<text class="c-color-9">  可用  <text class="c-orange-color">￥{{userInfo.valueCard}}</text></text><label class="fr pos-a tfY50 pay-way {{selectPayInfo.isCardPay == 2?'unSelect':''}} "data-paytype="card"></label>
+        </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="fill-payoff pdlr32 pdb14 pos-r" >
+        <view class="cardvalue"  data-paytype="card" data-valid="{{selectPayInfo.isCardPay}}">生活卡<text class="c-color-9">  可用  <text class="c-orange-color">￥{{userInfo.valueCard}}</text></text><label class="fr pos-a tfY50 pay-way unSelect"data-paytype="card"></label>
+        </view>
+        </view>
+    </block>
+    <!-- <view class="fill-payoff pdlr32 pdtb28 r1bb pos-r {{selectPayInfo.isScorePay == 1?'act':''}}">
+        <view class="cardvalue" catchtap="onPayWay" data-paytype="score" data-valid="{{selectPayInfo.isScorePay}}">积分<text class='c-color-9'>  可用  <text class=""> {{score}} 积分 </text> 抵 <text class="c-orange-color">￥{{selectPayInfo.scorePay}}</text></text>
+          <label class="fr pos-a tfY50 pay-way {{selectPayInfo.isScorePay == 2?'unSelect':''}}" data-paytype="score"></label>
+        </view>
+    </view> -->
+</view>
+<view class="bg-jiange"></view>
+<view class="fill-money">
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>商品金额</text>
+        <text class="fr">￥{{resData.totalSrcPrice}}</text>
+    </view>
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>促销优惠</text>
+        <text class="fr c-color">-￥{{resData.totalProPrice}}</text>
+    </view>
+    <block wx:if="{{resData.totalDiscountPrice > 0}}">
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>折扣优惠</text>
+        <text class="fr c-color">-￥{{resData.totalDiscountPrice}}</text>
+    </view>
+    </block>
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>优惠券</text>
+        <text class="fr c-color">-￥{{resData.couponPrice}}</text>
+    </view>
+    <!-- <block wx:if="">
+      <view class="fill-money-item clearfix">
+          <text class='cls-name'>会员优惠</text>
+          <text class="fr c-color">-￥{{resData.freight}}</text>
+      </view>
+    </block> -->
+    <block wx:if="{{selectPayInfo.isCardPay == 1}}">
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>生活卡</text>
+        <text class="fr c-color">-￥{{selectPayInfo.cardPay}}</text>
+    </view>
+    </block>
+    <block wx:if="{{selectPayInfo.isScorePay  == 1}}">
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>积分抵扣</text>
+        <text class="fr c-color">-￥{{selectPayInfo.scorePay}}</text>
+    </view>
+    </block>
+    <block wx:if="{{resData.totalPackageCost>0}}">
+        <view class="fill-money-item clearfix">
+            <text class='cls-name'>包装费</text>
+            <text class="fr">￥{{resData.totalPackageCost}}</text>
+        </view>
+    </block>
+    <block wx:if="{{resData.freight>0}}">
+      <view class="fill-money-item clearfix">
+          <text class='cls-name'>运费</text>
+          <text class="fr">￥{{resData.freight}}</text>
+      </view>
+      <view class="fill-money-item clearfix">
+          <text class='cls-name'>运费优惠</text>
+          <text class="fr c-color">-￥{{resData.proFreight}}</text>
+      </view>
+    </block>
+</view>
+<view class="bg-jiange"></view>
+<component-iphone-x-patcher></component-iphone-x-patcher>
+</view>
+<view class="footer r1bt{{isIphoneX ? ' iphone-x-patcher-container' : ''}}"><view id="total_price">实付：<view id="total_money">￥{{totalPay}}</view></view><botton class="settle_accounts {{comRequest ==1 ? '':'bg-sbm-gray-color'}}" catchtap="createOrder" data-res="{{comRequest}}">提交订单</botton><component-iphone-x-patcher></component-iphone-x-patcher></view>
+</block>
+<!-- 各类弹窗-->
+<view class="coupon-layer {{counponPicker?'':'hide'}}">
+    <view class="shade" bindtap="hidePicker"></view>
+    <view class="coupon-layer-cont">
+        <view class="coupon-layer-head">
+            <view class="coupon-layer-title">请选择优惠券</view>
+            <view class="un-select-counpon {{unUserCoupon == 3?'un-user-counpon':''}}" bindtap="clearSelectCoupon">不使用优惠券</view>
+
+        </view>
+        <scroll-view scroll-y style="height: 584rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" >
+            <block wx:for="{{getCouponListCartList}}"  wx:for-item="coupon" wx:key="thiskey">
+                <template is="couponItem" data="{{item:coupon,couponCodeId}}"></template>
+            </block>
+            <template is="noMore"></template>
+        </scroll-view>
+    </view>
+</view>
+
+<block wx:if="{{emptyMsg}}">
+  <template is="empty" data="{{emptyMsg}}"></template>
+</block>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

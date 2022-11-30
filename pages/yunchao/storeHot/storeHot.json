@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "热卖榜单",
+  "usingComponents": {
+    "component-full-goods-item":"/component/activityFullGoodsItem/activityFullGoodsItem"
+  }
+}

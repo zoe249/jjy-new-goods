@@ -1,0 +1,124 @@
+<!--pages/user/myEvaluate/myEvaluate.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{!haveNextpage&&commentListList&&commentListList.length>2}}">
+    <view class="tips">已经到底啦~</view>
+</block>
+<view class="container" id="container">
+    <!-- <view class="prize-rule"><a>奖励规则</a></view>-->
+    <view class="evaluate-nav">
+        <view class="nav{{evaluateNavType==1?' active':''}}" id="evaluate-already" catchtap="changeNav" data-evaluate-nav-type="1">已评价</view>
+        <view class="nav{{evaluateNavType==2?' active':''}}" id="evaluate-no" catchtap="changeNav" data-evaluate-nav-type="2">未评价</view>
+    </view>
+    <block wx:if="{{showNoData}}">
+        <template is="empty" data="{{emptyMsg:showNoDataMsg||'网络请求错误，稍后重试！'}}"></template>
+    </block>
+    <block wx:elif="{{evaluateNavType==1}}">
+    <view class="ul evaluate-already-box" id="evaluate-already-box">
+        <block wx:for="{{alreadyResult}}" wx:for-item="list">
+            <view class="li">
+                <view class="title clearfix"><view class="a" data-store-type="{{list.storeType}}" data-store-id="{{list.storeId}}" catchtap="goShopsOrSearch"><image src="{{list.storeIcon}}"></image><view class="span">{{list.storeName}}</view></view></view>
+                <view class="evaluate-cnt">
+                    <view class="evaluate-score clearfix">
+                        <block wx:if="{{list.storeStar>=1}}"><view class="s star1"></view></block>
+                        <block wx:else><view class="s{{list.storeStar>0?' star0-5':''}}"></view></block>
+                        <block wx:if="{{list.storeStar>=2}}"><view class="s star1"></view></block>
+                        <block wx:else><view class="s{{list.storeStar>1?' star0-5':''}}"></view></block>
+                        <block wx:if="{{list.storeStar>=3}}"><view class="s star1"></view></block>
+                        <block wx:else><view class="s{{list.storeStar>2?' star0-5':''}}"></view></block>
+                        <block wx:if="{{list.storeStar>=4}}"><view class="s star1"></view></block>
+                        <block wx:else><view class="s{{list.storeStar>3?' star0-5':''}}"></view></block>
+                        <block wx:if="{{list.storeStar>=5}}"><view class="s star1"></view></block>
+                        <block wx:else><view class="s{{list.storeStar>4?' star0-5':''}}"></view></block>
+                        <view class="span score">({{list.storeStar}})</view>
+                        <block wx:if="{{list.offlineOrderType==1122 || list.offlineOrderType==1123}}">
+                            <view class="em distribution">线下消费</view>
+                        </block>
+                        <block wx:elif="{{list.shippingType==110}}">
+                            <view class="em distribution">配送{{list.distributionStar}}星 <block wx:if="{{list.distributeTime}}">（{{list.distributeTime}}分钟）送达</block></view>
+                        </block>
+                        <block wx:elif="{{list.shippingType==111}}">
+                            <view class="em distribution">自提</view>
+                        </block>
+                        <block wx:elif="{{list.shippingType==112}}">
+                            <view class="em distribution">配送{{list.distributionStar}}星 <block wx:if="{{list.distributeTime}}">（{{list.distributeTime}}分钟）送达</block></view>
+                        </block>
+                        <block wx:elif="{{list.shippingType==113}}">
+                            <view class="em distribution">堂食</view>
+                        </block>
+                        <block wx:elif="{{list.shippingType==1037||list.shippingType==1022||list.shippingType==1023||list.shippingType==1024}}">
+                            <view class="em distribution">第三方快递</view>
+                        </block>
+                    </view>
+                    <view class="text">{{list.contentInfo}}</view>
+                    <block wx:if="{{list.commentGoods&&list.commentGoods.length>0}}">
+                        <view class="good"><block wx:for="{{list.commentGoods}}" wx:for-item="text" wx:for-index="i"><block wx:if="{{i>0}}">,</block>{{text}}</block></view>
+                    </block>
+                    <block wx:if="{{list.commentBads&&list.commentBads.length>0}}">
+                        <view class="bad"><block wx:for="{{list.commentBads}}" wx:for-item="text" wx:for-index="i"><block wx:if="{{i>0}}">,</block>{{text}}</block></view>
+                    </block>
+                    <block wx:if="{{list.commentLabels&&list.commentLabels.length>0}}">
+                        <view class="tags"><block wx:for="{{list.commentLabels}}" wx:for-item="text" wx:for-index="i"><block wx:if="{{i>0}}">,</block>{{text}}</block></view>
+                    </block>
+                    <block wx:if="{{list.imageList&&list.imageList.length>0}}">
+                       <view class="images-box">
+                           <view class="images">
+                               <block wx:for="{{list.imageList}}" wx:for-item="images">
+                                   <image src="{{images}}" data-url="{{images}}" data-url-list="{{list.imageList}}" catchtap="preImage"></image>
+                               </block>
+                           </view>
+                       </view>
+                    </block>
+                    <view class="time">{{list.createTime}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+    </block>
+    <block wx:else>
+    <view class="ul evaluate-no-box" id="evaluate-no-box">
+        <block wx:for="{{noResult}}" wx:for-item="list">
+            <block wx:if="{{list.isCardFlag!=1||list.isCardFlag!=2}}">
+                <view class="li">
+                    <view class="a title">
+                        <image src="{{list.storeIcon}}" data-store-type="{{list.storeType}}"></image>
+                        <view class="span shop-name">{{list.storeName}}</view>
+                    </view>
+                    <block wx:if="{{list.goodsInfoList&&list.goodsInfoList.length>1}}">
+                        <view class="a" catchtap="goOrderDetail" data-order-store-id="{{list.orderStoreId}}" data-order-id="{{list.orderId}}" class="all-img-box">
+                            <view class="all-img">
+                                <block wx:for="{{list.goodsInfoList}}" wx:for-item="goods">
+                                    <view class="images" ><image src="{{goods.goodsImage}}"></image></view>
+                                </block>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <block wx:for="{{list.goodsInfoList}}" wx:for-item="goods">
+                            <view catchtap="goOrderDetail" data-order-store-id="{{list.orderStoreId}}" data-order-id="{{list.orderId}}" class="a one-img">
+                                <image src="{{goods.goodsImage}}"></image>
+                                <view class="span">{{goods.goodsName}}</view>
+                            </view>
+                        </block>
+                    </block>
+                    <view class="text1 clearfix"><view class="span total-num">共<view class="em">{{list.goodsCount}}</view>件商品</view><view class="span state">已完成</view>
+                    </view>
+                    <view class="text2 clearfix"><view class="time span">{{list.createTimeStr}}</view><view class="span money">实付款:<view class="em">￥{{list.payAmountStr}}</view></view></view>
+                    <view class="evaluate-btn clearfix">
+                        <view class="a again" data-service-phone="{{list.servicePhone}}" catchtap="phoneService" data-order-store-id="{{list.orderStoreId}}">联系客服</view>
+                        <view class="go-evaluate" data-isbtc="{{list.isB2C}}" data-order-id="{{list.orderId}}" data-order-store-id="{{list.orderStoreId}}" data-pro-type="{{list.proType||''}}" catchtap="addEvaluate">立即评价</view>
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+    </block>
+</view>
+
+
+

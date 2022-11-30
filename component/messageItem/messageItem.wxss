@@ -1,0 +1,492 @@
+.news-index-container {
+    padding: 0 32rpx;
+}
+
+.news-index-container.member-dynamic-container .news-item,.news-index-container.service-bulletin-container .news-item {
+    width: 100%;
+    margin-top:30rpx;
+    background-color: #fff;
+    border: 1rpx solid #CCC
+}
+
+.news-index-container.member-dynamic-container .news-item.no-read,.news-index-container.service-bulletin-container .news-item.no-read {
+    border: 1rpx solid #FF4752
+}
+
+.news-index-container.member-dynamic-container .news-item .news-head-container,.news-index-container.service-bulletin-container .news-item .news-head-container {
+    height: 90rpx;
+    padding: 0 25rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.member-dynamic-container .news-item .news-head-container.no-border-bottom,.news-index-container.service-bulletin-container .news-item .news-head-container.no-border-bottom {
+    border-bottom: none
+}
+
+.news-index-container.member-dynamic-container .news-item .news-head-container .news-title,.news-index-container.service-bulletin-container .news-item .news-head-container .news-title {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #000;
+    font-size: 30rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.news-index-container.member-dynamic-container .news-item .news-head-container .news-time,.news-index-container.service-bulletin-container .news-item .news-head-container .news-time {
+    margin-left:10rpx;
+    color: #999;
+    font-size:26rpx;
+    line-height: 1
+}
+
+.news-index-container.member-dynamic-container .news-item .news-content,.news-index-container.service-bulletin-container .news-item .news-content {
+    margin-left: 25rpx;
+    padding:34rpx 25rpx 24rpx 0;
+    text-align: left;
+    border-bottom: 1rpx solid #e6e6e6;
+    color: #777;
+    font-size: 28rpx;
+    line-height: 36rpx;
+}
+
+.news-index-container.member-dynamic-container .news-item .news-content .span,.news-index-container.service-bulletin-container .news-item .news-content .span {
+    max-height: 140rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.member-dynamic-container .news-item .look-news-detail,.news-index-container.service-bulletin-container .news-item .look-news-detail {
+    position: relative;
+    height: 90rpx;
+    padding: 30rpx 25rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height: 1
+}
+
+.news-index-container.member-dynamic-container .news-item .look-news-detail:after,.news-index-container.service-bulletin-container .news-item .look-news-detail:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    width: 20rpx;
+    height: 20rpx;
+    position: absolute;
+    border-left: 1rpx solid #999;
+    border-bottom: 1rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg)
+}
+
+.news-index-container.promotion-container .news-item,.news-index-container.service-bulletin-container .news-item {
+    width: 100%;
+    margin-top:30rpx;
+    background-color: #fff;
+    border: 1rpx solid #CCC
+}
+
+.news-index-container.promotion-container .news-item.no-read,.news-index-container.service-bulletin-container .news-item.no-read {
+    border: 1rpx solid #FF4752
+}
+
+.news-index-container.promotion-container .news-item .news-head-container,.news-index-container.service-bulletin-container .news-item .news-head-container {
+    height: 70rpx;
+    padding: 0 25rpx;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.promotion-container .news-item .news-head-container .news-title,.news-index-container.service-bulletin-container .news-item .news-head-container .news-title {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #000;
+    font-size: 30rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.news-index-container.promotion-container .news-item .news-head-container .news-time,.news-index-container.service-bulletin-container .news-item .news-head-container .news-time {
+    margin-left: 10rpx;
+    color: #999;
+    font-size: 26rpx;
+    line-height: 1
+}
+
+.news-index-container.promotion-container .news-item .news-content-head,.news-index-container.service-bulletin-container .news-item .news-content-head {
+    position: relative;
+    height: 360rpx;
+    margin: 0 20rpx;
+    background: url("https://shgm.jjyyx.com/m/images/yunguo/discovery/slice/icon-bg-default.png?t=418") no-repeat center;
+    background-size: contain;
+    border-radius:10rpx;
+    overflow: hidden
+}
+
+.news-index-container.promotion-container .news-item .news-content-head .bottom-bg,.news-index-container.service-bulletin-container .news-item .news-content-head .bottom-bg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 90rpx;
+    padding: 9rpx 25rpx;
+    background-color: rgba(0,0,0,0.4);
+    color: #FFF;
+    font-size:28rpx;
+    line-height:36rpx;
+}
+
+.news-index-container.promotion-container .news-item .news-content-head .bottom-bg.no-children-promotion,.news-index-container.service-bulletin-container .news-item .news-content-head .bottom-bg.no-children-promotion {
+    padding: 34rpx 20rpx 20rpx 20rpx;
+}
+
+.news-index-container.promotion-container .news-item .news-content-head .bottom-bg .span,.news-index-container.service-bulletin-container .news-item .news-content-head .bottom-bg .span {
+    width: 100%;
+    height: 72rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.promotion-container .news-item .news-content,.news-index-container.service-bulletin-container .news-item .news-content {
+    margin-left: 25rpx;
+    padding: 20rpx 25rpx 20rpx 0;
+    text-align: left;
+    border-bottom:1rpx solid #e6e6e6;
+    color: #999;
+    font-size: 28rpx;
+    line-height: 36rpx;
+}
+
+.news-index-container.promotion-container .news-item .news-content.one-news-content,.news-index-container.service-bulletin-container .news-item .news-content.one-news-content {
+    margin: 0;
+    padding-left: 25rpx;
+}
+
+.news-index-container.promotion-container .news-item .news-content .span,.news-index-container.service-bulletin-container .news-item .news-content .span {
+    max-height: 72rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.promotion-container .news-item .news-content .span.notice-text,.news-index-container.service-bulletin-container .news-item .news-content .span.notice-text {
+    max-height: 36rpx;
+    -webkit-line-clamp: 1;
+}
+
+.news-index-container.promotion-container .news-item .look-news-detail,.news-index-container.service-bulletin-container .news-item .look-news-detail {
+    position: relative;
+    height: 90rpx;
+    padding: 30rpx 25rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height: 1;
+}
+
+.news-index-container.promotion-container .news-item .look-news-detail:after,.news-index-container.service-bulletin-container .news-item .look-news-detail:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    width: 20rpx;
+    height: 20rpx;
+    position: absolute;
+    border-left: 1rpx solid #999;
+    border-bottom: 1rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg)
+}
+
+.news-index-container.promotion-container .news-item .promotion-children-list-container,.news-index-container.service-bulletin-container .news-item .promotion-children-list-container {
+    margin-top: 20rpx;
+    padding-left: 25rpx;
+    border-top: 1rpx solid #e6e6e6
+}
+
+.news-index-container.promotion-container .news-item .promotion-children-list-container .promotion-children-item,.news-index-container.service-bulletin-container .news-item .promotion-children-list-container .promotion-children-item {
+    height: 170rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.news-index-container.promotion-container .news-item .promotion-children-list-container .promotion-children-item:last-child,.news-index-container.service-bulletin-container .news-item .promotion-children-list-container .promotion-children-item:last-child {
+    border-bottom: none;
+}
+
+.news-index-container.promotion-container .news-item .promotion-children-list-container .promotion-children-item .promotion-children-item-title,.news-index-container.service-bulletin-container .news-item .promotion-children-list-container .promotion-children-item .promotion-children-item-title {
+    -webkit-box-flex: 1;
+    flex: 1;
+    max-height: 90rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.promotion-container .news-item .promotion-children-list-container .promotion-children-item .promotion-children-item-head,.news-index-container.service-bulletin-container .news-item .promotion-children-list-container .promotion-children-item .promotion-children-item-head {
+    width: 130rpx;
+    height: 130rpx;
+    margin: 0 20rpx;
+    border:1rpx solid #ccc;
+    background: url("https://shgm.jjyyx.com/m/images/yunguo/discovery/slice/icon-bg-default.png?t=418") no-repeat center;
+    background-size: contain
+}
+
+.news-index-container.goods-remind-container .news-item {
+    width: 100%;
+    margin-top: 30rpx;
+    background-color: #fff;
+    border:1rpx solid #CCC
+}
+
+.news-index-container.goods-remind-container .news-item.no-read {
+    border:1rpx solid #FF4752
+}
+
+.news-index-container.goods-remind-container .news-item .news-head-container {
+    height:90rpx;
+    padding: 0 25rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.goods-remind-container .news-item .news-head-container .news-title {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #000;
+    font-size: 30rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.news-index-container.goods-remind-container .news-item .news-head-container .news-time {
+    margin-left: 10rpx;
+    color: #999;
+    font-size:26rpx;
+    line-height: 1
+}
+
+.news-index-container.goods-remind-container .news-item .news-content {
+    height: 170rpx;
+    margin-left: 25rpx;
+    padding: 20rpx 25rpx 20rpx 0;
+    border-bottom:1rpx solid #e6e6e6;
+    color: #777;
+    font-size:28rpx;
+    line-height:36rpx;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.goods-remind-container .news-item .news-content .goods-image {
+    display: inline-block;
+    width: 130rpx;
+    height:130rpx;
+    max-height: none;
+    border: 1rpx solid #CCCCCC;
+    background: #fff url("https://shgm.jjyyx.com/m/images/yunguo/discovery/slice/icon-bg-default.png?t=418") no-repeat center;
+    background-size: contain
+}
+
+.news-index-container.goods-remind-container .news-item .news-content .goods-name {
+    margin-left: 20rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height:36rpx;
+    -webkit-box-flex: 1;
+    flex: 1;
+    max-height:130rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.goods-remind-container .news-item .look-news-detail {
+    position: relative;
+    height: 90rpx;
+    padding: 30rpx 25rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height: 1
+}
+
+.news-index-container.goods-remind-container .news-item .look-news-detail:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    width:20rpx;
+    height:20rpx;
+    position: absolute;
+    border-left:1rpx solid #999;
+    border-bottom:1rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg)
+}
+
+.news-index-container.future-planet-container .news-item {
+    width: 100%;
+    margin-top: 30rpx;
+    background-color: #fff;
+    border:1rpx solid #CCC
+}
+
+.news-index-container.future-planet-container .news-item.no-read {
+    border:1rpx solid #FF4752
+}
+
+.news-index-container.future-planet-container .news-item .news-head-container {
+    height: 90rpx;
+    padding: 0 25rpx;
+    border-bottom:1rpx solid #e6e6e6;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.future-planet-container .news-item .news-head-container .news-title {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #000;
+    font-size: .9375rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.news-index-container.future-planet-container .news-item .news-head-container .news-time {
+    margin-left:10rpx;
+    color: #999;
+    font-size: 26rpx;
+    line-height: 1
+}
+
+.news-index-container.future-planet-container .news-item .news-content {
+    height:170rpx;
+    margin-left: 25rpx;
+    padding:20rpx 25rpx 20rpx 0;
+    border-bottom:1rpx solid #e6e6e6;
+    color: #777;
+    font-size:28rpx;
+    line-height:36rpx;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.news-index-container.future-planet-container .news-item .news-content .goods-image {
+    display: inline-block;
+    width: 130rpx;
+    height:130rpx;
+    max-height: none;
+    border: 1rpx solid #CCCCCC;
+    background: #fff url("https://shgm.jjyyx.com/m/images/yunguo/discovery/slice/icon-bg-default.png?t=418") no-repeat center;
+    background-size: contain
+}
+
+.news-index-container.future-planet-container .news-item .news-content .goods-name {
+    margin-left:20rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height:36rpx;
+    -webkit-box-flex: 1;
+    flex: 1;
+    max-height:130rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+
+.news-index-container.future-planet-container .news-item .look-news-detail {
+    position: relative;
+    height: 90rpx;
+    padding: 30rpx 25rpx;
+    color: #777;
+    font-size: 28rpx;
+    line-height: 1
+}
+
+.news-index-container.future-planet-container .news-item .look-news-detail:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    width: 20rpx;
+    height:20rpx;
+    position: absolute;
+    border-left: 1rpx solid #999;
+    border-bottom:1rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg)
+}

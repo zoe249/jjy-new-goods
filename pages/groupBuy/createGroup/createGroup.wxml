@@ -1,0 +1,120 @@
+<!--pages/groupBuy/createGroup/createGroup.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<view class="main">
+  <view class="group-goods-container">
+    <image class="cover-image" src="{{groupDetail.coverImage}}"></image>
+
+    <view class="goods-info-container">
+      <block wx:if="{{formType == 1}}">
+        <view class="goods-name-container">
+          <block wx:if="{{groupDetail.produceIcon}}">
+            <image src="{{groupDetail.produceIcon}}" class="produce-icon"></image>
+          </block>
+          {{groupDetail.shortTitle||groupDetail.goodsName||""}}
+        </view>
+        <view class="group-msg-container">
+          <text class="need-join">{{groupDetail.needJoinCount}}人参团</text>
+          <text class="sales-volume">已拼{{groupDetail.salesVolume}}件</text>
+        </view>
+
+        <view class="goods-price-msg-container">
+          <text class="goods-prime-price">单买价￥{{groupDetail.goodsPrimePrice}}</text>
+          <text class="sale-price">{{groupDetail.goodsPrice}}</text>
+        </view>
+      </block>
+      <block wx:else>
+        <text class="goods-name">{{groupDetail.shortTitle||groupDetail.goodsName||""}}</text>
+        <text class="goods-tag">{{groupDetail.goodsTag}}</text>
+        <view class="goods-prime-price-container">
+          <text class="goods-prime-price-msg">单买价</text>
+          <text class="goods-prime-price">￥{{groupDetail.goodsPrimePrice}}</text>
+        </view>
+
+        <view class="goods-sale-msg-container">
+          <text class="sales-volume">已拼{{groupDetail.salesVolume}}件</text>
+          <view class="group-msg-container">
+            <text class="need-join">{{groupDetail.needJoinCount}}人团</text>
+            <view class="sale-price-container">
+              <text class="sale-price">{{groupDetail.goodsPrice}}</text>
+              <text class="sales-unit">/{{groupDetail.salesUnit}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <block wx:if="{{groupDetail.goodsLabels && groupDetail.goodsLabels.length}}">
+    <view class="goods-labels-container">
+      <block wx:for="{{groupDetail.goodsLabels}}" wx:key="*this">
+        <text class="label-item">{{item}}</text>
+      </block>
+    </view>
+  </block>
+
+  <view class="group-status-container">
+    <block wx:if="{{groupDetail.surplusTime}}">
+      <view class="surplus-time-container">
+        <text class="surplus-time-msg">开团后</text>
+        <component-group-surplus-time surplus-time="{{groupDetail.surplusTime}}" data-i="{{groupDetail.surplusTime}}"
+                                      bind:surplus-end-callback="getGroupDetail"
+                                      no-interval="true"></component-group-surplus-time>
+        <text class="surplus-time-msg">结束</text>
+      </view>
+    </block>
+
+    <view class="need-join-msg-container">
+      <text class="need-msg">还差</text>
+      <text class="need-num">{{groupDetail.needJoinCount}}</text>
+      <text class="need-msg">人即可成团</text>
+    </view>
+    <view class="grouper-list-container">
+      <block wx:for="{{groupDetail.memberList}}" wx:key="*this">
+        <block wx:if="{{item}}">
+          <view class="grouper-item">
+            <block wx:if="{{item.memberPhoto}}">
+              <image src="{{item.memberPhoto}}" class="member-photo"></image>
+            </block>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="grouper-item">
+            <image src="https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png" class="member-photo"></image>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+
+  <component-group-buy-step form-type="{{formType}}"></component-group-buy-step>
+
+  <view class="footer-contaienr">
+    <block wx:if="{{buttonText}}">
+      <text class="look-home" catchtap="goHome">{{buttonText}}</text>
+    </block>
+    <block wx:else>
+      <block wx:if="{{groupDetail.isGroupHead == 1}}">
+        <text class="look-my-group" catchtap="lookMyGroup">查看我的团</text>
+      </block>
+      <block wx:else>
+        <text class="join-group" catchtap="joinGroup">立即开团</text>
+      </block>
+    </block>
+  </view>
+
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+
+  <template is="modal" data="{{...modalData}}"></template>
+  <template is="toast" data="{{...toastData}}"></template>
+</view>
+<block wx:if='{{showPopGroupNum}}'><pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'></pop-group-num></block>
+
+<!-- <block wx:if="{{showLoginPop}}">
+<view class="go-login-pop">
+  <view class="cnt">
+    <view class="msg">您还未登录，登录后获取详细信息，关闭后点击立即开团也可登录</view>
+    <view class="btn-cnt"><view class="btn-cancel" catchtap="closePop">关闭</view><view class="btn-go-login" catchtap="goLogin">去登录</view></view>
+  </view>
+</view>
+</block> -->

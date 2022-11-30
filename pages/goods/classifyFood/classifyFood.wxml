@@ -1,0 +1,77 @@
+<!--pages/goods/classifyScreen/classifyScreen.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+ <template is="globalLoading" data="{{globalLoading}}"></template>
+
+<view class='container' id='box'>
+  <view class="search-top-container" bindtap="linkToSearch">
+    <view class="search-container">
+      <text class="search-key">{{searchPlaceholder}}</text>
+    </view>
+  </view>
+  <!-- 提示层 - 暂无数据 -->
+<block wx:if='{{showError}}'><template is="empty"></template></block>
+<block wx:else>
+  <view class='cnt'>
+    <view class='cnt-left'>
+      <scroll-view class='left-scroll' scroll-y>
+        <view class='left-list'>
+        <block wx:for='{{recommendList}}' wx:for-item='item' wx:key='*this'>
+          <view class='li{{item.sectionId==selectSectionId&&isRecommend?" on":""}}' catchtap='changeRecommendLeftNav' data-cate-id='{{item.sectionId}}' style="background-image:url('{{item.cateIcon}}')">{{item.cateName}}</view>
+        </block>
+        <block wx:for='{{leftClass}}' wx:for-item='item' wx:key='*this'>
+          <view class='li{{item.cateId==secondCateId&&!isRecommend?" on":""}}' catchtap='changeLeftNav' data-cate-id='{{item.cateId}}' style="background-image:url('{{item.cateId?item.cateIcon:''}}')">{{item.cateName}}</view>
+        </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='cnt-right'>
+      <scroll-view class='right-scroll' scroll-y lower-threshold='150rpx' bindscroll='rightScroll' bindscrolltolower='rightScrollDown'>
+        <block wx:if='{{isRecommend&&nowRecommendJson.haveBanner}}'><view class='top-banner' catchtap='goLink' data-link='{{nowRecommendJson.bannerLink}}'><image src='{{nowRecommendJson.bannerImage}}' mode='widthFix'></image></view></block>
+        <!-- <block wx:if='{{!isRecommend}}'>
+         <view class='sort-wrap'>
+          <view class='sort-box{{rightScrollTop>100?" fixed":""}}'><view class='sort sort-all{{!sortList[0].field?" on":""}}' catchtap='changeTopNav' data-field='' data-sort=''>综合</view><view class='sort sort-num{{sortList[0].field=="salesVolume"?" on":""}}' catchtap='changeTopNav' data-field='salesVolume' data-sort='-1'>销量</view><view class='sort sort-price{{sortList[0].field=="price"?" on":""}}' catchtap='changeTopNav' data-field='price' data-sort='1'>价格</view></view>
+        </view>
+        </block> -->
+
+        <!-- <view class='classify-right-nav'>
+          <view class='right-nav-box'>
+            <scroll-view class='right-nav-scroll' scroll-x='true' scroll-into-view='id{{selectRightNavId}}'><view catchtap='clickRightNav' data-right-nav-id='' id='id' class='nav on'>海味鲜港</view><view class='nav'>海鲜港</view><view class='nav'>鲜港</view><view class='nav'>1海鲜港</view><view class='nav'>2鲜港</view></scroll-view>
+            <block wx:if='{{showRightNav}}'>
+            <view class='right-nav-all'>
+            <view class='nav on' catchtap='clickRightNav' data-right-nav-id='' >海味鲜港</view><view class='nav'>海鲜港</view><view class='nav'>鲜港</view><view class='nav'>1海鲜港</view><view class='nav'>2鲜港</view>
+            </view>
+            </block>
+            <view class='right-nav-toggle' catchtap='rightNavToggle'></view>
+          </view>
+        </view> -->
+
+        <view class='ul'>
+          <block wx:if='{{showRightNav}}'><view class='masker-ul' catchtap='closeRightNav'></view></block>
+          <block wx:if='{{isRecommend}}'>
+            <block wx:for='{{nowRecommendJson.list}}' wx:for-item='li' wx:key='li'>
+            <component-goods-classify-item-food goods='{{li}}' bind:change-cart="changeCartCount"></component-goods-classify-item-food>
+            </block>
+          </block>
+          <block wx:else>
+            <block wx:for='{{list}}' wx:for-item='li' wx:key='li'>
+            <component-goods-classify-item-food goods='{{li.goods}}' bind:change-cart="changeCartCount"></component-goods-classify-item-food>
+            </block>
+          </block>
+        </view>
+        <block wx:if='{{list.length==0&&!isRecommend&&!haveNextPage||isRecommend&&nowRecommendJson.list.length==0}}'>
+        <view class='ul-no-data'>
+          <image src='https://shgm.jjyyx.com/m/images/error_img3.png?20190704' mode='widthFix' class='image'></image>
+          <view class='text'>暂无数据</view>
+        </view>
+        </block>
+        <block wx:if='{{list.length>0&&!haveNextPage&&!isRecommend||isRecommend&&nowRecommendJson.list.length>0}}'><template is="noMore"></template></block>
+      </scroll-view>
+    </view>
+  
+  </view>
+ <component-go-cart cartCount='{{cartCount}}'></component-go-cart>
+</block>
+</view>
+
+

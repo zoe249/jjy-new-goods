@@ -1,0 +1,216 @@
+/* shopDetail.wxss */
+
+.wrapper {
+    background: #fff;
+}
+
+.shop-top-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-bottom: 30rpx;
+}
+
+.shop-top-container .top-border {
+    width: 100%;
+    height: 4rpx;
+    background: url('https://shgm.jjyyx.com/m/images/bg_caitiao.png') no-repeat center;
+    background-size: cover;
+}
+
+.shop-top-container .shop-icon-container {
+    position: relative;
+    width: 120rpx;
+    height: 120rpx;
+    margin-top: 35rpx;
+}
+
+.shop-top-container .shop-icon-container .shop-icon {
+    width: 120rpx;
+    height: 120rpx;
+    background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-icon-container .shop-icon-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.shop-top-container .shop-name {
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    color: #4e4e4e;
+    line-height: 0;
+    padding: 14rpx 0;
+}
+
+.shop-top-container .shop-scores-container {
+    margin-top: 20rpx;
+    height: 24rpx;
+    display: flex;
+    align-items: flex-end;
+}
+
+.shop-top-container .shop-scores-container .scores {
+    display: inline-block;
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 5rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_star0.png') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-scores-container .half {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_star0.5.png');
+}
+
+.shop-top-container .shop-scores-container .full {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_star1.png');
+}
+
+.shop-top-container .shop-scores-container .grade {
+    margin-left: 15rpx;
+    font-size: 24rpx;
+    color: #444;
+    padding: 12rpx 0;
+    line-height: 0;
+}
+
+.shop-top-container .shop-tags {
+    margin-top: 20rpx;
+    color: #444;
+    font-size: 24rpx;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.shop-top-container .shop-services-container {
+    margin-top: 20rpx;
+    display: flex;
+}
+
+.shop-top-container .shop-services-container .services-item {
+    width: 120rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_ketangshi.png') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-services-container .qu {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_keziqu.png');
+}
+
+.shop-top-container .shop-services-container .song {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_kewaisong.png');
+}
+
+.shop-introduce-container {
+    border-top: 2rpx solid #ededed;
+    border-bottom: 2rpx solid #ededed;
+    padding-left: 32rpx;
+}
+
+.shop-introduce-container .introduce-item {
+    display: flex;
+    align-items: center;
+    height: 96rpx;
+    border-top: 2rpx solid #ededed;
+    font-size: 28rpx;
+    color: #444;
+}
+
+.shop-introduce-container .introduce-item:first-child {
+    border-top: none;
+}
+
+.shop-introduce-container .introduce-item .item-icon {
+    width: 30rpx;
+}
+
+.shop-introduce-container .introduce-item .item-text {
+    margin-left: 20rpx;
+    line-height: 0;
+    padding: 48rpx 0;
+}
+
+.shop-other-info-container {
+    padding: 40rpx 32rpx;
+}
+
+.shop-other-info-container .other-info-title {
+    font-size: 28rpx;
+    color: #999;
+}
+
+.shop-other-info-container .other-info-detail-container {
+    margin-top: 30rpx;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.shop-other-info-container .other-info-detail-container .other-info-item {
+    flex: none;
+    width: 220rpx;
+    height: 190rpx;
+    margin-right: 10rpx;
+    margin-bottom: 10rpx;
+    border: 2rpx solid #ededed;
+    background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+    background-size: cover;
+}
+
+.shop-other-info-container .other-info-detail-container .other-info-item:nth-child(3n) {
+    margin-right: 0;
+}
+
+#phone-pop {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#phone-pop .phone-cnt {
+    position: absolute;
+    top: 50%;
+    left: 100rpx;
+    width: 550rpx;
+    background-color: #fff;
+    margin: -200rpx auto 0;
+    border-radius: 20rpx;
+}
+
+#phone-pop .phone-cnt .phone-num {
+    padding: 40rpx 10rpx;
+    text-align: center;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+#phone-pop .phone-cnt .phone-btn {
+    display: flex;
+    text-align: center;
+    line-height: 40rpx;
+    font-size: 32rpx;
+}
+
+#phone-pop .phone-cnt .phone-btn .phone-cancel {
+    line-height: 80rpx;
+    flex: 1;
+}
+
+#phone-pop .phone-cnt .phone-btn .phone-confirm {
+    flex: 1;
+    line-height: 80rpx;
+    border-left: 1rpx solid #e6e6e6;
+    color: #FF4752;
+}

@@ -1,0 +1,5 @@
+<view class="right_one" data-index="{{indexTag}}" bindtap="handleTagClick">
+    <image class="right_one_bj" src="{{tabBtnObj.backgroud}}" mode="aspectFill"></image>
+    <image class="right_one_tag" src="{{tabBtnObj.icon}}" mode="aspectFill"></image>
+    <view class="right_one_title {{indexTag==0?'text-shadow-title_sh':'text-shadow-title_yxgz'}}">{{tabBtnObj.title}}</view>
+</view>

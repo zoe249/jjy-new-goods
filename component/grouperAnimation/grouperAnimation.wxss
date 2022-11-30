@@ -1,0 +1,55 @@
+/* component/grouperAnimation/grouperAnimation.wxss */
+
+.animation-container{
+  position: absolute;
+  left: 32rpx;
+  top: 650rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  -webkit-animation: animation 5s linear infinite;
+  animation: animation 5s linear infinite;
+}
+@-webkit-keyframes animation{
+  0%{opacity:0;}
+  20%{opacity:1;}
+  80%{opacity:1;}
+  100%{opacity:0;}
+}
+@keyframes animation{
+  0%{opacity:0;}
+  20%{opacity:1;}
+  80%{opacity:1;}
+  100%{opacity:0;}
+}
+
+
+.animation-container .barrage-container{
+  display: flex;
+  align-items: center;
+  height: 48rpx;
+  border-radius: 24rpx;
+  padding-left: 48rpx;
+  padding-right: 36rpx;
+  background: rgba(12, 12, 33, 0.6);
+}
+
+.animation-container .user-header{
+  position: absolute;
+  left: 6rpx;
+  bottom: 6rpx;
+  width: 38rpx;
+  height: 38rpx;
+  border: 1px solid rgba(255,255,255,1);
+  border-radius: 50%;
+  z-index: 999;
+  transform: translate3d(0,0,100rpx);
+}
+
+.animation-container .barrage-container .group-msg{
+  font-size: 20rpx;
+  line-height: 1;
+  color: #FFF;
+  white-space:nowrap;
+}

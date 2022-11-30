@@ -1,0 +1,252 @@
+/* pages/goods/shopInfo/shopInfo.wxss */
+
+.wrapper { 
+    background: #F8F8F8;
+    height: 100vh;
+}
+
+.shop-top-container {
+    width: 690rpx;
+    margin: 35rpx 30rpx;
+    border: 2rpx solid #ccc;
+    border-radius: 30rpx;
+    overflow: hidden;
+}
+
+.shop-top-container .shop-image-cover {
+    width: 100%;
+    height: 180rpx;
+    position: relative;
+    background: url('https://shgm.jjyyx.com/m/images/shop_top_img.png?t=418') no-repeat center;
+    background-size: cover;
+    border-top-left-radius: 30rpx;
+    border-top-right-radius: 30rpx;
+}
+
+.shop-top-container .shop-image-cover:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 690rpx;
+    height: 20rpx;
+    background: url('https://shgm.jjyyx.com/m/images/bg_shop_juchi.png') no-repeat center;
+    background-size: 100%;
+}
+
+.shop-top-container .shop-info-container {
+    display: flex;
+    align-items: stretch;
+    width: 690rpx;
+    height: 180rpx;
+    padding: 30rpx;
+    background: #fff;
+}
+
+.shop-top-container .shop-info-container .shop-icon-container {
+    width: 120rpx;
+    height: 120rpx;
+    position: relative;
+}
+
+.shop-top-container .shop-info-container .shop-icon-container .shop-icon {
+    width: 120rpx;
+    height: 120rpx;
+    background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-info-container .shop-icon-container .shop-icon-border {
+    width: 120rpx;
+    height: 120rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    margin-left: 30rpx;
+    overflow: hidden;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-name {
+    width: 100%;
+    color: #444;
+    font-size: 28rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container {
+    height: 24rpx;
+    margin-top: 24rpx;
+    display: flex;
+    align-items: flex-end;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container .grade {
+    margin-left: 15rpx;
+    font-size: 24rpx;
+    color: #444;
+    padding: 12rpx 0;
+    line-height: 0;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container .tags {
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    color: #444;
+    padding: 12rpx 0;
+    line-height: 0;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container .scores {
+    display: inline-block;
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 5rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_star0.png') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container .half {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_star0.5.png');
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-scores-container .full {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_star1.png');
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-services-container {
+    margin-top: 16rpx;
+    display: flex;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-services-container .services-item {
+    width: 120rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_ketangshi.png') no-repeat center;
+    background-size: contain;
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-services-container .qu {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_keziqu.png');
+}
+
+.shop-top-container .shop-info-container .shop-msg-container .shop-services-container .song {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_kewaisong.png');
+}
+
+.nav-scroll-container {
+    width: 750rpx;
+    height: 88rpx;
+    /* border-top: 2rpx solid #ccc;
+    border-bottom: 2rpx solid #ccc; */
+    /* background: #eee; */
+    color: #9E9EA6;
+    font-size: 28rpx;
+    padding: 0 32rpx;
+}
+
+.nav-scroll-container .nav-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.nav-scroll-container .nav-container .nav-item {
+    line-height: 0;
+    padding: 43rpx 24rpx;
+    text-align: center;
+    margin-left: 40rpx;
+    flex: none;
+}
+
+.nav-scroll-container .nav-container .nav-item:first-child {
+    margin-left: 0;
+}
+
+.nav-scroll-container .nav-container .active {
+    color: #155C99;
+    /* background: url('https://shgm.jjyyx.com/m/images/icon_nav_active.png') no-repeat bottom;
+    background-size: 100% 4rpx; */
+}
+
+.goods-list-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    padding: 0 32rpx;
+}
+.goods-list-container goods-item-yunchao{
+    margin-top: 12rpx;
+}
+/* .goods-list-container goods-item-yunchao:nth-child(1),
+.goods-list-container goods-item-yunchao:nth-child(2){
+    margin-top: 0;
+} */
+
+.shop-head{
+    width: 686rpx;
+    margin: 16rpx auto 0;
+    background: #fff;
+    border-radius: 24rpx;
+    padding: 0 16rpx;
+}
+.shop-head-top{
+    border-bottom: 1px solid #F3F3F4;
+    padding: 32rpx 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.shop-img{
+    width: 112rpx;
+    height: 112rpx;
+    background: #f4f4f4;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 32rpx;
+}
+.shop-img image{
+    width: 100%;
+}
+.shop-name{
+    font-size: 30rpx;
+    color: #313031;
+}
+.shop-head-bot{
+    color: #9E9EA6;
+    font-size: 24rpx;
+    padding: 16rpx;
+    line-height: 1.4;
+}
+
+.shop-tell{
+    width: 96rpx;
+    height: 80rpx;
+    background: #E7EEF5;
+    opacity: 1;
+    border-radius: 40rpx 0px 0px 40rpx;
+    position: absolute;
+    right: -16rpx;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 16rpx;
+    
+}
+.shop-tell view{
+    width: 48rpx;
+    height: 48rpx;
+    font-size: 48rpx;
+    color: #155C99;
+    display: flex;
+    align-items: center;
+}

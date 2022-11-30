@@ -1,0 +1,241 @@
+<!-- pages/activity/fission/fission.wxml -->
+<import src="/templates/global/global.wxml" />
+<!-- <picker class='shop-picker' bindchange="bindShopPickerChange" value="{{shopIndex}}" range="{{shopArray}}">
+    <view class="picker">
+      当前门店：{{shopArray[shopIndex]}}
+    </view>
+  </picker> -->
+<scroll-view class='container' scroll-y id="container" scroll-into-view="{{quickerGoodsContainer}}" scroll-with-animation style="{{emptyData?'background:#f4f4f4':pageBackgroundColor?'background:'+pageBackgroundColor:''}}">
+  <!-- <block wx:if="{{loadingImageList.length == 1}}">
+    <view class="loading-container">
+      <image class="loading" src="{{loadingImageList[0]}}"></image>
+      <image src="https://shgm.jjyyx.com/m/images/activity/loadingAnimation.gif"
+             bindload="loadingGifLoaded" style="opacity: 0; position: absolute;"></image>
+    </view>
+  </block>
+  <block wx:elif="{{loadingImageList.length > 1}}">
+    <view class="loading-container aniamtion{{loadingImageList[1] ? '' : ' opacity0'}}">
+      <image class="loading" src="https://shgm.jjyyx.com/m/images/activity/loadingAnimation.gif" mode="widthFix"></image>
+    </view>
+  </block> -->
+  <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem" wx:for-index="moduleIndex">
+    <!-- 头图 start -->
+    <block wx:if="{{moduleItem.sectionType == 1326 && moduleItem.recommendList.length}}">
+      <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+        <view class='activity-title' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+          <image class='title-image' src='{{recommendItem.imgUrl}}' mode="widthFix">
+            <view class="share-free-receive-btn" catchtap="showShareDialog"></view>
+          </image>
+          <!-- <block wx:if="{{shareMemberId == 0 || shareMemberId == memberId}}"> -->
+            <view class="barrage-container" animation="{{animationData}}">
+              <image class="user-header" src="{{userList[barrageIndex].photo || 'https://shgm.jjyyx.com/m/images/my_head_default.png?t=418'}}"></image>
+              <text class="receive-msg">{{userList[barrageIndex].name}}{{userList[barrageIndex].info}}</text>
+            </view>
+          <!-- </block> -->
+        </view>
+      </block>
+    </block>
+    <block wx:elif="{{shareMemberId != 0 && shareMemberId != memberId && moduleItem.sectionType == 1830 && moduleItem.recommendList.length}}">
+      <block wx:if="{{moduleItem.sectionStyle == 1813}}">
+        <view class="swiper-container {{moduleItem.recommendList.length == 1 ? 'one-coupon' : ''}}" display-multiple-items="{{moduleItem.recommendList.length == 1 ? '1' : '1.08'}}">
+          <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-index="idx">
+            <view class="coupon-item-container {{item.extendObj[0].couponType == 4 ? 'free-shipping' : ''}} {{item.extendObj[0].status != 1 ? 'dis' : ''}}" catchtap="receiveCoupon" data-coupon-id="{{item.extendObj[0].couponId}}" data-batch-type="271" data-index="{{idx}}" data-module-index="{{moduleIndex}}" data-section-style="{{moduleItem.sectionStyle}}">
+              <view class="coupon-left-container">
+                <block wx:if="{{item.extendObj[0].couponType == 1 || item.extendObj[0].couponType == 2 || item.extendObj[0].couponType == 5}}">
+                  <text class="coupon-value">{{item.extendObj[0].couponValue}}</text>
+                  <text class="coupon-label">{{item.extendObj[0].label}}</text>
+                </block>
+                <block wx:elif="{{item.extendObj[0].couponType == 3}}">
+                  <text class="coupon-discount-value">{{item.extendObj[0].couponValue}}折</text>
+                  <text class="coupon-label">{{item.extendObj[0].label}}</text>
+                </block>
+                <block wx:elif="{{item.extendObj[0].couponType == 4}}">
+                  <text class="coupon-free-shipping-value">包邮券</text>
+                </block>
+              </view>
+              <view class="coupon-right-container">
+                <text class="coupon-desc">{{item.extendObj[0].describle}}</text>
+                <text class="coupon-title">{{item.extendObj[0].title}}</text>
+                <text class='coupon-time'>使用期限 {{item.extendObj[0].timeString}}</text>
+              </view>
+              <block wx:if="{{item.extendObj[0].status == 1}}">
+                <view class="coupon-btn"></view>
+              </block>
+              <block wx:elif="{{item.extendObj[0].status == 2}}">
+                <view class="coupon-btn not-begin"></view>
+              </block>
+              <block wx:elif="{{item.extendObj[0].status == 3}}">
+                <view class="coupon-btn end"></view>
+              </block>
+              <block wx:elif="{{item.extendObj[0].status == 4}}">
+                <view class="coupon-btn sold-out"></view>
+              </block>
+              <block wx:elif="{{item.extendObj[0].status == 5}}">
+                <view class="coupon-btn received"></view>
+              </block>
+            </view>
+            <!-- <block wx:if="{{item.extendObj[0].status == 5}}">
+              <view class="navigator-btn go-coupon-list" bindtap='scrollToViewFn'></view>
+            </block>
+            <block wx:elif="{{item.extendObj[0].status == 3 || item.extendObj[0].status == 4}}">
+              <navigator class="navigator-btn" url="/pages/home/home" open-type="reLaunch"></navigator>
+            </block> -->
+          </block>
+        </view>
+      </block>
+    </block>
+    <!-- <view class='goods-to-quicker-order' wx:if="{{moduleItem.sectionType == 1443 && !shareMemberId}}" wx:for="{{moduleItem.recommendList}}" wx:key="g_key">
+      <view><image src='goods-imgs' src='{{item.newExtendJson.coverImage}}'></image></view>
+      <view class='quicker-goods-info'>
+        <view class='quicker-goods-info-name'>{{item.newExtendJson.goodsName}}</view>
+        <view class='quicker-goods-info-tag'>{{item.newExtendJson.goodsTag}}</view>
+        <view class='quicker-goods-info-unit'>￥{{item.newExtendJson.salePrice}}{{item.newExtendJson.salesUnit?"/"+item.newExtendJson.salesUnit:""}}</view>
+        <navigator class='to-order' url="/pages/goods/detail/detail?goodsId={{currentGoodsId}}&from=fission">立即使用</navigator>
+      </view>
+    </view> -->
+  </block>
+  <!-- 头图 end -->
+  <!-- <block wx:if="{{shareMemberId == 0 || shareMemberId == memberId}}">
+    <view class="slide-down-btn"></view>
+  </block> -->
+  <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+    <block wx:if="{{moduleItem.sectionType == 1877 && moduleItem.contentObj && moduleItem.contentObj.length}}">
+      <!-- 排行榜 -->
+      <view class='share-leaderboard'>
+        <view>分享排行榜</view>
+      </view>
+      <view class='module-goods-list'>
+        <view class="leaderboard-container">
+          <view class="leaderboard-header-container">
+            <text class="user">用户</text>
+            <text class="ranking"></text>
+            <text class="phone">手机号</text>
+            <text class="friends">好友参与排行</text>
+          </view>
+          <block wx:for="{{moduleItem.contentObj}}" wx:key="memberId" wx:for-index="memberIndex" wx:for-item="memberItem">
+            <view class="leaderboard-item-container">
+              <image class="user" src="{{memberItem.photo}}"></image>
+              <block wx:if="{{memberIndex == 0}}">
+                <view class="ranking">
+                  <image class="ranking-image" src="https://shgm.jjyyx.com/m/images/activity/leaderboard_gold_medal.png"></image>
+                </view>
+              </block>
+              <block wx:elif="{{memberIndex == 1}}">
+                <view class="ranking">
+                  <image class="ranking-image" src="https://shgm.jjyyx.com/m/images/activity/leaderboard_silver_medal.png"></image>
+                </view>
+              </block>
+              <block wx:elif="{{memberIndex == 2}}">
+                <view class="ranking">
+                  <image class="ranking-image" src="https://shgm.jjyyx.com/m/images/activity/leaderboard_bronze_medal.png"></image>
+                </view>
+              </block>
+              <block wx:else>
+                <text class="ranking">NO.{{memberIndex+1}}</text>
+              </block>
+              <text class="phone">{{memberItem.tel}}</text>
+              <text class="friends">{{memberItem.count}}位好友</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{moduleItem.sectionType == 1370 && moduleItem.recommendList.length}}">
+      <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId">
+        <block wx:if="{{item.imgUrl}}">
+          <view class='bottom-link' data-link="{{item.linkUrl}}" bindtap='goOtherLink'>
+            <image src="{{item.imgUrl}}" mode="widthFix"></image>
+          </view>
+        </block>
+      </block>
+    </block>
+    <block wx:elif="{{moduleItem.sectionType == 1703 && moduleItem.recommendList.length}}">
+      <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId">
+        <image src="{{item.imgUrl}}" mode="widthFix" class="module-image" data-link="{{item.linkUrl}}" bindtap='goOtherLink'></image>
+      </block>
+    </block>
+    <block wx:elif="{{moduleItem.sectionType == 909 && moduleItem.recommendList.length}}">
+      <view class='goods-list-container' id="section_{{moduleItem.sectionId}}" style='background-color: {{moduleItem.sectionBgcolor}}'>
+        <block wx:for="{{moduleItem.recommendList}}" wx:for-item="recommentItem" wx:key="recommendId" wx:for-index="recommendIndex">
+          <block wx:if="{{recommentItem.bizType == 17 && recommentItem.imgUrl}}">
+            <view class='module-header-image' data-link="{{recommentItem.linkUrl}}" bindtap='goOtherLink'>
+              <image src='{{recommentItem.imgUrl}}' mode='widthFix'></image>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='share-goods-list' id='quickerGoodsContainer'>
+              <view class='goods-item g-list' catchtap='bindPartakeGroup' data-item="{{recommentItem.newExtendJson}}">
+                <view class='goods-img'>
+                  <image src='{{recommentItem.newExtendJson.coverImage}}'></image>
+                </view>
+                <view class='goods-info'>
+                  <view class='goods-info-top'>
+                    <view class='goods-title'>{{recommentItem.newExtendJson.shortTitle||recommentItem.newExtendJson.goodsName||""}}</view>
+                    <view class='goods-dec'>{{recommentItem.newExtendJson.goodsTag}}</view>
+                  </view>
+                  <view class='goods-price'>
+                    <view class='p-price'>
+                      <text>
+                        ¥ {{ recommentItem.newExtendJson.proPrice|| recommentItem.newExtendJson.salePrice}}
+                      </text>
+                    </view>
+                    <!-- <view class='o-price'>市场价
+                      <text> ¥{{recommentItem.newExtendJson.salePrice}}</text>
+                    </view> -->
+                  </view>
+                </view>
+              </view>
+              <block wx:if="{{recommentItem.newExtendJson.goodsStock > 0}}">
+                <button class='join' catchtap='gotoOrder' data-item="{{recommentItem.newExtendJson}}">
+                  去下单
+                </button>
+              </block>
+              <block wx:else>
+                <button class='join soon' catchtap='' data-item="">已售罄</button>
+              </block>
+            </view>
+          </block>
+        </block>
+      </view>
+    </block>
+    <block wx:elif=""></block>
+  </block>
+  <block wx:if="{{!isLogin && showLoginDialog}}">
+    <component-login-dialog title="{{loginDialogTitle}}" share-member-id="{{shareMemberId}}" activity-id="{{activityId}}" bind:close-dialog-callback="closeDialogCallback"></component-login-dialog>
+  </block>
+  <template is="toast" data="{{...toastData}}"></template>
+  <block wx:if="{{showShareDialogFlag}}">
+    <view class="share-dialog-container">
+      <view class="share-info-container">
+        <view class="share-header">
+          <text class="share-title">分享次数越多，获得机会越多</text>
+        </view>
+        <view class="share-btn-contaienr">
+          <view class="share-item-container">
+            <button open-type="share" class="share-btn">
+              <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_friends.png"></image>
+            </button>
+            <view class="share-msg-container">
+              <text class="share-msg">微信好友</text>
+            </view>
+          </view>
+          <!-- <view class="share-item-container">
+            <view class="share-btn" catchtap="downloadShareBg">
+              <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_scope.png"></image>
+            </view>
+            <view class="share-msg-container">
+              <text class="share-msg">生成图片</text>
+              <text class="share-msg">分享朋友圈</text>
+            </view>
+
+          </view> -->
+        </view>
+      </view>
+      <view class="close-btn" catchtap="hideShareDialog"></view>
+    </view>
+  </block>
+</scroll-view>
+<canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+<block wx:if="{{emptyData}}">
+  <template is="empty" data="{{...emptyData}}"></template>
+</block>

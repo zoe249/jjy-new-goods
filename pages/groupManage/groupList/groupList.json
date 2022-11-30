@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "pop-group-num":"/component/popGroupNum/popGroupNum",
+    "group-item": "/component/rowGroupMaxItem/index",
+    "actionSheet": "/component/actionSheet/actionSheet",
+    "painter":"/component/painter/painter"
+  }
+}

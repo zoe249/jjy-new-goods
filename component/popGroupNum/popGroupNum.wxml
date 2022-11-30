@@ -1,0 +1,23 @@
+<!--component/goodsItem/goodsItem.wxml-->
+<import src="/templates/global/global.wxml" />
+<view class="pop-group-num">
+  <view class="cnt">
+    <image src="{{goodsGroupInfo.coverImage||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}" class="cover-image"></image>
+    <view class="goods">
+      <view class="price">¥ {{goodsGroupInfo.salePrice}}</view>
+      <view class="goodsName">{{goodsGroupInfo.goodsName}}</view>
+    </view>
+    <view class="goods-num">
+      <view class="num-title">购买数量</view>
+      <view class="num-box">
+        <view class="num-minus" catchtap="minus"></view>
+        <block wx:if='{{goodsGroupInfo.pricingMethod==391}}'><view class="num">{{goodsGroupInfo.weightValue}}{{goodsGroupInfo.minBuyCountUnit||"g"}}</view></block>
+        <block wx:else><view class="num">{{goodsGroupInfo.num}}</view></block>
+        <view class="num-add" catchtap="add"></view>
+      </view>
+    </view>
+    <view class="btn-cancel" catchtap="cancel">关闭</view>
+    <view class="btn-confirm" catchtap="confirm">确定</view>
+  </view>
+</view>
+<template is="toast" data="{{...toastData}}"></template>

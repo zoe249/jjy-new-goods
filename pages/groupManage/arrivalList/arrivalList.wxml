@@ -1,0 +1,82 @@
+<import src="/templates/global/global.wxml" />
+
+<view class="header" wx:if="{{!noMyAddress}}">
+    <view class='shop-info'>
+        <image src='{{arrivalGroupAddress.photo}}'></image>
+        <view class="shop-extract-area" bindtap=''>
+            <view>{{arrivalGroupAddress.address}} </view>
+        </view>
+    </view>
+</view>
+
+<view class='batch-list-container'>
+
+    <block wx:for="{{placeList}}" wx:key="this_key">
+        <!-- <view class='self-cancellation'>
+        <view class='address'>
+            <view class='consignee'>{{item.addrName}} {{item.addrMobile}}</view>
+            <view class='address-info'>{{item.addrFull}}</view>
+        </view>
+        <view class='goods-tatol-num'>共{{item.goodsNumTotal }}件商品</view>
+    </view> -->
+        <block wx:for="{{item.batchList}}" wx:for-item="batchItem" wx:key="this_order">
+            <view class='order-item {{item.addrId == addrId?"":"hide"}}'>
+                <view class='order-num' bindtap='selectColoneOrder' data-id="{{item.addrId}}"
+                    data-batch-id="{{batchItem.batchId}}" data-item="{{batchItem}}">
+                    <text class='check-box {{batchItem.checkOut?"check":""}}'></text>到货批次：{{batchItem.batchId}}</view>
+                <block wx:for="{{batchItem.goodsList}}" wx:for-item="list" wx:key="this_goods">
+                    <view class='goods-list {{batchItem.goodsList.length!=index+1?"hr-b":""}}'>
+                        <image class='goods-img' src='{{list.goodsImage}}'></image>
+                        <view class='goods-info'>
+                            <view class='goods-name'>{{list.goodsSkuname}}</view>
+
+                            <view class='goods-spec'>
+                                <block wx:if="{{list.materielType==30}}">
+                                    <test class="property-out-hiding">{{list.materielExtPropertyStr}}</test>
+                                </block>
+                                <block wx:if="{{list.goodsSpec}}"><text
+                                        class='goods-spec-txt'>规格：{{list.goodsSpec}}{{list.goodsUnit}}</text></block>
+                                <text
+                                    class='gs-price'>单价：<text>¥{{list.goodsPrice}}{{list.goodsUnit?'/'+list.goodsUnit:''}}</text></text>
+                            </view>
+                            <!--2019-8-19-fwc <view class='goods-price'>商品条码：{{list.goodsPlu}}</view> -->
+                        </view>
+                        <block wx:if="{{list.pricingMethod == 390}}">
+                            <view class='goods-num'>数量：{{list.goodsNumReal}}{{list.goodsUnit}}</view>
+                        </block>
+                        <block wx:else>
+                            <view class='goods-num'>重量：{{list.goodsTotalWeight}}g</view>
+                        </block>
+                    </view>
+                </block>
+                <view class='jiange'></view>
+            </view>
+        </block>
+    </block>
+    <template wx:if="{{placeList.length}}" is="noMore"></template>
+</view>
+<template wx:if="{{!placeList.length}}" is="empty" data="{{...emptyObj}}"></template>
+<view class='footer'>
+    <view class='select' bindtap='selectAllColoneOrder'>
+        <text class='check-box {{isChooseAll?"check":""}}'></text>全选</view>
+    <view class='create' bindtap='receiveDistribution'>一键签收({{selectNum}})</view>
+</view>
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+
+<template is="globalLoading" data="{{globalLoading}}"></template>
+
+<cuModal modalName="{{modalName}}" dialogBoxStyle="width:656rpx">
+    <view slot="customCenter">
+        <view class="difference-wrap">
+            <view class="diff-conter">
+                签收成功！</view>
+            <view class="diff-footer r1bt">
+                <view bindtap="toDiff">报差异</view>
+                <view class="diff-btt-back r1bl" bindtap="hideModal">返回</view>
+            </view>
+        </view>
+
+    </view>
+</cuModal>

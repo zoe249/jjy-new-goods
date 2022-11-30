@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher"
+  }
+}

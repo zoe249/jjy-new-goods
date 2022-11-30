@@ -1,0 +1,47 @@
+<import src="/templates/global/global.wxml" />
+<view class="login-logo-page">
+    <view class="login-logo">
+        <image mode="aspectFit" src="{{logoImage}}"></image>
+    </view>
+    <!-- <view class="login-nav ed-border-b">
+        <view class="quick-login-nav item-col2 {{currentTab==0 ? 'cur' : ''}}" data-current="0" bindtap="onNavItem">快捷登录</view>
+        <view class="password-login-nav item-col2 {{currentTab==1 ? 'cur' : ''}}" data-current="1" bindtap="onNavItem">密码登录</view>
+    </view> -->
+    <view class="login-swiper">
+        <block wx:if="{{currentTab == 0}}">
+            <view id="quick-login" class="login-swiper-box" catchtouchmove='catchTouchMove'>
+                
+                <view class="input-row ed-border-b quick-phone">
+                    <input id="fast-mobile" placeholder-class="private-input" type="number" placeholder="请输入手机号" maxlength="11" bindinput="bindKeyInput" value="{{phoneValue}}" data-inputtype="fastphone"/>
+                    <icon class="clear-icon-btn {{phoneClear==0 ? 'hidden' : ''}}" type="clear" size="14" bindtap="onEmpty" data-inputtype="fastphone" />
+                </view>
+                <view class="input-row verification-code ed-border-b">
+                    <input id="veriCode" placeholder-class="private-input" type="number" placeholder="请输入验证码" maxlength="6" data-inputtype="code" bindinput="bindKeyInput" value="{{code}}"/>
+                    <icon class="clear-icon-btn {{codeClear==0 ? 'hidden' : ''}}" type="clear" size="14" data-inputtype="code" bindtap="onEmpty" />
+                    <view class="get_code r1bl {{sending?'':'hidden'}}" bindtap="getCode" data-mobile="{{phoneValue}}">获取验证码</view>
+                    <view class="get_code r1bl {{sending?'hidden':''}} code-sending" bindtap="resetGetCode" data-mobile="{{phoneValue}}">重新获取( {{second}} )</view>
+                </view>
+                <view class="protocol-tips clearfix">登录代表您已同意<text class="c-blue" bindtap="jumpAgreement">《家家悦优鲜用户协议》</text></view>
+            </view>
+        </block>
+        <block wx:if="{{currentTab == 1}}">
+            <view id="password-login" class="login-swiper-box" catchtouchmove='catchTouchMove'>
+                <view class="input-row ed-border-b login-phone">
+                    <input type="number" placeholder-class="private-input" placeholder="请输入手机号" maxlength="11"  bindinput="bindKeyInput" value="{{phoneValue}}" data-inputtype="phone" />
+                    <icon class="clear-icon-btn {{phoneClear==0 ? 'hidden' : ''}}" type="clear" size="14" data-inputtype="phone" bindtap="onEmpty"/>
+                </view>
+                <view class="input-row ed-border-b password-input">
+                    <input type="password" placeholder-class="private-input" placeholder="请输入密码" maxlength="18" data-inputtype="password" bindinput="bindKeyInput" value="{{pwd}}"/>
+                    <icon class="clear-icon-btn {{pwdClear==0 ? 'hidden' : ''}}" type="clear" size="14" data-inputtype="password" bindtap="onEmpty"/>
+                </view>
+                <!-- <view class="forget-pwd-tips clearfix"><text class="c-blue fr" bindtap="onPasswordRetrieval">忘记密码</text></view> -->
+            </view>
+        </block>
+        <view class="protocol-tips clearfix">登录代表您已同意<text class="c-blue" bindtap="jumpAgreement">《家家悦优鲜用户协议》</text></view>
+        <button class="login-btn {{isSubmit1==1?'bg-orange':''}} {{currentTab==0 ? 'fast-submit' : 'hidden'}}" bindtap="fastLogin">登录</button>
+        <button class="login-btn {{isSubmit2==1?'bg-orange':''}} {{currentTab==0 ? 'hidden' : 'login-btn'}}" bindtap="passwordLogin">登录</button>
+        <button class="login-btn no-login-back" type="default" bindtap="noLogin">暂不登录</button>
+    </view>
+    <template is="toast" data="{{...toastData}}"></template>
+</view>
+<loading id="globalLoading" ></loading>

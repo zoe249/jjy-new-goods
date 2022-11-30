@@ -1,0 +1,53 @@
+<import src="/templates/global/global.wxml" />
+<!-- <block wx:if="{{recomemendData.virtualCates}}">
+  <scroll-view class="scroll-nav" scroll-x scroll-left="{{scrollLeft}}" bindscroll="bindNavScroll" scroll-with-animation="{{isAnimation}}">
+    <view class='scroll-nav-wrap'>
+      <view bindtap='swiperVirtualCate' wx:for="{{recomemendData.virtualCates}}" wx:key="this_{{item.virtualId}}" class='{{curcate == index?"act":""}}' data-id="{{item.virtualId}}" data-curcate="{{index}}">
+        {{item.virtualName}}
+      </view>
+    </view>
+  </scroll-view>
+</block> -->
+<view class='top-banner'>
+  <image src='https://shgm.jjyyx.com/m/images/group/yuexuan_banner.png?t={{reloadTime}}' mode="widthFix"></image>
+</view>
+<view class='share-goods-container'>
+  <block wx:if="{{recomemendData.proGoodsList && recomemendData.proGoodsList.length > 0}}">
+    <block wx:for="{{recomemendData.proGoodsList}}" wx:for-item="proItem" wx:key="proKey">
+      <view class='share-goods-list'>
+        <block wx:for="{{proItem}}" wx:key="for_{{index}}" wx:key="proItemKey">
+          <view class='goods-item' catchtap='bindPartakeGroup' data-item="{{item}}">
+            <view class='goods-img'>
+              <image src='{{item.coverImage}}' lazy-load></image>
+            </view>
+            <view class='goods-info'>
+              <view class='goods-title'>{{item.shortTitle||item.goodsName||""}}</view>
+              <view class='goods-dec'>{{item.goodsTag}}</view>
+              <view class='goods-type'>{{item.proType == 1888?"拼团":item.proType == 1178?"秒杀":"特惠"}}</view>
+              <view class='goods-price'>
+                <view class='p-price'>¥ {{item.goodsPrice}}</view>
+                <view class='o-price'>
+                  市场价
+                  <text>¥{{item.goodsPrimePrice}}</text>
+                </view>
+              </view>
+              <button class='join' catchtap='bindPartakeGroup' data-item="{{item}}">
+                {{item.proType == 1888?"去拼团":item.proType == 1178?"去抢购":"去购买"}}
+              </button>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <!-- <block wx:elif="{{emptyObj}}">
+    <template is="empty"></template>
+  </block> -->
+</view>
+<block wx:if="{{emptyObj.isEmpty}}">
+  <template is="empty" data='{{emptyObj}}'></template>
+</block>
+<block wx:elif="{{recomemendData.proGoodsList && recomemendData.proGoodsList.length > 0}}">
+  <template is="noMore"></template>
+</block>
+<component-group-footer groupHomeCurrent="1" groupManageCartNum='{{groupManageCartNum}}'></component-group-footer>

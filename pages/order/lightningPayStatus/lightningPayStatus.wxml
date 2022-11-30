@@ -1,0 +1,58 @@
+<!--pages/order/lightningPayStatus/lightningPayStatus.wxml-->
+<view class="main">
+  <block wx:if="{{status == 0}}">
+    <view class="header-contaienr red-bg">
+      <view class="warning-icon"></view>
+      <text class="warning-msg">亲，您有未核验订单，请到"闪电付"</text>
+      <text class="warning-msg">核验区核验</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="header-contaienr">
+      <view class="right-icon"></view>
+      <text class="pay-success-msg">支付成功</text>
+    </view>
+  </block>
+
+  <view class="step-container">
+    <view class="step-header">核验步骤</view>
+    <view class="step-list-container">
+      <view class="step-item finish">
+        <view class="icon-step"></view>
+        <view class="step-msg-container">
+          <view class="step-num">1</view>
+          <view class="step-msg">扫描支付</view>
+        </view>
+      </view>
+      <view class="step-item finish">
+        <view class="icon-step"></view>
+        <view class="step-msg-container">
+          <view class="step-num">2</view>
+          <view class="step-msg">出示会员码</view>
+        </view>
+      </view>
+      <view class="step-item">
+        <view class="icon-step"></view>
+        <view class="step-msg-container">
+          <view class="step-num">3</view>
+          <view class="step-msg">扫码核验</view>
+        </view>
+      </view>
+      <view class="step-item">
+        <view class="icon-step"></view>
+        <view class="step-msg-container">
+          <view class="step-num">4</view>
+          <view class="step-msg">验证成功</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-contaienr">
+    <text class="navigate-member-code {{status == 2 ? 'transparent' : ''}}" catchtap="showMemberCode">出示会员码</text>
+    <block wx:if="{{status == 2}}">
+      <text class="look-order-detail" catchtap="lookOrderDetail">查看订单</text>
+    </block>
+  </view>
+  <view class="footer-msg">请到闪电付专属通道核验</view>
+</view>

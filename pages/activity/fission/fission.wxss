@@ -1,0 +1,795 @@
+/* pages/activity/fission/fission.wxss */
+@keyframes slideDown {
+  0%{
+    background-position-y: 0;
+  }
+
+  100% {
+    background-position-y: 13rpx;
+  }
+}
+.shop-picker{
+  position: fixed;
+  left: 16rpx;
+  top: 16rpx;
+  background: #ededed;
+  padding: 8rpx 16rpx;
+  border-radius: 46rpx;
+  z-index: 2;
+  opacity: 0.3;
+
+}
+.container{
+  width: 100%;
+  height: 100vh;
+  background: #000;
+}
+
+.activity-title{
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.activity-title .title-image{
+  width: 100%;
+  position: relative;
+}
+
+.activity-title .title-image .share-free-receive-btn{
+  position: absolute;
+  left: 50%;
+  bottom: 21rpx;
+  transform: translateX(-50%);
+  width: 237rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  background: url("https://shgm.jjyyx.com/m/images/share/share_free_receive_btn.png") no-repeat center;
+  background-size: contain;
+  box-shadow: 10rpx 10rpx 20rpx rgba(106, 58, 13, 0.2)
+}
+
+/** 浮窗 */
+.activity-title .barrage-container{
+  position: absolute;
+  left: 24rpx;
+  top: 180rpx;
+  background: rgba(255,255,255,0.85);
+  width: auto;
+  height: 40rpx;
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+  padding: 4rpx 11rpx 4rpx 5rpx;
+}
+
+.activity-title .barrage-container .user-header{
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: url(https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418) no-repeat center;
+  background-size: cover;
+}
+
+.activity-title .barrage-container .receive-msg{
+  margin-left: 6rpx;
+  font-size: 20rpx;
+  color: rgb(39, 39, 39);
+  line-height: 1;
+}
+
+.slide-down-btn{
+  margin-top: 23rpx;
+  margin-bottom: 34rpx;
+  width: 100%;
+  height: 50rpx;
+  background: url("https://shgm.jjyyx.com/m/images/share/slide_down_btn.png") no-repeat center;
+  background-size: 50rpx 37rpx;
+  animation: slideDown 0.8s linear infinite;
+}
+
+.swiper-container{
+  width: 100%;
+  overflow: hidden;
+  /* padding-left: 32rpx; */
+  margin-bottom: 32rpx;
+}
+
+.swiper-container .coupon-item-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 656rpx;
+  height: 128rpx;
+  margin: 0 auto;
+  /* background: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_item_bg.png") no-repeat center;
+  background-size: contain; */
+  background: #D4B871;
+  padding: 0 20rpx;
+  border-radius: 8rpx;
+  color: #313031;
+}
+.swiper-container .coupon-item-container::after{
+  content: "";
+  position: absolute;
+  left: 180rpx;
+  top:7rpx;
+  width: 2rpx;
+  height: 116rpx;
+  background: #313031;
+  color: #313031;
+  z-index: 2;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 160rpx;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container .coupon-value{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 60rpx;
+  line-height: 0.8;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container .coupon-value:before{
+  content: '￥';
+  display: inline;
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container .coupon-discount-value{
+  font-size: 32rpx;
+  line-height: 1;
+  color: #FFF;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container .coupon-free-shipping-value{
+  font-size: 38rpx;
+  line-height: 1;
+  color: #FFF;
+}
+
+.swiper-container .coupon-item-container .coupon-left-container .coupon-label{
+  width: 100%;
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  line-height: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swiper-container .coupon-item-container .coupon-right-container{
+  flex: 1;
+  margin-left: 32rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.swiper-container .coupon-item-container .coupon-right-container .coupon-desc{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  font-size: 24rpx;
+  font-weight: bold;
+  height: 38rpx;
+  margin-top: 8rpx;
+  line-height: 38rpx;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+}
+
+.swiper-container .coupon-item-container .coupon-right-container .coupon-title{
+  max-width: 100%;
+  margin-bottom: 8rpx;
+  font-size: 20rpx;
+  overflow: hidden;
+  height: 37rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.swiper-container .coupon-item-container .coupon-right-container .coupon-time{
+  font-size: 16rpx;
+}
+.swiper-container .coupon-item-container .coupon-btn{
+  margin-left: 24rpx;
+  width: 128rpx;
+  height: 64rpx;
+  border-radius: 64rpx;
+  background: url("https://m.lyzlcloud.com/m/html/activity/fission/images/btn_receive.png") no-repeat center;
+  background-size: contain;
+  box-shadow: 10rpx 10rpx 20rpx rgba(106, 58, 13, 0.1)
+}
+
+.swiper-container .coupon-item-container .coupon-btn.not-begin{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/btn_receive_not_begin.png");
+}
+
+.swiper-container .coupon-item-container .coupon-btn.end{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/btn_receive_end.png");
+}
+
+.swiper-container .coupon-item-container .coupon-btn.received{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/btn_received.png");
+}
+
+.swiper-container .coupon-item-container .coupon-btn.sold-out{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/btn_receive_sold_out.png");
+}
+
+.swiper-container .coupon-item-container.free-shipping{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_item_baoyou_bg.png");
+}
+
+.swiper-container .coupon-item-container.dis{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_item_dis_bg.png");
+}
+
+.swiper-container .coupon-item-container.free-shipping.dis{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_item_baoyou_dis_bg.png");
+}
+
+/* .swiper-container.one-coupon .coupon-item-container{
+  width: 686rpx;
+  padding-right: 40rpx;
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_one_item_bg.png");
+}
+
+.swiper-container.one-coupon .coupon-item-container.free-shipping{
+  background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_one_item_baoyou_bg.png");
+} */
+.swiper-container.one-coupon .coupon-item-container.dis{
+  background: #E7E7E7;
+  color: #94969C;
+  /* background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_one_item_dis_bg.png"); */
+}
+.swiper-container.one-coupon .coupon-item-container.free-shipping.dis{
+  /* background-image: url("https://m.lyzlcloud.com/m/html/activity/fission/images/coupon_one_item_baoyou_dis_bg.png"); */
+}
+
+.swiper-container .navigator-btn{
+  margin: 23rpx auto 0 auto;
+  width: 289rpx;
+  height: 66rpx;
+  background: url("https://shgm.jjyyx.com/m/images/share/btn_look_around.png") no-repeat center;
+  background-size: contain;
+}
+
+.swiper-container .navigator-btn.go-coupon-list{
+  background-image: url("https://shgm.jjyyx.com/m/images/share/btn_immediately_look.png");
+}
+
+.nav-seat-container{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 90rpx;
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 0 8rpx;
+}
+
+.nav-seat-container.no-height{
+  height: 0;
+}
+
+.nav-container{
+  display: block;
+  width: 100%;
+  height: 90rpx;
+  padding: 0 8rpx;
+  background: #FFF;
+  border-bottom: 1rpx solid #ededed;
+}
+
+.nav-list-container{
+  height: 90rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: #464646;
+  padding: 0 16rpx;
+}
+
+.nav-container.fixed_class{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-list-container .nav-item{
+  flex: none;
+  padding: 10rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1;
+  margin-left: 20rpx;
+  background: transparent;
+  color: #464646;
+  border-radius: 24rpx;
+}
+
+.nav-list-container .nav-item:first-child{
+  margin-left: 0;
+}
+
+.nav-list-container .nav-item.active{
+  background: #FF2D63;
+  color: #FFF;
+}
+
+.module-image{
+  width: 100%;
+  height: auto;
+}
+
+.module-goods-list .goods-list-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 16rpx;
+}
+.goods-list-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 16rpx;
+}
+
+.module-header-image{
+  width: 100%;
+}
+
+.bottom-link{
+  width: 100%;
+  margin-top: 8rpx;
+}
+
+.share-dialog-container{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  transform: translate3d(0,0,100rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container{
+  width: 640rpx;
+  height: 444rpx;
+  background: #FFF;
+  border-radius: 20rpx;
+}
+
+.share-dialog-container .share-info-container .share-header{
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1rpx solid #ededed;
+}
+
+.share-dialog-container .share-info-container .share-header .share-title{
+  font-size: 34rpx;
+  color: #464646;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr{
+  width: 100%;
+  padding: 50rpx 120rpx 0 120rpx;
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-between; */
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container {
+  width: 130rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container .share-btn{
+  width: 116rpx;
+  height: 116rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container .share-btn:after{ border: none; }
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container .share-btn .share-image{
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container .share-msg-container{
+  margin-top: 20rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.share-dialog-container .share-info-container .share-btn-contaienr .share-item-container .share-msg-container .share-msg{
+  display: block;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: #777;
+  text-align: center;
+}
+
+.share-dialog-container .close-btn{
+  width: 60rpx;
+  height: 100rpx;
+  background: url("https://shgm.jjyyx.com/m/images/share/share_dialog_close_btn.png") no-repeat center;
+  background-size: contain;
+}
+
+.share-canvas{
+  position: absolute;
+  left: 0;
+  top: -99999rpx;
+  width: 1500rpx;
+  height: 2668rpx;
+  z-index: -1;
+  transform: translate3d(0,0,-1000rpx);
+}
+
+.loading-container{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  z-index: 999;
+  transform: translate3d(0,0,10000rpx);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container .loading{
+  width: 124rpx;
+  height: 124rpx;
+}
+
+.loading-container.aniamtion{
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: opacity 0.5s ease;
+}
+.loading-container.aniamtion.opacity0{
+  opacity: 0;
+}
+
+.loading-container.aniamtion .loading{
+  width: 100%;
+  height: auto;
+}
+
+/** 排行榜 */
+.share-leaderboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32rpx 0;
+}
+.share-leaderboard view{
+  color: #C58E43;
+  border: 2rpx solid #C58E43;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 12rpx;
+  border-radius: 48rpx;
+  font-weight: bold;
+}
+.leaderboard-container{
+  width: 656rpx;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 28rpx 32rpx 32rpx 32rpx;
+  margin:0 auto 32rpx;
+}
+
+.leaderboard-container .leaderboard-header-container{
+  width: 100%;
+  height: 74rpx;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 16rpx;
+}
+
+.leaderboard-container .leaderboard-header-container .user{
+  width: 61rpx;
+  font-size: 24rpx;
+  font-family: "PingFang SC";
+  color: #C58E43;
+  line-height: 1;
+  font-weight: bold;
+  text-align: center;
+}
+
+.leaderboard-container .leaderboard-header-container .ranking{
+  width: 102rpx;
+  padding-left: 35rpx;
+  text-align: center;
+}
+
+.leaderboard-container .leaderboard-header-container .phone{
+  width: 273rpx;
+  padding-left: 48rpx;
+  text-align: left;
+  font-size: 24rpx;
+  font-family: "PingFang SC";
+  color: #C58E43;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.leaderboard-container .leaderboard-header-container .friends{
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: "PingFang SC";
+  color: rgb(191, 141, 76);
+  line-height: 1;
+  font-weight: bold;
+}
+
+.leaderboard-container .leaderboard-item-container{
+  width: 100%;
+  height: 61rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.leaderboard-container .leaderboard-item-container .user{
+  width: 61rpx;
+  height: 61rpx;
+  border-radius: 8rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.jpg?t=418") no-repeat center;
+  background-size: 61rpx;
+}
+
+.leaderboard-container .leaderboard-item-container .ranking{
+  width: 102rpx;
+  padding-left: 35rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: "PingFang SC";
+  color: rgb(191, 141, 76);
+  line-height: 1;
+  font-weight: bold;
+}
+
+.leaderboard-container .leaderboard-item-container .ranking .ranking-image{
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.leaderboard-container .leaderboard-item-container .phone{
+  width: 273rpx;
+  padding-left: 48rpx;
+  text-align: left;
+  font-size: 24rpx;
+  font-family: "PingFang SC";
+  color: rgb(191, 141, 76);
+  line-height: 1;
+}
+
+.leaderboard-container .leaderboard-item-container .friends{
+  flex: 1;
+  text-align: center;
+  font-size: 22rpx;
+  font-family: "PingFang SC";
+  color: rgb(191, 141, 76);
+  line-height: 1;
+}
+.goods-to-quicker-order{
+  display: flex;
+  background: #fff;
+  margin: 16rpx;
+  border-radius: 16rpx;
+  padding: 32rpx;
+}
+.goods-to-quicker-order image{
+  width: 208rpx;
+  height: 208rpx;
+  margin-right: 32rpx;
+  background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+  background-size: 208rpx;
+}
+.quicker-goods-info{
+  flex: 1;
+}
+.quicker-goods-info .quicker-goods-info-name{
+  font-size: 28rpx;
+  color: #444;
+  height: 54rpx;
+  line-height: 54rpx;
+}
+.quicker-goods-info .quicker-goods-info-tag{
+  font-size: 24rpx;
+  color: #94969C;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.quicker-goods-info .quicker-goods-info-unit{
+  font-size: 24rpx;
+  color: #94969C;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.to-order{
+  color: #fff;
+  background: rgb(191, 141, 76);
+  height: 54rpx;
+  line-height: 54rpx;
+  border-radius: 32rpx;
+  text-align: center;
+}
+
+.share-goods-list {
+  position: relative;
+  width: 720rpx;
+  margin: 8rpx auto;
+  background: #fff;
+  padding: 0 16rpx;
+  border-radius: 16rpx;
+}
+
+.share-goods-list .goods-item {
+  display: flex;
+  padding: 16rpx 0;
+  align-items: center;
+}
+
+.share-goods-list .goods-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 2rpx;
+  width: 656rpx;
+  transform: translateX(-50%);
+  background: #ededed;
+}
+
+.share-goods-list .goods-item.g-list::after {
+  content: "";
+  bottom: 0;
+  height: 0;
+}
+
+.share-goods-list .goods-img {
+  width: 240rpx;
+}
+
+.share-goods-list .goods-item image {
+  width: 208rpx;
+  height: 208rpx;
+  background: #ededed;
+}
+
+.share-goods-list .goods-info {
+  flex: 1;
+  display: flex;
+  height: 208rpx;
+  padding-top: 16rpx;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.share-goods-list .goods-title {
+  width: 454rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  line-height: 36rpx;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.share-goods-list .goods-dec {
+  width: 260rpx;
+  height: 28rpx;
+  margin: 8rpx 0 0 0;
+  font-size: 20rpx;
+  font-weight: 300;
+  line-height: 36rpx;
+  color: #94969c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.share-goods-list .goods-price {
+  display: flex;
+}
+
+.share-goods-list .goods-price .p-price {
+  height: 42rpx;
+  font-size: 20rpx;
+  font-weight: 500;
+  line-height: 0;
+  color: #94969c;
+  margin-right: 32rpx;
+}
+
+.share-goods-list .goods-price .p-price text {
+  font-size: 30rpx;
+  color: #FF2D63;
+}
+
+.share-goods-list .goods-price .o-price {
+  height: 28rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 300;
+  line-height: 36rpx;
+  color: #94969c;
+}
+
+.share-goods-list .goods-price .o-price text {
+  display: inline-block;
+  position: relative;
+  padding: 0 10rpx;
+}
+
+.share-goods-list .goods-price .o-price text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 46%;
+  transform: translateY(-50%) scaleY(0.5);
+  width: 100%;
+  height: 1rpx;
+  background: #707070;
+}
+.share-goods-list .join {
+  position: absolute;
+  right: 16rpx;
+  bottom: 32rpx;
+  width: 128rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  background: #FF2D63;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 0;
+  border: 0;
+  border-radius: 48rpx;
+}
+
+.share-goods-list .join.soon {
+  background: #ededed;
+  color: #fff;
+  border: 1rpx solid #ededed;
+}
+
+.share-goods-list .join::after {
+  border: 0;
+}

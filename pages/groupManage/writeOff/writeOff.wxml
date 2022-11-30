@@ -1,0 +1,60 @@
+<import src="/templates/global/global.wxml" />
+<!-- <view class="header">
+  <view class='shop-info'>
+    <image src='{{arrivalGroupAddress.photo}}'></image>
+    <view class="shop-extract-area" bindtap='chooseExtract'>
+      <view>{{arrivalGroupAddress.address}} </view><text class='picker-forword'></text></view>
+  </view>
+</view> -->
+<view class='w-container'>
+    <view class="items-container" wx:for="{{oDetails.placeList}}" wx:key="this_key">
+        <view class='self-cancellation'>
+            <view class='address'>
+                <view class='consignee'>{{item.addrName}} {{item.addrMobile}}</view>
+                <view class='address-info'>提货地点：{{item.addrFull}}</view>
+            </view>
+            <view class='goods-tatol-num'>共{{item.goodsNumTotal }}件商品</view>
+        </view>
+
+        <block wx:for="{{item.orderList}}" wx:for-item="orderItem" wx:key="this_order">
+            <view class='order-item'>
+                <view class='order-num' bindtap='selectColoneOrder' data-id="{{item.addrId}}" data-item="{{orderItem}}">
+                    <text class='check-box {{orderItem.checkOut?"check":""}}'></text>订单号：{{orderItem.orderId}}</view>
+                <block wx:for="{{orderItem.goodsList}}" wx:for-item="list" wx:key="this_goods">
+                    <view class='goods-list'>
+                        <image class='goods-img' src='{{list.goodsImage }}'></image>
+                        <view class='goods-info'>
+                            <view class='goods-name'>{{list.goodsSkuname}}</view>
+                            <block wx:if="{{list.materielType == 30}}">
+                                <view class="goods-property"><text class="property-out-hiding">{{list.materielExtPropertyStr}}</text></view>
+                            </block>
+                            <view class='goods-spec'><text wx:if="{{list.goodsSpec}}" class='goods-spec-txt'>规格：{{list.goodsSpec}} {{list.goodsUnit}}</text><text class='gs-price'>单价：<text>¥{{list.goodsPrice}}</text>{{list.goodsUnit?'/'+list.goodsUnit:''}}</text></view>
+                            <!-- <view class='goods-price'>商品条码：{{list.goodsPlu}}</view> -->
+                        </view>
+                        <block wx:if="{{list.pricingMethod == 390}}">
+                            <view class='goods-num'>数量：{{list.goodsNumReal}}{{list.goodsUnit}}</view>
+                        </block>
+                        <block wx:else>
+                            <view class='goods-num'>重量：{{list.goodsTotalWeight}}g</view>
+                        </block>
+                    </view>
+                </block>
+            </view>
+        </block>
+    </view>
+    
+    <template is="noMore" wx:if="{{oDetails.placeList.length}}"></template>
+</view>
+
+<template wx:if="{{!oDetails.placeList || !oDetails.placeList.length}}" is="empty" data="{{...emptyObj}}"></template>
+<view class='footer'>
+    <view class='select' bindtap='selectAllColoneOrder'>
+        <text class='check-box {{isChooseAll?"check":""}}'></text>全选</view>
+    <view class='create' bindtap='checkColonelOrder'>一键核销({{selectNum}})</view>
+</view>
+
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+
+<template is="globalLoading" data="{{globalLoading}}"></template>

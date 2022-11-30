@@ -1,0 +1,40 @@
+<view class='goods-item {{notBegin?"notBegin":""}}' bindtap='bindPartakeGroup' data-item="{{goods}}">
+  <view class='goods-img'>
+    <view class="goods-playButton-block" wx:if="{{goods.videoAddress!=null && goods.videoAddress!=''}}">
+      <image src="https://shgm.jjyyx.com/m/images/icon_play_btn.png" mode="aspectFit"  class="sku-playButton" ></image>
+    </view>
+    <image src='{{goods.coverImage}}'></image>
+  </view>
+  <view class='goods-info'>
+    <text class='goods-title typo-clamp'>{{goods.materielParentName||goods.goodsPromotionName||goods.shortTitle||goods.goodsName||""}}</text>
+    <view class='goods-dec typo-elips'>{{goods.goodsTag}}</view>
+    <!-- <view class='goods-type'>{{goods.proType == 1888?"拼团":"秒杀"}}</view> -->
+    <!-- 头像 ...附近多少人 -->
+    <nearbyBuyers uiconList="{{uiconList}}" totalSalesVolume="{{goods.totalSalesVolume}}" totalSalesVolumeMsg="{{goods.totalSalesVolumeMsg}}"></nearbyBuyers>
+    <view class="goods-item-bt-wrap">
+      <view class='goods-price'>
+        <view class='p-price'>秒杀价
+          <text>¥ {{goods.goodsPrice}}</text>
+        </view>
+        <view class='o-price'>市场价
+          <text> ¥{{goods.goodsPrimePrice}}</text>
+        </view>
+      </view>
+      <view class="goods-item-bottom">
+        <view class='stock-state'>
+          <text>{{goods.ratio >= 100 ? '已售罄' : goods.ratio > 85 ? '即将售罄' : goods.ratio == 0 ? '热卖中' : '本场已抢'+goods.buyStock+'件'}}</text>
+          <view class='progress'>
+            <view class='progressing' style='width:{{goods.ratio}}%;'></view>
+          </view>
+        </view>
+        <block wx:if="{{goods.ratio < 100}}">
+          <view class='join {{notBegin?"soon":""}}'>{{goods.proType == 1888?"去拼团":goods.proType == 1178?"去抢购":"去购买"}}</view>
+        </block>
+        <block wx:else>
+          <view class='join soon'>售罄</view>
+        </block>
+        
+      </view>
+    </view>
+  </view>
+</view>

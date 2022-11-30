@@ -1,0 +1,45 @@
+<import src="/templates/global/global.wxml" />
+<form bindsubmit="submiteGroupAddress">
+    <view class='address-container'>
+        <view class='address-item forword'>
+            <view class='title'>门店名称</view>
+            <picker mode="selector" bindchange="bindSelectorChange" value="{{shopSelectorIndex}}" range="{{shopSelectorArray}}">
+                <view class='choose-title'>{{shopSelectorArray[shopSelectorIndex]}}</view>
+                <!--no-set-->
+            </picker>
+        </view>
+        <view class='address-item'>
+            <view class='title'>联系人</view>
+            <input name="addrName" placeholder-style="color:#E7E7E7;" placeholder='请填写联系人姓名' value='{{extractChange?extractEditData.addrName:""}}'></input>
+        </view>
+        <view class='address-item'>
+            <view class='title'>联系电话</view>
+            <input name="addrPhone" placeholder-style="color:#E7E7E7;" placeholder='请输入您的手机号码' value='{{extractChange?extractEditData.addrPhone:""}}'></input>
+        </view>
+        <view class='address-item forword' bindtap='mapSelectLocation'>
+            <block wx:if="{{mapAddress.provinceName && mapAddress.provinceName != ''}}">
+                <view class='title'>所在地区</view>
+                <view class='choose-title'>{{mapAddress.provinceName}} {{mapAddress.cityName}} {{mapAddress.areaName}} {{mapAddress.address}}</view>
+            </block>
+            <block wx:else>
+                <view class='title'>所在地区</view>
+                <view class='choose-title no-set'>请选择地区</view>
+            </block>
+        </view>
+        <view class='address-item'>
+            <view class='title'>详细地址</view>
+            <input name="address" placeholder-style="color:#E7E7E7;" type='text' placeholder='请输入您的详细地址' value='{{extractChange?extractEditData.address:""}}'></input>
+        </view>
+    </view>
+    <view class='address-item set-default'>
+        <view class='title'>设为默认地址</view>
+        <view>
+            <block wx:for="{{radioItems}}" wx:key="thiskey_{{index}}">
+                <text class='{{item.checked?"act":""}}' bindtap='bindRadios' data-value='{{item.value}}'>{{item.name}}</text>
+            </block>
+        </view>
+    </view>
+    <button class='btn-save' form-type="submit">提交</button>
+</form>
+
+<template is="toast" data="{{...toastData}}"></template>

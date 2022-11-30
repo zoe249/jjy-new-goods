@@ -1,0 +1,46 @@
+/* pages/groupManage/queryStock/queryStock.wxss */
+.item{
+  display: flex;
+  margin: 32rpx 32rpx 0;
+  border-radius: 16rpx;
+  background: #fff;
+  padding: 32rpx 16rpx;
+}
+.img{
+  width: 176rpx;
+  height: 176rpx;
+}
+.img-cover{
+  width: 176rpx;
+  height: 176rpx;
+  background: #F4F4F4;
+  border-radius: 4rpx;
+}
+.info{
+  width: 480rpx;
+  padding-left: 32rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+.stock-state{
+  display: flex;
+  font-size: 22rpx;
+  color: #94969C;
+  margin-top: 32rpx;
+}
+.goods-name{
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+.stock-state text{
+  color: #FF4752;
+  margin-right: 32rpx;
+}
+.stock-total{
+  text-align: right;
+}
+.stock-total text{
+  color: #FF4752;
+}

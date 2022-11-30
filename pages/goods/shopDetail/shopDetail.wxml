@@ -1,0 +1,64 @@
+<!--shopDetail.wxml-->
+<scroll-view class="wrapper">
+  <view class="shop-top-container">
+    <view class="top-border"></view>
+    <view class="shop-icon-container">
+      <image class="shop-icon" src="{{shopInfo.storeIcon}}"></image>
+      <image class="shop-icon-border" src="https://shgm.jjyyx.com/m/images/shopIcon_masker.png"></image>
+    </view>
+    <view class="shop-name">{{shopInfo.storeName}}（{{shopInfo.shopName}}）</view>
+    <view class="shop-scores-container">
+      <text class="scores {{shopInfo.storeStar > 1 ? 'full' : shopInfo.storeStar > 0.5 ? 'half' : ''}}"></text>
+      <text class="scores {{shopInfo.storeStar > 2 ? 'full' : shopInfo.storeStar > 1.5 ? 'half' : ''}}"></text>
+      <text class="scores {{shopInfo.storeStar > 3 ? 'full' : shopInfo.storeStar > 2.5 ? 'half' : ''}}"></text>
+      <text class="scores {{shopInfo.storeStar > 4 ? 'full' : shopInfo.storeStar > 3.5 ? 'half' : ''}}"></text>
+      <text class="scores {{shopInfo.storeStar > 5 ? 'full' : shopInfo.storeStar > 4.5 ? 'half' : ''}}"></text>
+      <text class="grade">({{shopInfo.storeGrade}})</text>
+    </view>
+    <block wx:if="{{shopInfo.tags}}">
+      <view class="shop-tags">{{shopInfo.tags}}</view>
+    </block>
+
+    <view class="shop-services-container">
+      <block wx:for="{{shopInfo.services}}" wx:for-item="servicesItem" wx:key="*this">
+        <view class="services-item {{servicesItem}}"></view>
+      </block>
+    </view>
+  </view>
+  <view class="shop-introduce-container">
+    <view class="introduce-item">
+      <image class="item-icon" src="https://shgm.jjyyx.com/m/images/icon_shop_time.png" mode="widthFix"></image>
+      <text class="item-text">营业时间 {{shopInfo.businessStartTime}}--{{shopInfo.businessEndTime}}</text>
+    </view>
+     <view class="introduce-item">
+      <image class="item-icon" src="https://shgm.jjyyx.com/m/images/icon_shop_address.png" mode="widthFix"></image>
+      <text class="item-text">{{shopInfo.address}}</text>
+    </view>
+     <view class="introduce-item" data-phone="{{shopInfo.storeTel ? shopInfo.storeTel : shopInfo.storeMobile}}" bindtap="phoneService">
+      <image class="item-icon" src="https://shgm.jjyyx.com/m/images/icon_shop_tel.png" mode="widthFix"></image>
+      <text class="item-text">电话  {{shopInfo.storeTel ? shopInfo.storeTel : shopInfo.storeMobile}}</text>
+    </view>
+  </view>
+  <block wx:if="{{shopInfo.storeImages.length}}">
+    <view class="shop-other-info-container">
+      <view class="other-info-title">店铺环境</view>
+      <view class="other-info-detail-container">
+        <block wx:for="{{shopInfo.storeImages}}" wx:key="*this">
+          <image catchtap="preImageScale" data-url="{{item||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}" src="{{item||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}" mode="aspectFill" class="other-info-item"></image>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{showPhone}}">
+    <view id="phone-pop">
+        <view class="phone-cnt">
+            <view class="phone-num">{{phoneNum}}</view>
+            <view class="phone-btn">
+                <view class="phone-cancel" catchtap="closePhonePop">取消</view>
+                <view class="phone-confirm" catchtap="confirmPhone">呼叫</view>
+            </view>
+        </view>
+    </view>
+</block>
+  
+</scroll-view>

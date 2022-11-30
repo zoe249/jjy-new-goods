@@ -1,0 +1,40 @@
+/* pages/groupManage/reportSuc/reportSuc.wxss */
+
+
+.pay-s-tips{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.img{
+  width: 114rpx;
+  height: 114rpx;
+  margin: 0 auto;
+}
+.h3{
+  height: 42rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  line-height: 32rpx;
+  color: #F9F9F9;
+  margin-top: 48rpx;
+}
+.jump-pages{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80rpx;
+  font-size: 32rpx;
+  text-align: center;
+  padding: 0 80rpx;
+}
+.jump-pages .a{
+  width: 256rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  background: #fff;
+}
+.a.complete{
+  background: #EC414D;
+  color: #fff;
+}

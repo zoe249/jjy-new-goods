@@ -1,0 +1,117 @@
+/* pages/goods/searchList/searchList.wxss */
+
+.wrapper {
+    background: #f4f4f4;
+    height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.search-top-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 750rpx;
+    z-index: 999;
+    padding: 22rpx 32rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid #ededed;
+    background: #fff;
+}
+
+.search-container {
+    flex: 1;
+    background: #F4F4F4;
+    border-radius: 4rpx;
+    margin-right: 32rpx;
+    padding: 0 80rpx;
+    position: relative;
+}
+
+.search-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 64rpx;
+    height: 64rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+    background-size: 30rpx 30rpx;
+}
+
+.search-container.focus::before {
+    background-image: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png');
+}
+
+.search-container .clear-search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 64rpx;
+    height: 64rpx;
+    background: url('https://shgm.jjyyx.com/m/images/del.png') no-repeat center;
+    background-size: 28rpx 28rpx;
+}
+
+.search-container .search-input {
+    width: 100%;
+    height: 64rpx;
+    font-size: 26rpx;
+}
+
+.my-cart-icon {
+    position: relative;
+    width: 52rpx;
+    height: 52rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_goods_cart.png') no-repeat center;
+    background-size: contain;
+    /*border-right: 2rpx solid #EDEDED;*/
+}
+
+.cart-count {
+    position: absolute;
+    right: -15rpx;
+    top: -5rpx;
+    background: #FF4752;
+    font-size: 20rpx;
+    line-height: 0;
+    padding: 12rpx;
+    border-radius: 12rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.content {
+    padding-top: 110rpx;
+    min-height: 100vh;
+}
+
+.second-cate-scroller {
+    background: #f5f5f5;
+}
+
+.goods-list-container {
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    margin: 16rpx auto 0;
+    width:720rpx;
+    border-radius: 16rpx;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.goods-list-container::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2rpx;
+    height: 100%;
+    background: #ededed;
+    z-index: 2;
+}

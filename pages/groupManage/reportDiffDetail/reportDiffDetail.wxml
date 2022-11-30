@@ -1,0 +1,161 @@
+<import src="/templates/global/global.wxml" />
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+
+
+<view class="report-detail">
+  <block wx:if="{{empty}}">
+    <template is="empty" data="{{emptyMsg}}"></template>
+  </block>
+  <block wx:else>
+    <block wx:if="{{!isEdit}}">
+      <view class="report-info">
+        <view class="report-item pos-r r1bb">
+          <block wx:if="{{details.pricingMethod == 390}}">
+            <view class="lable">签收数量<text class="color-red">*</text></view>
+            <view class="input-wrap">{{details.goodsNumReal}}{{details.goodsUnit?details.goodsUnit:''}}</view>
+          </block>
+          <block wx:else>
+            <view class="lable">签收重量<text class="color-red">*</text></view>
+            <view class="input-wrap">{{details.goodsTotalWeight}}g</view>
+          </block>
+        </view>
+        <view class="report-item">
+          <view class="lable">差异类型</view>
+          <view class="input-wrap">{{types[details.diffType-1]}}</view>
+        </view>
+        <view class="report-item">
+          <block wx:if="{{details.pricingMethod == 390}}">
+              <view class="lable">差异数量<text class="color-red">*</text></view>
+              <view class="input-wrap">
+                <view>{{details.num}}{{details.goodsUnit?details.goodsUnit:''}}</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="lable">差异重量<text class="color-red">*</text></view>
+              <view class="input-wrap"><view>{{details.num}}g</view>
+              </view>
+            </block>
+        </view>
+      </view>
+      <view class="report-dec">
+        <view class="lable r1bb">问题描述<text class="color-red">*</text></view>
+        <view class="textarea-wrap">
+          {{details.diffDesc}}
+        </view>
+      </view>
+            <!--图片显示-->
+            <view class="pic-dec-show"  hidden="{{commentImages.length==0}}">
+          <view class="pic_title">图片</view>
+        <view class="upload-img clearfix" >
+                <block wx:for="{{commentImages}}" wx:for-item="imgItem" wx:for-index="imgIndex">
+                    <view class="li">
+                    <image src="{{imgItem}}" data-url="{{imgItem}}" data-file-url="{{imgItem}}" catchtap="showImg"></image></view>
+                </block>
+            </view>
+            </view>
+
+
+      <view class="report-process" wx:if="{{details.status>0}}">
+        <view class="process-item">
+          <view class="process-title">审批状态</view><view class="process-value {{details.status == 3 && details.approvedStatus == 2 ?'color-red':''}}">{{details.status == 3?approvedStatus[details.approvedStatus-1]:statusDis[details.status]}}</view>
+        </view>
+        <view class="process-item">
+          <view class="process-title">审批人</view><view class="process-value">{{details.approvedName}}</view>
+        </view>
+        <view class="process-item">
+          <view class="process-title">审批时间</view><view class="process-value">{{details.updateTime }}</view>
+        </view>
+        <view class="process-item">
+          <view class="process-title">审批备注</view><view class="process-value">{{details.approvedDesc }}</view>
+        </view>
+      </view>
+      <view class="report-process" wx:if="{{details.status == 3 && details.approvedStatus == 1}}">
+        <view class="process-item">
+          <view class="process-title">处理人</view><view class="process-value">{{details.executeName}}</view>
+        </view>
+        <view class="process-item">
+          <view class="process-title">处理时间</view><view class="process-value">{{details.executeTime}}</view>
+        </view>
+        <view class="process-item">
+          <view class="process-title">处理备注</view><view class="process-value">{{details.executeDesc}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <form catchsubmit="submiteFormData">
+        <view class="report-info">
+          <view class="report-item pos-r r1bb">
+            <block wx:if="{{reportItem.pricingMethod == 390}}">
+              <view class="lable">签收数量<text class="color-red">*</text></view>
+              <view class="input-wrap">{{reportItem.goodsNumReal}}{{reportItem.goodsUnit?reportItem.goodsUnit:''}}
+              </view>
+            </block>
+            <block wx:else>
+              <view class="lable">签收重量<text class="color-red">*</text></view>
+              <view class="input-wrap">{{reportItem.goodsTotalWeight}}g</view>
+            </block>
+          </view>
+          <view class="report-item pos-r r1bb forword">
+            <view class="lable">差异类型</view>
+            <view class="input-wrap">
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{types}}">
+                <view class="picker">{{types[index]}}</view>
+              </picker>
+            </view>
+          </view>
+          <view class="report-item">
+            <block wx:if="{{reportItem.pricingMethod == 390}}">
+              <view class="lable">差异数量<text class="color-red">*</text></view>
+              <view class="input-wrap"><input name="num" value="{{num}}" type="number" bindinput="numChange"
+                  placeholder="请您输入差异数量" />
+                <view>{{reportItem.goodsUnit?reportItem.goodsUnit:''}}</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="lable">差异重量<text class="color-red">*</text></view>
+              <view class="input-wrap"><input name="num" value="{{num}}" type="number" bindinput="numChange"
+                  placeholder="请您输入差异重量" />
+                <view>g</view>
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class="report-dec">
+          <view class="lable r1bb">问题描述<text class="color-red">*</text></view>
+          <view class="textarea-wrap pos-r">
+            <textarea class="textarea" value="{{dec}}" bindinput="decChange" maxlength="120" name="dec" id="" cols="50" rows="6"
+              placeholder="请您输入问题描述"></textarea>
+              <view class="txt-len pos-a">{{decLen}}/120</view>
+          </view>
+        </view>
+        <!--图片上传-->
+        <view class="pic-dec">
+          <view class="pic_title">图片<text class="color-red-pic" hidden="{{index!=2}}">*</text><text class="pic_toast"> 最多可添加9张</text></view>
+        <view class="upload-img clearfix" >
+                <block wx:if="{{commentImages.length>=maxImageNum}}">
+                    <view class="upload-btn" catchtap="updataImage" hidden="true"></view>
+                </block>
+                <block wx:else>
+                    <view class="upload-btn" catchtap="updataImage"></view>
+                </block>
+                <block wx:for="{{commentImages}}" wx:for-item="imgItem" wx:for-index="imgIndex">
+                    <view class="li"><view class="del-img" catchtap="delImg" data-file-url="{{imgItem}}" ></view>
+                    <image src="{{imgItem}}" data-url="{{imgItem}}" data-file-url="{{imgItem}}" catchtap="showImg"></image></view>
+                </block>
+            </view>
+            </view>
+        <button formType="submit" class="submite-btn allow">提交</button>
+      </form>
+    </block>
+  </block>
+</view>
+
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>
+
+<canvas class="canvas" canvas-id="canvas"  ></canvas>

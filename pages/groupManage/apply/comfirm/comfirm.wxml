@@ -1,0 +1,19 @@
+<import src="/templates/global/global.wxml" />
+<view class='info'>
+    <image src='{{userInfo.achieveIcon}}'></image>
+    <view>昵称：
+        <text>{{userInfo.nickName}}</text>
+    </view>
+    <view class='approvalNote'>{{approvalNote}}</view>
+</view>
+
+<block wx:if="{{state == 0}}">
+    <button bindtap='jumpBack' class='no-apply'>审核中</button>
+</block>
+<block wx:elif="{{state == 2}}">
+    <button bindtap='jumpApply' class='no-apply'>审核不通过</button>
+</block>
+<!-- <block wx:else>
+    <button bindtap='jumpToIndex'>点击开团完成认证</button>
+</block> -->
+<template is="toast" data="{{...toastData}}"></template>

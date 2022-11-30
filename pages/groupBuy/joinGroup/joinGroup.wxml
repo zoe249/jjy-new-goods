@@ -1,0 +1,545 @@
+<!--pages/groupBuy/joinGroup/joinGroup.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<!-- 提示层 - 暂无数据 -->
+<block wx:if='{{showError}}'>
+  <template is="empty" data='{{emptyMsg:emptyMsg}}'></template>
+</block>
+
+<!--帮帮帮团 -->
+<block wx:elif='{{1==0||groupDetail.groupMode==1886}}'>
+  <view class='help-box'>
+    <view class='help-head'>
+      <view class='help-head-cnt'>
+        <view class='help-img-wrap'>
+          <image src='{{groupDetail.memberList[0].memberPhoto}}' class='help-portrait'></image>
+        </view>
+        <view class='help-name'>{{groupDetail.memberList[0].memberName||groupDetail.memberList[0].memberTel||'暂无名称'}}</view>
+        <view class='help-des'>
+          <block wx:if='{{groupDetail.isGroupHead==0}}'>I Want You！来助我一臂之力，免费领取；付款才是真友谊</block>
+          <block wx:elif='{{groupDetail.isGroupHead==2}}'>仗义啊老铁，我们现在是朋友了。</block>
+        </view>
+        <view class='help-goods'>
+          <view class='help-goods-img'>
+            <image src='{{groupDetail.coverImage}}'></image>
+          </view>
+          <view class='help-goods-title'>{{groupDetail.shortTitle||groupDetail.goodsName||""}}</view>
+          <view class='help-goods-saleprice'>￥{{groupDetail.goodsPrimePrice}}元
+            <block wx:if='{{groupDetail.salesUnit}}'>/{{groupDetail.salesUnit}}</block>
+          </view>
+          <view class='help-goods-des'>
+            <view class='help-goods-price'>每人{{groupDetail.goodsPrice}}元</view>
+            <view class='help-goods-people'>/{{groupDetail.needJoinCount-1}}人助力</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='help-status'>
+      <block wx:if='{{groupDetail.gbStatus==0}}'>
+        <view class='help-status-ing'>剩余
+          <block wx:if='{{groupDetail.surplusTime}}'>
+            <component-group-surplus-time surplus-time="{{groupDetail.surplusTime}}" bind:surplus-end-callback="getGroupDetail"></component-group-surplus-time>
+          </block>结束
+          <view class='num-box'>还差
+            <view class='num'>{{groupDetail.oddJoinCount}}</view>人</view>
+        </view>
+      </block>
+      <block wx:if='{{groupDetail.gbStatus==2}}'>
+        <view class='help-status-fail'>拼团失败</view>
+      </block>
+      <block wx:if='{{groupDetail.gbStatus==1}}'>
+        <view class='help-status-success'>来晚了，团已满</view>
+      </block>
+      <view class='help-status-img'>
+        <block wx:for='{{groupDetail.memberList}}' wx:for-item='memberLi' wx:for-index='memberIndex'>
+          <block wx:if='{{memberIndex!=0&&memberLi&&memberLi.joinDateTime}}'>
+            <view class='portrait-has'>
+              <image src='{{memberLi.memberPhoto}}'></image>
+              <block wx:if='{{memberIndex==1}}'>
+                <view class='portrait-shafa'>沙发</view>
+              </block>
+            </view>
+          </block>
+        </block>
+        <block wx:if='{{groupDetail.oddJoinCount>0}}'>
+          <view class='portrait-no'></view>
+        </block>
+      </view>
+    </view>
+    <view class='help-info'>
+      <view class='help-rule'>
+        <view class='help-rule-title'>帮帮团玩法</view>
+        <view class='help-rule-btn' catchtap='goGroupRule' data-group-type='helpGroupRule'>规则说明</view>
+      </view>
+      <view class='help-process-box'>
+        <view class='help-process-title'>组团失败就退款哦～</view>
+        <view class='help-process-list'>
+          <view class='help-process-ul'>
+            <view class='help-process-li help-process-li1'>开团</view>
+            <view class='help-process-li help-process-li2'>邀请好友帮忙支付</view>
+            <view class='help-process-li help-process-li3'>成团</view>
+            <view class='help-process-li help-process-li4'>获得商品</view>
+          </view>
+          <view class='help-process-code' catchtap='showShareImgCode'>
+            <image src='{{groupDetail.shopInfo.shopImgGroupchat||""}}'></image>
+            <view class='help-process-des'>更多优惠识别二维码加好友</view>
+          </view>
+        </view>
+      </view>
+      <block wx:if='{{1==0||groupDetail.isGroupHead==1}}'>
+        <view class='help-group-receiving'>
+          <!-- <view class='help-receiving-li'>
+            <view class='help-receiving-left'>收货人</view>
+            <view class='help-receiving-right'>{{groupDetail.addressUser||''}} {{groupDetail.addressPhone||''}}</view>
+          </view>
+          <view class='help-receiving-li'>
+            <view class='help-receiving-left'>收货地址</view>
+            <view class='help-receiving-right'>{{groupDetail.addressInfo||'无'}}</view>
+          </view> -->
+          <view class='help-receiving-li'>
+            <view class='help-receiving-left'>参团时间</view>
+            <view class='help-receiving-right'>{{groupDetail.groupDateStr||'无'}}</view>
+          </view>
+        </view>
+      </block>
+
+    </view>
+    <view class='help-btn-box'>
+      <!-- 团长 -->
+      <block wx:if='{{groupDetail.isGroupHead==1}}'>
+        <!-- 为成团正在进行 -->
+        <block wx:if='{{groupDetail.gbStatus==0&&(groupDetail.gbEffectiveStatus==1||groupDetail.gbEffectiveStatus==3)}}'>
+          <!-- <view class='help-btn-red'>邀请好友帮忙付款</view> -->
+          <view class='help-btn-red' catchtap="jumpToGroupList">更多拼团</view>
+          <block wx:if='{{groupDetail.myOrderId}}'>
+            <view class='help-btn-oragin' catchtap="lookMyGroup">查看我的团</view>
+          </block>
+        </block>
+        <!-- 为已成团 -->
+        <block wx:elif='{{groupDetail.gbStatus==1&&groupDetail.privateGroup==0}}'>
+          <view class='help-btn-red' catchtap="jumpToGroupList">更多拼团</view>
+          <block wx:if='{{groupDetail.myOrderId}}'>
+            <view class='help-btn-oragin' catchtap="lookMyGroup">查看我的团</view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class='help-btn-red' catchtap="jumpToGroupList">更多拼团</view>
+          <block wx:if='{{groupDetail.myOrderId}}'>
+            <view class='help-btn-oragin' catchtap="lookMyGroup">查看我的团</view>
+          </block>
+        </block>
+      </block>
+      <!-- 非团长 -->
+      <block wx:else>
+        <!-- 活动结束促销库存为0 -->
+        <!-- <block wx:if='{{1==1||groupDetail.isGroupHead==0&&groupDetail.surplusStock<=0}}'>
+        <view class='help-btn-gray'>已领完</view>
+      </block> -->
+        <!-- 未参团 -->
+        <block wx:if='{{groupDetail.isGroupHead==0&&groupDetail.gbStatus==0}}'>
+          <view class='help-btn-oragin help-pay-btn' catchtap='helpPay'>帮好友支付{{groupDetail.goodsPrice}}元（随机送券）</view>
+        </block>
+        <!-- -->
+        <!-- 为参团 -->
+        <block wx:elif='{{groupDetail.isGroupHead==2&&groupDetail.myOrderId}}'>
+          <view class='help-btn-oragin' catchtap="lookMyGroup">查看我的团</view>
+        </block>
+        <view class='help-btn-red' catchtap='helpGoGoodsDetail'>我也要免费领取</view>
+      </block>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+  </view>
+</block>
+<!-- 抽奖团 -->
+<block wx:elif='{{groupDetail.groupMode==1887}}'>
+  <view class='draw-group-box'>
+    <view class='draw-group-head'>
+      <!-- 拼团成功 -->
+      <block wx:if='{{groupDetail.gbStatus==1}}'>
+        <view class='draw-group-success'>
+          <view class='draw-success-title'>拼团成功啦，可以再开一团</view>
+          <view class='draw-success-des'>我们会尽快安排，请耐心等待</view>
+          <view class='draw-success-btn' catchtap="jumpToGroupList">再开一团</view>
+        </view>
+      </block>
+      <!-- 正在拼团 -->
+      <block wx:elif='{{groupDetail.gbStatus==0}}'>
+        <view class='draw-group-ing'>
+          <view class='draw-ing-title'>仅剩
+            <block wx:if='{{groupDetail.surplusTime}}'>
+              <component-group-surplus-time surplus-time="{{groupDetail.surplusTime}}" bind:surplus-end-callback="getGroupDetail"></component-group-surplus-time>
+            </block>结束</view>
+          <view class='draw-ing-des'>还差{{groupDetail.oddJoinCount}}人，成团</view>
+        </view>
+      </block>
+      <!-- 拼团失败 -->
+      <block wx:elif='{{groupDetail.gbStatus==2}}'>
+        <view class='draw-group-fail'>拼团未成功</view>
+      </block>
+      <view class='draw-group-portrait'>
+        <block wx:for='{{groupDetail.memberList}}' wx:for-item='drawItem' wx:for-index='drawIndex'>
+          <view class='draw-portrait-li'>
+            <image src='{{drawItem.memberPhoto}}' class="{{drawItem.joinDateTime?'':'draw-portrait-no'}}"></image>
+            <block wx:if='{{drawIndex==0}}'>
+              <view class='draw-tag-red'>团长</view>
+            </block>
+            <block wx:if='{{drawIndex==1&&drawItem.joinDateTime}}'>
+              <view class='draw-tag-oragin'>沙发</view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='draw-cnt'>
+      <block wx:if='{{groupDetail.isGroupHead==1&&groupDetail.oddJoinCount>0&&groupDetail.gbStatus==0&&(groupDetail.oddJoinCount-1)>0}}'>
+        <block wx:if='{{groupDetail.needJoinCount>=5}}'>
+          <view class='draw-cnt-des'>再邀
+            <view class='draw-cnt-num'>{{(groupDetail.needJoinCount-groupDetail.oddJoinCount)==1?1:groupDetail.oddJoinCount-1}}</view> 人参团，多获取
+            <view class='draw-cnt-num'>{{(groupDetail.needJoinCount-groupDetail.oddJoinCount)==1?1:2}}</view> 张兑奖码，机会翻倍哦</view>
+        </block>
+        <block wx:elif='{{(groupDetail.needJoinCount-groupDetail.oddJoinCount)==1}}'>
+          <view class='draw-cnt-des'>再邀
+            <view class='draw-cnt-num'>1</view> 人参团，多获取
+            <view class='draw-cnt-num'>1</view> 张兑奖码，机会翻倍哦 </view>
+        </block>
+      </block>
+      <view class='draw-goods'>
+        <view class='draw-img'>
+          <image src='{{groupDetail.coverImage}}'></image>
+        </view>
+        <view class='draw-title'>{{groupDetail.shortTitle||groupDetail.goodsName||""}}</view>
+        <view class='draw-spec'>共{{groupDetail.minBuyCount||0}}{{groupDetail.minBuyCountUnit||''}}</view>
+        <view class='draw-date'>{{groupDetail.groupPrizeInfo.lotteryTime}}开奖</view>
+
+        <block wx:if='{{groupDetail.groupPrizeInfo.leadCashPrizeList.length>0}}'>
+          <view class='draw-award-code'>
+            兑奖码
+            <view class='award-code-num'>{{groupDetail.groupPrizeInfo.leadCashPrizeList[0]}}</view>
+            <block wx:if='{{groupDetail.groupPrizeInfo.leadCashPrizeList.length>1||1==1}}'>
+              <view class='award-code-title' catchtap='showDrawAll'>查看全部</view>
+            </block>
+          </view>
+        </block>
+      </view>
+      <!-- <block wx:if='{{1==0||groupDetail.isGroupHead==1}}'>
+      <view class='draw-group-receiving'>
+        <view class='draw-receiving-li'><view class='draw-receiving-left'>收货人</view><view class='draw-receiving-right'>{{groupDetail.addressUser}} {{groupDetail.addressPhone}}</view></view>
+        <view class='draw-receiving-li'><view class='draw-receiving-left'>收货地址</view><view class='draw-receiving-right'>{{groupDetail.addressInfo||'无'}}</view></view>
+        <view class='draw-receiving-li'><view class='draw-receiving-left'>参团时间</view><view class='draw-receiving-right'>{{groupDetail.groupDateStr||'无'}}</view></view>
+      </view>
+      </block> -->
+    </view>
+    <view class='draw-info'>
+      <view class='draw-rule'>
+        <view class='draw-rule-title'>抽奖团玩法</view>
+        <view class='draw-rule-btn' catchtap='goGroupRule' data-group-type='drawGroupRule'>规则说明</view>
+      </view>
+      <view class='draw-process-box'>
+        <view class='draw-process-title'>组团失败就退款哦～</view>
+        <view class='draw-process-list'>
+          <view class='draw-process-ul'>
+            <view class='draw-process-li draw-process-li1'>开团</view>
+            <view class='draw-process-li draw-process-li2'>邀请成团</view>
+            <view class='draw-process-li draw-process-li3'>成团</view>
+            <view class='draw-process-li draw-process-li4'>获得奖品</view>
+          </view>
+          <view class='draw-process-code' catchtap='showShareImgCode'>
+            <image src='{{groupDetail.shopInfo.shopImgGroupchat||""}}'></image>
+            <view class='draw-process-des'>更多优惠识别二维码加好友</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='draw-btn-box'>
+      <!--团长  -->
+      <block wx:if='{{groupDetail.isGroupHead==1}}'>
+        <!-- 正在进行时 -->
+        <block wx:if='{{groupDetail.gbStatus==0}}'>
+          <view class='draw-btn-yellow' catchtap="jumpToGroupList">更多拼团</view>
+          <!-- <view class='draw-btn-red'>呼朋唤友来拼参团</view> -->
+        </block>
+        <block wx:else>
+          <view class='draw-btn-yellow' catchtap="jumpToGroupList">更多拼团</view>
+        </block>
+      </block>
+      <!-- 非团长 -->
+      <block wx:else>
+        <!-- 未参团 -->
+        <block wx:if='{{groupDetail.isGroupHead==0&&groupDetail.gbStatus==0}}'>
+          <view class='draw-btn-yellow' catchtap="jumpToGroupList">更多拼团</view>
+          <view class='draw-btn-red' catchtap="joinGroup">我要参团</view>
+        </block>
+        <block wx:else>
+          <view class='draw-btn-yellow' catchtap="jumpToGroupList">更多拼团</view>
+        </block>
+      </block>
+      <block wx:if='{{groupDetail.myOrderId}}'>
+        <view class='draw-btn-red' catchtap="lookMyGroup">查看我的团</view>
+      </block>
+    </view>
+  </view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</block>
+<block wx:else>
+  <view class="main">
+    <view class="group-goods-container">
+      <image class="cover-image" src="{{groupDetail.coverImage}}"></image>
+
+      <view class="goods-info-container">
+        <block wx:if="{{formType == 1}}">
+          <view class="goods-name-container">
+            <block wx:if="{{groupDetail.produceIcon}}">
+              <image src="{{groupDetail.produceIcon}}" class="produce-icon"></image>
+            </block>
+            {{groupDetail.goodsName}}
+          </view>
+          <view class="group-msg-container">
+            <text class="need-join">{{groupDetail.needJoinCount}}人参团</text>
+            <text class="sales-volume">已拼{{groupDetail.salesVolume}}件</text>
+          </view>
+
+          <view class="goods-price-msg-container">
+            <text class="goods-prime-price">单买价￥{{groupDetail.goodsPrimePrice}}</text>
+            <text class="sale-price">{{groupDetail.goodsPrice}}</text>
+          </view>
+        </block>
+        <block wx:else>
+          <text class="goods-name">{{groupDetail.shortTitle||groupDetail.goodsName||""}}</text>
+          <text class="goods-tag">{{groupDetail.goodsTag}}</text>
+          <view class="goods-prime-price-container">
+            <text class="goods-prime-price-msg">单买价</text>
+            <text class="goods-prime-price">￥{{groupDetail.goodsPrimePrice}}</text>
+          </view>
+
+          <view class="goods-sale-msg-container">
+            <text class="sales-volume">已拼{{groupDetail.salesVolume}}件</text>
+            <view class="group-msg-container">
+              <text class="need-join">{{groupDetail.needJoinCount}}人团</text>
+              <view class="sale-price-container">
+                <text class="sale-price">{{groupDetail.goodsPrice}}</text>
+                <text class="sales-unit">/{{groupDetail.salesUnit}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <block wx:if="{{barrageList.length}}">
+        <view class="barrage-box">
+        <component-grouper-animation top="0" grouper-list="{{barrageList}}"></component-grouper-animation>
+        </view>
+      </block>
+    </view>
+
+    <block wx:if="{{formType == 1}}">
+      <view class="goods-labels-container">
+        <block wx:for="{{groupDetail.goodsLabel}}" wx:key="*this">
+          <text class="label-item">{{item}}</text>
+        </block>
+      </view>
+    </block>
+    <!--  <block wx:elif="{{groupDetail.promotionAlert}}">
+    <view class="group-promotion-alert">
+      <view class="tips"></view>
+      <text class="delivery-msg">{{groupDetail.promotionAlert}}</text>
+    </view>
+  </block>-->
+    <block wx:else>
+      <view class="goods-labels-container" wx:if="{{groupDetail.goodsLabels && groupDetail.goodsLabels.length > 0}}">
+        <view class="goods-labels-wrap pos-r r1bt">
+          <view class="goods-labels-tips">提示</view>
+          <view class="labal-item-wrap">
+            <block wx:for="{{groupDetail.goodsLabels}}" wx:key="*this">
+              <text class="label-item">{{item}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="group-status-container">
+      <block wx:if="{{groupDetail.gbStatus == 0}}">
+        <view class="surplus-time-container">
+          <text class="surplus-time-msg">仅剩</text>
+          <component-group-surplus-time surplus-time="{{groupDetail.surplusTime}}" bind:surplus-end-callback="getGroupDetail"></component-group-surplus-time>
+          <text class="surplus-time-msg">结束</text>
+        </view>
+
+        <view class="need-join-msg-container">
+          <text class="need-msg">还差</text>
+          <text class="need-num">{{groupDetail.oddJoinCount}}</text>
+          <text class="need-msg">人即可成团</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="group-finished-container">
+          <block wx:if="{{groupDetail.gbStatus == 1&&groupDetail.isGroupHead==2}}">
+            <text class="result-msg">已参团成功</text>
+          </block>
+          <block wx:elif="{{groupDetail.gbStatus == 1&&groupDetail.isGroupHead==1}}">
+            <text class="result-msg">我是团长，已成功拼团</text>
+          </block>
+          <block wx:elif="{{groupDetail.gbStatus == 1}}">
+            <text class="result-msg">来晚了，团已满</text>
+          </block>
+          <block wx:elif="{{groupDetail.gbStatus == 2}}">
+            <text class="result-msg">人数不足，拼团结束</text>
+          </block>
+        </view>
+      </block>
+      <view class="grouper-list-container">
+        <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue>
+        <!-- <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue> -->
+        <!-- <block wx:for="{{groupDetail.memberList}}" wx:key="*this">
+          <block wx:if="{{item}}">
+            <view class="grouper-item{{item.joinDateTime?'':' grouper-default-item'}}">
+              <block wx:if="{{item.memberPhoto}}">
+                <image src="{{item.memberPhoto}}" class="member-photo"></image>
+              </block>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="grouper-default-item"></view>
+          </block>
+        </block> -->
+      </view>
+    </view>
+        <!-- 帮帮 -->
+    <block wx:if='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1886}}'>
+      <component-group-buy-step ruleType='2'></component-group-buy-step>
+    </block>
+    <!-- 抽奖 -->
+    <block wx:elif='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1887}}'>
+      <component-group-buy-step ruleType='1'></component-group-buy-step>
+    </block>
+      <!-- 老带新 -->
+    <block wx:elif='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1937}}'>
+      <component-group-buy-step ruleType='3'></component-group-buy-step>
+    </block>
+    <block wx:else>
+      <component-group-buy-step></component-group-buy-step>
+    </block>
+    <view class="footer-contaienr">
+      <text class="more-group" catchtap="jumpToGroupList">更多拼团</text>
+      <block wx:if="{{groupDetail.gbStatus == 0||groupDetail.gbStatus == 1}}">
+        <block wx:if="{{groupDetail.gbStatus == 0&&groupDetail.isGroupHead == 0}}">
+          <text class="join-group" catchtap="joinGroup">我要参团</text>
+        </block>
+        <block wx:elif='{{groupDetail.gbEffectiveStatus==3&&groupDetail.isGroupHead == 1}}'></block>
+        <block wx:elif='{{(groupDetail.isGroupHead==1||groupDetail.isGroupHead==2)&&groupDetail.myOrderId}}'>
+          <text class="look-my-group" catchtap="lookMyGroup">查看我的团</text>
+        </block>
+      </block>
+    </view>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+  </view>
+</block>
+
+<template is="modal" data="{{...modalData}}"></template>
+<template is="toast" data="{{...toastData}}"></template>
+<block wx:if="{{memberListDialogFlag}}">
+  <view class="member-list-dialog-container">
+    <view class="member-list-container">
+      <view class="close-btn" catchtap="hideMemberListDialog"></view>
+      <view class="grouper-header-container">
+        <block wx:if="{{groupDetail.memberList[0].memberPhoto}}">
+          <image src="{{groupDetail.memberList[0].memberPhoto}}" class="group-head-image"></image>
+        </block>
+      </view>
+      <text class="group-head-name">{{groupDetail.memberList[0].memberName||groupDetail.memberList[0].memberTel}}</text>
+      <text class="join-group-time">{{groupDetail.memberList[0].groupDateStr}} 开团</text>
+
+      <block wx:if="{{groupDetail.memberList.length > 1 && groupDetail.memberList[1]}}">
+        <view class="grouper-list-container">
+          <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue>
+          <!-- <block wx:for="{{groupDetail.memberList}}" wx:key="*this">
+            <block wx:if="{{item && index > 0}}">
+              <view class="grouper-item-container">
+                <view class="header-container">
+                  <image src="{{item.memberPhoto}}" class="header"></image>
+                </view>
+
+                <text class="member-item-name">{{item.memberName||item.memberTel}}</text>
+                <text class="join-time">{{item.groupDateStr}} 参团</text>
+              </view>
+            </block>
+          </block> -->
+        </view>
+      </block>
+      <block wx:else>
+        <text class="no-grouper-msg">抢先成为第一个团员吧~</text>
+      </block>
+    </view>
+  </view>
+</block>
+<canvas canvas-id="shareCanvasCode" class="share-canvas"></canvas>
+<canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+<canvas canvas-id="shareSaveCanvas" class="share-canvas"></canvas>
+<block wx:if="{{shareInfo.showShareDialogFlag}}">
+  <view class="share-dialog-container">
+    <view class="share-info-container">
+      <text class="share-header">多分享几次，成团更快哦！</text>
+      <view class="share-msg-container mgt-30">
+        <text class="black">99%</text>
+        <text class="gray">的小伙伴表示，</text>
+      </view>
+      <view class="share-msg-container">
+        <text class="gray">分享到</text>
+        <text class="black">大群</text>
+        <text class="gray">或</text>
+        <text class="black">朋友圈</text>
+        <text class="gray">成功率更高！</text>
+      </view>
+
+      <view class="share-btn-container">
+        <view class="share-item-container">
+          <button open-type="share" class="share-btn">
+            <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_friends.png"></image>
+          </button>
+          <view class="share-msg-container">
+            <text class="share-msg">微信好友</text>
+          </view>
+        </view>
+        <view class="share-item-container">
+          <view class="share-btn" catchtap="downloadShareBg">
+            <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_scope.png"></image>
+          </view>
+          <view class="share-msg-container" catchtap="downloadShareBg">
+            <text class="share-msg">朋友圈</text>
+          </view>
+
+        </view>
+      </view>
+
+      <view class="close-btn" catchtap="hideShareDialog"></view>
+    </view>
+  </view>
+</block>
+<block wx:if='{{showDrawAll}}'>
+  <view class='draw-code-all' catchtap='hideDrawAll'>
+    <view class='cnt'>
+      <view class='title'>全部兑奖码</view>
+      <view class='ul'>
+        <block wx:for='{{groupDetail.groupPrizeInfo.leadCashPrizeList}}' wx:for-item='item' wx:key='*this'>
+          <view class='li'>{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+  <!-- 下载社团二维码图片 -->
+  <block wx:if='{{showShareImgCode}}'>
+    <view class='download-share-code' catchtap='hideShareImgCode'>
+      <view class='share-code-cnt'>
+        <view class='share-code-image'>
+          <image src='{{shareImgCode}}' mode='widthFix'></image>
+        </view>
+        <view class='share-code-btn'>
+          <!-- <view class='btn-close'>关闭</view> -->
+          <view class='btn-download' catchtap='downloadImageCode'>保存图片</view>
+        </view>
+      </view>
+    </view>
+  </block>
+<view class='paddingfoot'></view>
+<block wx:if='{{showPopGroupNum}}'><pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'></pop-group-num></block>
+

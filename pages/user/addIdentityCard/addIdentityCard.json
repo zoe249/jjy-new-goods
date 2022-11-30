@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "上传身份证",
+    "usingComponents": {
+        "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+        "component-global-modal": "/component/globalModal/globalModal",
+        "loading": "/component/loading/loading"
+    }
+}

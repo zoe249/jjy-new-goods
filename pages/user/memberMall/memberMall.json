@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "component-go-cart": "/component/goCart/goCart",
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

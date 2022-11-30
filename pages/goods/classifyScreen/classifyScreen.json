@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "usingComponents": {
+    "component-go-cart": "/component/goCart/goCart",
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

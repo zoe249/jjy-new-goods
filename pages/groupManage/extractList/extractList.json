@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的提货点",
+  "usingComponents": {
+      "component-address-list":"/component/addressList/addressList"
+  }
+}

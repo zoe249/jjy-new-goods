@@ -1,0 +1,267 @@
+page{
+    background: #fff;
+}
+.store_card_infor {
+    width: 720rpx;
+    height: 272rpx;
+    font-size: 28rpx;
+    line-height: 1;
+    margin: 16rpx auto;
+    background: #FFBD4F;
+    border-radius: 16rpx;
+}
+
+.store_card_infor image {
+    height: 262rpx;
+}
+
+.store_card_infor .store_card_tips {
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    padding-top: 12rpx;
+}
+
+.store_card_infor .store_card_tips .a {
+    font-size: 20rpx;
+    padding-right: 16rpx;
+    color: #fff;
+
+}
+
+.store_card_infor .store_card_tips .span {
+    display: inline-block;
+    line-height: 1;
+    padding-left: 16rpx;
+    font-size: 24rpx;
+}
+
+.store_card_infor .detail {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 24rpx;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.store_card_infor .detail .strong {
+    display: block;
+    font-size: 60rpx;
+    padding-bottom: 16rpx
+}
+
+.module-title {
+    font-size: 38rpx;
+    padding: 50rpx 32rpx 30rpx;
+}
+
+.card-recommend .card-swiper {
+    height: 270rpx;
+}
+
+.card-swiper swiper-item .item {
+    width: 440rpx;
+    height: 240rpx;
+    padding: 30rpx 0 0;
+    transition: 0.4s all;
+}
+
+.card-swiper swiper-item .item .item-info {
+    border-radius: 20rpx;
+    overflow: hidden;
+}
+
+.card-swiper swiper-item .item .goods-cover {
+    width: 440rpx;
+    height: 240rpx;
+    background: url(https://shgm.jjyyx.com/m/images/remd_card_default.png?t=418) no-repeat center;
+    background-size: 440rpx 240rpx;
+}
+
+.card-swiper swiper-item .item.scale {
+    transform: scale(0.8);
+}
+
+.card-swiper swiper-item .item-content {
+    border: 1px solid #ededed;
+    border-radius: 20rpx;
+}
+
+.card-swiper swiper-item .discout {
+    left: 30rpx;
+    top: 4rpx;
+    width: 70rpx;
+    height: 70rpx;
+}
+
+.card-swiper swiper-item .discout image {
+    width: 70rpx;
+    height: 70rpx;
+}
+
+.card-price {
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.card-price swiper-item {
+    text-align: center;
+}
+
+.card-price swiper-item.active {
+    color: #444;
+    font-size: 36rpx;
+}
+
+.pay-type-container {
+    padding: 0 0 0 32rpx;
+}
+
+.pay-type {
+    padding: 20rpx 70rpx;
+    font-size: 28rpx;
+    line-height: 1;
+    background: url('https://shgm.jjyyx.com/m/images/icon_pay_wx.png') no-repeat left center;
+    background-size: 50rpx 50rpx;
+}
+
+.pay-type .tips {
+    font-size: 18rpx;
+    color: #999;
+}
+
+.sel-btn {
+    position: absolute;
+    right: 32rpx;
+    top: 50%;
+    width: 30rpx;
+    height: 30rpx;
+    transform: translateY(-50%);
+    background: url('https://shgm.jjyyx.com/m/images/icon_check_active.png') no-repeat center;
+    background-size: 30rpx 30rpx;
+}
+.sel-btn.emptyRemcoment-sel{
+   background: url('https://shgm.jjyyx.com/m/images/icon_check_lose.png') no-repeat center;
+   background-size: 30rpx 30rpx;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    font-size: 28rpx;
+    text-align: right;
+    z-index: 2;
+}
+
+.footer.iphone-x-patcher-container {
+    height: auto;
+}
+
+.footer-flex {
+    display: flex;
+    flex-flow: row;
+    height: 96rpx;
+    align-items: center;
+    justify-content: center;
+}
+
+.total_price {
+    flex: 1;
+    font-size: 20rpx;
+}
+
+.total_price text {
+    display: inline-block;
+    position: relative;
+    margin: 0 20rpx;
+    font-size: 38rpx;
+    color: #FF4752;
+}
+
+.total_price text::after {
+    content: "￥";
+    position: absolute;
+    left: -20rpx;
+    bottom: 0;
+    font-size: 20rpx;
+    transform: translateY(10%);
+    color: #FF4752;
+}
+
+.discount-total {
+    margin: 0 20rpx;
+    color: #999;
+}
+
+.settle_accounts {
+    width: 200rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    font-size: 34rpx;
+    background: #FF4752;
+    color: #fff;
+    text-align: center;
+}
+
+.card-goods-wrap {
+    position: absolute;
+    left: 0;
+    top: 18rpx;
+    width: 440rpx;
+    height: 240rpx;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: left;
+    padding: 40rpx 30rpx 0;
+}
+
+.card-goods-wrap .price {
+    position: relative;
+    padding-left: 30rpx;
+    font-size: 84rpx;
+    line-height: 1;
+    color: #ff8779;
+    margin-left: 100rpx;
+}
+
+.card-goods-wrap .price::after {
+    content: "￥";
+    position: absolute;
+    left: 0;
+    bottom: 8rpx;
+    font-size: 38rpx;
+}
+
+.card-goods-info .text {
+    display: block;
+    width: 400rpx;
+    font-size: 26rpx;
+    color: #834740;
+    text-align: center;
+}
+.card-goods-info{
+  text-align: center;
+  width:100%;
+}
+.card-goods-info .price{
+  display: inline-block;
+  margin:0 auto;
+  padding:0 0 0 36rpx;
+  color:#fff;
+}
+.error-page-tpl{
+  position: static;
+}
+.not-purchasable{
+  background: #94969C;
+}

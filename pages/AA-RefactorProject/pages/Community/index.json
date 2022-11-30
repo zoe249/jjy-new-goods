@@ -1,0 +1,13 @@
+{
+	"enablePullDownRefresh": true,
+	"backgroundColor": "#F4F4F4",
+    "backgroundTextStyle": "dark",
+	"navigationStyle": "custom",
+	"usingComponents": {
+		"component-group-footer": "/component/communityGroupFooter/communityGroupFooter",
+		"component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+		"community-index-component": "/pages/AA-RefactorProject/component/communityIndexComponent/index",
+		"active-component": "/pages/AA-RefactorProject/component/ActiveComponent/index",
+    "back-top": "/pages/AA-RefactorProject/component/BackTop/index"
+	}
+}

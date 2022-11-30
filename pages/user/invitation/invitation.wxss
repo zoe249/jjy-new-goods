@@ -1,0 +1,195 @@
+/* pages/user/invitation/invitation.wxss */
+
+.invitation-container{
+  width: 100%;
+}
+
+.invitation-container .invitation-header-container{
+  position: relative;
+  width: 100%;
+}
+
+.invitation-container .invitation-header-container .rule-btn{
+  position: absolute;
+  right: 32rpx;
+  top: 30rpx;
+  width: 143rpx;
+  height: 40rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_zhuanqiangonglue.png") no-repeat center;
+  background-size: contain;
+}
+
+.invitation-container .invitation-header-container .invite-user-list-container{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-container{
+  width: 632rpx;
+  height: 40rpx;
+  background: rgba(255,255,255,0.6);
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.swiper-item{
+  width: 100%;
+  text-align: center;
+}
+
+.swiper-text{
+  color: #B37700;
+  font-size: 24rpx;
+  line-height: 1;
+}
+
+.cover{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  z-index: 10;
+}
+
+.invitation-container .invitation-content-container{
+  position: relative;
+  width: 100%;
+}
+
+.invitation-container .invitation-content-container .msg-container{
+  position: absolute;
+  left: 0;
+  top: 30rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 630rpx;
+  height: 480rpx;
+  padding: 30rpx 0;
+  background: #ffefd0;
+  border-radius: 50rpx;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container{
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 713rpx;
+  height: 306rpx;
+  padding-top: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/bg_invitation_msg.png") no-repeat center;
+  background-size: contain;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-people-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 245rpx;
+  height: 234rpx;
+  background: url("https://shgm.jjyyx.com/m/images/bg_invitation_people.png") no-repeat center;
+  background-size: cover;
+  margin-right: 30rpx;
+  padding: 44rpx 0 22rpx;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-people-container .value-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-people-container .value-container .value{
+  font-size: 100rpx;
+  color: #CC9C3D;
+  line-height: 0.8;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-people-container .value-container .symbol{
+  font-size: 48rpx;
+  color: #CC9C3D;
+  line-height: 1;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-people-container .label{
+  font-size: 28rpx;
+  color: #CC9C3D;
+  line-height: 1;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 245rpx;
+  height: 234rpx;
+  background: url("https://shgm.jjyyx.com/m/images/bg_invitation_money.png") no-repeat center;
+  background-size: cover;
+  padding: 44rpx 0 22rpx;
+}
+
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container .value-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container .value-container .value{
+  font-size: 100rpx;
+  color: #FFF;
+  line-height: 0.8;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container .value-container .symbol{
+  font-size: 48rpx;
+  color: #FFF;
+  line-height: 1;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container .label{
+  font-size: 28rpx;
+  color: #FFF;
+  line-height: 1;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .result-container .invitation-money-container .label:after{
+  content: '';
+  display: inline-block;
+  width: 16rpx;
+  height: 28rpx;
+  margin-left: 14rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_right_triangle.png") no-repeat center;
+  background-size: contain;
+}
+
+.invitation-container .invitation-content-container .msg-container .invitation-msg-container .share-btn{
+  width: 580rpx;
+  height: 90rpx;
+  background: #FF4752;
+  color: #FFF;
+  border-radius: 45rpx;
+}
+
+.invitation-container .invitation-content-container .bottom-image{
+  margin-top: 30rpx;
+  width: 658rpx;
+}

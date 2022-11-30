@@ -1,0 +1,93 @@
+/* pages/user/message/message.wxss */
+#read_all{
+  font-size:28rpx;
+  line-height:60rpx;
+  width:150rpx;
+  border-radius: 10rpx;
+  background-color: #FF4752;
+  color: #fff;
+  height: 60rpx;
+  margin:10rpx 32rpx 10rpx 568rpx;
+  text-align: center
+}
+.my-news-wrap .news-item {
+    padding: 30rpx 32rpx;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row
+}
+
+.my-news-wrap .news-item .news-item-icon {
+    width: 114rpx;
+    height: 114rpx;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+.my-news-wrap .news-item .news-item-message-container {
+    margin-left: 30rpx;
+    margin-top: 20rpx;
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    flex-direction: column
+}
+
+.my-news-wrap .news-item .news-item-message-container>.lyt-flex-item {
+    -webkit-box-flex: 1
+}
+
+.my-news-wrap .news-item .news-item-message-container .news-type-container {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+
+.my-news-wrap .news-item .news-item-message-container .news-type-container .news-type {
+    color: #464646;
+    font-size: 32rpx;
+    line-height: 1
+}
+
+.my-news-wrap .news-item .news-item-message-container .news-type-container .news-number {
+    display: inline-block;
+    margin-left: 20rpx;
+    padding: 14rpx 8rpx;
+    font-size: 24rpx;
+    line-height: 0;
+    border-radius: 24rpx;
+    text-align: center;
+    background-color: #FF4752;
+    color: #FFF
+}
+
+.my-news-wrap .news-item .news-item-message-container .news-type-container .news-create-time {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #999;
+    font-size:26rpx;
+    line-height: 1;
+    text-align: right
+}
+
+.my-news-wrap .news-item .news-item-message-container .news-title {
+    display: inline-block;
+    width: 550rpx;
+    margin-top: 22rpx;
+    color: #999;
+    font-size: 26rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}

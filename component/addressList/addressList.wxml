@@ -1,0 +1,14 @@
+<view class='item'>
+    <view class='item-wrap'>
+        <view class='name'> <text>{{item.addrName}}</text> <text>{{item.addrPhone}}</text></view>
+        <view class='address'>{{item.provinceName}} {{item.cityName}} {{item.areaName}} {{item.address}}</view>
+    </view>
+    <view class='item-bottom ui-flex'>
+        <view class='set-left set-d {{item.isDefault?"act":""}}' bindtap='_setDefault' data-item="{{item}}">设为默认</view>
+        <view class='set-right ui-flex'>
+            <!-- <view class='set-del' bindtap='_delAddress' data-item="{{item}}">删除</view> -->
+            <view class='set-edit' bindtap='_editAddress' data-item="{{item}}">编辑</view>
+        </view>
+    </view>
+</view>
+<view class='hr-16'></view>

@@ -1,0 +1,4 @@
+<import src="/templates/global/global.wxml" />
+<block wx:if="{{localEmptyDataDI}}">
+<template is="empty" data="{{...localEmptyDataDImsg}}"></template>
+</block>

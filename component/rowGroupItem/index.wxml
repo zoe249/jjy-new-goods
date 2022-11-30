@@ -1,0 +1,45 @@
+<view class='goods-item g-list' bindtap='bindPartakeGroup' data-item="{{goods}}">
+  <view class='goods-img'>
+    <image src='{{goods.coverImage}}'></image>
+  </view>
+  <view class='goods-info'>
+    <text class='goods-title typo-clamp'>{{goods.materielParentName||goods.goodsPromotionName||goods.shortTitle||goods.goodsName||""}}</text>
+    <view class='goods-dec typo-elips'>{{goods.goodsTag}}</view>
+    <!-- 头像 ...附近多少人 -->
+    <nearbyBuyers wx:if="{{goods.totalSalesVolume > 0}}" uiconList="{{uiconList}}" totalSalesVolume="{{goods.totalSalesVolume}}" totalSalesVolumeMsg="{{goods.totalSalesVolumeMsg}}"></nearbyBuyers>
+    <view class="goods-info-bottom">
+      <view class="goods-bottom-tatal">
+        <view class='need-buy'>
+          <view class='need-num'>{{goods.needJoinCount}}人团</view>
+        </view>
+        <view class='buyers-number'>本场已拼{{goods.buyersNumber}}件</view>
+      </view>
+      <view class="goods-bottom-join">
+        <view class="goods-bottom-price">
+          <text class='goods-prime-price'>¥{{goods.goodsPrice}}</text>
+          <text class='goods-o-price'>¥{{goods.goodsPrimePrice}}</text>
+        </view>
+        <block wx:if="{{goods.surplusStock > 0}}">
+          <view class='join' data-item="{{goods}}">去拼团</view>
+        </block>
+        <block wx:else>
+          <view class='join soon' data-item="{{goods}}">售罄</view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!-- <block wx:if="{{showMember}}">
+  <view wx:if="{{goods.lastGroup && goods.lastGroup.memberList }}" class='join-group-model' bindtap='toJoinGroupDetails'
+    data-item="{{goods}}">
+    <view class='join-group'>TA的拼团快要过期了，快来拼团～</view>
+    <view class='join-group-user'>
+      <block wx:for="{{goods.lastGroup.memberList}}" wx:for-item="list" wx:key="l_key">
+        <image class='df-img' src='{{list}}'></image>
+      </block>
+      <view class='join-group-need-user'>还差 <text>{{goods.lastGroup.oddJoinCount}}</text> 人</view>
+    </view>
+    <view class='join-group-btn' bindtap='joinOtherGroup' data-item='{{goods}}'>立即参团</view>
+  </view>
+</block> -->

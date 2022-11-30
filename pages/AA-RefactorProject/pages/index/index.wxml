@@ -1,0 +1,34 @@
+<view class="page">
+  <import src="/templates/global/global.wxml" />
+  <image class="bgThemeUrl" wx:if="{{bgThemeUrl}}" src="{{bgTheme}}" mode="widthFix" />
+  <view wx:else class="{{is_black?'blackWhite':''}}" style="width:100%;height:690px;position:absolute;top:0;z-index:-1;background:{{bgTheme}};background-size:100% 100%;"></view>
+  <view bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd">
+    <!-- 优鲜首页组件 -->
+    <yx-index-content-component bind:_noBottomData="noBottomData" bind:_showGoTop="showGoTop" selShopShow="{{selShopShow}}" bgTheme="{{bgTheme}}" titleOpacity="{{titleOpacity}}" bind:_getFixHeightData="getFixHeightData" isBlack="{{is_black}}" bind:_updateCartTotal="updateCartTotal" bind:checkoutNextTheme="checkoutTheme" class="homePage" isAddNavigation="{{isAddNavigation}}" allData="{{allData}}" listLoading="{{listLoading}}"></yx-index-content-component>
+    <back-top isBlack="{{is_black}}" wx:if="{{showGoToTop}}" />
+    <active-component isBlack="{{is_black}}" show="{{showActivity}}" />
+    <!-- 底部全局导航条(tabBar) -->
+    <!-- wx:if="{{(canAppGetUserLocation || locatePositionByManual)}}" -->
+    <template is="navigation-bar" data="{{...tabStatus,is_black:is_black}}"></template>
+    <template is="modal" data="{{...modalData}}"></template>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+    <!-- 骨架屏 -->
+    <import src="index.skeleton.wxml" />
+    <template is="skeleton" wx:if="{{skeletonLoading}}" data="{{src:$.img_src}}" />
+    <template is="toast" data="{{...toastData}}"></template>
+  </view>
+  <!-- 配送范围重叠门店选择 -->
+  <cuModal modalName="{{selShopShow?'centerModal':''}}" dialogBoxStyle="width:656rpx;">
+
+    <view slot="customCenter" class="sel-shop-list">
+      <view class="sel-shop-title r1bb pos-r">选择门店（距离由近到远）</view>
+      <view class="sel-shop-item-wrap">
+        <block wx:if="{{shopArr.length>1}}">
+          <view class="sel-shop-item {{selShopIndex == index?'act':''}}" bindtap="switchSelShop" data-idx="{{index}}" wx:for="{{shopArr}}">{{item.shopName}}</view>
+        </block>
+      </view>
+      <view class="sel-shop-btn" bindtap="bindSelShop">确定</view>
+    </view>
+
+  </cuModal>
+</view>

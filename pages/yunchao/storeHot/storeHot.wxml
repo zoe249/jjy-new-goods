@@ -1,0 +1,8 @@
+<block wx:for="{{hotbanner}}">
+  <image mode="widthFix" class="hotbanner" src="{{item.imgUrl}}"></image>
+</block>
+<view class="list">
+  <block wx:for="{{hotsale}}">
+  <component-full-goods-item describle="{{goods.describle}}" goods="{{item.goods}}"  bind:change-cart="changeCartCount"></component-full-goods-item>
+</block>
+</view>

@@ -1,0 +1,786 @@
+<!--pages/refund/detail/detail.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+  <view class="loading-cnt">
+    <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+  </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+  <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+  <view class="refund-detail-box">
+    <block wx:if="box2">
+      <view class="refund-detail-box2">
+        <!-- <view class="head-tip">本次售后由
+                    <block wx:if="{{result.orderType=='OVERSEAS_ELECTION'&&(result.aftermarketSource==613||result.aftermarketSource==1228||result.aftermarketSource==1101)}}"><view class="span c-color">第三方卖家</view></block>
+                    <block wx:else><view class="span c-color">家家悦优鲜</view></block>为您提供
+                </view> -->
+        <view class="nav-box r1bb clearfix">
+          <view class="{{tab==1?'active':''}}" data-tab="1" catchtap="switchNav" id="nav-progress">退款进度</view>
+          <view class="{{tab==2?'active':''}}" data-tab="2" catchtap="switchNav" id="nav-inf">退款信息</view>
+        </view>
+        <block wx:if="{{tab!=2}}">
+          <view class="cnt-box1">
+            <view class="inf-box r1bb">
+              <view class="head clearfix">
+                <view class="head-l">退款单号 {{result.id}}</view>
+                <view class="head-r">{{result.formateCreateTime}}</view>
+              </view>
+              <!--审批通过：169；审批不通过：170；待退款；441；退款中：442退款完成：443-->
+              <block wx:if="{{result.currentState==167||result.currentState==170||result.currentState==1194||result.currentState==115}}">
+              </block>
+              <block wx:else>
+                <view class="inf-cnt r1bt">
+                  <block wx:if="{{result.currentState==443}}">
+                    <view class="finished">
+                      <view class="span">已退款</view>
+                      <view class="em">
+                        <view class="i">\t¥</view>{{result.price1||'0'}}
+                        <view class="i">{{result.price2}}</view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="waiting">
+                      <view class="span">待退款</view>
+                      <view class="em">
+                        <view class="i">\t¥</view>{{result.price1||'0'}}
+                        <view class="i">{{result.price2}}</view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:if="{{result.isNeedPickup==1135&&result.orderType=='ON_LINE'&&(result.applicationReason==1349||result.applicationReason==1235||result.applicationReason==1236||result.applicationReason==1125||result.applicationReason==568||result.applicationReason==1300)}}">
+                    <view class="global-tip-head">退款金额已扣除6元上门取件费</view>
+                  </block>
+                  <block wx:elif="{{result.orderType=='OVERSEAS_ELECTION'}}">
+                    <view class="global-tip-head">退款金额仅为商品实付金额（不含回寄运费）</view>
+                  </block>
+                  <block wx:if="{{result.pathDetailOutputList&&result.pathDetailOutputList.length>0}}">
+                    <view class="ul">
+                      <block wx:for="{{result.pathDetailOutputList}}" wx:for-item="li">
+                        <view class="clearfix li">
+                          <view class="li-l">{{li.returnedName}}</view>
+                          <view class="li-r">{{li.returnedAmount}}</view>
+                        </view>
+                      </block>
+                    </view>
+                  </block>
+                </view>
+              </block>
+            </view>
+            <view class="progress-box mb8">
+              <view class="title r1bb">售后进度</view>
+              <block wx:if="{{result.diagramList.length==4}}">
+                <view class="progress-box4">
+                  <view class="ul progress clearfix">
+                    <block wx:for="{{result.diagramList}}" wx:for-item="li" wx:for-index="liIndex">
+                      <block wx:if="{{li.nodeStatus==170&&liIndex==3}}">
+                        <view class="fail on li">
+                          <block wx:if="{{liIndex==3&&li.nodeStatus||currentState==167&&liIndex==1}}">
+                            <view class="tip-box">
+                              <view class="text">{{li.nodeUpMsg}}</view>
+                              <view class="triangle"></view>
+                            </view>
+                          </block>
+                          <view class="progress-wrap">
+                            <view class="icon"></view>
+                            <block wx:if="{{liIndex!=3}}">
+                              <view class="line"></view>
+                            </block>
+                            <view class="text">{{li.nodeDownMsg}}</view>
+                          </view>
+                        </view>
+                      </block>
+                      <block wx:elif="{{result.currentState==167&&liIndex==1}}">
+                        <view class="waiting li">
+                          <block wx:if="{{liIndex==3&&li.nodeStatus||result.currentState==167&&liIndex==1}}">
+                            <view class="tip-box">
+                              <view class="text">{{li.nodeUpMsg}}</view>
+                              <view class="triangle"></view>
+                            </view>
+                          </block>
+                          <view class="progress-wrap">
+                            <view class="icon"></view>
+                            <block wx:if="{{liIndex!=3}}">
+                              <view class="line"></view>
+                            </block>
+                            <view class="text">{{li.nodeDownMsg}}</view>
+                          </view>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class="li{{li.nodeStatus?' on':''}}">
+                          <block wx:if="{{liIndex==3&&li.nodeStatus||result.currentState==167&&liIndex==1}}">
+                            <view class="tip-box">
+                              <view class="text">{{li.nodeUpMsg}}</view>
+                              <view class="triangle"></view>
+                            </view>
+                          </block>
+                          <view class="progress-wrap">
+                            <view class="icon"></view>
+                            <block wx:if="{{liIndex!=3}}">
+                              <view class="line"></view>
+                            </block>
+                            <view class="text">{{li.nodeDownMsg}}</view>
+                          </view>
+                        </view>
+                      </block>
+                    </block>
+                  </view>
+                </view>
+              </block>
+              <block wx:elif="{{result.diagramList.length==3}}">
+                <view class="progress-box3">
+                  <view class="progress ul">
+                    <block wx:for="{{result.diagramList}}" wx:for-item="li" wx:for-index="liIndex">
+                      <block wx:if="{{li.nodeStatus==170&&liIndex==2||li.nodeStatus==1194&&liIndex==2}}">
+                        <view class="li fail on">
+                          <block wx:if="{{liIndex==2&&li.nodeStatus||liIndex==1&&li.nodeStatus==null&&li.nodeUpMsg}}">
+                            <view class="tip-box{{liIndex==1&&li.nodeStatus==null&&li.nodeUpMsg?' wait':''}}">
+                              <view class="text">{{li.nodeUpMsg}}</view>
+                              <view class="triangle"></view>
+                            </view>
+                          </block>
+                          <view class="progress-wrap">
+                            <view class="icon"></view>
+                            <block wx:if="{{liIndex!=2}}">
+                              <view class="line"></view>
+                            </block>
+                            <view class="text">{{li.nodeDownMsg}}</view>
+                          </view>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class="li{{li.nodeStatus?' on':''}}">
+                          <block wx:if="{{liIndex==2&&li.nodeStatus||liIndex==1&&li.nodeStatus==null&&li.nodeUpMsg}}">
+                            <view class="tip-box{{liIndex==1&&li.nodeStatus==null&&li.nodeUpMsg?' wait':''}}">
+                              <view class="text">{{li.nodeUpMsg}}</view>
+                              <view class="triangle"></view>
+                            </view>
+                          </block>
+                          <view class="progress-wrap">
+                            <view class="icon"></view>
+                            <block wx:if="{{liIndex!=2}}">
+                              <view class="line"></view>
+                            </block>
+                            <view class="text">{{li.nodeDownMsg}}</view>
+                          </view>
+                        </view>
+                      </block>
+                    </block>
+                  </view>
+                </view>
+              </block>
+              <block wx:elif="{{result.diagramList.length==2}}">
+                <view class="progress-box2">
+                  <view class="progress">
+                    <view class="progress-left{{result.diagramList[0].nodeStatus?' on':''}}">
+                      <view class="icon"></view>
+                      <view class="line"></view>
+                      <view class="text">{{result.diagramList[0].nodeDownMsg}}</view>
+                    </view>
+                    <block wx:if="{{result.diagramList[1].nodeStatus==170}}">
+                      <view class="progress-right fail">
+                        <view class="icon"></view>
+                        <view class="text">{{result.diagramList[1].nodeDownMsg}}</view>
+                        <block wx:if="{{result.diagramList[1].nodeUpMsg}}">
+                          <view class="tip-box">
+                            <view class="tip-text">{{result.diagramList[1].nodeUpMsg}}</view>
+                            <view class="triangle"></view>
+                          </view>
+                        </block>
+                      </view>
+                    </block>
+                    <block wx:elif="{{result.diagramList[1].nodeStatus==115}}">
+                      <view class="progress-right finished closeIcon">
+                        <view class="icon"></view>
+                        <view class="text">{{result.diagramList[1].nodeDownMsg}}</view>
+                        <block wx:if="{{result.diagramList[1].nodeUpMsg}}">
+                          <view class="tip-box">
+                            <view class="tip-text">{{result.diagramList[1].nodeUpMsg}}</view>
+                            <view class="triangle"></view>
+                          </view>
+                        </block>
+                      </view>
+                    </block>
+                    <block wx:else>
+                      <view class="progress-right{{result.diagramList[1].nodeStatus==443||result.currentState==443?' finished':''}}">
+                        <view class="icon"></view>
+                        <view class="text">{{result.diagramList[1].nodeDownMsg}}</view>
+                        <block wx:if="{{result.diagramList[1].nodeUpMsg}}">
+                          <view class="tip-box">
+                            <view class="tip-text">{{result.diagramList[1].nodeUpMsg}}</view>
+                            <view class="triangle"></view>
+                          </view>
+                        </block>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </block>
+              <view class="tip-text">{{result.content||''}}</view>
+            </view>
+            <block wx:if="{{result.supplierMessage&&result.orderType=='OVERSEAS_ELECTION'||result.supplierAnnex&&result.orderType=='OVERSEAS_ELECTION'}}">
+              <view class="leave-message">
+                <view class="title r1bb">商家审核留言</view>
+                <view class="leave-message-cnt">{{result.supplierMessage?result.supplierMessage:'无'}}</view>
+                <view class="img-box clearfix">
+                  <block wx:for="{{result.supplierAnnexImg}}" wx:for-item="img" wx:for-index="imgIndex">
+                    <view class="img">
+                      <image src="{{img}}" data-url="{{img}}" data-url-arr="{{result.supplierAnnexImg}}" catchtap="previewImage" class="img-box{{imgIndex}}"></image>
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </block>
+            <block wx:elif="{{result.reviewRemarks}}">
+              <view class="leave-message">
+                <view class="title r1bb">审核留言</view>
+                <view class="leave-message-cnt">{{result.reviewRemarks}}</view>
+              </view>
+            </block>
+
+          </view>
+        </block>
+        <block wx:else>
+          <view class="cnt-box2">
+            <!--苛选客服。用户，供应商，算第三方，系统自动生成算家家悦优鲜。。020客服用户，系统自动生成算家家悦优鲜
+                    aftermarketSource (integer, optional): 售后来源,配送员-928;400客服-613;用户-1101;系统自动生成-1138,供应商-1228,啤酒机-1375
+                    -->
+            <block wx:if="{{result.orderType=='OVERSEAS_ELECTION'&&result.isLogisticsReturn!=true}}">
+              <view class="global-refund-box">
+                <view class="global-pro mb8">
+                  <view class="global-title">退款商品</view>
+                  <block wx:for="{{result.detailOutputList}}" wx:for-item="product" wx:for-index="productIndex">
+                    <view class="li r1bt">
+                      <view class="wrap" data-goods-id="{{product.goodsId}}" data-shop-id="{{product.shopId}}">
+                        <view class="cart-item">
+                          <view class="item-img">
+                            <image src="{{product.goodsImage}}"></image>
+                          </view>
+                          <view class="item-info weigh-goods">
+                            <!--线下称重的时候item-info weigh-goods-->
+                            <view class="h3 typo-clamp nullClass{{product.isReturnFlag==1?' customer-service-padding':''}}{{(product.isGift==1||product.isGift==2||product.isGift==998||product.isGift==1640)?' h3-height':''}}">
+                              <block wx:if="{{product.isGift==1}}">
+                                <view class="em">赠品</view>
+                              </block>
+                              <block wx:elif="{{product.isGift==2}}">
+                                <view class="em">换购</view>
+                              </block>
+                              <block wx:elif="{{product.isGift==998||product.isGift==1640}}">
+                                <view class="em">限时抢</view>
+                              </block>
+                              {{product.goodsName}}
+                            </view>
+                            <view class="h4">
+                              <block wx:if="{{product.goodsSpec&&product.pricingMethod==391||product.goodsSpec&&orderType!='OVERSEAS_ELECTION'}}">
+                                <view class="goodsSpec">
+                                  <view class="em">规格：{{product.goodsSpec}}</view>
+                                  <block wx:if="{{product.pricingMethod==391&&product.offlineOrderType==0}}">
+                                    <view class="icon-info" catchtap="showWeightClick"></view>
+                                  </block>
+                                </view>
+                              </block>
+                              <view class="info">
+                                <block wx:if="{{product.pricingMethod==391}}">重量：{{product.weightStr}}</block>
+                                <block wx:else>数量：{{product.goodsNum}}</block>
+                                <view class="price-one">
+                                  单价：￥
+                                  <block wx:if="{{product.isMember}}">{{product.memberPriceStr}}</block>
+                                  <block wx:else>{{product.promotionPrice}}</block>
+                                  <block wx:if="{{product.goodsUnit}}">/{{product.goodsUnit}}</block>
+                                  <block wx:if="{{product.promotionPrice!=product.goodsOriginPriceStr||product.isMember&&product.memberPriceStr!=product.goodsOriginPriceStr}}">
+                                    <view class="detail-del"> ￥{{product.goodsOriginPriceStr}}</view>
+                                  </block>
+                                </view>
+                              </view>
+                            </view>
+                            <!--{{if product.goodsOriginAmountStr!=product.goodsOriginAmountStr&&product.isGift!=1}}<view class="del-price">{{product.goodsOriginAmountStr}}</view>{{/if}}-->
+                            <view class="price">￥{{product.goodsAmountStr}}</view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:if="{{result.refundGoodsTotalCount}}">
+                    <view class="num clearfix r1bt">
+                      <view class="num-l">申请数量</view>
+                      <view class="num-r">×{{result.refundGoodsTotalCount}}</view>
+                    </view>
+                  </block>
+                </view>
+                <block wx:if="{{result.aftermarketSource==1138}}">
+                  <view class="global-refund-inf mb8">
+                    <view class="global-li global-type r1bb">
+                      <view class="l">退款类型</view>
+                      <view class="r" style="text-align: right;">取消订单</view>
+                    </view>
+                  </view>
+                  <block wx:if="{{result.supplierMessage||result.reviewRemarks||result.remarks}}">
+                    <view class="global-refund-des mb8">
+                      <view class="global-title r1bb">退款描述</view>
+                      <view class="global-des">
+                        <view class="text">{{result.supplierMessage||result.reviewRemarks||result.remarks}}</view>
+                        <view class="date">{{result.formateCreateTime}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </block>
+                <block wx:elif="{{result.remarks||result.newAttachment.length>0}}">
+                  <view class="global-des mb8">
+                    <view class="global-title r1bb">问题描述</view>
+                    <view class="global-des-cnt">{{result.remarks}}</view>
+                    <view class="global-des-data{{result.newAttachment.length>0?' r1bb':''}}">{{result.formateCreateTime}}</view>
+                    <block wx:if="{{result.newAttachment&&result.newAttachment.length>0}}">
+                      <view class="img-box clearfix">
+                        <block wx:for="{{result.newAttachment}}" wx:for-item="img" wx:for-index="imgIndex">
+                          <view class="img">
+                            <image src="{{img}}" data-url="{{img}}" data-url-arr="{{result.newAttachment}}" catchtap="previewImage" class="img-box{{imgIndex}}"></image>
+                          </view>
+                        </block>
+                      </view>
+                    </block>
+                  </view>
+                </block>
+                <block wx:if="{{result.aftermarketSource!=1138&&result.applicationReason&&result.applicationReasonName}}">
+                  <view class="global-reason wrap mb8">
+                    <view class="global-title r1bb">退款原因</view>
+                    <view class="global-reason-cnt">{{result.applicationReasonName}}</view>
+                  </view>
+                </block>
+                <block wx:if="{{result.userName||result.userPhone}}">
+                  <view class="global-phone mb8">
+                    <view class="li r1bb">
+                      <view class="l">联系人</view>
+                      <view class="r">{{result.userName||result.nickName||'无'}}</view>
+                    </view>
+                    <view class="li">
+                      <view class="l">联系电话</view>
+                      <view class="r">{{result.userPhone||result.mobile||'无'}}</view>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{result.refundLogisticsFreightOutput}}">
+                  <view class="global-refund-inf mb8">
+                    <view class="global-title r1bb">退货信息</view>
+                    <view class="global-li global-type r1bb">
+                      <view class="l">退款方式</view>
+                      <view class="r">快递至第三方卖家</view>
+                    </view>
+                    <view class="global-li global-company r1bb">
+                      <view class="l">物流公司</view>
+                      <view class="r">{{result.refundLogisticsFreightOutput?result.refundLogisticsFreightOutput.logisticsCompanyName:''}}</view>
+                    </view>
+                    <view class="global-li r1bb">
+                      <view class="l">物流单号</view>
+                      <view class="r">{{result.refundLogisticsFreightOutput?result.refundLogisticsFreightOutput.logisticsOddNumber:''}}</view>
+                    </view>
+                    <view class="global-li">
+                      <view class="l">回寄运费</view>
+                      <view class="r">￥{{result.refundLogisticsFreightOutput?result.refundLogisticsFreightOutput.customerReturnFreight:''}}</view>
+                    </view>
+                    <block wx:if="{{result.refundLogisticsFreightOutput&&result.refundLogisticsFreightOutput.supplierReturnFreight&&result.refundLogisticsFreightOutput.supplierReturnFreight!=result.refundLogisticsFreightOutput.customerReturnFreight}}">
+                      <view class="global-li">
+                        <view class="l c-color">商家修改</view>
+                        <view class="r c-color">￥{{result.refundLogisticsFreightOutput.supplierReturnFreight}}</view>
+                      </view>
+                    </block>
+                    <view class="global-tip">温馨提示：商家会根据物流行业标准进行运费补偿</view>
+                    <view class="global-li1">
+                      <view class="l">回寄信息</view>
+                      <view class="r"></view>
+                    </view>
+                    <view class="global-li1">
+                      <view class="l">收货人</view>
+                      <view class="r">{{result.receiverName}}</view>
+                    </view>
+                    <view class="global-li1">
+                      <view class="l">联系电话</view>
+                      <view class="r">{{result.receiverPhone}}</view>
+                    </view>
+                    <view class="global-li1">
+                      <view class="l">收货地址</view>
+                      <view class="r">{{result.receiverAddress}}</view>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </block>
+            <block wx:elif="{{result.orderType=='OVERSEAS_ELECTION'&&result.isLogisticsReturn==true}}">
+              <view class="global-refund-box global-fill">
+                <view class="global-refund-inf mb8">
+                  <view class="global-title r1bb">退货信息</view>
+                  <view class="global-li global-type r1bb">
+                    <view class="l">退款方式</view>
+                    <view class="r">快递至第三方卖家</view>
+                  </view>
+                  <view class="global-li global-company r1bb">
+                    <view class="l">物流公司</view>
+                    <view class="r{{logisticsCompanyValue==-1?' color-999':''}}" catchtap="showRefundLogistics" id="logisticsCompanyName">{{logisticsCompanyName}}</view>
+                    <view class="arrow"></view>
+                  </view>
+                  <view class="global-li r1bb">
+                    <view class="l">物流单号</view>
+                    <view class="r">
+                      <input type="text" placeholder="请填写物流单号" id="logisticsOddNumber" bindinput="logisticsOddNumber" value="{{logisticsOddNumber}}" />
+                    </view>
+                  </view>
+                  <view class="global-li">
+                    <view class="l">回寄运费</view>
+                    <view class="r">
+                      <input type="number" placeholder="请填写运费金额仅整数" maxlength="3" id="customerReturnFreight" bindinput="customerReturnFreight" value="{{customerReturnFreight}}" />
+                    </view>
+                  </view>
+                  <view class="global-tip">温馨提示：商家会根据物流行业标准进行运费补偿</view>
+                  <view class="global-li1">
+                    <view class="l">回寄信息</view>
+                    <view class="r"></view>
+                  </view>
+                  <view class="global-li1">
+                    <view class="l">收货人</view>
+                    <view class="r">{{result.receiverName}}</view>
+                  </view>
+                  <view class="global-li1">
+                    <view class="l">联系电话</view>
+                    <view class="r">{{result.receiverPhone}}</view>
+                  </view>
+                  <view class="global-li1">
+                    <view class="l">收货地址</view>
+                    <view class="r">{{result.receiverAddress}}</view>
+                  </view>
+                </view>
+                <view class="global-pro mb8">
+                  <view class="global-title">退款商品</view>
+                  <block wx:for="{{result.detailOutputList}}" wx:for-item="product" wx:for-index="productIndex">
+                    <view class="li r1bt">
+                      <view class="wrap" data-goods-id="{{product.goodsId}}" data-shop-id="{{product.shopId}}">
+                        <view class="cart-item">
+                          <view class="item-img">
+                            <image src="{{product.goodsImage}}"></image>
+                          </view>
+                          <view class="item-info weigh-goods">
+                            <!--线下称重的时候item-info weigh-goods-->
+                            <view class="h3 typo-clamp nullClass{{product.isReturnFlag==1?' customer-service-padding':''}}{{(product.isGift==1||product.isGift==2||product.isGift==998||product.isGift==1640)?' h3-height':''}}">
+                              <block wx:if="{{product.isGift==1}}">
+                                <view class="em">赠品</view>
+                              </block>
+                              <block wx:elif="{{product.isGift==2}}">
+                                <view class="em">换购</view>
+                              </block>
+                              <block wx:elif="{{product.isGift==998||product.isGift==1640}}">
+                                <view class="em">限时抢</view>
+                              </block>
+                              {{product.goodsName}}
+                            </view>
+                            <view class="h4">
+                              <block wx:if="{{product.goodsSpec&&product.pricingMethod==391||product.goodsSpec&&orderType!='OVERSEAS_ELECTION'}}">
+                                <view class="goodsSpec">
+                                  <view class="em">规格：{{product.goodsSpec}}</view>
+                                  <block wx:if="{{product.pricingMethod==391&&product.offlineOrderType==0}}">
+                                    <view class="icon-info" catchtap="showWeightClick"></view>
+                                  </block>
+                                </view>
+                              </block>
+                              <view class="info">
+                                <block wx:if="{{product.pricingMethod==391}}">重量：{{product.weightStr}}</block>
+                                <block wx:else>数量：{{product.goodsNum}}</block>
+                                <view class="price-one">
+                                  单价：￥
+                                  <block wx:if="{{product.isMember}}">{{product.memberPriceStr}}</block>
+                                  <block wx:else>{{product.promotionPrice}}</block>
+                                  <block wx:if="{{product.goodsUnit}}">/{{product.goodsUnit}}</block>
+                                  <block wx:if="{{product.promotionPrice!=product.goodsOriginPriceStr||(product.isMember&&product.memberPriceStr!=product.goodsOriginPriceStr)}}">
+                                    <view class="detail-del"> ￥{{product.goodsOriginPriceStr}}</view>
+                                  </block>
+                                </view>
+                              </view>
+                            </view>
+                            <!--{{if product.goodsOriginAmountStr!=product.goodsOriginAmountStr&&product.isGift!=1}}<view class="del-price">{{product.goodsOriginAmountStr}}</view>{{/if}}-->
+                            <view class="price">￥{{product.goodsAmountStr}}</view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:if="{{result.refundGoodsTotalCount}}">
+                    <view class="num clearfix r1bt">
+                      <view class="num-l">申请数量</view>
+                      <view class="num-r">×{{result.refundGoodsTotalCount}}</view>
+                    </view>
+                  </block>
+                </view>
+                <block wx:if="{{result.applicationReason&&result.applicationReasonName}}">
+                  <view class="global-reason wrap mb8">
+                    <view class="global-title r1bb">退款原因</view>
+                    <view class="global-reason-cnt">{{result.applicationReasonName}}</view>
+                  </view>
+                </block>
+                <block wx:if="{{result.remarks||result.newAttachment.length>0}}">
+                  <view class="global-des mb8">
+                    <view class="global-title r1bb">问题描述</view>
+                    <view class="global-des-cnt">{{result.remarks}}</view>
+                    <view class="global-des-data r1bb">{{result.formateCreateTime}}</view>
+                    <view class="img-box clearfix">
+                      <block wx:for="{{result.newAttachment}}" wx:for-item="img" wx:for-index="imgIndex">
+                        <view class="img">
+                          <image src="{{img}}" data-url="{{img}}" data-url-arr="{{result.newAttachment}}" catchtap="previewImage" class="img-box{{imgIndex}}"></image>
+                        </view>
+                      </block>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{result.userName||result.userPhone}}">
+                  <view class="global-phone">
+                    <view class="li r1bb">
+                      <view class="l">联系人</view>
+                      <view class="r">{{result.userName||result.nickName||'无'}}</view>
+                    </view>
+                    <view class="li">
+                      <view class="l">联系电话</view>
+                      <view class="r">{{result.userPhone||result.mobile||'无'}}</view>
+                    </view>
+                  </view>
+                </block>
+                <view class="empty-h96 backgroundColor-fff"></view>
+                <view class="btn-confirm-submit" catchtap="confirmSubmit">确认提交</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="wrap wrap-cnt1 mb8">
+                <view class="title">退款商品</view>
+                <block wx:for="{{result.detailOutputList}}" wx:for-item="product" wx:for-index="productIndex">
+                  <view class="li r1bt">
+                    <view class="wrap" data-goods-id="{{product.goodsId}}" data-shop-id="{{product.shopId}}">
+                      <view class="cart-item">
+                        <view class="item-img">
+                          <image src="{{product.goodsImage}}"></image>
+                        </view>
+                        <view class="item-info weigh-goods">
+                          <!--线下称重的时候item-info weigh-goods-->
+                          <view class="h3 typo-clamp nullClass{{product.isReturnFlag==1?' customer-service-padding':''}}{{(product.isGift==1||product.isGift==2||product.isGift==998||product.isGift==1640)?' h3-height':''}}">
+                            <block wx:if="{{product.isGift==1}}">
+                              <view class="em">赠品</view>
+                            </block>
+                            <block wx:elif="{{product.isGift==2}}">
+                              <view class="em">换购</view>
+                            </block>
+                            <block wx:elif="{{product.isGift==998||product.isGift==1640}}">
+                              <view class="em">限时抢</view>
+                            </block>
+                            {{product.goodsName}}
+                          </view>
+                          <view class="h4">
+                            <block wx:if="{{product.goodsSpec&&product.pricingMethod==391||product.goodsSpec&&orderType!='OVERSEAS_ELECTION'}}">
+                              <view class="goodsSpec">
+                                <view class="em">规格：{{product.goodsSpec}}</view>
+                                <block wx:if="{{product.pricingMethod==391&&product.offlineOrderType==0}}">
+                                  <view class="icon-info" catchtap="showWeightClick"></view>
+                                </block>
+                              </view>
+                            </block>
+                            <view class="info">
+                              <block wx:if="{{product.pricingMethod==391}}">重量：{{product.weightStr}}</block>
+                              <block wx:else>数量：{{product.goodsNum}}</block>
+                              <view class="price-one">
+                                单价：￥
+                                <block wx:if="{{product.isMember}}">{{product.memberPriceStr}}</block>
+                                <block wx:else>{{product.promotionPrice}}</block>
+                                <block wx:if="{{product.goodsUnit}}">/{{product.goodsUnit}}</block>
+                                <block wx:if="{{product.promotionPrice!=product.goodsOriginPriceStr||product.isMember&&product.memberPriceStr!=product.goodsOriginPriceStr}}">
+                                  <view class="detail-del"> ￥{{product.goodsOriginPriceStr}}</view>
+                                </block>
+                              </view>
+                            </view>
+                          </view>
+                          <!--{{if product.goodsOriginAmountStr!=product.goodsOriginAmountStr&&product.isGift!=1}}<view class="del-price">{{product.goodsOriginAmountStr}}</view>{{/if}}-->
+                          <view class="price">￥{{product.goodsAmountStr}}</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+                <block wx:if="{{result.refundGoodsTotalCount}}">
+                  <view class="num clearfix r1bt">
+                    <view class="num-l">申请数量</view>
+                    <view class="num-r">×{{result.refundGoodsTotalCount}}</view>
+                  </view>
+                </block>
+              </view>
+              <block wx:if="{{result.applicationReason&&result.applicationReasonName}}">
+                <view class="global-reason wrap mb8">
+                  <view class="global-title r1bb">退款原因</view>
+                  <view class="global-reason-cnt">{{result.applicationReasonName}}</view>
+                </view>
+              </block>
+              <block wx:if="{{result.remarks||result.newAttachment.length>0}}">
+                <view class="wrap wrap-cnt2 mb8">
+                  <view class="title r1bb">问题描述</view>
+                  <view class="des-box">
+                    <block wx:if="{{result.remarks&&result.remarks.length>0||result.newAttachment&&result.newAttachment.length>0}}">
+                      <view class="data">{{result.formateCreateTime}}</view>
+                    </block>
+                    <view class="des">{{result.remarks}}</view>
+                    <block wx:if="{{result.newAttachment&&result.newAttachment.length>0}}">
+                      <view class="img-box clearfix">
+                        <block wx:for="{{result.newAttachment}}" wx:for-item="img" wx:for-index="imgIndex">
+                          <view class="img">
+                            <image src="{{img}}" data-url="{{img}}" data-url-arr="{{result.newAttachment}}" catchtap="previewImage" class="img-box{{imgIndex}}"></image>
+                          </view>
+                        </block>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{result.aftermarketSource!=1138}}">
+                <view class="wrap wrap-cnt3 mb8">
+                  <view class="title r1bb">退货信息</view>
+                  <view class="ul">
+                    <block wx:if="{{!result.isMealsOrder}}">
+                      <view class="li clearfix r1bb">
+                        <view class="li-l">退回方式</view>
+                        <view class="li-r">
+                          <block wx:if='{{result.proType}}'>送货至提货点</block>
+                          <block wx:elif="{{result.isNeedPickup==1135}}">上门取件</block>
+                          <block wx:elif="{{result.isNeedPickup==1191}}">退款不退货</block>
+                          <block wx:elif="{{result.isNeedPickup==1188}}">异常批次订单</block>
+                          <block wx:elif="{{result.isNeedPickup==1167}}">客户未签收货物</block>
+                          <block wx:elif="{{result.isNeedPickup==1136}}">送货至门店</block>
+                          <block wx:elif="{{result.isNeedPickup==1137}}">物流发货</block>
+                        </view>
+                      </view>
+                    </block>
+                    <block wx:if="{{result.userPhone||result.userName||result.orderType=='OFF_LINE'}}">
+                      <view class="li clearfix r1bb">
+                        <view class="li-l">联系人</view>
+                        <view class="li-r">{{result.userName||result.nickName||'无'}}</view>
+                      </view>
+                      <view class="li clearfix r1bb">
+                        <view class="li-l">联系电话</view>
+                        <view class="li-r">{{result.userPhone||result.mobile||'无'}}</view>
+                      </view>
+                    </block>
+                    <block wx:if='{{result.proType}}'>
+                      <view class="addr clearfix">
+                        <view class="shop-name">送货至提货点</view>
+                        <view class="addr-detail clearfix">
+                          <view class="addr-detail-cnt">提货点地址：{{result.addrFull}}</view>
+                        </view>
+                      </view>
+                    </block>
+                    <block wx:elif="{{result.isNeedPickup==1135||result.isNeedPickup==1137}}">
+                      <view class="addr clearfix">
+                        <view class="shop-name">取件地址</view>
+                        <view class="addr-detail clearfix">
+                          <view class="addr-detail-cnt">{{result.addrFull}}</view>
+                        </view>
+                      </view>
+                    </block>
+                    <block wx:elif="{{result.isNeedPickup==1136}}">
+                      <view class="addr clearfix">
+                        <view class="shop-name">{{result.shopName?result.shopName:'送货至门店'}}</view>
+                        <view class="addr-detail clearfix">
+                          <view class="addr-detail-cnt">门店地址：{{result.addrFull}}</view>
+                        </view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </block>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+    <template name="detail-box1-tpl">
+      <view class="refund-detail-box1">
+        <view class="detail-head mb8">
+          <view class="fail">
+            <view class="text1">抱歉，退款被拒绝</view>
+            <view class="text2">您的退款申请经客服评估暂不支持退款，非常抱歉！</view>
+          </view>
+          <view class="success">
+            <view class="text1">退款成功</view>
+            <view class="text2">
+              <span>退款金额：</span>
+              <em>¥28.12</em>
+            </view>
+          </view>
+        </view>
+        <view class="ul">
+          <view class="clearfix r1bb li">
+            <view class="li-l">退款方式</view>
+            <view class="li-right">原路返回</view>
+          </view>
+          <view class="clearfix r1bb li">
+            <view class="li-l">退款单号</view>
+            <view class="li-right">687653426173586213</view>
+          </view>
+          <view class="clearfix r1bb li">
+            <view class="li-l">申请时间</view>
+            <view class="li-right">2016/08/09 16:33</view>
+          </view>
+          <view class="clearfix r1bb li">
+            <view class="li-l">申请原因</view>
+            <view class="li-right">其他原因</view>
+          </view>
+          <view class="clearfix r1bb li">
+            <view class="li-l">申请说明</view>
+            <view class="li-right">点错了阿达的达的暗的达的暗的达的暗的达的暗的达的暗的达的暗的暗的kadlkadjladljkad</view>
+          </view>
+        </view>
+        <view class="btn-box">
+          <view data-tel="0631-5964556" class="a btn-service-phone">联系客服</view>
+        </view>
+      </view>
+    </template>
+    <!--物流公司列表-->
+    <block wx:if="{{popRefundLogistics}}">
+      <view class="pop-refund-logistics">
+        <view class="pop-cnt">
+          <view class="btn-box clearfix">
+            <view class="logistics-cancel" catchtap="cancelSelectLogistics">取消</view>
+            <view class="logistics-confirm" catchtap="confirmSelectLogistics">确认</view>
+          </view>
+          <view class="ul">
+            <block wx:for="{{result.selectLogisticsList}}" wx:for-item="item">
+              <view class="li{{item.value==logisticsCompanyValueNow?' active':''}}" catchtap="selectLogistics" data-logistics-value="{{item.value}}" data-logistics-text="{{item.text}}">{{item.text}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!--称重商品提示-->
+    <block wx:if="{{showWeightPop}}">
+      <view class="fadeInUp-box">
+        <view class="fadeInUp-cont">
+          <view class="fadeInUp-title r1bb">{{result.weightNotice.title}}
+            <view class="span fr close">
+              <image src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image>
+            </view>
+          </view>
+          <view class="ul fadeInUp-list">
+            <block wx:for="{{result.weightNotice.contentList}}" wx:for-item="li">
+              <view class="li">{{li.content}}</view>
+            </block>
+          </view>
+          <view class="fadeInUp-btn" catchtap="closeWeightClick">关闭</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+<!-- pop弹框 -->
+<block wx:if="{{showCancelRefund}}">
+  <view class="pop-container">
+    <view class="pop-msg-container">
+      <view class="pop-msg">您确定要取消申请吗？</view>
+      <view class="pop-btn-container">
+        <view class="cancel-btn" catchtap="cancelRefundCancel">取消</view>
+        <view class="confirm-btn" catchtap="cancelRefundConfirm">确定</view>
+      </view>
+    </view>
+  </view>
+</block>

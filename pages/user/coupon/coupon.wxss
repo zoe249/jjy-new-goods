@@ -1,0 +1,126 @@
+/* pages/user/coupon/coupon.wxss */
+
+@import '/templates/coupon/couponItem.wxss';
+.wrapper {
+    background: #f4f4f4;
+    height: 100vh;
+}
+
+.search-area {
+    display: block;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    background: #fff;
+    border-top: 2rpx solid #E7E7E7;
+    z-index: 6;
+}
+.search-area-wrap{
+    display: flex;
+    align-items: center;
+    padding:  16rpx 32rpx;
+}
+.search-area .scan {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+.search-area .input-container {
+    flex: 1;
+    height: 64rpx;
+    padding: 0 24rpx;
+    margin: 0 0 0 16rpx;
+    background: #F8F8F8;
+    color: #444;
+    font-size: 26rpx;
+    border-radius: 4rpx;
+    overflow: hidden;
+}
+
+.search-area .input-container input {
+    height: 64rpx;
+    line-height: 64rpx;
+}
+
+.search-area .btn {
+    padding: 0;
+    background: #CBAD7E;
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 64rpx;
+    border-radius: 4rpx;
+    width: 96rpx;
+    height: 64rpx;
+    margin-left: 16rpx;
+}
+
+.search-area .btn::after {
+    border: 0;
+}
+
+.look-other {
+    position: relative;
+    width: 750rpx;
+    height: 96rpx;
+    text-align: center;
+    line-height: 0;
+    padding: 48rpx 0;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.look-other text {
+    position: relative;
+}
+
+.look-other text::before {
+    position: absolute;
+    right: -36rpx;
+    top: 40%;
+    width: 16rpx;
+    height: 16rpx;
+    content: '';
+    border-left: 2rpx solid #999;
+    border-bottom: 2rpx solid #999;
+    transform-origin: 50% 50%;
+    transform: rotateZ(135deg);
+}
+
+.look-other .look-coupon::before {
+    transform: translateY(-8rpx) rotateZ(-45deg);
+}
+
+.expire-scroll-view {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all .1s;
+    transition: all .1s;
+    -webkit-transform: transition3d(0, 0, 0);
+    transform: transition3d(0, 0, 0);
+}
+
+.expire-scroll-view-show {
+    top: 0;
+    transform: transition3d(0, -100%, 0);
+    -webkit-transform: transition3d(0, 0, 0);
+}
+
+.guize {
+    display: block;
+    position: absolute;
+    right: 32rpx;
+    top: 0;
+    width: 190rpx;
+    height: 96rpx;
+    text-align: right;
+    line-height: 96rpx;
+}
+
+.hidden {
+    display: none;
+}

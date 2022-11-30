@@ -1,0 +1,34 @@
+<import src="/templates/global/global.wxml" />
+
+<view class='extension-model {{showExtension?"showExtension":""}}'>
+  <view class='mask' catchtap='closeExtension'></view>
+  <view class='extension-share-info'>
+    <view class='gods-info'>
+      <image src='{{shareDetail.coverImage}}'></image>
+      <view class='gods-dec'>
+        <view class='gods-title'>悦团购推广</view>
+        <view class='gods-i'>1.仅发起推广，但不生成订单 </view>
+        <view class='gods-i'>2.参团好友为新用户时，将自动成为你的粉丝 </view>
+        <view class='gods-i'>3.善用推广，可帮你迅速吸粉、拿返利</view>
+      </view>
+    </view>
+    <button class="gods-share" open-type='share'>确认推广</button>
+    <!-- <view class='extension-share-type'></view> -->
+  </view>
+
+</view>
+<component-share-popup showShareDialogFlag="{{showShareDialogFlag}}" shareDetail="{{shareDetail}}"
+  share-path="{{shareInfo.path}}"></component-share-popup>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+
+  <scroll-view class="search-page" style="height:100vh;width:100%;" scroll-y bindscrolltolower="bindSearchGroupGoods">
+    <view class="search-list">
+      <block wx:for="{{search.list}}" wx:key="sc_goodsId">
+        <extend-goods item="{{item}}" bind:moreExtension="moreExtension"></extend-goods>
+      </block>
+    </view>
+    <template is="noMore" wx:if="{{!search.empty && search.noMore}}"></template>
+    <template is="empty" wx:if="{{search.empty}}"></template>
+  </scroll-view>

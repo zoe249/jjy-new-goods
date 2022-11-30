@@ -1,0 +1,123 @@
+/* component/loginDialog/loginDialog.wxss */
+
+.login-dialog-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-dialog-container .login-dialog {
+    flex: none;
+    width: 100%;
+    height: 678rpx;
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_login_dialog.png") no-repeat center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 60rpx;
+}
+
+.login-dialog-container .login-dialog .login-title {
+    padding: 40rpx;
+    font-size: 40rpx;
+    color: #FF4752;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-dialog-container .login-dialog .input-item-container {
+    margin-top: 30rpx;
+    display: flex;
+    align-items: center;
+    width: 610rpx;
+    height: 80rpx;
+}
+
+.login-dialog-container .login-dialog .input-item-container .input-container {
+    flex: 1;
+    height: 80rpx;
+    border: 2rpx solid #FF4752;
+    border-radius: 40rpx;
+    font-size: 24rpx;
+    color: #444;
+    padding: 0 30rpx;
+    display: flex;
+    align-items: center;
+}
+
+.login-dialog-container .login-dialog .input-item-container .input-container .mobile-input,
+.login-dialog-container .login-dialog .input-item-container .input-container .code-input {
+    width: 100%;
+    font-size: 24rpx;
+    color: #444;
+    background: rgba(0, 0, 0, 0);
+}
+
+.input-placeholder {
+    color: #999;
+}
+
+.login-dialog-container .login-dialog .input-item-container .get-code {
+    width: 190rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    text-align: center;
+    color: #FF4752;
+}
+
+.login-dialog-container .login-dialog .input-item-container .get-code.disable,
+.login-dialog-container .login-dialog .input-item-container .get-code.count-downing {
+    color: #999;
+}
+
+.login-dialog-container .login-dialog .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 596rpx;
+    height: 95rpx;
+    margin-top: 90rpx;
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/btn_submit.png") no-repeat center;
+    background-size: contain;
+    color: #FFF;
+    font-size: 42rpx;
+    line-height: 1;
+    border: none;
+}
+
+.login-dialog-container .login-dialog .submit-btn:after {
+    border: none;
+}
+
+.login-dialog-container .login-dialog .submit-btn text {
+    font-size: 42rpx;
+    line-height: 1;
+    color: #FFF;
+}
+
+.login-dialog-container .login-dialog .submit-btn.disable {
+    background-image: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/btn_submit_disabled.png");
+}
+
+.login-dialog-container .login-dialog .submit-btn.disable text {
+    color: #BF2303;
+}
+
+.login-dialog-container .close-btn {
+    flex: none;
+    margin-top: 40rpx;
+    width: 60rpx;
+    height: 60rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_dialog_close.png") no-repeat center;
+    background-size: contain;
+}

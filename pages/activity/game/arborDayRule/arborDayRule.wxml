@@ -1,0 +1,15 @@
+<view class="container_bg">
+    <view class="white_container">
+    <view class="title_top">游戏说明</view>
+    <view class="content spac">{{rule_data[0].tag}}</view>
+    <view class="content">{{rule_data[0].content}}</view>
+    <view class="content spac">{{rule_data[1].tag}}</view>
+    <view class="content">{{rule_data[1].content}}</view>
+    <view class="content spac">{{rule_data[2].tag}}</view>
+    <text class="content">{{rule_data[2].content}}</text>
+
+    
+
+
+    </view>
+</view>

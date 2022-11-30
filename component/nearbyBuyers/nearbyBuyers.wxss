@@ -1,0 +1,27 @@
+/* component/nearbyBuyers/nearbyBuyers.wxss */
+.goods-pro-labal {
+  display: flex;
+  align-items: center;
+  margin-top: 15rpx;
+}
+.u-icon-list {
+  display: flex;
+  padding-left: 12rpx;
+}
+.u-icon-img {
+  margin-left: -12rpx;
+}
+.u-icon-list .image {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+.sales-volume {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #FF4752;
+  height: 36rpx;
+  line-height: 36rpx;
+  padding: 0 12rpx;
+}

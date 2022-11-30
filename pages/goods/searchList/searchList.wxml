@@ -1,0 +1,38 @@
+<!--pages/goods/searchList/searchList.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<scroll-view class="wrapper" scroll-y scroll-top="{{scrollTop}}" bindscrolltolower="getGoodsList" lower-threshold="200"
+  enable-back-to-top>
+  <view class="search-top-container">
+    <form class="search-container {{focusClass}}">
+      <input type="text" value="{{goodsName}}" class="search-input" placeholder="请您输入商品名称" focus="{{focusClass}}"
+        confirm-type="search" bindinput="searchInput" bindfocus="searchFocus" bindblur="searchBlur"
+        bindconfirm="doSearch" />
+      <view class="clear-search-btn {{goodsName ? '' : 'hidden'}}" bindtap="clearSearch"></view>
+    </form>
+    <view class="my-cart-icon" bindtap="goToMyCart">
+      <block wx:if="{{cartCount}}">
+        <text class="cart-count">{{cartCount}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class="content">
+    <block wx:if="{{goodsList.length}}">
+      <view class="goods-list-container">
+        <block wx:for="{{goodsList}}" wx:key="goodsId">
+          <component-goods-item goods="{{item.goods}}" store="{{item.store}}" cGroupType="{{cGroupType}}"
+            form-type="{{formType}}" bind:change-cart="changeCartCount"></component-goods-item>
+        </block>
+      </view>
+      <block wx:if="{{otherMes == 'noMore'}}">
+        <template is="{{otherMes}}"></template>
+      </block>
+    </block>
+    <block wx:elif="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+  </view>
+
+  <template is="toast" data="{{...toastData}}"></template>
+</scroll-view>

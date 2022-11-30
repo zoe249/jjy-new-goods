@@ -1,0 +1,11 @@
+<view class="vip-h-container pos-r">
+  <image class="vip_h_bg" src='https://shgm.jjyyx.com/m/images/bg_vip.png'></image>
+  <view class='vip-nav'>
+    <view class='vip-nav-item'>
+      <view class='score-value'>积分<text>0</text></view>
+    </view>
+    <view class='vip-nav-item'>
+      <view class='growth-value'>成长值<text>0</text></view>
+    </view>
+  </view>
+</view>

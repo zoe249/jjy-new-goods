@@ -1,0 +1,47 @@
+<!--pages/user/invitation/invitation.wxml-->
+
+<view class="invitation-container">
+  <view class="invitation-header-container">
+    <image class='title-image' src='https://shgm.jjyyx.com/m/images/invitation_header_bg2.jpg?{{t}}' mode="widthFix"></image>
+    <!-- <navigator class="rule-btn" url="/pages/documents/documents?mod=invitation"></navigator> -->
+    <block wx:if="{{invitationData.inviteUserList && invitationData.inviteUserList.length}}">
+      <view class="invite-user-list-container">
+        <swiper class="swiper-container" autoplay vertical circular>
+          <block wx:for="{{invitationData.inviteUserList}}" wx:key="*this">
+            <swiper-item class="swiper-item">
+              <text class="swiper-text">{{item}}</text>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="cover"></view>
+    </block>
+  </view>
+  <view class="invitation-content-container">
+    <image class='title-image' src='https://shgm.jjyyx.com/m/images/invitation_content_bg.jpg?{{t}}' mode="widthFix"></image>
+
+    <view class="msg-container">
+      <view class="invitation-msg-container">
+        <view class="result-container">
+          <view class="invitation-people-container">
+            <view class="value-container">
+              <text class="value">{{invitationData.totalInvite}}</text>
+              <text class="symbol">人</text>
+            </view>
+            <text class="label">下单成功人数</text>
+          </view>
+          <view class="invitation-money-container">
+            <view class="value-container">
+              <text class="symbol">￥</text>
+              <text class="value">{{invitationData.totalAmount}}</text>
+            </view>
+            <text class="label">已获得奖励</text>
+          </view>
+        </view>
+        <button class="share-btn" open-type="share">立即邀请可得{{invitationData.shareAmount}}元</button>
+      </view>
+
+      <image class='bottom-image' src='https://shgm.jjyyx.com/m/images/invitation_coupon4.png?{{t}}' mode="widthFix"></image>
+    </view>
+  </view>
+</view>

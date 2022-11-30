@@ -1,0 +1,207 @@
+<!-- pages/groupBuy/groupBuyDetail/groupBuyDetail.wxml -->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<view class="main">
+  <block wx:if="{{groupDetail.gbStatus == 1}}">
+    <view class="finish-header-container">
+      <view class="need-join-msg-container">
+        <view class="success-icon"></view>
+        <text class="success-msg">拼团成功啦，可以再开一团哦！</text>
+        <text class="send-msg">我们会尽快安排，请耐心等待</text>
+        <text class="create-new-group" catchtap="createNewGroup">再开一团</text>
+      </view>
+      <view class="grouper-list-container">
+        <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue>
+      </view>
+    </view>
+    <view class="group-msg-list-container">
+      <view class="group-msg-item-container">
+        <text class="item-name">商品名称</text>
+        <text class="item-detail">{{groupDetail.shortTitle||groupDetail.goodsName||""}}</text>
+      </view>
+      <!-- <block wx:if="{{groupDetail.addressPhone}}">
+        <view class="group-msg-item-container">
+          <text class="item-name">收货人</text>
+          <text class="item-detail">{{groupDetail.addressUser||''}} {{groupDetail.addressPhone||''}}</text>
+        </view>
+      </block> -->
+      <!-- <block wx:if="{{groupDetail.addressInfo}}">
+        <view class="group-msg-item-container">
+          <text class="item-name">收货地址</text>
+          <text class="item-detail">{{groupDetail.addressInfo||''}}</text>
+        </view>
+      </block> -->
+      <view class="group-msg-item-container">
+        <text class="item-name">参团时间</text>
+        <text class="item-detail">{{groupDetail.groupDateStr||''}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="group-goods-wrap" wx:if="{{groupDetail.goodsPrice || groupDetail.goodsName}}">
+      <view class="group-goods-wrap-top">
+        <view class="group-goods-wrap-img">
+          <image src="{{groupDetail.coverImage}}"></image>
+        </view>
+        <view class="group-goods-wrap-info">
+          <view class="group-goods-wrap-name ellipsis">{{groupDetail.goodsName}}</view>
+          <view class="group-goods-wrap-ds ellipsis">{{groupDetail.shortTitle}}</view>
+          <view class="group-goods-wrap-o-price">
+            <block wx:if="{{groupDetail.goodsPrimePrice}}">
+              单买价￥
+              <text>{{groupDetail.goodsPrimePrice}}</text>
+            </block>
+          </view>
+          <view class="group-goods-wrap-need">{{groupDetail.needJoinCount || 0}}人团</view>
+          <view class="group-goods-wrap-tatal">
+            <view class="group-goods-wrap-num">已拼{{groupDetail.salesVolume || 0}}件</view>
+            <view class="group-goods-wrap-price">￥{{groupDetail.goodsPrice || 0}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="group-goods-wrap-bottom pos-r r1bt" wx:if="{{!!groupDetail.promotionAlert}}">
+        <view class="group-goods-wrap-tips">提示</view>
+        <view class="group-goods-wrap-tips-info">{{groupDetail.promotionAlert}}</view>
+      </view>
+    </view>
+    <block wx:if="{{groupDetail.gbStatus == 0}}">
+      <view class="unfinish-header-container">
+        <view class="surplus-time-container">
+          <text class="surplus-time-msg">仅剩</text>
+          <component-group-surplus-time surplus-time="{{groupDetail.surplusTime}}" bind:surplus-end-callback="getGroupDetail">
+            >
+          </component-group-surplus-time>
+          <text class="surplus-time-msg">结束</text>
+        </view>
+        <view class="need-join-msg-container">
+          <text class="need-msg">还差</text>
+          <text class="need-num">{{groupDetail.oddJoinCount}}</text>
+          <text class="need-msg">人，点击右下角呼唤好友来参团</text>
+        </view>
+        <view class="grouper-list-container">
+          <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{groupDetail.gbStatus == 2}}">
+      <view class="finish-header-container">
+        <view class="finish-header-top-container">
+          <view class="success-icon"></view>
+          <text class="success-msg">拼团已取消，可以再开一团哦！</text>
+          <text class="create-new-group" catchtap="createNewGroup">再开一团</text>
+        </view>
+        <view class="grouper-list-container">
+          <component-group-queue memberList="{{groupDetail.memberList}}"></component-group-queue>
+        </view>
+      </view>
+    </block>
+    <view class="group-msg-list-container">
+      <view class="group-msg-item-container">
+        <text class="item-name">商品名称</text>
+        <text class="item-detail">{{groupDetail.shortTitle||groupDetail.goodsName||""}}</text>
+      </view>
+      <view class="group-msg-item-container">
+        <text class="item-name">参团时间</text>
+        <text class="item-detail">{{groupDetail.groupDateStr||''}}</text>
+      </view>
+    </view>
+  </block>
+  <!-- 帮帮 -->
+  <block wx:if='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1886}}'>
+    <component-group-buy-step ruleType='2'></component-group-buy-step>
+  </block>
+  <!-- 抽奖 -->
+  <block wx:elif='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1887}}'>
+    <component-group-buy-step ruleType='1'></component-group-buy-step>
+  </block>
+  <!-- 老带新 -->
+  <block wx:elif='{{groupDetail&&groupDetail.groupMode&&groupDetail.groupMode==1937}}'>
+    <component-group-buy-step ruleType='3'></component-group-buy-step>
+  </block>
+  <block wx:else>
+    <component-group-buy-step></component-group-buy-step>
+  </block>
+  <view class="footer-contaienr">
+    <view class="footer-container-flex">
+      <text class="more-group" catchtap="jumpToGroupList">更多拼团</text>
+      <block wx:if="{{groupDetail.gbStatus == 0}}">
+        <text class="share-friends" catchtap="showShareDialog">呼朋唤友来参团</text>
+      </block>
+    </view>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+  </view>
+  <block wx:if="{{memberListDialogFlag}}">
+    <view class="member-list-dialog-container">
+      <view class="member-list-container">
+        <view class="close-btn" catchtap="hideMemberListDialog"></view>
+        <view class="grouper-header-container">
+          <block wx:if="{{groupDetail.memberList[0].memberPhoto}}">
+            <image src="{{groupDetail.memberList[0].memberPhoto}}" class="group-head-image"></image>
+          </block>
+        </view>
+        <text class="group-head-name">
+          {{groupDetail.memberList[0].memberName||groupDetail.memberList[0].memberTel}}
+        </text>
+        <text class="join-group-time">{{groupDetail.memberList[0].groupDateStr}} 开团</text>
+        <block wx:if="{{groupDetail.memberList.length > 1 && groupDetail.memberList[1]}}">
+          <view class="grouper-list-container">
+            <block wx:for="{{groupDetail.memberList}}" wx:for-index='indexNum' wx:key="memberList{{indexNum}}">
+              <block wx:if="{{item && index > 0}}">
+                <view class="grouper-item-container">
+                  <view class="header-container">
+                    <image src="{{item.memberPhoto}}" class="header"></image>
+                  </view>
+                  <text class="member-item-name">{{item.memberName||item.memberTel}}</text>
+                  <text class="join-time">{{item.groupDateStr}} 参团</text>
+                </view>
+              </block>
+            </block>
+          </view>
+        </block>
+        <block wx:else>
+          <text class="no-grouper-msg">抢先成为第一个团员吧~</text>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{shareInfo.showShareDialogFlag}}">
+    <view class="share-dialog-container">
+      <view class="share-info-container">
+        <text class="share-header">多分享几次，成团更快哦！</text>
+        <view class="share-msg-container mgt-30">
+          <text class="black">99%</text>
+          <text class="gray">的小伙伴表示，</text>
+        </view>
+        <view class="share-msg-container">
+          <text class="gray">分享到</text>
+          <text class="black">大群</text>
+          <text class="gray">或</text>
+          <text class="black">朋友圈</text>
+          <text class="gray">成功率更高！</text>
+        </view>
+        <view class="share-btn-container">
+          <view class="share-item-container">
+            <button open-type="share" class="share-btn">
+              <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_friends.png"></image>
+            </button>
+            <view class="share-msg-container">
+              <text class="share-msg">微信好友</text>
+            </view>
+          </view>
+          <view class="share-item-container">
+            <view class="share-btn" catchtap="downloadShareBg">
+              <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_scope.png"></image>
+            </view>
+            <view class="share-msg-container" catchtap="downloadShareBg">
+              <text class="share-msg">朋友圈</text>
+            </view>
+          </view>
+        </view>
+        <view class="close-btn" catchtap="hideShareDialog"></view>
+      </view>
+    </view>
+  </block>
+  <canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+  <template is="modal" data="{{...modalData}}"></template>
+  <view class='paddingfoot'></view>
+</view>

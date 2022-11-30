@@ -1,0 +1,29 @@
+<!--pages/order/timePicker/timePicker.wxml-->
+<template name="timePicker">
+    <view class="picker-layer {{pickIsShow?'':'hide'}}">
+        <view class="shade" bindtap="hidePicker"></view>
+        <view class="delivery-picker">
+            <view class="time-title">
+                <view class="available-time-title">{{pickTimesTitle}}</view>
+                <view class="time-title-tips">
+                    <image src="http://117.78.38.130/m/images/icon_time.png" mode="scaleToFill"></image>
+                    <text class="">请选择您的配送时间</text>
+                </view>
+            </view>
+            <view class="time-items time_items" id="time_items">
+                <scroll-view  class="time-group time_group select" scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" >
+                    <block wx:for="{{pickTimes}}"  wx:for-item="pickItem"  wx:for-index="index" wx:key="pickItemKey">
+                        <view class="operable r1bb" data-freight="{{pickItem.freight}}" data-distributetype="{{pickItem.distributeType}}" data-timeinfo="{{pickItem.timeInfo}}" data-startTime="{{pickItem.starttime}}" data-endTime="{{pickItem.endtime}}" data-isselect="{{pickItem.isSelect}}">
+                            <view class="time" bindtap="onSelectTime" data-item="{{index}}">
+                                <block wx:if="{{pickItem.distributeType == 80}}"><image class="blitz-img" mode="scaleToFill" src="http://117.78.38.130/m/images/icon_lightning.png"></image></block>
+                                {{pickItem.timeInfo}}
+                                <text class="fr yunfei"><block wx:if="{{pickItem.distributeType == 79 || pickItem.distributeType == 80}}">￥{{pickItem.freight}}</block></text>
+                            </view>
+                        </view>
+                    </block>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+</template>
+

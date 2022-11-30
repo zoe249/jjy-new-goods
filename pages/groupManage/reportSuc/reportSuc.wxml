@@ -1,0 +1,11 @@
+<view class="pay-s-top pos-r">
+  <image src="https://shgm.jjyyx.com/m/images/icon_sdf_zf.png" alt="支付成功"></image>
+  <view class="pay-s-tips pos-a">
+      <image class='img' src="https://shgm.jjyyx.com/m/images/icon_sdf_tips.png" alt=""></image>
+      <view class="h3">提交成功</view>
+  </view>
+  <view class="jump-pages">
+      <view class="a cuntinue" bindtap='backPage' data-back="1">继续上报</view>
+      <view class="a complete"  bindtap='backPage' data-back="2">完成</view>
+  </view>
+</view>

@@ -1,0 +1,112 @@
+<!--优鲜首页 组件-->
+<!--优鲜首页 顶部背景图 毛玻璃-->
+<!-- <view class="top_bg">
+</view> -->
+<View>
+    <yx-index-title bgTheme="{{bgTheme}}" titleOpacity="{{titleOpacity}}" class="yxIndexTitle" TypeShow="{{true}}" isBlack="{{isBlack}}" allData="{{allData}}" scrollTop="{{scrollTop}}" bind:getFixHeight="fixHeightData" />
+    <block wx:for="{{allData}}" wx:key="sectionId" wx:for-index="indexPlate" wx:for-item="itemPlate">
+
+        <!--分类 品类球-->
+        <view class="category {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType && itemPlate.sectionType == yxHomeSectionType.fenleiqiu && itemPlate.recommendList && itemPlate.recommendList.length > 0}}">
+
+            <view class="category-module">
+                <category-grid-component cateArray="{{itemPlate.recommendList}}" bind:autoJump="autoJump" indicatorActStyle="background:#FF4752;" indicatorStyle="background: #F4F4F4;" indicatorShow="{{true}}">
+                </category-grid-component>
+            </view>
+        </view>
+        <!--限时活动 品类球-->
+        <view class="activityCategory {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType && itemPlate.sectionType == yxHomeSectionType.activityFenlei && itemPlate.recommendList && itemPlate.recommendList.length > 0}}">
+
+            <view class="category-module">
+                <activity-category-grid cateArray="{{itemPlate.recommendList}}" bind:autoJump="autoJump" indicatorActStyle="background:#fff;" indicatorStyle="background: rgba(255,255,255,0.6);" indicatorShow="{{true}}">
+                </activity-category-grid>
+            </view>
+        </view>
+        <!-- 滚动公告 -->
+        <view class="message_container {{isBlack?'blackWhite':''}}" style="--marqueeWidth--:-12em" wx:if="{{itemPlate.sectionType == yxHomeSectionType.rollingAnnouncement&& itemPlate.recommendList && itemPlate.recommendList.length > 0}}" >
+            <image class="message_img" mode="scaleToFill" src="{{$.img_src}}/yx_index/yx_message.png"></image>
+            <view class="message_lin"></view>
+            <swiper class="swiper-message" :interval="3000" duration="1000" autoplay circular vertical>
+                <swiper-item  wx:for="{{itemPlate.recommendList}}"
+                 data-item="{{item}}"   class="swiper-item-message" wx:key="index">
+                    <view class="message_tv">{{item.recommendTitle}}</view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <!--到店吃  -->
+        <view class="ddc_group {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType == yxHomeSectionType.daodianchi&&itemPlate.recommendList.length>1&&isNear ==1}}">
+            <view class="ddc_group_container" bindtap="jumpToPage" wx:for="{{itemPlate.recommendList}}" data-url="{{item.linkUrl}}" data-needLogin="{{true}}" wx:key="id" data-item="{{item}}"  data-index="{{index}}" wx:if="{{index<3}}">
+                <image wx:if="{{itemPlate.recommendList.length>2 && itemPlate.recommendList.length<4 }}" class="ddc_one" src="{{item.imgUrl}}"  />
+                <image wx:else class="ddc_two" src="{{item.recommendTitle=='到店吃'?$.img_src+'/yx_index/eat_big.png':item.recommendTitle=='闪电付'?$.img_src+'/yx_index/light_big.png':$.img_src+'/yx_index/huiyuan_big.png'}}"/>
+            </view>
+        </view>
+        <!--必买爆品  -->
+        <view class="hot {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType == yxHomeSectionType.needHot}}">
+            <yx-need-hot-component bind:_updateCartTotal="updateCartTotal" hotData="{{itemPlate.children}}" hotSectionId="{{itemPlate.sectionId}}"></yx-need-hot-component>
+        </view>
+        <!--领券中心  -->
+        <view bindtap="jumpToCoupon" data-item="{{itemPlate}}" data-entrance="0" data-channel-type="2171" data-section-id="{{couponSectionData}}" class="getCoupon {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType == yxHomeSectionType.getCoupon&&indexCouponData.length>0}}">
+            <image class="backgroundImg" src="{{$.img_src}}/CouponCenter/coupon.png"></image>
+            <view class="wordContent">
+                <view class="bigTitle">领券中心</view>
+                <view class="smallTitle">好券天天领，实惠享不停</view>
+            </view>
+            <scroll-view class="couponContent" scroll-x="{{true}}">
+                <block wx:for="{{indexCouponData}}" wx:key="index">
+                    <view wx:if="{{item.type}}" class="coupon" style="vertical-align:top">
+                        <image class="baoguoImg" src="{{$.img_src}}/CouponCenter/baoguo.png"/>
+                        <image class="showMoreImg" src="{{$.img_src}}/yx_index/showMore.png" />
+                        <view class="showMoreText">查看更多</view>
+                    </view>
+                    <view wx:else class="coupon {{index==0?'firstCoupon':''}}">
+                        <image class="baoguoImg" src="{{$.img_src}}/CouponCenter/baoguo.png"/>
+                        <view class="couponDeductionAmount">
+                            <view class="couponUnit" wx:if="{{item.show==1}}">￥</view>
+                            <view>{{item.deductionAmount}}</view>
+                        </view>
+                        <view class="couponTitle slh_one">{{item.title}}</view>
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+        <!--生活馆 -->
+        <view bindtap="jumpToLifeCenter" data-item="{{itemPlate}}"  data-entrance="0" data-channel-type="2171" data-section-id="{{lifeCenterTypeData.sectionId}}" class="lifeCenter {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType == yxHomeSectionType.lifeCenterType&&lifeCenter.length>0}}">
+            <image class="lifeBgImg" src="{{lifeCenterBg?lifeCenterBg:$.img_src+'/two_img/lifeImg.gif'}}" />
+            <block wx:for="{{lifeCenter}}" wx:key="index">
+                <view class="lifeInfoContent" wx:if="{{index<2}}">
+                    <image class="lifeImg" src="{{item.extendJson.imageCover}}"  />
+                    <view class="lifeBigTitle slh_two">{{item.extendJson.title}}</view>
+                    <view class="lifeSmallTitle slh_one">{{item.extendJson.masterStr?item.extendJson.masterStr:item.extendJson.introduce}}</view>
+                    <view class="iconContent">
+                        <view class="lifeNum">{{item.extendJson.readNumber}}</view>
+                        <image class="lifeIcon" src="{{$.img_src}}/CouponCenter/eye.png" />
+                        <view class="lifeNum">{{item.extendJson.collectNumber}}</view>
+                        <image class="lifeIcon" style="margin-right:0" src="{{$.img_src}}/ArticleDetails/collect_no.png" />
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!--广告  -->
+        <view class="add_container {{isBlack?'blackWhite':''}}" wx:if="{{itemPlate.sectionType == yxHomeSectionType.advertisement && itemPlate.recommendList && itemPlate.recommendList.length > 0}}">
+            <block wx:for="{{itemPlate.recommendList}}" wx:key="id">
+                <image wx:if="{{item.bizType == 17&&index<1}}" bindtap="jumpToPage" data-url="{{item.linkUrl}}" data-item="{{item}}" data-index="{{index}}" class="ddc_img" src="{{item.imgUrl}}"></image>
+            </block>
+        </view>
+        <!--后续其他版本-->
+    </block>
+        <!--首页每日弹窗-->
+    <view class="to-reg-win {{isBlack?'blackWhite':''}} {{showAlert?'to-reg-win-show':''}}" wx:if="{{!selShopShow}}">
+		<view class="to-reg-win-mask" bindtap="closeShowAlert"></view>
+		<view class="to-reg-win-img">
+			<view class='to-reg-win-img-wrap'>
+				<image class="to-reg-win-img-bg" data-url="{{alertData.linkUrl}}" data-goback="{{true}}" bindtap="jumpToPage"
+					src="{{alertData.imgUrl}}" mode="widthFix" data-item="{{alertData}}"></image>
+				<image class="to-reg-win-img-close" src='https://shgm.jjyyx.com/m/images/index/icon_close.png'
+					bindtap="closeShowAlert"></image>
+			</view>
+		</view>
+  </view>
+
+
+    <yx-index-lower-half bind:_noBottomData="noBottomData" isBlack="{{isBlack}}" bind:_updateCartTotal="updateCartTotal" bind:checkoutNextTheme="checkoutTheme" class="bigSmallTheme" allData="{{allData}}" fixedHeight="{{fixedHeight}}" scrollTop="{{scrollTop}}" listLoading="{{listLoading}}" />
+</View>

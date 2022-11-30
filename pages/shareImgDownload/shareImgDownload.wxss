@@ -1,0 +1,55 @@
+/* pages/shareImgDownload/shareImgDownload.wxss */
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f4f4;
+  padding: 40rpx 45rpx 0 45rpx;
+}
+
+.share-image-container {
+  width: 100%;
+  background: #fff;
+  padding: 10rpx 10rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.share-image-container.no-padding {
+  padding: 0;
+}
+
+.share-image {
+  width: 100%;
+  height: 980rpx;
+  border-radius: 20rpx;
+}
+
+.share-canvas {
+  position: absolute;
+  left: 0;
+  top: -99999rpx;
+  width: 1500rpx;
+  height: 2668rpx;
+  z-index: -1;
+  transform: translate3d(0, 0, -1000rpx);
+}
+
+.save-image-container {
+  padding: 40rpx 0 60rpx 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-image-container .save-image-btn {
+  width: 686rpx;
+  padding: 40rpx 0;
+  text-align: center;
+  line-height: 0;
+  font-size: 30rpx;
+  color: #ff4752;
+  border-radius: 8rpx;
+  background: #fff;
+}

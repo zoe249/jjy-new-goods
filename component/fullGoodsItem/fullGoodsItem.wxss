@@ -1,0 +1,203 @@
+/* component/fullGoodsItem/fullGoodsItem.wxss */
+
+.goods-item {
+    display: flex;
+    align-items: stretch;
+    /* width: 100%; */
+    padding: 30rpx 0;
+    margin: 0 32rpx;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.no-buystock {
+    opacity: 0.3;
+}
+
+.goods-item .goods-image-container {
+    flex: none;
+    width: 208rpx;
+    height: 208rpx;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: cover;
+}
+
+.goods-item .goods-image-container .goods-image {
+    width: 208rpx;
+    height: 208rpx;
+}
+
+.goods-item .goods-msg-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-left: 46rpx;
+}
+
+.goods-item .goods-msg-container .goods-name {
+    width: 100%;
+    font-size: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* padding: 0 12rpx; */
+}
+
+.goods-item .goods-msg-container .goods-name-container {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    height: 80rpx;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    color: #444;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
+.goods-item .goods-msg-container .goods-name-container .goods-produce {
+    display: inline-block;
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 10rpx;
+}
+
+.goods-item .goods-msg-container .goods-tag {
+    width: 100%;
+    line-height: 1;
+    margin-top: 10rpx;
+    /* padding: 0 12rpx; */
+    font-size: 24rpx;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.goods-item .goods-msg-container .goods-tag::after,
+.goods-item .goods-msg-container .goods-name::after {
+    content: ';';
+    opacity: 0;
+}
+
+.goods-item .goods-msg-container .goods-price-box {
+    display: flex;
+}
+
+.goods-item .goods-msg-container .discount-container {
+    height: 32rpx;
+    margin-top: 16rpx;
+    overflow: hidden;
+}
+
+.goods-item .goods-msg-container .discount-container .discount-item {
+    display: inline-block;
+    color: #ffa601;
+    line-height: 0;
+    padding: 24rpx;
+    border: 2rpx solid #ffa601;
+    border-radius: 24rpx;
+    font-size: 40rpx;
+    transform: scale(0.5) translate(-50%, -50%);
+}
+
+.goods-item .goods-msg-container .prime-price {
+    margin-top: 20rpx;
+    font-size: 20rpx;
+    color: #94969C;
+    line-height: 1;
+}
+
+.goods-item .goods-msg-container .prime-price text {
+    text-decoration: line-through;
+}
+
+.goods-item .goods-msg-container .sale-price-container {
+    flex: 1;
+    display: flex;
+    /* justify-content: flex-start;
+  align-items: flex-end; */
+    margin-top: 20rpx;
+    align-items: center;
+    padding-bottom: 20rpx;
+    font-size: 20rpx;
+}
+
+.goods-item .goods-msg-container .sale-price-container .cur-sale-price {
+    margin-right: 20rpx;
+}
+
+.goods-item .goods-msg-container .sale-price-container .prime-price {
+    margin-top: 8rpx;
+    margin-right: 8rpx;
+    /* font-size: 24rpx; */
+    color: #999;
+    line-height: 1;
+    /* text-decoration: line-through; */
+}
+
+.goods-item .goods-msg-container .sale-price-container .symbol {
+    font-size: 30rpx;
+    color: #FF4752;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.goods-item .goods-msg-container .sale-price-container .sale-price {
+    font-size: 30rpx;
+    color: #FF4752;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.goods-item .goods-msg-container .sale-price-container .sale-unit {
+    font-size: 20rpx;
+    color: #94969C;
+    line-height: 1;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container {
+    width: 100%;
+    height: 50rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container .progress-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container .progress-container .progress-text {
+    font-size: 20rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container .progress-container .progress {
+    margin-top: 10rpx;
+    border-radius: 10rpx;
+    width: 160rpx;
+    overflow: hidden;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container .qianggou-btn {
+    width: 128rpx;
+    height: 48rpx;
+    border-radius: 24rpx;
+    background: #FF4752;
+    font-size: 24rpx;
+    line-height: 48rpx;
+    color: #FFF;
+    text-align: center;
+}
+
+.goods-item .goods-msg-container .qianggou-btn-container .qianggou-btn.sold-out {
+    background: #CCC;
+}

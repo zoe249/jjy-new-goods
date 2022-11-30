@@ -1,0 +1,71 @@
+<!--component/activityGoodsItem/activityGoodsItem.wxml-->
+<view class="goods-item" catchtap="goGoodsDetail" data-goods="{{goods}}">
+  <view class="goods-image">
+    <image src="{{goods.coverImage}}" data-goods="{{goods}}" class="goods-cover" mode="scaleToFill"></image>
+    <block wx:if="{{formType != 1 && goods.promotionList && goods.promotionList.length}}">
+      <!-- <image class="goods-left-proTag" src="{{goods.promotionList[0].proTag}}"></image> -->
+      <block wx:if="{{goods.proTagMsg && goods.promotionList[0].proType == 289}}"><text class="pro-tag-msg">{{goods.proTagMsg}}</text></block>
+      <block wx:elif="{{goods.promotionList[0].proType != 289}}"><image class="goods-left-proTag" src="{{goods.promotionList[0].proTag}}"></image></block>
+    </block>
+    <block wx:else>
+
+    </block>
+    <block wx:if="{{goods.isMember==1}}">
+      <image class="goods-menber-proTag" src="https://shgm.jjyyx.com/m/images/huiyuanjia.png"></image>
+    </block>
+  </view>
+  <block wx:if="{{formType == 1}}">
+    <view class="goods-name-contaienr">
+      <block wx:if="{{goods.produceIcon}}">
+        <image class="produce-icon" src="{{goods.produceIcon}}"></image>
+      </block>
+      {{goods.shortTitle||goods.goodsName||""}}
+    </view>
+  </block>
+  <block wx:else>
+    <view class="goods-name">{{goods.shortTitle||goods.goodsName||""}}</view>
+  </block>
+  <view class="goods-tags">{{describle||goods.goodsTag||""}}</view>
+
+  <block wx:if="{{formType == 1}}">
+
+  </block>
+  <block wx:else>
+    <view class="goods-tags sale-price">{{(goods.proPrice || goods.isMember==1) ? ("￥" + goods.salePrice) : ""}}</view>
+  </block>
+
+  <view class="goods-info-container">
+    <view class="goods-price">
+      <text class="small-font">￥</text>
+      <block wx:if="{{goods.isMember==1}}">
+        <text class="big-font">{{goods.memberPrice}}</text>
+      </block>
+      <block wx:elif="{{goods.proPrice || goods.proPrice == 0}}">
+        <text class="big-font">{{goods.proPrice}}</text>
+      </block>
+      <block wx:else>
+        <text class="big-font">{{goods.salePrice}}</text>
+      </block>
+
+      <block wx:if="{{goods.salesUnit}}">
+        <text class="sales-unit">/{{goods.salesUnit}}</text>
+      </block>
+
+      <block wx:if="{{formType == 1 && (goods.proPrice||goods.proPrice===0)}}">
+        <text class="del-price">￥{{goods.salePrice}}</text>
+      </block>
+    </view>
+    <block wx:if="{{goods.goodsStock || currentPage}}">
+      <block
+        wx:if="{{formType == 1 && goods.promotionList.length && (goods.promotionList[0].proType == 998 || goods.promotionList[0].proType == 999)}}">
+        <image class="add-cart" src="https://shgm.jjyyx.com/m/images/icon_add.png" data-goods="{{goods}}"></image>
+      </block>
+      <block wx:else>
+        <image class="add-cart" src="https://shgm.jjyyx.com/m/images/icon_add.png" data-goods="{{goods}}" catchtap="addCart"></image>
+      </block>
+    </block>
+    <block wx:else>
+      <view class="shouqing-text">已售罄</view>
+    </block>
+  </view>
+</view>

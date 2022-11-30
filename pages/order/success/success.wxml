@@ -1,0 +1,38 @@
+<import src="/templates/global/global.wxml" />
+
+<view class="pay-s-top pos-r">
+  <image src="https://shgm.jjyyx.com/m/images/icon_sdf_zf.png" alt="支付成功"></image>
+  <view class="pay-s-tips pos-a transformY50">
+      <image class='img' src="https://shgm.jjyyx.com/m/images/icon_sdf_tips.png" alt=""></image>
+      <view class="h3">支付成功</view>
+      <block wx:if="{{fromOrderType != 1 }}">
+      <view class="hide p">可以在设备上操作啦！</view>
+      </block>
+  </view>
+  <view class="jump-pages">
+      <view class="a goto-order" bindtap='jumpPage' data-href="/pages/order/list/list">查看订单</view>
+      <view class="a goto-home"  bindtap='jumpPage' data-href="/pages/index/index">随便逛逛</view>
+  </view>
+</view>
+<view class='space-box'></view>
+
+<view class="guess-like-title"><image src='https://shgm.jjyyx.com/m/images/icon_you_like.png'></image></view>
+
+<!--商品列表-->
+<view class="content">
+    <block wx:if="{{goodsList.length}}">
+      <view class="goods-list-container">
+        <block wx:for="{{goodsList}}" wx:key="goodsId">
+          <component-goods-item goods="{{item.goods}}" bind:change-cart="changeCartCount"></component-goods-item>
+        </block>
+        <block wx:if="{{otherMes == 'noMore'}}">
+          <template is="{{otherMes}}"></template>
+        </block>
+      </view>
+    </block>
+    <block wx:elif="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+  </view>
+
+  <template is="toast" data="{{...toastData}}"></template>

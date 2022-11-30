@@ -1,0 +1,120 @@
+/* pages/goods/search/search.wxss */
+page{
+  background: #f4f4f4;
+}
+.wrapper {
+  background: #fff;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.search-top-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 750rpx;
+  /* height: 100rpx; */
+  z-index: 999;
+  font-size: 24rpx;
+  padding: 22rpx 32rpx;
+  display: flex;
+  border-top: 1rpx solid #e7e7e7;
+  background: #fff;
+}
+
+.search-container {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 4rpx;
+  margin-right: 32rpx;
+  padding: 0 56rpx;
+  position: relative;
+}
+
+.search-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 64rpx;
+  height: 64rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_search.png') no-repeat center;
+  background-size: 33rpx 33rpx;
+}
+
+/* .search-container.focus::before {
+  background-image: url('https://shgm.jjyyx.com/m/images/icon_search_active.png');
+} */
+
+.search-container .clear-search-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 64rpx;
+  height: 64rpx;
+  background: url('https://shgm.jjyyx.com/m/images/del.png') no-repeat center;
+  background-size: 33rpx 33rpx;
+}
+
+.search-container .search-input {
+  width: 100%;
+  height: 64rpx;
+  font-size: 24rpx;
+}
+
+
+.search-top-container .search-cancel {
+  font-size: 24rpx;
+  color: #94969C;
+  line-height:64rpx;
+  height: 64rpx;
+}
+
+.history-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 96rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  color: #E7E7E7;
+}
+.histroy-scroll-view{
+  position: absolute;
+  top: 126rpx;
+  right: 16rpx;
+  left: 16rpx;
+  bottom: 0;
+  width: auto;
+  background: #fff;
+  border-top-left-radius: 16rpx;
+  border-top-right-radius: 16rpx;
+  overflow: hidden;
+}
+.history-title-container .clear-history-icon {
+  width: 32rpx;
+  height: 35rpx;
+}
+.search-history-container{
+  /* padding-top: 100rpx; */
+  /* margin:116rpx 16rpx 16rpx; */
+  background: #fff;
+}
+.search-history-container .history-item {
+  display: flex;
+  text-align: left;
+  margin-left: 32rpx;
+  /* border-bottom: 2rpx solid #ededed; */
+  /* line-height: 0; */
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #94969C;
+}
+.search-history-container .history-item image{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 32rpx;
+}

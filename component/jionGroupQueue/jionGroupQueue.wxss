@@ -1,0 +1,258 @@
+/* component/jionGroupQueue/jionGroupQueue.wxss */
+
+@import '../../app.wxss';
+.grouper-wrap{
+  width: 100%;
+}
+.grouper-item{
+  display: flex;
+  padding: 32rpx 0;
+  width: 100%;
+}
+
+.grouper-item .member-photo{
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+.faces0{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_1.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces1{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_2.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces2{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_3.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces3{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_4.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces4{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_5.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces5{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_6.png) no-repeat center;
+  background-size: 96rpx;
+}
+.faces6{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_7.png) no-repeat center;
+  background-size: 96rpx;
+}
+/* .grouper-item:nth-child(n+1) .member-photo,.grouper-item-container:nth-child(n) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_2.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(n+2) .member-photo,.grouper-item-container:nth-child(n+1) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_3.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(n+3) .member-photo,.grouper-item-container:nth-child(n+2) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_4.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(n+4) .member-photo,.grouper-item-container:nth-child(n+3) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_5.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(n+5) .member-photo,.grouper-item-container:nth-child(n+4) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_6.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(n+6) .member-photo,.grouper-item-container:nth-child(n+5) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_7.png) no-repeat center;
+  background-size: 96rpx;
+} */
+
+
+/* .grouper-item .member-photo{
+  width: 96rpx;
+  height: 96rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_1.png) no-repeat center;
+  background-size: 96rpx;
+  border-radius: 50%;
+}
+.grouper-item:nth-child(2n+2) .member-photo,.grouper-item-container:nth-child(2n+1) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_2.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(2n+3) .member-photo,.grouper-item-container:nth-child(2n+2) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_3.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(2n+4) .member-photo,.grouper-item-container:nth-child(2n+3) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_4.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(2n+5) .member-photo,.grouper-item-container:nth-child(2n+4) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_5.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(2n+6) .member-photo,.grouper-item-container:nth-child(2n+5) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_6.png) no-repeat center;
+  background-size: 96rpx;
+}
+.grouper-item:nth-child(2n+7) .member-photo,.grouper-item-container:nth-child(2n+6) .header-container{
+  background: url(https://shgm.jjyyx.com/m/images/icon_faces_7.png) no-repeat center;
+  background-size: 96rpx;
+} */
+.grouper-item-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 48rpx;
+  color: var(--darkGray);
+  align-items: flex-start;
+}
+.grouper-item-info text{
+  margin-left: 8rpx;
+  font-size: 24rpx;
+}
+.grouper-item-name{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.grouper-master{
+  display: inline-block;
+  width: 64rpx;
+  height: 33rpx;
+  line-height: 33rpx;
+  text-align: center;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 17rpx;
+}
+.grouper-item-time{
+  font-size: 24rpx;
+}
+.more-grouper{
+  font-size: 24rpx;
+  line-height: 33rpx;
+  color: var(--red);
+  text-align: center;
+  text-decoration: underline;
+  padding: 32rpx 0;
+}
+/* 会员列表 */
+
+.member-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64rpx 32rpx 32rpx;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_dislog_close_gray.png") no-repeat center;
+  background-size: contain;
+  z-index: 2;
+}
+
+.member-list-container .grouper-header-container {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/icon_faces_1.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-container .grouper-header-container:after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:var(--red);
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.member-list-container .grouper-header-container .group-head-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-list-container .group-head-name {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.member-list-container .join-group-time {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.member-list-container .grouper-list-container {
+  margin-top: 16rpx;
+  width: 100%;
+  padding-bottom: 64rpx;
+}
+
+.member-list-container .grouper-list-container .grouper-item-container {
+  position: relative;
+  width: 100%;
+  padding: 32rpx 0;
+  display: flex;
+}
+.grouper-item-container .header-container {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/icon_user_photo.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.grouper-item-container .header-container .header {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-item-container .member-item-name {
+  font-size: 28rpx;
+  color: var(--black);
+  line-height: 1;
+}
+
+.grouper-item-container .join-time {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: var(--gray)
+}
+
+.no-grouper-msg {
+  margin-top: 72rpx;
+  font-size: 28rpx;
+  color: var(--black);
+  line-height: 1;
+}

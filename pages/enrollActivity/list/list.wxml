@@ -1,0 +1,17 @@
+<view class="enroll-tab">
+  <component-tab tabs="{{tabs}}" tabActiveTextColor="var(--blue)" tabInactiveTextColor="var(--gray)" bind:click="tapClick" isFlex="{{true}}"></component-tab>
+</view>
+<view class="store-activity-list-container">
+  <view wx:for="{{parkList}}" wx:key="index" class="store-activity-item-container" style="background-image: url({{item.goods.coverImage}});">
+    <view class="activity-msg-container">
+      <view class="activity-name">{{item.goods.goodsName}}</view>
+      <view class="price-container">
+        <text class="middle-font">{{item.goods.goodsStock==0?'名额已满': item.goods.salePrice==0?'免费': '￥'+item.goods.salePrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<footer class="look-other-activity-container" id="toOtherBtn">
+  <view class="other-btn">查看历史活动</view>
+</footer>

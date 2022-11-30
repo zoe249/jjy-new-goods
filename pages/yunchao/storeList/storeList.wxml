@@ -1,0 +1,31 @@
+<!--pages/yunchao/storeList/storeList.wxml-->
+<view class="topba"></view>
+<view class="storelist">
+<block wx:for="{{storelist}}">
+  <view class="storelist-item">
+    <view class="storelist-item-top">
+      <view class="left">
+        <view class="store-icon">
+          <image src="{{item.storeDetail.storeIcon}}"></image>
+        </view>
+        <view class="store-name typo-ellipsis">
+          {{item.storeDetail.storeName}}
+        </view>
+      </view>
+      <view class="bindbtn" bindtap="jumpShopInfo" data-store="{{item.storeDetail}}">
+        进店
+      </view>
+    </view>
+    <view class="store-goods">
+      <block wx:for="{{item.goodsList}}" wx:if="{{index<3}}">
+        <view catchtap="goGoodsDetail" data-goods="{{item.goods}}">
+          <image src="{{item.goods.coverImage}}"></image>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+</block>
+  
+</view>

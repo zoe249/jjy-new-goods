@@ -1,0 +1,56 @@
+<!--pages/user/address/list/list.wxml-->
+<import src="/templates/global/global.wxml"/>
+
+<scroll-view class="wrapper" scroll-y>
+  <view class="address-container">
+    <block wx:if="{{addressList.length}}">
+      <block wx:for="{{addressList}}" wx:key="addrId">
+        <view class="address-item {{!b2cType && item.isFar == 1 && (isfill == 1||from=='cart')?'address-not-optional':''}} {{item.isDefault?'is-default':''}}" data-item="{{item}}" bindtap="selectAddress">
+          <view class="address-msg-container">
+            <view class="name-and-phone">
+              <text>{{item.addrName}}</text>
+              <text>{{item.addrPhone}}</text>
+
+              <!-- 审核状态-状态：待审核1019-审核通过1020-审核未通过1021 -->
+              <block wx:if="{{isfill == 2}}">
+                <block wx:if="{{item.customsDocState == 1020}}">
+                  <view class="id-verified">已认证</view>
+                </block>
+                <block wx:else>
+                  <view class="id-no-verified">未认证</view>
+                </block>
+              </block>
+
+            </view>
+            <view class="address-detail typo-clamp">
+              {{item.cityName}}{{item.areaName}}{{item.address}} {{item.poiAddr}}
+            </view>
+            <block wx:if="{{item.selected}}">
+              <view class="selected-icon"></view>
+            </block>
+          </view>
+          <view class="edit-address-container">
+             <view class='edit-address-def {{item.isDefault?"is-def":""}}'><!--{{item.isDefault?"默认地址":"设置为默认地址"}}--></view> 
+            <view><image src="https://shgm.jjyyx.com/m/images/icon_edit.png" class="edit-btn" data-item="{{item}}" catchtap="editAddress" data-address-id="{{item.addrId}}"></image>
+            <image src="https://shgm.jjyyx.com/m/images/icon_clear.png" class="delete-btn" data-item="{{item}}" catchtap="deleteAddress" data-address-id="{{item.addrId}}"></image></view>
+            
+          </view>
+        </view>
+        <view class="gutter-bg"></view>
+      </block>
+    </block>
+    <block wx:elif="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+  </view>
+  <view class="gutter-bg" wx:if="{{!addressList.length}}"></view>
+  <view class="add-address-container {{!addressList.length?'no-address':''}}" bindtap="addNewAddress">
+    <image src="https://shgm.jjyyx.com/m/images/icon_add_address.png"></image>
+    <text>新增收货地址</text>
+  </view>
+  <view class="gutter-bg"></view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+
+  <template is="toast" data="{{...toastData}}"></template>
+  <template is="modal" data="{{...modalData}}"></template>
+</scroll-view>

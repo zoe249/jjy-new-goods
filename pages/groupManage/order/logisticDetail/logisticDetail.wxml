@@ -1,0 +1,139 @@
+<!--pages/order/logisticsList/logisticsList.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view class="view-logistics" id="view-logistics-tpl">
+        <view class="logistics-head mb8">
+            <view class="image"><image src="https://shgm.jjyyx.com/m/images/‭icon_view_logistics.png"></image></view>
+            <view class="logistics-head-cnt">
+                <view class="item"><view class="span">物流状态：</view><view class="span c-color">{{result.$orderLogisticsStatus}}</view></view>
+                <view class="item"><view class="span c-gray-color">发货时间：</view><view class="span c-gray-color">{{result.deliverTime}}</view></view>
+                <view class="item"><view class="span c-gray-color">物流方式：</view><view class="span c-gray-color">{{result.$shippingType}}</view></view>
+            </view>
+        </view>
+        <view class="bg-caitiao"></view>
+        <block wx:for="{{result.logisticsOutputList}}" wx:for-item="list" wx:for-index="i">
+            <block wx:if="{{list.logisticsType==2}}">
+                <view class="logistics-cnt mb8">
+                    <view class="logistics-cnt-head r1bb">
+                        <view class="text"><view class="span">物流公司：</view><view class="span">{{list.companyName}}</view></view>
+                        <view class="text"><view class="span">物流单号：</view><view class="span order-num">{{list.logisticsNo}}</view></view>
+                        <view class="copy r1b" data-text="{{list.logisticsNo}}" catchtap="copy">复制单号</view>
+                    </view>
+                    <view class="logistics-list">
+                        <view class="title">国内配送</view>
+                        <view class="ul">
+                            <block wx:for="{{list.detailOutputList}}" wx:for-item="li" wx:for-index="j">
+                                <view class="li{{j==0?' now':''}}">
+                                    <view class="date-box">
+                                        <view class="date">{{li.$time0}}</view>
+                                        <view class="time">{{li.$time1}}</view>
+                                    </view>
+                                    <view class="icon">
+                                        <block wx:if="{{j==0}}"><view class="line-up"></view></block>
+                                        <view class="node"></view>
+                                        <view class="line"></view>
+                                    </view>
+                                    <view class="dec r1bb">{{li.info}}</view>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+           <block wx:elif="{{list.logisticsType==1}}">
+               <view class="customs-clearance mb8{{list.detailOutputList.length>1?' customs-clearance2':''}}">
+                   <view class="title">海关清关</view>
+                   <view class="help-btn" catchtap="changeShowHelp"><view class="span">什么是海关清关</view>
+                       <view class="help-cnt" hidden="{{showHelp}}">
+                           <view class="help-up"></view>
+                           <view class="help-text r1b">所有进口快件物品入境须向口岸海关，检验检疫部门如实申报。一般申报时效1-5个工作日，具体时效根据不同口岸实际作业流程而定。完成申报后且允许放行后进入国内配送。</view>
+                       </view>
+                   </view>
+                   <block wx:for="{{list.detailOutputList}}" wx:for-item="li" wx:for-index="j">
+                       <block wx:if="{{result.logisticsOutputList.length>2}}">
+                           <view class="item finished">
+                               <view class="date-box">
+                                   <view class="date">{{li.$time0}}</view>
+                                   <view class="time">{{li.$time1}}</view>
+                               </view>
+                               <view class="icon">
+                                   <block wx:if="{{j==0}}"><view class="line-up"></view></block>
+                                   <view class="node"></view>
+                                   <view class="line"></view>
+                               </view>
+                               <view class="dec">{{li.info}}海关申报已完毕</view>
+                           </view>
+                       </block>
+                       <block wx:else>
+                           <view class="item{{j==0?' now':''}}">
+                               <view class="date-box">
+                                   <view class="date">{{li.$time0}}</view>
+                                   <view class="time">{{li.$time1}}</view>
+                               </view>
+                               <view class="icon">
+                                   <block wx:if="{{j==0}}"><view class="line-up"></view></block>
+                                   <view class="node"></view>
+                                   <view class="line"></view>
+                               </view>
+                               <view class="dec">{{li.info}}海关申报已完毕</view>
+                           </view>
+                       </block>
+                   </block>
+               </view>
+           </block>
+            <block wx:elif="{{list.logisticsType==0}}">
+                <view class="logistics-cnt{{result.logisticsOutputList.length>1?' gray':''}}">
+                    <view class="logistics-cnt-head r1bb">
+                        <view class="text"><view class="span">物流公司：</view><view class="span">{{list.companyName}}</view></view>
+                        <view class="text"><view class="span">物流单号：</view><view class="span order-num">{{list.logisticsNo}}</view></view>
+                        <view class="copy r1b" data-text="{{list.logisticsNo}}" catchtap="copy">复制单号</view>
+                    </view>
+                    <view class="logistics-list">
+                        <view class="title">国际配送</view>
+                        <view class="ul">
+                            <block wx:for="{{list.detailOutputList}}" wx:for-item="li" wx:for-index="j">
+                                <block wx:if="{{result.logisticsOutputList.length>1}}">
+                                    <view class="li finished">
+                                        <view class="date-box">
+                                            <view class="date">{{li.$time0}}</view>
+                                            <view class="time">{{li.$time1}}</view>
+                                        </view>
+                                        <view class="icon">
+                                            <block wx:if="{{j==0}}"><view class="line-up"></view></block>
+                                            <view class="node"></view>
+                                            <view class="line"></view>
+                                        </view>
+                                        <view class="dec r1bb">{{li.info}}</view>
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <view class="li{{j==0?' now':''}}">
+                                        <view class="date-box">
+                                            <view class="date">{{li.$time0}}</view>
+                                            <view class="time">{{li.$time1}}</view>
+                                        </view>
+                                        <view class="icon">
+                                            <block wx:if="{{j==0}}"><view class="line-up"></view></block>
+                                            <view class="node"></view>
+                                            <view class="line"></view>
+                                        </view>
+                                        <view class="dec r1bb">{{li.info}}</view>
+                                    </view>
+                                </block>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+</block>

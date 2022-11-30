@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "优惠券适用商品",
+  "usingComponents": {
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

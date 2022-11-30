@@ -1,0 +1,104 @@
+/* component/groupStep/groupBuyStep.wxss */
+
+.draw-container {
+    padding: 0 32rpx;
+}
+
+.draw-container .draw-box {
+    border-top: 1rpx solid #E7E7E7;
+    border-bottom: 1rpx solid #E7E7E7;
+}
+
+.introduce-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 98rpx;
+    padding: 0 32rpx;
+    background: #FFF;
+}
+
+.introduce-nav .group-introduce-text {
+    font-size: 28rpx;
+    color: #444;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.introduce-nav .look-detail {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1;
+}
+
+.introduce-nav .look-detail:after {
+    content: '';
+    display: inline-block;
+    width: 21.2rpx;
+    height: 21.2rpx;
+    border-left: 1rpx solid #999;
+    border-top: 1rpx solid #999;
+    transform-origin: 50% 50%;
+    transform: rotate(135deg);
+    margin-left: 20rpx;
+}
+
+.aboout-refund-text-container {
+    width: 100%;
+    height: 56rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F0F3F6;
+    border-top: 1rpx solid #F0F3F6;
+}
+
+.aboout-refund-text-container .refund-text {
+    font-size: 24rpx;
+    color: var(--blue);
+    line-height: 1;
+}
+
+.step-container {
+    width: 100%;
+    padding: 32rpx 0;
+    background: #FFF;
+}
+
+.step-container .step-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 74rpx;
+}
+
+.step-container .step-icon-container .step-icon-item {
+    width: 64rpx;
+    height: 64rpx;
+}
+
+.step-container .step-icon-container .step-interval {
+    width: 80rpx;
+    height: 2rpx;
+    background-color: #E7E7E7;
+}
+
+.step-container .step-msg-container {
+    width: 100%;
+    display: flex;
+    margin-top: 24rpx;
+}
+
+.step-container .step-msg-container .step-msg-item {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-container .step-msg-container .step-msg-item .step-msg {
+    font-size: 24rpx;
+    color: #444;
+    line-height: 30rpx;
+}

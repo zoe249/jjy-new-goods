@@ -1,0 +1,138 @@
+.share-dialog-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transform: translate3d(0, 0, 100rpx);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.6s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+.share-dialog-container .share-info-container {
+    position: relative;
+    width: 670rpx;
+    padding: 70rpx 0;
+    background: #FFF;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.share-dialog-container .share-info-container .share-header {
+    font-size: 32rpx;
+    color: #444;
+    line-height: 1;
+}
+
+.share-dialog-container .share-info-container .share-msg-container {
+    margin-top: 10rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.share-dialog-container .share-info-container .share-msg-container.mgt-30 {
+    margin-top: 30rpx;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .black {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #444;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .gray {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.share-dialog-container .share-info-container .share-btn-container {
+    padding-top: 68rpx;
+}
+
+.share-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.share-btn-container .share-item-container {
+    width: 148rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.share-btn-container .share-item-container .share-btn {
+    width: 100rpx;
+    height: 100rpx;
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: none;
+}
+
+.share-btn-container .share-item-container .share-btn:after {
+    border: none;
+}
+
+.share-btn-container .share-item-container .share-btn .share-image {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.share-btn-container .share-item-container .share-msg-container {
+    margin-top: 28rpx;
+    width: 100%;
+    text-align: center;
+}
+
+.share-btn-container .share-item-container .share-msg-container .share-msg {
+    display: block;
+    font-size: 26rpx;
+    line-height: 1;
+    color: #444;
+    text-align: center;
+}
+
+.share-dialog-container .close-btn {
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background: url("https://shgm.jjyyx.com/m/images/groupBuy/close_dialog_btn.png") no-repeat center;
+    background-size: contain;
+}
+
+.share-popup-canvas {
+    position: absolute;
+    left: 0;
+    top: -99999rpx;
+    width: 1500rpx;
+    height: 2668rpx;
+    z-index: -1;
+    transform: translate3d(0, 0, -1000rpx);
+}

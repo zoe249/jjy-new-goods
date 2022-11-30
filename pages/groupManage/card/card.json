@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "生活卡",
+    "usingComponents": {
+        "component-backstage-footer-nav": "/component/backstageFooterNav/backstageFooterNav"
+    }
+}

@@ -1,0 +1,59 @@
+<!--couponItem.wxml-->
+
+<template name="couponItem">
+  <view class="coupon-item {{item.unavailable?'unavailable':''}} {{item.couponType ==269 && item.hasLimitMoney == 0 ? 'free' : ''}} {{item.couponType ==1351?'machining':''}} {{eCurrentType?'expire':''}}" data-item="{{item}}" bindtap="selectCoupon" data-code="{{item.codeId}}" data-codestatus="{{item.codeStatus}}" data-template="{{item.templateId}}">
+    <view class="item-left">
+      <block wx:if="{{item.couponType == 266}}">
+        <view class="xj-mj">
+          <text class="small">￥</text>
+          <text class="{{item.couponValue > 99?'max':''}}">{{item.couponValue}}</text>
+        </view>
+      </block>
+      <block wx:elif="{{item.couponType == 267}}">
+        <view class="xj-mj">
+          <text>{{item.couponValue}}</text>
+          <text class="small">折</text>
+        </view>
+      </block>
+      <block wx:elif="{{item.couponType == 1351}}">
+          <text class='jiagong'>加工券</text>
+      </block>
+      <block wx:else>
+        <!-- wx:if="{{item.couponType ==269 && item.hasLimitMoney == 0}}" -->
+        <text class="jiagong">{{item.backType||'包邮券'}}</text>
+      </block>
+      <!-- <text class="coupon-tag">{{item.couponTag}}</text> -->
+    </view>
+    <view class="item-right">
+      <text class="coupon-name">{{item.couponName}}</text>
+      <text class="coupon-desc">{{item.couponDesc}}</text>
+      <text class="coupon-time">使用期限：{{item.couponBeginTime}}~{{item.couponEndTime}}</text>
+      <block wx:if="{{item.codeStatus == 1}}">
+        <text class="coupon-expire-type">已使用</text>
+      </block>
+      <block wx:elif="{{item.codeStatus == 2}}">
+        <text class="coupon-expire-type">已过期</text>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.couponType ==269 && item.hasLimitMoney == 0}}">
+          <image class="coupon-type" src="https://shgm.jjyyx.com/m/images/baoyou.png"></image>
+        </block>
+        <block wx:elif="{{item.couponType ==266 && item.hasLimitMoney > 0}}">
+          <image class="coupon-type" src="https://shgm.jjyyx.com/m/images/manjian.png"></image>
+        </block>
+        <block wx:elif="{{item.couponType == 267}}">
+          <image class="coupon-type" src="https://shgm.jjyyx.com/m/images/zhekou.png"></image>
+        </block>
+        <block wx:elif="{{item.couponType == 1351}}">
+          <image class="coupon-type" src="https://shgm.jjyyx.com/m/images/jiagong.png"></image>
+        </block>
+        <block wx:else>
+          <image class="coupon-type" src="https://shgm.jjyyx.com/m/images/xianjin.png"></image>
+        </block>
+      </block>
+    </view>
+    <block wx:if="{{item.codeId == couponCodeId}}">
+      <view class="icon"></view>
+    </block>
+  </view>
+</template>

@@ -1,0 +1,38 @@
+/* pages/user/aboutUs/aboutUs.wxss */
+page{
+  background: #fff;
+}
+.about-me-page {
+  text-align: center;
+}
+.diqiugang-logo {
+  width: 100%;
+  position: fixed;
+  top:40%;
+  left:0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); 
+}
+.diqiugang-logo image{
+  width:100%;
+}
+.copy-right, .version {
+  position: fixed;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.copy-right {
+  width: 100%;
+  bottom: 100rpx;
+}
+.a{
+  font-size: 28rpx;
+  color: #444;
+}
+.version {
+  bottom: 64rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: #444;
+}

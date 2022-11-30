@@ -1,0 +1,11 @@
+/* 个人中心 */
+/* 我的服务 */
+.servcie-grid {
+  padding-top: 32rpx;
+}
+
+/* 订单订单 */
+.order-grid{
+  position: relative;
+  padding: 32rpx 0;
+}

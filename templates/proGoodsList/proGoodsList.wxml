@@ -1,0 +1,116 @@
+<template name="proGoodsList">
+    <view class="goods-item-container  {{len?'no-hr':''}} {{item.surplusStock <= 0 ? 'group-sold-out' : ''}}" data-goods="{{item}}" catchtap="jumpGroupGoods">
+        <view class='goods-item-wrap'>
+            <block wx:if='{{!item.privateGroup}}'>
+              <!-- <view wx:if="{{item.surplusStock > 0 && !sheetId}}" class='checkbox-item {{item.checkBox?"is-true":""}}' catchtap='bindCheckbox' data-goods="{{item}}"></view> -->
+            </block>
+            <block wx:else>
+              <text class="private-group-flag">私</text>
+            </block>
+            <block wx:if="{{item.isNew == 1}}">
+                <image class="is-new-pro {{item.privateGroup || item.surplusStock <= 0 ? 'is-new-pro-no-stock':''}}" src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+            </block>
+            <image class="goods-cover-image" src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+            <view class="goods-info-container">
+                <text class="goods-name">{{item.shortTitle||item.goodsName||""}}</text>
+                <!-- <text class='pro-type' wx:if="{{item.proType}}">{{item.proType == 1888?"社区自提":""}}</text> -->
+                <text class="goods-tag">{{item.goodsTag}}</text>
+                <view class="goods-prime-price-container">
+                    <text class="price-msg">单价</text>
+                    <text class="symbol">￥</text>
+                    <text class="sale-price">{{item.goodsPrimePrice}}</text>
+                    <text class="sale-unit">/{{item.salesUnit}}</text>
+                </view>
+            </view>
+        </view>
+        <view class='goods-item-wrap-bottom {{ !item.privateGroup ? "" : "private-group-bottom" }}'>
+            <view class="sale-price-container">
+                <text class="need-count">{{item.needJoinCount}}人团</text>
+                <text class="goods-prime-price">￥{{item.goodsPrice}}</text>
+                <text class="commission-amount">赚￥{{item.commissionAmount}}</text>
+                <block wx:if="{{item.surplusStock>0}}">
+                    <block wx:if="{{!sheetId}}">
+                        <text class="join-btn" catchtap='moreExtension' data-item="{{item}}" data-more="{{item.isMyGroup == 0?1:4}}">推广</text>
+                    </block>
+                    <block wx:else>
+                        <block wx:if="{{!myGroupWaterList}}">
+                            <text class="join-btn" catchtap='moreExtension' data-item="{{item}}" data-more="4">推广</text>
+                        </block>
+                        <block wx:else>
+                            <block wx:if="{{item.lastGroup}}">
+                                <text class="join-btn" catchtap='bindPartakeGroup' data-item="{{item}}" data-more="1">立即参团</text>
+                            </block>
+                            <block wx:else>
+                                <text class="join-btn">已成团</text>
+                            </block>
+                        </block>
+                    </block>
+
+                </block>
+                <block wx:else>
+                    <text class="join-btn not-stock">已拼光</text>
+                </block>
+            </view>
+            <view class="group-msg-container">
+                <view class='buyers-number'>已{{item.buyersNumber}}人拼团</view>
+                <view class='pro-end-time'>距结束仅剩
+                    <text class='color-red' wx:if="{{item.countDownDay}}">{{item.countDownDay}}</text>
+                    <text wx:if="{{item.countDownDay}}">天</text>
+                    <text class='color-red'>{{item.countDown}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</template>
+
+
+<template name="proRushGoodsList">
+    <view class="goods-item-container  {{len?'no-hr':''}} {{item.totalStock <= 0 ? 'group-sold-out' : ''}}" data-goods="{{item}}" catchtap="jumpGroupGoods">
+        <view class='goods-item-wrap'>
+            <!-- <view wx:if="{{item.totalStock > 0 && !sheetId && item.ratio < 100}}" class='checkbox-item {{item.checkBox?"is-true":""}}' catchtap='bindCheckbox' data-goods="{{item}}"></view> -->
+            <block wx:if="{{item.isNew == 1}}">
+                <image class="is-new-pro" src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+            </block>
+            <image class="goods-cover-image" src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+            <view class="goods-info-container">
+                <text class="goods-name">{{item.shortTitle||item.goodsName||""}}</text>
+                <text class='pro-type' wx:if="{{item.proType == 1888}}">{{item.proType == 1888?"社区自提":""}}</text>
+                <text class="goods-tag">{{item.goodsTag}}</text>
+                <view class="goods-prime-price-container">
+                    <text class="price-msg">单价</text>
+                    <text class="symbol">￥</text>
+                    <text class="sale-price">{{item.goodsPrimePrice}}</text>
+                    <text class="sale-unit">/{{item.salesUnit}}</text>
+                </view>
+            </view>
+        </view>
+        <view class='goods-item-wrap-bottom'>
+            <view class="sale-price-container">
+                <text class="need-count">{{item.proType != 1178? '特惠价': '抢购价'}} <text class="goods-prime-price">￥{{item.goodsPrice}}</text></text>
+                <!-- <text class="goods-prime-price">￥{{item.goodsPrice}}</text> -->
+                <text class="commission-amount">赚￥{{item.commissionAmount}}</text>
+                <block wx:if="{{item.totalStock>0 && item.ratio < 100}}">
+                    <block wx:if="{{!myGroupWaterList}}">
+                        <text data-11="{{myGroupWaterList}}" class="join-btn" catchtap='moreExtension' data-item="{{item}}" data-more="{{sheetId?4:1}}">推广</text>
+                    </block>
+                    <block wx:else>
+                        <text class="join-btn" catchtap='bindPartakeGroup' data-item="{{item}}" data-more="2">{{item.proType != 1178? '立即购买': '立即抢购'}}</text>
+                    </block>
+                </block>
+                <block wx:else>
+                    <text class="join-btn not-stock">{{item.proType != 1178? '已售罄': '已抢光'}}</text>
+                </block>
+            </view>
+            <view class="group-msg-container">
+                <!-- <view class='buyers-number'>已{{item.buyersNumber}}人拼团</view> -->
+                <view class='pro-end-time'>距结束仅剩
+                    <text class='color-red' wx:if="{{item.countDownDay}}">{{item.countDownDay}}</text>
+                    <text wx:if="{{item.countDownDay}}">天</text>
+                    <text class='color-red'>{{item.countDown}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</template>

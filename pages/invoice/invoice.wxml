@@ -1,0 +1,112 @@
+<import src="/templates/global/global.wxml" />
+
+<block wx:if="{{!closeMo}}">
+<view class="tips-mod">
+  <view class="tips-swiper">
+		<text class='icon-laba'></text>
+    <view class="marquee">
+      <view class="content">
+          <text>{{text}}</text> <text style="display: inline-block; width: 5em;"></text>
+          <text>{{text}}</text> <text style="display: inline-block; width: 5em;"></text>
+      </view>
+    </view>
+    <view class='tips-mod-close pos-a' bindtap='closeMod'></view>
+  </view>
+</view>
+</block>
+<view class="invoice-swiper r1bb">开具发票<navigator class="explain" hover-class="none" url='/pages/documents/documents?mod={{invoiceAgreement[openParty]}}'><image src="https://shgm.jjyyx.com/m/images/icon_info.png" ></image></navigator>
+<!-- <switch checked="{{invoiceInfo.open}}" class="fr" bindchange="switchChange" color="#FF4752"/> -->
+</view>
+<block wx:if="{{invoiceInfo.open}}">
+  <view class="invoice-type r1bb">
+    <view class='h3'>发票类型</view>
+    <view class="sel-type clearfix">
+      <block wx:if="{{invoiceSupportType == 3 || invoiceSupportType == 1 }}">
+      <view class="r1b fl {{invoiceInfo.invoicePaperOrElectronic == 1356?'sel':''}}" bindtap='bindRadio' data-type="e" data-val='1356' data-info='电子发票'>电子发票</view>
+      </block>
+       <block wx:if="{{invoiceSupportType == 3 || invoiceSupportType == 2 }}">
+      <view class="r1b fl {{invoiceInfo.invoicePaperOrElectronic == 1355?'sel':''}}" bindtap='bindRadio' data-type="e" data-val='1355' data-info='纸质发票'>纸质发票</view>
+      </block>
+    </view>
+  </view>
+  <view class="box-space"></view>
+
+  <view class="invoice-type r1bb">
+    <view class='h3'>发票抬头</view>
+    <view class="sel-type clearfix">
+      <view class="r1b fl {{invoiceInfo.invoiceTitleType == 447?'sel':''}}" bindtap='bindRadio' data-type="t" data-val='447' data-info='个人'>个人</view>
+      <view class="r1b fl {{invoiceInfo.invoiceTitleType == 448?'sel':''}}" bindtap='bindRadio' data-type="t" data-val='448' data-info='公司'>公司</view>
+    </view>
+    <block wx:if="{{invoiceInfo.invoiceTitleType == 448}}">
+      <view class="invoice-title-detail">
+        <view class="pos-r item">
+            <input placeholder="请输入发票抬头" data-name="invoiceTitle" value="{{invoiceInfo.invoiceTitle}}" bindinput="bindInputChange" bindfocus="bindShowHistoryInvoice" bindblur="bindHideHistoryInvoice"></input>
+            <block wx:if="{{invoiceInfo.invoiceTitle != ''}}">
+            <text class="pos-a del_btn" bindtap='clearInputText' data-name="invoiceTitle"></text>
+            </block>
+            <block wx:if="{{invoiceOutput.length >0 &&showHistoryInvoice}}">
+            <scroll-view class='invoice-record pos-a' scroll-y='true'>
+              <view wx:for="{{invoiceOutput}}" wx:key="thisItem" data-detai="{{item}}" bindtap='selectHistoryInvoice'>{{item.invoiceTitle}}</view>
+            </scroll-view>
+            </block>
+        </view>
+        <view class="pos-r item number">
+            <input placeholder="请填写纳税人识别号" data-name="invoiceNo" value="{{invoiceInfo.invoiceNo}}" maxlength="20" bindinput="bindInputChange"></input>
+            <block wx:if="{{invoiceInfo.invoiceNo != ''}}">
+            <text class="pos-a del_btn" bindtap='clearInputText' data-name="invoiceNo"></text>
+            </block>
+            <view class="invoiceNo-tips" bindtap='showTips'><image src="https://shgm.jjyyx.com/m/images/icon_help.png" ></image></view>
+            
+        </view>
+      </view>
+    </block>
+    <view class="invoice-title-detail">
+    <view class="pos-r item">
+            <input placeholder="请输入收货人姓名" data-name="receiverName" value="{{addressInfo.receiverName}}" bindinput="bindAddInputChange"></input>
+        </view>
+        <view class="pos-r item">
+            <input placeholder="请输入收货人联系电话" data-name="receiverMobile" value="{{addressInfo.receiverMobile}}" bindinput="bindAddInputChange"></input>
+           
+        </view>
+        <view class="pos-r item">
+            <input placeholder="请输入收货人地址" data-name="receiverAddress" value="{{addressInfo.receiverAddress}}" bindinput="bindAddInputChange"></input>
+           
+        </view>
+      </view>
+
+        
+
+  </view>
+  <view class="box-space"></view>
+
+  <view class="invoice-type {{openParty != 0?'cross-border':''}}">
+    <view class='h3'>发票内容</view>
+    <view class="sel-type clearfix">
+      <block wx:for="{{contentList}}" wx:key="thisItem">
+        <view class="min-w r1b fl {{item.invoiceContentType == invoiceInfo.invoiceContentType?'sel':''}}" bindtap='bindRadio' data-type="c" data-val='{{item.invoiceContentType}}' data-info='{{item.invoiceContent}}'>{{item.invoiceContent}}</view>
+      </block>
+    </view>
+    <!-- <button class='save_btn'>确定</button> -->
+  </view>
+  <block wx:if="{{openParty == 0}}">
+    <view class="box-space"></view>
+    <view class="issue-address">
+        <view class="invoice-alert"><image src="https://shgm.jjyyx.com/m/images/icon_info.png" ></image>温馨提示</view>
+        <view>{{orderTypeFlag != 1 ?'纸质发票需要顾客自行到【'+shopName+'】的服务台领取':'电子发票开票方【家家悦优鲜总部】'}}</view>
+    </view>
+  </block>
+</block>
+<view class='save-btn'>
+  <button bindtap='saveInvoiceInfo'>确定</button>
+</view>
+<!-- {{show==0?'':show==1?'fadeInUp-box':'fadeInDown-box'}} -->
+<view class="tips-mask {{show == 0?'':'fadeInUp-box'}}">
+    <view class="mask">
+        <view class="h3 r1bb">什么是纳税人识别号？</view>
+        <view class="mask-wrap clearfix">
+            <view class="p">纳税人识别号为营业执照上的统一社会信用代码或税务登记证上的税号，一般为15至20位，部分含英文字母。为确保发票开具的准确性，建议与公司财务确认后填写。</view>
+        </view>
+        <view class="mask-cancel" bindtap='showTips'>我知道了</view>
+    </view>
+</view>
+<template is="toast" data="{{...toastData}}"></template>

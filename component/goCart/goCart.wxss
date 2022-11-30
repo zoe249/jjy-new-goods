@@ -1,0 +1,25 @@
+/* component/goCart/goCart.wxss */
+
+.go-cart-btn{
+  position: fixed;
+  
+  width: 114rpx;
+  height: 114rpx;
+  z-index: 999;
+}
+
+.go-cart-btn .cart-count{
+  position: absolute;
+  right: 0rpx;
+  top: -16rpx;
+  background: #FF4752;
+  font-size: 24rpx;
+  line-height: 0;
+  padding: 16rpx 14rpx;
+  border-radius: 16rpx;
+  color: #fff;
+}
+.go-cart-btn image{
+  width: 114rpx;
+  height: 114rpx;
+}

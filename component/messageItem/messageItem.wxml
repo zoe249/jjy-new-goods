@@ -1,0 +1,110 @@
+<block wx:if='{{newstype==841||newstype==843||newstype==201}}'>
+<!-- 会员动态、我的资产、互动评论 -->
+<view class="news-index-container member-dynamic-container">
+  <view class="news-item"  catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{item}}">
+      <view class="news-head-container">
+          <view class="news-title span">{{item.title}}</view>
+          <view class="news-time span">{{item.sendDateStr}}</view>
+      </view>
+      <view class="news-content"><view class='span'>{{item.content}}</view></view>
+      <view class="look-news-detail">查看详情</view>
+  </view>
+</view>
+</block>
+<block wx:elif='{{newstype==1662}}'>
+<view class="news-index-container future-planet-container">
+  <view class="news-item"  catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{item}}">
+     <!-- 未来星球 -->
+    <view class="news-head-container">
+        <view class="news-title span">{{item.title}}</view>
+        <view class="news-time span">{{item.sendDateStr}}</view>
+    </view>
+    <view class="news-content">
+        <view class="goods-image span" style="background-image: url({{item.picture||'https://shgm.jjyyx.com/m/images/yunguo/picmaimai.png'}});"></view>
+        <view class="goods-name span">{{item.content}}</view>
+    </view>
+    <view class="look-news-detail">查看详情</view>
+  </view>
+</view>
+</block>
+<block wx:elif='{{newstype==842||newstype==200}}'>
+<view class="news-index-container goods-remind-container">
+  <view class="news-item" catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{item}}">
+     <!-- 商品提醒、订单通知 -->
+        <view class="news-head-container">
+            <view class="news-title span">{{item.title}}</view>
+            <view class="news-time span">{{item.sendDateStr}}</view>
+        </view>
+        <view class="news-content">
+            <view class="goods-image span" style="background-image: url({{item.picture?item.picture:''}});"></view>
+            <view class="goods-name span">{{item.content}}</view>
+        </view>
+        <view class="look-news-detail">查看详情</view>
+  </view>
+</view>
+</block>
+<block wx:elif='{{newstype==202}}'>
+<view class="news-index-container promotion-container">
+  <!-- 优惠促销 -->
+    <block wx:if='{{item.newsItemOutputList.length == 1}}'>
+      <view class="news-item"  catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{item.newsItemOutputList[0]}}">
+        <view class="news-head-container">
+          <view class="news-title span">{{item.newsItemOutputList[0].title}}</view>
+          <view class="news-time span">{{item.sendDateStr}}</view>
+        </view>
+        <view class="news-content-head" style="background-image: url({{item.newsItemOutputList[0].picture?item.newsItemOutputList[0].picture:''}});">
+          <block wx:if='{{item.newsItemOutputList[0].isEnd}}'><view class="bottom-bg no-children-promotion"><view class='span'>活动结束</view></view></block>
+        </view>
+        <view class="news-content one-news-content">
+            <view class='span'>{{item.newsItemOutputList[0].content}}</view>
+        </view>
+        <view class="look-news-detail">查看详情</view>
+      </view>
+    </block>
+    <block wx:elif='{{item.newsItemOutputList.length > 1}}'>
+      <view class="news-item"><view class="news-head-container"><view class="news-time span">{{item.sendDateStr}}</view></view>
+        <block wx:for='item.newsItemOutputList' wx:for-item='childItem' wx:for-index='i' wx:key='{{childItem}}'>
+          <block wx:if='{{i==0}}'>
+          <view class="news-content-head" style="background-image: url({{childItem.picture?childItem.picture:''}});" catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{childItem}}">
+                <view class="bottom-bg"><view class='span'> {{childItem.content}}</view></view>
+            </view>
+          </block>
+        </block>
+        <view class="promotion-children-list-container">
+        <block wx:for='item.newsItemOutputList' wx:for-item='childItem' wx:for-index='i' wx:key='{{childItem}}'>
+          <block wx:if='{{i!=0}}'>
+              <view class="promotion-children-item" catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{childItem}}">
+                  <view class="promotion-children-item-title">{{childItem.content}}</view>
+                  <view class="promotion-children-item-head" style="background-image: url({{childItem.picture?childItem.picture:''}});"></view>
+              </view>
+          </block>
+        </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+<block wx:elif='{{newstype==203}}'>
+<view class="news-index-container service-bulletin-container">
+  <view class="news-item"  catchtap='goGoods' data-newstype='{{newstype}}' data-item="{{item}}">
+     <!-- 服务公告 -->
+    <view class="news-head-container{{item.picture?' no-border-bottom':''}}">
+        <view class="news-title span">{{item.title}}</view>
+        <view class="news-time span">{{item.sendDateStr}}</view>
+    </view> 
+    <block wx:if='{{item.picture}}'>
+      <view class="news-content-head" style="background-image: url({{item.picture}});"></view>
+      <view class="news-content one-news-content"><view class='span'>{{item.content}}</view></view>
+    </block>
+    <block wx:else><view class="news-content"><view class="notice-text span">{{item.content}}</view></view></block>
+    <view class="look-news-detail">查看详情</view>
+  </view>
+</view>
+</block>
+
+
+
+
+
+
+

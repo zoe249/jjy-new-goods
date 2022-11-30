@@ -1,0 +1,2130 @@
+/* pages/groupBuy/groupBuyDetail/groupBuyDetail.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.paddingfoot {
+  width: 100%;
+  height: 120rpx;
+}
+
+.draw-code-all {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-code-all .cnt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+
+.draw-code-all .cnt .title {
+  margin: 30rpx auto;
+  width: 192rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 32rpx;
+  color: #fff;
+  background-color: #d4b871;
+  text-align: center;
+}
+
+.draw-code-all .cnt .ul {
+}
+
+.draw-code-all .cnt .ul .li {
+  width: 400rpx;
+  text-align: center;
+  background-color: #f8f8f8;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  color: #94969c;
+  margin: 0 auto 16rpx;
+}
+
+/* 社区二维码 */
+
+.download-share-code {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.download-share-code .share-code-cnt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 656rpx;
+  background: #fff;
+  padding: 0rpx;
+  border-radius: 0rpx;
+}
+
+.download-share-code .share-code-cnt .share-code-image {
+  width: 100%;
+}
+
+.download-share-code .share-code-cnt .share-code-image image {
+  width: 100%;
+  min-height: 100rpx;
+}
+
+.download-share-code .share-code-cnt .share-code-btn {
+  position: absolute;
+  bottom: 48rpx;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  padding: 0rpx 48rpx 0;
+  width: 100%;
+  /* box-shadow: 0 0 10rpx rgba(230, 230, 230, 1); */
+}
+
+.download-share-code .share-code-cnt .share-code-btn .btn-close {
+  flex: 1;
+  background-color: #fff;
+}
+
+.download-share-code .share-code-cnt .share-code-btn .btn-download {
+  background-color: #fff;
+  flex: 1;
+  color: #FF4752;
+}
+
+/* 帮帮团团员列表 */
+
+.member-list-dialog-containerHelp {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 670rpx;
+  background: #fff;
+  padding: 50rpx 64rpx 90rpx;
+  border-radius: 10rpx;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .close-btnHelp {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-header-containerHelp {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-header-containerHelp:after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-header-containerHelp .grouper-head-imageHelp {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-head-nameHelp {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .join-group-timeHelp {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-list-containerHelp {
+  margin-top: 36rpx;
+  width: 100%;
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.member-list-dialog-containerHelp .member-list-containerHelp .grouper-list-containerHelp .grouper-item-containerHelp {
+  position: relative;
+  width: 100%;
+  height: 122rpx;
+  padding: 32rpx 0 0 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grouper-item-containerHelp .header-containerHelp {
+  position: absolute;
+  left: 0;
+  top: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.grouper-item-containerHelp .header-containerHelp .headerHelp {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-item-containerHelp .member-item-nameHelp {
+  font-size: 24rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.grouper-item-containerHelp .join-box-timeHelp {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+  display: -webkit-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.grouper-item-containerHelp .join-timeHelp {
+}
+
+.member-list-dialog-containerHelp .grouper-desHelp {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #d4b871;
+  padding: 0 0 40rpx;
+  line-height: 30rpx;
+  height: 70rpx;
+}
+
+.member-list-dialog-containerHelp .grouper-desHelp::after {
+  content: '';
+  position: absolute;
+  top: 15rpx;
+  right: 64rpx;
+  width: 110rpx;
+  height: 1rpx;
+  background-color: #ededed;
+}
+
+.member-list-dialog-containerHelp .grouper-desHelp::before {
+  content: '';
+  position: absolute;
+  top: 15rpx;
+  left: 64rpx;
+  width: 110rpx;
+  height: 1rpx;
+  background-color: #ededed;
+}
+
+.no-grouper-msgHelp {
+  margin-top: 72rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+/* <!-- 抽奖团的中奖信息 --> */
+
+.draw-member-list {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.draw-member-list .draw-member-cnt {
+  position: absolute;
+  top: 10%;
+  left: 40rpx;
+  width: 670rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+
+.draw-member-list .draw-member-cnt .close-btn {
+  z-index: 99;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+  background-size: contain;
+}
+
+.draw-member-list .draw-member-cnt .box {
+  padding: 0 0 0;
+}
+
+.draw-member-list .draw-member-cnt .draw-head {
+  padding: 48rpx 0 0rpx;
+  text-align: center;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .photo {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: 144rpx;
+  height: 144rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .photo image {
+  width: 144rpx;
+  height: 144rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50%;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .photo .tag {
+  background-color: #FF4752;
+  width: 56rpx;
+  line-height: 24rpx;
+  font-size: 18rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 12rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .name {
+  padding: 10rpx 0 0;
+  color: #999;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .draw-time {
+  color: #999;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-head .draw-name {
+  color: #444;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  padding: 10rpx 0 0;
+}
+
+.draw-member-list .draw-member-cnt .draw-my {
+  padding: 10rpx 64rpx;
+  max-height: 240rpx;
+  overflow-y: auto;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .li {
+  position: relative;
+  padding: 20rpx 0rpx 20rpx 100rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .li .photo {
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .li .photo image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .text1-box {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .text1-box .text {
+  max-width: 350rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-my .text2-box {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box {
+  position: relative;
+  padding: 0 0 70rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .draw-title {
+  position: relative;
+  padding: 20rpx 64rpx;
+  height: 80rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .draw-title .title {
+  position: relative;
+  width: 192rpx;
+  line-height: 40rpx;
+  border: 1rpx solid #d4b871;
+  background-color: #d4b871;
+  margin: 0 auto;
+  font-size: 24rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .draw-title::after {
+  content: '';
+  position: absolute;
+  width: 144rpx;
+  height: 1rpx;
+  background-color: #ededed;
+  top: 40rpx;
+  left: 64rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .draw-title::before {
+  content: '';
+  position: absolute;
+  width: 144rpx;
+  height: 1rpx;
+  background-color: #ededed;
+  top: 40rpx;
+  right: 64rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list {
+  max-height: 240rpx;
+  padding: 0 64rpx 20rpx;
+  overflow-y: auto;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .li {
+  position: relative;
+  padding: 20rpx 0rpx 20rpx 100rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .li .photo {
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .li .photo image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .text1-box {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .text1-box .text {
+  max-width: 350rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .one-list .text2-box {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .toggle-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .toggle-btn .arrow-top {
+  position: absolute;
+  top: 16rpx;
+  left: 326rpx;
+  width: 20rpx;
+  height: 20rpx;
+  text-align: center;
+  font-size: 0rpx;
+  color: #999;
+  line-height: 0rpx;
+  border: 4rpx solid #ededed;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  -webkit-transform: rotate3d(0, 0, 1, 135deg);
+  transform: rotate3d(0, 0, 1, 135deg);
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .toggle-btn::before {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 64rpx;
+  width: 230rpx;
+  height: 1rpx;
+  background-color: #ededed;
+}
+
+.draw-member-list .draw-member-cnt .draw-one-box .toggle-btn::after {
+  content: '';
+  position: absolute;
+  right: 64rpx;
+  top: 20rpx;
+  width: 230rpx;
+  height: 1rpx;
+  background-color: #ededed;
+}
+
+/* 抽奖团 */
+
+.draw-group-box {
+}
+
+.draw-group-box .draw-group-head {
+  padding: 32rpx;
+  text-align: center;
+}
+
+.draw-group-head .draw-success-title {
+  padding: 112rpx 0 0;
+  font-size: 32rpx;
+  color: #444;
+  line-height: 60rpx;
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/ico-success-right.png') no-repeat center top;
+  background-size: 98rpx auto;
+}
+
+.draw-group-head .draw-success-des {
+  padding: 10rpx 0rpx 20rpx;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  color: #94969c;
+}
+
+.draw-group-success .draw-success-btn {
+  width: 464rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  margin: 0 auto;
+  border-radius: 36rpx;
+  color: #fff;
+  background-color: #FF4752;
+  font-size: 32rpx;
+}
+
+.draw-group-ing {
+  padding: 0rpx 0 0;
+}
+
+.draw-group-ing .draw-ing-title {
+  font-size: 24rpx;
+  color: #313031;
+  line-height: 32rpx;
+}
+
+.draw-group-ing .draw-ing-title .time {
+  font-size: 24rpx;
+  color: #313031;
+  line-height: 32rpx;
+  color: #fff;
+  background-color: #313031;
+  display: inline-block;
+  padding: 0 4rpx;
+  margin: 0 5rpx;
+}
+
+.draw-group-ing .draw-ing-des {
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 24rpx 0 0;
+}
+
+.draw-group-ing {
+  line-height: 40rpx;
+  color: #94969c;
+  font-size: 30rpx;
+}
+
+.draw-group-portrait {
+  padding: 0;
+  text-align: center;
+}
+
+.draw-group-portrait .draw-portrait-li {
+  display: inline-block;
+  padding: 44rpx 0;
+  margin: 0 10rpx;
+  vertical-align: top;
+  width: 100rpx;
+  height: 146rpx;
+  position: relative;
+}
+
+.draw-group-portrait .draw-portrait-li image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center;
+  background-size: 100%;
+}
+
+.draw-group-portrait .draw-portrait-li .draw-portrait-no {
+  background: url('https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png') no-repeat center;
+  background-size: 100%;
+}
+
+.draw-group-portrait .draw-portrait-li .draw-tag-red {
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  color: #fff;
+  background-color: #FF4752;
+  font-size: 18rpx;
+  border-radius: 12rpx;
+}
+
+.draw-group-portrait .draw-portrait-li .draw-tag-oragin {
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  color: #fff;
+  background-color: #d4b871;
+  font-size: 18rpx;
+  border-radius: 12rpx;
+}
+
+.draw-cnt {
+  border-top: 16rpx solid #f4f4f4;
+  padding: 20rpx 0 0;
+}
+
+.draw-cnt .draw-cnt-des {
+  padding: 20rpx 0 50rpx;
+  font-size: 24rpx;
+  color: #444;
+  text-align: center;
+  line-height: 32rpx;
+}
+
+.draw-cnt .draw-cnt-des .draw-cnt-num {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #FF4752;
+  margin: 0 5rpx;
+  line-height: 32rpx;
+}
+
+.draw-cnt .draw-goods {
+  position: relative;
+  padding: 20rpx 32rpx 30rpx 220rpx;
+  min-height: 190rpx;
+}
+
+.draw-cnt .draw-goods .draw-img {
+  position: absolute;
+  top: 15rpx;
+  left: 32rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.draw-cnt .draw-goods .draw-img image {
+  width: 158rpx;
+  height: 158rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: cover;
+  border: 1rpx solid #e7e7e7;
+}
+
+.draw-cnt .draw-goods .draw-title {
+  color: #444;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.draw-cnt .draw-goods .draw-spec {
+  color: #777;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-cnt .draw-goods .draw-date {
+  position: absolute;
+  right: 32rpx;
+  top: 81rpx;
+  color: #777;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-cnt .draw-goods .draw-date .draw-date-item {
+  display: inline-block;
+  padding-left: 20rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code {
+  position: absolute;
+  padding: 26rpx 0 0;
+  font-size: 24rpx;
+  color: #777;
+  line-height: 34rpx;
+  left: 220rpx;
+  bottom: 16rpx;
+  width: 490rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code .award-code-title {
+  position: absolute;
+  right: 0;
+  top: 27rpx;
+  padding: 0 30rpx 0 0;
+  color: #777;
+  font-size: 24rpx;
+  line-height: 34rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code .award-code-title::after {
+  content: '';
+  position: absolute;
+  right: 0rpx;
+  top: 6rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: rotateZ(-135deg);
+  transform: rotateZ(-135deg);
+}
+
+.draw-cnt .draw-goods .draw-award-code .award-code-num {
+  display: inline-block;
+  line-height: 34rpx;
+  color: #94969c;
+  font-size: 20rpx;
+  padding: 0 6rpx 0;
+  background-color: #f8f8f8;
+  margin-left: 10rpx;
+}
+
+.draw-group-receiving {
+  padding: 0 32rpx 0rpx;
+}
+
+.draw-group-receiving .draw-receiving-li {
+  border-top: 1rpx solid #efefef;
+  position: relative;
+}
+
+.draw-group-receiving .draw-receiving-li .draw-receiving-left {
+  color: #777;
+  font-size: 30rpx;
+  line-height: 94rpx;
+}
+
+.draw-group-receiving .draw-receiving-li .draw-receiving-right {
+  position: absolute;
+  right: 0;
+  top: 32rpx;
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  width: 530rpx;
+  text-align: right;
+}
+
+.draw-info {
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.draw-info .draw-rule {
+  position: relative;
+  padding: 0 32rpx;
+  line-height: 96rpx;
+}
+
+.draw-rule-title {
+  color: #313031;
+  font-size: 30rpx;
+  line-height: 96rpx;
+}
+
+.draw-rule-btn {
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  line-height: 96rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 0 28rpx 0 0;
+}
+
+.draw-rule-btn::after {
+  content: '';
+  position: absolute;
+  right: 0rpx;
+  top: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.draw-process-box {
+}
+
+.draw-process-box .draw-process-title {
+  font-size: 24rpx;
+  color: var(--blue);
+  text-align: center;
+  background-color: rgba(15,63,105,0.1);
+  line-height: 48rpx;
+  border-top: 1rpx solid #fafbfc;
+  border-bottom: 1rpx solid #fafbfc;
+}
+
+.draw-process-list {
+  position: relative;
+  padding: 0 32rpx;
+}
+
+.draw-process-ul {
+  padding: 52rpx 0 0rpx;
+  position: relative;
+}
+
+.draw-process-li {
+  width: 110rpx;
+  padding: 88rpx 0;
+  height: 158rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #777;
+  text-align: center;
+  margin: 0 10rpx;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.draw-process-li1::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -4rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.draw-process-li2::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -24rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.draw-process-li3::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -24rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.draw-process-li1 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-process-creat.png') no-repeat left top;
+  background-size: 68rpx auto;
+  margin: 0;
+  text-align: left;
+  text-indent: 10rpx;
+}
+
+.draw-process-li2 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-process-invitate.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-li3 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-proccess-finish.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-li4 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-proccess-prize.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-code {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  width: 200rpx;
+  height: 160rpx;
+  border-left: 1rpx solid #efefef;
+}
+
+.draw-process-code image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.draw-process-code .draw-process-des {
+  width: 150rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin: 20rpx auto 0;
+}
+
+.draw-btn-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0rpx 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.draw-btn-yellow {
+  flex: 1;
+  line-height: 112rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #d4b871;
+}
+
+.draw-btn-red {
+  flex: 1;
+  line-height: 112rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #FF4752;
+}
+
+/* 帮帮团 */
+
+.help-box {
+}
+
+.help-box .help-head {
+  background-color: #FF4752;
+  padding: 15rpx 15rpx 15rpx;
+}
+
+.help-box .help-head .help-head-cnt {
+  width: 720rpx;
+  height: 480rpx;
+  background: #fff url('https://shgm.jjyyx.com/m/images/joinGroup/help-bg.png') no-repeat center top;
+  background-size: 100% auto;
+  padding: 0 16rpx;
+}
+
+.help-box .help-head .help-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 128rpx;
+  padding: 16rpx 0 0;
+}
+
+.help-box .help-head .help-img-wrap image {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center;
+  background-size: 100%;
+}
+
+.help-box .help-head .help-name {
+  text-align: center;
+  line-height: 48rpx;
+  color: #313031;
+  font-size: 30rpx;
+}
+
+.help-box .help-head .help-des {
+  padding: 10rpx 0 20rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 32rpx;
+  color: #313031;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.help-goods {
+  padding: 16rpx 0 0 226rpx;
+  position: relative;
+  height: 190rpx;
+}
+
+.help-goods .help-goods-img {
+  position: absolute;
+  top: 16rpx;
+  left: 18rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.help-goods .help-goods-img image {
+  width: 178rpx;
+  height: 178rpx;
+  background: url('https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418') no-repeat center;
+  background-size: 100%;
+  border: 1rpx solid #e7e7e7;
+}
+
+.help-goods-title {
+  color: #444;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  max-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.help-goods-saleprice {
+  line-height: 46rpx;
+  color: #777;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.help-goods-des {
+  position: absolute;
+  bottom: 0;
+  left: 226rpx;
+}
+
+.help-goods-des .help-goods-price {
+  display: inline-block;
+  color: #FF4752;
+  font-size: 32rpx;
+}
+
+.help-goods-des .help-goods-people {
+  display: inline-block;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.help-status {
+  padding: 30rpx;
+  text-align: center;
+}
+
+.help-status .help-status-ing {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status .help-status-ing .time {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  background-color: #707070;
+  padding: 0 2rpx;
+  margin: 0 4rpx;
+}
+
+.help-status .help-status-ing .num-box {
+  display: inline-block;
+  padding-left: 24rpx;
+}
+
+.help-status .help-status-ing .num {
+  color: #FF4752;
+  display: inline-block;
+  margin: 0 4rpx;
+  font-size: 26rpx;
+}
+
+.help-status .help-status-fail {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status .help-status-des {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status-img {
+  text-align: center;
+  padding: 0rpx 0 0;
+}
+
+.help-status-img .portrait-has image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+
+.help-status-img .portrait-has {
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  width: 96rpx;
+  height: 136rpx;
+  margin: 0rpx 10rpx 0;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center;
+  background-size: 100% auto;
+  padding: 20rpx 0;
+}
+
+.help-status-img .portrait-no {
+  vertical-align: top;
+  display: inline-block;
+  width: 96rpx;
+  height: 136rpx;
+  margin: 0rpx 10rpx 0;
+  background: url('https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png') no-repeat center 30rpx;
+  background-size: 100% auto;
+}
+
+.help-status-img .portrait-has .portrait-shafa {
+  position: absolute;
+  right: 0;
+  top: 20rpx;
+  color: #fff;
+  background-color: #d4b871;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  font-size: 20rpx;
+  border-radius: 12rpx;
+}
+
+.help-info {
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.help-info .help-rule {
+  position: relative;
+  padding: 0 32rpx;
+  line-height: 96rpx;
+}
+
+.help-rule-title {
+  color: #313031;
+  font-size: 30rpx;
+  line-height: 96rpx;
+}
+
+.help-rule-btn {
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  line-height: 96rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 0 28rpx 0 0;
+}
+
+.help-rule-btn::after {
+  content: '';
+  position: absolute;
+  right: 0rpx;
+  top: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.help-process-box {
+}
+
+.help-process-box .help-process-title {
+  font-size: 24rpx;
+  color: var(--blue);
+  text-align: center;
+  background-color: rgba(15,63,105,0.1);
+  line-height: 48rpx;
+  border-top: 1rpx solid #fafbfc;
+  border-bottom: 1rpx solid #fafbfc;
+}
+
+.help-process-list {
+  position: relative;
+  padding: 0 32rpx;
+}
+
+.help-process-ul {
+  padding: 32rpx 0;
+  position: relative;
+}
+
+.help-process-li {
+  width: 110rpx;
+  padding: 88rpx 0;
+  height: 158rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #777;
+  text-align: center;
+  margin: 0 10rpx;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.help-process-li1::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -4rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.help-process-li2::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -24rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.help-process-li3::after {
+  content: '';
+  position: absolute;
+  top: 40rpx;
+  right: -24rpx;
+  width: 32rpx;
+  height: 1rpx;
+  background-color: #cecece;
+}
+
+.help-process-li1 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-process-creat.png') no-repeat left top;
+  background-size: 68rpx auto;
+  margin: 0;
+  text-align: left;
+  text-indent: 10rpx;
+}
+
+.help-process-li2 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-process-invitate.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-li3 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-proccess-finish.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-li4 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-process-prize.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-code {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  width: 200rpx;
+  height: 160rpx;
+  border-left: 1rpx solid #efefef;
+}
+
+.help-process-code image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.help-process-code .help-process-des {
+  width: 150rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin: 20rpx auto 0;
+}
+
+.help-group-receiving {
+  padding: 0 32rpx 20rpx;
+}
+
+.help-group-receiving .help-receiving-li {
+  border-top: 1rpx solid #efefef;
+  position: relative;
+}
+
+.help-group-receiving .help-receiving-li .help-receiving-left {
+  color: #777;
+  font-size: 30rpx;
+  line-height: 94rpx;
+}
+
+.help-group-receiving .help-receiving-li .help-receiving-right {
+  position: absolute;
+  right: 0;
+  top: 32rpx;
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  width: 530rpx;
+  text-align: right;
+}
+
+.help-btn-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0rpx 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.help-btn-box .help-btn-red {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #FF4752;
+}
+
+.help-btn-box .help-btn-oragin {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #d4b871;
+}
+
+.help-btn-box .help-btn-gray {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #e7e7e7;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 商品 */
+.group-goods-wrap{
+  background: var(--white);
+}
+.group-goods-wrap-top{
+  display: flex;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: var(--gray);
+  padding: 32rpx;
+}
+.group-goods-wrap-img{
+  width: 208rpx;
+  height: 208rpx;
+  background: var(--bgGrayWhiteLight);
+}
+.group-goods-wrap-img image{
+  width: 208rpx;
+  height: 208rpx;
+}
+.group-goods-wrap-info{
+  flex: 1;
+  padding: 16rpx 0 16rpx 16rpx;
+  color: var(--gray);
+}
+.group-goods-wrap-name{
+  height: 42rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color:var(--black);
+}
+.group-goods-wrap-ds{
+  height: 28rpx;
+  margin-top: 6rpx;
+}
+.group-goods-wrap-o-price{
+  height: 28rpx;
+  margin-top: 4rpx;
+  font-size: 20rpx;
+}
+.group-goods-wrap-o-price text{
+  text-decoration: line-through;
+}
+
+.group-goods-wrap-need{
+  height: 28rpx;
+  margin-top: 6rpx;
+  text-align: right;
+}
+.group-goods-wrap-tatal{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6rpx;
+  height: 42rpx;
+}
+.group-goods-wrap-num{
+  height: 28rpx;
+}
+.group-goods-wrap-price{
+  height: 42rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: var(--red);
+}
+.group-goods-wrap-bottom{
+  display: flex;
+  color: var(--black);
+  padding: 30rpx 0;
+  margin: 0 32rpx;
+}
+.group-goods-wrap-tips{
+  width: 64rpx;
+  height: 32rpx;
+  font-size: 20rpx;
+  background: var(--blue);
+  color:#fff;
+  text-align: center;
+  border-radius: 16rpx;
+}
+.group-goods-wrap-tips-info{
+  flex: 1;
+  font-size: 24rpx;
+  color: var(--gray);
+  padding-left: 32rpx;
+}
+
+.unfinish-header-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0 32rpx;
+  background: #fff;
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.unfinish-header-container .surplus-time-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unfinish-header-container .surplus-time-container .surplus-time-msg {
+  font-size: 26rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.unfinish-header-container .share-arrow {
+  position: absolute;
+  top: 20rpx;
+  right: 130rpx;
+  width: 102rpx;
+  height: 140rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/share_arrow.png") no-repeat center;
+  background-size: contain;
+}
+.unfinish-header-container .need-join-msg-container {
+  margin-top: 32rpx;
+  color: var(--gray);
+}
+
+.unfinish-header-container .need-join-msg-container .need-msg {
+  font-size: 24rpx;
+  line-height: 1;
+  /* color: #777; */
+}
+
+.unfinish-header-container .need-join-msg-container .need-num {
+  font-size: 24rpx;
+  line-height: 1;
+}
+
+.unfinish-header-container .need-join-msg-container {
+  margin-top: 40rpx;
+}
+
+.unfinish-header-container .need-join-msg-container .need-msg {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #777;
+}
+
+.unfinish-header-container .need-join-msg-container .need-num {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #FF4752;
+}
+
+.unfinish-header-container .grouper-list-container {
+  margin-top: 16rpx;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  width: 100%;
+  padding: 0 32rpx;
+}
+
+
+.grouper-list-container .grouper-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-default-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-item .member-photo {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-list-container .grouper-item:nth-child(1):after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.grouper-list-container .grouper-item:nth-child(2):after {
+  content:'沙发';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#CBAD7E;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+/** 拼团成功 */
+
+.finish-header-container {
+  width: 100%;
+}
+.finish-header-container .finish-header-top-container{
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  padding: 32rpx 0;
+  margin-top: 16rpx;
+}
+.finish-header-container  .need-join-msg-container{
+  padding: 48rpx 0 32rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  background: #fff;
+}
+.finish-header-container .success-icon {
+  width: 114rpx;
+  height: 114rpx;
+  background: url("https://shgm.jjyyx.com/m/images/kexuan/icon_duigou.png") no-repeat center;
+  background-size: contain;
+}
+
+.finish-header-container .success-msg {
+  margin-top: 24rpx;
+  font-size: 30rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.finish-header-container .send-msg {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #777;
+  line-height: 1;
+}
+
+.finish-header-container .create-new-group {
+  margin-top: 50rpx;
+  padding: 36rpx 74rpx;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 0;
+  background: #FF4752;
+}
+
+.finish-header-container .grouper-list-container {
+  width: 750rpx;
+  /* margin-top: 24rpx; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 0 32rpx;
+  background: #fff;
+  border-top: 16rpx solid #f4f4f4;
+}
+
+/* .finish-header-container  .need-join-msg-container{
+  padding: 48rpx 0 32rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  background: #fff;
+}
+
+.finish-header-container .success-icon {
+  width: 114rpx;
+  height: 114rpx;
+  background: url("https://shgm.jjyyx.com/m/images/kexuan/icon_duigou.png") no-repeat center;
+  background-size: contain;
+}
+
+.finish-header-container .success-msg {
+  margin-top: 24rpx;
+  font-size: 30rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.finish-header-container .send-msg {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #777;
+  line-height: 1;
+}
+
+.finish-header-container .create-new-group {
+  margin-top: 50rpx;
+  padding: 36rpx 74rpx;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 0;
+  background: #ff4752;
+} */
+
+
+.group-msg-list-container {
+  border-top: 16rpx solid #f4f4f4;
+  border-bottom: 16rpx solid #f4f4f4;
+  background: #fff;
+}
+
+.group-msg-item-container {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid #ededed;
+  padding: 0 32rpx;
+}
+
+.group-msg-item-container .item-name {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #4e4e4e;
+  line-height: 1;
+}
+
+.group-msg-item-container .item-detail {
+  flex: 1;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-msg-item-container.has-link:after {
+  content: '';
+  display: inline-block;
+  width: 21.2rpx;
+  height: 21.2rpx;
+  border-top: 1rpx solid #999;
+  border-right: 1rpx solid #999;
+  transform-origin: 50% 50%;
+  transform: rotate(45deg);
+  margin-left: 16rpx;
+}
+
+.footer-contaienr {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer-contaienr .more-group {
+  flex: 1;
+  background: #d4b871;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.footer-contaienr .share-friends {
+  flex: 1;
+  background: #FF4752;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.member-list-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-list-dialog-container .member-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 670rpx;
+  background: #fff;
+  padding: 70rpx 132rpx;
+  border-radius: 10rpx;
+}
+
+.member-list-dialog-container .member-list-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container:after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container .group-head-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-list-dialog-container .member-list-container .group-head-name {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.member-list-dialog-container .member-list-container .join-group-time {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container {
+  margin-top: 36rpx;
+  width: 100%;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container .grouper-item-container {
+  position: relative;
+  width: 100%;
+  height: 122rpx;
+  padding: 32rpx 0 0 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grouper-item-container .header-container {
+  position: absolute;
+  left: 0;
+  top: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.grouper-item-container .header-container .header {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-item-container .member-item-name {
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.grouper-item-container .join-time {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.no-grouper-msg {
+  margin-top: 72rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.share-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transform: translate3d(0, 0, 100rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container {
+  position: relative;
+  width: 670rpx;
+  padding: 70rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container .share-header {
+  font-size: 32rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.share-dialog-container .share-info-container .share-msg-container {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.share-dialog-container .share-info-container .share-msg-container.mgt-30 {
+  margin-top: 30rpx;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .black {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .gray {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.share-dialog-container .share-info-container .share-btn-container {
+  padding-top: 68rpx;
+}
+
+.share-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.share-btn-container .share-item-container {
+  width: 148rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-btn-container .share-item-container .share-btn {
+  width: 100rpx;
+  height: 100rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.share-btn-container .share-item-container .share-btn:after {
+  border: none;
+}
+
+.share-btn-container .share-item-container .share-btn .share-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.share-btn-container .share-item-container .share-msg-container {
+  margin-top: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.share-btn-container .share-item-container .share-msg-container .share-msg {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #444;
+  text-align: center;
+}
+
+.share-dialog-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/close_dialog_btn.png") no-repeat center;
+  background-size: contain;
+}
+
+.share-canvas {
+  position: absolute;
+  left: 0;
+  top: -99999rpx;
+  width: 1500rpx;
+  height: 2668rpx;
+  z-index: -1;
+  transform: translate3d(0, 0, -1000rpx);
+}

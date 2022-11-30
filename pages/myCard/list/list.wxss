@@ -1,0 +1,341 @@
+
+.card-list-container {
+
+}
+
+.card-list-container .card-list {
+
+}
+
+.card-list-container .card-list .card-item {
+  position: relative;
+  margin: 30rpx auto;
+  width: 686rpx;
+  height: 268rpx;
+  background: #fff no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #999;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, .1);
+  text-shadow: 0 0 2rpx rgba(0, 0, 0, .1);
+}
+
+.card-list-container .card-list .card-item.card-has-bind,
+.card-list-container .card-list .card-item.card-invalid {
+  width: 686rpx;
+  height: 184rpx;
+}
+.card-list-container .card-list .card-item.card-activated {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard0.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-100 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard0.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-200 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard0.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-300 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard0.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-500 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard1.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-1000 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard2.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated.card-value-5000 {
+  background: url("https://shgm.jjyyx.com/m/images/chuzhicard2.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.card-list-container .card-list .card-item.card-activated {
+
+}
+
+.card-list-container .card-list .card-item.card-activated .card-status {
+  background: url("https://shgm.jjyyx.com/m/images/myCard/yijihuo%402x.png") no-repeat 0 0;
+  background-size: contain;
+}
+
+.card-list-container .card-list .card-item.card-has-bind {
+
+}
+
+.card-list-container .card-list .card-item.card-has-bind .card-status {
+  background: url("https://shgm.jjyyx.com/m/images/myCard/yibangding%402x.png") no-repeat 0 0;
+  background-size: contain;
+}
+
+.card-list-container .card-list .card-item.card-has-bind .btn-copy,
+.card-list-container .card-list .card-item.card-has-bind .btn-group{
+  display: none;
+}
+
+.card-list-container .card-list .card-item.card-invalid {
+
+}
+
+.card-list-container .card-list .card-item.card-invalid .card-status {
+  background: url("https://shgm.jjyyx.com/m/images/myCard/yishixiao%402x.png") no-repeat 0 0;
+  background-size: contain;
+}
+
+.card-list-container .card-list .card-item.card-invalid .btn-copy,
+.card-list-container .card-list .card-item.card-invalid .btn-group {
+  display: none;
+}
+
+.card-list-container .card-list .card-item .card-value {
+  position: absolute;
+  left: 50rpx;
+  top: 26rpx;
+  width: 480rpx;
+  /*height: 68rpx;*/
+}
+
+.card-list-container .card-list .card-item .card-value .unit {
+  font-size: 40rpx;
+  line-height: 40rpx;
+}
+
+.card-list-container .card-list .card-item .card-value .number {
+  font-size: 90rpx;
+  line-height: 90rpx;
+}
+
+.card-list-container .card-list .card-item .card-sn {
+  position: absolute;
+  left: 50rpx;
+  top: 126rpx;
+  width: 293rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  font-size: 26rpx;
+  opacity: .6;
+}
+
+.card-list-container .card-list .card-item .card-status {
+  position: absolute;
+  right: 50rpx;
+  top: 0rpx;
+  width: 106rpx;
+  height: 76rpx;
+  /*background: url("https://shgm.jjyyx.com/m/images/myCard/yijihuo%402x.png") no-repeat 0 0;
+  background-size: contain;*/
+}
+
+/*.card-list-container .card-list .card-item .btn-copy {
+  position: absolute;
+  right: 50rpx;
+  top: 127rpx;
+  width: 183rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  text-align: center;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 16rpx;
+}*/
+
+.card-list-container .card-list .card-item .btn-group {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.card-list-container .card-list .card-item .btn-group .btn-bind,
+.card-list-container .card-list .card-item .btn-group .btn-share {
+  flex: 1;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.card-list-container .card-list .card-item .btn-group .btn-bind {
+  background: rgba(255, 255, 255, .2);
+}
+
+.card-list-container .card-list .card-item .btn-group .btn-share {
+  background: rgba(255, 255, 255, .3);
+}
+
+/**
+ * 模态框中的自定义内容样式
+ */
+.cardInfo {
+  margin: 0 60rpx 40rpx;
+}
+
+.card-num,
+.card-val {
+  font-size: 28rpx;
+  color: #777;
+}
+.card-val {
+  margin-top: 20rpx;
+}
+
+/**
+ * 分享确认蒙层
+ */
+.card-share-container {}
+
+.card-share-container .card-share-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.card-share-container .btn-close {
+  position: fixed;
+  left: 50%;
+  top: 78.2608696%;
+  transform: translate3d(-50%, 0, 0);
+  z-index: 1002;
+  width: 60rpx;
+  height: 60rpx;
+  background: url("https://shgm.jjyyx.com/m/images/myCard/close%402x.png") no-repeat 0 0;
+  background-size: 100% 100%;
+}
+
+.card-share-container .card-share-content {
+  position: fixed;
+  left: 50%;
+  top: 46.9265367%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 1001;
+  width: 686rpx;
+  overflow: hidden;
+  border-radius: 20rpx;
+  box-shadow: 0 0 40rpx rgba(0, 0, 0, .1);
+}
+
+.card-share-container .card-share-content .card-item {
+  position: relative;
+  width: 686rpx;
+  height: 400rpx;
+  background: url("https://shgm.jjyyx.com/m/images/myCard/share_card_bg_win.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  color: #fff;
+  letter-spacing: 2rpx;
+  text-shadow: 0 0 2rpx rgba(0, 0, 0, .2);
+}
+
+.card-share-container .card-share-content .card-item .card-value {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  top: 156rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.card-share-container .card-share-content .card-item .card-value .unit,
+.card-share-container .card-share-content .card-item .card-value .number {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.card-share-container .card-share-content .card-item .card-value .unit {
+  font-size: 60rpx;
+  line-height: 60rpx;
+  margin-right: 5rpx;
+  vertical-align: 2rpx;
+}
+
+.card-share-container .card-share-content .card-item .card-value .number {
+  font-size: 136rpx;
+  line-height: 136rpx;
+}
+
+.card-share-container .card-share-content .card-item .card-sn {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  top: 308rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 38rpx;
+  font-size: 38rpx;
+}
+
+.card-share-container .card-share-content .action-container {
+  position: relative;
+  z-index: 2;
+  margin-top: -40rpx;
+  width: 686rpx;
+  height: 316rpx;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/myCard/bg%402x.png") no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.card-share-container .card-share-content .action-container .btn-share {
+  width: 560rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 48rpx;
+  margin: 170rpx auto 0;
+
+  border: 0 none;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #FF4752;
+  color: #fff;
+}
+
+.card-share-container .card-share-content .action-container .btn-share::after {
+  font-size: 28rpx;
+  border: none;
+}
+
+/**
+ * 购卡记录为空
+ */
+.error-box {
+  padding: 40% 0 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+.error-box .error-img {
+  width: 400rpx;
+  height: 400rpx;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.error-box .error-text {
+  padding: 0rpx 0 0;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: #999;
+}

@@ -1,0 +1,86 @@
+<!--component/fullGoodsItem/fullGoodsItem.wxml formType==1 海购-->
+<view class='goods-item {{goods.ratio >=100?"no-buystock":""}}'  catchtap="goGoodsDetail" data-goods="{{goods}}" data-f="{{goods.buyStock}}" data-d="{{goods.totalStock}}" data-from="{{from}}" data-status="{{status}}" data-bi-recrod="403">
+  <view class='goods-image-container'>
+    <image src='{{goods.coverImage}}' class='goods-image'></image>
+  </view>
+
+  <view class='goods-msg-container'>
+    <!-- <block wx:if="{{formType==1}}">
+      <view class="goods-name-container">
+        <block wx:if="{{goods.produceIcon}}">
+          <image src="{{goods.produceIcon}}" class="goods-produce"></image>
+        </block>
+        {{goods.goodsName||""}}
+      </view>
+
+      <view class="discount-container">
+        <block wx:if="{{goods.isFreeFreight || goods.isFreeTax}}">
+          <text class="discount-item">{{goods.isFreeFreight && goods.isFreeTax ? '包邮包税' : goods.isFreeFreight ? '包邮' :
+            goods.isFreeTax ? '包税' : ''}}</text>
+        </block>
+      </view>
+
+    </block>
+    <block wx:else> -->
+    <text class='goods-name'>{{goods.shortTitle||goods.goodsName||""}}</text>
+    <text class='goods-tag'>{{goods.goodsTag || ''}}</text>
+    <view class='goods-price-box'>
+      <!-- <block wx:if="{{formType!=2}}">
+        <view class='prime-price'>市场价
+          <text>￥{{goods.goodsPrimePrice}}</text>
+        </view>
+      </block> -->
+      <view class='sale-price-container'>
+        <!-- <block wx:if="{{formType==1 || formType==2}}"> -->
+        <view class="cur-sale-price">
+          秒杀价
+          <text class='symbol'>￥</text>
+          <text class='sale-price'>{{goods.goodsPrice}}</text>
+          <text class='sale-unit' wx:if="{{goods.salesUnit}}">/{{goods.salesUnit}}</text>
+        </view>
+
+        <view class='prime-price' wx:if="{{goods.goodsPrice != goods.goodsPrimePrice}}">市场价
+          <text>￥{{goods.goodsPrimePrice}}</text>
+        </view>
+        <!-- </block> -->
+
+      </view>
+    </view>
+
+    <!-- </block> -->
+
+
+    <view class='qianggou-btn-container'>
+      <view class='progress-container'>
+        <block wx:if="{{status == 0}}">
+          <!-- <block wx:if="{{formType == 1}}">
+            <text class='progress-text'>{{goods.buyStock >= goods.totalStock ? '已售罄' :
+              goods.buyStock/goods.totalStock > 85 ? '即将售罄' : goods.buyStock
+              == 0 ? '热卖中' : '已抢'+goods.buyStock+'件'}}</text>
+
+            <progress class='progress' percent="{{100*goods.buyStock/goods.totalStock}}" activeColor="#FF4752" backgroundColor="#FDEBED" border-radius="5rpx"></progress>
+          </block>
+          <block wx:else> -->
+            <text class='progress-text'>{{goods.ratio >= 100 ? '已售罄' : goods.ratio > 85 ? '即将售罄' : goods.ratio == 0 ? '热卖中' : '已抢'+goods.buyStock+'件'}}</text>
+
+            <progress class='progress' percent="{{goods.ratio}}" activeColor="#FF4752" backgroundColor="#FDEBED" border-radius="5rpx"></progress>
+          <!-- </block> -->
+        </block>
+      </view>
+      <block wx:if="{{status == 1}}">
+        <text class='qianggou-btn'>去看看</text>
+      </block>
+      <block wx:else>
+        <block wx:if="{{formType == 1 && goods.buyStock >= goods.totalStock}}">
+          <text class='qianggou-btn sold-out'>已抢光</text>
+        </block>
+        <block wx:elif="{{goods.ratio >= 100}}">
+          <text class='qianggou-btn sold-out'>已抢光</text>
+        </block>
+        <block wx:else>
+          <text class='qianggou-btn' catchtap="goGoodsDetail" data-goods="{{goods}}" data-f="{{goods.buyStock}}" data-d="{{goods.totalStock}}" data-from="{{from}}" data-status="{{status}}" data-bi-recrod="404">立即抢购</text>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

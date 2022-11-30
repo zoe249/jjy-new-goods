@@ -1,0 +1,228 @@
+<import src="/templates/global/global.wxml" />
+
+<block wx:if="{{goodsScopeList.length <= 4}}">
+  <view>
+    <!-- <view class="search-top-container">
+      <form class="search-container {{focusClass}}">
+        <input type="text" value="{{goodsName}}" class="search-input" placeholder="搜索促销商品" focus="{{focusClass}}" confirm-type="search" bindinput="searchInput" bindfocus="searchFocus" bindblur="searchBlur" bindconfirm="doSearch" />
+        <view class="clear-search-btn {{goodsName ? '' : 'hidden'}}" bindtap="clearSearch"></view>
+      </form>
+    </view> -->
+
+    <view class="content">
+      <block wx:if="{{false}}">
+      </block>
+      <block wx:else>
+        <view class="promotion-head-container">
+          <view class='pro-info'>
+            <text class='name'>活动名称：</text>
+            <text class='desc'>{{pageInfo.proDesc}}</text>
+          </view>
+          <view class='pro-info'>
+            <text class='name'>活动时间：</text>
+            <text class='desc'>{{pageInfo.formateProBeginTime}}-{{pageInfo.formateProEndTime}}</text>
+          </view>
+        </view>
+
+        <block wx:if="{{goodsScopeList.length}}">
+          <view class="goods-list-container">
+            <block wx:for="{{goodsScopeList}}" wx:key="goodsId">
+              <component-goods-item goods="{{item.goods}}" from="{{from}}" pro-id="{{promotionData.proId}}"
+                                    bind:change-cart="changeCartCount"></component-goods-item>
+            </block>
+            <block wx:if="{{otherMes == 'noMore'}}">
+              <template is="{{otherMes}}"></template>
+            </block>
+          </view>
+        </block>
+        <block wx:elif="{{otherMes == 'empty'}}">
+          <template is="empty" data="{{...emptyObj}}"></template>
+        </block>
+      </block>
+      <!-- 占位填补底下高度 -->
+          <view style="position:relative;opacity:0;" class="bottom-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+      <view class="bottom-msg-container">
+        <view class="price-container">
+          <text class="price-title">小计：</text>
+          <text class="price-symbol">￥</text>
+          <text class="price-int">{{priceInt}}</text>
+          <block wx:if="{{priceFloat}}">
+            <text class="price-float">.{{priceFloat}}</text>
+          </block>
+        </view>
+        <view class="current-state">{{currentStateMsg}}</view>
+      </view>
+      <block wx:if="{{pageInfo.proType == 288}}">
+        <view class="see-buy-btn">{{lookMarkupGoodsMsg}}</view>
+      </block>
+      <view class="go-cart-btn">去购物车</view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+    </view>
+
+    <view class="bottom-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+      <view class="bottom-msg-container">
+        <view class="price-container">
+          <text class="price-title">小计：</text>
+          <text class="price-symbol">￥</text>
+          <text class="price-int">{{priceInt}}</text>
+          <block wx:if="{{priceFloat}}">
+            <text class="price-float">.{{priceFloat}}</text>
+          </block>
+        </view>
+        <view class="current-state">{{currentStateMsg}}</view>
+      </view>
+      <block wx:if="{{pageInfo.proType == 288}}">
+        <view class="see-buy-btn" bindtap="markupPriceBuy">{{lookMarkupGoodsMsg}}</view>
+      </block>
+      <view class="go-cart-btn" bindtap="linkToCart">去购物车</view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+
+    <block wx:if="{{showMarkupFlag}}">
+      <view class="markup-price-container">
+        <view class="markup-top-container">
+          <text>{{lookMarkupGoodsMsg}}</text>
+          <image src="https://shgm.jjyyx.com/m/images/cart_close.png" mode="aspectFit" class="markup-close-btn" bindtap="closeMarkupDialog"></image>
+        </view>
+        <scroll-view class="markup-mid-container" scroll-y>
+          <block wx:for="{{pageInfo.addPricePromotionList}}" wx:for-item="priceItem" wx:for-index="priceIndex"
+                 wx:key="index">
+            <block wx:for="{{priceItem.goodsList}}" wx:key="goodsId">
+              <view class="markup-goods-item {{priceIndex==0&&index==0?'no-border':''}}" data-goods="{{item.goods}}">
+                <view class="check-icon {{conform == 0 || item.goods.goodsStock <= 0 || item.goods.beyondDelivery == 1 || item.goods.correctDelivery == 0 ? 'disabled' : item.selected ? 'acitve' : ''}}" data-index="{{index}}" data-price-index="{{priceIndex}}" data-item="{{priceItem}}"
+                      data-disabled="{{conform == 0 || item.goods.goodsStock == 0 || item.goods.beyondDelivery == 1 || item.goods.correctDelivery == 0 ? 1 : 0}}" bindtap="selectMarkupGoods"></view>
+                <view class="markup-goods-image" style="background-image: url('{{item.goods.coverImage || 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}')" data-goods="{{item.goods}}" bindtap="goGoodsDetail"></view>
+                <view class="markup-goods-msg-container">
+                  <view class="markup-goods-name">{{item.goods.goodsName}}</view>
+                  <block wx:if="{{item.goodsList.specName}}">
+                    <view class="markup-goods-spec">规格：{{item.goodsList.specName}}</view>
+                  </block>
+                  <view class="markup-goods-price">
+                    <text class="price-symbol">￥</text>
+                    <text class="price">{{priceItem.addPrice}}</text>
+                    <!--             <block wx:if="{{item.goods.salesUnit}}">
+                                   <text class="sales-unit">/{{item.goods.salesUnit}}</text>
+                                 </block>-->
+                    <text class="markup-state">{{item.goods.beyondDelivery==1 ? '超出配送范围' : item.goods.correctDelivery==0 ? '配送方式不支持' : item.goods.goodsStock<=0 ? '已售罄' : '×1'}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </scroll-view>
+        <view class="markup-bottom-container">
+          <view class="check-msg">已换购{{totalSelectedNum}}/1</view>
+          <view class="check-btn" catchtap="selectAddPricePromotion">确定</view>
+        </view>
+      </view>
+    </block>
+
+    <template is="toast" data="{{...toastData}}"></template>
+  </view>
+</block>
+<block wx:else>
+  <scroll-view class="wrapper" scroll-y scroll-top="{{scrollTop}}" bindscrolltolower="getGoodsList" lower-threshold="200"
+               enable-back-to-top>
+
+    <!-- <view class="search-top-container">
+      <form class="search-container {{focusClass}}">
+        <input type="text" value="{{goodsName}}" class="search-input" placeholder="搜索促销商品" focus="{{focusClass}}" confirm-type="search" bindinput="searchInput" bindfocus="searchFocus" bindblur="searchBlur" bindconfirm="doSearch" />
+        <view class="clear-search-btn {{goodsName ? '' : 'hidden'}}" bindtap="clearSearch"></view>
+      </form>
+    </view> -->
+    <view class="content">
+      <block wx:if="{{false}}">
+
+      </block>
+      <block wx:else>
+        <view class="promotion-head-container">
+          <view class='pro-info'>
+            <text class='name'>活动名称：</text>
+            <text class='desc'>{{pageInfo.proDesc}}</text>
+          </view>
+          <view class='pro-info'>
+            <text class='name'>活动时间：</text>
+            <text class='desc'>{{pageInfo.formateProBeginTime}}-{{pageInfo.formateProEndTime}}</text>
+          </view>
+        </view>
+
+        <block wx:if="{{goodsScopeList.length}}">
+          <view class="goods-list-container">
+            <block wx:for="{{goodsScopeList}}" wx:key="goodsId">
+              <component-goods-item goods="{{item.goods}}" from="{{from}}" pro-id="{{promotionData.proId}}"
+                                    bind:change-cart="changeCartCount"></component-goods-item>
+            </block>
+            <block wx:if="{{otherMes == 'noMore'}}">
+              <template is="{{otherMes}}"></template>
+            </block>
+          </view>
+        </block>
+        <block wx:elif="{{otherMes == 'empty'}}">
+          <template is="empty" data="{{...emptyObj}}"></template>
+        </block>
+      </block>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+
+    <view class="bottom-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+      <view class="bottom-msg-container">
+        <view class="price-container">
+          <text class="price-title">小计：</text>
+          <text class="price-symbol">￥</text>
+          <text class="price-int">{{priceInt}}</text>
+          <block wx:if="{{priceFloat}}">
+            <text class="price-float">.{{priceFloat}}</text>
+          </block>
+        </view>
+        <view class="current-state">{{currentStateMsg}}</view>
+      </view>
+      <block wx:if="{{pageInfo.proType == 288}}">
+        <view class="see-buy-btn" bindtap="markupPriceBuy">{{lookMarkupGoodsMsg}}</view>
+      </block>
+      <view class="go-cart-btn" bindtap="linkToCart">去购物车</view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+
+    <block wx:if="{{showMarkupFlag}}">
+      <view class="markup-price-container">
+        <view class="markup-top-container">
+          <text>{{lookMarkupGoodsMsg}}</text>
+          <image src="https://shgm.jjyyx.com/m/images/cart_close.png" mode="aspectFit" class="markup-close-btn" bindtap="closeMarkupDialog"></image>
+        </view>
+        <scroll-view class="markup-mid-container" scroll-y>
+          <block wx:for="{{pageInfo.addPricePromotionList}}" wx:for-item="priceItem" wx:for-index="priceIndex"
+                 wx:key="index">
+            <block wx:for="{{priceItem.goodsList}}" wx:key="goodsId">
+              <view class="markup-goods-item {{priceIndex==0&&index==0?'no-border':''}}" data-goods="{{item.goods}}">
+                <view class="check-icon {{conform == 0 || item.goods.goodsStock <= 0 || item.goods.beyondDelivery == 1 || item.goods.correctDelivery == 0 ? 'disabled' : item.selected ? 'acitve' : ''}}" data-index="{{index}}" data-price-index="{{priceIndex}}" data-item="{{priceItem}}"
+                      data-disabled="{{conform == 0 || item.goods.goodsStock == 0 || item.goods.beyondDelivery == 1 || item.goods.correctDelivery == 0 ? 1 : 0}}" bindtap="selectMarkupGoods"></view>
+                <view class="markup-goods-image" style="background-image: url('{{item.goods.coverImage || 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}')" data-goods="{{item.goods}}" bindtap="goGoodsDetail"></view>
+                <view class="markup-goods-msg-container">
+                  <view class="markup-goods-name">{{item.goods.goodsName}}</view>
+                  <block wx:if="{{item.goodsList.specName}}">
+                    <view class="markup-goods-spec">规格：{{item.goodsList.specName}}</view>
+                  </block>
+                  <view class="markup-goods-price">
+                    <text class="price-symbol">￥</text>
+                    <text class="price">{{priceItem.addPrice}}</text>
+                    <!--             <block wx:if="{{item.goods.salesUnit}}">
+                                   <text class="sales-unit">/{{item.goods.salesUnit}}</text>
+                                 </block>-->
+                    <text class="markup-state">{{item.goods.beyondDelivery==1 ? '超出配送范围' : item.goods.correctDelivery==0 ? '配送方式不支持' : item.goods.goodsStock<=0 ? '已售罄' : '×1'}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </scroll-view>
+        <view class="markup-bottom-container">
+          <view class="check-msg">已换购{{totalSelectedNum}}/1</view>
+          <view class="check-btn" catchtap="selectAddPricePromotion">确定</view>
+        </view>
+      </view>
+    </block>
+
+    <template is="toast" data="{{...toastData}}"></template>
+  </scroll-view>
+</block>

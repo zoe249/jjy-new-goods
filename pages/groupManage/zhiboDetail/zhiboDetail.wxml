@@ -1,0 +1,428 @@
+<!--pages/goods/detail/detail.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<view class="back-zhibo"  catchtap='backzhibo'>返回</view>
+<block wx:if="{{errMsg}}">
+  <template is="empty" data="{{emptyMsg:errMsg,errorImageName:errorImageName, backBtnState, backBtnMsg }}"></template>
+</block>
+<block wx:else>
+  <block wx:if='{{privateShareMemberId}}'><view class='back-home' catchtap='backHome'>首页</view></block>
+  <scroll-view class="wrapper" scroll-y enable-back-to-top>
+    <view class='swiper-container'>
+      <block wx:if="{{goodsDetail.goods.skus[0].skuImages.length}}">
+        <swiper class="goods-imgcover-container" autoplay circular bindchange="swiperChange">
+          <block wx:for="{{goodsDetail.goods.skus[0].skuImages}}" wx:key="*this">
+            <swiper-item>
+              <image src="{{item}}" class="sku-image" mode="aspectFit" catchtap="preImageScale" data-url="{{item}}"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+        <block wx:if="{{goodsDetail.goods.skus[0].skuImages.length != 1}}">
+          <view class="indicator-container">
+            <block wx:for="{{goodsDetail.goods.skus[0].skuImages}}" wx:key="*this">
+              <view class="indicator-item {{currentIndex == index ? 'active' : ''}}"></view>
+            </block>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <image src="https://shgm.jjyyx.com/m/images/detail_goods_b.png?t=418" class="sku-image" mode="widthFix"></image>
+      </block>
+
+      <block wx:if="{{grouperList.length}}">
+        <component-grouper-animation grouper-list="{{grouperList}}"></component-grouper-animation>
+      </block>
+    </view>
+
+    <block wx:if="{{goodsDetail.store.storeType == 1037 && goodsDetail.store.businessStateMsg}}">
+      <view class="hugh-shop-container">
+        <text class="business-state-msg">{{goodsDetail.store.businessStateMsg}}</text>
+      </view>
+    </block>
+    <block wx:elif="{{goodsDetail.goods.skus[0].proType == 1178 || goodsDetail.goods.skus[0].proType == 998}}">
+      <view class='groupQianggou-promotion-container'>
+        <view class='tip'>全场低价 限时疯抢</view>
+        <view class='time-limit-container'>
+          <view class='time-msg'>距结束</view>
+          <view class='time-container'>
+            <block wx:if="{{surplusTime.date}}">
+              <text class='time'>{{surplusTime.date}}</text>
+              <text class='division'>天</text>
+              <text class='time'>{{surplusTime.hour}}</text>
+              <text class='division'>小时</text>
+            </block>
+            <block wx:else>
+              <text class='time'>{{surplusTime.hour}}</text>
+              <text class='division'>:</text>
+              <text class='time'>{{surplusTime.minute}}</text>
+              <text class='division'>:</text>
+              <text class='time'>{{surplusTime.second}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- <block wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proStatus == 1}}">
+        <block
+          wx:if="{{(goodsDetail.store.storeType == 1037 && goodsDetail.goods.skus[0].promotionList[currProIndex].proStock <= 0) || goodsDetail.goods.skus[0].promotionList[currProIndex].ratio >= 100}}">
+          <view class='qianggou-promotion-container sold-out' data-item="{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}" bindtap="goPromotionDetail" data-private-share-member-id="{{privateShareMemberId||''}}">
+            <view class='qianggou-price-container'>
+              <text class='symbol'>￥</text>
+              <text class='price-int'>{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceInt}}</text>
+              <text class='price-float' wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}">.{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}</text>
+              <text class='sales-unit' wx:if="{{goodsDetail.goods.skus[0].salesUnit}}">/{{goodsDetail.goods.skus[0].salesUnit}}</text>
+            </view>
+            <view class='icon-container'>
+              <text class='qianggou-icon'>限时抢</text>
+            </view>
+            <text class='sold-out-msg'>已抢光</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='qianggou-promotion-container qianggou-promotion-containe{{privateShareMemberId?" privateShareMemberId":""}}' data-item="{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}" bindtap="goPromotionDetail" data-private-share-member-id="{{privateShareMemberId||''}}">
+            <view class='qianggou-price-container'>
+              <text class='symbol'>￥</text>
+              <text class='price-int'>{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceInt}}</text>
+              <text class='price-float' wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}">.{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}</text>
+              <text class='sales-unit' wx:if="{{goodsDetail.goods.skus[0].salesUnit}}">/{{goodsDetail.goods.skus[0].salesUnit}}</text>
+            </view>
+            <view class='icon-container'>
+              <text class='qianggou-icon'>限时抢</text>
+            </view>
+            <view class='time-limit-container'>
+              <text class='time-msg'>距结束</text>
+              <view class='time-container'>
+                <block wx:if="{{surplusTime.date}}">
+                  <text class='time'>{{surplusTime.date}}</text>
+                  <text class='division'>天</text>
+                  <text class='time'>{{surplusTime.hour}}</text>
+                  <text class='division'>小时</text>
+                </block>
+                <block wx:else>
+                  <text class='time'>{{surplusTime.hour}}</text>
+                  <text class='division'>:</text>
+                  <text class='time'>{{surplusTime.minute}}</text>
+                  <text class='division'>:</text>
+                  <text class='time'>{{surplusTime.second}}</text>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <view class='qianggou-promotion-container not-begin' data-item="{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}" bindtap="goPromotionDetail" data-private-share-member-id="{{privateShareMemberId||''}}">
+          <text class='qianggou-text'>秒杀价</text>
+          <view class='qianggou-price-container'>
+            <text class='symbol'>￥</text>
+            <text class='price-int'>{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceInt}}</text>
+            <text class='price-float' wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}">.{{goodsDetail.goods.skus[0].promotionList[currProIndex].proPriceFloat}}</text>
+            <text class='sales-unit' wx:if="{{goodsDetail.goods.skus[0].salesUnit}}">/{{goodsDetail.goods.skus[0].salesUnit}}</text>
+          </view>
+          <view class='icon-container'></view>
+          <view class='time-limit-container'>
+            <text class='time-msg'>距开始</text>
+            <view class='time-container'>
+              <block wx:if="{{surplusTime.date}}">
+                <text class='time'>{{surplusTime.date}}</text>
+                <text class='division'>天</text>
+                <text class='time'>{{surplusTime.hour}}</text>
+                <text class='division'>小时</text>
+              </block>
+              <block wx:else>
+                <text class='time'>{{surplusTime.hour}}</text>
+                <text class='division'>:</text>
+                <text class='time'>{{surplusTime.minute}}</text>
+                <text class='division'>:</text>
+                <text class='time'>{{surplusTime.second}}</text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block> -->
+    </block>
+
+    <view class="goods-message-container">
+      <view class="goods-name">{{goodsDetail.goods.skus[0].materielParentName||goodsDetail.goods.skus[0].goodsPromotionName||goodsDetail.goods.skus[0].shortTitle||goodsDetail.goods.goodsName || ''}}</view>
+      <view class="goods-tag">{{goodsDetail.goods.goodsTag || ''}}</view>
+      <!-- 头像 ...附近多少人 -->
+      <view class="nearby-buyers-list">
+        <nearbyBuyers uiconList="{{uiconList}}" totalSalesVolume="{{goodsDetail.goods.totalSalesVolume}}" totalSalesVolumeMsg="{{goodsDetail.goods.totalSalesVolumeMsg}}"></nearbyBuyers>
+      </view>
+    </view>
+    <block wx:if="{{!((goodsDetail.goods.skus[0].proType == 998) && goodsDetail.goods.skus[0].promotionList[currProIndex].proStatus == 1)}}">
+      <view class="price-container">
+        <text class="price-mes">￥</text>
+        <text class="price">{{goodsDetail.goods.skus[0].salePrice}}</text>
+        <block wx:if="{{goodsDetail.goods.skus[0].salesUnit}}">
+          <text class="price-mes salesUnit">/{{goodsDetail.goods.skus[0].salesUnit}}</text>
+        </block>
+        <block wx:if="{{goodsDetail.goods.skus[0].salePrice!=goodsDetail.goods.skus[0].primePrice&&goodsDetail.goods.skus[0].primePrice}}">
+          <text class="prime-price">￥{{goodsDetail.goods.skus[0].primePrice}}</text>
+        </block>
+        <block wx:if='{{goodsDetail.goods.skus[0].proType == 1178 || goodsDetail.goods.skus[0].proType == 998}}'>
+          <view></view>
+        </block>
+        <block wx:if="{{goodsDetail.goods.skus[0].isMember}}">
+          <image class='member-icon' src='https://shgm.jjyyx.com/m/images/icon_member_title_new.png'></image>
+        </block>
+
+        <block wx:if="{{goodsDetail.goods.skus[0].proType == 1821||goodsDetail.goods.skus[0].proType == 1888}}">
+          <text class="sales-volume-msg">已拼{{' ' +
+              goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.proVolume + ' '}}件</text>
+          <text class="need-join-count">{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.needJoinCount}}</text>
+          <text class="group-msg">人团</text>
+        </block>
+      </view>
+    </block>
+
+    <!-- <block wx:if="{{1==0&&(goodsDetail.goods.skus[0].proType == 1821||goodsDetail.goods.skus[0].proType == 1888)}}">
+      <view class='purchase-begin-container'>
+        <text class='purchase-begin'>{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.minBuyCount}}{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.minBuyCountUnit}}起购</text>
+      </view>
+    </block>
+    <block wx:elif="{{1==0&&goodsDetail.goods.pricingMethod == 391}}">
+      <view class='purchase-begin-container'>
+        <text class='purchase-begin'>{{goodsDetail.goods.skus[0].purchaseBegin}}g起购</text>
+      </view>
+    </block> -->
+
+    <block wx:if="{{(goodsDetail.goods.skus[0].proType == 1821||goodsDetail.goods.skus[0].proType == 1888)&& goodsDetail.goods.skus[0].promotionList[currProIndex].promotionAlert}}">
+      <view class="group-promotion-alert">
+        <view class="tips"></view>
+        <text class="delivery-msg">{{goodsDetail.goods.skus[0].promotionList[currProIndex].promotionAlert}}</text>
+      </view>
+    </block>
+    <block wx:elif="{{goodsDetail.goods.goodsLabels.length>0}}">
+      <view class="goods-labels-container">
+        <!-- <block wx:for="{{goodsDetail.goods.goodsLabels}}" wx:key="*this">
+          <text class="goods-labels-item">{{item}}</text>
+        </block> -->
+      </view>
+    </block>
+    <!-- <view class="goods-labels-container">
+        <block wx:for="{{goodsDetail.goods.goodsLabels}}" wx:key="*this">
+          <text class="goods-labels-item">{{item}}</text>
+        </block>
+      </view> -->
+    <!-- 规则说明 -->
+    <block wx:if="{{goodsDetail.goods.skus[0].proType == 1888||goodsDetail.goods.skus[0].proType == 1821 || goodsDetail.goods.skus[0].proType == 999}}">
+      <view class="goods-promotion-container">
+<component-group-buy-step form-type="{{0}}"></component-group-buy-step>
+        <block wx:if="{{ goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.myGroup == 0 && goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.groupBuyItemOutputList.length}}">
+          <text class="group-list-header">以下小伙伴正在发起拼团，您可以直接参与</text>
+          <view class="group-list-container">
+            <block wx:for="{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.groupBuyItemOutputList}}" wx:for-item="groupItem" wx:key="gbId">
+              <view class="group-item-container">
+                <image class="grouper-header" src="{{groupItem.memberPhoto||'https://shgm.jjyyx.com/m/images/my_head_default.png?t=418'}}"></image>
+                <text class="member-name">{{groupItem.memberName}}</text>
+                <view class="group-msg-container">
+                  <view class="limit-msg-container">
+                    <text class="limit-msg">还差</text>
+                    <text class="limit-num">{{groupItem.gbOddJoinCount}}</text>
+                    <text class="limit-msg">人成团</text>
+                    <text class="limit-msg">距结束</text>
+                    <text class='time'>{{groupItem.surplusTime.hour}}</text>
+                    <text class='division'>:</text>
+                    <text class='time'>{{groupItem.surplusTime.minute}}</text>
+                    <text class='division'>:</text>
+                    <text class='time'>{{groupItem.surplusTime.second}}</text>
+                  </view>
+                  <text class="join-group-btn" catchtap="joinOtherGroup" data-sku='{{goodsDetail.goods.skus[0]}}' data-pro='{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}' data-share-member-id='{{privateShareMemberId}}' data-private-group="{{goodsDetail.goods.skus[0].promotionList[currProIndex].privateGroup||0}}"
+                    data-store-type="{{goodsDetail.store.storeType}}" data-goods="{{goodsDetail.goods.skus[0]}}" data-gb-id="{{groupItem.gbId}}">去参团</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block wx:if="{{!((goodsDetail.goods.skus[0].proType == 1178||goodsDetail.goods.skus[0].proType >0) && goodsDetail.goods.skus[0].proStatus == 0) && goodsDetail.goods.skus[0].proType != 1821 && goodsDetail.goods.skus[0].proType != 1888 &&goodsDetail.goods.skus[0].promotionList.length>0}}">
+      <view class="goods-promotion-container">
+        <block wx:for="{{goodsDetail.goods.skus[0].promotionList}}" wx:for-item="proItem" wx:key="proId">
+          <block wx:if="{{!((proItem.proType>0||proItem.proType == 1178) && proItem.proStatus == 0) && proItem.proType != 1821&& proItem.proType != 1888}}">
+            <view class="goods-promotion-item {{proItem.proType == 491||privateShareMemberId ? '' : 'right-icon'}}" data-item="{{proItem}}" bindtap="goPromotionDetail" data-private-share-member-id="{{privateShareMemberId||''}}">
+              <text class="goods-promotion-icon">{{proItem.orderCountLimit>0 ? '每单限购' : proItem.promotionCountLimit>0 ? '每人限购' : proItem.proInfo}}</text>
+              <view class='goods-promotion-mes-container'>
+                <text class="goods-promotion-mes">{{proItem.proDesc}}</text>
+                <block wx:if="{{proItem.orderCountLimit>0 || proItem.promotionCountLimit > 0}}">
+                  <text class='limit-msg'>购买不超过{{proItem.orderCountLimit || proItem.promotionCountLimit}}{{goodsDetail.goods.skus[0].pricingMethod == 391?'g':'件'}}时享受优惠 <block wx:if="{{proItem.minBuyCount && proItem.minBuyCount > 0}}">，最小起购量{{proItem.minBuyCount}}{{goodsDetail.goods.skus[0].pricingMethod == 391?'g':'件'}}</block>{{proItem.proType == 1178 || proItem.proType == 289? '':'，超出全部按结算价结算'}}</text>
+                </block>
+                <block wx:elif="{{proItem.minBuyCount && proItem.minBuyCount > 0}}"><text class='limit-msg'>最小起购量{{proItem.minBuyCount}}{{goodsDetail.goods.skus[0].pricingMethod == 391?'g':'件'}}</text></block>
+              </view>
+            </view>
+          </block>
+        </block>
+      </view>
+    </block>
+    <!-- <view class="goods-evaluate-container" bindtap="jumpToEvaluate" data-sku-id="{{goodsDetail.goods.skus[0].skuId}}">
+      <text class="goods-evaluate-count">评价（{{ goodsDetail.goods.skus[0].commentCount}}）</text>
+      <text class="goods-evaluate-lookMore">查看更多</text>
+     </view> -->
+        <!--此处判断是否是变式商品且活动有效-->
+        <block wx:if="{{isHavePro&&goodsDetail.goods.skus[0].materielType==='30'&&optionalNum}}">
+        
+          <view class="materiel-ext-property-goodsDetail-select  {{goodsDetail.goods.skus[0].proType == 1821||goodsDetail.goods.skus[0].proType == 1888?'':' .materiel-ext-property-goodsDetail-select-noTopBorder'}}" catchtap="showSkuSelect">
+            <view style="display: flex; flex-direction: row;align-items: center;">
+              <view  class="goods-promotion-icon">规格</view>
+              <view style="display: flex; flex-direction: column; justify-content:space-between;margin-left: 13px;">
+                <view wx:if="{{selectedOneProperty||selectedTwoProperty}}" style="font-weight: bold;">
+                  已选：{{selectedOneProperty}}/{{selectedTwoProperty}}
+                </view>
+                <view wx:else>请选择商品规格</view>
+                <view style="background-color: deepskyblue; color: white; width: 150rpx; margin-top: 8rpx;font-size: 20rpx;">
+                    <text>共</text>
+                    <text>{{optionalNum}}</text>
+                    <text>种组合可选</text>
+                </view>
+              </view>
+            </view>
+            <view>>>></view>
+          </view>
+        </block>
+    <view class="goods-other-container">
+      <block wx:if="{{goodsDetail.goods.goodsType!=63}}">
+        <view class="goods-other-item">
+          <text class="goods-item-title">产地</text>
+          <text class="goods-item-value">{{goodsDetail.goods.produceArea||''}}</text>
+        </view>
+        <view class="goods-other-item">
+          <text class="goods-item-title">品牌</text>
+          <text class="goods-item-value">{{goodsDetail.goods.brandName||''}}</text>
+        </view>
+      </block>
+      <view class="goods-other-item">
+        <text class="goods-item-title">商品描述</text>
+        <text class="goods-item-value">{{goodsDetail.goods.goodsDesc||''}}</text>
+      </view>
+    </view>
+    <view class="bottom-container">
+      <block wx:if="{{goodsDetailTagIndex == 0}}">
+        <block wx:if="{{goodsDetail.goods.imageTextDetail}}">
+          <view class="goods-images-container">
+            <rich-text nodes="{{goodsDetail.goods.imageTextDetail}}"></rich-text>
+          </view>
+        </block>
+        <block wx:elif="{{goodsDetail.goods.goodsImages}}">
+          <view class="goods-images-container">
+            <block wx:for="{{goodsDetail.goods.goodsImages}}" wx:key="*this">
+              <image src="{{item}}" mode="widthFix"></image>
+            </block>
+          </view>
+        </block>
+      </block>
+    </view>
+
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+
+  </scroll-view>
+
+  <canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+  <block wx:if="{{goodsDetail.goods}}">
+    <view class="goods-footer-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+      <!-- <view class="my-cart-icon" bindtap="goToMyCart">
+        <block wx:if="{{cartCount}}">
+          <text class="cart-count">{{cartCount}}</text>
+        </block>
+      </view> -->
+      <!-- <block wx:if="{{isHavePro}}">
+        <block wx:if="{{isFavorite&&isHavePro}}">
+          <view class="favorite-icon active" bindtap="cancelFavorite" data-skus="{{goodsDetail.goods.skus[0]}}"></view>
+        </block>
+        <block wx:else>
+          <view class="favorite-icon" bindtap="addFavorite" data-skus="{{goodsDetail.goods.skus[0]}}"></view>
+        </block>
+      </block> -->
+      <block wx:if='{{!isHavePro}}'>
+        <view class="add-cart disabled">活动已结束</view>
+      </block>
+      <!-- 团长分享的秒杀 privateGroup=1 私有团，秒杀privateGroup=0 公有团，秒杀-->
+      <block wx:elif='{{goodsDetail.goods.skus[0].promotionList&&(goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1178||goodsDetail.goods.skus[0].promotionList[currProIndex].proType != 1888)}}'>
+      <view class="my-cart-icon" bindtap="goToMyCart">
+        <block wx:if="{{cartCount}}">
+          <text class="cart-count">{{cartCount}}</text>
+        </block>
+      </view>
+        <block wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proStock > 0&&goodsDetail.goods.skus[0].promotionList[currProIndex].ratio<100}}">
+<view class="add-cart" bindtap="addCart" data-store-type="{{goodsDetail.store.storeType}}"
+                data-goods="{{goodsDetail.goods.skus[0]}}">立即抢购</view>
+          <!-- <view class="add-cart" bindtap="sharePrivateQiangGou" data-sku='{{goodsDetail.goods.skus[0]}}' data-pro='{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}' data-share-member-id='{{privateShareMemberId}}' data-private-group="{{goodsDetail.goods.skus[0].promotionList[currProIndex].privateGroup||0}}"
+            data-store-type="{{goodsDetail.store.storeType}}" data-goods="{{goodsDetail.goods.skus[0]}}">立即秒杀</view> -->
+        </block>
+        <block wx:else>
+          <view class="add-cart disabled">已抢光</view>
+        </block>
+      </block>
+      <!-- 其他 -->
+      <block wx:elif="{{goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1821||goodsDetail.goods.skus[0].promotionList[currProIndex].proType == 1888}}">
+        <block wx:if="{{1==1||goodsDetail.goods.skus[0].promotionList[currProIndex].goodsStock>0&&goodsDetail.goods.skus[0].isCanSale==1}}">
+          <view class="group-buy-container" catchtap="createNewGroup" data-sku='{{goodsDetail.goods.skus[0]}}' data-pro='{{goodsDetail.goods.skus[0].promotionList[currProIndex]}}' data-share-member-id='{{privateShareMemberId}}' data-private-group="{{goodsDetail.goods.skus[0].promotionList[currProIndex].privateGroup||0}}"
+            data-store-type="{{goodsDetail.store.storeType}}" data-goods="{{goodsDetail.goods.skus[0]}}">
+            <block wx:if="{{goodsDetail.goods.skus[0].promotionList[currProIndex].groupBuyResultOutput.myGroup}}">
+              <text class="look-my-group">查看我的团</text>
+            </block>
+
+            <block wx:else>
+              <text class="group-msg">一键拼团</text>
+            </block>
+          </view>
+        </block>
+      </block>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+
+    <!-- <view class="bottom-slide-container {{slideDialog.show ? '' : 'hidden'}}" catchtap="hideSlideDialog">
+      <view class="slide-content-container" catchtap="showSlideDialog">
+        <block wx:if="{{slideDialog.type == 'label'}}">
+          <view class="content-title">
+            商品说明
+            <image src="https://shgm.jjyyx.com/m/images/cart_close.png" class="close-btn" catchtap="hideSlideDialog"></image>
+          </view>
+          <block wx:for="{{goodsDetail.goods.goodsLabelOutputList}}" wx:key="labelId">
+            <view class="goods-introduce-item">
+              <text class="item-label-name">{{item.labelName}}</text>
+              <view class="item-label-intro">{{item.labelIntro}}<block wx:if="{{item.labelId == 1035}}"><image
+                src="https://shgm.jjyyx.com/m/images/kexuan/icon_help.png" class="icon-help"
+                         bindtap="jumpToRules" data-type="sevenDayReturn"></image></block></view>
+            </view>
+          </block>
+        </block>
+        <block wx:elif="{{slideDialog.type == 'taxation'}}">
+          <view class="content-title">
+            税费详情
+            <image src="https://shgm.jjyyx.com/m/images/cart_close.png" class="close-btn" catchtap="hideSlideDialog"></image>
+          </view>
+
+          <view class="goods-introduce-item">
+            <view class="item-label-intro">1.该商品需缴纳{{goodsDetail.goods.goodsTaxRate}}%的跨境电商综合税。<image
+              src="https://shgm.jjyyx.com/m/images/kexuan/icon_help.png" class="icon-help"
+              catchtap="jumpToRules" data-type="taxRate"></image></view>
+          </view>
+
+          <view class="goods-introduce-item">
+            <text class="item-label-intro">2.跨境电商综合税需按一般贸易增值税及消费税税额的70%征收，商家代征代缴，税费以结算页金额为准。</text>
+          </view>
+          <view class="goods-introduce-item">
+            <text class="item-label-intro">3.财务部，海关总署，国家税务总局发布跨境电子商务零售进口税收政策，自2016年4月8日起，跨境电商单次交易限值为人民币2000元，个人年度交易限值为人民币20000元。</text>
+          </view>
+        </block>
+
+        <text class="confirm-btn" catchtap="hideSlideDialog">确认</text>
+      </view>
+    </view> -->
+  </block>
+</block>
+
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<block wx:if='{{showPopGroupNum}}'><pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'></pop-group-num></block>
+<block wx:if="{{showSKUSelect}}">
+  <select-sku class="select-sku" goodsDetailSelectFlag="true" 
+    goodsDetail="{{goodsDetail}}" selectedOneProperty="{{selectedOneProperty}}"
+    selectedTwoProperty="{{selectedTwoProperty}}" shopId="{{privateShareShopId}}" goodsId="{{goodsId}}"
+    linkProId="{{linkProId}}"  subCodeGoodsList="{{subCodeGoodsList}}"
+    bind:exitSkuSelect="exitSkuSelect" bind:updateGoodsDetail="updateGoodsDetail"
+    bind:updateSelectedProperty="updateSelectedProperty" bind:skuSelectedAddCart="skuSelectedAddCart"
+    bind:skuSelectCreateNewGroup="skuSelectCreateNewGroup"></select-sku>
+</block>
+

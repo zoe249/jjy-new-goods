@@ -1,0 +1,798 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+button {
+	margin: 0;
+	padding: 0;
+	background-color: inherit;
+	position: static;
+}
+
+button:after {
+	content: none;
+}
+
+button::after {
+	border: none;
+}
+
+/* 顶部吸顶导航部分 */
+.scrollNav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	width: 100%;
+	height: 88rpx;
+	background: #FFFFFF;
+}
+
+.scrollNav .scroll_navs {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.scrollNav .scroll_navs .ul {
+	width: 100%;
+	height: 100%;
+	padding: 0 12rpx;
+}
+
+.scrollNav .scroll_navs .ul .li {
+	flex: 0 0 auto;
+	height: 100%;
+	padding: 0 29rpx;
+	font-size: 28rpx;
+	color: #666666;
+}
+
+.scrollNav .scroll_navs .ul .li image {
+	margin-top: 7rpx;
+	width: 30rpx;
+	height: 12rpx;
+}
+
+.scrollNav .scroll_navs .ul .li .active {
+	color: #FC0D1B;
+	font-weight: bold;
+}
+
+/* 顶部轮播图部分 */
+.header .swiper {
+	position: relative;
+}
+
+.header .swiper swiper {
+	width: 100%;
+	height: 562rpx;
+}
+
+.header .swiper swiper swiper-item {
+	width: 100%;
+	height: 100%;
+}
+
+.header .swiper swiper swiper-item image {
+	width: 100%;
+	height: 100%;
+}
+
+.header .swiper swiper swiper-item video {
+	width: 100%;
+	height: 100%;
+}
+
+/* 轮播图页码处理 */
+.header .swiper .swiper_ul {
+	width: auto;
+	position: absolute;
+	bottom: 30rpx;
+	right: 20rpx;
+	z-index: 0;
+}
+
+.header .swiper .swiper_ul .swiper_li {
+	width: 70rpx;
+	height: 40rpx;
+	position: relative;
+}
+
+.header .swiper .swiper_ul .swiper_li .bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.header .swiper .swiper_ul .swiper_li .left {
+	width: 40rpx;
+	height: 40rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	position: relative;
+	z-index: 3;
+}
+
+.header .swiper .swiper_ul .swiper_li .left_bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+
+.header .swiper .swiper_ul .swiper_li text {
+	position: relative;
+	z-index: 5;
+}
+
+.header .swiper .swiper_ul .swiper_li .right {
+	width: 30rpx;
+	height: 40rpx;
+	font-size: 22rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	position: relative;
+	z-index: 3;
+}
+
+/* 顶部标题部分 */
+.header .top_title {
+	padding: 29rpx 36rpx 27rpx 29rpx;
+	background: #FFFFFF;
+	width: 100%;
+	height: 136rpx;
+}
+
+.header .top_title .title {
+	width: 100%;
+	font-size: 36rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	text-align: center;
+}
+
+.header .top_title .content {
+	width: 100%;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+	text-align: center;
+}
+
+.section {
+	padding-top: 20rpx;
+	padding-bottom: 130rpx;
+}
+
+/* 商品清单部分 */
+.section .product_list {
+	background: #FFFFFF;
+	margin-bottom: 20rpx;
+}
+
+.section .product_list .top {
+	padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.section .product_list .top .top_left .Wire {
+	width: 12rpx;
+	height: 30rpx;
+	background: linear-gradient(0deg, #FF7634, #FC0D1B);
+	border-radius: 10rpx;
+	margin-right: 10rpx;
+}
+
+.section .product_list .top .top_left .title {
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	margin-right: 4rpx;
+}
+
+.section .product_list .top .top_left .number {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.section .product_list .top .top_right {
+	width: 168rpx;
+	height: 56rpx;
+	background: #FC0D1B;
+	border-radius: 28rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+.section .product_list .bottom {
+	padding: 0 22rpx;
+}
+
+.section .product_list .bottom .ul .shop_li {
+	width: 223rpx;
+	background: #FFFFFF;
+	box-shadow: 0px 0 16rpx rgba(226, 226, 226, 0.6800);
+	border-radius: 10rpx;
+	margin-right: 10rpx;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+}
+
+.section .product_list .bottom .ul .shop_li:nth-child(3) {
+	margin-right: 0;
+}
+
+.section .product_list .bottom .ul .shop_li:nth-child(6) {
+	margin-right: 0;
+}
+
+.section .product_list .bottom .shop_li .top_img {
+	position: relative;
+	width: 100%;
+	height: 223rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+	margin-bottom: 20rpx;
+}
+
+.section .product_list .bottom .shop_li .top_img .SoldOut {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.section .product_list .bottom .shop_li .top_img .SoldOut view {
+	width: 110rpx;
+	height: 110rpx;
+	background: rgba(0, 0, 0, .6);
+	border-radius: 50%;
+}
+
+.section .product_list .bottom .shop_li .top_img .SoldOut view text {
+	color: #FFFFFF;
+}
+
+.section .product_list .bottom .shop_li .top_img image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .product_list .bottom .shop_li .top_img .no_img {
+	width: 100%;
+	height: 100%;
+}
+
+.section .product_list .bottom .shop_li .top_img .no_img image {
+	width: 60%;
+	height: 60%;
+	margin-bottom: 20rpx;
+}
+
+.section .product_list .bottom .shop_li .title {
+	height: 56rpx;
+	padding: 0rpx 13rpx 0rpx 19rpx;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 30rpx;
+	margin-bottom: 24rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn {
+	padding: 0 23rpx 16rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn .price {
+	font-size: 20rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FC0D1B;
+}
+
+.section .product_list .bottom .shop_li .price_btn .price .whole {
+	font-size: 24rpx;
+}
+.section .product_list .bottom .shop_li .price_btn .price .whole1 {
+	font-size: 20rpx;
+}
+.section .product_list .bottom .shop_li .price_btn .price .unit {
+	color: #999999;
+}
+
+.section .product_list .bottom .shop_li .price_btn .btn {
+	width: 44rpx;
+	height: 44rpx;
+	margin-left: 10rpx;
+	flex: 0 0 auto;
+}
+
+.section .product_list .bottom .shop_li .price_btn .btn image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .product_list .bottom swiper {
+	width: 100%;
+	/* height: 390rpx; */
+	height: 800rpx;
+}
+
+.section .product_list .bottom .shop_list_dian {
+	width: 100%;
+	height: 80rpx;
+}
+
+.section .product_list .bottom .shop_list_dian .li {
+	width: 10rpx;
+	height: 10rpx;
+	border-radius: 50%;
+	margin: 0 7rpx;
+	background: #E2E0E3;
+}
+
+.section .product_list .bottom .shop_list_dian .active {
+	background: #FF0725;
+}
+
+/* 文章详情部分 */
+.section .article {
+	background: #FFFFFF;
+	margin-bottom: 20rpx;
+}
+
+.section .article .top {
+	padding: 20rpx 20rpx 30rpx 30rpx;
+}
+
+.section .article .top .Wire {
+	width: 12rpx;
+	height: 30rpx;
+	background: linear-gradient(0deg, #FF7634, #FC0D1B);
+	border-radius: 10rpx;
+	margin-right: 10rpx;
+}
+
+.section .article .top .title {
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	margin-right: 4rpx;
+}
+
+
+.section .article .details {
+	padding: 0 30rpx 30rpx;
+}
+
+.section .article .details .li .img {
+	width: 100%;
+	border-radius: 10rpx;
+	margin-bottom: 20rpx;
+}
+
+
+
+
+
+/* 相关食谱 */
+.section .recommend {
+	background: #FFFFFF;
+}
+
+.section .recommend .top {
+	padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.section .recommend .top .top_left .Wire {
+	width: 12rpx;
+	height: 30rpx;
+	background: linear-gradient(0deg, #FF7634, #FC0D1B);
+	border-radius: 10rpx;
+	margin-right: 10rpx;
+}
+
+.section .recommend .top .top_left .title {
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	margin-right: 4rpx;
+}
+
+.section .recommend .top .top_left .number {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.section .recommend .content {
+	padding: 0 20rpx;
+}
+
+.section .recommend .content .li {
+	width: 345rpx;
+	background: #FFFFFF;
+	box-shadow: 0px 4rpx 16rpx 0px rgba(226, 226, 226, 0.6800);
+	border-radius: 10rpx;
+	margin-bottom: 20rpx;
+	margin-right: 20rpx;
+	overflow: hidden;
+}
+
+.section .recommend .content .li:nth-child(2) {
+	margin-right: 0;
+}
+
+.section .recommend .content .li:nth-child(4) {
+	margin-right: 0;
+}
+
+.section .recommend .content .li .li_top {
+	width: 100%;
+	height: 231rpx;
+	margin-bottom: 20rpx;
+}
+
+.section .recommend .content .li .li_top image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .recommend .content .li .top_img {
+	width: 100%;
+	height: 231rpx;
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+	margin-bottom: 20rpx;
+}
+
+.section .recommend .content .li .top_img image {
+	width: 60%;
+	height: 60%;
+	margin-bottom: 20rpx;
+}
+
+.section .recommend .content .li .li_bottom {
+	padding: 0 28rpx 20rpx;
+}
+
+.section .recommend .content .li .li_bottom .title {
+	width: 100%;
+	/* height: 70rpx; */
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 16rpx;
+}
+
+.section .recommend .content .li .li_bottom .word {
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.section .recommend .content .li .li_bottom .fgx {
+	width: 1px;
+	height: 20rpx;
+	background: #F2F2F2;
+	margin: 0 15rpx;
+}
+
+/* 底部导航部分 */
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #FFFFFF;
+}
+
+.footer .bottom_nav {
+	width: 100%;
+	padding: 10rpx 30rpx;
+}
+
+.footer .bottom_nav .left .li text {
+	font-size: 18rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 33rpx;
+}
+
+.footer .bottom_nav .left .li {
+	position: relative;
+	margin-right: 60rpx;
+}
+
+.footer .bottom_nav .left .li:last-child {
+	margin-right: 0;
+}
+
+.footer .bottom_nav .left .li .number {
+	position: absolute;
+	top: -6rpx;
+	right: -20rpx;
+	line-height: 0;
+	width: 40rpx;
+	height: 30rpx;
+	background: #FC0D1B;
+	border-radius: 15rpx;
+	font-size: 22rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+.footer .bottom_nav .left image {
+	width: 45rpx;
+	height: 45rpx;
+	margin-bottom: 10rpx;
+}
+
+.footer .bottom_nav .right {
+	width: 240rpx;
+	height: 68rpx;
+	background: #FC0D1B;
+	border-radius: 34rpx;
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+/* 底部折叠展开部分 */
+.fold_expand {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.fold_expand .ZG {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, .6);
+	z-index: 200;
+}
+
+@keyframes nextshow {
+	from {
+		transform: translateY(1000rpx);
+	}
+
+	to {
+		transform: translateY(0rpx);
+	}
+}
+
+@keyframes nexthide {
+	from {
+		transform: translateY(0rpx);
+	}
+
+	to {
+		transform: translateY(1000rpx);
+	}
+}
+
+.fold_expand .content {
+	position: relative;
+	z-index: 300;
+	width: 100%;
+	height: 1000rpx;
+	background: #FFFEFF;
+	border-radius: 60rpx 60rpx 0 0;
+	overflow: hidden;
+}
+
+.fold_expand .hide {
+	animation: nexthide;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.fold_expand .show {
+	animation: nextshow;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.fold_expand .content .top_title {
+	width: 100%;
+	height: 100rpx;
+	font-size: 32rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	position: relative;
+	background: #FFFFFF;
+}
+
+.fold_expand .content .top_title image {
+	width: 27rpx;
+	height: 26rpx;
+	position: absolute;
+	right: 36rpx;
+}
+
+.fold_expand .content .scroll_one {
+	width: 100%;
+	height: 900rpx;
+}
+
+.fold_expand .content .scroll_one .ul {
+	padding: 0 20rpx 20rpx;
+}
+
+.fold_expand .content .scroll_one .ul:last-child {
+	margin-bottom: 0;
+}
+
+.fold_expand .content .scroll_one .ul .titles {
+	font-size: 28rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 20rpx;
+}
+
+.fold_expand .content .scroll_one .ul .scroll_two {
+	width: 100%;
+}
+
+.fold_expand .content .scroll_one .ul .li {
+	width: 200rpx;
+	background: #FFFFFF;
+	box-shadow: 0px 0 16rpx rgba(226, 226, 226, 0.68);
+	border-radius: 10rpx;
+	margin-right: 20rpx;
+	flex: 0 0 auto;
+	overflow: hidden;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img {
+	position: relative;
+	width: 100%;
+	height: 200rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+	margin-bottom: 10rpx;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img image {
+	width: 100%;
+	height: 100%;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img .SoldOut {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img .SoldOut view {
+	width: 110rpx;
+	height: 110rpx;
+	background: rgba(0, 0, 0, .6);
+	border-radius: 50%;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img .SoldOut view text {
+	color: #FFFFFF;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img .no_img {
+	width: 100%;
+	height: 100%;
+}
+
+.fold_expand .content .scroll_one .ul .li .top_img .no_img image {
+	width: 60%;
+	height: 60%;
+	margin-bottom: 20rpx;
+}
+
+.fold_expand .content .scroll_one .ul .li .title {
+	height: 56rpx;
+	padding: 0 10rpx;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 30rpx;
+	margin-bottom: 16rpx;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn {
+	padding: 0 10rpx 14rpx;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn .price {
+	font-size: 20rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FC0D1B;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn .price .whole {
+	font-size: 24rpx;
+}
+.section .product_list .bottom .shop_li .price_btn .price .whole1 {
+	font-size: 20rpx;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn .price .unit {
+	color: #999999;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn .btn {
+	width: 44rpx;
+	height: 44rpx;
+	margin-left: 10rpx;
+	flex: 0 0 auto;
+}
+
+.fold_expand .content .scroll_one .ul .li .price_btn .btn image {
+	width: 100%;
+	height: 100%;
+}
+/* 出现错误页面样式 */
+.page-container .auth-box .icon-box {
+	margin: 270rpx auto 0;
+	display: block;
+	width: 400rpx;
+	height: 400rpx;
+	background: url("https://shgm.jjyyx.com/m/images/error_img4.png?20190704") no-repeat center;
+	background-size: contain;
+}
+.page-container .auth-box .text-box {
+	margin-bottom: 50rpx;
+	font-size: 40rpx;
+	color: #999999;
+	text-align: center;
+}
+.page-container .auth-box .selectShop {
+	width: 320rpx;
+	height: 72rpx;
+	border: 1px solid #FF4752;
+	border-radius: 36rpx;
+	text-align: center;
+	line-height: 72rpx;
+	color: #FF4752;
+}

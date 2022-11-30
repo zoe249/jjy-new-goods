@@ -1,0 +1,192 @@
+<!-- pages/AA-RefactorProject/component/yxIndexLowerHalf/yxIndexLowerHalf.wxml -->
+<view>
+	<view class="scrollListContent" style="position:sticky;top:{{fixedHeight+'px'}};z-index:9">
+		<scroll-view style="padding:20rpx 0;"
+			class="scrollList" id="swiperContent" scroll-x="true">
+			<!-- <view class="scrollContent"> -->
+			<block wx:for="{{list}}" wx:key="index">
+				<view class="{{isBlack?'blackWhite':''}} list{{selectTitle==index?' selectMenu':''}}" wx:if="{{item.recommendTitle}}"
+					data-sectionId="{{item.sectionId}}" data-index="{{index}}" bindtap="checkTitle" data-item="{{item}}">
+					<view>{{item.recommendTitle}}</view>
+					<view wx:if="{{item.describle}}">{{item.describle}}</view>
+				</view>
+			</block>
+			<view class="lastList"></view>
+			<!-- </view> -->
+		</scroll-view>
+	</view>
+	<!-- </Ceiling> -->
+	<!-- 下方分为两列的商品 -->
+	<view class="content {{isBlack?'blackWhite':''}}" wx:if="{{showList}}">
+		<view
+		wx:if="{{productList.length!==0}}"
+		>
+			<view class="picture">
+				<!-- 商品 -->
+				<view>
+					<block wx:for="{{productList}}" wx:key="productIndex" wx:for-item="productItem"
+						wx:for-index="productIndex"  wx:if="{{productIndex%2==0}}">
+						<!-- 如果数据为数组，则生成轮播图 -->
+						<view class="swiperContent" wx:if="{{productItem.length}}">
+							<swiper circular class="swiperBar" bindchange="swiperChange" autoplay="{{true}}"
+								interval="{{3000}}" duration="{{500}}">
+								<block wx:key="index" wx:for="{{productItem}}">
+									<swiper-item class="swiperItem">
+										<image lazy-load class="swiper-image" src="{{item.imgUrl}}" bindtap="autoJump" data-item="{{item}}" data-adverindex="{{index+1}}" data-product-index="{{productIndex}}"
+											data-url="{{item.linkUrl}}" style="height:100%" />
+									</swiper-item>
+								</block>
+							</swiper>
+							<view class="bannerdots flex alignC flexC">
+								<block wx:for="{{productItem}}" wx:key="index">
+									<view class="bannerdot{{index == currentSwiper ? ' banneractive' : ''}}"></view>
+								</block>
+							</view>
+						</view>
+						<view class="swiperContent" wx:elif="{{productItem.bizType == 17}}" class="productContent">
+							<image class="img" src="{{productItem.imgUrl}}" bindtap="autoJump" data-url="{{productItem.linkUrl}}" data-item="{{productItem}}" data-adverindex="1"   data-product-index="{{productIndex}}"  />
+						</view>
+						<view class="swiperContent" wx:elif="{{productItem.bizType == 673||productItem.bizType == 674}}" class="productContent">
+							<image class="img" src="{{productItem.imgUrl?productItem.imgUrl:productItem.extendJson1.imageCover}}" bindtap="autoJump" data-url="{{productItem.linkUrl}}" data-item="{{productItem}}" data-adverindex="1"   data-product-index="{{productIndex}}"  />
+						</view>
+						<!-- 如果不为数组，生成商品 -->
+						<view class="productContent" wx:else bindtap="autoJump"
+								data-url="/pages/goods/detail/detail?formType=0&goodsId={{productItem.goodsId}}&linkProId={{productItem.proId || 0}}&newYX=1" data-item="{{productItem}}"  data-product-index="{{productIndex}}">
+							<view class="productImgContent dis_f_c_c">
+								<image class="productImage" lazy-load src="{{productItem.coverImage}}"></image>
+								<view class="productImage_other dis_f_c_c" wx:if="{{productItem.promotionList[0]}}">
+									<image src="{{productItem.promotionList[0]?productItem.promotionList[0].proTag:''}}" mode="aspectFit"/>
+								</view>
+								<view class="productImage_player dis_f_c_c" wx:if="{{productItem.videoCoverImg}}">
+									<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit"/>
+								</view>
+							</view>
+							<view class="infoContent">
+								<view class="productName">
+									{{productItem.shortTitle||productItem.goodsName||""}}
+								</view>
+								<view wx:if="{{productItem.goodsTag&&productItem.goodsTag!==''}}" class="productInfo">
+									{{productItem.goodsTag}}
+								</view>
+								<view class="productOldPrice" wx:if="{{productItem.sale}}">
+									￥{{productItem.salePrice}}
+								</view>
+								<view class="newPrice">
+									<view class="one">￥</view>
+									<view class="two">{{productItem.int}}</view>
+									<view class="three" wx:if="{{productItem.dec}}">.{{productItem.dec}}</view>
+									<!-- <view class="four">元</view> -->
+									<block wx:if="{{productItem.salesUnit}}">
+										<text class="five">/{{productItem.salesUnit}}</text>
+									</block>
+									<block wx:if="{{productItem.proType == 1821 || productItem.proType == 999 || productItem.promotionList[0].proType == 1821|| productItem.promotionList[0].proType == 1888}}">
+										<view wx:if="{{productItem.goodsStock<1||productItem.promotionList[0].proStock==0}}" class="shouqing-text">已售罄</view>
+										<view class="pintuan {{(productItem.int.length+productItem.salesUnit.length)<5?'':'smallPinTuan'}}" wx:else>
+											<image src="{{$.img_src}}/yx_index/pintuan.png" />
+											<view style="margin-left:2rpx">
+												{{(productItem.int.length+productItem.salesUnit.length)<5?'去拼团':'拼'}}
+											</view>
+											<image src="{{$.img_src}}/Explosives/RightArrow.png" />
+										</view>
+									</block>
+									<block wx:else>
+										<view wx:if="{{productItem.goodsStock<1}}" class="shouqing-text">已售罄</view>
+										<image wx:else class='gouwuche' src="{{$.img_src}}/yx_index/baopin_gwc.png"
+										data-goods="{{productItem}}" catchtap="addCart" />
+									</block>
+								</view>
+							</view>
+						</view>
+					</block>
+				</view>
+				<!-- 右边商品列，下方dom和左边商品列一致 -->
+				<view>
+					<block wx:for="{{productList}}" wx:key="productIndex" wx:for-item="productItem"
+						wx:for-index="productIndex"  wx:if="{{productIndex%2==1}}">
+						<!-- 如果数据为数组，则生成轮播图 -->
+						<view class="swiperContent" wx:if="{{productItem.length}}">
+							<swiper circular class="swiperBar" bindchange="swiperChange" autoplay="{{true}}"
+								interval="{{5000}}" duration="{{500}}">
+								<block wx:key="index" wx:for="{{productItem}}">
+									<swiper-item class="swiperItem">
+										<image lazy-load class="swiper-image" src="{{item.imgUrl}}" bindtap="autoJump" data-item="{{item}}" data-adverindex="{{index+1}}" data-product-index="{{productIndex}}"
+											data-url="{{item.linkUrl}}" style="height:100%" />
+									</swiper-item>
+								</block>
+							</swiper>
+							<view class="bannerdots flex alignC flexC">
+								<block wx:for="{{productItem}}" wx:key="index">
+									<view class="bannerdot{{index == currentSwiper ? ' banneractive' : ''}}"></view>
+								</block>
+							</view>
+						</view>
+						<view class="swiperContent" wx:elif="{{productItem.bizType == 17}}" class="productContent">
+							<image class="img" src="{{productItem.imgUrl}}" bindtap="autoJump" data-url="{{productItem.linkUrl}}" data-item="{{productItem}}" data-adverindex="1"  data-product-index="{{productIndex}}"/>
+						</view>
+						<view class="swiperContent" wx:elif="{{productItem.bizType == 673||productItem.bizType == 674}}" class="productContent">
+							<image class="img" src="{{productItem.extendJson1.imageCover}}" bindtap="autoJump" data-url="{{productItem.linkUrl}}" data-item="{{productItem}}" data-adverindex="1"   data-product-index="{{productIndex}}"  />
+
+						</view>
+						<!-- 如果不为数组，生成商品 -->
+						<view class="productContent" wx:else bindtap="autoJump"
+								data-url="/pages/goods/detail/detail?formType=0&goodsId={{productItem.goodsId}}&linkProId={{productItem.proId || 0}}" data-item="{{productItem}}"  data-product-index="{{productIndex}}">
+							<view class="productImgContent">
+								<image class="productImage" lazy-load src="{{productItem.coverImage}}"></image>
+								<view class="productImage_other dis_f_c_c" wx:if="{{productItem.promotionList[0]}}">
+									<image src="{{productItem.promotionList[0]?productItem.promotionList[0].proTag:''}}" mode="aspectFit"/>
+								</view>
+								<view class="productImage_player dis_f_c_c" wx:if="{{productItem.videoCoverImg}}">
+									<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit"/>
+								</view>
+							</view>
+							<view class="infoContent">
+								<view class="productName">
+									{{productItem.shortTitle||productItem.goodsName||""}}
+								</view>
+								<view class="productInfo" wx:if="{{productItem.goodsTag&&productItem.goodsTag!==''}}">
+									{{productItem.goodsTag}}
+								</view>
+								<view class="productOldPrice" wx:if="{{productItem.sale}}">
+									￥{{productItem.salePrice}}
+								</view>
+								<view class="newPrice">
+									<view class="one">￥</view>
+									<view class="two">{{productItem.int}}</view>
+									<view class="three" wx:if="{{productItem.dec}}">.{{productItem.dec}}</view>
+									<!-- <view class="four">元</view> -->
+									<block wx:if="{{productItem.salesUnit}}">
+										<text class="five">/{{productItem.salesUnit}}</text>
+									</block>
+									<block wx:if="{{productItem.proType == 1821 || productItem.proType == 999 || productItem.promotionList[0].proType == 1821|| productItem.promotionList[0].proType == 1888}}">
+										<view wx:if="{{productItem.goodsStock<1||productItem.promotionList[0].proStock==0}}" class="shouqing-text">已售罄</view>
+										<view class="pintuan {{(productItem.int.length+productItem.salesUnit.length)<5?'':'smallPinTuan'}}" wx:else>
+											<image src="{{$.img_src}}/yx_index/pintuan.png" />
+											<view style="margin-left:2rpx">
+												{{(productItem.int.length+productItem.salesUnit.length)<5?'去拼团':'拼'}}
+											</view>
+											<image src="{{$.img_src}}/Explosives/RightArrow.png" />
+										</view>
+									</block>
+									<block wx:else>
+										<view wx:if="{{productItem.goodsStock<1}}" class="shouqing-text">已售罄</view>
+										<image wx:else class='gouwuche' src="{{$.img_src}}/yx_index/baopin_gwc.png"
+										data-goods="{{productItem}}" catchtap="addCart" />
+									</block>
+								</view>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+			<!-- 加载中动画 -->
+			<MoreData wx:if="{{showBottom}}" more="{{listLoading}}"></MoreData>
+		</view>
+		<view wx:elif="{{listLoadingNow}}">
+			<no-list text="加载中~" />
+		</view>
+		<view wx:else>
+			<no-list />
+		</view>
+	</view>
+	<CartAnimation id="cartAnimation" background="red"></CartAnimation>
+</view>

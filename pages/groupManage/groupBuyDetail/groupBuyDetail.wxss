@@ -1,0 +1,663 @@
+/* pages/groupBuy/groupBuyDetail/groupBuyDetail.wxss */
+
+page {
+  background: #fff;
+}
+
+.paddingfoot {
+  width: 100%;
+  height: 120rpx;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.unfinish-header-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0 32rpx;
+  background: #fff;
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.unfinish-header-container .surplus-time-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unfinish-header-container .surplus-time-container .surplus-time-msg {
+  font-size: 26rpx;
+  color: #313031;
+  line-height: 1;
+}
+
+.unfinish-header-container .share-arrow {
+  position: absolute;
+  top: 20rpx;
+  right: 130rpx;
+  width: 102rpx;
+  height: 140rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/share_arrow.png") no-repeat center;
+  background-size: contain;
+}
+.unfinish-header-container .need-join-msg-container {
+  margin-top: 32rpx;
+  color: var(--gray);
+}
+
+.unfinish-header-container .need-join-msg-container .need-msg {
+  font-size: 24rpx;
+  line-height: 1;
+  /* color: #777; */
+}
+
+.unfinish-header-container .need-join-msg-container .need-num {
+  font-size: 24rpx;
+  line-height: 1;
+}
+.unfinish-header-container .need-join-msg-container {
+  margin-top: 40rpx;
+}
+
+.unfinish-header-container .need-join-msg-container .need-msg {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #94969c;
+}
+
+.unfinish-header-container .need-join-msg-container .need-num {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.unfinish-header-container .grouper-list-container {
+  margin-top: 16rpx;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  width: 100%;
+  padding: 0 32rpx;
+}
+
+.grouper-list-container .grouper-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-default-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-item .member-photo {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-list-container .grouper-item:nth-child(1):after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.grouper-list-container .grouper-item:nth-child(2):after {
+  content:'沙发';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#CBAD7E;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+
+/* 商品 */
+.group-goods-wrap{
+  background: var(--white);
+}
+.group-goods-wrap-top{
+  display: flex;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: var(--gray);
+  padding: 32rpx;
+}
+.group-goods-wrap-img{
+  width: 208rpx;
+  height: 208rpx;
+  background: var(--bgGrayWhiteLight);
+}
+.group-goods-wrap-img image{
+  width: 208rpx;
+  height: 208rpx;
+}
+.group-goods-wrap-info{
+  flex: 1;
+  padding: 16rpx 0 16rpx 16rpx;
+  color: var(--gray);
+}
+.group-goods-wrap-name{
+  height: 42rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color:var(--black);
+}
+.group-goods-wrap-ds{
+  height: 28rpx;
+  margin-top: 6rpx;
+}
+.group-goods-wrap-o-price{
+  height: 28rpx;
+  margin-top: 4rpx;
+  font-size: 20rpx;
+}
+.group-goods-wrap-o-price text{
+  text-decoration: line-through;
+}
+
+.group-goods-wrap-need{
+  height: 28rpx;
+  margin-top: 6rpx;
+  text-align: right;
+}
+.group-goods-wrap-tatal{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6rpx;
+  height: 42rpx;
+}
+.group-goods-wrap-num{
+  height: 28rpx;
+}
+.group-goods-wrap-price{
+  height: 42rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: var(--red);
+}
+.group-goods-wrap-bottom{
+  display: flex;
+  color: var(--black);
+  padding: 30rpx 0;
+  margin: 0 32rpx;
+}
+.group-goods-wrap-tips{
+  width: 64rpx;
+  height: 32rpx;
+  font-size: 20rpx;
+  background: var(--blue);
+  color:#fff;
+  text-align: center;
+  border-radius: 16rpx;
+}
+.group-goods-wrap-tips-info{
+  flex: 1;
+  font-size: 24rpx;
+  color: var(--gray);
+  padding-left: 32rpx;
+}
+
+
+
+.unfinish-header-container .share-arrow {
+  position: absolute;
+  top: 20rpx;
+  right: 130rpx;
+  width: 102rpx;
+  height: 140rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/share_arrow.png") no-repeat center;
+  background-size: contain;
+}
+
+/** 拼团成功 */
+
+.finish-header-container {
+  width: 100%;
+  /* padding: 48rpx 0 32rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.finish-header-container .finish-header-top-container{
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  padding: 32rpx 0;
+  margin-top: 16rpx;
+}
+.finish-header-container  .need-join-msg-container{
+  padding: 48rpx 0 32rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  background: #fff;
+}
+
+.finish-header-container .success-icon {
+  width: 114rpx;
+  height: 114rpx;
+  background: url("https://shgm.jjyyx.com/m/images/kexuan/icon_duigou.png") no-repeat center;
+  background-size: contain;
+}
+
+.finish-header-container .success-msg {
+  margin-top: 24rpx;
+  font-size: 30rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.finish-header-container .send-msg {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #777;
+  line-height: 1;
+}
+
+.finish-header-container .create-new-group {
+  margin-top: 50rpx;
+  padding: 36rpx 74rpx;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 0;
+  background: #ff4752;
+}
+
+.finish-header-container .grouper-list-container {
+  width: 750rpx;
+  /* margin-top: 24rpx; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 0 32rpx;
+  background: #fff;
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.group-msg-list-container {
+  border-top: 16rpx solid #ededed;
+  border-bottom: 16rpx solid #ededed;
+  background: #fff;
+}
+
+.group-msg-item-container {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid #ededed;
+  padding: 0 32rpx;
+}
+
+.group-msg-item-container .item-name {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #4e4e4e;
+  line-height: 1;
+}
+
+.group-msg-item-container .item-detail {
+  flex: 1;
+  text-align: right;
+  font-size: 24rpx;
+  color: #94969c;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-msg-item-container.has-link:after {
+  content: '';
+  display: inline-block;
+  width: 21.2rpx;
+  height: 21.2rpx;
+  border-top: 1rpx solid #999;
+  border-right: 1rpx solid #999;
+  transform-origin: 50% 50%;
+  transform: rotate(45deg);
+  margin-left: 16rpx;
+}
+
+.footer-contaienr {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+}
+.footer-container-flex{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer-contaienr .more-group {
+  flex: 1;
+  background: #cbad7e;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.footer-contaienr .share-friends {
+  flex: 1;
+  background: #ff4752;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.member-list-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-list-dialog-container .member-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 670rpx;
+  background: #fff;
+  padding: 70rpx 132rpx;
+  border-radius: 10rpx;
+}
+
+.member-list-dialog-container .member-list-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container:after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container .group-head-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-list-dialog-container .member-list-container .group-head-name {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #313031;
+  line-height: 1;
+}
+
+.member-list-dialog-container .member-list-container .join-group-time {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container {
+  margin-top: 36rpx;
+  width: 100%;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container .grouper-item-container {
+  position: relative;
+  width: 100%;
+  height: 122rpx;
+  padding: 32rpx 0 0 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grouper-item-container .header-container {
+  position: absolute;
+  left: 0;
+  top: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.grouper-item-container .header-container .header {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-item-container .member-item-name {
+  font-size: 28rpx;
+  color: #777;
+  line-height: 1;
+}
+
+.grouper-item-container .join-time {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #94969c;
+}
+
+.no-grouper-msg {
+  margin-top: 72rpx;
+  font-size: 28rpx;
+  color: #313031;
+  line-height: 1;
+}
+
+.share-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transform: translate3d(0, 0, 100rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container {
+  position: relative;
+  width: 670rpx;
+  padding: 70rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container .share-header {
+  font-size: 32rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.share-dialog-container .share-info-container .share-msg-container {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.share-dialog-container .share-info-container .share-msg-container.mgt-30 {
+  margin-top: 30rpx;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .black {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .gray {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.share-dialog-container .share-info-container .share-btn-container {
+  padding-top: 68rpx;
+}
+
+.share-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.share-btn-container .share-item-container {
+  width: 148rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-btn-container .share-item-container .share-btn {
+  width: 100rpx;
+  height: 100rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.share-btn-container .share-item-container .share-btn:after {
+  border: none;
+}
+
+.share-btn-container .share-item-container .share-btn .share-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.share-btn-container .share-item-container .share-msg-container {
+  margin-top: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.share-btn-container .share-item-container .share-msg-container .share-msg {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #444;
+  text-align: center;
+}
+
+.share-dialog-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/close_dialog_btn.png") no-repeat center;
+  background-size: contain;
+}
+
+.share-canvas {
+  position: absolute;
+  left: 0;
+  top: -99999rpx;
+  width: 1500rpx;
+  height: 2668rpx;
+  z-index: -1;
+  transform: translate3d(0, 0, -1000rpx);
+}

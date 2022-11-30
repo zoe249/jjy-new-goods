@@ -1,0 +1,170 @@
+@import '../../common/css/css.wxss';
+
+.page {
+	width: 346rpx;
+	min-height: 350rpx;
+	margin-bottom: 22rpx;
+	background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+	border-radius: 24rpx;
+	overflow: hidden;
+}
+
+/* 顶部标题部分 */
+.page .top {
+	padding: 24rpx 20rpx;
+	position: relative;
+}
+
+.page .top .topBg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+.page .top .title {
+	position: relative;
+	z-index: 3;
+	font-size: 32rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #101010;
+	margin-right: 12rpx;
+}
+
+.page .top .content {
+	position: relative;
+	z-index: 3;
+	min-width: 148rpx;
+	max-width: 167rpx;
+	height: 32rpx;
+	font-size: 22rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+.page .top .contentBg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 34rpx;
+	height: 32rpx;
+	z-index: 4;
+}
+
+.page .top .btn {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	border-radius: 0rpx 18rpx 0rpx 32rpx;
+	overflow: hidden;
+}
+
+.page .top .content .btn image {
+	position: absolute;
+	top: 10rpx;
+	right: 8rpx;
+	width: 9rpx;
+	height: 17rpx;
+	
+}
+.page .top .content .btn view{
+	margin-left: 38rpx;
+	margin-right: 18rpx;
+}
+
+/* 底部商品部分 */
+.bottom {
+	padding: 0 20rpx 29rpx;
+}
+
+.errShop {
+	width: 148rpx;
+	flex: 0 0 auto;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+}
+
+.errShop image {
+	width: 100rpx;
+	height: 100rpx;
+	margin-bottom: 12rpx
+}
+
+.bottom .li {
+	width: 148rpx;
+	flex: 0 0 auto;
+}
+
+
+.bottom .li .left {
+	position: relative;
+	width: 100%;
+	height: 148rpx;
+	margin-bottom: 12rpx;
+}
+
+.bottom .li .goods_img {
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 148rpx;
+}
+
+/* 视频图标 */
+.bottom .li .left .videoIcon {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.bottom .li .left .videoIcon image {
+	width: 58rpx;
+	height: 58rpx;
+}
+
+.noGoodImg {
+	width: 100%;
+	height: 148rpx;
+	margin-bottom: 12rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+}
+
+.noGoodImg image {
+	width: 111rpx;
+	height: 131rpx;
+	margin-bottom: 10rpx;
+}
+
+.bottom .li .title {
+	width: 100%;
+	font-size: 24rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 12rpx;
+}
+
+.bottom .li .price {
+	font-size: 28rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FC0D1B;
+}
+
+.bottom .li .price .unit {
+	font-size: 22rpx;
+	font-weight: 400;
+	color: #B9B9B9;
+}

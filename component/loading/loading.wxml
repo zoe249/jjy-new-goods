@@ -1,0 +1,6 @@
+<!-- 全局 弹窗loading 小图提示-->
+<block wx:if="{{isShowLoading}}">
+  <view class='global-loading'>
+    <image class="img" src='https://shgm.jjyyx.com/m/images/loadings.gif'></image>
+  </view>
+</block>

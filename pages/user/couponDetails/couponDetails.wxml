@@ -1,0 +1,58 @@
+<view class="coupon-details pl16">
+  <view class='coupon-details-container'>
+      <view class="dl r1bb">
+            <view class="fl dt">券名称</view>
+            <view class="dd">{{couponDetails.couponName}}</view>
+        </view>
+        <view class="dl r1bb">
+            <view class="fl dt">券面值</view>
+            <view class="dd">{{ couponValueDetails }}</view>
+        </view>
+       <view class="dl r1bb">
+           <view class="fl dt">有效期</view>
+            <view class="dd"><text>从 {{couponBeginTime}} 开始\n至 {{couponEndTime}} 截止</text></view>
+        </view>
+        <view class="dl r1bb">
+           <view class="fl dt">用券渠道</view>
+            <view class="dd"><block wx:if="{{couponDetails.channelDesc}}">{{couponDetails.channelDesc}}</block></view>
+        </view>
+       <view class="dl r1bb">
+            <view class="fl dt">地区限制</view>
+            <view class="dd"><block wx:if="{{couponDetails.shopNames}}">{{couponDetails.shopNames}}</block></view>
+        </view>
+        <view class="dl r1bb">
+            <view class="fl dt">使用说明</view>
+            <view class="dd">{{couponDetails.couponTag}}</view>
+        </view>
+        <view class="dl">
+            <view class="fl dt">特殊说明</view>
+            <view class="dd">{{couponDetails.couponDesc}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="coupon-code-wrap">
+        <canvas style="width: {{qrcode.width}}; height: {{qrcode.height}};" canvas-id="qr_code"></canvas>
+        <view class="coupon-code-id" bindtap="showCodeId">
+            <block wx:if="{{!checkCodeId}}">
+               <label for="">查看券码</label>
+            </block>
+            <block wx:else>
+                <text>券码：{{couponDetails.codeValue}}</text>
+            </block>
+        </view>
+    </view>
+    <view class="bar_code" bindtap="reloadOnShow">
+        <canvas style="width: {{barcode.width}}; height: {{barcode.height}}; margin: 0 auto;" canvas-id="bar_code"><cover-view class="reload-tap" bindtap="reloadOnShow"></cover-view></canvas>
+    </view>
+    <block wx:if="{{couponDetails.forwardType <= 3}}">
+
+
+
+    <cover-view class="patcher-placeholder">
+        <cover-view class="iphone-patcher-container">
+            <button class="usering-coupon {{couponDetails.useNow == 1?'valid':'invalid'}}" data-using="{{couponDetails.useNow}}" bindtap="jumpUseCoupon">立即使用</button>
+        </cover-view>
+        <cover-view class="iphone-x-patcher"></cover-view>
+    </cover-view>
+    <component-patcher placeholderHeight="112"></component-patcher>
+</block>

@@ -1,0 +1,97 @@
+<import src="/templates/global/global.wxml" />
+<view class="user-page" id="Mygroup">
+  <block wx:if="{{1==0&&showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorData._msg||'网络请求错误，稍后重试！'}}"></template>
+  </block>
+  <view class='user-head pos-r'>
+    <view class='user-head-text'>
+      <view class="user-text-item user-text-item0" >
+        <view class="title">今日收入</view>
+        <view class="money">¥ {{getMoney.todayBrokerages||'0.00'}}</view>
+      </view>
+      <view class="user-text-item">
+        <view class="title">累计收入</view>
+        <view class="money">¥ {{getMoney.countBrokerages||'0.00'}}</view>
+      </view>
+    </view>
+
+    <!-- <view class='user-head-text'>
+      <view class="user-head-item">
+        <view class="title">社区业务</view>
+        <view class="user-head-item-pic"  catchtap="goList" data-list-type='today' data-list-bizType='0'>
+          <view>今日收入</view>
+          <view>¥{{getMoney.todayBrokerages||'0.00'}}</view>
+        </view>
+        <view class="user-head-item-pic"  catchtap="goList" data-list-type='total' data-list-bizType='0'>
+          <view>累计收入</view>
+          <view>¥{{getMoney.countBrokerages||'0.00'}}</view>
+        </view>
+      </view>
+      <view class="user-head-item">
+        <view class="title">云超业务</view>
+        <view class="user-head-item-pic" catchtap="goList" data-list-type='today' data-list-bizType='1'>
+          <view>今日收入</view>
+          <view>¥{{yunchaoGetMoney.todayBrokerages||'0.00'}}</view>
+        </view>
+        <view class="user-head-item-pic" catchtap="goList" data-list-type='total' data-list-bizType='1'>
+          <view>累计收入</view>
+          <view>¥{{yunchaoGetMoney.countBrokerages||'0.00'}}</view>
+        </view>
+      </view>
+    </view> -->
+
+  </view>
+  <view class='user-info-box'>
+    <view class='user-info-image'>
+      <block wx:if='{{allUserInfo.photo}}'>
+        <image class='img' src='{{allUserInfo.photo}}'></image>
+      </block>
+      <block wx:else>
+        <open-data class='img' type="userAvatarUrl"></open-data>
+      </block>
+    </view>
+    <view class='user-info-name'>
+      <block wx:if='{{allUserInfo.nickName}}'>{{allUserInfo.nickName}}</block>
+      <block wx:else>
+        <open-data type="userNickName"></open-data>
+      </block>
+    </view>
+    <view class='user-info-phone'>{{allUserInfo.mobile}}</view>
+    <view class='user-info-button' catchtap='goChangeInfo'></view>
+  </view>
+  <view class='user-nav'>
+    <view class="user-nav-wrap">
+      <component-grid  grids="{{tabGrids}}" colSize="{{2}}" gridItemClass="tab-grid"
+        gridIconStyle="width:144rpx;height:144rpx;"
+        gridItemTextStyle="font-size:24rpx;color:#777777;margin-top:0;font-weight:normal;" bind:autoJump="gridAutoJump">
+      </component-grid>
+    </view>
+  </view>
+  <view class="my-item2">
+    <view class="item2-title">
+      <view class="my-order-title">订单管理</view>
+      <view class="my-order forword" catchtap="gridAutoJump" data-item="{{orderGrids[0]}}">查看全部订单</view>
+    </view>
+    <view class="item2-content">
+      <component-grid grids="{{orderGrids}}" colSize="{{3}}" gridItemClass="tab-grid"
+        gridSupStyle="background:var(--blue);top:0" gridItemStyle="padding:22rpx 0 32rpx;"
+        gridItemTextStyle="font-size:24rpx;color:#444;margin-top:8rpx;font-weight:normal;" bind:autoJump="gridAutoJump">
+      </component-grid>
+
+    </view>
+  </view>
+  <view class='multi-grid-box'>
+    <view class='multi-grid-title'>更多服务</view>
+    <view class='multi-grid'>
+      <component-grid grids="{{moreServiceGrid}}" colSize="{{3}}" gridItemClass="tab-grid"
+        gridIconStyle="width:56rpx;height:56rpx;" gridSupStyle="background:var(--blue);top:0"
+        gridItemStyle="padding:22rpx 0 32rpx;"
+        gridItemTextStyle="font-size:24rpx;color:#444;margin-top:8rpx;font-weight:normal;" bind:autoJump="gridAutoJump">
+      </component-grid>
+    </view>
+  </view>
+
+  <component-backstage-footer-nav current="0"></component-backstage-footer-nav>
+</view>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

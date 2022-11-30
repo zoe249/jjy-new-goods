@@ -1,0 +1,384 @@
+@charset "UTF-8";
+@import "./templates/global/global.wxss";
+@import './style/main.wxss';
+@import "/style/iconfont.wxss";
+
+/* css initialize */
+@font-face {
+	font-family: "PuHuiTi-Bold";
+	src: url('https://www.baidu.com/api/artCenter/static/font/PuHuiTi-Bold.ttf');
+}
+
+.font-num {
+	font-family: KronaOne
+}
+page {
+	font-size: 28rpx;
+	line-height: 35rpx;
+	font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", Tahoma, Arial, STHeiti, sans-serif;
+	background-color: #f4f6fa;
+	color: #444;
+}
+
+view,
+scroll-view,
+swiper,
+movable-view,
+icon,
+text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+picker,
+picker-view,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+image,
+video,
+map,
+canvas,
+contact-button {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+input {
+	font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Helvetica", "Tahoma", "Simsun";
+}
+
+.private-input,
+.input-placeholder {
+	color: #ccc;
+}
+
+image {
+	display: block;
+	max-width: 100%;
+	width: 100%;
+}
+
+
+/* 常用模块布局类 */
+
+.weui-flex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex
+}
+
+.weui-flex__item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1
+}
+
+
+/* 常用文字排版类 */
+
+.typo-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.typo-elips {
+	display: -webkit-box !important;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+	-webkit-line-clamp: 1;
+	line-height: 1.5;
+	max-height: 3em;
+}
+
+.typo-clamp {
+	display: -webkit-box !important;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	line-height: 1.5;
+	max-height: 3em;
+}
+
+
+/* 常用标准色 */
+
+.color-red {
+	color: #FF4752 !important;
+}
+
+.jjy-color-red {
+	color: #FF4752 !important;
+}
+
+.color-orange {
+	color: #ffa601 !important;
+}
+
+.color-blue {
+	color: #3b9df0 !important;
+}
+
+.jjy-color-blue {
+	color: var(--blue) !important;
+}
+
+
+/* 模块分隔带 */
+
+.gutter {
+	display: block;
+	height: 2rpx;
+	background: #e6e6e6;
+}
+
+.gutter-bg {
+	height: 16rpx;
+	background: #f4f4f4;
+}
+
+
+/* 通用 box 基础模型 */
+
+.box {
+	position: relative;
+}
+
+.box .hd {
+	padding: 40rpx 0;
+}
+
+.box .hd .title {
+	font-size: 36rpx;
+	line-height: 1;
+	font-weight: bold;
+}
+
+.box .hd .title image {
+	width: 130rpx;
+	height: 36rpx;
+}
+
+.box .bd {
+	padding-bottom: 50rpx;
+}
+
+.box .ft {
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 36rpx;
+}
+
+
+/**
+ * 商品列表 - 默认样式
+ */
+
+.goods-list {}
+
+.goods-list .goods-item {
+	position: relative;
+}
+
+.goods-list .goods-item .leftUpTag-box {
+	z-index: 2;
+	position: absolute;
+	left: 10rpx;
+	top: 10rpx;
+	width: 70rpx;
+	height: 70rpx;
+}
+
+.goods-list .goods-item .leftUpTag-box img {
+	width: 70rpx;
+	height: auto;
+}
+
+.goods-list .goods-item .leftUpTag-box-right {
+	z-index: 2;
+	position: absolute;
+	right: 10rpx;
+	top: 10rpx;
+	width: 70rpx;
+	height: 70rpx;
+}
+
+.goods-list .goods-item .leftUpTag-box-right img {
+	width: 70rpx;
+	height: auto;
+}
+
+.goods-list .goods-item .photo {
+	width: 250rpx;
+	height: 250rpx;
+}
+
+.goods-list .goods-item .photo image {
+	width: 100%;
+	height: 100%;
+}
+
+.goods-list .goods-item .description .name {
+	padding: 0 5rpx 0 10rpx;
+	font-size: 26rpx;
+}
+
+.goods-list .goods-item .description .origin-price {
+	padding-left: 10rpx;
+	font-size: 24rpx;
+}
+
+.goods-list .goods-item .description .name .main {}
+
+.goods-list .goods-item .description .name .sub {}
+
+.goods-list .goods-item .description .extra {
+	padding: 15rpx 10rpx 0;
+}
+
+.goods-list .goods-item .description .origin-price {
+	text-decoration: line-through;
+	font-size: 20rpx;
+	line-height: 1;
+	color: #999999;
+}
+
+.goods-list .goods-item .description .extra .price {
+	margin-top: 18rpx;
+	font-size: 28rpx;
+	line-height: 1;
+	color: #FF4752;
+}
+
+.goods-list .goods-item .description .extra .price .currency {
+	font-size: 24rpx;
+}
+
+.goods-list .goods-item .description .extra .price .number {}
+
+.goods-list .goods-item .description .extra .price .unit {
+	font-size: 24rpx;
+	color: #999;
+}
+
+.goods-list .goods-item .description .extra .icon {
+	position: absolute;
+	right: 15rpx;
+	bottom: 20rpx;
+}
+
+.goods-list .goods-item .description .extra .icon.icon-add {
+	display: inline-block;
+	width: 54rpx;
+	height: 40rpx;
+	background: url('https://shgm.jjyyx.com/m/images/icon_add.png') no-repeat center center;
+	-webkit-background-size: 54rpx auto;
+	background-size: 54rpx auto;
+}
+
+.goods-list .goods-item .description .extra .icon.shouqing-text {
+	font-size: 24rpx;
+	color: #999;
+	line-height: 1;
+}
+
+
+/**
+ * 来自 M 版 master.scss 的部分样式
+ */
+
+.a {
+	color: #444;
+}
+
+.default-bg {
+	background: #ededed !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.ui-flex {
+	display: flex !important;
+	flex-wrap: wrap;
+}
+
+.ui-flex .cell {
+	position: relative;
+	flex: 1;
+	width: 0;
+	flex-basis: 0;
+	max-width: 100%;
+	display: block;
+	padding: 0 !important;
+}
+
+.ui-flex .cell2 {
+	flex: 2;
+}
+
+.ui-flex .cell3 {
+	flex: 3;
+}
+
+.pos-r {
+	position: relative !important;
+}
+
+.pos-a {
+	position: absolute !important;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.r1bt {
+	border-top: 1px solid #e7e7e7;
+}
+
+.r1bb {
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.r1bl {
+	border-left: 1px solid #e7e7e7;
+}
+
+.mb8 {
+	margin-bottom: 16rpx;
+}
+
+.pt10 {
+	padding-top: 20rpx;
+}
+
+.pt20 {
+	padding-top: 40rpx !important;
+}
+
+.pb10 {
+	padding-bottom: 20rpx;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

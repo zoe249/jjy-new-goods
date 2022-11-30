@@ -1,0 +1,17 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.good_box {
+    width: 30rpx;
+    height: 30rpx;
+    position: fixed;
+    border-radius: 50%;
+    overflow: hidden;
+    left: 50%;
+    top: 50%;
+    z-index: +99;
+    border: 1px solid #fff;
+    background: red;
+}
+
+

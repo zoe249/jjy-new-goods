@@ -1,0 +1,37 @@
+.list-ul {
+  padding: 20rpx 0 0;
+}
+
+.list-ul .li {
+  position: relative;
+  padding: 32rpx 32rpx;
+  border-bottom: 16rpx solid #f4f4f4;
+  background-color: #fff;
+}
+
+.list-ul .li .li-text1 {
+  color: #777;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 0 0 20rpx;
+}
+
+.list-ul .li .li-text2 {
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  color: #313031;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 0 0 20rpx;
+}
+.list-ul .li .li-text2 view{display: inline-block;}
+.list-ul .li .li-text2 .li-money{color:#7dc81d;}
+.list-ul .li .li-text2 .fu-color{color:#FF4752 !important;}
+
+.list-ul .li .li-text3 {
+  color: #777;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 0 0 0rpx;
+}

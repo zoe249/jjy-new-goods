@@ -1,0 +1,305 @@
+/**
+ * 添加身份证
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.bg-space {
+    height: 16rpx;
+    background: #ededed !important;
+}
+
+.card-info-head {
+    padding: 50rpx 0 0 32rpx;
+}
+
+.item-info {
+    font-size: 26rpx;
+    color: #FF4752;
+}
+
+.item-info text {
+    font-size: 32rpx;
+    color: #444;
+    margin-right: 20rpx;
+}
+
+.id-card-info {
+    padding-top: 16rpx;
+}
+
+.id-card-info input {
+    display: block;
+    width: 100%;
+    font-size: 30rpx;
+    height: 96rpx;
+}
+
+.id-card-info .p {
+    line-height: 96rpx;
+    font-size: 30rpx;
+    height: 96rpx;
+}
+
+.add-card-info {
+    font-size: 32rpx;
+}
+
+.add-card-info .h3 {
+    font-size: 32rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    padding: 0 32rpx;
+}
+
+.add-card-info .id-card-img {
+    color: #999;
+}
+
+.add-card-info .cell2 {
+    text-align: center;
+}
+
+.add-card-info .cell2 .div {
+    width: 210rpx;
+    height: 140rpx;
+    border: 1px dashed #ededed;
+    -webkit-border-radius: 16rpx;
+    border-radius: 16rpx;
+    padding: 10rpx;
+    margin-left: 80rpx;
+    margin-bottom: 16rpx;
+}
+
+.add-card-info .cell2 .card-img {
+    display: inline-block;
+    width: 190rpx;
+    height: 120rpx;
+    -webkit-border-radius: 10rpx;
+    border-radius: 10rpx;
+}
+
+.add-card-info .cell2 input {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0;
+}
+
+.need-add {
+    display: block;
+    left: 10rpx;
+    bottom: 6rpx;
+    width: 186rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 24rpx;
+    color: #fff;
+    text-indent: -6rpx;
+    -webkit-border-bottom-left-radius: 10rpx;
+    border-bottom-left-radius: 10rpx;
+    -webkit-border-bottom-right-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+}
+
+.auditing-tips {
+    position: absolute;
+    top: 10rpx;
+    right: 16rpx;
+    z-index: 2;
+}
+
+.auditing-tips image {
+    width: 100rpx;
+    height: 86rpx;
+}
+
+.chooseimage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.chooseimage::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.need-add.push {
+    background: #000;
+    opacity: 0.35;
+}
+
+.need-add.span {
+    display: inline-block;
+    font-size: 34rpx;
+    line-height: 0;
+    padding: 12rpx 6rpx;
+    vertical-align: text-bottom;
+    margin-right: 2rpx;
+}
+
+.card-tips {
+    font-size: 26rpx;
+    color: #FF4752;
+    margin: 42rpx 0 12rpx;
+    text-align: center;
+}
+
+.card-reference {
+    padding: 0 57rpx 32rpx;
+}
+
+.example-img {
+    width: 144rpx;
+    height: 90rpx;
+}
+
+.card-reference .li {
+    width: 144rpx;
+    margin-right: 20rpx;
+}
+
+.card-reference .li .span {
+    display: block;
+    margin-top: 12rpx;
+    text-align: center;
+    font-size: 26rpx;
+}
+
+.card-reference .li .span .img {
+    display: inline-block;
+    width: 19rpx;
+    height: 18rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.card-reference .li:first-child .img {
+    width: 25rpx;
+}
+
+.card-reference .li:last-child {
+    margin-right: 0;
+}
+
+.why-using-card {
+    padding: 42rpx 32rpx 60rpx;
+    color: #999;
+}
+
+.why-using-card .h3 {
+    text-align: center;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+}
+
+.why-using-card .p {
+    font-size: 24rpx;
+    line-height: 50rpx;
+}
+
+.tanchu {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 480rpx;
+    height: 280rpx;
+    margin: -140rpx -240rpx;
+    background: #fff;
+    -webkit-border-radius: 8rpx;
+    border-radius: 8rpx;
+    z-index: 4;
+}
+
+.loading {
+    display: table;
+    height: 200rpx;
+    margin: 0 auto;
+    line-height: 42rpx;
+    padding: 40rpx;
+    font-size: 30rpx;
+}
+
+.btn-two {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 76rpx;
+    text-align: center;
+    background-color: #fff;
+    line-height: 76rpx;
+    border-top: 1px solid #e6e6e6;
+    -webkit-border-bottom-left-radius: 8rpx;
+    border-bottom-left-radius: 8rpx;
+    -webkit-border-bottom-right-radius: 8rpx;
+    border-bottom-right-radius: 8rpx;
+    overflow: hidden;
+}
+
+.btn-two span {
+    height: 76rpx;
+    display: block;
+    width: 50%;
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* 弹窗 */
+
+.alert-confirm {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.save-info-warp {
+    padding-bottom: 80rpx;
+}
+
+.save-info {
+    display: block;
+    width: 680rpx;
+    height: 90rpx;
+    font-size: 32rpx;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    background: #FF4752;
+    border-radius: 12rpx;
+    line-height: 90rpx;
+}
+
+.no-pass-msg {
+    padding: 42rpx 42rpx 64rpx 42rpx;
+}

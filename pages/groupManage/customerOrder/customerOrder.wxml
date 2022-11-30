@@ -1,0 +1,35 @@
+<!--pages/groupManage/customerOrder/customerOrder.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<view class='customer-order'>
+  <view class='customer-order-head'>
+    <view class='head-image'>
+      <image src='{{groupfansUserInfo.photo}}'></image>
+    </view>
+    <view class='info-box'>
+      <view class='info-name'>昵称：{{groupfansUserInfo.nickName||'无'}}</view>
+      <view class='info-mobile'>手机：{{groupfansUserInfo.mobile||'无'}}</view>
+    </view>
+    <view class='info-num'>共{{orderNum}}个订单</view>
+  </view>
+  <block wx:if="{{showError}}">
+    <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:elif='{{list.length}}'>
+    <view class='order-index'>
+      <template is="list" data="{{list:list}}"></template>
+      <!-- 提示层 - 没有更多了 -->
+      <block wx:if='{{!hasNext}}'>
+        <template is="noMore"></template>
+      </block>
+    </view>
+  </block>
+</view>
+<template name="list">
+  <view class="list-box">
+    <block wx:for="{{list}}" wx:key="*this" wx:for-item="li" wx:for-index="index">
+      <component-group-manage-order-list li='{{li}}' orderStatus='{{orderStatus}}' setGroupNowOrderType=''></component-group-manage-order-list>
+    </block>
+  </view>
+</template>

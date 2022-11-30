@@ -1,0 +1,43 @@
+<import src="/templates/global/global.wxml" />
+<view class="user-page" id="Mygroup">
+  <block wx:if="{{1==0&&showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorData._msg||'网络请求错误，稍后重试！'}}"></template>
+  </block>
+  <view class='head-box'>
+    <view class='head-img'>
+      <image src='{{allUserInfo.photo||""}}'></image>
+    </view>
+    <view class='text-box'>
+      <view class='text1'>{{allUserInfo.nickName||'未填写昵称'}}</view>
+      <view class='text2'>{{allUserInfo.mobile||'未填写电话'}}</view>
+    </view>
+  </view>
+  <view class='cnt-box'>
+    <view class='li li0' bindtap='jumpPages' data-index="0">
+      <view class='left'>到货接收</view>
+      <view class='right'></view>
+    </view>
+    <view class='li li1' bindtap='bindScanQRCode'>
+      <view class='left'>提货核销</view>
+      <view class='right'></view>
+    </view>
+    <view class='li li2' bindtap='jumpPages' data-index="1">
+      <view class='left'>我的佣金</view>
+      <view class='right'></view>
+    </view>
+    <view class='li li3' bindtap='jumpPages' data-index="2">
+      <view class='left'>订单列表</view>
+      <view class='right'></view>
+    </view>
+    <view class='li li4' bindtap='jumpPages' data-index="3">
+      <view class='left'>库存查询</view>
+      <view class='right'></view>
+    </view>
+    <view class='li li5' bindtap='jumpPages' data-index="4">
+      <view class='left'>差异列表</view>
+      <view class='right'></view>
+    </view>
+  </view>
+</view>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

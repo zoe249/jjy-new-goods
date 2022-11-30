@@ -1,0 +1,15 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.Null {
+	padding-top: 200rpx;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #999999;
+	letter-spacing: 2rpx;
+}
+
+.Null image {
+	width: 300rpx;
+	margin-bottom: 40rpx;
+}

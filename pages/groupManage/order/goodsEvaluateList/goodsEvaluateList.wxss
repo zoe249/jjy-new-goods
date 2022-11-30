@@ -1,0 +1,265 @@
+/* pages/order/goodsEvaluateList/goodsEvaluateList.wxss */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+/*loading*/
+
+#loading {
+    z-index: 999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#loading .loading-cnt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 9999999;
+}
+
+#loading .loading-cnt image {
+    width: 180rpx;
+    height: 180rpx;
+}
+
+.evaluate-nav-box {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1rpx solid #ededed
+}
+
+.evaluate-nav-box .evaluate-nav {
+    background-color: #fff;
+    display: flex
+}
+
+.evaluate-nav-box .evaluate-nav .evaluate-nav-li {
+    flex: 1;
+    -webkit-flex: 1;
+    text-align: center;
+    height: 88rpx;
+    line-height: 88rpx;
+}
+
+.evaluate-nav-box .evaluate-nav .evaluate-nav-li.active {
+    color: #ff5c34;
+    background: url("https://shgm.jjyyx.com/m/images/ico_secondCate_active.png") no-repeat bottom center;
+    background-size: 80% 2rpx;
+}
+
+.evaluate-cnt-box {
+    padding-top: 90rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-nav {
+    padding: 36rpx 16rpx 4rpx;
+    border-bottom: 1rpx solid #ededed;
+    background-color: #fff;
+    width: 100%;
+}
+
+.evaluate-cnt-box .evaluate-cnt-nav view {
+    float: left;
+    padding: 0 22rpx;
+    margin: 0 0 32rpx 20rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #999;
+    font-size: 26rpx;
+    border: 1rpx solid #ededed;
+    background-color: #fff;
+    border-radius: 30rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-nav view.active {
+    color: #fc5d3d;
+    border: 1rpx solid #fc5d3d;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt {
+    background-color: #fff;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li {
+    padding: 0 0 0 32rpx;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title {
+    height: 90rpx;
+    line-height: 50rpx;
+    padding: 20rpx 32rpx 20rpx 0;
+    border-bottom: 1px solid #ededed;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title .evaluate-avatar {
+    float: left;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 10rpx;
+    box-sizing: content-box;
+    margin-right: 10rpx;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate_default_avatar.png") no-repeat 0 center;
+    background-size: auto 40rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title .evaluate-level {
+    float: left;
+    width: 50rpx;
+    height: 50rpx;
+    box-sizing: content-box;
+    padding-right: 20rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title .evaluate-name {
+    float: left;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #444;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title image {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title .evaluate-good {
+    float: right;
+    padding-left: 44rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #444;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-good.png") no-repeat 0 center;
+    background-size: auto 40rpx;
+    -webkit-background-size: auto 40rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-title .evaluate-bad {
+    float: right;
+    padding-left: 44rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #444;
+    background: url("https://shgm.jjyyx.com/m/images/evaluate-bad.png") no-repeat 0 center;
+    background-size: auto 40rpx;
+    -webkit-background-size: auto 40rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-time {
+    padding: 16rpx 0 0;
+    height: 60rpx;
+    line-height: 44rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-text {
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #444;
+    word-wrap: break-word;
+    padding: 0 32rpx 0 0;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-text .em {
+    color: #ff5c34;
+    display: inline-block;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-img {
+    white-space: nowrap;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    padding: 20rpx 32rpx 6rpx 0;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-img image {
+    display: inline-block;
+    width: 160rpx;
+    height: 160rpx;
+    padding: 0 16rpx 14rpx 0;
+    box-sizing: content-box;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-img image:last-child {
+    padding: 0 32rpx 14rpx 0;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-num {
+    padding: 12rpx 32rpx 20rpx;
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-num .evaluate-browse {
+    float: left;
+    height: 62rpx;
+    line-height: 62rpx;
+    color: #999;
+    font-size: 24rpx
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-num .evaluate-comment {
+    float: right;
+    height: 42rpx;
+    line-height: 42rpx;
+    padding: 0 0 0 60rpx;
+    background: url("https://shgm.jjyyx.com/m/images/chat.png") no-repeat 0 0;
+    background-size: auto 100%;
+    -webkit-background-size: auto 100%
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-num .evaluate-praise {
+    float: right;
+    height: 42rpx;
+    line-height: 42rpx;
+    padding: 0 40rpx 0 60rpx;
+    background: url("https://shgm.jjyyx.com/m/images/zan.png") no-repeat 0 0;
+    background-size: auto 100%;
+    -webkit-background-size: auto 100%
+}
+
+.evaluate-cnt-box .evaluate-cnt-cnt .li .evaluate-num .evaluate-praise.active {
+    background: url("https://shgm.jjyyx.com/m/images/zandianliang.png") no-repeat 0 0;
+    background-size: auto 100%;
+    -webkit-background-size: auto 100%
+}
+
+.tips {
+    text-align: center;
+    padding: 20rpx 20rpx;
+    color: #999;
+    background-color: #fff;
+    font-size: 24rpx;
+}

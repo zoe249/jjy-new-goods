@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "pop-group-num":"/component/popGroupNum/popGroupNum",
+    "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+    "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher"
+  }
+}

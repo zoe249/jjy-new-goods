@@ -1,0 +1,73 @@
+<!--component/groupStep/groupBuyStep.wxml-->
+<!-- ruleType 0;拼团1：抽奖团，2帮帮团 ，3老带新-->
+<view>
+  <block wx:if="{{ruleType == 1}}">
+    <navigator class="introduce-nav" hover-class="none" url="/pages/groupManage/rule/rule?urlType=drawGroupRule">
+      <text class="group-introduce-text">抽奖团玩法</text>
+      <text class="look-detail">规则说明</text>
+    </navigator>
+  </block>
+  <block wx:elif="{{ruleType == 2}}">
+    <navigator class="introduce-nav" hover-class="none" url="/pages/groupManage/rule/rule?urlType=helpGroupRule">
+      <text class="group-introduce-text">帮帮团玩法</text>
+      <text class="look-detail">规则说明</text>
+    </navigator>
+  </block>
+   <block wx:elif="{{ruleType == 3}}">
+     <navigator class="introduce-nav" hover-class="none" url="/pages/groupManage/rule/rule?urlType=oldNewGroupBuy">
+      <text class="group-introduce-text">拼团玩法</text>
+      <text class="look-detail">规则说明</text>
+    </navigator>
+  </block>
+  <block wx:else>
+    <navigator class="introduce-nav" hover-class="none" url="/pages/documents/documents?mod=o2oGroupBuy">
+      <text class="group-introduce-text">拼团玩法</text>
+      <text class="look-detail">规则说明</text>
+    </navigator>
+  </block>
+
+  
+  <block wx:if='{{ruleType == 1}}'>
+  <view class='draw-container'>
+  <view class='draw-box'><image src='https://shgm.jjyyx.com/m/images/detail-draw-rule-step.jpg' mode='widthFix'></image></view>
+  </view>
+  </block>
+  <block wx:elif='{{ruleType == 2}}'>
+    <!-- <view class="aboout-refund-text-container">
+      <text class="refund-text">组团失败就退款哦~</text>
+    </view> -->
+  </block>
+  <block wx:else>
+    <view class="aboout-refund-text-container">
+      <text class="refund-text">组团失败就退款哦~</text>
+    </view>
+    <view class="step-container">
+    <view class="step-icon-container">
+      <image class="step-icon-item" src="https://shgm.jjyyx.com/m/images/icon-group-rule1.png"></image>
+      <image class="step-interval" src=""></image>
+      <image class="step-icon-item" src="https://shgm.jjyyx.com/m/images/icon-group-rule2.png"></image>
+      <image class="step-interval" src=""></image>
+      <image class="step-icon-item" src="https://shgm.jjyyx.com/m/images/icon-group-rule3.png"></image>
+      <image class="step-interval" src=""></image>
+      <image class="step-icon-item" src="https://shgm.jjyyx.com/m/images/icon-group-rule4.png"></image>
+    </view>
+    <view class="step-msg-container">
+      <view class="step-msg-item">
+        <text class="step-msg">开团</text>
+        <text class="step-msg">或参团</text>
+      </view>
+      <view class="step-msg-item">
+        <text class="step-msg">邀请好友</text>
+        <text class="step-msg">参团</text>
+      </view>
+      <view class="step-msg-item">
+        <text class="step-msg">成团</text>
+      </view>
+      <view class="step-msg-item">
+        <text class="step-msg">提货</text>
+      </view>
+    </view>
+  </view>
+  </block>
+
+</view>

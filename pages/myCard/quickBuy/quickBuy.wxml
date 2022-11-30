@@ -1,0 +1,65 @@
+<import src="/templates/global/global.wxml"/>
+<!-- head -->
+<view class="store_card_infor pos-r">
+    <!-- <image src="https://shgm.jjyyx.com/m/images/icon_store_card_bg.png" style='height:{{scrollFix}}rpx'></image> -->
+    <view class="p pos-a plr16 store_card_tips">
+        <view class="span">生活卡余额（元）：</view>
+        <block wx:if="{{quickBuyCard == 1}}">
+          <view class="a fr" bindtap="jumpPage" data-url="/pages/myCard/list/list">购卡记录</view>
+        </block>
+    </view>
+    <view class="pos-a detail">
+        <view class="strong">￥{{getCardData.valueCard?getCardData.valueCard:'0.00'}}</view>
+        <view class="span">可用卡 {{getCardData.listNum?getCardData.listNum:'0'}} 张</view>
+    </view>
+</view>
+<!-- 推荐 -->
+<view class='module-title'>购卡</view>
+<view class='card-recommend'>
+  <block wx:if="{{getCardData.sectionOutput}}">
+    <swiper class="card-swiper" duration="400" current="{{current}}" bindchange="swiperChange" previous-margin="155rpx" next-margin="155rpx">
+      <swiper-item wx:for="{{getCardData.sectionOutput.recommendList}}" wx:key="*thiskey" wx:for-index='indexImage'>
+        <view class='item pos-r {{current != indexImage?"scale":""}}' data-ss='{{item.cardIntro.skuImages}}'>
+          <view class='item-info'>
+            <image class="goods-cover" src="{{item.imgUrl}}" mode='scaleToFill'></image>
+            <view class='card-goods-wrap'>
+              <view class='card-goods-info'>
+                <!-- <view class='price'>{{item.cardIntro.salePrice}}</view>
+                <view class='card-goods-info-text typo-ellipsis'>{{item.describle}}</view> -->
+              </view>
+            </view>
+            <block wx:if="{{item.cardIntro.promotionList.length > 0}}">
+              <view class='discout pos-a'><image src='{{item.cardIntro.promotionList[0].proTag}}'></image></view>
+            </block>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <swiper class='card-price' duration="400" display-multiple-items="{{getCardData.sectionOutput.recommendList.length<5?1:5}}" current='{{priceCurrent}}'>
+      <swiper-item wx:for="{{getCardData.sectionOutput.recommendList}}" wx:key="*thiskey" class='{{current == index?"active":""}}' data-index="{{index}}" bindtap="bindSelect">￥{{item.cardIntro.salePrice}}</swiper-item>
+    </swiper>
+  </block>
+</view>
+
+<!-- 支付方式 -->
+<view class='module-title' style='padding-top:30rpx;'>支付方式</view>
+<view class='pay-type-container'>
+  <view class='pay-type r1bb pos-r'>
+    <view class='title'>微信支付</view>
+    <text class='tips'>推荐安装微信5.0及以上版本的用户使用！</text>
+    <text class='sel-btn {{emptyRemcoment?"emptyRemcoment-sel":""}}'></text>
+  </view>
+</view>
+
+<!-- 去结算 -->
+<view class="footer r1bt{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+  <view class='footer-flex'>
+    <view class="footer-path total_price">
+      <view calss="total_money">实付：<text>{{realPayPrice?realPayPrice:0}}</text><block wx:if="{{totalProPrice > 0}}"><view class='discount-total'>已优惠 ￥{{totalProPrice?realPayPrice:0}}</view></block></view>
+    </view>
+    <view class="footer-path settle_accounts {{emptyRemcoment?'not-purchasable':''}}" catchtap="{{emptyRemcoment?'':'createOrder'}}">立即购买</view>
+  </view>
+<component-iphone-x-patcher></component-iphone-x-patcher>
+</view>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

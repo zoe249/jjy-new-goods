@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "差异列表",
+  "usingComponents": {
+    "tabs-component": "/component/tabs/tabs"
+  }
+}

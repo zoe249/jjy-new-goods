@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "社区拼团",
+  "usingComponents": {
+    "goods-item": "/component/rowGoodsItem/index",
+    "actionSheet": "/component/actionSheet/actionSheet",
+    "painter":"/component/painter/painter"
+  }
+}

@@ -1,0 +1,87 @@
+<import src="/templates/global/global.wxml"/>
+
+<view class="page-container">
+
+    <view class="card-list-container">
+
+        <block wx:if="{{cardList.length > 0}}">
+            <view class="card-list">
+                <view class="card-item{{item.valueCardClassName}}{{item.statusClassName}}" wx:for="{{cardList}}" wx:key="valueCardCode">
+                    <view class="card-value">
+                        <text class="unit">￥</text>
+                        <text class="number">{{item.valueCardDenomination}}</text>
+                    </view>
+                    <view class="card-sn">{{item.valueCardCode}}</view>
+                    <!-- 生活卡状态：1-已激活；2-已绑定；3-已失效  -->
+                    <view class="card-status"></view>
+                    <!--<view class="btn-copy" bindtap="copyCardInfo" data-item="{{item}}">复制卡号卡密</view>-->
+                    <view class="btn-group">
+                        <view class="btn-bind" bindtap="openBindCardToSelfModal" data-item="{{item}}">绑到我的账户</view>
+                        <view class="btn-share" bindtap="openShareCardToFriendsModal" data-item="{{item}}">转赠好友</view>
+                    </view>
+                </view>
+
+                <!-- 没有更多了~ -->
+                <view style="display: {{noMore ? '' : 'none'}};">
+                    <template is="noMore"></template>
+                </view>
+
+            </view>
+        </block>
+        <block wx:if="{{cardListEmpty}}">
+            <view class="error-box">
+                <image class="error-img" src="https://shgm.jjyyx.com/m/images/empty_cart.png"></image>
+                <view class="error-text">暂无购卡记录</view>
+            </view>
+        </block>
+
+    </view>
+
+    <view class="card-share-container" wx:if="{{isCardShareContainerVisible}}">
+        <view class="card-share-mask"></view>
+        <view class="btn-close" bindtap="hideCardShareContainer"></view>
+        <view class="card-share-content">
+
+            <view class="card-item">
+                <view class="card-value">
+                    <text class="unit">￥</text>
+                    <text class="number">{{currentCardItem.valueCardDenomination}}</text>
+                </view>
+                <view class="card-sn">{{currentCardItem.valueCardCode}}</view>
+            </view>
+
+            <view class="action-container">
+                <button class="btn-share" open-type="share">立即分享</button>
+            </view>
+
+        </view>
+    </view>
+
+    <!-- 组件 - 模态框 - 绑定到我的账户 -->
+    <component-global-modal
+            is-visible="{{modalConfig.isVisible}}"
+
+            header="{{modalConfig.header}}"
+            content="{{modalConfig.content}}"
+            content-style="{{modalConfig.contentStyle}}"
+            footer="{{modalConfig.footer}}"
+
+            bind:modalconfirm="modalCallbackHandler"
+            event-detail="{{modalConfig.eventDetail}}"
+    >
+        <view slot="customContent" wx:if="{{modalConfig.slot}}">
+            <view class="cardInfo">
+                <view class="card-num">卡号: {{modalConfig.eventDetail.valueCardCode}}</view>
+                <view class="card-val">面额: {{modalConfig.eventDetail.valueCardDenomination}}</view>
+            </view>
+        </view>
+    </component-global-modal>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+
+    <!-- 模板 -->
+    <template is="toast" data="{{...toastData}}"></template>
+    <template is="globalLoading" data="{{globalLoading}}"></template>
+    <block wx:if="{{otherMes == 'empty'}}">
+        <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+</view>

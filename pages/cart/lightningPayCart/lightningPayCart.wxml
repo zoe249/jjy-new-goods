@@ -1,0 +1,236 @@
+<!--pages/cart/lightningPayCart/lightningPayCart.wxml-->
+<import src="/templates/global/global.wxml"/>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<view class="lightningPay-box{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+    <block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorData._msg||'网络请求错误，稍后重试！'}}"></template>
+    </block>
+    <block wx:elif="{{showLocationFailPage}}">
+        <template is="location-fail-page-tpl"></template>
+    </block>
+    <block wx:elif="{{showInputPage}}">
+        <template is="input-bar-tpl" data="{{shopName:shopName}}"></template>
+    </block>
+    <block wx:elif="{{showData}}">
+    <view class="cnt">
+        <view class="head">
+            <view class="head-cnt">
+                <view class="shopName">{{shopName||'无'}}</view>
+                <view class="clear-cart" catchtap="clearCart">清空</view>
+            </view>
+            <view class="head-tip clearfix">
+                <view class="hand-tap" catchtap="inputShow">手动输入条形码</view>
+                <view class="total-num">已添加{{totalNum||'0'}}/30件商品</view>
+            </view>
+        </view>
+        <block wx:if="{{outPutgoodsList.goodsList.length>0}}">
+        <view class="goods-list">
+            <block wx:for="{{outPutgoodsList.goodsList}}" wx:for-item="item" wx:for-index="index" wx:key='{{item.skuId}}'>
+            <view class="li{{addBackgroundClass&&addBackgroundSkuId&&item.skuId==addBackgroundSkuId&&(addBackgroundPluCode&&addBackgroundPluCode==item.pluCode||!addBackgroundPluCode)?' addBackgroundClass':''}}">
+                <view class="cover-image"><image src="{{item.coverImage}}" mode="aspectFill"></image></view>
+                <view class="goods-name"><block wx:if="{{item.isGift}}"><view class="tag">赠品</view></block><block wx:elif="{{item.isAddPriceGoods}}"><view class="tag">换购</view></block>{{item.goodsName}}</view>
+                <view class="goods-price"><view class="single-price">单价:￥{{item.goodsPrice}}</view><block wx:if="{{item.salesUnit}}"><view class="unit">/{{item.salesUnit}}</view></block><block wx:if="{{item.goodsPrice!=item.goodsPrimePrice}}"><view class="del-price">￥{{item.goodsPrimePrice}}</view></block></view>
+                <view class="goods-spec"><block wx:if="{{item.pricingMethod==391}}"><view class="weight">重量：{{item.weightValue}}g</view></block><block wx:elif="{{item.specName}}"><view class="spec">规格：{{item.specName}}</view></block></view>
+                <view class="price"><view class="mark">￥</view>{{item.goodsTotalSrcPrice}}</view>
+                    <view class="num-box">
+                        <block wx:if="{{item.operaType==4||item.operaType==5||item.operaType==6||item.operaType==7}}">
+                            <view class="num-minus" catchtap="minusGoods" data-opera-type="{{item.operaType}}" pricingMethod="{{item.pricingMethod}}" data-plu-code="{{item.pluCode}}" data-goods-id="{{item.goodsId}}" data-store-id="{{item.storeId}}" data-store-type="{{item.storeType}}" data-num="{{item.num}}" data-sku-id="{{item.skuId}}">-</view>
+                        </block>
+                        <block wx:else>
+                            <view class="num-minus off" data-opera-type="{{item.operaType}}" pricingMethod="{{item.pricingMethod}}" data-plu-code="{{item.pluCode}}" data-goods-id="{{item.goodsId}}" data-store-id="{{item.storeId}}" data-store-type="{{item.storeType}}" data-num="{{item.num}}" data-sku-id="{{item.skuId}}">-</view>
+                        </block>
+                         <view class="num">{{item.num}}</view>
+                        <block wx:if="{{(item.operaType==1||item.operaType==3||item.operaType==5||item.operaType==7)&&item.pricingMethod==390}}">
+                            <view class="num-plus" catchtap="plusGoods" data-opera-type="{{item.operaType}}" pricingMethod="{{item.pricingMethod}}" data-plu-code="{{item.pluCode}}" data-goods-id="{{item.goodsId}}" data-store-id="{{item.storeId}}" data-store-type="{{item.storeType}}" data-num="{{item.num}}" data-sku-id="{{item.skuId}}">+</view>
+                        </block>
+                        <block wx:else>
+                            <view class="num-plus off" data-opera-type="{{item.operaType}}" pricingMethod="{{item.pricingMethod}}" data-plu-code="{{item.pluCode}}" data-goods-id="{{item.goodsId}}" data-store-id="{{item.storeId}}" data-store-type="{{item.storeType}}" data-num="{{item.num}}" data-sku-id="{{item.skuId}}">+</view>
+                        </block>
+                    </view>
+            </view>
+            </block>
+        </view>
+        </block>
+        <block wx:else><view class="cart-empty"></view></block>
+        <view class="foot-padding"></view>
+        <view class="foot">
+
+            <view class="foot-scan" catchtap="lightingScanCode"></view>
+            <view class="foot-box clearfix">
+                <block wx:if="{{outPutgoodsList.totalProPrice&&outPutgoodsList.totalProPrice!=0}}">
+                    <view class="foot-left clearfix">
+                        <view class="total-price">实付：<view class="mark">￥</view><view class="price-big">{{outPutgoodsList.realPayPriceBig}}</view><block wx:if="{{outPutgoodsList.realPayPriceSmall}}"><view class="price-small">.{{outPutgoodsList.realPayPriceSmall}}</view></block></view>
+                        <view class="promotion-price">已优惠：￥{{outPutgoodsList.totalProPrice}}</view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="foot-left clearfix on-line">
+                        <view class="total-price">实付：<view class="mark">￥</view><view class="price-big">{{outPutgoodsList.realPayPriceBig}}</view><block wx:if="{{outPutgoodsList.realPayPriceSmall}}"><view class="price-small">.{{outPutgoodsList.realPayPriceSmall}}</view></block></view>
+                    </view>
+                </block>
+                <block wx:if="{{totalNum>0}}">
+                    <view class="go-pay" catchtap="goPay">去结算</view>
+                </block>
+                <block wx:else>
+                    <view class="go-pay off">去结算</view>
+                </block>
+
+            </view>
+            <component-iphone-x-patcher></component-iphone-x-patcher>
+        </view>
+        <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+    </block>
+    <block wx:if="{{showBagPop}}">
+        <template is="shopping-bag-tpl" data="{{storageShoppingBagGoods:storageShoppingBagGoods,nowBag:nowBag}}"></template>
+    </block>
+    <block wx:if="{{showLocationFailPop}}">
+        <template is="location-fail-tpl"></template>
+    </block>
+    <block wx:if="{{showLocationNoPop}}">
+        <template is="location-no-tpl" data="{{verificationShopLocation}}"></template>
+    </block>
+
+    <block wx:if="{{showShopChangePop}}">
+        <template is="shop-change-tpl" data="{{verificationShopLocation}}"></template>
+    </block>
+    <block wx:if="{{showClearCartPop}}">
+        <template is="clear-cart-tpl"></template>
+    </block>
+    <block wx:if="{{showDelGoodsPop}}">
+        <template is="del-goods-tpl"></template>
+    </block>
+
+</view>
+<!--购物袋-->
+<template name="shopping-bag-tpl">
+    <view class="shopping-bag-pop">
+        <view class="shopping-bag-box">
+            <view class="shopping-bag-title">请选择购物袋</view>
+            <view class="shopping-bag-tip">购买后请到专属核销出口领取</view>
+            <block wx:if="{{storageShoppingBagGoods.length==2}}">
+                <view class="tow-bag clearfix">
+                    <block wx:for="{{storageShoppingBagGoods}}" wx:for-item="b" wx:for-index="bIndex">
+                        <view class="bag-box">
+                            <view class="bag-img{{b.skuId==nowBag.skuId?' on':''}}"><image src="{{b.coverImage}}" catchtap="changeBag" data-sku-id="{{b.skuId}}"></image><block wx:if="{{b.num}}"><view class="bag-num">{{b.num}}</view></block></view>
+                            <view class="bag-name">{{b.skuName}}</view>
+                            <view class="bag-price">￥{{b.goodsPrice}}</view>
+                        </view>
+                    </block>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="one-bag">
+                    <block wx:for="{{storageShoppingBagGoods}}" wx:for-item="b" wx:for-index="bIndex">
+                        <view class="bag-box">
+                            <view class="bag-img"><image src="{{b.coverImage}}"></image><block wx:if="{{b.num}}"><view class="bag-num">{{b.num}}</view></block></view>
+                            <view class="bag-name">{{b.skuName}}</view>
+                            <view class="bag-price">￥{{b.goodsPrice}}</view>
+                        </view>
+                    </block>
+                </view>
+            </block>
+           <view class="change-bag clearfix">
+               <view class="bag-minus" catchtap="bagMinus" data-sku-id="{{nowBag.skuId}}" data-num="{{nowBag.num}}"></view>
+               <view class="change-num">{{nowBag.num}}</view>
+               <view class="bag-plus" catchtap="bagPlus" data-sku-id="{{nowBag.skuId}}" data-num="{{nowBag.num}}"></view>
+           </view>
+            <view class="bag-btn clearfix">
+                <view class="bag-cancel" catchtap="noNeedBag">不需要</view>
+                <view class="bag-confirm" catchtap="confirmBag">确定</view>
+            </view>
+        </view>
+    </view>
+</template>
+<!--定位失败-->
+<template name="location-fail-tpl">
+    <view class="location-fail-pop">
+        <view class="location-fail-box">
+            <view class="location-fail-title">提示信息</view>
+            <view class="text1">当前系统获取定位信息失败</view>
+            <view class="text2">*闪电付仅在门店内使用</view>
+            <view class="location-fail-btn" catchtap="clickLocationFail">知道了</view>
+        </view>
+    </view>
+</template>
+<!--定位不存在提示-->
+<template name="location-no-tpl">
+    <view class="location-fail-pop">
+        <view class="location-fail-box">
+            <view class="location-fail-title">{{verificationShopLocation.title||'提示信息'}}</view>
+            <view class="text1">{{verificationShopLocation.errMsg||'当前系统获定位取信息失败'}}</view>
+            <view class="text2">*闪电付仅在门店内使用</view>
+            <view class="location-fail-btn" catchtap="clickLocationNo">知道了</view>
+        </view>
+    </view>
+</template>
+<!--门店信息有变化提示-->
+<template name="shop-change-tpl">
+    <view class="shop-change-pop">
+        <view class="shop-change-box">
+            <view class="shop-change-title">{{verificationShopLocation.title||'提示信息'}}</view>
+            <view class="text1">您当前定位</view>
+            <view class="text2">{{verificationShopLocation.shop.shopName}}</view>
+            <view class="text3">{{verificationShopLocation.shop.shopAddress}}</view>
+            <view class="text4">*门店信息将影响闪电付是否可正常购物</view>
+            <view class="shop-change-btn" catchtap="changLocation">知道了</view>
+        </view>
+    </view>
+</template>
+<!--清空闪电付购物车-->
+<template name="clear-cart-tpl">
+    <view class="clear-cart-pop">
+        <view class="clear-cart-box">
+            <view class="clear-cart-text">确定清空闪电付购物车？</view>
+            <view class="clear-cart-btn clearfix">
+                <view class="clear-cart-cancel" catchtap="cancelClearCart">取消</view>
+                <view class="clear-cart-confirm" catchtap="confirmClearCart">确定</view>
+            </view>
+        </view>
+    </view>
+</template>
+<!--是否删除该商品-->
+<template name="del-goods-tpl">
+    <view class="del-goods-pop">
+        <view class="del-goods-box">
+            <view class="del-goods-text">是否要删除该商品</view>
+            <view class="del-goods-btn clearfix">
+                <view class="del-goods-cancel" catchtap="cancelDelGoods">取消</view>
+                <view class="del-goods-confirm" catchtap="confirmDelGoods">确定</view>
+            </view>
+        </view>
+    </view>
+</template>
+<!--条形码输入模块-->
+<template name="input-bar-tpl">
+    <view class="input-bar-box">
+        <view class="head">
+            <view class="head-cnt">
+                <view class="shopName">{{shopName}}</view>
+            </view>
+            <view class="head-input-box clearfix">
+                <view class="input-box"><input placeholder="请输入商品条形码" bindinput="getinputValue"  value="{{inputValue}}" auto-focus/></view>
+                <view class="input-scan" catchtap="lightingScanCode"></view>
+            </view>
+        </view>
+        <view class='btn-finish-box'><view class="btn-finish-cancel" catchtap="clickCancelInput">返回</view><view class="btn-finish-input" catchtap="clickFinishInput">确认</view></view>
+    </view>
+</template>
+<!--定位失败页面-->
+<template name="location-fail-page-tpl">
+    <view class="location-fail-page">
+        <view class="fail-page-box">
+            <image src="https://shgm.jjyyx.com/m/images/error_img4.png?20190704" class="fail-image"></image>
+            <view class="text1">获取地理位置失败</view>
+            <button open-type="openSetting" class="location-btn">开启定位</button>
+            <view class="text2">若小程序定位已开启</view>
+            <view class="text3">请检查微信服务定位是否开启</view>
+        </view>
+    </view>
+</template>
+<template is="modal" data="{{...modalData}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

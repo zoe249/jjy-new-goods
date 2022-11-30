@@ -1,0 +1,53 @@
+<view class='goods-bill'>
+      <block wx:for="{{list}}">
+        <view class="li r1bb">
+        <view class="bill-list">
+            <view class="goods-img fl r1b">
+              <image class="img" src="{{item.coverImage || item.coverImg}}"></image>
+              <block wx:if="{{item.goodsStock <= 0}}"><view class='div'>已赠完</view></block>
+            </view>
+            <view class="goods-info">
+                <view class="h3">
+                  <block wx:if="{{item.isAddPriceGoods == 1}}"><text class="span">换购</text></block><block wx:if="{{item.zengpin || !!item.isGift}}"> <text class="span">赠品</text></block>{{item.goodsName}}
+                </view>
+                <view class="h4">  
+                  <block wx:if="{{item.specName}}"> 规格: {{item.specName}}</block>
+                  <block wx:if="{{item.pricingMethod==391 && item.specName}}"><image wx:if="{{orderType != 2}}" class="weight-toast" src="https://shgm.jjyyx.com/m/images/icon_info.png" bindtap='showWeightNotice'></image></block>
+                </view>
+                <block wx:if="{{item.pricingMethod!=391}}">
+                <view class="p"><text class="span">数量：<block wx:if=" {{item.zengpin}}"> {{item.zengpinNum}}</block><block wx:else>{{item.num}}</block>{{item.num}}</text><text class="em">单价：￥<block wx:if="{{item.zengpin}}">{{item.salePrice}}</block><block wx:else>{{item.goodsPrice}}</block><block wx:if="{{item.salesUnit}}">/{{item.salesUnit}}</block></text><block wx:if="{{item.goodsPrice != item.goodsPrimePrice}}"><text class='goodsPrimePrice'>￥{{item.goodsPrimePrice}}</text></block>
+                </view>
+                </block>
+                <block wx:else>
+                  <view class="p">
+                    <text class="span">重量：{{item.weightValue}}<block wx:if="{{item.purchaseUnit}}">{{item.purchaseUnit}}</block><block wx:else>g</block></text><text class="em">单价：￥<block wx:if="{{item.zengpin}}">{{item.salePrice}}</block><block wx:else>{{item.goodsPrice}}</block><block wx:if="{{item.salesUnit}}">/{{item.salesUnit}}</block></text>
+                    </view>
+                </block>
+                <view class="pos-a goodsPrice c-color">
+                  <block wx:if="{{!!item.goodsTotalSrcPrice && !item.isAddPriceGoods}}">￥{{item.goodsTotalSrcPrice}}</block><block wx:elif="{{item.isAddPriceGoods}}">￥{{item.goodsTotalPrice}}</block>
+                </view>
+            </view>
+        </view>
+        <!--是否支持退货-->
+        <block wx:if="{{orderType == 5}}">
+            <block wx:if="{{item.isNoReasonReturn}}">
+            <view class="is-seven-return r1bt">支持7天无理由退货</view>
+            </block>
+            <block wx:else>
+            <view class="is-seven-return r1bt">不支持7天无理由退货</view>
+            </block>
+        </block>
+        </view>
+      </block>
+           <view class="fadeInUp-box {{showNotice?'show':''}} pos-f close" bindtap='hideWeightNotice'>
+            <view class="fadeInUp-cont pos-a">
+                <view class="fadeInUp-title r1bb">{{weightNotice.title}} <view class="fr close" bindtap='hideWeightNotice'><image class="close-img" src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image></view></view>
+                <view class="fadeInUp-list">
+                <block wx:for="{{weightNotice.contentList}}" wx:key="*this">
+                    <view class="li">{{item.content}}</view>
+                </block>
+                </view>
+                <view class="fadeInUp-btn close" bindtap='hideWeightNotice'>关闭</view>
+            </view>
+        </view>
+</view>

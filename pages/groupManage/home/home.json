@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "悦团购",
+  "navigationStyle": "custom",
+  "backgroundColor": "#f4f4f4",
+  "enablePullDownRefresh": true,
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 100,
+  "usingComponents": {
+    "component-group-footer": "/component/communityGroupFooter/communityGroupFooter",
+    "category-grid": "/component/categoryGrid/categoryGrid",
+    "tabs": "/component/tabs/tabs",
+    "goods-item": "/component/rowGoodsItem/index",
+    "group-item": "/component/rowGroupItem/index",
+    "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "image-modal": "/component/imageModal/imageModal"
+  }
+}

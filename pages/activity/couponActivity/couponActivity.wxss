@@ -1,0 +1,552 @@
+.banner{
+  width:100%;
+  position: relative;
+}
+.noRightBr{
+  border-right:none !important;
+}
+.noBottomBr{
+  border-bottom:none !important;
+}
+.noLeftBr{
+  border-left:none !important;
+}
+.noTopBr{
+  border-top:none !important;
+}
+#box{
+  min-height:100vh;
+}
+.cart-ico{
+  position:fixed;
+  z-index:99;
+  bottom:180rpx;
+  left:0rpx;
+  width:114rpx;
+  height:114rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon-fixed-cart.png") center no-repeat;
+  background-size: 100%;
+}
+.cart-ico .cart-num{
+  position:absolute;
+  right:0;
+  top:0;
+  padding:0 10rpx;
+  border-radius:16rpx;
+  color:#fff;
+  font-size:24rpx;
+  line-height:32rpx; 
+  background-color: #FF4752;
+}
+.banner image{
+  display: block;
+  width:100%;
+  height:auto;
+}
+.coupon-box{
+  position: relative;
+  padding:16rpx;
+  background-color:rgba(0,0,0,0.6);
+  margin:-160rpx 30rpx 0;
+  border-radius: 16rpx;
+}
+.coupon-box .item{
+  height:128rpx;
+  background-color:#D4B871;
+  border-radius: 8rpx;
+  position: relative;
+  padding:0 0 0 208rpx;
+  color:#313031;
+  margin-bottom:16rpx;
+}
+.coupon-box .item:last-child{
+  margin-bottom:0rpx;
+}
+.coupon-box .item.off{
+  background-color: #E7E7E7;
+  color:#94969C;
+}
+.coupon-box .item .item-right{
+  position:absolute;
+  top:6rpx;
+  left:0;
+  width:184rpx;
+  height:116rpx;
+  text-align: center;
+  border-right:1rpx solid #313031;
+}
+.coupon-box .item .item-right .price{
+  font-size:42rpx;
+  line-height:60rpx;
+  font-weight: bold;
+  padding:10rpx 0 0;
+}
+.coupon-box .item .item-right .small{
+  font-size:28rpx;
+}
+.coupon-box .item .item-right .des{
+  font-size:24rpx;
+}
+.coupon-box .item .item-right .text{
+  font-size:36rpx;
+  line-height:116rpx
+}
+.coupon-box .item .item-left .text1{
+  font-size:30rpx;
+  line-height:42rpx;
+  padding:6rpx 0 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height:48rpx;
+  overflow: hidden;
+}
+.coupon-box .item .item-left .text2{
+  font-size:24rpx;
+  line-height:32rpx;
+  padding:8rpx 0 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height:40rpx;
+  overflow: hidden;
+}
+.coupon-box .item .item-left .text3{
+  font-size:18rpx;
+  line-height:24rpx;
+  padding:10rpx 0 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.coupon-box .item .coupon-btn{
+  position: absolute;
+  right:16rpx;
+  top:32rpx;
+  line-height: 64rpx;
+  border-radius: 32rpx;
+  box-shadow: 0 0 4rpx rgba(0,0,0,0.2);
+  background-color: #fff;
+  width:128rpx;
+  text-align: center;
+  font-size:26rpx;
+  font-weight: bold;
+  color:#94969C;
+}
+.coupon-box .item .coupon-btn.canReceive{
+  color:#D4B871;
+}
+.goods-box{
+  padding:0 0 50rpx;
+}
+.goods-box .goods-title{
+  min-height:0rpx;
+}
+.goods-box .goods-title image{
+  width:100%;
+  height:0;
+}
+.goods-box .ul{
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin:0 15rpx;
+  display: -webkit-flex;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.one-goods-li{
+  padding:32rpx 32rpx 0;
+  width:100%;
+}
+.one-goods-li .li{
+  position: relative;
+  padding:0 0 32rpx 224rpx;
+  border-bottom: 1rpx solid #EDEDED;
+  height:240rpx;
+}
+.one-goods-li .li .li-left-proTag{
+  position: absolute;
+  top:8rpx;
+  left:8rpx;
+  width:64rpx;
+  height:64rpx;
+}
+.one-goods-li .li .goods-img{
+  position:absolute;
+  top:0rpx;
+  left:0;
+}
+.one-goods-li .li .goods-img image{
+  width:208rpx;
+  height:208rpx;
+  /* border:1rpx solid #f4f4f4; */
+  background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+.one-goods-li .li .goods-cnt{
+  position: relative;
+  min-height:208rpx;
+  padding:0 0 0rpx;
+}
+.one-goods-li .li .goods-cnt .goods-name{
+  padding:16rpx 0 0;
+  line-height:42rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:30rpx;
+  color:#444444;
+  height:58rpx;
+  margin:0 0 6rpx;
+}
+.one-goods-li .li .goods-cnt .goods-des{
+  padding:0 0 10rpx;
+  line-height:28rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:24rpx;
+  color:#94969C;
+  height:38rpx;
+}
+.one-goods-li .li .goods-cnt .goods-tag{
+  
+}
+.one-goods-li .li .goods-cnt .goods-tag .tag-item{
+  display: inline-block;
+  padding:0 6rpx 0;
+  min-width:48rpx;
+  line-height:26rpx;
+  font-size:18rpx;
+  text-align: center;
+  border-radius: 23rpx;
+  background-color: #FDEBED;
+  color:#FF4752;
+  margin:10rpx 16rpx 10rpx 0;
+}
+.one-goods-li .li .goods-cnt .goods-tag .tag-item:nth-child(2n){
+  background-color: #fff6e5;
+  color:#FFA601;
+}
+.one-goods-li .li .goods-cnt .prime-price{
+  font-size:24rpx;
+  line-height:30rpx;
+  text-decoration: line-through;
+  color:#94969C;
+  min-height:40rpx;
+  padding:10rpx 0 0;
+}
+.one-goods-li .li .goods-cnt .goods-price{
+  position:absolute;
+  bottom:0;
+  left:0;
+  display: -webkit-flex;
+  display:flex;
+  justify-content: flex-start;
+  align-items:flex-end;
+}
+.one-goods-li .li .goods-cnt .goods-price .price{
+  color:#FF4752;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+.one-goods-li .li .goods-cnt .goods-price .unit{
+  color:#94969C;
+  font-size:24rpx;
+  line-height: 38rpx;
+}
+.one-goods-li .li .goods-cnt .btn{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:48rpx;
+  height:48rpx;
+  text-indent:-9999rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_add_shaow.png") no-repeat center;
+  background-size: 100%;
+}
+.one-goods-li .li .goods-cnt .btn-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  height:46rpx;
+  width:110rpx;
+  line-height:46rpx;
+  border-radius: 23rpx;
+  background: #FF4752;
+  color:#fff;
+  font-size: 24rpx;
+  text-align: center;
+}
+.one-goods-li .li .goods-cnt .shouqing-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  line-height:36rpx;
+  color:#94969C;
+  font-size: 24rpx;
+}
+.two-goods-li{
+  width:50%;
+  border-bottom:1rpx solid #EDEDED;
+  border-right:1rpx solid #EDEDED;
+}
+
+.two-goods-li .li{
+  position: relative;
+  padding:30rpx 30rpx 20rpx;
+  
+}
+.two-goods-li .li .li-left-proTag{
+  position: absolute;
+  top:8rpx;
+  left:8rpx;
+  width:64rpx;
+  height:64rpx;
+}
+.two-goods-li .li .goods-img{
+  margin:0 auto;
+  text-align:center;
+}
+.two-goods-li .li .goods-img image{
+  width:302rpx;
+  height:302rpx;
+  /* border:1rpx solid #f4f4f4; */
+  background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+.two-goods-li .li .goods-cnt{
+  position: relative;
+  min-height:176rpx;
+  padding:0 0 46rpx;
+}
+.two-goods-li .li .goods-cnt .goods-name{
+  padding:10rpx 0 0;
+  line-height:32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:24rpx;
+  color:#444444;
+  height:42rpx;
+  margin:0 0 10rpx;
+}
+.two-goods-li .li .goods-cnt .goods-des{
+  padding:0 0 10rpx;
+  line-height:40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:20rpx;
+  color:#94969C;
+  height:50rpx;
+}
+.two-goods-li .li .goods-cnt .goods-tag{
+  
+}
+.two-goods-li .li .goods-cnt .goods-tag .tag-item{
+  display: inline-block;
+  padding:0 6rpx 0;
+  min-width:48rpx;
+  line-height:26rpx;
+  font-size:18rpx;
+  text-align: center;
+  border-radius: 23rpx;
+  background-color: #FDEBED;
+  color:#FF4752;
+  margin:10rpx 16rpx 10rpx 0;
+}
+.two-goods-li .li .goods-cnt .goods-tag .tag-item:nth-child(2n){
+  background-color: #fff6e5;
+  color:#FFA601;
+}
+.two-goods-li .li .goods-cnt .prime-price{
+  font-size:24rpx;
+  line-height:30rpx;
+  text-decoration: line-through;
+  color:#94969C;
+  min-height:30rpx;
+}
+.two-goods-li .li .goods-cnt .goods-price{
+  position:absolute;
+  bottom:0;
+  left:0;
+  display: -webkit-flex;
+  display:flex;
+  justify-content: flex-start;
+  align-items:flex-end;
+}
+.two-goods-li .li .goods-cnt .goods-price .price{
+  color:#FF4752;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.two-goods-li .li .goods-cnt .goods-price .unit{
+  color:#94969C;
+  font-size:24rpx;
+  line-height: 38rpx;
+}
+.two-goods-li .li .goods-cnt .btn{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:48rpx;
+  height:48rpx;
+  text-indent:-9999rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_add_shaow.png") no-repeat center;
+  background-size: 100%;
+}
+.two-goods-li .li .goods-cnt .btn-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  height:40rpx;
+  width:90rpx;
+  line-height:40rpx;
+  border-radius: 20rpx;
+  background: #FF4752;
+  color:#fff;
+  font-size: 24rpx;
+  text-align: center;
+}
+.two-goods-li .li .goods-cnt .shouqing-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  line-height:40rpx;
+  color:#94969C;
+  font-size: 24rpx;
+}
+.three-goods-li{
+  width:33.33%;
+  border-right:1rpx solid #EDEDED;
+  border-bottom:1rpx solid #EDEDED;
+}
+
+.three-goods-li .li{
+  position: relative;
+  padding:15rpx;
+}
+.three-goods-li .li .li-left-proTag{
+  position: absolute;
+  top:8rpx;
+  left:8rpx;
+  width:64rpx;
+  height:64rpx;
+}
+.three-goods-li .li .goods-img{
+  margin:0 auto;
+  text-align: center;
+}
+.three-goods-li .li .goods-img image{
+  width:208rpx;
+  height:208rpx;
+  margin:0 auto;
+  background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+.three-goods-li .li .goods-cnt{
+  position: relative;
+  height:143rpx;
+  padding:0 0 46rpx;
+}
+.three-goods-li .li .goods-cnt .goods-name{
+  padding:10rpx 0 0;
+  line-height:32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:24rpx;
+  color:#444444;
+  height:42rpx;
+  margin:0 0 0rpx;
+}
+.three-goods-li .li .goods-cnt .goods-des{
+  padding:0 0 10rpx;
+  line-height:40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-size:20rpx;
+  color:#94969C;
+  height:36rpx;
+}
+.three-goods-li .li .goods-cnt .goods-tag{
+  
+}
+.three-goods-li .li .goods-cnt .goods-tag .tag-item{
+  display: inline-block;
+  padding:0 6rpx 0;
+  min-width:48rpx;
+  line-height:26rpx;
+  font-size:18rpx;
+  text-align: center;
+  border-radius: 23rpx;
+  background-color: #FDEBED;
+  color:#FF4752;
+  margin:10rpx 16rpx 10rpx 0;
+}
+.three-goods-li .li .goods-cnt .goods-tag .tag-item:nth-child(2n){
+  background-color: #fff6e5;
+  color:#FFA601;
+}
+.three-goods-li .li .goods-cnt .prime-price{
+  font-size:22rpx;
+  line-height:30rpx;
+  text-decoration: line-through;
+  color:#94969C;
+  min-height:30rpx;
+}
+.three-goods-li .li .goods-cnt .goods-price{
+  position:absolute;
+  bottom:0;
+  left:0;
+  display: -webkit-flex;
+  display:flex;
+  justify-content: flex-start;
+  align-items:flex-end;
+}
+.three-goods-li .li .goods-cnt .goods-price .price{
+  color:#FF4752;
+  font-size: 26rpx;
+}
+.three-goods-li .li .goods-cnt .goods-price .unit{
+  color:#94969C;
+  font-size:20rpx;
+}
+.three-goods-li .li .goods-cnt .btn{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:48rpx;
+  height:48rpx;
+  text-indent:-9999rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon_add_shaow.png") no-repeat center;
+  background-size: 100%;
+}
+.three-goods-li .li .goods-cnt .btn-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  height:36rpx;
+  width:80rpx;
+  line-height:36rpx;
+  border-radius: 18rpx;
+  background: #FF4752;
+  color:#fff;
+  font-size: 20rpx;
+  text-align: center;
+}
+.three-goods-li .li .goods-cnt .shouqing-text{
+  position:absolute;
+  right:0;
+  bottom:0;
+  line-height:36rpx;
+  color:#94969C;
+  font-size: 22rpx;
+}

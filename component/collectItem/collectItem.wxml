@@ -1,0 +1,24 @@
+<!--component/goodsItem/goodsItem.wxml-->
+<view class="collection_goods_wrap{{listLength&&listLength-1==currentIndex ?'':' r1bb'}}" catchtap='goGoodsDetail' data-item="{{item}}" data-list-length='{{listLength}}' data-current-index='{{currentIndex}}'>
+  <view class="collection_goods_items">
+    <view class="item-img">
+      <image class='img' src="{{item.goodsImage}}"></image>
+    </view>
+    <view class="item-info">
+      <view class='h3'>{{item.shortTitle || item.goodsName||'无'}}</view>
+      <view class='h4'>
+        <block wx:if='{{item.goodsSpec}}'>规格：{{item.goodsSpec||''}}</block>
+      </view>
+      <view class="prime-price h4">
+        <block wx:if='{{item.primePrice && item.primePrice != 0 && item.primePrice != item.priceStr}}'>￥{{item.primePrice}}</block>
+      </view>
+      <view class="price">
+        <view class='em'>{{item.priceStr}}</view>
+        <block wx:if='{{item.goodsUnit}}'>
+          <view class='s'>/{{item.goodsUnit}}</view>
+        </block>
+      </view>
+      <!-- <block wx:if='{{!item.hideDelCollect}}'><view class='del' data-item='{{item}}' catchtap='delCollect'>取消收藏</view></block> -->
+    </view>
+  </view>
+</view>

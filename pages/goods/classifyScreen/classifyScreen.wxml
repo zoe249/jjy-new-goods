@@ -1,0 +1,82 @@
+<!--pages/goods/classifyScreen/classifyScreen.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<scroll-view scroll-y class="wrapper" bindtap="resetFilter" scroll-top="{{scrollTop}}" bindscrolltolower="getGoodsList" lower-threshold="200" enable-back-to-top>
+  <block wx:if="{{filterFlag}}">
+    <view class="dialog-bg"></view>
+  </block>
+
+  <block wx:if="{{cateList.length}}">
+    <view class="top-fixed-nav-container">
+      <view class="catalog {{filterFlag == 'catalog' ? 'active' : ''}}" catchtap="tagCatalogDialog">
+        <text>{{firstCateName}}</text>
+      </view>
+      <view class="filter-sales {{priceSort == 1 ? 'up' : priceSort == -1 ? 'down' : ''}}" bindtap="changeSalesSort">价格</view>
+      <view class="filter-btn {{filterFlag == 'filter' ? 'active' : ''}}" catchtap="tagFilterDialog">筛选</view>
+
+      <block wx:if="{{filterFlag == 'catalog'}}">
+        <view class="catalog-container">
+          <block wx:for="{{cateList}}" wx:key="cateId">
+            <view class="catalog-item {{(index+1)%3 == 0 ? 'no-border-right' : ''}} {{firstCateId == item.cateId ? 'active' : ''}}" data-item="{{item}}" bindtap="changeCatalog">
+              <text>{{item.cateName}}</text>
+            </view>
+          </block>
+        </view>
+      </block>
+
+      <block wx:if="{{filterFlag == 'filter'}}">
+        <view class="filter-container" catchtap="stopPropagation">
+          <view class="filter-item-container">
+            <view class="filter-item-title">配送时效</view>
+            <view class="filter-item-btn-container">
+              <view class="filter-item-btn {{deliveryCss == 0?'active':''}}" data-val="0" catchtap="changeDelivery">全部</view>
+              <!-- <view class="filter-item-btn {{deliveryCss == 79?'active':''}}" data-val="79" catchtap="changeDelivery">极速达</view> -->
+              <view class="filter-item-btn {{deliveryCss == 80?'active':''}}" data-val="80" catchtap="changeDelivery">闪电达</view>
+            </view>
+          </view>
+          <view class="filter-item-container">
+            <view class="filter-item-title">配送方式</view>
+            <view class="filter-item-btn-container">
+              <view class="filter-item-btn {{deliveryMethodCss == 0?'active':''}}" data-val="0" catchtap="changeDeliveryMethod">全部</view>
+              <view class="filter-item-btn {{deliveryMethodCss == 1?'active':''}}" data-val="1" catchtap="changeDeliveryMethod">送货上门</view>
+              <view class="filter-item-btn {{deliveryMethodCss == 2?'active':''}}" data-val="2" catchtap="changeDeliveryMethod">门店自提</view>
+            </view>
+          </view>
+          <view class="filter-submit-btn" catchtap="changeFilterSubmit">确定</view>
+        </view>
+      </block>
+
+    </view>
+  </block>
+
+  <view class="content">
+    <block wx:if="{{currSecondCateList.length}}">
+      <scroll-view scroll-x scroll-with-animation class="second-cate-scroller" scroll-left="{{secondCateScrollLeft}}">
+        <view class="second-cate-container">
+          <block wx:for="{{currSecondCateList}}" wx:key="cateId">
+            <view class="second-cate-item {{secondCateId == item.cateId ? 'active' : ''}}" bindtap="changeSecondCate" data-item="{{item}}">
+              <image src="{{item.cateIcon || 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}" class="second-cate-item-icon"></image>
+              <text>{{item.cateName}}</text>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </block>
+    <block wx:if="{{goodsList.length}}">
+      <view class="goods-list-container">
+        <block wx:for="{{goodsList}}" wx:key="goods.goodsId">
+          <component-goods-item goods="{{item.goods}}" bind:change-cart="changeCartCount"></component-goods-item>
+        </block>
+      </view>
+      <block wx:if="{{otherMes == 'noMore'}}">
+          <view class="seat-container"></view>
+          <template is="{{otherMes}}"></template>
+        </block>
+      <component-go-cart cart-count="{{cartCount}}"></component-go-cart>
+    </block>
+    <block wx:elif="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+  </view>
+  <template is="toast" data="{{...toastData}}"></template>
+</scroll-view>

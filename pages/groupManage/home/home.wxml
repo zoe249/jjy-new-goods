@@ -1,0 +1,215 @@
+<import src="/templates/global/global.wxml" />
+<!-- <scroll-view id="scroller" style="height:100vh" scroll-y bindscroll=""> -->
+<view class="container" bindtouchmove="onTouchomve">
+
+	<view class="theme">
+		<view class="">
+			<image src="{{theme.recommendList[0].imgUrl}}" mode="widthFix"></image>
+		</view>
+	</view>
+	<view class="bar {{theme.recommendList.length>0?'':'c-not-theme'}}"
+		style="background: rgba(255,255,255,{{headBg}}); {{theme.recommendList.length>0?'':'background:#fff;color:#000000;'}}">
+		<view class="ma-custom" style="height:{{CustomBar}}px">
+			<view class="ma-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}"
+				style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+				<view class="content"
+					style="top:{{StatusBar}}px;color:{{theme.recommendList.length>0?headColor:'#000'}}">悦团购</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="header {{theme.recommendList.length>0?'':'c-not-theme'}}">
+		<view class='shop-info' bindtap='chooseExtract' data-item="{{selfMentionPoint}}">
+			<image src='{{selfMentionPoint.photo}}'></image>
+			<view class="shop-extract-area">
+				<view class="typo-elips">{{selfMentionPoint.addrTag}} </view>
+				<text class='picker-forword iconfont iconNext'>切换</text>
+			</view>
+		</view>
+		<view class='search-btn' bindtap='toSearch'>
+			<text></text>
+			<view>搜索商品</view>
+		</view>
+	</view>
+	<view class="channel-tabs">
+		<view class="channel-wrap {{theme.recommendList.length>0?'':'not-theme'}}">
+			<view class="c-tab">
+				<tabs bindtabclick="navClick" notTrigger="{{true}}" partClass="home-channel-tabs"
+					activeClass="{{theme.recommendList.length>0?'channel-tab-act':'not-theme-channel-tab'}}"
+					tabs="{{channelTabs.recommendList}}" tabUnderlineColor="#FF4752"
+					tabActiveTextColor="{{theme.recommendList.length>0?'#fff':'#0F3F69'}}" setTitle="recommendTitle">
+				</tabs>
+			</view>
+			<view wx:if="{{channelTabs.recommendList.length>0}}"
+				class="iconfont iconClass {{theme.recommendList.length>0?'':'not-theme'}}" bindtap="autoJump"
+				data-url="/pages/groupV2/classifyGood/classifyGood"></view>
+		</view>
+	</view>
+	<!-- 广告 -->
+	<view class='banner' wx:if="{{bannerList.length>0}}">
+		<swiper autoplay circular bindchange="swiperChange" current="{{current}}">
+			<swiper-item wx:for="{{bannerList}}" wx:for-item='imgItem' wx:key="c">
+				<image catchtap='goBanner' data-item="{{imgItem}}" data-link="{{imgItem.linkUrl||''}}" class='img'
+					src="{{imgItem.imgUrl}}"></image>
+			</swiper-item>
+		</swiper>
+		<block wx:if="{{barrageList.length}}">
+			<view class="barrage-box">
+				<component-grouper-animation top="0" grouper-list="{{barrageList}}"></component-grouper-animation>
+			</view>
+		</block>
+	</view>
+	<!-- 分类 -->
+	<view class="category" wx:if="{{navCates.length>0}}">
+		<category-grid indicatorStyle="background: #F8F8F8;" maxItem="10" indicatorActStyle="background:#FF4752;"
+			gridItemClass="home-cate" initSwiperHeight="160rpx" pageShowSize="{{5}}" indicatorShow="{{true}}"
+			cateArray="{{navCates}}" bind:autoJump="autoJump"></category-grid>
+	</view>
+	<!-- 新上、热卖-->
+	<view class="plate" wx:if="{{plate.newest.length>0 || plate.hotsale.length>0}}">
+		<view class="new" bindtap="autoJump" data-url="/pages/groupManage/new/new">
+			<view class="plate-title">今日上新<text class="plate-icon"></text></view>
+			<view class="plate-flex">
+				<block wx:if="{{plate.newest.length>0}}">
+					<view class='plate-item' wx:for="{{plate.newest}}" wx:key="cidx" wx:if="{{index < 2}}">
+						<view class="goods-playButton-block"
+							wx:if="{{item.videoAddress!=null && item.videoAddress!=''}}">
+							<image src="https://shgm.jjyyx.com/m/images/icon_play_btn.png" mode="aspectFit"
+								class="sku-playButton"></image>
+						</view>
+						<image class="image" src="{{item.coverImage}}"></image>
+						<view class='pro-price'>¥ {{item.goodsPrice}}{{item.salesUnit?'/'+item.salesUnit:''}}</view>
+						<block wx:if="{{item.proType == 1888 && item.surplusStock>0 || item.ratio < 100}}">
+							<view class="add-btn" catchtap="jumpGoodsDetail" data-item="{{item}}">
+								{{item.proType == 1888?"去拼团":item.proType == 1178?"去抢购":"去购买"}}
+							</view>
+						</block>
+						<block wx:else>
+							<view class="add-btn soon" catchtap="jumpGoodsDetail" data-item="{{item}}">售罄</view>
+						</block>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="not-list">暂无活动</view>
+				</block>
+			</view>
+		</view>
+		<view class="hot mr1bl" bindtap="autoJump" data-url="/pages/groupManage/hot/hot">
+			<view class="plate-title">热卖榜单<text class="plate-icon"></text></view>
+			<view class="plate-flex">
+				<block wx:if="{{plate.hotsale.length>0}}">
+					<view class='plate-item' wx:for="{{plate.hotsale}}" wx:key="cidx" wx:if="{{index < 2}}">
+						<view class="goods-playButton-block"
+							wx:if="{{item.goods.videoAddress!=null && item.goods.videoAddress!=''}}">
+							<image src="https://shgm.jjyyx.com/m/images/icon_play_btn.png" mode="aspectFit"
+								class="sku-playButton"></image>
+						</view>
+						<image class="image" src="{{item.goods.coverImage}}"></image>
+						<view class='pro-price'>¥
+							{{item.goods.salePrice}}{{item.goods.salesUnit?'/'+item.goods.salesUnit:''}}
+						</view>
+						<block
+							wx:if="{{item.goods.promotionList[0].proStock && item.goods.promotionList[0].proStock > 0}}">
+							<view class="add-btn" catchtap="jumpGoodsDetail" data-item="{{item.goods}}">
+								{{item.goods.proType == 1888?"去拼团":item.goods.proType == 1178?"去抢购":"去购买"}}
+							</view>
+						</block>
+						<block wx:else>
+							<view class="add-btn soon" catchtap="jumpGoodsDetail" data-item="{{item.goods}}">售罄</view>
+						</block>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="not-list">暂无活动</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<!-- 秒杀 panicBuying -->
+	<view class="panic" wx:if="{{panicBuying.length>0}}">
+		<view class="panic-head" bindtap="autoJump" data-url="/pages/groupManage/panicBuying/panicBuying">
+			<view class='start-time'>
+				<text>{{time}}</text>:
+				<text>{{minute}}</text>:
+				<text>{{second}}</text>
+			</view>
+		</view>
+		<view class="panic-list" bindtap="autoJump" data-url="/pages/groupManage/panicBuying/panicBuying">
+			<view class='mg-item' wx:for="{{panicBuying}}" wx:key="cidx" wx:if="{{index < 4}}">
+				<view class="goods-playButton-block" wx:if="{{item.videoAddress!=null}}">
+					<image src="https://shgm.jjyyx.com/m/images/icon_play_btn.png" mode="aspectFit"
+						class="sku-playButton"></image>
+				</view>
+				<image class="image" src="{{item.coverImage}}"></image>
+				<view class='pro-price'>¥ {{item.goodsPrice}}{{item.salesUnit?'/'+item.salesUnit:''}}
+				</view>
+				<block wx:if="{{item.ratio < 100}}">
+					<view class="add-btn" catchtap="jumpGoodsDetail" data-item="{{item}}">去抢购</view>
+				</block>
+				<block wx:else>
+					<view class="add-btn soon" catchtap="jumpGoodsDetail" data-item="{{item}}">售罄</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<!-- 拼团 groupBuyGoods -->
+	<view class="group" wx:if="{{groupBuyGoods.length>0}}">
+		<view class="group-head" bindtap="autoJump" data-url="/pages/groupManage/groupList/groupList"></view>
+		<swiper class="group-list" autoplay="{{true}}" circular bindchange="groupSwiper" style="height:280rpx;">
+			<swiper-item class='swiper-item' wx:for="{{groupBuyGoods}}" wx:key="tidx">
+				<group-item goods="{{item}}" bind:bindPartakeGroup="jumpGoodsDetail"></group-item>
+			</swiper-item>
+		</swiper>
+		<view class="group-swiper-dot">
+			<view><text class="{{groupCurrent == index?'grunp-act':''}}" wx:for="{{groupBuyGoods.length}}"></text>
+			</view>
+		</view>
+	</view>
+	<!-- 活动快速入口-->
+	<view class="activity-fast-entry" wx:if="{{spaceAdv && spaceAdv.length>0}}">
+		<image wx:for="{{spaceAdv}}" bindtap="autoJump" src="{{item.imgUrl}}" wx:key="recommendId" mode="widthFix"
+			data-item="{{item}}">
+		</image>
+	</view>
+	<!-- tab container list-->
+	<view class="tab-box-wrap" style="top:{{CustomBar}}px">
+		<tabs tabs="{{virtualCates}}" activeTab="{{activeTab}}" tabActiveTextColor="{{tabActiveTextColor}}"
+			tabBackgroundColor="{{tabBackgroundColor}}" setTitle="virtualName" slotTile="{{true}}"
+			partClass="community-home" swiperClass="ma-tabs-swiper" bindtabclick="swiperVirtualCate"
+			bindchange="onChange" isSticky="{{true}}" activeClass="tab-bar-title-selected">
+		</tabs>
+	</view>
+	<view id="tab-box">
+		<view class='share-goods-container'
+			style="{{proGoodsList && proGoodsList.length>0?'min-height:calc(100vh - 248rpx)':''}}">
+			<view class="tab-item-wrap pos-r" wx:for="{{proGoodsList}}" wx:key="index">
+				<view class="tab-item-space" id="tab_{{index}}" style="top:-{{motion}}px;bottom:{{motion}}px"></view>
+				<block wx:for="{{item}}" wx:for-item="goodsItem" wx:key="gIdx">
+					<goods-item goods="{{goodsItem}}" bind:bindPartakeGroup="jumpGoodsDetail"></goods-item>
+				</block>
+			</view>
+			<block wx:if="{{proGoodsList>0 && noMore == 2}}">
+				<template is="noMore"></template>
+			</block>
+			<component-iphone-x-patcher></component-iphone-x-patcher>
+		</view>
+	</view>
+	<block wx:if="{{!hasData && hasData != 1}}">
+		<template is="empty" data="{{...emptyObj}}"></template>
+	</block>
+	<!-- 2022-04-25 新增周年庆跑酷活动开始 -->
+	<block wx:if="{{ParkourShow}}">
+		<navigator class="go_parkour_page" url="/pages/activity/game/Parkour/Parkour" bindtap="ParkourClick">
+			<image src="https://7463-tcb-vrjlezstm3hz5hn0ea4d2-49b4be-1304468250.tcb.qcloud.la/indexPK.png"></image>
+		</navigator>
+	</block>
+	<!-- 2022-04-25 新增周年庆跑酷活动结束 -->
+</view>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<component-group-footer groupHomeCurrent="0" groupManageCartNum="{{groupManageCartNum}}" isAddNavigation="{{tabStatus.isAddNavigation}}"></component-group-footer>
+<!-- </scroll-view> -->
+<!-- <block wx:show="{{modalName != ''}}">  -->
+<image-modal modalName="{{modalName}}" modalDate="{{modalDate}}" bind:closeModalEvent="_closeModalEvent"
+	bind:jumpLinkUrl="_jumpLinkUrl"></image-modal>
+<!-- </block> -->

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#0f3f69",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-group-footer": "/component/communityGroupFooter/communityGroupFooter",
+    "component-two-goods-item": "/component/goodsItem/goodsItem",
+    "component-grid": "/component/grid/grid"
+  }
+}

@@ -1,0 +1,232 @@
+<view id="page">
+	<!-- 头部部分 -->
+	<view id="header">
+		<!-- 红包弹出框 -->
+		<view class="Tooltip box dis_f {{Tooltip=='show'?'show':'hide'}}" wx:if="{{tipshow}}">
+			<view class="left">
+				<image src="{{img_src}}envelope.png" mode="aspectFit" class="icon"></image>
+			</view>
+			<view class="right">
+				<view class="top">{{TopTcktext.title}}</view>
+				<view class="bottom">{{TopTcktext.content}}</view>
+			</view>
+		</view>
+	</view>
+	<!-- 内容部分 -->
+	<view id="section" wx:if="{{true}}">
+		<!-- 背景图 -->
+		<image src="{{bgImg}}" class="bg"></image>
+		<!-- 通关攻略图标 -->
+		<image src="{{img_src}}Raiders.png" mode="widthFix" class="Raiders" bindtap="clickbtn" data-index="1"></image>
+		<!-- 重新打开答题按钮 -->
+		<view class="continue dis_f_c_c" bindtap="openTck" wx:if="{{questionTckShow}}">
+			<text>继续答题</text>
+		</view>	
+		<!-- 可移动的图标 -->
+		<image src="{{iconImg}}" mode="aspectFit" class="icon" wx:if="{{iconShow}}" bindtap="openTck"
+			style="transform: translate({{baseX}},{{baseY}});transition: all {{time/1000}}s linear;"></image>
+	</view>
+	<!-- 底部 -->
+	<view id="footer" wx:if="{{true}}">
+		<!-- 底部背景图 -->
+		<image src="{{img_src}}BottomBg.png" class="BottomBg"></image>
+		<!-- 底部内容展示区域 -->
+		<view class="content dis_f_sb_c">
+			<view class="left dis_f_c_c">
+				<image src="{{img_src}}Icon.png" mode="aspectFit"></image>
+			</view>
+			<view class="middle" bindtap="noGamne" wx:if="{{GameNum<1}}">
+				<image src="{{img_src}}GoIconNo.png" mode="aspectFit"></image>
+			</view>
+			<view class="middle" bindtap="ClickGame" wx:else>
+				<image src="{{img_src}}GoIconYes.png" mode="aspectFit"></image>
+				<view class="number dis_f_c_c">
+					<text>{{GameNum}}</text>
+				</view>
+			</view>
+			<view class="right dis_f_sb_c">
+				<image src="{{img_src}}Rule.png" mode="aspectFit" bindtap="clickbtn" data-index="2"></image>
+				<image src="{{img_src}}Record.png" mode="aspectFit" bindtap="clickbtn" data-index="3"></image>
+			</view>
+		</view>
+	</view>
+	<!-- 弹出框部分 -->
+	<view id="PopUp" wx:if="{{Tcknumber!=-1}}">
+		<!-- 遮盖 -->
+		<view class="coverUp"></view>
+		<!-- 弹出框区域 -->
+		<view class="content dis_f_co_c_c">
+			<!-- 通关攻略的弹出框 -->
+			<view class="hintBg" wx:if="{{Tcknumber==1}}">
+				<image src="{{img_src}}hintBgs.png"></image>
+				<view class="Word">
+					<view class="title">通关攻略</view>
+					<view class="text">
+						<scroll-view id="scroll" class="box" scroll-y scroll-with-animation>
+							<view style="text-indent:2em">
+								家家悦集团股份有限公司是以超市连锁为主业，以区域一体化物流为支撑，以发展现代农业生产基地和食品加工产业链为保障，以经营生鲜为特色的全供应链、多业态的综合性零售渠道商。截止2021年9月末，直营连锁门店959处，网络覆盖山东、北京、河北、内蒙古、江苏、安徽等6个省份，形成了大卖场、综合超市、百货店、便利店、专业店等多业态并举的格局。先后获得“全国百城万店无假货活动示范店”、“中国商业服务名牌”、“中国零售业最佳雇主”、“农业产业化国家重点龙头企业”、“山东省省长质量奖”、“全国文明单位”等荣誉称号
+							</view>
+							<view style="text-indent:2em">
+								1995年5月27日，公司的第一家门店中心店，在山东威海正式开业，当年实现销售4000万元，揭开了从传统批发企业向现代化连锁企业转型的新篇章。2016年12月，公司在上交所主板上市（股票代码：603708），正式登陆资本市场。在自有品牌开发上，家家悦集团现有悦记飘香、荣光、麦香苑、品品香、佳飞悦、悦天然等多个自有品牌。家家悦集团不断探索新业态，培育新型消费模式，现已开发自有平台家家悦优鲜，联合重点品牌厂商开展直播带货、社区团购服务。在使用社区团购业务时，当天14：00前下单，次日10：00将商品配送到您购买时选择的自提点门店；当天14：00后下单，隔日10：00将商品配送到您购买时选择的自提点门店。
+							</view>
+							<view style="text-indent:2em">
+								多年来，公司坚持“顾客的需求就是我们追求的目标”的经营理念，积极采用现代营销方式，大力发展现代物流，整合利用优势资源，不断提升竞争能力，走集团化发展之路，取得了超常规、跳跃式发展。
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+			<!-- 活动规则的弹出框 -->
+			<view class="hintBg" wx:if="{{Tcknumber==2}}">
+				<image src="{{img_src}}hintBgs.png"></image>
+				<view class="Word">
+					<view class="title">活动规则</view>
+					<view class="text">
+						<scroll-view id="scroll" class="box" scroll-y scroll-with-animation>
+							<view>1）在优鲜小程序中到家或社区团购板块，下任意金额订单，即可获得一次游戏机会，下单越多机会越多； </view>
+							<view>
+								2）点击按钮“go”，开始跑酷游戏，到达一个城市目的地，点击红包即可开启答题机会，回答正确，游戏继续，直到回答完所有问题，游戏结束；若中途回答错误，则游戏结束，再次进入游戏，则重头开始答题；
+							</view>
+							<view>3）每关共60s答题时间，若超时未答题，则视为自动放弃答题机会，游戏结束； </view>
+							<view>4）参加答题前，可查看通关攻略，中奖几率更高； </view>
+							<view>5）每个ID仅限通关一次，通关后未使用的游戏机会，将自动兑换优惠券一张； </view>
+							<view>6）中途退出视为自动放弃游戏机会，不再返还游戏机会； </view>
+							<view>7）活动期间每个ID最多可领取100张优惠券； </view>
+							<view>8）最终活动解释权归家家悦优鲜所有； </view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+			<!-- 中奖记录的弹出框 -->
+			<view class="hintBg" wx:if="{{Tcknumber==3}}">
+				<image src="{{img_src}}hintBgs.png"></image>
+				<view class="Word">
+					<view class="title">中奖记录</view>
+					<view class="text">
+						<scroll-view id="scroll" class="box" scroll-y scroll-with-animation>
+							<block wx:for="{{zjjllist}}" wx:key="index">
+								<view style="font-size: 28rpx;">恭喜获得{{item.couponName}}优惠券一张</view>
+							</block>
+						</scroll-view>
+					</view>
+					<view class="noTsy dis_f_c_c">
+						*失败的优惠券我们会在次日给您补发，请注意查收
+					</view>
+				</view>
+			</view>
+			
+			<!-- 选择题的弹窗 -->
+			<view class="addressTck" wx:if="{{Tcknumber==4}}">
+				<image class="Bg" src="{{img_src}}addressBgs.png"></image>
+				<view class="Word box">
+					<view class="title">{{questionList.stepInfo.name}}</view>
+					<view class="question">
+						<scroll-view id="scroll" class="box dis_f_co" scroll-y scroll-with-animation>
+							<view class="scrollli">
+								<view class="questionName">
+									{{questionList.chooseList.title}}
+								</view>
+								<block wx:for="{{questionList.chooseList.content}}" wx:key="index">
+									<view class="chooseDiv dis_f_sb_c box" bindtap="clickAnswer" data-item="{{item}}"
+										data-index="{{index}}">
+										<image class="xzBg" src="{{item.choose==1?img_src+'xzYes.png':img_src+'xzNo.png'}}">
+										</image>
+										<text>{{item.key}} {{item.title}}</text>
+										<image wx:if="{{item.choose==1}}" class="checked" src="{{img_src}}checked.png"
+											mode="aspectFit"></image>
+									</view>
+								</block>
+							</view>
+						</scroll-view>
+					</view>
+					<view class="btn dis_f_co_c_c box">
+						<view class="bottonBtn dis_f_c_c" bindtap="answer">
+							<text>提 交</text>
+						</view>
+						<view class="tsy dis_f_c_c">
+							<text>*您可以点击关闭按钮，查看通关攻略</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 左上角倒计时 -->
+			<view class="DjsTime dis_f_c_c" wx:if="{{Tcknumber==4}}">
+				<image class="Bg" src="{{img_src}}time.png"></image>
+				<text>{{countdown}}</text>
+			</view>
+			<!-- 回答正确 -->
+			<view class="popUp" wx:if="{{Tcknumber==5}}">
+				<image class="popUpBg" src="{{img_src}}popUp.png" mode="aspectFit"></image>
+				<view class="document dis_f_co_c_c">
+					<image class="icon" src="{{img_src}}success.png" mode="aspectFit"></image>
+					<view class="title">
+						恭喜您，答对啦!
+					</view>
+					<view class="Ptitle"></view>
+					<view class="button dis_f_c_c" bindtap="cloneTck">
+						<text>下 一 题</text>
+					</view>
+				</view>
+			</view>
+			<!-- 回答错误 -->
+			<view class="popUp" wx:if="{{Tcknumber==6}}">
+				<image class="popUpBg" src="{{img_src}}popUp.png" mode="aspectFit"></image>
+				<view class="document dis_f_co_c_c">
+					<image class="icon" src="{{img_src}}fail.png" mode="aspectFit"></image>
+					<view class="title">
+						很抱歉，回答错误!
+					</view>
+					<!-- <view class="Ptitle">
+						别灰心，再接再厉
+					</view> -->
+					<view class="TextTitle">
+						别灰心，再接再厉
+					</view>
+					<view class="button dis_f_c_c" wx:if="{{GameNum>=1}}" bindtap="cloneTck">
+						<text>重新开始</text>
+					</view>
+				</view>
+			</view>
+			<!-- 无游戏机会 -->
+			<view class="popUp" wx:if="{{Tcknumber==7}}">
+				<image class="popUpBg" src="{{img_src}}popUp.png" mode="aspectFit"></image>
+				<view class="document dis_f_co_c_c">
+					<image class="icon" src="{{img_src}}Crying.png" mode="aspectFit"></image>
+					<view class="title">
+						很抱歉，无游戏机会!
+					</view>
+					<view class="TextTitle dis_f_co_c_c">
+						<view>现在下单即可获得游戏机会，</view>
+						<view>下单越多机会越多</view>
+						
+					</view>
+					<view class="button dis_f_c_c" bindtap="GoIndex">
+						<text>去 下 单</text>
+					</view>
+				</view>
+			</view>
+			<!-- 通关成功 -->
+			<view class="popUp" wx:if="{{Tcknumber==8}}">
+				<image class="popUpBg" src="{{img_src}}popUp.png" mode="aspectFit"></image>
+				<view class="document dis_f_co_c_c">
+					<image class="icon" src="{{img_src}}smiley.png" mode="aspectFit"></image>
+					<view class="title">
+						恭喜您，通关成功!
+					</view>
+					<view class="TextTitle dis_f_co_c_c" wx:if="{{endCoupon}}">
+						<view>剩余的游戏机会，</view>
+						<view>已为您兑换成优惠券一张</view>
+					</view>
+					<view class="TextTitle dis_f_co_c_c" wx:else>
+						<view>恭喜您通关成功！</view>
+						<view>请持续关注家家悦优鲜其他活动。</view>
+					</view>
+				</view>
+			</view>
+			<!-- 关闭按钮 -->
+			<view class="closure">
+				<image src="{{img_src}}closure.png" mode="aspectFit" bindtap="cloneTck"></image>
+			</view>
+		</view>
+	</view>
+</view>

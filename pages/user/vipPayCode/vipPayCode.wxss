@@ -1,0 +1,217 @@
+/* pages/user/vipPayCode/vipPayCode.wxss */
+
+page {
+    font-size: 32rpx;
+    background: #fff;
+}
+
+.container {
+    height: 100vh;
+}
+
+.exclusive_code_header {
+    display: flex;
+    position: relative;
+    background: #cbad7e;
+    height: 212rpx;
+    align-items: center;
+    padding: 0 32rpx;
+    color: #313031;
+    font-size: 30rpx;
+}
+
+.exclusive_code_header .span {
+    display: inline-block;
+    width: 129rpx;
+    height: 129rpx;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.exclusive_code_header .span .a .img {
+    width: 129rpx;
+    height: 129rpx;
+    /* background: url() */
+    background: url("https://shgm.jjyyx.com/m/images/custorm_photo.jpg?t=41801") no-repeat center;
+    background-size: 129rpx;
+}
+
+.exclusive_code_header .div {
+    left: 176rpx;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.exclusive_code_header .div .h3 {
+    font-size: 32rpx;
+}
+
+.exclusive_code_header .div .p {
+    position: relative;
+    font-size: 30rpx;
+    margin-top: 10rpx;
+}
+
+.my-item2 .ul .li .a {
+    display: block;
+}
+
+.my-item2 .ul .li .a .span {
+    display: block;
+    text-align: center;
+}
+
+.my-item2 .ul .li .a .span .i {
+    display: inline-block;
+    text-align: center;
+    height: 45rpx;
+    line-height: 45rpx;
+    font-size: 32rpx;
+    color: #313031;
+    font-weight: bold;
+}
+
+.my-item2 .ul .li .a .span .i .price-icon {
+    font-size: 24rpx;
+}
+
+.my-item2 .ul .li .a .span .i.c-color {
+    position: relative;
+    text-indent: 12rpx;
+}
+
+.my-item2 .ul .li .a .span .em {
+    display: block;
+    margin-top: 10rpx;
+    font-size: 22rpx;
+    color: #444;
+}
+
+.bar_code {
+    position: relative;
+    width: 500rpx;
+    margin: 32rpx auto 0;
+}
+
+.bar_code::after{
+  position: absolute;
+  left: 0;
+  top: 40rpx;
+  width: 100%;
+  text-align: center;
+  color: #999;
+  content: '点击刷新会员码';
+  z-index: -1;
+}
+.bar_code::before{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+.bar_code .img {
+    height: 158rpx;
+}
+
+.bar_code .p {
+    font-size: 28rpx;
+    margin: 40rpx auto;
+    line-height: 1;
+}
+
+.bar_code .current-code {
+    margin-top: 20rpx;
+    text-align: center;
+    font-size: 28rpx;
+}
+
+.qr_code {
+    width: 320rpx;
+    margin: 8rpx auto 0;
+}
+
+.qr_code .a {
+    display: block;
+    width: 304rpx;
+    height: 80rpx;
+    margin: 40rpx auto;
+    text-align: center;
+    line-height: 80rpx;
+    color: #FF4752;
+    border: 1px solid #FF4752;
+    border-radius: 40rpx;
+}
+
+.qr_code .img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.vip-code-val-footer {
+    /* position: absolute;
+    left: 0;
+    bottom: 0; */
+    width: 100%;
+    /* height: 278rpx; */
+    /* border-top: 1rpx solid #EDEDED; */
+    padding: 0 32rpx 32rpx;
+}
+
+.vip-code-val-footer-wrap {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #F7F5F1;
+    border-radius: 4rpx;
+    padding: 48rpx 30rpx 25rpx;
+    margin-top: 32rpx;
+}
+
+.vip-code-val-footer-wrap view {
+    flex: 1;
+    font-size: 22rpx;
+    padding-top: 90rpx;
+    color: #444444;
+    text-align: center;
+}
+
+.vip-code-val-footer-wrap view text {
+    display: block;
+    padding-top: 17rpx;
+}
+
+.vip-code-val-footer-wrap .check-order {
+    background: url("https://shgm.jjyyx.com/m/images/icon_vip_order.png") no-repeat top center;
+    background-size: 88rpx;
+}
+
+.vip-code-val-footer-wrap .quicker-scan {
+    background: url("https://shgm.jjyyx.com/m/images/icon_vip_quiker_buy.png") no-repeat top center;
+    background-size: 88rpx;
+}
+.quicker-pay-code{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:688rpx;
+    height:80rpx;
+    margin: 0 auto;
+    background:#0EBC0C;
+    border-radius:4rpx;
+    color: #fff;
+}
+.quicker-pay-code image{
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 32rpx;
+}
+.reload-tap{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "拼团",
+  "usingComponents": {
+    "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+    "component-group-surplus-time": "/component/groupSurplusTime/groupSurplusTime",
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-group-queue": "/component/jionGroupQueue/jionGroupQueue"
+  }
+}

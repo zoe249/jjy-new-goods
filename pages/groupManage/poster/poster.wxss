@@ -1,0 +1,16 @@
+page{
+    background: #ffa601;
+}
+.container{
+    position: relative;
+}
+.apply-btn{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 120rpx;
+}
+image{
+    width: 100%;
+}

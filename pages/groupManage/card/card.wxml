@@ -1,0 +1,81 @@
+<!--pages/groupManage/customerOrder/customerOrder.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<view class='card-box'>
+  <block wx:if="{{showError}}">
+    <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:elif='{{list.length}}'>
+    <view class='list-cnt'>
+      <template is="list" data="{{list:list}}"></template>
+      <!-- 提示层 - 没有更多了 -->
+      <block wx:if='{{list.length}}'>
+        <template is="noMore"></template>
+      </block>
+    </view>
+  </block>
+</view>
+<template name="list">
+  <view class='card-ul'>
+    <block wx:for='{{list}}' wx:for-item='li' wx:key='*this'>
+      <view class='li li0'>
+        <view class='li-card'>
+          <view class='li-left'>
+           <image class='img' src='{{li.coverImg}}' mode='widthFix'></image>
+            <!-- <view class='left-text1'>logo</view>
+              <view class='left-text2'>NO.{{li.goodsId}}</view>
+                <view class='left-text3'><view class='left-text3-span1'>￥</view><view class='left-text3-span2'>{{li.denomination}}</view></view> -->
+          </view>
+          <view class='li-right'>
+            <view class='right-text1'>{{li.skuName||li.goodsName}}</view>
+            <view class='right-text2'>{{li.goodsTag}}</view>
+            <view class='right-text3'><view class='right-text3-span2'>赚</view><view class='right-text3-span3'>￥{{li.commission}}</view></view>
+             <view class='right-text4'><view class='right-text4-span1'>￥{{li.denomination}}</view></view>
+          </view>
+        </view>
+        <view class='btn-box'>
+          <view class='btn-card-share' catchtap='shareBtn' data-goods='{{li}}'>推广</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>
+<block wx:if="{{shareInfo.showShareDialogFlag}}">
+  <view class="share-dialog-container">
+    <view class="share-info-container">
+      <text class="share-header">多分享几次，获取佣金更快哦！</text>
+      <view class="share-msg-container mgt-30">
+        <text class="black">99%</text>
+        <text class="gray">的小伙伴表示，</text>
+      </view>
+      <view class="share-msg-container">
+        <text class="gray">分享到</text>
+        <text class="black">大群</text>
+        <text class="gray">或</text>
+        <text class="black">朋友圈</text>
+        <text class="gray">成功率更高！</text>
+      </view>
+      <view class="share-btn-container">
+        <view class="share-item-container">
+          <button open-type="share" class="share-btn">
+            <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_friends.png"></image>
+          </button>
+          <view class="share-msg-container">
+            <text class="share-msg">微信好友</text>
+          </view>
+        </view>
+        <!-- <view class="share-item-container">
+            <view class="share-btn" catchtap="downloadShareBg">
+              <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_scope.png"></image>
+            </view>
+            <view class="share-msg-container" catchtap="downloadShareBg">
+              <text class="share-msg">朋友圈</text>
+            </view>
+          </view> -->
+      </view>
+
+      <view class="close-btn" catchtap="hideShareDialog"></view>
+    </view>
+  </view>
+</block>

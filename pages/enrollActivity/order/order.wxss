@@ -1,0 +1,480 @@
+img {
+	-o-object-fit: cover;
+	object-fit: cover
+}
+
+body {
+	font-size: .28rem
+}
+
+.code-error-box {
+	z-index: 9;
+	position: fixed;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	margin-top: -3.6rem
+}
+
+.code-error-box img {
+	display: block;
+	width: 4rem;
+	margin: 0 auto
+}
+
+.code-error-box .code-error-h {
+	padding: .5rem .32rem 0;
+	color: #999;
+	font-size: .4rem
+}
+
+.code-error-box .code-error-text1 {
+	padding: .2rem .32rem 0;
+	color: #999;
+	font-size: .3rem
+}
+
+.activity-list .tab-box {
+	z-index: 9;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: .9rem;
+	border-bottom: .01rem solid #e6e6e6;
+	background-color: #fff
+}
+
+.activity-list .tab-box .tab {
+	float: left;
+	width: 50%;
+	line-height: .9rem;
+	text-align: center;
+	font-size: .32rem
+}
+
+.activity-list .tab-box .tab.on {
+	color: #ff5d3d;
+	background: url("../images/icon_nav_active.png") no-repeat bottom center;
+	background-size: 1.6rem 1px
+}
+
+.activity-list .haveTab {
+	padding: .9rem 0 0
+}
+
+.activity-list .kitchen-box .now-list {
+	padding: 0 0 .9rem
+}
+
+.activity-list .kitchen-box .now-list ul {
+	background-color: #fff
+}
+
+.activity-list .kitchen-box .now-list ul li {
+	position: relative;
+	padding: 0 .32rem .3rem 1.8rem;
+	border-bottom: .01rem solid #e6e6e6
+}
+
+.activity-list .kitchen-box .now-list ul li img {
+	display: block;
+	position: absolute;
+	top: .3rem;
+	left: .32rem;
+	border: .01rem solid #ccc;
+	width: 1.3rem;
+	height: 1.3rem
+}
+
+.activity-list .kitchen-box .now-list ul li .text {
+	padding-top: .2rem;
+	line-height: .48rem;
+	height: 1.6rem;
+	overflow: hidden;
+	font-size: .28rem
+}
+
+.activity-list .kitchen-box .now-list ul li .price {
+	position: absolute;
+	bottom: 0;
+	right: .32rem;
+	line-height: .8rem;
+	font-size: .28rem
+}
+
+.activity-list .kitchen-box .now-list ul li .price1 {
+	font-size: .26rem;
+	color: #ff5d3d
+}
+
+.activity-list .kitchen-box .now-list .now-error-box {
+	padding-top: 40%;
+	text-align: center
+}
+
+.activity-list .kitchen-box .now-list .now-error-box img {
+	display: block;
+	width: 4rem;
+	margin: 0 auto
+}
+
+.activity-list .kitchen-box .now-list .now-error-box .code-error-h {
+	padding: .5rem .32rem 0;
+	color: #999;
+	font-size: .4rem
+}
+
+.activity-list .kitchen-box .now-list .now-error-box .code-error-text1 {
+	padding: .2rem .32rem 0;
+	color: #999;
+	font-size: .28rem
+}
+
+.activity-list .kitchen-box .history-btn {
+	z-index: 8;
+	line-height: .9rem;
+	height: .9rem;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	vertical-align: middle
+}
+
+.activity-list .kitchen-box .history-btn span {
+	position: relative;
+	display: inline-block;
+	font-size: .28rem;
+	line-height: .9rem;
+	height: .9rem;
+	padding: 0 .6rem 0 0;
+	color: #999
+}
+
+.activity-list .kitchen-box .history-btn span em {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	height: .9rem;
+	width: .6rem;
+	background: url("../images/arrow_down.png") no-repeat center;
+	background-size: .24rem auto
+}
+
+.activity-list .kitchen-box .history-btn.on {
+	top: 0;
+	bottom: auto
+}
+
+.activity-list .kitchen-box .history-btn.on span em {
+	background: url("../images/arrow_up.png") no-repeat center;
+	background-size: .24rem auto
+}
+
+.activity-list .kitchen-box .history-btn.on.top-90 {
+	top: .9rem;
+	bottom: auto
+}
+
+.activity-list .kitchen-box .history-list {
+	padding: .9rem 0 0;
+	display: none
+}
+
+.activity-list .kitchen-box .history-list ul {
+	background-color: #fff
+}
+
+.activity-list .kitchen-box .history-list ul li {
+	position: relative;
+	padding: 0 .32rem .3rem 1.8rem;
+	border-bottom: .01rem solid #e6e6e6
+}
+
+.activity-list .kitchen-box .history-list ul li img {
+	display: block;
+	position: absolute;
+	top: .3rem;
+	left: .32rem;
+	border: .01rem solid #ededed;
+	width: 1.3rem;
+	height: 1.3rem;
+	opacity: 0.8
+}
+
+.activity-list .kitchen-box .history-list ul li .text {
+	padding-top: .2rem;
+	line-height: .48rem;
+	height: 1.6rem;
+	overflow: hidden;
+	font-size: .28rem;
+	color: #bebebe
+}
+
+.activity-list .kitchen-box .history-list ul li .price {
+	position: absolute;
+	bottom: 0;
+	right: .32rem;
+	line-height: .8rem;
+	font-size: .28rem;
+	color: #bebebe
+}
+
+.activity-list .kitchen-box .history-list ul li .price1 {
+	font-size: .26rem;
+	color: #ff5d3d
+}
+
+.activity-list .children-box {
+	display: none
+}
+
+.activity-list .children-box ul {
+	background-color: #fff
+}
+
+.activity-list .children-box ul li {
+	position: relative;
+	padding: 0 .32rem .3rem 1.8rem;
+	border-bottom: .01rem solid #e6e6e6
+}
+
+.activity-list .children-box ul li img {
+	display: block;
+	position: absolute;
+	top: .3rem;
+	left: .32rem;
+	border: .01rem solid #ccc;
+	width: 1.3rem;
+	height: 1.3rem
+}
+
+.activity-list .children-box ul li .text {
+	padding-top: .2rem;
+	line-height: .48rem;
+	height: 1.6rem;
+	overflow: hidden;
+	font-size: .28rem
+}
+
+.activity-list .children-box ul li .price {
+	position: absolute;
+	bottom: 0;
+	right: .32rem;
+	line-height: .8rem;
+	font-size: .28rem
+}
+
+.activity-list .children-box ul li .price1 {
+	font-size: .26rem;
+	color: #ff5d3d
+}
+
+.activity-list .foot {
+	height: .6rem;
+	line-height: .6rem;
+	text-align: center;
+	font-size: .28rem
+}
+
+.bg-caitiao {
+	width: 100%;
+	height: .04rem;
+	background: #fcfcfc url(../images/bg_caitiao.png) no-repeat center top;
+	background-size: 100% .04rem
+}
+
+.fill-current-shop {
+	height: .7rem;
+	line-height: .7rem;
+	background: #fff9f5;
+	font-size: .28rem;
+	color: #999;
+	padding: 0 .32rem
+}
+
+.fill-current-shop span {
+	color: #464646;
+	padding-left: .4rem;
+	background: url(../images/icon_my_address.png) no-repeat left center;
+	background-size: .28rem auto
+}
+
+.order-info li {
+	height: .98rem;
+	line-height: .98rem;
+	font-size: .28rem;
+	background: #fff;
+	padding: 0 .3rem
+}
+
+.order-info li:last-child {
+	border: 0
+}
+
+.check-coupons {
+	height: .98rem;
+	line-height: .98rem;
+	font-size: .28rem;
+	padding: 0 .6rem 0 .32rem;
+	margin-bottom: .2rem
+}
+
+.check-coupons span {
+	color: #999999
+}
+
+.invoice-wrap {
+	position: relative;
+	margin: .2rem 0;
+	height: .98rem;
+	line-height: .96rem;
+	font-size: .28rem;
+	background: #fff;
+	padding: 0 .32rem
+}
+
+.invoice-wrap span {
+	padding-right: .32rem
+}
+
+.forword:after {
+	position: absolute;
+	right: .32rem;
+	top: 50%;
+	width: .16rem;
+	height: .16rem;
+	content: "";
+	border-left: .02rem solid #999;
+	border-bottom: .02rem solid #999;
+	-webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+	-ms-transform: translateY(-50%) scaleY(1) rotate(-135deg);
+	transform: translateY(-50%) scaleY(1) rotateZ(-135deg)
+}
+
+.fill-money {
+	padding: .24rem .32rem;
+	margin-bottom: 1rem
+}
+
+.fill-money ul li {
+	height: .6rem;
+	line-height: .6rem
+}
+
+.fill-money ul li span {
+	display: inline-block;
+	text-align-last: justify;
+	font-size: .28rem;
+	width: 1.16rem;
+	text-align: justify
+}
+
+.fill-money ul li s {
+	display: inline-block;
+	padding-right: .56rem
+}
+
+.fill-money ul li em {
+	font-size: .28rem;
+	color: #fc5e45
+}
+
+.fill-money ul li em.c-default {
+	color: #464646
+}
+
+.fill-footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 99;
+	height: .9rem;
+	padding-left: .32rem
+}
+
+.fill-footer .wrap {
+	position: relative
+}
+
+.fill-footer .wrap .check-price {
+	float: left;
+	width: 72%;
+	height: 100%;
+	line-height: .9rem
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper {
+	float: right;
+	height: 100%;
+	margin-right: .2rem
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper span,.fill-footer .wrap .check-price .total-price-wrapper b {
+	display: inline-block;
+	text-align: right
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price {
+	line-height: .4rem
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price em,.fill-footer .wrap .check-price .total-price-wrapper .total-price s {
+	color: #ff5d3d
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price i {
+	line-height: 1;
+	font-size: .24rem
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price em {
+	font-size: .38rem
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price em:before {
+	content: '￥';
+	font-size: .24rem;
+	margin-right: 0;
+	line-height: 1
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .total-price s {
+	font-size: .28rem;
+	line-height: 1
+}
+
+.fill-footer .wrap .check-price .total-price-wrapper .promotion-msg {
+	margin-top: 0;
+	line-height: .24rem;
+	font-size: .2rem;
+	color: #999;
+	font-weight: 400
+}
+
+.fill-footer .wrap .settle-accounts {
+	float: left;
+	display: block;
+	width: 28%;
+	height: 100%;
+	line-height: .9rem;
+	text-align: center;
+	background: #ff5d3d;
+	font-size: .32rem;
+	color: #fff
+}
+
+.invoice-alert {
+	position: relative;
+	display: inline-block;
+	margin-left: .24rem;
+	width: .28rem;
+	height: .28rem;
+	vertical-align: middle
+}

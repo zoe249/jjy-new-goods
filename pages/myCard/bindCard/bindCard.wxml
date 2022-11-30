@@ -1,0 +1,29 @@
+<import src="/templates/global/global.wxml"/>
+
+<view class="page-container">
+
+    <view class="card-item" wx:if="{{cardItem.valueCardCode && cardItem.valueCardDenomination}}">
+        <view class="card-value">
+            <text class="unit">￥</text>
+            <text class="number">{{cardItem.valueCardDenomination}}</text>
+        </view>
+        <view class="card-sn">{{cardItem.valueCardCode}}</view>
+    </view>
+
+    <view
+            class="btn-primary"
+            bindtap="bindingCard"
+            wx:if="{{!bindingCardSuccess && !bindingCardButtonDisabled && cardItem.valueCardCode && cardItem.valueCardDenomination}}"
+    >立即绑定</view>
+    <view class="btn-primary" bindtap="jumpHome" wx:if="{{bindingCardSuccess || bindingCardButtonDisabled}}">逛逛</view>
+
+    <!-- 组件 -->
+    <component-login-dialog wx:if="{{showLoginDialog}}" title="{{'登录'}}" submitText="{{'立即绑定'}}"
+                            bind:close-dialog-callback="closeDialogCallback"></component-login-dialog>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+
+    <!-- 模板 -->
+    <template is="toast" data="{{...toastData}}"></template>
+    <template is="globalLoading" data="{{globalLoading}}"></template>
+
+</view>

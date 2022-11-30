@@ -1,0 +1,2056 @@
+/* pages/refund/detail/detail.wxss */
+
+page {
+    background-color: #f4f4f4;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.backgroundColor-fff {
+    background-color: #fff !important;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.bl {
+    border-left: 1rpx solid #e6e6e6;
+}
+
+.color-5db1ff {
+    color: #5db1ff !important;
+}
+
+.color-7dc825 {
+    color: #7dc825 !important;
+}
+
+.color-3B9DF0 {
+    color: #3b9df0 !important;
+}
+
+.color-ffa601 {
+    color: #ffa601 !important;
+}
+
+.width-all {
+    width: 100% !important;
+}
+
+.width-half {
+    width: 50% !important;
+}
+
+.color-999 {
+    color: #999 !important;
+}
+
+.color-464646 {
+    color: #444 !important;
+}
+
+.c-color,
+.color-ff5c33 {
+    color: #ff5c33 !important;
+}
+
+.em,
+.span,
+.i,
+.s {
+    display: inline-block;
+}
+
+.backgroundColor-ff5d3d {
+    background-color: #FF4752 !important;
+}
+
+.color-fff {
+    color: #fff !important;
+}
+
+
+/*loading*/
+
+#loading {
+    z-index: 999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#loading .loading-cnt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 9999999;
+}
+
+#loading .loading-cnt image {
+    width: 180rpx;
+    height: 180rpx;
+}
+
+
+/*确定，取消弹窗*/
+
+.pop-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transform: translateZ(100rpx);
+}
+
+.pop-container .pop-msg-container {
+    width: 540rpx;
+    background: #fff;
+    border-radius: 20rpx;
+}
+
+.pop-container .pop-msg-container .pop-msg {
+    padding: 60rpx 20rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    color: #444;
+    text-align: center;
+}
+
+.pop-container .pop-msg-container .pop-btn-container {
+    border-top: 2rpx solid #ededed;
+    width: 100%;
+    height: 96rpx;
+    font-size: 32rpx;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-container .pop-msg-container .pop-btn-container view {
+    flex: 1;
+    text-align: center;
+    line-height: 0;
+    padding: 48rpx;
+}
+
+.pop-container .pop-msg-container .pop-btn-container .confirm-btn {
+    color: #FF4752;
+}
+
+.pop-container .pop-msg-container .pop-btn-container .cancel-btn {
+    border-right: 1rpx solid #ededed;
+}
+
+.refund-detail-box {
+    width: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+}
+
+.refund-detail-box1 .detail-head {
+    background-color: #fff;
+    padding: 60rpx 32rpx 0;
+    text-align: center;
+}
+
+.refund-detail-box1 .detail-head .fail {
+    padding: 0 0 42rpx;
+}
+
+.refund-detail-box1 .detail-head .fail .text1 {
+    display: inline-block;
+    color: #FF4752;
+    font-size: 36rpx;
+    line-height: 56rpx;
+    padding-left: 52rpx;
+    background: url("https://shgm.jjyyx.com/m/images/order_close_icon.png") no-repeat 0 center;
+    background-size: 30rpx 30rpx;
+}
+
+.refund-detail-box1 .detail-head .fail .text2 {
+    color: #999;
+    font-size: 24rpx;
+    line-height: 44rpx;
+}
+
+.refund-detail-box1 .detail-head .success {
+    padding: 0 0 42rpx;
+}
+
+.refund-detail-box1 .detail-head .success .text1 {
+    display: inline-block;
+    color: #3b9dfd;
+    font-size: 36rpx;
+    line-height: 56rpx;
+    padding-left: 52rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_blue_right.png") no-repeat 0 center;
+    background-size: 30rpx 30rpx;
+}
+
+.refund-detail-box1 .detail-head .success .text2 {
+    color: #999;
+    font-size: 28rpx;
+    line-height: 72rpx;
+}
+
+.refund-detail-box1 .detail-head .success .text2 .em {
+    color: #FF4752;
+}
+
+.refund-detail-box1 ul {
+    background-color: #fff;
+}
+
+.refund-detail-box1 .ul .li {
+    position: relative;
+    padding: 32rpx 32rpx 32rpx 180rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box1 .ul .li .li-l {
+    position: absolute;
+    top: 32rpx;
+    left: 32rpx;
+    line-height: 36rpx;
+}
+
+.refund-detail-box1 .ul .li .li-right {
+    color: #999;
+    float: right;
+    line-height: 36rpx;
+}
+
+.refund-detail-box1 .btn-box {
+    padding: 78rpx 32rpx;
+    background-color: #fff;
+}
+
+.refund-detail-box1 .btn-box .btn-service-phone {
+    display: block;
+    line-height: 88rpx;
+    text-align: center;
+    color: #FF4752;
+    border: 1rpx solid #FF4752;
+    border-radius: 48rpx;
+    font-size: 32rpx;
+}
+
+.refund-detail-box2 .head-tip {
+    color: #999;
+    font-size: 24rpx;
+    line-height: 80rpx;
+    text-align: center;
+}
+
+.refund-detail-box2 .nav-box {
+    background-color: #fff;
+    line-height: 96rpx;
+    text-align: center;
+    font-size: 32rpx;
+}
+
+.refund-detail-box2 .nav-box view {
+    float: left;
+    width: 50%;
+    color: #777;
+}
+
+.refund-detail-box2 .nav-box view.active {
+    color: var(--blue);
+    border-bottom: 2rpx solid var(--blue);
+    /* background: url("https://shgm.jjyyx.com/m/images/icon_nav_active.png") no-repeat center bottom;
+    background-size: 136rpx 4rpx; */
+}
+
+.refund-detail-box2 .cnt-box1 {
+    position: relative;
+    background-color: #fff;
+    margin: 16rpx 15rpx;
+    border-radius: 16rpx;
+    overflow: hidden;
+}
+
+.refund-detail-box2 .cnt-box1 .has-btn-pb60 {
+    background-color: #fff;
+    height: 120rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .btn-cancel {
+    z-index: 9;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 112rpx;
+    font-size: 30rpx;
+    text-align: center;
+    background-color: #fff;
+    color: var(--blue);
+    border-top: 1rpx solid #f4f4f4;
+}
+
+.detail-del {
+    font-size: 24rpx;
+    display: inline-block;
+    text-decoration: line-through;
+    margin-left: 4rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .head {
+    line-height: 80rpx;
+    padding: 0 32rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .head .head-l {
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .head .head-r {
+    float: right;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt {
+    padding: 0 32rpx 16rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .global-tip-head {
+    text-align: center;
+    color: #999;
+    margin-top: -28rpx;
+    padding: 0 0 16rpx;
+    font-size: 22rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .finished {
+    padding: 56rpx 0 36rpx;
+    text-align: center;
+    line-height: 52rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .finished .span {
+    display: inline-block;
+    color: #313031;
+    font-size: 36rpx;
+    padding: 0 0 0 60rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-green@2x.png") no-repeat 0 center;
+    background-size: 40rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .finished .em {
+    display: inline-block;
+    font-size: 40rpx;
+    color: #FF4752;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .em {
+    display: inline-block;
+    font-size: 40rpx;
+    color: #FF4752;
+    margin-left: 10rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .finished .em .i {
+    font-size: 32rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .waiting {
+    padding: 56rpx 0 36rpx;
+    text-align: center;
+    line-height: 52rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .waiting .span {
+    display: inline-block;
+    font-size: 36rpx;
+    padding: 0 0 0 60rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_right_gray.png") no-repeat 0 center;
+    background-size: 40rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .waiting .em {
+    display: inline-block;
+    font-size: 40rpx;
+    color: #FF4752;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .waiting .em .i {
+    font-size: 32rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .ul .li {
+    line-height: 56rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .ul .li .li-l {
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box1 .inf-box .inf-cnt .ul .li .li-r {
+    float: right;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .title {
+    line-height: 80rpx;
+    padding: 0 32rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress {
+    padding: 72rpx 144rpx 60rpx 0;
+    position: relative;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li {
+    position: relative;
+    float: left;
+    width: 33.33%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.fail .tip-box,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.fail .tip-box {
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+    border: 1rpx solid #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.fail .tip-box .triangle,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.fail .tip-box .triangle {
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.fail .progress-wrap .icon,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.fail .progress-wrap .icon {
+    background: url("https://shgm.jjyyx.com/m/images/icon_gray_close.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on.fail .tip-box,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on.fail .tip-box {
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+    border: 1rpx solid #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on.fail .tip-box .triangle,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on.fail .tip-box .triangle {
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on.fail .progress-wrap .icon,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on.fail .progress-wrap .icon {
+    background: url("https://shgm.jjyyx.com/m/images/icon_gray_close.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.waiting .tip-box,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.waiting .tip-box {
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+    border: 1rpx solid #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.waiting .tip-box .triangle,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.waiting .tip-box .triangle {
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .tip-box,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .tip-box {
+    position: absolute;
+    top: -100%;
+    left: 30rpx;
+    line-height: 36rpx;
+    background-color: #F0F3F6;
+    color: var(--blueLight);
+    border-radius: 4rpx;
+    border: 1rpx solid #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .tip-box.wait,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .tip-box.wait {
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .tip-box.wait .triangle,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .tip-box.wait .triangle {
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .tip-box .text,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .tip-box .text {
+    padding: 0 12rpx;
+    font-size: 20rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .tip-box .triangle,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .tip-box .triangle {
+    position: absolute;
+    bottom: -5rpx;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -6rpx;
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .progress-wrap .icon,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .progress-wrap .icon {
+    z-index: 3;
+    position: absolute;
+    left: 58rpx;
+    top: -12rpx;
+    width: 28rpx;
+    height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-gray@2x.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .progress-wrap .line,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .progress-wrap .line {
+    position: absolute;
+    top: 0;
+    left: 72rpx;
+    width: 100%;
+    height: 4rpx;
+    background-color: #e3e3e3;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li .progress-wrap .text,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li .progress-wrap .text {
+    width: 144rpx;
+    text-align: center;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    padding: 20rpx 0 0;
+    color: #94969c;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li:last-child,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li:last-child {
+    position: absolute;
+    right: 0;
+    top: 72rpx;
+    width: 144rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li:last-child .progress-wrap .line,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li:last-child .progress-wrap .line {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on .progress-wrap .line,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on .progress-wrap .line {
+    background-color: #CECECE;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on .progress-wrap .icon,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on .progress-wrap .icon {
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-green@2x.png") no-repeat;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box4 .progress .li.on .progress-wrap .text,
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li.on .progress-wrap .text {
+    color: #94969C;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress {
+    padding: 72rpx 144rpx 60rpx 0;
+    position: relative;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box3 .progress .li {
+    position: relative;
+    float: left;
+    width: 50%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 {
+    padding: 72rpx 32rpx 60rpx 0;
+    position: relative;
+    text-align: center;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress {
+    position: relative;
+    width: 420rpx;
+    margin: 0 auto;
+    height: 92rpx;
+    text-align: center;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left {
+    width: 148rpx;
+    height: 92rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left .icon {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 60rpx;
+    width: 28rpx;
+    height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-gray@2x.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left .text {
+    padding: 40rpx 0 0;
+    line-height: 48rpx;
+    font-size: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left .line {
+    position: absolute;
+    top: 12rpx;
+    left: 80rpx;
+    height: 4rpx;
+    width: 280rpx;
+    background-color: #ccc;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left.on .icon {
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-green@2x.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left.on .text {
+    color: var(--blue);
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-left.on .line {
+    background-color: var(--blue);
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right {
+    width: 420rpx;
+    height: 92rpx;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.finished .icon {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 60rpx;
+    width: 28rpx;
+    height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-green@2x.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.finished .text {
+    color: var(--blue);
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.finished .tip-box {
+    position: absolute;
+    right: 34rpx;
+    top: -48rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.finished .tip-box .tip-text {
+    font-size: 20rpx;
+    line-height: 32rpx;
+    border-radius: 4rpx;
+    background-color: #F0F3F6;
+    color: var(--blueLight);
+    padding: 0 10rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.finished .tip-box .triangle {
+    position: absolute;
+    bottom: -6rpx;
+    right: 32rpx;
+    margin-left: -6rpx;
+    width: 0;
+    height: 0;
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right .icon {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 60rpx;
+    width: 28rpx;
+    height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/ico-progress-gray@2x.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right .text {
+    padding: 40rpx 0 0;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    position: absolute;
+    left: 146rpx;
+    width: 400rpx;
+    text-align: center;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right .tip-box {
+    position: absolute;
+    right: 34rpx;
+    top: -48rpx;
+    border: 1rpx solid #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right .tip-box .tip-text {
+    font-size: 20rpx;
+    line-height: 32rpx;
+    /* border-radius: 16rpx; */
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+    padding: 0 10rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right .tip-box .triangle {
+    position: absolute;
+    bottom: -4rpx !important;
+    right: 32rpx;
+    margin-left: -6rpx;
+    width: 0;
+    height: 0;
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.fail .tip-box .tip-text {
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.fail .tip-box .triangle {
+    border: 6rpx solid #F0F3F6;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: transparent;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.fail .icon {
+    background: url("https://shgm.jjyyx.com/m/images/icon_gray_close.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.fail .text {
+    color: #94969C;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .progress-box2 .progress .progress-right.closeIcon .icon {
+    background: url("https://shgm.jjyyx.com/m/images/icon_gray_close.png") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .progress-box .tip-text {
+    padding: 12rpx 32rpx 40rpx;
+    line-height: 32rpx;
+    color: #999;
+    font-size: 24rpx;
+    text-align: center;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .title {
+    padding: 0 32rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .leave-message-cnt {
+    padding: 20rpx 32rpx 20rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .am-gallery {
+    padding: 0;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .img-box {
+    padding: 0 32rpx 30rpx;
+    box-sizing: content-box;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .img-box .img {
+    float: left;
+    display: inline-block;
+    width: 28%;
+    box-sizing: content-box;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .img-box .img image {
+    width: 160rpx;
+    height: 160rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box1 .leave-message .img-box .img:nth-child(2) {
+    padding: 0 8%;
+}
+
+.refund-detail-box2 .cnt-box2 {
+    margin: 16rpx 15rpx 0;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap {
+    border-radius: 16rpx;
+    /* overflow: hidden; */
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li {
+    padding: 30rpx 0;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .wrap {
+    position: relative;
+    height: 130rpx;
+    padding: 0 32rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .offline-refund-box {
+    height: 50rpx;
+    padding: 0 0 0 182rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .offline-refund-box .offline-refund-wrap {
+    position: relative;
+    border-top: 1rpx dashed #ededed;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .offline-refund-box .offline-refund-wrap .btn-applay-refund,
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .offline-refund-box .offline-refund-wrap .btn-view-refund {
+    display: block;
+    position: absolute;
+    top: 12rpx;
+    right: 32rpx;
+    padding: 0 20rpx 0;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    border-radius: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .btn-applay-refund,
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .btn-view-refund {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 20rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    border-radius: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-flag {
+    position: absolute;
+    top: 0;
+    left: 16rpx;
+    z-index: 9;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-flag image {
+    width: 48rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-img {
+    position: relative;
+    float: left;
+    width: 130rpx;
+    height: 130rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-img .masker-refunded {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 128rpx;
+    height: 48rpx;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 48rpx;
+    color: #fff;
+    font-size: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-img .already-served {
+    position: absolute;
+    right: -10rpx;
+    top: -10rpx;
+    display: block;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 16rpx 8rpx;
+    border-radius: 4rpx;
+    color: var(--blue);
+    background-color: #edf7de;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-img image {
+    width: 130rpx;
+    height: 130rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info {
+    position: relative;
+    top: -2rpx;
+    height: 136rpx;
+    margin-left: 160rpx;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .customer-service {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 9rpx 10rpx;
+    border-radius: 4rpx;
+    margin-left: 8rpx;
+    background-color: #e4f1ff;
+    color: #5db1ff;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .customer-service-masker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 88rpx;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 9rpx 10rpx;
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h3 {
+    position: relative;
+    height: 112rpx;
+    line-height: 58rpx;
+    width: 200%;
+    overflow: hidden;
+    font-size: 52rpx;
+    text-overflow: ellipsis;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform-origin: 0 0;
+    padding-right: 68rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h3.h3-height {
+    height: 116rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h3.customer-service-padding {
+    padding-right: 200rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h3 .em {
+    background-color: #ffa601;
+    display: inline-block;
+    line-height: 0;
+    font-size: 44rpx;
+    color: #fff;
+    padding: 29rpx 32rpx;
+    border-radius: 29rpx;
+    margin-right: 16rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h4 {
+    height: 24rpx;
+    margin-top: 12rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .h4 .goodsSpec {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .quantity,
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price {
+    position: absolute;
+    bottom: 0;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .quantity {
+    left: 0;
+    bottom: -6rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .quantity .i {
+    line-height: 24rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .quantity .i:before {
+    content: 'x';
+    font-size: 24rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price {
+    left: 0;
+    height: 40rpx;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transform-origin: 0 0;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price .member-tag {
+    background-color: #ffa601;
+    display: inline-block;
+    line-height: 0;
+    font-size: 44rpx;
+    color: #fff;
+    padding: 32rpx 20rpx;
+    border-radius: 36rpx;
+    margin-right: 16rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price .em,
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price .s {
+    display: inline-block;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price .em {
+    line-height: 72rpx;
+    font-size: 60rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price:before {
+    /*  content: '￥';*/
+    font-size: 48rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.price-one {
+    display: inline-block;
+    margin-left: 20rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info .price .s {
+    line-height: 48rpx;
+    font-size: 48rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .h4 {
+    position: absolute;
+    bottom: 8rpx;
+    height: auto;
+    line-height: 36rpx;
+    margin-top: 0;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .h4 .goodsSpec {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .price {
+    right: 0;
+    top: 0;
+    left: auto;
+    background-color: #fff;
+    min-height: 40rpx;
+    padding-left: 20rpx;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .price .member-tag {
+    font-size: 22rpx;
+    padding: 16rpx 10rpx;
+    border-radius: 9rpx;
+    margin-right: 8rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .price .em {
+    background-color: #fff;
+    font-size: 30rpx;
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .price:before {
+    font-size: 24rpx;
+    /* content: '￥';*/
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .del-price {
+    position: absolute;
+    right: 0;
+    top: 60rpx;
+    color: #999;
+    font-size: 24rpx;
+    text-decoration: line-through;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap-cnt1 .li .cart-item .item-info.weigh-goods .del-price:before {
+    content: '￥';
+    font-size: 24rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .title {
+    padding: 0 32rpx;
+    line-height: 96rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product {
+    position: relative;
+    padding: 28rpx 32rpx 30rpx 190rpx;
+    font-size: 24rpx;
+    height: 188rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product image {
+    display: block;
+    border: 1rpx solid #e6e6e6;
+    width: 130rpx;
+    height: 130rpx;
+    position: absolute;
+    top: 30rpx;
+    left: 32rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product .h3 {
+    line-height: 32rpx;
+    height: 48rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product .text1 {
+    line-height: 36rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product .text2 {
+    position: absolute;
+    bottom: 20rpx;
+    left: 190rpx;
+    line-height: 36rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .product .text3 {
+    position: absolute;
+    bottom: 20rpx;
+    right: 32rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .num {
+    padding: 0 32rpx;
+    line-height: 96rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .num .num-l {
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .num .num-r {
+    float: right;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .des-box {
+    padding: 24rpx 32rpx 34rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .des-box .data {
+    line-height: 28rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .des-box .des {
+    padding-top: 12rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .des-box .img {
+    padding: 20rpx 0 0;
+    white-space: nowrap;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .des-box .img image {
+    display: inline-block;
+    width: 160rpx;
+    height: 160rpx;
+    margin-right: 16rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .li {
+    line-height: 80rpx;
+    font-size: 28rpx;
+    padding: 0 32rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .li .li-l {
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .li .li-r {
+    float: right;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .addr {
+    display: flex;
+    padding: 32rpx;
+    line-height: 40rpx;
+    word-break: break-all;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .addr .shop-name {
+    display: flex;
+    flex: 1;
+    width: 68rpx;
+    padding-right: 20rpx;
+    line-height: 40rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .addr .addr-detail {
+    flex: 2;
+}
+
+.refund-detail-box2 .cnt-box2 .wrap .ul .addr .addr-detail .addr-detail-cnt {
+    float: right;
+    line-height: 40rpx;
+    padding-left: 36rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_gray_location.png") no-repeat 0 4rpx;
+    background-size: 22rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-box {
+    padding: 16rpx 0 0;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-box.global-fill {
+    padding: 16rpx 0 38rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-title {
+    padding: 0 32rpx;
+    line-height: 88rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li {
+    position: relative;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 32rpx 0 200rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li .l {
+    position: absolute;
+    left: 32rpx;
+    top: 0;
+    line-height: 88rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li .r {
+    display: block;
+    width: 100%;
+    line-height: 88rpx;
+    overflow: hidden;
+    font-size: 28rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li .r input {
+    width: 100%;
+    line-height: 88rpx;
+    height: 88rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li .arrow {
+    position: absolute;
+    right: 40rpx;
+    top: 50%;
+    width: 16rpx;
+    height: 16rpx;
+    content: "";
+    border-left: 1rpx solid #999;
+    border-bottom: 1rpx solid #999;
+    -webkit-transform: translateY(-6px) scaleY(1) rotateZ(-45deg);
+    transform: translateY(-6px) scaleY(1) rotateZ(-45deg);
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-tip {
+    background-color: #fff9f5;
+    padding: 0 32rpx;
+    line-height: 56rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li1 {
+    position: relative;
+    min-height: 56rpx;
+    padding: 10rpx 32rpx 10rpx 200rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li1 .l {
+    position: absolute;
+    left: 32rpx;
+    top: 0;
+    line-height: 56rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-inf .global-li1 .r {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .global-title {
+    padding: 0 32rpx;
+    line-height: 88rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product {
+    position: relative;
+    padding: 28rpx 32rpx 30rpx 190rpx;
+    font-size: 24rpx;
+    height: 188rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product image {
+    display: block;
+    border: 1rpx solid #e6e6e6;
+    width: 130rpx;
+    height: 130rpx;
+    position: absolute;
+    top: 30rpx;
+    left: 32rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product .h3 {
+    line-height: 32rpx;
+    height: 48rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product .text1 {
+    line-height: 36rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product .text2 {
+    position: absolute;
+    bottom: 20rpx;
+    left: 190rpx;
+    line-height: 36rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .product .text3 {
+    position: absolute;
+    bottom: 20rpx;
+    right: 32rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li {
+    padding: 30rpx 0;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .wrap {
+    position: relative;
+    height: 130rpx;
+    padding: 0 32rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .offline-refund-box {
+    height: 50rpx;
+    padding: 0 0 0 182rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .offline-refund-box .offline-refund-wrap {
+    position: relative;
+    border-top: 1rpx dashed #ededed;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .offline-refund-box .offline-refund-wrap .btn-applay-refund,
+.refund-detail-box2 .cnt-box2 .global-pro .li .offline-refund-box .offline-refund-wrap .btn-view-refund {
+    display: block;
+    position: absolute;
+    top: 12rpx;
+    right: 32rpx;
+    padding: 0 20rpx 0;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    border-radius: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .btn-applay-refund,
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .btn-view-refund {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 20rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    border-radius: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-flag {
+    position: absolute;
+    top: 0;
+    left: 16rpx;
+    z-index: 9;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-flag image {
+    width: 48rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-img {
+    position: relative;
+    float: left;
+    width: 130rpx;
+    height: 130rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-img .masker-refunded {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 128rpx;
+    height: 48rpx;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 48rpx;
+    color: #fff;
+    font-size: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-img .already-served {
+    position: absolute;
+    right: -10rpx;
+    top: -10rpx;
+    display: block;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 16rpx 8rpx;
+    border-radius: 4rpx;
+    color: var(--blue);
+    background-color: #edf7de;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-img image {
+    width: 130rpx;
+    height: 130rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info {
+    position: relative;
+    /* top: -6rpx; */
+    height: 136rpx;
+    margin-left: 150rpx;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .customer-service {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 9rpx 10rpx;
+    border-radius: 4rpx;
+    margin-left: 8rpx;
+    background-color: #e4f1ff;
+    color: #5db1ff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .customer-service-masker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 88rpx;
+    line-height: 0;
+    font-size: 24rpx;
+    padding: 9rpx 10rpx;
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .h3 {
+    position: relative;
+    height: 112rpx;
+    line-height: 56rpx;
+    width: 200%;
+    overflow: hidden;
+    font-size: 52rpx;
+    text-overflow: ellipsis;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform-origin: 0 0;
+    padding-right: 200rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .h3.h3-height {
+    height: 320rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .h3.customer-service-padding {
+    padding-right: 200rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .h3 .em {
+    background-color: #ffa601;
+    display: inline-block;
+    line-height: 0;
+    font-size: 44rpx;
+    color: #fff;
+    padding: 32rpx 32rpx;
+    border-radius: 36rpx;
+    margin-right: 16rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .h4 {
+    height: 24rpx;
+    margin-top: 12rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .quantity,
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price {
+    position: absolute;
+    bottom: 0;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .quantity {
+    left: 0;
+    bottom: -6rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .quantity .i {
+    line-height: 24rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .quantity .i:before {
+    content: 'x';
+    font-size: 24rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price {
+    left: 0;
+    height: 40rpx;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transform-origin: 0 0;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price .member-tag {
+    background-color: #ffa601;
+    display: inline-block;
+    line-height: 0;
+    font-size: 44rpx;
+    color: #fff;
+    padding: 32rpx 20rpx;
+    border-radius: 36rpx;
+    margin-right: 16rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price .em,
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price .s {
+    display: inline-block;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price .em {
+    line-height: 72rpx;
+    font-size: 60rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price em:before {
+    content: '￥';
+    font-size: 24rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info .price .s {
+    line-height: 48rpx;
+    font-size: 48rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .h4 {
+    position: absolute;
+    bottom: 8rpx;
+    height: auto;
+    line-height: 36rpx;
+    margin-top: 0;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .h4 .goodsSpec {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .price {
+    right: 0;
+    top: 0;
+    left: auto;
+    background-color: #fff;
+    min-height: 40rpx;
+    padding-left: 20rpx;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .price em {
+    background-color: #fff;
+    font-size: 30rpx;
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .price em:before {
+    font-size: 24rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .del-price {
+    position: absolute;
+    right: 0;
+    top: 60rpx;
+    color: #999;
+    font-size: 24rpx;
+    text-decoration: line-through;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .li .cart-item .item-info.weigh-goods .del-price:before {
+    content: '￥';
+    font-size: 24rpx;
+    margin-right: 0;
+    line-height: 1;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .num {
+    padding: 0 32rpx;
+    line-height: 96rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .num .num-l {
+    float: left;
+}
+
+.refund-detail-box2 .cnt-box2 .global-pro .num .num-r {
+    float: right;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-reason {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-reason .global-title {
+    padding: 0 32rpx;
+    line-height: 80rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-reason .global-reason-cnt {
+    padding: 16rpx 32rpx;
+    color: #999;
+    font-size: 26rpx;
+    line-height: 44rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .global-title {
+    padding: 0 32rpx;
+    line-height: 88rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .global-des-cnt {
+    padding: 16rpx 32rpx 0;
+    color: #999;
+    line-height: 40rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .global-des-data {
+    padding: 0 32rpx 16rpx;
+    color: #999;
+    line-height: 40rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .img-box {
+    padding: 30rpx 32rpx;
+    box-sizing: content-box;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .img-box .img {
+    float: left;
+    display: inline-block;
+    width: 30%;
+    box-sizing: content-box;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .img-box .img image {
+    width: 160rpx;
+    height: 160rpx;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .img-box .img:nth-child(3n+2) {
+    padding: 0 5%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-des .img-box .img:nth-child(n+4) {
+    padding-top: 2%;
+}
+
+.refund-detail-box2 .cnt-box2 .global-phone {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-phone .li {
+    position: relative;
+    padding: 30rpx 32rpx 30rpx 180rpx;
+    min-height: 96rpx;
+    font-size: 28rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-phone .li .l {
+    position: absolute;
+    left: 32rpx;
+    top: 0;
+    line-height: 96rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-phone .li .r {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des {
+    background-color: #fff;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des {
+    padding: 20rpx 32rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des .text {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des .date {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-title {
+    padding: 0 32rpx;
+    line-height: 88rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des-cnt {
+    padding: 20rpx 32rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des-cnt .text {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .global-refund-des .global-des-cnt .date {
+    line-height: 36rpx;
+}
+
+.refund-detail-box2 .cnt-box2 .btn-confirm-submit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FF4752;
+    text-align: center;
+    color: #fff;
+    font-size: 32rpx;
+    line-height: 96rpx;
+    width: 100%;
+}
+
+.empty-h96 {
+    height: 112rpx;
+}
+
+.pop-refund-logistics {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pop-refund-logistics .pop-cnt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 92rpx 0 20rpx;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+.pop-refund-logistics .pop-cnt .btn-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 92rpx;
+    font-size: 28rpx;
+    text-align: center;
+    background-color: #fff;
+}
+
+.pop-refund-logistics .pop-cnt .btn-box .logistics-cancel {
+    float: left;
+    width: 132rpx;
+}
+
+.pop-refund-logistics .pop-cnt .btn-box .logistics-confirm {
+    float: right;
+    width: 132rpx;
+    color: #349bf3;
+}
+
+.pop-refund-logistics .pop-cnt .ul {
+    max-height: 600rpx;
+    overflow-y: auto;
+}
+
+.pop-refund-logistics .pop-cnt .ul .li {
+    line-height: 60rpx;
+    text-align: center;
+    font-size: 28rpx;
+}
+
+.pop-refund-logistics .pop-cnt .ul .li.active {
+    color: var(--blue);
+    line-height: 84rpx;
+    border-top: 1rpx solid #e6e6e6;
+}
+
+.icon-info {
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    background: url("https://shgm.jjyyx.com/m/images/icon_info.png") center 0 no-repeat;
+    background-size: 28rpx;
+    margin-left: 12rpx;
+}
+
+.fadeInUp-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 28rpx;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.fadeInUp-cont {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 10rpx #ccc;
+}
+
+.fadeInUp-title {
+    text-align: center;
+    padding: 32rpx;
+    font-size: 32rpx;
+}
+
+.fadeInUp-list {
+    padding: 40rpx 32rpx;
+}
+
+.fadeInUp-list .li {
+    font-size: 28rpx;
+}
+
+.fadeInUp-btn {
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 32rpx;
+    background: #FF4752;
+    color: #fff;
+    text-align: center;
+}

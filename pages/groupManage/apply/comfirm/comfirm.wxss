@@ -1,0 +1,46 @@
+page {
+    color: #777;
+}
+
+.info {
+    width: 100%;
+    height: 100vh;
+    padding-top: 24%;
+    text-align: center;
+    border-top: 1rpx solid #e7e7e7;
+}
+
+.info image {
+    display: inline-block;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+    border: 1rpx dashed #e7e7e7;
+}
+
+.info view {
+    margin-top: 32rpx;
+    font-size: 24rpx;
+}
+.approvalNote{
+    color: #3b9df0;
+}
+button {
+    position: fixed;
+    left: 31rpx;
+    bottom: 31%;
+    width: 688rpx;
+    height: 80rpx;
+    background: rgba(255, 93, 61, 1);
+    border-radius: 40rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    line-height: 80rpx;
+    color: #fff;
+}
+button::after{
+    border: 0;
+}
+.no-apply{
+    background:#e6e6e6;
+}

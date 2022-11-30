@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "超级拼团",
+  "usingComponents": {
+    "pop-group-num":"/component/popGroupNum/popGroupNum",
+    "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+    "component-group-surplus-time": "/component/groupSurplusTime/groupSurplusTime",
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher"
+  }
+}

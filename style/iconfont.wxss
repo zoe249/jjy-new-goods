@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'lyfont';  /* Project id 2504529 */
+  src: url('//at.alicdn.com/t/font_2504529_it9nlsc4f9.woff2?t=1635316979789') format('woff2'),
+       url('//at.alicdn.com/t/font_2504529_it9nlsc4f9.woff?t=1635316979789') format('woff'),
+       url('//at.alicdn.com/t/font_2504529_it9nlsc4f9.ttf?t=1635316979789') format('truetype');
+}
+
+.iconfont {
+  font-family: "lyfont" !important;
+}
+/* 返回 */
+.iconBack:after {
+  content: '\e646';
+}
+/* 向下箭头 */
+.iconArrowDown:after {
+  content: '\e693';
+}
+/* 向右箭头 */
+.iconArrowRight:after {
+  content: '\e66b';
+}
+/* 下一步箭头 社区首页自提点切换*/
+.iconNext:after {
+  content: '\e68e';
+}
+/* 更多向下箭头 */
+.iconMoreDown:after {
+  content: '\e85d';
+}
+/* 更多向下箭头 */
+.iconMorePut:after {
+  content: '\e636';
+}
+
+.iconMoreAll:after {
+  content: '\e637';
+}
+/* 分类 */
+.iconClass:before {
+  content: '\e690';
+}
+/* 搜索 */
+.iconSearch:before {
+  content: '\e691';
+}
+/* 分享 */
+.iconShare:before {
+  content: '\e692';
+}
+/* 精准定位 */
+.iconPinpoint:before {
+  content: '\e665';
+}
+/* 扫码 */
+.iconScan:before {
+  content: '\e66a';
+}
+/* 取消 */
+.iconScan:before {
+  content: '\e66f';
+}
+/* 注 */
+.iconNotes:before {
+  content: '\e671';
+}
+
+/* 条形码 */
+.iconBarCode:before {
+  content: '\e672';
+}
+
+/* 条形码 */
+.iconVipCode:before {
+  content: '\e673';
+}
+
+/* 手动输入 */
+.iconManual:before {
+  content: '\e676';
+}
+
+/* 编辑 */
+.iconManual:before {
+  content: '\e683';
+}
+
+/* 加号 添加地址 */
+.iconAddressAdd:before {
+  content: '\e68c';
+}
+/* 头像 */
+.iconUserPic:before {
+  content: '\e66d';
+}
+/* 拨号 */
+.iconTell:before {
+  content: '\e689';
+}
+/* 更多 */
+.iconMore:before {
+  content: '\e694';
+}
+.iconCoverwx::after{
+  content: '\e6ae';
+}
+.iconPic::after{
+  content: '\e6ad';
+}

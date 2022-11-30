@@ -1,0 +1,232 @@
+<import src="/templates/global/global.wxml" />
+<wxs src="./index.wxs" module="wxsTools"></wxs>
+<block wx:if="{{allowShopLimit}}">
+  <template is="headerTpl"
+    data="{{swiperNavItem, shopName, swiperNavActive, navTypeSelectAll, shopSelectorArray, shopSelectorIndex, searchGoodsName}}"></template>
+</block>
+
+<view class="main">
+  <swiper class='swiper-group' duration="300" bindchange="swiperGroupType" current='{{swiperNavActive}}'>
+    <swiper-item>
+      <!-- 团 -->
+      <scroll-view scroll-y bindscrolltolower="getGroupList">
+        <view class="group-goods-list-container">
+          <block wx:for="{{group.cur.list}}" wx:key="t_goodsId">
+            <extend-goods item="{{item}}" bind:moreExtension="moreExtension" countDownTime="{{timerList[item.proEndTimeNum]}}"></extend-goods>
+          </block>
+        </view>
+        <!--即将开始-->
+        <block wx:if="{{group.soon.list.length}}">
+          <view class='b-scape'></view>
+          <view class='begin'>
+            <text>即/将/开/团</text>
+          </view>
+          <view class="group-goods-list-container">
+            <block wx:for="{{group.soon.list}}" wx:key="tc_goodsId">
+              <extend-goods item="{{item}}" isSoon="{{true}}"></extend-goods>
+            </block>
+          </view>
+        </block>
+        <template is="noMore" wx:if="{{!group.empty && group.cur.noMore && group.soon.noMore}}"></template>
+        <template wx:if="{{group.empty}}" is="empty"></template>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <!-- 秒杀 -->
+      <scroll-view scroll-y bindscrolltolower="getSeckillList">
+        <view class="group-goods-list-container">
+          <block wx:for="{{seckill.cur.list}}" wx:key="q_goodsId">
+            <extend-goods  item="{{item}}" bind:moreExtension="moreExtension" countDownTime="{{timerList[item.proEndTimeNum]}}"></extend-goods>
+          </block>
+        </view>
+        <block wx:if="{{seckill.soon.list.length}}">
+          <view class='b-scape'></view>
+          <view class='begin'>
+            <text>即/将/开/抢</text>
+          </view>
+          <view class="group-goods-list-container">
+            <block wx:for="{{seckill.soon.list}}" wx:key="qc_goodsId">
+              <extend-goods item="{{item}}" isSoon="{{true}}" ></extend-goods>
+            </block>
+          </view>
+        </block>
+        <template is="noMore" wx:if="{{!seckill.empty && seckill.cur.noMore && seckill.soon.noMore}}"></template>
+        <template wx:if="{{seckill.empty}}" is="empty"></template>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <!-- 特惠 -->
+      <scroll-view scroll-y bindscrolltolower="getDiscount">
+        <view class="group-goods-list-container">
+          <block wx:for="{{discount.cur.list}}" wx:key="s_goodsId">
+            <extend-goods  item="{{item}}" bind:moreExtension="moreExtension"  countDownTime="{{timerList[item.proEndTimeNum]}}"></extend-goods>
+          </block>
+        </view>
+        <block wx:if="{{discount.soon.list.length}}">
+          <view class='b-scape'></view>
+          <view class='begin'>
+            <text>即/将/开/抢</text>
+          </view>
+          <view class="group-goods-list-container">
+            <block wx:for="{{discount.soon.list}}" wx:key="sc_goodsId">
+              <extend-goods item="{{item}}" isSoon="{{true}}"></extend-goods>
+            </block>
+          </view>
+        </block>
+        <template is="noMore" wx:if="{{!discount.empty && discount.cur.noMore && discount.soon.noMore}}"></template>
+        <template wx:if="{{discount.empty}}" is="empty"></template>
+      </scroll-view>
+    </swiper-item>
+    <!-- 接龙 -->
+    <!-- <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="getJieLong">
+        <view class="group-goods-list-container">
+          <block wx:for="{{jielong.cur.list}}" wx:key="s_goodsId">
+            <extend-goods item="{{item}}" bind:moreExtension="moreExtension"></extend-goods>
+          </block>
+        </view>
+        <block wx:if="{{jielong.soon.list.length && jielong.cur.noMore}}">
+          <view class='b-scape'></view>
+          <view class='begin'>
+            <text>即/将/开/抢</text>
+          </view>
+          <view class="group-goods-list-container">
+            <block wx:for="{{jielong.soon.list}}" wx:key="sc_goodsId">
+              <extend-goods item="{{item}}" isSoon="{{true}}"></extend-goods>
+            </block>
+          </view>
+        </block>
+        <template is="noMore" wx:if="{{!jielong.empty && jielong.cur.noMore && jielong.soon.noMore}}"></template>
+        <template wx:if="{{jielong.empty}}" is="empty"></template>
+      </scroll-view>
+    </swiper-item> -->
+  </swiper>
+  <block wx:if="{{emptyObj[swiperNavActive]}}">
+    <view class="group-empty-container">
+      <image class="empty-icon" src="https://shgm.jjyyx.com/m/images/error_img3.png?20190704" mode="aspectFit"></image>
+      <text class="empty-msg">当前门店暂无活动</text>
+    </view>
+  </block>
+  <template is="modal" data="{{...modalData}}"></template>
+</view>
+
+<!-- <component-poster isVisible="{{isVisible}}"></component-poster> -->
+
+<component-backstage-footer-nav current="1"></component-backstage-footer-nav>
+<!-- <view class='extension-model {{showExtension?"showExtension":""}}'>
+  <view class='mask' catchtap='closeExtension'></view>
+  <view class='extension-share-info'>
+    <view class='gods-info'>
+      <image src='{{shareDetail.coverImage}}'></image>
+      <view class='gods-dec'>
+        <view class='gods-title'>悦团购推广</view>
+        <view class='gods-i'>1.仅发起推广，但不生成订单 </view>
+        <view class='gods-i'>2.参团好友为新用户时，将自动成为你的粉丝 </view>
+        <view class='gods-i'>3.善用推广，可帮你迅速吸粉、拿返利</view>
+      </view>
+    </view>
+    <button class="gods-share"  open-type='share'>确认推广</button>
+    <view class='extension-share-type'></view> 
+  </view>
+
+</view> -->
+<!--分享按钮-->
+<view class="shareHomePage{{isIphoneX?' shareHomePageX':''}}"  bindtap="shareHome">
+  <!-- <button open-type="share" data-types="shareHome"></button> -->
+  <image mode="widthFix"src='https://shgm.jjyyx.com/m/images/icon_share_home.png'></image>
+</view>
+
+<actionSheet show="{{showExtension}}" isMaskClose="{{true}}">
+  <view class="share-sheet-pupop">
+    <button class="share-sheet-item" open-type='share' data-types="{{shareType}}">
+      <text class="iconfont iconCoverwx"></text>
+      <view>微信好友</view>
+    </button>
+   
+    <view class="share-sheet-item" bindtap="bindDrawShare">
+      <text class="iconfont iconPic"></text>
+      <view>生成海报</view>
+    </view>
+  </view>
+  <view class="share-sheet-cancel" bindtap="closeExtension">取消</view>
+</actionSheet>
+
+<!-- 分享图 下载本地 -->
+<actionSheet show="{{downLoaclFlag}}" isMaskClose="{{true}}" dialogStyle="background: transparent">
+  <view class="down-loacl-page">
+    <view class="down-cover" bindtap="hideDownLoadImg"></view>
+    <view class="down-info">
+      <image src="{{downLoaclImg}}" mode="widthFix"></image>
+      <view class="down-img-btn" bindtap="headlerSave">保存图片</view>
+    </view>
+  </view>
+</actionSheet>
+<painter palette="{{drawJson}}"  customStyle='position: absolute; left: -9999rpx;' bind:imgOK="onImgOK" />
+
+<!--头部-->
+<template name="headerTpl">
+  <view class="page-header-haigou">
+    <view class="nav">
+      <!-- <view class="extra-link-shop-list" bindtap="autoJump" data-url="/pages/storeList/storeList">{{shopName}}</view> -->
+      <picker mode="selector" bindchange="bindSelectorChange" value="{{shopSelectorIndex}}"
+        range="{{shopSelectorArray}}">
+        <view class='groupShopList' wx:if="{{shopSelectorArray[shopSelectorIndex]}}">
+          <image src='https://shgm.jjyyx.com/m/images/app_icon.png?t=418'></image>
+          <view class="ellipsis iconfont iconArrowDown">{{shopSelectorArray[shopSelectorIndex]}}
+            <!-- <text class='forword iconfont iconArrowDown {{shopPickerShow?"show":""}}'></text> -->
+          </view>
+        </view>
+      </picker>
+      <button class="advertise-btn" catchtap='moreExtension' data-more="2">一键推广</button>
+    </view>
+    <form>
+      <view class='search-mod'>
+        <view class='search-info'>
+          <input type='text' confirm-type='search' bindinput="bindSearchGoodsName" bindconfirm="bindSearchGroupGoods"
+            placeholder='请您输入商品名称' name="goodsName" value="{{searchGoodsName}}"></input>
+        </view>
+      </view>
+    </form>
+    <view class='group-nav pos-r r1bb'>
+      <view wx:for="{{swiperNavItem}}" bindtap='swiperNav' class='group-nav-item {{swiperNavActive == index?"active":""}}' data-index='{{index}}' wx:key="id">{{item.title}}</view>
+    </view>
+  </view>
+</template>
+
+<component-share-popup showShareDialogFlag="{{showShareDialogFlag}}" shareDetail="{{shareDetail}}"
+  share-path="{{shareInfo.path}}"></component-share-popup>
+
+
+
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+
+
+<page-container
+  wx:if="{{canIUse}}"
+  show="{{searchShow}}"
+  overlay="{{true}}"
+  duration="300"
+  z-index="10240"
+  position="right"
+  close-on-slide-down="{{false}}"
+  bindbeforeenter="onBeforeEnter"
+  bindenter="onEnter"
+  bindafterenter="onAfterEnter"
+  bindbeforeleave="onBeforeLeave"
+  bindleave="onLeave"
+  bindafterleave="onAfterLeave"
+  bindclickoverlay="onClickOverlay"
+  custom-style="z-index:10240"
+  overlay-style="{{overlayStyle}}"
+>
+  <scroll-view class="search-page" style="height:100vh;width:100%;" scroll-y bindscrolltolower="bindSearchGroupGoods">
+    <block wx:for="{{search.list}}" wx:key="sitem">
+      <extend-goods  item="{{item}}" bind:moreExtension="moreExtension"  countDownTime="{{timerList[item.proEndTimeNum]}}"></extend-goods>
+    </block>
+    <template is="noMore" wx:if="{{!search.empty && search.noMore}}"></template>
+    <template is="empty" wx:if="{{search.empty}}"></template>
+  </scroll-view>
+</page-container>

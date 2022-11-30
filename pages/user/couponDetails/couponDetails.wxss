@@ -1,0 +1,130 @@
+/**
+* 优惠券详情
+ */
+.coupon-details{
+  /* padding:0 0 196rpx 0; */
+}
+.coupon-details-container{
+  background: #fff;
+  margin: 16rpx;
+  border-radius: 16rpx;
+  padding-left: 32rpx;
+}
+.coupon-details .dl{
+  font-size: 28rpx;
+  padding: 24rpx 32rpx 24rpx 0;
+}
+.coupon-details .dt{
+  color:#999;
+  line-height: 48rpx;
+}
+.coupon-details .dd{
+  margin-left: 156rpx;
+  font-size: 28rpx;
+  line-height:  48rpx;
+  min-height:  48rpx;
+}
+.usering-coupon{
+  width: 686rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+}
+.usering-coupon::after{
+  border: 0;
+}
+.usering-coupon.button-hover{
+  opacity: 0.6;
+}
+.valid{
+  background: #FF4752;
+}
+.invalid{
+  background: #ccc;
+}
+
+.coupon-code-wrap{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.coupon-code-id{
+  font-size: 30rpx;
+  text-align: center;
+  margin: 0rpx auto;
+  color: var(--thMain);
+}
+.coupon-code-id label{
+  text-decoration: underline;
+}
+.coupon-code-id text{
+  color: var(--black);
+}
+
+
+.bar_code {
+  position: relative;
+  padding: 32rpx 0;
+  background: #fff;
+  margin-bottom: 64rpx;
+}
+
+.bar_code::after{
+position: absolute;
+left: 0;
+top: 40rpx;
+width: 100%;
+text-align: center;
+color: #999;
+content: '点击刷新会员码';
+z-index: -1;
+}
+.bar_code::before{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+.bar_code .img {
+  height: 158rpx;
+}
+
+.bar_code .p {
+  font-size: 28rpx;
+  margin: 40rpx auto;
+  line-height: 1;
+}
+
+.bar_code .current-code {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.patcher-placeholder{
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 750rpx;
+  background: #fff;
+  z-index: 2;
+}
+ .iphone-x-patcher {
+  width: 750rpx;
+  min-height: 16rpx;
+  /* height: calc(16rpx + env(safe-area-inset-bottom) / 2); */
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+  padding-bottom: calc(constant(safe-area-inset-bottom)/ 2); 
+}
+.iphone-patcher-container{
+  padding-top: 16rpx;
+}

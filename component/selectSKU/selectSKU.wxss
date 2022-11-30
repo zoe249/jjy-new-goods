@@ -1,0 +1,161 @@
+
+.pop-up-layer{
+  display: flex;
+  /* 主轴 */
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(49, 48, 49, 0.4);
+}
+
+/* 页面容器 */
+.materiel-ext-property-page-container {
+  display: flex;
+  /* 主轴 */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 80%;
+  background-color: white;
+  padding: 30rpx;
+}
+/* 规格选择容器 */
+.materiel-ext-property-container {
+  display: flex;
+  /* 主轴 */
+  flex-direction: column;
+  /* 居中 */
+  text-align: center;
+  /* 外边距设置（上、右、下、左） */
+  /* margin: 30rpx 20rpx 30rpx; */
+  /*内边距设置*/
+  /* padding-bottom: 20rpx; */
+  /*大小*/
+  height: 600rpx;
+  /*边线-方便调试*/
+  border-bottom:  1rpx solid #ededed;
+}
+
+.materiel-ext-property-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* 主轴对齐方式 */
+  justify-content:flex-start;
+  /* 交叉轴对齐方式 */
+  align-content: center;
+  /*外边距设置*/
+  margin: 5rpx 0rpx 5rpx 0rpx;
+  /*内边距*/
+  /* padding: 0rpx 15rpx 15rpx 0rpx; */
+  /*边线-方便调试*/
+  border-bottom:  1rpx solid #ededed;
+}
+
+.materiel-ext-property-content-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* 加粗 */
+  font-weight: bold;
+  /*外边距设置*/
+  margin: 10rpx 0rpx 0rpx 0rpx;
+  /*内边距*/
+  padding: 0rpx 5rpx 5rpx 0rpx;
+  /*边线-方便调试*/
+  border-bottom: 2px solid #ffffff;
+  height: 50rpx;
+}
+.materiel-ext-property-content-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 15%;
+  background: #e3deeb91;
+  color: black;
+  /*外边距设置*/
+  margin: 5rpx 10rpx 5rpx 10rpx;
+  height: 65rpx;
+  min-width: 120rpx;
+  width: max-content;
+}
+
+.materiel-ext-property-content-item-select{
+  background-color: rgb(226, 31, 17,0.3);  
+  border: 1px solid rgb(226, 31, 17);  
+}
+
+.materiel-ext-property-content-item-disable{
+  opacity:0.3; 
+}
+
+/* 按钮容器 */
+.materiel-ext-property-content-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  /*外边距设置*/
+  margin:  5rpx;
+  /*边线-方便调试*/
+  /* border: 2px solid #22f706; */
+  border-radius:30rpx;
+  height: 80rpx;
+  /* background: #FF4752; */
+  color: #fff;
+  font-size: 30rpx;
+  width: 50%;
+  /* position:fixed;bottom:10rpx; */
+}
+.materiel-ext-property-content-button-item {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:30rpx;
+  background: #FF4752;
+}
+
+.materiel-ext-property-content-button-item-disable {
+  background: #bcbcbc;
+}
+.price-container {
+  padding: 32rpx 32rpx 4rpx 32rpx;
+  color: #FF4752;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.price-container .price-mes {
+  font-size: 26rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.price-container .price {
+  font-size: 52rpx;
+  line-height: 0.9;
+  color: #FF4752;
+}
+
+.price-container .salesUnit {
+  font-size: 26rpx;
+  line-height: 1;
+  color: #999;
+}
+.price-container .prime-price {
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  line-height: 1;
+  color: #999;
+  text-decoration: line-through;
+}

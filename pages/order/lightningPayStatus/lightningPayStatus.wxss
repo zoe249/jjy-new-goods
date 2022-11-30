@@ -1,0 +1,205 @@
+/* pages/order/lightningPayStatus/lightningPayStatus.wxss */
+.header-contaienr{
+  width: 100%;
+  height: 380rpx;
+  padding-top: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/bg_header_green.png") no-repeat bottom;
+  background-size: 100% auto;
+}
+
+.header-contaienr.red-bg{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/bg_header_red.png");
+}
+
+.header-contaienr .right-icon{
+  width: 160rpx;
+  height: 160rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_right.png") no-repeat center;
+  background-size: contain;
+}
+
+.header-contaienr .pay-success-msg{
+  margin-top: 40rpx;
+  font-size: 38rpx;
+  line-height: 1;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.header-contaienr .warning-icon{
+  width: 160rpx;
+  height: 160rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_warning.png") no-repeat center;
+  background-size: contain;
+}
+
+.header-contaienr .warning-msg{
+  width: 100%;
+  margin-top: 40rpx;
+  font-size: 38rpx;
+  line-height: 1;
+  color: #FFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-contaienr .warning-msg:last-child{
+  margin-top: 20rpx;
+}
+
+.step-container{
+  width: 100%;
+  padding-top: 144rpx;
+  text-align:  center;
+}
+
+.step-container .step-header{
+  position: relative;
+  width: 176rpx;
+  text-align: center;
+  height:60rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  line-height:50rpx;
+  color:var(--blue);
+  margin:0 auto;
+  /* background: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/step_header.png") no-repeat center;
+  background-size: contain; */
+}
+.step-container .step-header::after{
+  content: '';
+  width:176rpx;
+  height: 16rpx;
+  background-color: #CFDAE6;
+  position: absolute;
+  bottom:0;
+  left:0;
+}
+
+.step-container .step-list-container{
+  width: 100%;
+  padding: 64rpx 20rpx 0 20rpx;
+  display: flex;
+}
+
+.step-container .step-list-container .step-item{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-container .step-list-container .step-item .icon-step{
+  width: 150rpx;
+  height: 150rpx;
+  background: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_01.png") no-repeat center;
+  background-size: contain;
+}
+
+.step-container .step-list-container .step-item:nth-child(2) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_02.png");
+}
+
+.step-container .step-list-container .step-item:nth-child(3) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_03.png");
+}
+
+.step-container .step-list-container .step-item:nth-child(4) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_04.png");
+}
+
+.step-container .step-list-container .step-item.finish .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_01_finish.png");
+}
+
+.step-container .step-list-container .step-item.finish:nth-child(2) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_02_finish.png");
+}
+
+.step-container .step-list-container .step-item.finish:nth-child(3) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_03_finish.png");
+}
+
+.step-container .step-list-container .step-item.finish:nth-child(4) .icon-step{
+  background-image: url("https://shgm.jjyyx.com/m/images/lightningPayStatus/icon_step_04_finish.png");
+}
+
+.step-container .step-list-container .step-item .step-msg-container{
+  margin-top: 32rpx;
+  text-align: center;
+}
+
+.step-container .step-list-container .step-item .step-msg-container .step-num{
+  width: 30rpx;
+  padding: 15rpx 0;
+  font-size: 24rpx;
+  line-height: 0;
+  text-align: center;
+  border-radius: 15rpx;
+  background: #94969C;
+  color: #FFF;
+  margin:0 auto;
+}
+
+.step-container .step-list-container .step-item .step-msg-container .step-msg{
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #94969C;
+}
+
+.step-container .step-list-container .step-item.finish .step-msg-container .step-num{
+  background: var(--blueLight);
+}
+
+.step-container .step-list-container .step-item.finish .step-msg-container .step-msg{
+  color: var(--blue);
+}
+
+.footer-contaienr{
+  margin-top: 120rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-contaienr .navigate-member-code{
+  width: 480rpx;
+  height: 72rpx;
+  background: var(--blueLight);
+  color: #FFF;
+  font-size: 34rpx;
+  line-height: 72rpx;
+  text-align: center;
+  border-radius: 36rpx;
+}
+.footer-contaienr .navigate-member-code.transparent{
+  width: 240rpx;
+  background: #FFF;
+  color: #FF4752;
+  border: 1rpx solid #FF4752;
+}
+
+.footer-contaienr .look-order-detail{
+  width: 240rpx;
+  height: 72rpx;
+  margin-left: 40rpx;
+  background: #FF4752;
+  color: #FFF;
+  font-size: 34rpx;
+  line-height: 72rpx;
+  text-align: center;
+  border-radius: 36rpx;
+}
+
+.footer-msg{
+  margin-top: 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}

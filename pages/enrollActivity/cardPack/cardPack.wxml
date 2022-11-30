@@ -1,0 +1,51 @@
+<!-- <view class="card-wrap pos-r">
+        <view class="effective">
+            <view>
+              <view class="pos-r" data-number="{{item.cardNo}}" wx:for="{{list}}">
+                  <view class="item-icon pos-r">
+                      <image class="pos-a" src="{{item.cardCover}}" onerror="kabaoListErrImg(this)" alt=""></image>
+                  </view>
+                  <view class="info">
+                      <view>{{item.cardName}}</view>
+                      <block wx:if="{{item.cardType == 1708 }}">
+                          <text>有效期：{{item.validStartDate | $toTime}}&nbsp;-&nbsp;{{item.validEndDate | $toTime}}</text>
+                      </block>
+                      <block wx:if="{{item.frequencyType == 1 && item.cardType == 1709 }}">
+                      <text>剩余次数：<text class="em">{{item.surplusFrequency}}</text></text>
+                      </block>
+                      <block wx:elif="{{if item.frequencyType == 0 && item.cardType == 1709}}">
+                        <text>剩余次数：<text class="em" class="infinite">无限次</text></text>
+                      </block>
+                  </view>
+                  <block wx:if="{{item.isExpire<=3}}">
+                  <view class="will-invalid pos-a"></view>
+                  </block>
+              </li>
+            </view>
+        </view>
+        <view class="invalid">
+            <view class="h3"><text class="em">查看已失效卡片</text> <text></text></view>
+            <view>
+    
+              <view class="pos-r" data-number="{{item.cardNo}}" wx:for="{{list}}">
+                  <view class="item-icon pos-r">
+                      <image class="pos-a" src="{{item.cardCover}}" onerror="kabaoListErrImg(this)" alt=""></image>
+                  </view>
+                  <view class="info">
+                      <view>{{item.cardName}}</view>
+                  </view>
+              </li>
+
+            </view>
+        </view>
+    </view>
+
+
+    <view class="empty-container">
+      <view class="empty_infor">
+        <image src="../../images/error_img3.png"/></image><text>{{errorMsg}}</text>
+        <block wx:if="{{!invalid}}">
+          <navigator url="../shopActivities/list.html">去查看更多</navigator>
+        </block>
+      </view>
+    </view> -->

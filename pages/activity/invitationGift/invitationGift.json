@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "邀请有礼",
+  "backgroundColor": "#ffeecc",
+  "usingComponents": {
+    "component-goods-item": "/component/activityGoodsItem/activityGoodsItem",
+    "component-full-goods-item": "/component/activityFullGoodsItem/activityFullGoodsItem",
+    "component-login-dialog": "/component/loginDialog/loginDialog"
+  }
+}

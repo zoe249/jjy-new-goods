@@ -1,0 +1,21 @@
+<view class="bottom-modal modal-action {{show?'show':''}}">
+  <view class="bottom-modal-mask" bindtap="{{maskBindClose?'_onClose':''}}"></view>
+  <view class="bottom-dialog" style="{{dialogStyle}}">
+  <slot></slot>
+  <view class="action-sheet-cnt" wx:if="{{type == 'actionSheet'}}">
+    <view class="action-sheet-header">
+        <view class="action-sheet-btn action-sheet-cancel" catchtap="_onClose">关闭</view>
+        <view class='action-sheet-btn action-sheet-confirm' catchtap="_onSelect">确认</view>
+    </view>
+    <view class="action-sheet-ul" scroll-y="{{true}}">
+        <picker-view indicator-class="active" indicator-style="height: 64rpx;" style="width: 100%; height: 450rpx;" value="{{value}}" bindchange="_bindOnChange">
+            <picker-view-column>
+                <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                    <view class="action-sheet-item {{index == value[0]?' active':''}}">{{item.text}}</view>
+                </block>
+            </picker-view-column>
+        </picker-view>
+    </view>
+  </view>
+  </view>
+</view>

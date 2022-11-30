@@ -1,0 +1,159 @@
+/* pages/user/collectList/collectList.wxss *//* pages/user/coupon/coupon.wxss */
+@import '../../AA-RefactorProject/common/css/css.wxss';
+.list{
+  margin:15rpx; 
+  background-color: #fff;
+  border-radius: 32rpx;
+  padding:0 32rpx;
+}
+.collectionContent{
+  display: flex;
+  justify-content:space-around;
+  background-color: #fff;
+}
+.collection{
+  width: 300rpx;
+  height: 90rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.collectionName{
+  text-align: center;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+.collectionLine{
+  width: 80rpx;
+  height: 1rpx;
+}
+.top{
+  margin: 20rpx auto;
+  width: 710rpx;
+  height: 240rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:240rpx;
+  text-align:center;
+  display: flex;
+  /* 添加此属性 不会划出界面 */
+  overflow-x: hidden
+}
+.contentTop{
+  width: 710rpx;
+  height: 176rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:176rpx;
+  text-align:center;
+  display: flex;
+  /* 添加此属性 不会划出界面 */
+  overflow-x: hidden
+}
+.contentMovable{
+  width: 710rpx;
+  height: 176rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:176rpx;
+  text-align:center;
+}
+.contentMovableView{
+  height: 176rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:176rpx;
+  text-align:center;
+  width: 710rpx;
+}
+.movableView{
+  width: 710rpx;
+  height: 240rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:240rpx;
+  text-align:center;
+}
+.movableArea{
+  height: 240rpx;
+  background: #FFFFFF;
+  /* border-radius: 20rpx; */
+  line-height:240rpx;
+  text-align:center;
+  width: calc(710rpx - 115rpx);
+
+}
+.contentMovableDel{
+  width: 115rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: red;
+  /* border-top-right-radius: 28rpx;
+  border-bottom-right-radius: 28rpx; */
+}
+.movable_delete_btn {
+  width: 115rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: red;
+  /* border-top-right-radius: 20rpx;
+  border-bottom-right-radius: 20rpx; */
+}
+.contentCollection{
+  padding:30rpx 20rpx
+}
+.collectionWrap{
+  display: flex;
+}
+.collectionImg{
+  width: 260rpx;
+  height: 176rpx;
+  border-radius: 10rpx;
+}
+.collectionInfo{
+  margin-left: 20rpx;
+  width: 430rpx;
+  height: 176rpx;
+  padding: 10rpx 0;
+}
+.contentBigTitle{
+  font-size: 30rpx;
+  line-height: 40rpx;
+  margin-bottom: 30rpx;
+  text-align: left;
+  color: #333333;
+  font-family: PingFang SC;
+}
+.contentSmallTitle{
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+}
+.space{
+  width: 750rpx;
+  height: 20rpx;
+}
+.noMoreData{
+  font-size: 24rpx;
+  font-family: PingFang;
+  font-weight: 400;
+  color: #E2E2E2;
+  height: 186rpx;
+  line-height: 186rpx;
+  text-align: center;
+}
+.xiaolian{
+  width: 35rpx;
+  height: 17rpx;
+  position: absolute;
+  top: 62rpx;
+}

@@ -1,0 +1,4 @@
+<view class="Null dis_f_co_c_c">
+	<image src="{{$.img_src}}/components/meiyoutianjia.png" mode="widthFix"></image>
+	<text>{{text}}</text>
+</view>

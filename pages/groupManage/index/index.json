@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "推荐",
+    "usingComponents": {
+        "extend-goods":"/component/extendGoods/index",
+        "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+        "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+        "component-backstage-footer-nav": "/component/backstageFooterNav/backstageFooterNav",
+        "component-share-popup": "/component/sharePopup/sharePopup",
+        "painter":"/component/painter/painter",
+        "actionSheet": "/component/actionSheet/actionSheet"
+    }
+}

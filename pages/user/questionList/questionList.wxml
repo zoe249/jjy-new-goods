@@ -1,0 +1,26 @@
+<view class="bg_container">
+<view class="page_container">
+    <view class="list">
+        <block wx:for="{{questionData}}" wx:key="id">
+            <view class="item_container">
+                <view class="title_container" bindtap="titleClickAction" data-index="{{index}}">
+                    <view class="title">{{item.title}}</view>
+                    <view class="icon {{item.isOpen?'icon_up':'icon_down'}}"></view>
+                </view>
+                <view wx:if="{{item.isOpen}}" class="h_line"></view>
+                <view wx:if="{{item.isOpen}}" class="answer_constainer" >
+                    <text class="content">{{item.content}}</text>
+                </view>
+             
+            </view>
+        </block>
+    </view>
+   
+   <view class="toast_container">
+    <text class="toast_bottom">{{content_toast}}{{limit_time}}</text>
+   </view>
+
+</view>
+<view class="bottom_customer_service" bindtap="callPhoneClickAction">总部客服</view>
+</view>
+    

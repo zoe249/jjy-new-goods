@@ -1,0 +1,371 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+/* 顶部轮播图部分 */
+.header .swiper {
+	position: relative;
+}
+
+.header .swiper swiper {
+	width: 100%;
+	height: 562rpx;
+}
+
+.header .swiper swiper swiper-item {
+	width: 100%;
+	height: 100%;
+}
+
+.header .swiper swiper swiper-item image {
+	width: 100%;
+	height: 100%;
+}
+
+/* 轮播图页码处理 */
+.header .swiper .swiper_ul {
+	width: auto;
+	position: absolute;
+	bottom: 30rpx;
+	right: 20rpx;
+}
+
+.header .swiper .swiper_ul .swiper_li {
+	width: 70rpx;
+	height: 40rpx;
+	position: relative;
+}
+
+.header .swiper .swiper_ul .swiper_li .bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.header .swiper .swiper_ul .swiper_li .left {
+	width: 40rpx;
+	height: 40rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	position: relative;
+	z-index: 3;
+}
+
+.header .swiper .swiper_ul .swiper_li .left_bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+
+.header .swiper .swiper_ul .swiper_li text {
+	position: relative;
+	z-index: 5;
+}
+
+.header .swiper .swiper_ul .swiper_li .right {
+	width: 30rpx;
+	height: 40rpx;
+	font-size: 22rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	position: relative;
+	z-index: 3;
+}
+
+/* 顶部标题部分 */
+.header .top_title {
+	padding: 29rpx 36rpx 27rpx 29rpx;
+	background: #FFFFFF;
+	width: 100%;
+	height: 136rpx;
+}
+
+.header .top_title .title {
+	width: 100%;
+	font-size: 36rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	text-align: center;
+}
+
+.header .top_title .content {
+	width: 100%;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+	text-align: center;
+}
+
+/* 商品清单部分 */
+.section {
+	padding-top: 20rpx;
+	padding-bottom: 130rpx;
+}
+
+.section .product_list {
+	background: #FFFFFF;
+	margin-bottom: 20rpx;
+}
+
+.section .product_list .top {
+	padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.section .product_list .top .top_left .Wire {
+	width: 6rpx;
+	height: 30rpx;
+	background: linear-gradient(0deg, #FF7634, #FC0D1B);
+	border-radius: 3rpx;
+	margin-right: 10rpx;
+}
+
+.section .product_list .top .top_left .title {
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	margin-right: 4rpx;
+}
+
+.section .product_list .top .top_left .number {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.section .product_list .top .top_right {
+	width: 168rpx;
+	height: 56rpx;
+	background: #FC0D1B;
+	border-radius: 28rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+.section .product_list .bottom {
+	padding: 0 22rpx;
+}
+
+.section .product_list .bottom .ul .shop_li {
+	width: 223rpx;
+	background: #FFFFFF;
+	box-shadow: 0px 4rpx 16rpx 0px rgba(226, 226, 226, 0.6800);
+	border-radius: 10rpx;
+	margin-right: 20rpx;
+}
+
+.section .product_list .bottom .ul .shop_li:nth-child(3) {
+	margin-right: 0;
+}
+
+.section .product_list .bottom .shop_li .top_img {
+	width: 100%;
+	height: 223rpx;
+	margin-bottom: 20rpx;
+}
+
+.section .product_list .bottom .shop_li .top_img image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .product_list .bottom .shop_li .title {
+	height: 56rpx;
+	padding: 0rpx 13rpx 0rpx 19rpx;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 30rpx;
+	margin-bottom: 24rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn {
+	padding: 0 23rpx 16rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn .price {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FC0D1B;
+}
+
+.section .product_list .bottom .shop_li .price_btn .price .whole {
+	font-size: 26rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn .price .unit {
+	color: #999999;
+}
+
+.section .product_list .bottom .shop_li .price_btn .btn {
+	width: 44rpx;
+	height: 44rpx;
+}
+
+.section .product_list .bottom .shop_li .price_btn .btn image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .product_list .bottom swiper {
+	width: 100%;
+	height: 390rpx;
+}
+
+.section .product_list .bottom .shop_list_dian {
+	width: 100%;
+	height: 80rpx;
+}
+
+.section .product_list .bottom .shop_list_dian .li {
+	width: 10rpx;
+	height: 10rpx;
+	border-radius: 50%;
+	margin: 0 7rpx;
+	background: #E2E0E3;
+}
+
+.section .product_list .bottom .shop_list_dian .active {
+	background: #FF0725;
+}
+
+/* 开始文章详情 */
+.section .article {
+	padding: 28rpx 20rpx;
+	background: #FFFFFF;
+	margin-bottom: 20rpx;
+}
+
+/* 相关推荐 */
+.section .recommend {
+	background: #FFFFFF;
+}
+
+.section .recommend .top {
+	padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.section .recommend .top .top_left .Wire {
+	width: 6rpx;
+	height: 30rpx;
+	background: linear-gradient(0deg, #FF7634, #FC0D1B);
+	border-radius: 3rpx;
+	margin-right: 10rpx;
+}
+
+.section .recommend .top .top_left .title {
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	color: #333333;
+	margin-right: 4rpx;
+}
+
+.section .recommend .top .top_left .number {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.section .recommend .content {
+	padding: 0 10rpx 30rpx 20rpx;
+}
+
+.section .recommend .content .li {
+	margin-bottom: 20rpx;
+}
+
+.section .recommend .content .li:last-child {
+	margin-bottom: 0;
+}
+
+.section .recommend .content .li_left {
+	width: 260rpx;
+	height: 174rpx;
+	border-radius: 10rpx;
+	overflow: hidden;
+	margin-right: 20rpx;
+	flex: 0 0 auto;
+}
+
+.section .recommend .content .li_left image {
+	width: 100%;
+	height: 100%;
+}
+
+.section .recommend .content .li_right {
+	width: 100%;
+}
+
+.section .recommend .content .li_right .title {
+	width: 440rpx;
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+	line-height: 40rpx;
+	margin-bottom: 30rpx;
+}
+
+.section .recommend .content .li_right .word {
+	width: 440rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+/* 底部导航部分 */
+.footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #FFFFFF;
+}
+.footer .bottom_nav{
+	width: 100%;
+	padding: 10rpx 30rpx;
+}
+.footer .bottom_nav .left {
+	font-size: 18rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #333333;
+}
+.footer .bottom_nav .left .li{
+	margin-right: 40rpx;
+}
+.footer .bottom_nav .left .li:last-child{
+	margin-right: 0;
+}
+.footer .bottom_nav .left image{
+	width: 45rpx;
+	height: 45rpx;
+	margin-bottom: 10rpx;
+}
+.footer .bottom_nav .right{
+	width: 240rpx;
+	height: 68rpx;
+	background: #FC0D1B;
+	border-radius: 34rpx;
+	font-size: 30rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+}

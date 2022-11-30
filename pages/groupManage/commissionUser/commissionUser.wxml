@@ -1,0 +1,90 @@
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<block wx:if="{{showErrorPage}}">
+  <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+</block>
+<block wx:else>
+
+  <view class="user-page" id="Mygroup">
+
+    <view class="user-head pos-r">
+      <view class="user-tab">
+        <view class="{{bizType==0?'on':''}}" data-bizType="0" bindtap="binBizType">社区精选</view>
+        <view class="{{bizType==1?'on':''}}" data-bizType="1" bindtap="binBizType">云超特卖</view>
+      </view>
+      <view class="user-info">
+        <!-- <view class='user-text1' catchtap="autoJumpOrder" data-type="0">收益结算规则</view> -->
+      <view class='user-head-text'>
+        <!-- <view class="user-text-item user-text-item0">
+          <view class="title">今日收入</view>
+          <view class="money">¥0.00{{getMoney.todayCountMoneys}}</view>
+        </view>
+        <view class="user-text-item">
+          <view class="title">累计收入</view>
+          <view class="money">¥{{getMoney.todayAlreadyMoneys}}</view>
+        </view> -->
+         <view class="user-text-item user-text-item0" catchtap="goList" data-list-type='today'>
+          <view class="money">{{getMoney.todayBrokerages||'0.00'}}</view>
+          <view class="title">今日收入(元)</view>
+        </view>
+        <view class="user-text-item" catchtap="goList" data-list-type='total'>
+          <view class="money">{{getMoney.countBrokerages||'0.00'}}</view>
+          <view class="title">累计收入(元)</view>
+        </view>
+      </view>
+
+        <view class='get-box'>
+          <view class='get-text1' catchtap="goList" data-list-type='my'>我的佣金</view>
+          <view class='get-text2' catchtap="goList" data-list-type='my'>¥{{getMoney.myBrokerages||'0.00'}}</view>
+          <view class='get-btn' catchtap="getMoneyBtn" wx:if="{{getMoney.innerOutside==2}}">提现</view>
+        </view>
+      </view>
+    </view>
+    <view class='ul-box'>
+      <view class='ul'>
+        <!-- <view class="item-box r1bb" catchtap="autoJumpOrder" data-type="1">
+          <view class="item-left">预计收入明细</view>
+          <view class="item-right forword" catchtap="autoJumpOrder" data-type="1">￥{{getMoney.noComputes||0}}</view>
+        </view>
+        <view class="item-box r1bb" catchtap="autoJumpOrder" data-type="2">
+          <view class="item-left">已结算收入明细</view>
+          <view class="item-right forword" catchtap="autoJumpOrder" data-type="2">￥{{getMoney.alreadyComputes||0}}</view>
+        </view>
+        <view class="item-box r1bb" catchtap="autoJumpOrder" data-type="3">
+          <view class="item-left">提现记录</view>
+          <view class="item-right forword" catchtap="autoJumpOrder" data-type="3">￥{{getMoney.alreadyPays||0}}</view>
+        </view> -->
+        <!-- 暂时不对接口 -->
+        <!-- <view class="item-box r1bb">
+          <view class="item-left">可提现明细</view>
+          <view class="item-right">￥{{getMoney.alreadyPayMoneys||0}}</view>
+        </view> -->
+
+        <view class="item-box pos-r r1bb" catchtap="autoJumpOrder" data-type="1">
+                  <view class="item-left">待提现明细</view>
+                  <view class="item-right forword" catchtap="autoJumpOrder" data-type="1">￥{{getMoney.expectedBrokerage||0}}
+                  </view>
+                </view>
+               <!--  <view class="item-box pos-r r1bb" catchtap="autoJumpOrder" data-type="2">
+                  <view class="item-left">已结算收入明细</view>
+                  <view class="item-right forword" catchtap="autoJumpOrder" data-type="2">
+                    ￥{{getMoney.alreadyComputes||0}}</view>
+                </view> -->
+
+                <view class="item-box pos-r r1bb" catchtap="goList" data-list-type='my'>
+                  <view class="item-left">可提现明细</view>
+                  <view class="item-right forword">￥{{getMoney.myBrokerages||'0'}}</view>
+                </view>
+
+                <view class="item-box pos-r r1bb" catchtap="autoJumpOrder" data-type="3">
+                  <view class="item-left">已提现记录</view>
+                  <view class="item-right forword" catchtap="autoJumpOrder" data-type="3">￥{{getMoney.payBrokerages||0}}
+                  </view>
+                </view>
+
+      </view>
+    </view>
+
+  </view>
+</block>

@@ -1,0 +1,68 @@
+/* component/groupFooterNav/groupFooterNav.wxss */
+
+.footer-seat{
+  width: 100%;
+  height: 120rpx;
+}
+
+.footer-container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #FFF;
+  display: flex;
+  align-items: stretch;
+  z-index: 9999;
+  /* transform: translate3d(0,0,1000rpx); */
+}
+
+.footer-container .footer-item-container{
+  flex: 1;
+  height: 100rpx;
+  padding:64rpx 0 0;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://shgm.jjyyx.com/m/images/user/icon-home.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+.footer-container .footer-item-container .nav-msg{
+  font-size: 20rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.footer-container .footer-item-container.active{
+  background-image: url("https://shgm.jjyyx.com/m/images/user/icon-home-on.png");
+}
+.footer-container .footer-item-container.active .nav-msg{
+  color: var(--blue);
+}
+
+.footer-container .footer-item-container.my-group-nav{
+  background-image: url("https://shgm.jjyyx.com/m/images/user/icon-user.png");
+}
+.footer-container .footer-item-container.my-group-nav.active{
+  background-image: url("https://shgm.jjyyx.com/m/images/user/icon-user-on.png");
+}
+
+
+.footer-container .footer-item-container.my-group-yunchao{
+  background-image: url("https://shgm.jjyyx.com/m/images/user/icon-yunchao.png");
+}
+.footer-container .footer-item-container.my-group-yunchao.active{
+  background-image: url("https://shgm.jjyyx.com/m/images/user/icon-yunchao-on.png");
+}
+
+.footer-container .line{
+  width: 1rpx;
+  background: #EDEDED;
+}
+
+.footer-container.iphone-x-patcher-container {
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+}

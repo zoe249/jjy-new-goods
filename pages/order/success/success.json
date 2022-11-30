@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "支付成功",
+  "usingComponents": {
+    "component-goods-item": "/component/goodsItem/goodsItem"
+  }
+}

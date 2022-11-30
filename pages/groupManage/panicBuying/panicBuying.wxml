@@ -1,0 +1,120 @@
+<import src="/templates/global/global.wxml" />
+
+<view class='activity-head' wx:if="{{showHeaderNav}}">
+  <view class='share-goods-container'>
+    <view class='market-nav'>
+      <view wx:for="{{swiperNavItem}}" wx:key="index" bindtap='swiperNav'
+        class='market-nav-item {{navActive == index?"active":""}}' data-index='{{index}}'>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<scroll-view class='container {{showHeaderNav? "proGoodsList": "" }} {{navActive == 0?"show-box":""}}' scroll-y
+  bindscrolltolower="scrollProGoodsList" lower-threshold="80">
+  <block wx:for="{{multipleProList}}" wx:for-item="proList" wx:key="c_index">
+    <block wx:if="{{!proList.disableActivity}}">
+      <view class="activity-time-wrap">
+        <view class=''>正在秒杀，先下单先得哦</view>
+        <view class='activity-time'>
+          <view class='tips-text'>距结束剩余</view>
+          <view class="timer">
+            <text wx:if="{{proList.downTime.day}}">{{proList.downTime.day}}天</text>
+            <text>{{proList.downTime.hour}}</text>:
+            <text>{{proList.downTime.minute}}</text>:
+            <text>{{proList.downTime.second}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='share-goods-container'>
+        <block wx:if="{{proList.goodsList}}">
+          <view class='share-goods-list'>
+            <block wx:for="{{proList.goodsList}}" wx:key="index">
+              <view class="item-wrap pos-r {{index < proList.goodsList.length-1?'btt':''}}">
+                <panic-item goods="{{item}}" bind:bindPartakeGroup="bindPartakeGroup"></panic-item>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <block wx:if="{{load && (!multipleProList || multipleProList.length == 0)}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+  </block>
+  <template is="noMore" wx:if="{{morePage && multipleProList && multipleProList.length > 0}}"></template>
+</scroll-view>
+<scroll-view class='container soonGoodsList {{navActive == 1?"show-box":""}}' scroll-y
+  bindscrolltolower="scrollSoonGoodsList" lower-threshold="80">
+  <block wx:for="{{soonMultipleProList}}" wx:for-item="proList" wx:key="s_index">
+    <block wx:if="{{!proList.disableActivity}}">
+      <view class="activity-time-wrap">
+        <view class=''>即将开始，先下单先得哦</view>
+        <view class='activity-time'>
+          <view class='tips-text'>距结束开始</view>
+          <view class="timer">
+            <text wx:if="{{proList.downTime.day}}">{{proList.downTime.day}}天</text>
+            <text>{{proList.downTime.hour}}</text>:
+            <text>{{proList.downTime.minute}}</text>:
+            <text>{{proList.downTime.second}}</text>
+          </view>
+        </view>
+      </view>
+      <block wx:if="{{proList.goodsList}}">
+        <view class='share-goods-list'>
+          <block wx:for="{{proList.goodsList}}" wx:key="p_index">
+            <view class="item-wrap {{index < proList.goodsList.length-1?'btt':''}} pos-r">
+              <panic-item goods="{{item}}" notBegin="{{true}}" bind:bindPartakeGroup="bindPartakeGroup"></panic-item>
+            </view>
+          </block>
+        </view>
+      </block>
+    </block>
+  </block>
+  <block wx:if="{{load && (!soonMultipleProList || soonMultipleProList.length == 0)}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+  </block>
+  <template is="noMore" wx:if="{{moreSoonPage && soonMultipleProList && soonMultipleProList.length > 0}}"></template>
+</scroll-view>
+
+
+<!--分享按钮-->
+
+<view class='shareHomePage {{isIphoneX?"shareHomePageX":""}}' bindtap="shareHome" wx:if="{{isExtend > 0}}">
+  <image src='http://m.lyzlcloud.com/m/images/yunguo/icon_jl_share.png'></image>
+</view>
+
+<actionSheet show="{{showExtension}}" mask="limpid" isMaskClose="{{true}}">
+  <view class="share-sheet-pupop">
+    <button class="share-sheet-item" open-type='share' data-types="{{shareType}}">
+      <text class="iconfont iconCoverwx"></text>
+      <view>微信好友</view>
+    </button>
+   
+    <view class="share-sheet-item" bindtap="bindDrawShare">
+      <text class="iconfont iconPic"></text>
+      <view>生成海报</view>
+    </view>
+  </view>
+  <view class="share-sheet-cancel" bindtap="closeExtension">取消</view>
+</actionSheet>
+<!-- 分享图 下载本地 -->
+<actionSheet show="{{downLoaclFlag}}" isMaskClose="{{true}}" dialogStyle="background: transparent">
+  <view class="down-loacl-page">
+    <view class="down-cover" bindtap="hideDownLoadImg"></view>
+    <view class="down-info">
+      <image src="{{downLoaclImg}}" mode="widthFix"></image>
+      <view class="down-img-btn" bindtap="headlerSave">保存图片</view>
+    </view>
+  </view>
+</actionSheet>
+<painter palette="{{drawJson}}"  customStyle='position: absolute; left: -9999rpx;' bind:imgOK="onImgOK" />
+
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<block wx:if='{{showPopGroupNum}}'>
+  <pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'>
+  </pop-group-num>
+</block>

@@ -1,0 +1,12 @@
+<import src="/templates/global/global.wxml"/>
+<view class="my-item3 mb60 r1bb">
+    <block wx:if='{{isWxFastLogin}}'>
+    <view class="list pos-r forword r1bb" bindtap="jumpModifyPassword" data-url="/pages/user/setting/setting">修改密码</view>
+    </block>
+    <view class="list pos-r forword r1bb" catchtap="jumpAboutUs">关于我们</view>
+    <view class="list pos-r forword" catchtap="clearLocal">清空购物车本地缓存</view>
+</view>
+<block wx:if="{{loginFlag == 1}}">
+    <button class="out-login" bindtap="loginOut">退出登录</button>
+</block>
+<template is="modal" data="{{...modalData}}"></template>

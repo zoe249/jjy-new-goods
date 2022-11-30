@@ -1,0 +1,110 @@
+<!--pages/activity/invitationGift/invitationGift.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<scroll-view class='container' id="container" bindscroll="scrollFunc" scroll-into-view="{{scrollIntoViewId}}" scroll-y="{{!showLoginDialog}}">
+  <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+    <!-- 头图 start -->
+    <block wx:if="{{moduleItem.sectionType == 1326}}">
+      <block wx:if="{{moduleItem.recommendList.length}}">
+        <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+          <block wx:if="{{index < 1}}">
+            <view class='activity-title' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+              <image class='title-image' src='{{recommendItem.imgUrl}}' mode="widthFix"></image>
+            </view>
+          </block>
+        </block>
+      </block>
+      <block wx:else>
+        <view class='activity-title'>
+          <image class='title-image' src='https://shgm.jjyyx.com/m/images/invitation_header_bg1.jpg?{{t}}' mode="widthFix"></image>
+        </view>
+      </block>
+    </block>
+    <!-- 头图 end -->
+
+    <!-- 新人礼包 start -->
+    <block wx:elif="{{moduleItem.sectionType == 1741}}">
+      <view class="coupon-container activity-title-img" id="conponContainer">
+        <!-- <view class="conpon-header"></view> -->
+        <view class='bt-bg-img'><image src='https://shgm.jjyyx.com/m/images/invitation_content_bg1.jpg?{{t}}'  mode="widthFix"></image></view>
+        <view class='invitation_content_intro'>
+          <view class="coupon-image {{isNewMember? '' : 'old-member'}}">
+            <block wx:if="{{isNewMember}}">
+            <image src='https://shgm.jjyyx.com/m/images/bg_noticePacks_detail.png?{{t}}'  mode="widthFix"></image>
+            </block>
+            <block wx:else>
+            <image src='https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_old_member.png?{{t}}' mode="widthFix"></image>
+            </block>
+          </view>
+          <view class="receive-btn" bindtap="immediatelyBtnTap"><text class="text">{{isLogin ? isNewMember ? '立即使用' : '去逛逛' : '立即领取'}}</text></view>
+        </view>
+      </view>
+    </block>
+    <!-- 新人礼包 end -->
+  </block>
+
+  <block wx:if="{{nullGoodsFlag}}">
+    <view class="null-goods-default"></view>
+  </block>
+  <block wx:else>
+    <!-- 导航 start  -->
+    <block wx:if="{{!navStyle.noNav && navList.length > 1}}">
+      <view class='nav-seat-container {{fiexdFlag ? "" : "no-height"}}'></view>
+      <scroll-view class='nav-container {{fiexdFlag ? "fixed_class" : ""}}' scroll-x="true" style='background-color: {{navStyle.bgItemColor}}'>
+        <view class='nav-list-container'>
+          <block wx:for="{{navList}}" wx:for-index="index" wx:key="sectionId" wx:for-item="navItem">
+            <block wx:if="{{navItem.sectionId == currSectionId || (currSectionId == 0 && index == 0)}}">
+              <text class='nav-item active' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}" style='background-color:{{navStyle.bgActiveColor||""}}; color: {{navStyle.activeColor||""}}'>{{navItem.sectionName}}</text>
+            </block>
+            <block wx:else>
+              <text class='nav-item' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}" style='background-color:{{navStyle.bgItemColor||""}}; color: {{navStyle.color||""}}'>{{navItem.sectionName}}</text>
+            </block>
+          </block>
+        </view>
+      </scroll-view>
+
+    </block>
+    <!-- 导航 end  -->
+
+    <view class='module-goods-list'>
+      <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+        <block wx:if="{{moduleItem.sectionType == 1370 && moduleItem.recommendList.length}}">
+          <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId">
+            <view class='bottom-link' data-link="{{item.linkUrl}}" bindtap='goOtherLink'>
+              <image src="{{item.imgUrl}}" mode="widthFix"></image>
+            </view>
+          </block>
+        </block>
+
+        <block wx:elif="{{moduleItem.sectionType == 909 && moduleItem.recommendList.length}}">
+          <view class='goods-list-container' id="section_{{moduleItem.sectionId}}" style='background-color: {{moduleItem.sectionBgcolor}}'>
+            <block wx:for="{{moduleItem.recommendList}}" wx:for-item="recommentItem" wx:key="recommendId">
+              <block wx:if="{{recommentItem.bizType == 17}}">
+                <view class='module-header-image' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+                  <image src='{{recommentItem.imgUrl}}' mode='widthFix'></image>
+                </view>
+              </block>
+              <block wx:else>
+                <block wx:if="{{moduleItem.sectionStyle == 1261}}">
+                  <component-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"></component-goods-item>
+                </block>
+                <block wx:elif="{{moduleItem.sectionStyle == 1259}}">
+                  <component-full-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"></component-full-goods-item>
+                </block>
+              </block>
+            </block>
+          </view>
+        </block>
+        <block wx:elif=""></block>
+      </block>
+    </view>
+  </block>
+
+  <block wx:if="{{!isLogin && showLoginDialog}}">
+    <component-login-dialog title="{{loginDialogTitle}}" share-member-id="{{shareMemberId}}"
+                            activity-id="{{activityId}}"
+                            bind:close-dialog-callback="closeDialogCallback"></component-login-dialog>
+  </block>
+
+  <template is="toast" data="{{...toastData}}"></template>
+</scroll-view>

@@ -1,0 +1,40 @@
+<block wx:if="{{showShareDialogFlag}}">
+  <view class="share-dialog-container">
+    <view class="share-info-container">
+      <text class="share-header">多分享几次，成团更快哦！</text>
+      <view class="share-msg-container mgt-30">
+        <text class="black">99%</text>
+        <text class="gray">的小伙伴表示，</text>
+      </view>
+      <view class="share-msg-container">
+        <text class="gray">分享到</text>
+        <text class="black">大群</text>
+        <text class="gray">或</text>
+        <text class="black">朋友圈</text>
+        <text class="gray">成功率更高！</text>
+      </view>
+      <view class="share-btn-container">
+        <view class="share-item-container">
+          <button open-type="share" class="share-btn">
+            <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_friends.png"></image>
+          </button>
+          <view class="share-msg-container">
+            <text class="share-msg">微信好友</text>
+          </view>
+        </view>
+        <!-- <view class="share-item-container">
+          <view class="share-btn" catchtap="downloadShareBg">
+            <image class="share-image" src="https://shgm.jjyyx.com/m/images/share/share_WeChat_scope.png"></image>
+          </view>
+          <view class="share-msg-container" catchtap="downloadShareBg">
+            <text class="share-msg">朋友圈</text>
+          </view>
+
+        </view> -->
+      </view>
+
+      <view class="close-btn" catchtap="hideShareDialog"></view>
+    </view>
+  </view>
+</block>
+<canvas canvas-id="sharePopupCanvas" class="share-popup-canvas"></canvas>

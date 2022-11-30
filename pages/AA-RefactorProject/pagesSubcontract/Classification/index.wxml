@@ -1,0 +1,195 @@
+<view class="page">
+	<import src="/templates/global/global.wxml" />
+	<!-- 顶部导航部分 -->
+	<view class="header">
+		<!-- 输入框部分 -->
+		<view class="input" style="padding:{{menuButtonInfo.top}}px 0 28rpx 37rpx">
+			<view class="dis_f_l_c" style="height:{{menuButtonInfo.height}}px;">
+				<image class="back" src="{{$.img_src}}/Classification/back.png" mode="aspectFit" bindtap="back"></image>
+				<view class="search dis_f_l_c box" bindtap="linkToSearch">
+					<image src="{{$.img_src}}/Classification/search.png" mode="aspectFit"></image>
+					<input type="text" disabled placeholder="{{placeholderName}}"
+						placeholder-class="placeholder"></input>
+				</view>
+			</view>
+		</view>
+		<!-- 一级分类  滚动部分-->
+		<view class="nav box dis_f_sb_c">
+			<!-- 滚动容器 -->
+			<scroll-view class="scroll_navs" scroll-into-view="nav{{index}}" scroll-x scroll-with-animation>
+				<!-- 最左边用来定位的导航 -->
+				<view id="nav0"></view>
+				<!-- 正常的导航按钮 -->
+				<view class="ul box dis_f_l_c">
+					<block wx:for="{{Onelist}}" wx:key="index">
+						<!-- 判断nav的id是否相同添加类型active     通过index给nav添加id -->
+						<view class="li {{Onenav.cateId==item.cateId?'active':''}}" bindtap="OneFun"
+							data-item="{{item}}" data-index="{{index}}" id="nav{{index+1}}">
+							<view class="dis_f_co_c_c">
+								<image src="{{item.cateIcon}}" mode="aspectFit"></image>
+								<text>{{item.cateName}}</text>
+							</view>
+						</view>
+					</block>
+				</view>
+			</scroll-view>
+			<!-- 全部按钮 -->
+			<view class="allBtn dis_f_co_c_c" bindtap="ScrollFunY">
+				<text>全部</text>
+				<image src="{{$.img_src}}/Classification/AllN.png" mode="aspectFit"></image>
+			</view>
+		</view>
+		<!-- 一级分类  展开部分-->
+		<view style="top:{{menuButtonInfo.top+menuButtonInfo.height+13}}px"
+			class="nav navsZK box dis_f_sb_c {{Scrolltip=='show'?'show':'hide'}}" wx:if="{{ScrollShow}}">
+			<view class="scroll_navs">
+				<view class="ul box dis_f_w_l_c">
+					<block wx:for="{{Onelist}}" wx:key="index">
+						<!-- 判断nav的id是否相同添加类型active     通过index给nav添加id -->
+						<view class="li {{Onenav.cateId==item.cateId?'active':''}}" bindtap="OneFun"
+							data-item="{{item}}" data-index="{{index}}" id="nav{{index+1}}">
+							<view class="dis_f_co_c_c">
+								<image src="{{item.cateIcon}}" mode="aspectFit"></image>
+								<text class="slh_one box" style="width: 114rpx;text-align: center;">{{item.cateName}}</text>
+							</view>
+						</view>
+					</block>
+				</view>
+				<view class="BotBtn dis_f_c_c" bindtap="ScrollFunN">
+					<text>点击收起</text>
+					<image src="{{$.img_src}}/Classification/AllY.png" mode="aspectFit"></image>
+				</view>
+			</view>
+		</view>
+		<!-- 遮盖部分 -->
+		<view class="ZG" wx:if="{{Scrolltip=='show'}}" bindtap="ScrollFunN"></view>
+	</view>
+	<!-- 正文显示部分 -->
+	<view class="section dis_f box" style="padding-top:{{padding_top}}px;">
+		<!-- 左侧二级分类部分 -->
+		<scroll-view class="left" scroll-y scroll-with-animation wx:if="{{TwoList.length!=0}}">
+			<block wx:for="{{TwoList}}" wx:key="index">
+				<view class="li box dis_f_l_c {{Twonav.cateId==item.cateId?'active':''}}" bindtap="TwoFun"
+					data-item="{{item}}">
+					<view class="LeftIcon" wx:if="{{Twonav.cateId==item.cateId?'active':''}}"></view>
+					<text class="slh_one">{{item.cateName}}</text>
+					<!-- 爆炸贴 -->
+					<view class="Label dis_f_c_c" wx:if="{{item.cateIcon}}">
+						<image src="{{item.cateIcon}}" mode="aspectFit"></image>
+						<!-- <text>爆</text> -->
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+		<!-- 右侧商品列表部分 -->
+		<view class="right">
+			<!-- 顶部筛选部分 -->
+			<view class="filter dis_f_sb_c box">
+				<view class="Tleft {{sortList.field==''?'fow_blod':''}}" bindtap='sortFun' data-name="0">
+					<text>综合</text>
+				</view>
+				<view class="Tright dis_f_l_c">
+					<view class="sales dis_f_l_c {{sortList.field=='salesVolume'?'fow_blod':''}}" bindtap='sortFun' data-name="salesVolume">
+						<text>销量</text>
+						<image wx:if="{{sortList.field=='salesVolume'}}" class="{{sortList.sort==1?'':'rotate'}}"
+							src="{{$.img_src}}/Classification/sortY.png" mode="aspectFit"></image>
+						<image wx:else src="{{$.img_src}}/Classification/sortN.png" mode="aspectFit"></image>
+					</view>
+					<view class="price dis_f_l_c {{sortList.field=='price'?'fow_blod':''}}" bindtap='sortFun' data-name="price">
+						<text>价格</text>
+						<image wx:if="{{sortList.field=='price'}}" class="{{sortList.sort==1?'':'rotate'}}"
+							src="{{$.img_src}}/Classification/sortY.png" mode="aspectFit"></image>
+						<image wx:else src="{{$.img_src}}/Classification/sortN.png" mode="aspectFit"></image>
+					</view>
+				</view>
+			</view>
+			<view class="TopList dis_f_c_c" wx:if="{{ShopList.length>0}}">
+				加载上一个分类...
+			</view>
+			<!-- 商品列表部分 -->
+			<scroll-view refresher-default-style="none" refresher-enabled refresher-triggered="{{triggered}}"
+				class="ShopList box" scroll-y="true" bindscrolltolower="scrolltolowerMore"
+				bindrefresherrefresh="scrolltolowerTop">
+				<view style="height: 100%;" bindtouchstart="SouchStart" bindtouchmove="TouchMove"
+					bindtouchend="TouchEnd">
+					<view wx:if="{{ShopList.length>0}}">
+						<block wx:for="{{ShopList}}" wx:key="index">
+							<view id="li{{index}}" class="lis li dis_f" catchtap="goGoodsDetail" data-goods="{{item.goods}}">
+								<view class="Sleft" >
+									<image wx:if="{{item.goods.coverImage}}" class="shopImg"
+										src="{{item.goods.coverImage}}" mode="aspectFill"></image>
+									<image wx:else class="shopImg" src="{{$.img_src}}//yx_index/logo.png"
+										mode="aspectFit"></image>
+									<block wx:if="{{item.goods.promotionList && item.goods.promotionList.length}}">
+										<image class="icon" src="{{item.goods.promotionList[0].proTag}}"
+											mode="widthFix">
+										</image>
+									</block>
+								</view>
+								<view class="Sright dis_f_co_l_c">
+									<text class="title slh_two">{{item.goods.materielParentName||item.goods.goodsPromotionName||item.goods.shortTitle||item.goods.goodsName||""}}</text>
+									<text class="content slh_two">{{item.goods.goodsTag||""}}</text>
+									<view class="nearby dis_f_l_c" wx:if="{{item.goods.totalSalesVolumeMsg}}">
+										<view class="icon dis_f_l_c">
+											<block wx:for="{{item.uiconList}}" wx:for-item='items' wx:key="index">
+												<image src="{{items.photo}}" mode="aspectFill"></image>
+											</block>
+										</view>
+										<text>{{item.goods.totalSalesVolumeMsg}}</text>
+									</view>
+									<view class="Rbottom dis_f_sb_c">
+										<view class="shop dis_f_w_l_b">
+											<view class="new">
+												<text>￥</text>
+												<text class="whole">{{item.salePriceZ}}</text>
+												<text wx:if="{{item.salePriceX}}">.{{item.salePriceX}}</text>
+												<text class="unit">/{{item.goods.salesUnit}}</text>
+											</view>
+											<block wx:for="{{item.goods.promotionList}}" wx:for-item='items' wx:key="index">
+												<view class="old" wx:if="{{items.proType==289}}">
+													<text>{{(item.goods.primePrice && item.goods.primePrice != item.goods.salePrice&&item.goods.proType!=1888) ? ("￥" + item.goods.primePrice) :""}}</text>
+												</view>
+											</block>
+										</view>
+										<view class="group dis_f_c_c {{item.goods.goodsStock>0?'':'groupActive'}}"
+											data-goods="{{item.goods}}" catchtap="GoGroup"
+											wx:if='{{(item.goods.proType == 1821 || item.goods.proType == 999)||(!item.goods.proType&&item.goods.promotionList&&item.goods.promotionList[0].proType==1821)||(!item.goods.proType&&item.goods.promotionList&&item.goods.promotionList[0].proType==999)}}'>
+											<text>去拼团</text>
+										</view>
+										<view class="addCart dis_f_c_c" wx:else>
+											<image data-goods="{{item.goods}}" catchtap="addCart"
+												src="{{$.img_src}}/Classification/AddCart.png" mode="aspectFit"
+												wx:if="{{item.goods.goodsStock>0}}"></image>
+											<text wx:else>已售罄</text>
+										</view>
+									</view>
+								</view>
+							</view>
+						</block>
+						<view id="MoreId">
+							<!-- <MoreData more="{{more_data}}" type="{{!more_data && LiBottom < ListBottom && NextFlShow?'2':'1'}}"></MoreData> -->
+							<MoreData more="{{more_data}}"
+								type="{{!more_data && LiBottom < ListBottom && NextFlShow?'1':'1'}}"></MoreData>
+						</view>
+					</view>
+				<!-- 	<NoList wx:else
+						text="{{!more_data && LiBottom < ListBottom && NextFlShow?'长按上滑进入下一分类':'长按上滑进入下一分类'}}~">
+					</NoList> -->
+					<!-- <NoList wx:else text="{{!more_data && LiBottom < ListBottom && NextFlShow?'抬手进入下一分类':'长按上滑进入下一分类'}}~"></NoList> -->
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+	<!-- 底部部分 -->
+	<view class="footer">
+		<!-- 加载中动画 -->
+		<!-- <Loading wx:if="{{loadingShow}}"></Loading> -->
+		<!-- 购物车图标 -->
+		<view class="cart" bindtap="GoCart" animation="{{animationData}}">
+			<image src="{{$.img_src}}/components/cart.png" mode="aspectFill"></image>
+			<text class="dis_f_c_c">{{CartCount}}</text>
+		</view>
+		<CartAnimation id="cartAnimation" background="#FF4752"></CartAnimation>
+		 <template is="toast" data="{{...toastData}}"></template>
+	</view>
+</view>

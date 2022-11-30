@@ -1,0 +1,151 @@
+<import src="/templates/global/global.wxml" />
+
+<!--pages/user/user.wxml-->
+<view class="user-head pos-r">
+  <view class="user-info" bindtap="jumpToLogin">
+    <block wx:if="{{loginFlag == 0}}">
+      <view class="user-photo-image">
+        <image class="user-photo" src=""></image>
+      </view>
+    </block>
+    <block wx:if="{{loginFlag == 1}}">
+      <view class="user-photo-image">
+        <block wx:if="{{allUserInfo.photo}}">
+          <image class="user-photo" src="{{allUserInfo.photo}}" binderror="binderrorimg"></image>
+        </block>
+        <block wx:else>
+          <image class="user-photo" src=""></image>
+        </block>
+      </view>
+    </block>
+    <block wx:if="{{loginFlag == 0}}">
+      <text>快速登录</text>
+    </block>
+    <block wx:if="{{loginFlag == 1}}">
+      <view class='name-phone'>
+        <block wx:if="{{allUserInfo.nickName}}">
+          <text class='nick-name'>{{allUserInfo.nickName?allUserInfo.nickName:''}}</text>
+        </block>
+        <block wx:else>
+          <open-data type="userNickName"></open-data>
+        </block>
+        <text class='mobile'>{{allUserInfo.mobile?allUserInfo.mobile:''}}</text>
+      </view>
+    </block>
+  </view>
+  <view class='vip-code-container' bindtap="jumpPage" data-url="/pages/user/vipPayCode/vipPayCode">
+    <image class='vip-code' src='https://shgm.jjyyx.com/m/images/icon_vip_tiaoma.png'></image>
+    <text>会员码</text>
+  </view>
+</view>
+<view class='my-wallet-container'>
+  <view class="head-nav-title">我的钱包</view>
+  <view class="head-nav r1bt">
+    <view class="item-col2 wallet-card" bindtap="jumpPage" data-no-record="true" data-url="/pages/myCard/myCard">
+      <block wx:if="{{loginFlag == 0}}">
+        <text class="wallet-num pos-r">0</text>
+      </block>
+      <block wx:if="{{loginFlag == 1}}">
+        <text class="pos-r">{{allUserInfo.valueCard || 0}}</text>
+      </block>
+      <text class="text">生活卡</text>
+    </view>
+    <view class="item-col2 r1bl" bindtap="jumpPage" data-no-record="true" data-url="/pages/user/integral/integral">
+      <block wx:if="{{loginFlag == 0}}">
+        <text class="wallet-num">0</text>
+      </block>
+      <block wx:if="{{loginFlag == 1}}">
+        <text
+          class="wallet-num">{{allUserInfo.account.scores?(allUserInfo.account.scores > 0?allUserInfo.account.scores: 0):0}}</text>
+      </block>
+      <text class="text">积分</text>
+    </view>
+    <view class="item-col2 r1bl" bindtap="jumpCoupon" data-no-record="true">
+      <block wx:if="{{loginFlag == 0}}">
+        <text class="wallet-num">0</text>
+      </block>
+      <block wx:if="{{loginFlag == 1}}">
+        <text class="wallet-num">{{allUserInfo.couponTotal || 0}}</text>
+      </block>
+      <text class="text">优惠券</text>
+    </view>
+  </view>
+</view>
+
+<view class="my-order-container">
+  <view class="item2-title">
+    <view class="my-order-title">订单管理</view>
+    <view class="my-order forword" catchtap="gridAutoJump" data-item="{{orderGrids[0]}}">查看全部订单</view>
+  </view>
+  <view class="item2-content r1bt">
+    <component-grid grids="{{orderGrids}}" gridItemClass="order-grid" gridType="orderGrid" bind:autoJump="gridAutoJump">
+    </component-grid>
+  </view>
+</view>
+<!-- <view class="my_vip_integral">
+  <div class="ui-flex">
+    <view catchtap="goUrl" data-url="/pages/activity/futurePlanet/futurePlanet" class="a cell r1br weilaiqiuqiu" id="weilaiqiuqiu" data-oi="298">
+      <image src="https://shgm.jjyyx.com/m/images/icon_user_wlxq.png"></image>
+      <view class="span">
+        <view class="strong">未来星球</view>
+        <view class-="em">黑科技趣玩</view>
+        <view class-="em">体验新空间</view>
+      </view>
+    </view>
+    <view class="a cell huiyuan" id="vip" catchtap="jumpPage" data-oi="299" data-url="/pages/user/vipLevel/vipLevel">
+      <image src="https://shgm.jjyyx.com/m/images/icon_user_hyzx.png"></image>
+      <view class="span">
+        <view class="strong">家家悦优鲜会员</view>
+        <view class="em">点击查看您的会员</view>
+        <view class="em">专属权益</view>
+      </view>
+    </view>
+  </div>
+</view> -->
+<view class='grid-container'>
+  <view class='grid-title r1bb'>我的服务</view>
+  <component-grid grids="{{serviceGrids}}" gridItemClass="servcie-grid" bind:autoJump="gridAutoJump"></component-grid>
+</view>
+<!--单品广告-->
+<view class='single-product' wx:if="{{storeBanner.length > 0}}">
+  <view wx:for="{{storeBanner}}" style='margin-top:16rpx;' wx:key="itemkeys" bindtap="autoJump" data-item='{{item}}'
+    data-bival="279">
+    <image mode="widthFix" src='{{item.imgUrl}}'></image>
+  </view>
+</view>
+
+  <!--猜你喜欢-->
+<!-- <block wx:if="{{moduleList && moduleList.length> 0 && shopAttribute != 2}}" wx:for="{{moduleList}}" wx:key="sectionId"
+  wx:for-index="moduleIndex" wx:for-item="moduleItem">
+  <view class='guess-you-like' wx:if="{{moduleItem.sectionType == 1940 && moduleItem.recommendList.length > 0}}">
+      <block wx:if="{{moduleItem.pBanner}}">
+        <view class='guess-you-like-banner'>
+          <image src='{{moduleItem.pBanner.imgUrl}}'></image>
+        </view>
+      </block>
+      <view class='guess-you-like-list' wx:if="{{moduleItem.pGoodsList && moduleItem.pGoodsList.length > 0}}">
+        <block wx:for="{{moduleItem.pGoodsList}}" wx:for-item="recommendListItems" wx:key="ckitem"
+          wx:for-index="rIndex">
+          <view class="guess-like-item" wx:if="{{moduleItem.len > rIndex}}">
+            <component-two-goods-item goods="{{recommendListItems.extendJson}}" current-page="home"
+              form-type="{{formType}}" log-type-detail="44" log-type="45" bind:change-cart="changeCartCount">
+            </component-two-goods-item>
+          </view>
+        </block>
+      </view>
+  </view>
+</block> -->
+<component-iphone-x-patcher></component-iphone-x-patcher>
+
+<!-- 底部全局导航条(tabBar) -->
+<component-yunchao-footer tabStatus="{{tabStatus}}"></component-yunchao-footer>
+<!-- <component-yunchao-footer tabStatus="{{tabStatus}}"></component-yunchao-footer>
+<block wx:if="{{shopAttribute != 2}}">
+  <template is="navigation-bar" data="{{...tabStatus}}"></template>
+</block>
+<block wx:else>
+  <component-group-footer groupHomeCurrent="4" groupManageCartNum="{{groupManageCartNum}}"></component-group-footer>
+</block> -->
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

@@ -1,0 +1,1575 @@
+<import src="/templates/global/global.wxml" />
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view
+  class="container order-detail{{showNoData?' bg-white':''}}{{isIphoneX ? ' iphone-x-patcher-container' : ''}}{{hiddenMealNo?'':' overflowHidden'}}">
+  <template is="modal" data="{{...modalData}}"></template>
+  <template is="toast" data="{{...toastData}}"></template>
+  <view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+      <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+  </view>
+  <block wx:if="{{showNoData}}">
+    <template is="empty" data="{{emptyMsg:'暂无数据',errorImageName:'error_img5.png'}}"></template>
+  </block>
+  <block wx:else>
+    <template is="orderDetail" data="{{...result}}"></template>
+    <template is="orderDetailBtn" data="{{...result,reportSubmit:reportSubmit}}"></template>
+  </block>
+</view>
+
+<block wx:if="{{showRedBagPop}}">
+  <view id="pop-red-bag" catchtap="closeRedBagPop">
+    <view class="pop-cnt">
+      <view class="head">
+        <image class="img" src="https://shgm.jjyyx.com/m/images/popRedBagBg.jpg"></image>
+      </view>
+      <view class="cnt">
+        <!-- <view class="p1">{{redBagJson.nameTitle}}</view>
+        <view class="p2">{{redBagJson.nameCnt}}</view> -->
+        <view class="p3">{{redBagJson.name||'分享抢红包'}}</view>
+        <view class="money-box">
+          <!-- <image class="money-img" src="https://shgm.jjyyx.com/m/images/bgmax@2x.png"></image> -->
+          <view class="money">
+            <view class="span">¥</view>
+            <view class="em">{{redBagJson.totalPrice}}</view>
+          </view>
+        </view>
+        <button id="btn-pop-red" catchtap="shareRedBagPop" open-type="share"
+          data-red-bag-json="{{redBagJson}}">抢最大红包</button>
+      </view>
+      <view id="pop-close" catchtap="closeRedBagPop"></view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{showPhone}}">
+  <view id="phone-pop">
+    <view class="phone-cnt">
+      <view class="phone-num">{{phoneNum}}</view>
+      <view class="phone-btn">
+        <view class="phone-cancel" catchtap="closePhonePop">取消</view>
+        <view class="phone-confirm" catchtap="confirmPhone">呼叫</view>
+      </view>
+    </view>
+  </view>
+</block>
+<template name="orderDetail">
+  <block wx:if="{{isShareFlag&&isShareFlag==1}}">
+    <view id="orderDetail-red-bag" catchtap="getRedBag" data-warehouse-id="{{warehouseId}}" data-shop-id="{{shopId}}"
+      data-order-id="{{orderId}}">
+      <image class="img" src="https://shgm.jjyyx.com/m/images/detailRedBagBtn.png"></image>
+    </view>
+  </block>
+  <view id="order-detail-box" class="{{isShareFlag&&isShareFlag==1?'hasRedBagPadding':''}}">
+    <block wx:if="{{orderStatus==48||orderStatus==116}}">
+      <view class="order-buyer-cancel color-ff5c33">
+        <icon></icon>
+        <text>订单已取消</text>
+        <block wx:if="{{cancelRemark}}">
+          <view class="color-999 f-24">取消原因：{{cancelRemark}}</view>
+        </block>
+      </view>
+    </block>
+    <block wx:elif="{{orderStatus==115}}">
+      <view class="order-buyer-cancel color-ff5c33">
+        <icon></icon>
+        <text>订单取消</text>
+        <view class="color-999 f-24">取消原因：{{cancelRemark||'用户取消'}}</view>
+      </view>
+    </block>
+    <block wx:elif="{{orderStatus==47||orderStatus==49}}">
+      <view class="order-buyer-cancel color-ff5c33">
+        <icon></icon>
+        <text>订单已关闭</text>
+        <block wx:if="{{cancelRemark}}">
+          <view class="color-999 f-24">关闭原因：{{cancelRemark}}</view>
+        </block>
+      </view>
+    </block>
+    <block wx:elif="{{offlineOrderType==1184&&shippingTypes[0]!=113||offlineOrderType==1122&&shippingTypes[0]!=113}}">
+      <view class="offlineOrderType-box">
+        <view class="span">订单支付成功</view>
+      </view>
+    </block>
+    <block wx:elif="{{orderStatus==51}}">
+      <view class="order-detail-noPay" paytimeleft="{{payTimeLeft}}">
+        <view class="div">订单即将失效，请立即付款</view>
+        <view class="p">订单将于
+          <text>{{$payTimeLeft}}</text>后自动关闭
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{isCardFlag==1}}">
+      <!-- <view class="offlineOrderType-box">
+                <view class="span">订单支付成功</view>
+            </view>-->
+    </block>
+    <block
+      wx:elif="{{goodsSence&&goodsSence>0&&(orderStateDiagrams&&orderStateDiagrams.length<1||!orderStateDiagrams)}}">
+      <view class="offlineOrderType-box mb8">
+        <view class="span">支付成功，可以在设备上操作啦！</view>
+      </view>
+    </block>
+    <block wx:else>
+      <block wx:if='{{orderStateDiagrams.length>2}}'>
+        <view class='group-process-box group-process-box{{orderStateDiagrams.length}}'>
+          <block wx:for="{{orderStateDiagrams}}" wx:for-item="progress" wx:key="orderStateDiagrams{{i}}"
+            wx:for-index="i">
+            <view
+              class="group-process-li group-process-li{{i}}{{progress.nodeStatus?' on':''}}{{(orderStateDiagrams.length-1)==i?' last':''}}">
+              <view class='group-process-text'>
+                {{(!progress.lineDownMsg&&i==orderStateDiagrams.length-1)?'已完成':progress.lineDownMsg}}</view>
+              <block wx:if="{{progress.lineUpMsg}}">
+                <view class="group-process-tip">
+                  <view class="group-tip-text">{{progress.lineUpMsg}}</view>
+                  <view class="group-tip-triangle"></view>
+                  <view class="group-tip-triangle-border"></view>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:elif="{{orderStateDiagrams&&orderStateDiagrams.length==2}}">
+        <view class="order-global-progress list2 clearfix r1bb">
+          <block wx:for="{{orderStateDiagrams}}" wx:for-item="progress" wx:for-index="i"
+            wx:key='orderStateDiagrams{{i}}'>
+            <view class="global-progress-li progress-li{{i}}{{progress.nodeStatus?' on':''}}">
+              <view class="global-bar-box">
+                <view class="global-bar"></view>
+                <view class="global-bar-ico"></view>
+              </view>
+              <block wx:if="{{progress.lineUpMsg}}">
+                <view class="global-tip-box">
+                  <view class="global-tip-text">{{progress.lineUpMsg}}</view>
+                  <view class="global-triangle"></view>
+                  <view class="global-triangle-border"></view>
+                </view>
+              </block>
+              <block wx:if="{{progress.lineDownMsg}}">
+                <view class="global-text">{{progress.lineDownMsg}}</view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:elif="{{orderStateDiagrams&&orderStateDiagrams.length==3}}">
+        <view class="order-global-progress list3 clearfix">
+          <block wx:for="{{orderStateDiagrams}}" wx:for-item="progress" wx:for-index="i"
+            wx:key='orderStateDiagrams{{i}}'>
+            <view class="global-progress-li progress-li{{i}}{{progress.nodeStatus?' on':''}}">
+              <view class="global-bar-box">
+                <view class="global-bar"></view>
+                <view class="global-bar-ico"></view>
+              </view>
+              <block wx:if="{{progress.lineUpMsg}}">
+                <view class="global-tip-box">
+                  <view class="global-tip-text">{{progress.lineUpMsg}}</view>
+                  <view class="global-triangle"></view>
+                  <view class="global-triangle-border"></view>
+                </view>
+              </block>
+              <block wx:if="{{progress.lineDownMsg}}">
+                <view class="global-text">{{progress.lineDownMsg}}</view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:elif="{{orderStateDiagrams&&orderStateDiagrams.length>0&&isB2C!=1037&&isB2C!=1634&&isCardFlag!=1821}}">
+        <view class="order-detail-progress list{{orderStateDiagrams.length}} clearfix">
+          <block wx:for="{{orderStateDiagrams}}" wx:for-item="progress" wx:for-index="i"
+            wx:key='orderStateDiagrams{{i}}'>
+            <view class="progress-li {{progress.nodeStatus?'on':''}} progress-li{{i}}">
+              <block wx:if="{{i<orderStateDiagrams.length-1}}">
+                <view class="bar-box">
+                  <view class="bar"></view>
+                  <view class="bar-ico"></view>
+                </view>
+              </block>
+              <block wx:if="{{progress.lineUpMsg}}">
+                <view class="tip-box">
+                  <text class="tip-text">{{progress.lineUpMsg}}</text>
+                  <icon class="triangle"></icon>
+                  <view class="triangle-border"></view>
+                </view>
+              </block>
+              <block wx:if="{{progress.lineDownMsg}}">
+                <text class="text">{{progress.lineDownMsg}}</text>
+              </block>
+              <block wx:if="{{progress.nodeDownMsg}}">
+                <view class="progress-time">{{progress.nodeDownMsg}}</view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block
+        wx:elif="{{orderStateDiagrams&&orderStateDiagrams.length>3&&(isB2C==1037||isB2C==1634||isCardFlag==1821)}}">
+        <view class="order-global-progress list{{orderStateDiagrams.length}} clearfix">
+          <block wx:for="{{orderStateDiagrams}}" wx:for-item="progress" wx:for-index="progressIndex"
+            wx:key='orderStateDiagrams{{progressIndex}}'>
+            <view class="global-progress-li progress-li{{progressIndex}}{{progress.nodeStatus?' on':''}}">
+              <view class="global-bar-box">
+                <view class="global-bar"></view>
+                <view class="global-bar-ico"></view>
+              </view>
+              <block wx:if="{{progress.lineUpMsg}}">
+                <view class="global-tip-box">
+                  <view class="span global-tip-text">{{progress.lineUpMsg}}</view>
+                  <view class="global-triangle"></view>
+                  <view class="global-triangle-border"></view>
+                </view>
+              </block>
+              <block wx:if="{{progress.lineDownMsg}}">
+                <view class="global-text">{{progress.lineDownMsg}}</view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{(multipleShipmentsCounts>1||multipleShipmentsCounts==1&&deliverType==1)&&isB2C&&(isB2C==1037)}}">
+      <view class="logistics-tip-more" catchtap="goLogisticsList">您有
+        <view class="span">{{multipleShipmentsCounts}}</view>个包裹的物流信息，点击查看详情
+      </view>
+    </block>
+    <block wx:if="{{isB2C==1634&&logisticsList.status}}">
+      <view data-order-store-id="{{orderStoreId}}" class="a order-detail-logistics r1bt" catchtap="goViewLogistics">
+        <view class="logistics-title">{{logisticsList.statusMsg}}</view>
+        <view class="logistics-time">{{logisticsList.operateTimes}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <block
+        wx:if="{{multipleShipmentsCounts==1&&deliverType==0&&isB2C&&(isB2C==1037)&&orderStatus!=51&&(deliverInfo||deliverTime)}}">
+        <view data-order-store-id="{{orderStoreId}}" class="a order-detail-logistics r1bt" catchtap="goViewLogistics">
+          <view class="logistics-title">{{deliverInfo}}</view>
+          <view class="logistics-time">{{deliverTime}}</view>
+        </view>
+      </block>
+    </block>
+
+    <block wx:if="{{isB2C==1634}}">
+      <block wx:if="{{shippingType==111}}">
+        <view class="order-detail-user">
+          <view class="name-phone clearfix">
+            <view class="name f24">提货点：{{memberGroupAddressAddrTag}}</view>
+          </view>
+          <view class="address f24">提货点地址：{{addrFull}}</view>
+          <block wx:if='{{addrMobile}}'>
+            <view class='phone-self-box'>
+              <view class='phone' catchtap='phoneSelf' data-phone='{{addrMobile}}'>联系提货点</view>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="order-detail-user">
+          <view class="name-phone clearfix">
+            <view class="name">{{addrName}}</view>
+            <view class="phone">{{addrMobile}}</view>
+            <block wx:if="{{(shippingTypes[0]==1022||shippingTypes[0]==1023||shippingTypes[0]==1024)&&isB2C!=1634}}">
+              <block wx:if="{{addrStete==1020||shippingTypes[0]==1024}}">
+                <view class="ID-finished">已认证</view>
+              </block>
+              <block wx:else>
+                <view class="ID-finished-none">未认证</view>
+              </block>
+            </block>
+          </view>
+          <view class="address">{{addrFull}}</view>
+        </view>
+
+      </block>
+    </block>
+
+    <block wx:else>
+      <block wx:if='{{proType&&proType!=1&&proType!=1821}}'>
+        <view class="order-detail-user">
+          <view class="name-phone clearfix">
+            <!-- <view class="name">提货人：{{addrName}}</view>
+          <view class="phone">{{addrMobile}}</view> -->
+            <view class="name f24">提货点：{{memberGroupAddressAddrTag}}</view>
+          </view>
+          <view class="address f24">提货点地址：{{addrFull}}</view>
+          <!-- <block wx:if='{{addrMobile}}'>
+            <view class='phone-self-box'>
+              <view class='phone' catchtap='phoneSelf' data-phone='{{addrMobile}}'>联系提货点</view>
+            </view>
+          </block> -->
+        </view>
+      </block>
+      <block
+        wx:elif="{{isCardFlag!=1&&(shippingTypes[0]==110||shippingTypes[0]==112||shippingTypes[0]==1022||shippingTypes[0]==1023||shippingTypes[0]==1024)&&(addrName||addrMobile||addrFull)&&(offlineOrderType!=1182||offlineOrderType!=1184||offlineOrderType!=1122)}}">
+        <view class="order-detail-user">
+          <view class="name-phone clearfix">
+            <view class="name">{{addrName}}</view>
+            <view class="phone">{{addrMobile}}</view>
+            <block wx:if="{{(shippingTypes[0]==1022||shippingTypes[0]==1023||shippingTypes[0]==1024)&&isB2C!=1634}}">
+              <block wx:if="{{addrStete==1020||shippingTypes[0]==1024}}">
+                <view class="ID-finished">已认证</view>
+              </block>
+              <block wx:else>
+                <view class="ID-finished-none">未认证</view>
+              </block>
+            </block>
+          </view>
+          <view class="address">{{addrFull}}</view>
+        </view>
+      </block>
+      <block wx:elif="{{goodsSence&&goodsSence>0}}">
+
+      </block>
+      <block
+        wx:elif="{{isCardFlag==1709&&(shopName||shopAddr)||isCardFlag!=1&&(shippingTypes[0]==111||shippingTypes[0]==113)&&(shopName||shopAddr)&&(offlineOrderType!=1182||offlineOrderType!=1184||offlineOrderType!=1122)||(shopName||shopAddr)&&(offlineOrderType==1182)}}">
+        <view class="order-detail-user">
+          <view class="addr-shop">门店地址：{{shopName}}</view>
+          <view class="address">{{shopAddr}}</view>
+
+          <view class="order-cabinet-info" wx:if="{{cabinetAddrId>0}}">
+            <view class="cabinet-address">提货点地址：{{cabinetAddress}}</view>
+            <view class="cabinet-name" wx:if="{{cabinetName}}">提货点：{{cabinetName}} <block wx:if="{{cabinetDetailList}}"
+                wx:for="{{cabinetDetailList}}">
+                <block wx:if="{{index>0}}">,</block>{{item}}
+              </block>
+            </view>
+            <view class="cabinet-tip" wx:if="{{cabinetName}}">请在自提柜上扫描订单码进行取货</view>
+          </view>
+
+        </view>
+
+      </block>
+    </block>
+
+
+    <block wx:if="{{returnCount>0}}">
+      <view data-return-count="{{returnCount}}" catchtap="goRefundListOrDetail" class="go-refund-record mt16 mb16">
+        售后进度：您有
+        <view class="span c-color">{{returnCount}}</view>条售后进度记录，点击查看详情
+      </view>
+    </block>
+    <!--   <block wx:if="{{isCardFlag!=1&&goodsShippingType==113||foodShippingType==113}}">
+            <view class="bg-caitiao"></view>
+            <view class="tangshi-location clearfix">
+                <view class="tangshi-location-l fl">堂食</view>
+                <view class="tangshi-location-r fr">{{shopName}}</view>
+            </view>
+        </block>-->
+    <block wx:for="{{storeGoodsList}}" wx:key="storeGoodsList{{j}}" wx:for-item="shop" wx:for-index="j">
+      <view class="order-detail-list">
+        <block wx:if="{{isCardFlag!=1}}">
+          <view class="shop-name">
+            <view class="shop-name-cnt">
+              <!-- <block wx:if="{{shop.storeIcon}}">
+                <image src="{{shop.storeIcon}}"></image>
+              </block>
+              <block wx:else>
+                <image src="https://shgm.jjyyx.com/m/images/store_icon.png"></image>
+              </block> -->
+              <text>{{shop.storeName}}</text>
+              <block wx:if="{{shop.storeType==1037}}">
+                <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_kexuan.png"></image>
+              </block>
+              <block wx:if="{{shop.storeType==1634}}">
+                <image class="icon-global" src="https://shgm.jjyyx.com/m/images/icon_zhenpinkexuan.png"></image>
+              </block>
+            </view>
+            <block wx:if="{{goodsSence==0&&isB2C!=1037&&isB2C!=1634&&payStatus==53&&orderStoreId}}">
+              <view class="order-bar" catchtap="toUrlOrderStoreIdCode">订单条码</view>
+            </block>
+          </view>
+        </block>
+        <block
+          wx:if="{{!(groupMode==1886&&groupState==1)&&isCardFlag!=1&&goodsSence==0&&(shop.shippingType==110||shop.shippingType==111||shop.shippingType==113||shop.shippingType==112)&&shippingTime&&offlineOrderType!=1184&&offlineOrderType!=1122&&canShowShippingTime||(shippingTime&&offlineOrderType==1182)&&canShowShippingTime}}">
+          <view class="get-time clearfix r1bt">
+            <view class="get-time-l">预约
+              <block
+                wx:if="{{(proType>0&&proType!=1&&proType!=1821)||proType==1178||proType==1888||offlineOrderType==1182}}">
+                自提</block>
+              <block wx:elif="{{shop.shippingType==110||shop.shippingType==112}}">配送</block>
+              <block wx:elif="{{shop.shippingType==111}}">自提</block>
+              <block wx:elif="{{shop.shippingType==113}}">堂食</block>
+            </view>
+            <view class="get-time-r">{{shippingTime}}</view>
+          </view>
+        </block>
+        <view class="cart-item-list">
+          <block wx:for="{{shop.goodsList}}" wx:for-item="product" wx:for-index="productIndex"
+            wx:key="{{productIndex}}goodsList{{product.goodsId}}">
+            <view class="li">
+              <view class="wrap">
+                <view class="cart-item">
+                  <block wx:if="{{isCardFlag==999||isCardFlag==1821||proType==1888||groupMode}}">
+                    <view class="icon-pintuan"></view>
+                  </block>
+                  <view class="item-img">
+                    <block wx:if="{{product.foodStatus==1}}">
+                      <view class="already-served">已出餐</view>
+                    </block>
+                    <block wx:elif="{{product.foodStatus==2}}">
+                      <view class="already-served">已取餐</view>
+                    </block>
+                    <block wx:if="{{product.isGift==1&&product.giftOutStockFlag&&product.giftOutStockFlag==1}}">
+                      <view class="masker-present">已赠完</view>
+                    </block>
+                    <block wx:elif="{{product.returnStatus!=0}}">
+                      <view class="masker-refunded">申请退款</view>
+                    </block>
+                    <image src="{{product.goodsImage}}"></image>
+                  </view>
+                  <view class="item-info weigh-goods">
+                    <view class="h3">
+                      <block wx:if="{{product.isGift==1}}">
+                        <view class="em">赠品</view>
+                      </block>
+                      <block wx:elif="{{product.isGift==2}}">
+                        <view class="em">换购</view>
+                      </block>
+                      <block wx:elif="{{product.isGift==998||product.isGift==1640}}">
+                        <view class="em">限时抢</view>
+                      </block>
+                      {{product.goodsName}}
+                    </view>
+                    <view class="h4 color-999">
+                      <block wx:if="{{product.materielType==30}}">
+                        <view class="h4-view">
+                          <text class="property-out-hiding">{{product.materielExtPropertyStr}}</text>
+                        </view>
+                      </block>
+                      <block wx:if="{{product.goodsSpec&&isB2C!=1037&&isB2C!=1634}}">
+                        <view class="h4-view">规格：{{product.goodsSpec}}
+                          <block wx:if="{{product.pricingMethod==391&&offlineOrderType==0}}">
+                            <view class="icon-info" catchtap="weightPop"></view>
+                          </block>
+                        </view>
+                      </block>
+                      <view class="h4-view">
+                        <block wx:if="{{product.pricingMethod==391}}">重量：{{product.weightStr}}</block>
+                        <block wx:else>数量：{{product.goodsNum}}</block>
+                        <view class="div-space3">\t</view>单价：￥
+                        <block wx:if="{{product.isGift&&product.isGift==3}}">{{product.memberPriceStr}}</block>
+                        <block wx:else>{{product.goodsPriceStr}}</block>
+                        <block wx:if="{{product.goodsUnit}}">/{{product.goodsUnit}}</block>
+                        <block
+                          wx:if="{{(product.memberPriceStr!=product.goodsOriginPriceStr)&&product.isMember||product.goodsPriceStr!=product.goodsOriginPriceStr}}">
+                          <view class="detail-del"> ￥{{product.goodsOriginPriceStr}}</view>
+                        </block>
+                      </view>
+                    </view>
+                    <block wx:if="{{1||product.isGift!=1}}">
+                      <view class="price">
+                        <block wx:if="{{product.isGift==3&&0}}">
+                          <view class="member-tag">会员价</view>
+                        </block>
+                        <view class="em">{{product.goodsAmountStr}}</view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+              <!-- offlineOrderType==1184地推的不能售后 -->
+              <block wx:if="{{(offlineOrderType==1182||offlineOrderType==1122||goodsSence>0)}}">
+                <block
+                  wx:if="{{(product.isGift!=1&&product.isGift!=2)&&product.isReturnFlag==1&&isReturnFlag==1&&(product.goodsNum-product.returnCount)>=0&&(offlineOrderType==1182&&checkFlag==1||offlineOrderType==1122||goodsSence>0)}}">
+                  <block wx:if="{{isPromotionGoodsFlag==1&&returnStatus!=1}}">
+                    <view class="refund-box">
+                      <view class="refund-cnt clearfix">
+                        <view class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}"
+                          catchtap="phoneService" data-servicePhone="{{servicePhone}}">申请退货</view>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="refund-box">
+                      <view class="refund-cnt clearfix">
+                        <view catchtap="goodsToRefund" data-order-item-id="{{product.orderItemId}}"
+                          data-return-count="{{product.returnCount}}" data-goods-num="{{product.goodsNum}}"
+                          data-return-status="{{product.returnStatus}}" data-shop-id="{{shop.shopId}}"
+                          data-is-gift="{{product.isGift}}" data-store-id="{{shop.storeId}}"
+                          data-sku-id="{{product.goodsSkuId}}" data-goods-sence="{{goodsSence}}"
+                          data-offline-order-type="{{offlineOrderType}}"
+                          class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}">申请退货</view>
+                      </view>
+                    </view>
+                  </block>
+                </block>
+
+              </block>
+              <block
+                wx:elif="{{(isB2C==0||isB2C==1||isB2C==1037||isB2C==1634)&&product.isReturnFlag==1&&(product.isGift!=1&&product.isGift!=2)&&isReturnFlag==1&&(product.goodsNum-product.returnCount)>=0&&(orderStatus==46||orderStatus==1088||orderStatus==952)&&offlineOrderType!=1184}}">
+                <block wx:if="{{isPromotionGoodsFlag==1&&returnStatus!=1}}">
+                  <view class="refund-box">
+                    <view class="refund-cnt clearfix">
+                      <view class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}"
+                        catchtap="phoneService" data-servicePhone="{{servicePhone}}">申请退货</view>
+                    </view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class="refund-box">
+                    <view class="refund-cnt clearfix">
+                      <view catchtap="goodsToRefund" data-order-item-id="{{product.orderItemId}}"
+                        data-return-count="{{product.returnCount}}" data-goods-num="{{product.goodsNum}}"
+                        data-return-status="{{product.returnStatus}}" data-shop-id="{{shop.shopId}}"
+                        data-is-gift="{{product.isGift}}" data-store-id="{{shop.storeId}}"
+                        data-sku-id="{{product.goodsSkuId}}" data-goods-sence="{{goodsSence}}"
+                        data-offline-order-type="{{offlineOrderType}}"
+                        class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}">申请退货</view>
+                    </view>
+                  </view>
+                </block>
+              </block>
+            </view>
+          </block>
+        </view>
+        <block wx:if="{{1==1||offlineOrderType!=1182}}">
+          <view class="order-remarks clearfix">
+            <view class="remarks-name">备注</view>
+            <block wx:if="{{shop.remark}}">
+              <view class="remarks-text">{{shop.remark}}</view>
+            </block>
+            <block wx:else>
+              <view class="remarks-text">未填写</view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </block>
+    <view class="order-detail-price">
+      <block wx:if="{{isCardFlag==1||isCardFlag==1479}}">
+        <view class="ul">
+          <view class="li clearfix">
+            <view class="price-left">商品金额</view>
+            <view class="price-right">¥{{goodsSaleAmountStr}}</view>
+          </view>
+          <view class="li clearfix">
+            <view class="price-left">促销优惠</view>
+            <view class="price-right color-ff5c33">-¥{{promotionAmountStr>0?promotionAmountStr:'0'}}</view>
+          </view>
+          <block wx:if="{{memberPromotionAmountStr&&memberPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">会员优惠</view>
+              <view class="price-right color-ff5c33">-¥{{memberPromotionAmountStr>0?memberPromotionAmountStr:'0'}}
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{payPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">支付优惠</view>
+              <view class="price-right color-ff5c33">-¥{{payPromotionAmountStr}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:elif="{{offlineOrderType>0}}">
+        <view class="ul">
+          <view class="li clearfix">
+            <view class="price-left">商品金额</view>
+            <view class="price-right">¥{{goodsSaleAmountStr>0?goodsSaleAmountStr:'0'}}</view>
+          </view>
+          <view class="li clearfix">
+            <view class="price-left">促销优惠</view>
+            <view class="price-right color-ff5c33">-¥{{promotionAmountStr>0?promotionAmountStr:'0'}}</view>
+          </view>
+          <block wx:if="{{memberPromotionAmountStr&&memberPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">会员优惠</view>
+              <view class="price-right color-ff5c33">-¥{{memberPromotionAmountStr>0?memberPromotionAmountStr:'0'}}
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{discountAmountStr&&discountAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">折扣优惠</view>
+              <view class="price-right color-ff5c33">-¥{{discountAmountStr>0?discountAmountStr:'0'}}</view>
+            </view>
+          </block>
+          <view class="li clearfix">
+            <view class="price-left">优惠券</view>
+            <view class="price-right color-ff5c33">-¥{{couponAmountStr>0?couponAmountStr:'0'}}</view>
+          </view>
+          <block wx:if="{{cardAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">生活卡</view>
+              <view class="price-right color-ff5c33">-¥{{cardAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{scoreAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">积分抵扣</view>
+              <view class="price-right color-ff5c33">-¥{{scoreAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{packAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">包装费</view>
+              <view class="price-right">¥{{packAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{payPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">支付优惠</view>
+              <view class="price-right color-ff5c33">-¥{{payPromotionAmountStr}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:elif="{{isB2C!=1037&&isB2C!=1634}}">
+        <view class="ul">
+          <view class="li clearfix">
+            <view class="price-left">商品金额</view>
+            <view class="price-right">¥{{goodsSaleAmountStr>0?goodsSaleAmountStr:'0'}}</view>
+          </view>
+          <view class="li clearfix">
+            <view class="price-left">促销优惠</view>
+            <view class="price-right color-ff5c33">-¥{{promotionAmountStr>0?promotionAmountStr:'0'}}</view>
+          </view>
+          <block wx:if="{{memberPromotionAmountStr&&memberPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">会员优惠</view>
+              <view class="price-right color-ff5c33">-¥{{memberPromotionAmountStr>0?memberPromotionAmountStr:'0'}}
+              </view>
+            </view>
+          </block>
+          <block
+            wx:if="{{(goodsShippingType==1022||goodsShippingType==1023)&&goodsTaxAmount>0||(foodShippingType==1022||foodShippingType==1023)&&goodsTaxAmount>0}}">
+            <view class="li clearfix">
+              <view class="price-left">税费</view>
+              <view class="price-right color-ff5c33">¥{{goodsTaxAmount}}</view>
+            </view>
+          </block>
+          <block wx:if="{{payPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">支付优惠</view>
+              <view class="price-right color-ff5c33">-¥{{payPromotionAmountStr}}</view>
+            </view>
+          </block>
+          <block
+            wx:if="{{offlineOrderType!=1184&&couponAmountStr&&couponAmountStr>0||isB2C!=1037&&offlineOrderType!=1184}}">
+            <view class="li clearfix">
+              <view class="price-left">优惠券</view>
+              <view class="price-right color-ff5c33">-¥{{couponAmountStr>0?couponAmountStr:'0'}}</view>
+            </view>
+          </block>
+          <block wx:if="{{cardAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">生活卡</view>
+              <view class="price-right color-ff5c33">-¥{{cardAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{scoreAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">积分抵扣</view>
+              <view class="price-right color-ff5c33">-¥{{scoreAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{packAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">包装费</view>
+              <view class="price-right">¥{{packAmountStr}}</view>
+            </view>
+          </block>
+          <block
+            wx:if="{{goodsShippingType==110||goodsShippingType==540||foodShippingType==112||foodShippingType==540||foodShippingType==110||goodsShippingType==1022||foodShippingType==1022||goodsShippingType==1023||foodShippingType==1023||goodsShippingType==1024||foodShippingType==1024}}">
+            <view class="li clearfix">
+              <view class="price-left">运费</view>
+              <view class="price-right">¥{{shippingAmountStr}}</view>
+            </view>
+            <view class="li clearfix">
+              <view class="price-left">运费优惠</view>
+              <view class="price-right">-¥{{proFreight>0?proFreight:0}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="ul">
+          <view class="li clearfix">
+            <view class="price-left">商品金额</view>
+            <view class="price-right">¥{{goodsSaleAmountStr>0?goodsSaleAmountStr:'0'}}</view>
+          </view>
+          <view class="li clearfix">
+            <view class="price-left">促销优惠</view>
+            <view class="price-right color-ff5c33">-¥{{promotionAmountStr>0?promotionAmountStr:'0'}}</view>
+          </view>
+          <block wx:if="{{memberPromotionAmountStr&&memberPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">会员优惠</view>
+              <view class="price-right color-ff5c33">-¥{{memberPromotionAmountStr>0?memberPromotionAmountStr:'0'}}
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{isB2C==1037}}">
+            <view class="li clearfix">
+              <div class="price-left">税费</div>
+              <div class="price-right">¥{{goodsTaxAmount}}</div>
+            </view>
+          </block>
+          <view class="li clearfix">
+            <view class="price-left">运费</view>
+            <view class="price-right">¥{{shippingAmountStr}}</view>
+          </view>
+          <view class="li clearfix" wx:if="{{proFreight>0}}">
+            <view class="price-left">运费优惠</view>
+            <view class="price-right color-ff5c33">-¥{{proFreight>0?proFreight:0}}</view>
+          </view>
+          <block wx:if="{{cardAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">生活卡</view>
+              <view class="price-right color-ff5c33">-¥{{cardAmountStr}}</view>
+            </view>
+          </block>
+          <block wx:if="{{payPromotionAmountStr>0}}">
+            <view class="li clearfix">
+              <view class="price-left">支付优惠</view>
+              <view class="price-right color-ff5c33">-¥{{payPromotionAmountStr}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+      <view class="total r1bt clearfix">
+        <view class="em">
+          <view class="i">¥</view>{{payAmountStr}}
+        </view>
+        <view class="span">应付总额：</view>
+      </view>
+    </view>
+    <view class="order-detail-inf">
+      <view class="inf-li clearfix">
+        <view class="inf-left">下单时间</view>
+        <view class="inf-right">{{createTimeStr}}</view>
+      </view>
+      <view class="inf-li clearfix">
+        <view class="inf-left">订单编号</view>
+        <view class="inf-right copy-box">
+          <view class='copy' catchtap='copyClipBoard' data-text='{{orderStoreId}}'>复制</view>{{orderStoreId}}
+        </view>
+      </view>
+      <block wx:if="{{payType}}">
+        <view class="inf-li clearfix">
+          <view class="inf-left">支付方式</view>
+          <view class="inf-right">
+            <block wx:if="{{0&&offlineOrderType>0&&(goodsShippingType==113||foodShippingType==113)}}">
+              <view class="take-meal-tip">取餐时请出示【会员专属码】</view>
+            </block>{{$payType}}
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{(offlineOrderType!=1182||offlineOrderType!=1184||offlineOrderType!=1122)}}">
+        <block wx:if="{{isCardFlag==1}}"></block>
+        <block wx:elif="{{proType==1178||proType==1888||(proType>0&&proType!=1&&proType!=1821&&proType!=1640)}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">提货点自提</view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==110||goodsShippingType==540}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">送货上门</view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==1022||foodShippingType==1022}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">第三方快递</view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==1023||foodShippingType==1023}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">第三方快递</view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==1024||foodShippingType==1024}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">第三方快递</view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==111}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">
+              <block
+                wx:if="{{orderStatus!=51&&orderStatus!=47&&orderStatus!=48&&orderStatus!=49&&orderStatus!=115&&orderStatus!=116}}">
+                <view class="take-meal-tip">自提时请出示【会员专属码】</view>
+              </block>{{cabinetAddrId>0?'自提柜自提':'到店自提'}}
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{goodsShippingType==112}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">配送方式</view>
+            <view class="inf-right">送货上门</view>
+          </view>
+        </block>
+
+        <block wx:if="{{foodShippingType==112||foodShippingType==540||foodShippingType==110}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">用餐方式</view>
+            <view class="inf-right">外卖</view>
+          </view>
+        </block>
+        <block wx:elif="{{foodShippingType==113}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">用餐方式</view>
+            <view class="inf-right">堂食
+              <block wx:if="{{packAmountStr>0}}">-打包</block>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{foodShippingType==111}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">用餐方式</view>
+            <view class="inf-right">
+              <block
+                wx:if="{{orderStatus!=51&&orderStatus!=47&&orderStatus!=48&&orderStatus!=49&&orderStatus!=115&&orderStatus!=116}}">
+                <view class="take-meal-tip">自提时请出示【会员专属码】</view>
+              </block>到店自提
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{mealNo}}">
+          <view class="inf-li clearfix showMealNo">
+            <view class="inf-left">取餐号</view>
+            <view class="inf-right c-color" catchtap='showMealNo'>
+              <view class="take-meal-tip">取餐时请出示【取餐号】</view>{{mealNo}}
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:if="{{storeGoodsList[0].storeBizType!=60}}">
+
+        <!-- 
+          <block wx:if="{{(offlineOrderType!=1182||offlineOrderType!=1184||offlineOrderType!=1122)&&!proType}}">
+              <block wx:if="{{payStatus==51&&shippingTypes.length>1&&storeGoodsList.length>1}}"></block>
+              <block wx:else>
+                  <view class="inf-li clearfix">
+                      <view class="inf-left">发票类型</view>
+                      <view class="inf-right">{{$invoiceType}}</view>
+                  </view>
+              </block>
+          </block>
+          <block wx:if="{{invoiceType==10000||proType}}"></block>
+          <block wx:elif="{{!invoiceSupportType||invoiceSupportType==0}}">
+              <view class="inf-li clearfix">
+                  <view class="inf-left">发票类型</view>
+                  <view class="inf-right">该门店暂不支持开具发票</view>
+              </view>
+          </block> -->
+        <block wx:if="{{invoiceType&&invoiceType!=5}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">发票类型</view>
+            <view class="inf-right">{{$invoiceType}}</view>
+          </view>
+        </block>
+        <block wx:elif="{{payType!=497&&payAmountStr>0&&((invoiceType&&invoiceType==5)||(orderStatus==46||orderStatus==1088))}}">
+          <view class="inf-li clearfix">
+            <view class="inf-left">发票类型</view>
+            <view class="inf-right" id="go-invoice-after" catchtap="goInvoice">去开发票</view>
+            <view id="icon-invoice-after" catchtap="showInovoiceTip"></view>
+          </view>
+        </block>
+        <!-- <block wx:elif="{{isB2C!=1634&&isB2C!=1037}}">
+              <view class="inf-li clearfix">
+                  <view class="inf-left">发票类型</view>
+                  <view class="inf-right">不开发票</view>
+              </view>
+          </block> -->
+        <!-- <block wx:if="{{isB2C!=1634&&invoiceSupportType&&isB2C!=1037&&orderInvoiceOutputList&&orderInvoiceOutputList.length>0&&invoiceUrlOne&&(orderStatus==46||orderStatus==1088)&&(invoiceType==3||invoiceType==4||invoiceType==6)}}">
+              <view class="inf-li clearfix">
+                  <view class="inf-left"></view>
+                  <view class="inf-right c-blue-color" id="look-invoice" catchtap="lookInvoice">
+                      查看电子发票
+                  </view>
+              </view>
+          </block> -->
+
+
+      </block>
+      <block wx:if="{{storeGoodsList[0].storeBizType==60}}">
+        <block wx:if='{{invoiceVerificationCode&&payType!=497&&(orderStatus==46||orderStatus==1088)}}'>
+          <view class="inf-li clearfix">
+            <view class="inf-left">发票检验码</view>
+            <view class="inf-right">{{invoiceVerificationCode}}</view>
+          </view>
+          <view class="inf-li clearfix goUrlInvoice">
+            <view class="inf-left">发票</view>
+            <view class="inf-right" catchtap='goUrlInvoice'>去开发票</view>
+          </view>
+        </block>
+      </block>
+      <!-- <view class="inf-li clearfix">
+            <view class="inf-left"></view>
+            <view class="inf-right c-blue-color" id="look-invoice" catchtap="lookInvoice">查看电子发票</view>
+          </view>
+      <view class="inf-li clearfix">
+            <view class="inf-left">发票类型</view>
+            <view class="inf-right" id="go-invoice-after" catchtap="goInvoice">去开发票</view>
+            <view id="icon-invoice-after" catchtap="showInovoiceTip"></view>
+          </view> -->
+
+    </view>
+    <block wx:if="{{(goodsShippingType==110||foodShippingType==112)&&!proType}}">
+      <block wx:if="{{orderStatus==46||orderStatus==42||orderStatus==439||orderStatus==952}}">
+        <block wx:if="{{deliverName.length>0}}">
+          <view class="order-detail-inf mt16">
+            <view class="inf-li clearfix">
+              <view class="inf-left">配送状态</view>
+              <view class="inf-right">
+                {{orderStatus==46||allIsReturn&&orderStatus==952||allIsReturn&&orderStatus==439?'已完成':'配送中'}}</view>
+            </view>
+            <view class="inf-li clearfix">
+              <view class="inf-left">配送时间</view>
+              <block wx:if="{{distributeType==80}}">
+                <view class="inf-right">30分钟必达</view>
+              </block>
+              <block wx:else>
+                <view class="inf-right">{{$shippingStartTime}}-{{$shippingEndTime}}</view>
+              </block>
+            </view>
+            <view class="inf-li clearfix">
+              <view class="inf-left">配送人员</view>
+              <view class="inf-right">{{deliverName}}</view>
+            </view>
+            <view class="inf-li clearfix">
+              <view class="inf-left">联系电话</view>
+              <view class="inf-right" data-servicePhone="{{deliverPhone}}" catchtap="phoneService">{{deliverPhone}}
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+  </view>
+</template>
+<template name="orderDetailBtn">
+  <view class="order-detail-btn clearfix" id="order-detail-btn">
+    <view class="order-btn-column-wrap">
+      <view class="order-detail-btn-flex">
+        <!--验证不通过-->
+        <block wx:if="{{orderStatus==53}}">
+          <view class="a width-all" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <block wx:elif="{{payStatus==53&&goodsSence>0}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half backgroundColor-ff5d3d color-fff btn-cancle" catchtap="toUrlOrderList">我的订单</view>
+        </block>
+        <block wx:elif="{{orderStatus==51}}">
+          <view class="a btn-cancle" id="order-detail-cancle" catchtap="cancelOrder"
+            data-orderStoreId="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单</view>
+          <view class="a btn-confirm backgroundColor-ff5d3d color-fff" id="order-detail-pay" catchtap="toPaying"
+            data-pay-amount-str="{{payAmountStr}}" data-pay-time-left="{{payTimeLeft}}" data-orderId="{{orderId}}">立即支付
+          </view>
+        </block>
+        <block wx:elif="{{isShowCardShare==1&&proType!=1}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half backgroundColor-ff5d3d color-fff btn-cancle" data-goods-num="{{goodsCount}}"
+            data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="cardShareBind">绑定分享</view>
+        </block>
+        <!--身份证未认证的时候-->
+        <block wx:elif="{{(orderStatus==1&&isB2C!=1037)||(orderStatus==3&&isB2C!=1037)}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag!=1}}">
+            <view class="a width-half btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+              data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-orange color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:else>
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+        </block>
+        <!--苛选身份证未认证的时候-->
+        <block wx:elif="{{(orderStatus==1&&isB2C==1037)||(orderStatus==3&&isB2C==1037)}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag!=1}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-orange color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1&&beforeSendGoods2CancelFlag==1}}">
+            <view class="a width-half btn-cancle" catchtap="globalDirectCancelOrder" data-addr-name="{{addrName}}"
+              data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单</view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1}}">
+            <view class="a width-all btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+              data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{beforeSendGoods2CancelFlag==1}}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-orange color-fff" catchtap="globalDirectCancelOrder"
+              data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+          <block wx:else>
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff"
+              data-customs-doc-id="{{customsDocId}}" data-addr-name="{{addrName}}" data-id-card-no="{{idCardNo}}"
+              catchtap="upId">上传身份证</view>
+          </block>
+        </block>
+        <!--身份证未认证的时候-->
+        <block wx:elif="{{orderStatus==2&&isB2C!=1037}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag!=1}}">
+            <view class="a width-all btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+              data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:else>
+            <view class="a width-all btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+          </block>
+        </block>
+        <!--海购身份证未认证的时候-->
+        <block wx:elif="{{orderStatus==2&&isB2C==1037}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag!=1}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1&&beforeSendGoods2CancelFlag==1}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-orange color-fff" catchtap="globalDirectCancelOrder"
+              data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{beforeSendGoods2CancelFlag==1}}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" catchtap="globalDirectCancelOrder"
+              data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单
+            </view>
+          </block>
+          <block wx:else>
+            <view class="a width-all" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          </block>
+        </block>
+        <block wx:elif="{{orderStatus==4&&isCardFlag!=1821&&proType!=1888}}">
+          <view class="a width-all btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+            data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+        </block>
+
+        <!--苛选整单直接取消-->
+        <block
+          wx:elif="{{isCardFlag==999&&shippingTypeStore==1023&&orderStatus==2&&isGroupOkFlag==1&&beforeSendGoods2CancelFlag==1}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="globalDirectCancelOrder"
+            data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单</view>
+        </block>
+        <block
+          wx:elif="{{shippingTypeStore==1023&&(orderStatus==1||orderStatus==2||orderStatus==3)&&beforeSendGoods2CancelFlag==1}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="globalDirectCancelOrder"
+            data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单</view>
+        </block>
+        <block wx:elif="{{shippingTypeStore==1022&&orderStatus==1&&beforeSendGoods2CancelFlag==1}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="globalDirectCancelOrder"
+            data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单</view>
+        </block>
+        <!--底部按钮：待付款-->
+        <block wx:elif="{{(offlineOrderType==1182||offlineOrderType==1184)&&checkFlag!=10000}}">
+          <block wx:if="{{checkFlag==0||checkFlag==2}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="toUrlVipPayCode">去核验</view>
+          </block>
+          <block wx:elif="{{isReturnFlag==1}}">
+            <block wx:if="{{isEvaluate==364}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+          </block>
+          <block wx:else>
+            <view class="a width-all" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          </block>
+        </block>
+        <block wx:elif="{{offlineOrderType==1122||offlineOrderType==1184}}">
+          <block wx:if="{{isReturnFlag==1}}">
+            <block wx:if="{{isEvaluate==364}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+          </block>
+          <block wx:else>
+            <view class="a width-all" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          </block>
+        </block>
+        <block wx:elif="{{beforeJD2CancelFlag&&isB2C!=1037&&isB2C!=1634&&isCardFlag!=1821&&proType!=1888}}">
+          <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="toApplyRefund">取消订单</view>
+        </block>
+        <!--全球海购待发货-->
+        <block wx:elif="{{(isB2C==1037||isB2C==1634)&&orderStatus==41}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1&&returnStatus==1&&returnCount>=1}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==1}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-orange color-fff" catchtap="globalDirectCancelOrder"
+              data-addr-name="{{addrName}}" data-order-store-id="{{orderStoreId}}" data-orderId="{{orderId}}">取消订单
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999&&isGroupOkFlag==0}}">
+            <view class="a width-all btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+              data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">邀请参团</view>
+          </block>
+          <block wx:elif="{{returnStatus!=1&&returnCount<1}}">
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="refundCancelOrder">取消订单
+            </view>
+          </block>
+          <block wx:else>
+            <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+          </block>
+        </block>
+        <!--苛选或者海购配送中-->
+        <block wx:elif="{{isB2C==1037&&orderStatus==42||isB2C==1634&&orderStatus==42}}">
+          <block wx:if="{{delayDeliveryState&&delayDeliveryState==1}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <block wx:if="{{isB2C!=1634}}">
+              <view catchtap="delayReceipt"
+              class="a width-three btn-cancle backgroundColor-ffa601 color-fff orderList-delay-btn">延迟收货</view>
+            </block>
+            
+            <view class="a width-three btn-cancle confirm-receipt backgroundColor-ff5d3d color-fff"
+              catchtap="confirmReceipt">确认收货</view>
+          </block>
+          <block wx:elif="{{isCardFlag&&isCardFlag==999}}">
+            <view class="a width-three btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-three btn-cancle backgroundColor-ffa601 color-fff" catchtap="detailGlobalGroup"
+              data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+            <view class="a width-three btn-cancle confirm-receipt backgroundColor-ff5d3d color-fff"
+              catchtap="confirmReceipt">确认收货</view>
+          </block>
+          <block wx:else>
+            <view class="a width-half btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+            <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="confirmReceipt">确认收货</view>
+          </block>
+        </block>
+        <!--020拼团订单组团中-->
+        <block wx:elif="{{isB2C==0&&isCardFlag==1821&&orderStatus==4||proType==1888&&isB2C==0&&orderStatus==4}}">
+          <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="two-btn btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailO2oGroup"
+            data-group-id="{{groupId}}" data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">邀请参团</view>
+        </block>
+        <!--020拼团订单待配送-->
+        <block wx:elif="{{isB2C==0&&isCardFlag==1821&&orderStatus==41||isB2C==0&&proType==1888&&orderStatus==41}}">
+          <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="two-btn btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailO2oGroup"
+            data-group-id="{{groupId}}" data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">拼团详情</view>
+        </block>
+        <!--020拼团订单配送中-->
+        <block wx:elif="{{isB2C==0&&isCardFlag==1821&&orderStatus==42}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--拼团配送中-->
+        <block wx:elif="{{isB2C==0&&proType==1888&&orderStatus==42}}">
+          <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="two-btn btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailO2oGroup"
+            data-group-id="{{groupId}}" data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">拼团详情</view>
+        </block>
+        <!--拼团配送中-->
+        <block wx:elif="{{orderStatus==42&&isCardFlag==999}}">
+          <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+          <view class="two-btn btn-cancle confirm-receipt backgroundColor-ff5d3d color-fff" catchtap="confirmReceipt"
+            data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">确认收货</view>
+        </block>
+
+        <!--底部按钮：待配送-->
+        <block wx:elif="{{orderStatus==41}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--底部按钮：配送中-->
+        <block wx:elif="{{orderStatus==42}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--底部按钮：待自提-->
+        <block wx:elif="{{orderStatus==44}}">
+          <block wx:if="{{isCardFlag==1821||proType==1888}}">
+            <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+            <view class="two-btn btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailO2oGroup"
+              data-group-id="{{groupId}}" data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">拼团详情</view>
+          </block>
+          <block wx:else>
+            <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+          </block>
+        </block>
+        <!--底部按钮：待取餐-->
+        <block wx:elif="{{orderStatus==45}}">
+          <block wx:if="{{isCardFlag==1821||proType==1888}}">
+            <view class="two-btn btn-cancle" catchtap="phoneService" data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}">{{filter.telText('联系客服',isCommunity)}}</view>
+            <view class="two-btn btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailO2oGroup"
+              data-group-id="{{groupId}}" data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}">拼团详情</view>
+          </block>
+          <block wx:else>
+            <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+          </block>
+        </block>
+        <!--全球苛选已送达-->
+        <block wx:elif="{{(isB2C==1037||isB2C==1634)&&orderStatus==1088}}">
+          <block wx:if="{{isCardFlag==999}}">
+            <block wx:if="{{isReturnFlag==1&&isEvaluate==364}}">
+              <view class="a width-half btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+                data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isReturnFlag==1&&isEvaluate==365}}">
+              <view class="a width-half btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+                data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isEvaluate==365}}">
+              <view class="a width-half btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+                data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view class="a width-half btn-cancle" catchtap="detailGlobalGroup" data-group-id="{{groupId}}"
+                data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情</view>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService"
+                class="a btn-cancle width-half backgroundColor-ff5d3d color-fff">{{filter.telText('联系客服',isCommunity)}}</view>
+            </block>
+          </block>
+          <block wx:else>
+            <block wx:if="{{isReturnFlag==1&&isEvaluate==364}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isReturnFlag==1&&isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+            </block>
+          </block>
+        </block>
+        <!--全球苛选已完成-->
+        <block wx:elif="{{(isB2C==1037||isB2C==1634)&&orderStatus==46}}">
+          <block wx:if="{{isCardFlag&&isCardFlag==999}}">
+            <block wx:if="{{isReturnFlag==1&&isEvaluate==364}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-three">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <view class="a width-three btn-cancle backgroundColor-ffa601 color-fff" catchtap="detailGlobalGroup"
+                data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isReturnFlag==1&&isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-three">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <view class="a width-three btn-cancle backgroundColor-ffa601 color-fff" catchtap="detailGlobalGroup"
+                data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-three">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <view class="a width-three btn-cancle backgroundColor-ffa601 color-fff" catchtap="detailGlobalGroup"
+                data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-three btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" catchtap="detailGlobalGroup"
+                data-group-id="{{groupId}}" data-order-store-id="{{orderStoreId}}" data-order-id="{{orderId}}">拼团详情
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            <block wx:if="{{isReturnFlag==1&&isEvaluate==364}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isReturnFlag==1&&isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+            </block>
+          </block>
+        </block>
+        <!--底部按钮：交易完成-->
+        <block wx:elif="{{orderStatus==46||orderStatus==1088}}">
+          <block wx:if="{{shippingTypes[0]==110||shippingTypes[0]==112||shippingTypes[0]==111||shippingTypes[0]==113}}">
+            <block wx:if="{{isReturnFlag==1}}">
+              <block wx:if="{{isEvaluate==364&&isViewCardPackageFlag==1}}">
+                <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+                </view>
+              </block>
+              <block wx:elif="{{isEvaluate==364}}">
+                <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+                </view>
+                <block wx:if='{{0&&!proType}}'>
+                  <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                    data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="addEvaluate">立即评价
+                  </view>
+                </block>
+              </block>
+              <block wx:elif="{{isViewCardPackageFlag==1}}">
+                <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+                </view>
+              </block>
+              <block wx:else>
+                <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+                </view>
+                <block wx:if='{{0&&!proType}}'>
+                  <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                    data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价
+                  </view>
+                </block>
+              </block>
+            </block>
+            <block wx:elif="{{isEvaluate==365&&isViewCardPackageFlag==1}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+            </block>
+            <block wx:elif="{{isEvaluate==365}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-half">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+              <block wx:if='{{0&&!proType}}'>
+                <view class="a width-half btn-cancle backgroundColor-ff5d3d color-fff" data-isb2c="{{isB2C}}"
+                  data-order-id="{{orderId}}" data-order-store-id="{{orderStoreId}}" catchtap="lookEvaluate">查看评价</view>
+              </block>
+            </block>
+            <block wx:elif="{{isViewCardPackageFlag==1}}">
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+            </block>
+            <block wx:else>
+              <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}
+            </view>
+          </block>
+        </block>
+        <!--底部按钮：交易完成-->
+        <block wx:elif="{{orderStatus==46}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--底部按钮：买家取消-->
+        <block wx:elif="{{orderStatus==115}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--底部按钮：卖家取消或取消-->
+        <block wx:elif="{{orderStatus==116||orderStatus==48}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <!--底部按钮：已关闭和交易已关闭-->
+        <block wx:elif="{{orderStatus==49||orderStatus==47}}">
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+        <block wx:else>
+          <view data-servicePhone="{{filter.telNum(servicePhone,addrMobile,isCommunity)}}" catchtap="phoneService" class="a btn-cancle width-all">{{filter.telText('联系客服',isCommunity)}}</view>
+        </block>
+      </view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+  </view>
+</template>
+<!-- 取餐码二维码 -->
+<view class='qr_code_pop' hidden='{{hiddenMealNo}}' catchtap='hideMealNo'>
+  <view class='qr_code'>
+    <canvas style="width: {{qrcode.width}}; height:{{qrcode.height}};" canvas-id="qr_code"></canvas>
+    <cover-view class='cover-view' catchtap='reloadMealNo'></cover-view>
+  </view>
+</view>
+
+
+
+<!-- pop弹框 -->
+<block wx:if="{{showPopFlag}}">
+  <view class="pop-container">
+    <view class="pop-msg-container">
+      <view class="pop-msg">{{popMsg}}</view>
+      <view class="pop-btn-container">
+        <block wx:if="{{showPopCancel}}">
+          <view class="cancel-btn" catchtap="{{btnCacleName}}">{{popCancelText||'取消'}}</view>
+        </block>
+        <view class="confirm-btn" catchtap="{{btnConfirmName}}">{{popConfirmText||'确定'}}</view>
+      </view>
+    </view>
+  </view>
+</block>
+<!--计重商品说明弹窗-->
+<block wx:if="{{weightPopShow}}">
+  <template is="weight-pop-tpl" data="{{...weightNotice}}"></template>
+</block>
+<template name="weight-pop-tpl">
+  <view class="fadeInUp-box">
+    <view class="fadeInUp-cont">
+      <view class="fadeInUp-title r1bb">{{title||'购买说明'}}
+        <view class="close" catchtap="closeWeightPop">
+          <image src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image>
+        </view>
+      </view>
+      <view class="fadeInUp-list">
+        <block wx:for="{{contentList}}" wx:for-item="li" wx:for-index="i" wx:key="contentList{{li.content}}">
+          <view class="li">{{li.content}}</view>
+        </block>
+      </view>
+      <view class="fadeInUp-btn close" catchtap="closeWeightPop">关闭</view>
+    </view>
+  </view>
+</template>
+<block wx:if="{{showInvoice}}">
+  <view id="pop-invoice">
+    <view class="pop-invoice-cnt">
+      <view class="pop-invoice-text">支持去开发票。订单完成后一个月内，可在订单详情页去开发票。</view>
+      <view id="pop-invoice-confirm" catchtap="closeInvoiceTip">知道了</view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{showIdPop}}">
+  <view class="dconfirm hide" id="pop-ID-tip">
+    <view class="tanchu">
+      <view class="p loading">海关要求购买跨境商品需要提供购买人身份信息，请完善并上传您的身份证信息</view>
+      <view class="c-color em">24小时未上传将自动取消订单</view>
+      <view class="btn-two">
+        <view class="span fl r1br" id="btn-close-ID" catchtap="closePopId">稍后</view>
+        <view class="span fl c-standard color-fff backgroundColor-ff5d3d" id="btn-fill-ID"
+          data-customs-doc-id="{{result.customsDocId}}" data-addr-name="{{result.addrName}}"
+          data-id-card-no="{{result.idCardNo}}" catchtap="upId">上传身份证</view>
+      </view>
+    </view>
+  </view>
+</block>

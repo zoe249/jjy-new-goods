@@ -1,0 +1,22 @@
+<import src="/templates/global/global.wxml"/>
+<view class="cashier-wrap">
+    <view class="bg-caitiao"></view>
+    <view class="cashier-head">
+        金额: <text class="c-color">￥</text><text class="c-color span">{{thirdPayAmount}}</text> 元
+    </view>
+    <view class="cashier-tips kexuan-xieyi r1bb">{{countDown}}</view>
+    <view class="fill-deductible">
+        <view>
+            <view class="fill-pay">
+                <view class="pay-left sel">
+                    <view>微信支付</view>
+                    <view class="c-gray-color">推荐安装微信5.0及以上版本的用户使用</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="bg-space"></view>
+<view class="comfirm-order pos-f {{!payIsTimeOut?'':'not-topay'}}" data-ispay="" catchtap="{{!payIsTimeOut?'toPaying':'toPayingDisabel'}}">确认支付</view>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

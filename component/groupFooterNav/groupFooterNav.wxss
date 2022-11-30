@@ -1,0 +1,71 @@
+/* component/groupFooterNav/groupFooterNav.wxss */
+
+.footer-seat{
+  width: 100%;
+  height: 90rpx;
+}
+
+.footer-container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #FFF;
+  display: flex;
+  align-items: stretch;
+  z-index: 9999;
+  transform: translate3d(0,0,1000rpx);
+}
+
+.footer-container .footer-item-container{
+  flex: 1;
+  height: 90rpx;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-container .footer-item-container:before{
+  content: '';
+  display: inline-block;
+  width: 48rpx;
+  height: 36rpx;
+  background: url("https://shgm.jjyyx.com/m/images/kexuan/icon_pinquanqiu.png") no-repeat center;
+  background-size: contain;
+}
+
+.footer-container .footer-item-container .nav-msg{
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.footer-container .footer-item-container.active:before{
+  background-image: url("https://shgm.jjyyx.com/m/images/kexuan/icon_pinquanqiu_active.png");
+}
+.footer-container .footer-item-container.active .nav-msg{
+  color: #FF4752;
+}
+
+.footer-container .footer-item-container.my-group-nav:before{
+  background-image: url("https://shgm.jjyyx.com/m/images/kexuan/icon_wodepintuan.png");
+}
+.footer-container .footer-item-container.my-group-nav.active:before{
+  background-image: url("https://shgm.jjyyx.com/m/images/kexuan/icon_wodepintuan_active.png");
+}
+
+.footer-container .line{
+  width: 1rpx;
+  background: #EDEDED;
+}
+
+.footer-container.iphone-x-patcher-container {
+  flex-wrap: wrap;
+  height: auto;
+}
+
+.footer-container.iphone-x-patcher-container component-iphone-x-patcher {
+  width: 100%;
+}

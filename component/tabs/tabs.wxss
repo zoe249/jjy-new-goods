@@ -1,0 +1,33 @@
+@import './_tabs.wxss';
+.ma-tabs {
+  width: 100%;
+}
+.ma-sticky{
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 6;
+}
+
+.ma-tabs-bar-wrp {
+  width: 100%;
+}
+
+.ma-tabs-bar-content {
+  width: 100%;
+  white-space: nowrap
+}
+
+.ma-tabs-bar-item {
+  display: inline-block
+}
+
+.ma-tabs-bar-title {
+  display: inline-block;
+  /* border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent */
+}
+.ma-tabs-bar-value{
+  font-size: 28rpx
+}

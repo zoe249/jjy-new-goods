@@ -1,0 +1,216 @@
+.city-sel-box{
+  width: 100%;
+  padding: 30rpx 20rpx;
+  background: #fff;
+  font-size: 26rpx;
+  position: relative;
+  z-index: 19;
+}
+.city-sel{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 32rpx;
+  background:#f3f3f4;
+}
+.cur-select-value{
+  border-right: 1px solid #DCDEE2;
+  padding: 0 60rpx;
+  flex-shrink: 0;
+  position: relative;
+}
+.input-wrap{
+  width: 100%;
+  background: url(https://shgm.jjyyx.com/m/images/icon_search.png) 20rpx center no-repeat;
+  background-size: 40rpx 40rpx;
+  padding: 0 30rpx 0 80rpx;
+}
+.input-wrap input{
+  width: 100%;
+  height: 100%;
+}
+.choice-address{
+  background: #fff;
+  padding: 20rpx 30rpx;
+}
+.choice-address .tit{
+  font-size: 22rpx;
+  line-height: 1.4;
+  color: #9E9EA6;
+  margin-bottom: 10rpx;
+}
+.now-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+}
+.now-location .relodpos{
+  font-size: 22rpx;
+  color: #0072CE;
+  padding-left: 60rpx;
+}
+.shop-wrap {
+  margin: 30rpx 30rpx 0;
+  background: #fff;
+  border-radius: 26rpx;
+  padding-bottom: 40rpx;
+}
+.shop-list {
+  border-bottom: 1px solid #E7E7E7;
+  padding: 10rpx 0 20rpx;
+  margin: 0 20rpx;
+}
+.shop-list:last-child {
+  border: 0;
+}
+.shop-area {
+  padding: 10rpx 10rpx 0;
+  color: #6E6D79;
+  font-size: 22rpx;
+}
+.shop-item-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.shop-item {
+  width: 32%;
+  margin-right: 2%;
+  font-size: 22rpx;
+  line-height: 1.4;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+  border: 1px solid #707070;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.shop-item:nth-child(3n){
+  margin-right: 0;
+}
+
+.cur-select-value::after {
+  content: "";
+  position: absolute;
+  right: 10rpx;
+  top: 50%;
+  width: 32rpx;
+  height: 32rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_solid_down.png) no-repeat right center;
+  background-size: contain;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  transform: translateY(-50%);
+  background-image: url(https://shgm.jjyyx.com/m/images/icon_solid_down.png);
+  background-position-x: right;
+  background-position-y: center;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  transition-property: all;
+}
+
+
+
+.choice-address-result {
+  /* position: absolute;
+  top: 90rpx;
+  left: 0;
+  right: 0;
+  background: #fff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  z-index: 9; */
+}
+
+.choice-address-result .ul {
+  padding-left: 32rpx;
+}
+
+.choice-address-result .ul .li {
+  width: 100%;
+}
+
+.choice-address-result .ul .li.cur:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 32rpx;
+  height: 32rpx;
+  margin-top: -16rpx;
+  background: url(https://shgm.jjyyx.com/m/images/icon_check_active.png) no-repeat center;
+  -webkit-background-size: 32rpx;
+  background-size: 32rpx;
+}
+
+.choice-address-result .ul .li .a {
+  display: block;
+  padding: 24rpx 32rpx 24rpx 0;
+}
+
+.choice-address-result .ul .li .a .em {
+  line-height: 44rpx;
+  font-size: 28rpx;
+}
+
+.choice-address-result .ul .li .a .p {
+  line-height: 36rpx;
+  font-size: 24rpx;
+  color: var(--gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seach_scroll{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 120rpx;
+  background: #fff;
+  z-index: 9;
+}
+.search_shop{
+  border-bottom: 1px solid #E7E7E7;
+  padding: 20rpx 30rpx;
+  line-height: 44rpx;
+  font-size: 28rpx;
+}
+.search_shop_dec{
+  line-height: 36rpx;
+  font-size: 24rpx;
+  color: var(--gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.error{
+  background: transparent;
+}
+.error .img {
+    display: block;
+    width: 400rpx;
+    height: 400rpx;
+    margin: 244rpx auto 0;
+}
+
+.error .p {
+    margin: 0 24rpx;
+    color: #808080;
+    font-size: 30rpx;
+    text-align: center;
+}

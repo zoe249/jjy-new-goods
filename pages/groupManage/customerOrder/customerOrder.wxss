@@ -1,0 +1,337 @@
+/* pages/groupManage/customerOrder/customerOrder.wxss */
+
+page {
+  background-color: #f4f4f4;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.customer-order-head {
+  position: relative;
+  background-color: #fff;
+  padding: 40rpx 32rpx 40rpx 140rpx;
+  border-bottom: 16rpx solid #f4f4f4;
+}
+
+.head-image {
+  position: absolute;
+  top: 34rpx;
+  left: 32rpx;
+}
+
+.head-image image {
+  border: 1rpx solid #e7e7e7;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: url("https://shgm.jjyyx.com/m/images/evaluate_default_avatar.png") no-repeat center;
+  background-size: 100%;
+}
+
+.info-box {
+  position: relative;
+  color: #777;
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.info-box .info-mobile {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+
+.info-num {
+  color: #777;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 10rpx 0 0;
+}
+
+.order-index .list-box {
+  margin: 0 0 0;
+  background-color: #f4f4f4;
+  padding: 0 15rpx;
+}
+
+.order-index .list-box .li {
+  margin-bottom: 16rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.order-index .list-box .li:last-child {
+  margin-bottom: 0;
+}
+
+.order-index .list-box .li .get-time-box {
+  position: relative;
+  padding: 10rpx 32rpx;
+  line-height: 52rpx;
+  color: #313031;
+  font-size: 24rpx;
+}
+
+.order-index .list-box .li .get-time-text {
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.order-index .list-box .li .get-time-box .time {
+  position: absolute;
+  top: 10rpx;
+  right: 32rpx;
+  line-height: 52rpx;
+}
+
+.order-index .list-box .li .head {
+  position: relative;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 32rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-size: 16rpx auto;
+}
+
+.order-index .list-box .li .head .order-status {
+  position: absolute;
+  right: 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  top: 0;
+  font-size: 24rpx;
+  color: #313031;
+  font-weight: 500;
+}
+
+.order-index .list-box .li .head .text {
+  width: 580rpx;
+  display: inline-block;
+  height: 88rpx;
+  vertical-align: middle;
+  line-height: 88rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 24rpx;
+  color: #313031;
+  font-weight: 500;
+}
+
+.order-index .list-box .li .head .text .icon-pintuan {
+  position: absolute;
+  right: 90rpx;
+  top: 0;
+  background: url("https://shgm.jjyyx.com/m/images/icon_pintuan.png") no-repeat center;
+  width: 80rpx;
+  height: 80rpx;
+  background-size: 100%;
+}
+
+.order-index .list-box .li .head .text .icon-global {
+  display: inline-block;
+  height: 32rpx;
+  width: 110rpx;
+  vertical-align: middle;
+  border-radius: 0;
+  margin: 0 0 0 12rpx;
+}
+
+.order-index .list-box .li .head .text .span {
+  display: inline-block;
+  margin-left: 8rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  vertical-align: top;
+  color: #94969c;
+  background-color: #fff;
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #94969c;
+  font-size: 24rpx;
+  margin-top: 26rpx;
+}
+
+.order-index .list-box .li .head .text .customer-service {
+  background-color: #e4f1ff;
+  color: #5db1ff;
+}
+
+.order-index .list-box .li .cnt {
+  padding: 20rpx 32rpx;
+  background-color: #fff9f5;
+}
+
+.order-index .list-box .li .cnt .one {
+  white-space: nowrap;
+  min-height: 132rpx;
+}
+
+.order-index .list-box .li .cnt .one .image {
+  display: table-cell;
+  position: relative;
+  height: 131rpx;
+  width: 130rpx;
+  border: 1rpx solid #f8ddca;
+  background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100% auto;
+  float: left;
+}
+
+.order-index .list-box .li .cnt .one .image .i {
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  background-color: #ffa700;
+  font-size: 20rpx;
+  border-radius: 16rpx;
+  padding: 0 8rpx;
+  color: #fff;
+}
+
+.order-index .list-box .li .cnt .one .image image {
+  display: block;
+  height: 128rpx;
+  width: 128rpx;
+  border: none;
+}
+
+.order-index .list-box .li .cnt .one text {
+  white-space: normal;
+  width: 550rpx;
+  padding: 0 0 0 20rpx;
+  line-height: 30rpx;
+  font-size: 26rpx;
+  display: table-cell;
+  vertical-align: middle;
+  height: 130rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.order-index .list-box .li .cnt .more {
+  white-space: nowrap;
+}
+
+.order-index .list-box .li .cnt .more .image {
+  position: relative;
+  display: inline-block;
+  height: 131rpx;
+  width: 130rpx;
+  margin: 0 0 0 20rpx;
+  border: 1rpx solid #f8ddca;
+  background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100%;
+}
+
+.order-index .list-box .li .cnt .more .image .i {
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  background-color: #ffa700;
+  font-size: 20rpx;
+  border-radius: 16rpx;
+  padding: 0 8rpx;
+  color: #fff;
+}
+
+.order-index .list-box .li .cnt .more .image image {
+  display: block;
+  height: 128rpx;
+  width: 128rpx;
+  border: none;
+}
+
+.order-index .list-box .li .total-item {
+  padding: 20rpx 32rpx;
+  color: #999;
+}
+
+.order-index .list-box .li .total-item .total-item1 text, .total-item2-text,
+.order-index .list-box .li .total-item .total-item2 text {
+  height: 42rpx;
+  line-height: 42rpx;
+}
+
+.order-index .list-box .li .total-item .total-item2 .total-item2-span {
+  display: inline-block;
+  line-height: 42rpx;
+  color: #FF4752;
+}
+
+.order-index .list-box .li .time-tip {
+  position: relative;
+  height: 64rpx;
+}
+
+.order-index .list-box .li .time-tip .time-tip-text {
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  background-color: #ffeeeb;
+  color: #FF4752;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.order-index .list-box .li .time-tip .time-tip-text icon {
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 50%;
+  bottom: -16rpx;
+  font-size: 0;
+  border-width: 8rpx;
+  border-style: solid;
+  border-color: #ffeeeb transparent transparent;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.order-index .list-box .li .btn {
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-top: 1rpx solid #ededed;
+  border-bottom: 1rpx solid #ededed;
+}
+
+.order-index .list-box .li .btn .two-btn {
+  display: inline-block;
+  width: 50% !important;
+  line-height: 88rpx;
+}
+
+.order-index .list-box .li .btn .one-btn {
+  width: 100% !important;
+}
+
+.order-index .list-box .li .btn .three-btn {
+  width: 33.33% !important;
+  display: inline-block;
+}

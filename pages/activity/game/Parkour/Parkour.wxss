@@ -1,0 +1,654 @@
+/* 顶部红包弹出框部分 */
+#header .Tooltip {
+	width: 750rpx;
+	min-height: 182rpx;
+	background: #FFFFFF;
+	padding: 29rpx 30rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+#header .Tooltip .left{
+	width: 65rpx;
+	height: 65rpx;
+	margin-right: 23rpx;
+}
+#header .Tooltip .left image{
+	width: 100%;
+	height: 100%;
+}
+#header .Tooltip .right .top{
+	font-size: 31rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #FD7968;
+	line-height: 10rpx;
+	margin-bottom: 20rpx;
+}
+#header .Tooltip .right .bottom{
+	width: 549rpx;
+	font-size: 23rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #7D7D7D;
+	line-height: 32rpx;
+}
+
+@keyframes nextshow {
+	from {
+		transform: translateY(-860rpx);
+	}
+
+	to {
+		transform: translateY(0rpx);
+	}
+}
+
+@keyframes nexthide {
+	from {
+		transform: translateY(0rpx);
+	}
+
+	to {
+		transform: translateY(-900rpx);
+	}
+}
+
+#header .hide {
+	animation: nexthide;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+#header .show {
+	animation: nextshow;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+/* 内容区域 */
+#section {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+}
+
+/* 背景图 */
+#section .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+}
+#section .Raiders{
+	width: 14vw;
+	position: absolute;
+	left: 78vw;
+	top: 7vh;
+	z-index: 3;
+}
+
+/* 可移动的点标记 */
+#section .icon {
+	width: 8vw;
+	height: 5vh;
+	position: absolute;
+	left: 63vw;
+	top: 81vh;
+	z-index: 3;
+}
+/* 继续答题按钮 */
+#section .continue{
+	position: absolute;
+	bottom: 13vh;
+	left: 2vw;
+	z-index: 3;
+	padding: 10rpx 20rpx;
+	background: linear-gradient(0deg, #FF2B39 0%, #FF958B 100%);
+	box-shadow: 0px -2rpx 3rpx 0px rgba(255, 255, 255, 0.86), 0px 8rpx 3rpx 0px rgba(207, 1, 5, 0.86);
+	border-radius: 32rpx;
+	font-size: 23rpx;
+	font-family: PingFang;
+	color: #FFFFFF;
+}
+
+/* 底部开始 */
+#footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 10vh;
+	z-index: 3;
+}
+
+/* 底部背景 */
+#footer .BottomBg {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* 底部内容 */
+#footer .content {
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	padding: 0 3vw;
+}
+
+#footer .content .left {
+	width: 28vw;
+	height: 100%;
+}
+
+#footer .content .left image {
+	width: 23vw;
+	height: 100%;
+}
+
+#footer .content .middle {
+	position: relative;
+	width: 24vw;
+	height: 12vh;
+}
+
+#footer .content .middle image {
+	position: absolute;
+	top: -3.2vh;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+#footer .content .middle .number{
+	position: absolute;
+	top: -4vh;
+	right: 2vw;
+	z-index: 3;
+	width: 6vw;
+	height: 6vw;
+	background: #E20011;
+	border-radius: 50%;
+	font-size: 24rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #F6FF00;
+}
+
+#footer .content .right {
+	width: 28vw;
+	height: 100%;
+}
+
+#footer .content .right image {
+	width: 12vw;
+	height: 100%;
+}
+
+/* 弹出框部分 */
+#PopUp {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+/* 遮盖 */
+#PopUp .coverUp {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.45);
+}
+
+#PopUp .content {
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+}
+
+/* 说明的弹出框 */
+.hintBg {
+	position: relative;
+	width: 600rpx;
+	height: 800rpx;
+	/* box-shadow: 0 9rpx 0 0 #006FBE, 0 10rpx 0 0 #141C41; */
+	border-radius: 57rpx;
+	margin-bottom: 35rpx;
+}
+
+.hintBg image {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.noTsy{
+	color: red;
+	padding-top: 54rpx;
+	font-size: 19rpx;
+}
+
+#PopUp .content .hintBg .Word {
+	position: relative;
+	z-index: 3;
+	padding: 67rpx 83rpx 0;
+}
+
+#PopUp .content .hintBg .Word .title {
+	font-size: 47rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #2567C7;
+	text-align: center;
+	margin-bottom: 89rpx;
+}
+
+#PopUp .content .hintBg .Word .text {
+	font-size: 30rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #2567C7;
+	line-height: 41rpx;
+}
+
+#PopUp .content .hintBg .Word .text #scroll {
+	height: 485rpx;
+}
+
+/* 地点选择题的弹窗 */
+#PopUp .content .addressTck {
+	position: relative;
+	width: 482rpx;
+	height: 751rpx;
+	margin-bottom: 42rpx;
+}
+
+#PopUp .content .addressTck .Bg {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#PopUp .content .addressTck .Word {
+	position: relative;
+	z-index: 3;
+	padding: 18rpx 30rpx 0;
+	height: 100%;
+	width: 100%;
+}
+
+#PopUp .content .addressTck .Word .title {
+	font-size: 33rpx;
+	font-family: 广捷居迷你字库;
+	font-weight: 400;
+	color: #FFEF75;
+	text-shadow: 0px 0px 17rpx #648ECB;
+	text-align: center;
+	margin-bottom: 80rpx;
+}
+#PopUp .content .addressTck .Word .question #scroll{
+	max-height: 370rpx;
+}
+#PopUp .content .addressTck .Word .question #scroll .scrollli{
+	padding:0 50rpx;
+}
+#PopUp .content .addressTck .Word .question .questionName {
+	font-size: 24rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #2866CF;
+	margin-bottom: 30rpx;
+	line-height: 32rpx;
+}
+
+#PopUp .content .addressTck .Word .question .chooseDiv {
+	position: relative;
+	width: 100%;
+	min-height: 40rpx;
+	font-size: 24rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #2866CF;
+	line-height: 32rpx;
+	padding: 11rpx 42rpx 11rpx 13rpx;
+	margin-bottom:25rpx;
+}
+
+#PopUp .content .addressTck .Word .question .chooseDiv:last-child {
+	margin-bottom: 0;
+}
+
+#PopUp .content .addressTck .Word .question .chooseDiv .xzBg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+#PopUp .content .addressTck .Word .question .chooseDiv text {
+	position: relative;
+	z-index: 3;
+	/* padding: 10rpx 0; */
+	line-height: 32rpx;
+	color: #2F7AD5;
+}
+
+#PopUp .content .addressTck .Word .question .chooseDiv .checked {
+	position: relative;
+	z-index: 3;
+	width: 27rpx;
+	height: 26rpx;
+	position: absolute;
+	right: 13rpx;
+}
+
+/* 提交按钮 */
+#PopUp .content .addressTck .Word .btn {
+	position: absolute;
+	left: 0;
+	bottom: 30rpx;
+	width: 100%;
+}
+
+#PopUp .content .addressTck .Word .bottonBtn {
+	width: 252rpx;
+	height: 61rpx;
+	background: linear-gradient(0deg, #FF2B39 0%, #FF958B 100%);
+	box-shadow: 0px -2rpx 3rpx 0px rgba(255, 255, 255, 0.86), 0px 8rpx 3rpx 0px rgba(207, 1, 5, 0.86);
+	border-radius: 32rpx;
+	font-size: 27rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #FFFFFF;
+	margin-bottom: 26rpx;
+}
+#PopUp .content .addressTck .Word .tsy{
+	width: 416rpx;
+	height: 53rpx;
+	background: #FFFFFF;
+	opacity: 0.52;
+	border-radius: 27rpx;
+	font-size: 21rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #114492;
+}
+/* 左上角倒计时弹窗 */
+.DjsTime{
+	position: absolute;
+	top: 94rpx;
+	left: 65rpx;
+	z-index: 3;
+	width: 97rpx;
+	height: 104rpx;
+}
+.DjsTime image{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+.DjsTime text{
+	color: #fff;
+	font-size: 30rpx;
+	z-index: 5;
+	position: relative;
+	top: 5rpx;
+	left: -2rpx;
+}
+
+/* 回答完问题提示框 */
+#PopUp .content .popUp {
+	position: relative;
+	margin-bottom: 35rpx;
+	width: 565rpx;
+	height: 591rpx;
+}
+
+#PopUp .content .popUp .popUpBg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+#PopUp .content .popUp .document {
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+}
+
+#PopUp .content .popUp .document .icon {
+	width: 137rpx;
+	height: 137rpx;
+	margin-bottom: 46rpx;
+}
+
+#PopUp .content .popUp .document .title {
+	font-size: 47rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #2567C7;
+	margin-bottom: 35rpx;
+}
+
+#PopUp .content .popUp .document .Ptitle {
+	font-size: 40rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #2567C7;
+	margin-bottom: 30rpx;
+}
+
+#PopUp .content .popUp .document .TextTitle {
+	font-size: 24rpx;
+	font-family: PingFang;
+	font-weight: 400;
+	color: #1473FF;
+	line-height: 35rpx;
+	margin-bottom: 30rpx;
+	text-align: center;
+}
+
+#PopUp .content .popUp .document .button {
+	width: 283rpx;
+	height: 72rpx;
+	background: linear-gradient(0deg, #FF2B39 0%, #FF958B 100%);
+	box-shadow: 0px -1rpx 2rpx 0px rgba(255, 255, 255, 0.86), 0px 5rpx 2rpx 0px rgba(207, 1, 5, 0.86);
+	border-radius: 36rpx;
+	font-size: 31rpx;
+	font-family: PingFang;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+/* 关闭弹框按钮 */
+#PopUp .content .closure {
+	width: 68rpx;
+	height: 68rpx;
+}
+
+#PopUp .content .closure image {
+	width: 100%;
+	height: 100%;
+}
+
+/* 自定义封装css部分开始 */
+/* 点击穿透 */
+.click_true {
+	pointer-events: none;
+}
+
+.click_false {
+	pointer-events: auto;
+}
+
+/* 盒阴影 */
+.hyy {
+	box-shadow: 0 0 50rpx 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 换行 */
+.hh {
+	word-break: break-all;
+	overflow-wrap: break-word;
+}
+
+/* 超出省略的样式 */
+.slh_one {
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.slh_two {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.slh_three {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+/* 怪异盒模型 */
+.box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* 弹性布局 */
+.dis_f {
+	display: flex;
+}
+
+.dis_f_l_c {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.dis_f_l_b {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.dis_f_c_b {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.dis_f_c_c {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dis_f_r_c {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.dis_f_sb {
+	display: flex;
+	justify-content: space-between;
+}
+
+.dis_f_sb_b {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.dis_f_sb_c {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dis_f_sa_c {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.dis_f_w {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.dis_f_co {
+	display: flex;
+	flex-direction: column;
+}
+
+.dis_f_co_c_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.dis_f_co_l_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.dis_f_co_r_c {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.dis_f_co_sb {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/* 自定义封装css部分结束 */

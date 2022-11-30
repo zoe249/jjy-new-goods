@@ -1,0 +1,49 @@
+<!--pages/groupManage/customerOrder/customerOrder.wxml-->
+<import src="/templates/global/global.wxml" />
+<view class='money-box'>
+  <block wx:if="{{1==0&&showError}}">
+    <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:else>
+    <view class='money-cnt'>
+      <view class='head'>可用余额：
+        <view class='span'>￥{{result.myBrokerages}}</view>
+      </view>
+      <!-- <view class='text1'>提现金额</view>
+      <view class='input-box'>￥
+        <view class='input-cnt'>
+          <input focus='true' value='{{value}}' bindinput='bindinput' placeholder='请输入体现金额'></input>
+        </view>
+      </view> -->
+      <view class='rule'>
+        <view class='rule-li'>
+          <view class='num'>1</view>
+          <view class='text'>单笔提现金额不得小于1元，不得大于5000元。</view>
+        </view>
+        <view class='rule-li'>
+          <view class='num'>2</view>
+          <view class='text'>每日最多提现一次，一次性全部提出账户金额。</view>
+        </view>
+        <!-- <view class='rule-li'>
+          <view class='num'>3</view>
+          <view class='text'>每日提现累计金额不得大于20000.</view>
+        </view> -->
+      </view>
+      <view class='get-btn {{value >= 1?"allow-get":"bg-ccc"}}' catchtap='get'>立即提现</view>
+    </view>
+  </block>
+</view>
+
+<!-- 弹窗 - 大金额提示 -->
+<component-global-modal
+        modalName="{{modalName}}"
+        content="{{content}}"
+        contentStyle="{{contentStyle}}"
+        footer="{{footer}}"
+>
+</component-global-modal>
+
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+

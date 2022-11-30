@@ -1,0 +1,17 @@
+/* pages/user/useAgreement/useAgreement.wxss */.agreement-main{
+  padding:12rpx  30rpx 24rpx;
+}
+.agreement-main .h3 {
+  margin: 12rpx 14rpx;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  font-weight: 600;
+}
+.agreement-main .p {
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.agreement-main .indent2 {
+  text-indent: 56rpx;
+}

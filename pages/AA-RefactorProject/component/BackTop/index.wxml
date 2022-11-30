@@ -1,0 +1,5 @@
+<view class="section">
+	<view class="backtop  {{isBlack?'blackWhite':''}}" bindtap="top">
+		<image src="{{$.img_src}}/components/backtops.png" mode="aspectFit"></image>
+	</view>
+</view>

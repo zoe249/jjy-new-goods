@@ -1,0 +1,77 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/proGoodsList/proGoodsList.wxml" />
+<!-- <import src="/templates/waterList/waterList.wxml"/> -->
+<view class="page-header-haigou">
+    <view class='group-nav'>
+        <view wx:for="{{swiperNavItem}}" wx:key="this_{{index}}" bindtap='swiperNav' class='group-nav-item {{navActive == index?"active":""}}' data-index='{{index}}' wx:key="nav_{{index}}">{{item}}</view>
+    </view>
+
+</view>
+<view class='share-list-swiper'>
+    <scroll-view style='height:100vh;' scroll-y lower-threshold="{{threshold}}" bindscrolltolower="scrollBottom">
+        <!-- <template is="colonelTemp" data="{{gInfo,sheetId}}"></template> -->
+        <block wx:if="{{navActive == 0}}">
+            <block wx:for="{{promotionForGoodOutputLis}}" wx:key="for_{{index}}">
+                <template is="proGoodsList" data="{{item, sheetId, myGroupWaterList}}"></template>
+            </block>
+        </block>
+        <block wx:else>
+            <block wx:for="{{buyingPromotionForGoodsOutputList}}" wx:key="Rush_{{index}}">
+                <template is="proRushGoodsList" data="{{item, sheetId, myGroupWaterList}}"></template>
+            </block>
+        </block>
+        <block wx:if="{{isNomre == navActive}}">
+        <template is="noMore"></template>
+        </block>
+    </scroll-view>
+</view>
+<!-- <swiper class='share-list-swiper'>
+    <swiper-item> -->
+<!-- </swiper-item>
+    <swiper-item> -->
+<!-- </swiper-item></swiper> -->
+<template name="colonelTemp">
+    <view class='colonel-container ui-flex'>
+        <view class='colonel-photo'>
+            <image src='{{gInfo.memberPic}}'></image>
+        </view>
+        <view class='colonel-info'>
+            <view class='colonel-area'>{{gInfo.address.provinceName}} {{gInfo.address.cityName}} {{gInfo.address.areaName}} {{gInfo.address.address}}</view>
+            <view class='colonel-name'>{{gInfo.memberUserName?gInfo.memberUserName:""}} {{gInfo.memberTel}}</view>
+            <view class='colonel-nums ui-flex'>
+                <view class='frequency'>开团次数
+                    <text>{{gInfo.startGroupCount }}</text>
+                </view>
+                <view class='fans'>粉丝数量
+                    <text>{{gInfo.fansCount }}</text>
+                </view>
+            </view>
+            <view class='sheet-id'>水单号：{{sheetId}}</view>
+        </view>
+    </view>
+</template>
+
+<component-share-popup showShareDialogFlag="{{showShareDialogFlag}}"></component-share-popup>
+
+<view class='extension-model {{showExtension?"showExtension":""}}'>
+    <view class='mask' catchtap='closeExtension'></view>
+    <view class='extension-share-info'>
+        <view class='gods-info'>
+            <image src='{{shareInfo.shareFriendImg}}'></image>
+            <view class='gods-dec'>
+                <view class='gods-title'>悦团购推广</view>
+                <view class='gods-i'>1.仅发起拼团，但不生成订单 </view>
+                <view class='gods-i'>2.参团好友为新用户时，将自动成为你的粉丝 </view>
+                <view class='gods-i'>3.善用“推广团”可帮你迅速吸粉、拿返利</view>
+            </view>
+        </view>
+        <button class="gods-share" open-type='share'>确认推广</button>
+        <!-- <view class='extension-share-type'></view> -->
+    </view>
+
+</view>
+<template is="toast" data="{{...toastData}}"></template>
+<block wx:if="{{navActive == isEmpty}}">
+<template is="empty"></template>
+</block>
+<template is="globalLoading" data="{{globalLoading}}"></template>

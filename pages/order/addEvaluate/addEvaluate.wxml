@@ -1,0 +1,85 @@
+<!--pages/order/lookInvoice/lookInvoice.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view id="container" class="container">
+        <view class="add-evaluate" id="add-evaluate">
+            <block wx:if="{{(result.shippingType==112||result.shippingType==110)&&!options.proType}}">
+                <view class="evaluate-score evaluate-distribution">
+                    <view class="avatar clearfix">
+                        <image src="{{result.distributionIcon}}"></image>
+                        <view class="span">骑士服务评价</view>
+                        <view class="em">送达时间 {{result.deliveryTime}}</view>
+                    </view>
+                    <view class="evaluate clearfix">
+                        <view class="span">配送服务</view>
+                        <view class="em{{distributionStar>=1?' active':''}}" data-value="1" data-type="distributionStar" catchtap="startClick"></view>
+                        <view class="em{{distributionStar>=2?' active':''}}" data-value="2" data-type="distributionStar" catchtap="startClick"></view>
+                        <view class="em{{distributionStar>=3?' active':''}}" data-value="3" data-type="distributionStar" catchtap="startClick"></view>
+                        <view class="em{{distributionStar>=4?' active':''}}" data-value="4" data-type="distributionStar" catchtap="startClick"></view>
+                        <view class="em{{distributionStar>=5?' active':''}}" data-value="5" data-type="distributionStar" catchtap="startClick"></view>
+                        <block wx:if="{{distributionStar}}"><view class="i">{{textStarArr[distributionStar]}}</view></block>
+                    </view>
+                </view>
+            </block>
+            <view class="evaluate-score evaluate-shop">
+                <view class="avatar clearfix">
+                    <image src="{{result.storeIcon}}"></image>
+                    <view class="span">{{result.storeName}}</view>
+                </view>
+                <view class="evaluate clearfix">
+                    <view class="span">综合评分</view>
+                    <view class="em{{storeStar>=1?' active':''}}" data-value="1" data-type="storeStar" catchtap="startClick"></view>
+                    <view class="em{{storeStar>=2?' active':''}}" data-value="2" data-type="storeStar" catchtap="startClick"></view>
+                    <view class="em{{storeStar>=3?' active':''}}" data-value="3" data-type="storeStar" catchtap="startClick"></view>
+                    <view class="em{{storeStar>=4?' active':''}}" data-value="4" data-type="storeStar" catchtap="startClick"></view>
+                    <view class="em{{storeStar>=5?' active':''}}" data-value="5" data-type="storeStar" catchtap="startClick"></view>
+                    <block wx:if="{{storeStar}}"><view class="i">{{textStarArr[storeStar]}}</view></block>
+                </view>
+                <block wx:if="{{labelList&&labelList.length>0}}">
+                    <view class="label clearfix">
+                        <block wx:for="{{labelList}}" wx:for-item="label">
+                            <view class="span{{label.select?' active':''}}" data-label-id="{{label.id}}" catchtap="selectLable">{{label.name}}</view>
+                        </block>
+                    </view>
+                </block>
+            </view>
+            <block wx:for="{{commentGoodsInputList}}" wx:for-item="list">
+                <view class="evaluate-goods clearfix">
+                    <view class="text">{{list.goodsName}}</view>
+                    <view class="evaluate-result clearfix" data-sku-id="{{list.skuId}}" data-goods-name="{{list.goodsName}}">
+                        <view class="span bad{{list.commentGoodsStatus&&list.commentGoodsStatus==362?' active':''}}" data-comment-goods-status="362" data-sku-id="{{list.skuId}}" catchtap="goodsEvaluate">差评</view>
+                        <view class="span good{{list.commentGoodsStatus&&list.commentGoodsStatus==361?' active':''}}" data-comment-goods-status="361" data-sku-id="{{list.skuId}}" catchtap="goodsEvaluate">好评</view>
+                    </view>
+                </view>
+            </block>
+            <view class="evaluate-input">
+                <textarea class="evaluate-text" value="{{contentInfo}}" bindblur="textareaBlur" placeholder="{{result.commentText?result.commentText:'亲~说说您的对商品的感受，对其他小伙伴有很大帮助哦~'}}"></textarea>
+                <!-- <view class="evaluate-tip">至少输入{{minInf}}个字</div>-->
+            </view>
+            <view class="upload-img clearfix">
+                <block wx:if="{{commentImages.length>=maxImageNum}}">
+                    <view class="upload-btn off" catchtap="updataImage"></view>
+                </block>
+                <block wx:else>
+                    <view class="upload-btn" catchtap="updataImage"></view>
+                </block>
+                <block wx:if="{{commentImages.length<1}}">
+                    <view class="upload-text">上传照片<view class="span">(最多上传10张图片)</view></view>
+                </block>
+                <block wx:for="{{commentImages}}" wx:for-item="imgItem" wx:for-index="imgIndex">
+                    <view class="li"><view class="del-img" catchtap="delImg" data-file-url="{{imgItem}}"></view><image src="{{imgItem}}" data-url="{{imgItem}}" ></image></view>
+                </block>
+            </view>
+        </view>
+        <view class="add-evaluate-btn active" id="add-evaluate-btn" catchtap="submitEvaluate">提交评价</view>
+    </view>
+</block>

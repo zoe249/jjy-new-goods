@@ -1,0 +1,172 @@
+/* component/groupFooterNav/groupFooterNav.wxss */
+/* 公共css */
+@import '../../pages/AA-RefactorProject/common/css/css.wxss';
+.footer-seat {
+  width: 100%;
+  height: 112rpx;
+}
+
+.footer-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: stretch;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container .footer-item-container {
+  flex: 1;
+  height: 112rpx;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction:column;
+  padding-bottom: 4rpx;
+  color: #666666;
+}
+.footer-container .footer-item-container.active{
+  color: #fc0d1b;
+}
+
+.footer-container .footer-item-container .nav-icon image {
+  position: relative;
+  width: 54rpx;
+  height: 45rpx;
+  overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-container .footer-item-container .nav-icon .cart-goods-total-number {
+  position: absolute;
+  top: -6rpx;
+  right: 6rpx;
+  transform: translate3d(50%, 0, 0) scale(.5);
+  transform-origin: center top;
+  min-width: 48rpx;
+  padding: 24rpx 16rpx;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 0rpx;
+  border: 2rpx solid #fff;
+  border-radius: 48rpx;
+  background: #FF4752;
+  color: #fff;
+}
+
+.footer-container .footer-item-container .nav-text {
+  margin-top: 15rpx;
+  font-size: 20rpx;
+  line-height: 1;
+  text-align: center;
+}
+
+
+
+
+
+.footer-container .footer-item-container.f-cate {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_cate.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-cate.active {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_cate_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container .scan-jump{
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 50%;
+  background: linear-gradient(0deg, #FC0D1B, #FF5827);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* 相对父元素水平居中 */
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-container .footer-item-container .scan-jump .scan-qr{
+  width: 30rpx;
+  height: 30rpx;
+}
+.footer-container .footer-item-container .scan-jump .scan-qr image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.footer-container .footer-item-container .scan-jump .text{
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.footer-container .footer-item-container.f-heart {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_heart.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-heart.active {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_heart_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-cart {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_cart.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-cart.active {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_cart_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-user.active {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_user_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-user {
+  background: url("https://shgm.jjyyx.com/m/images/group/icon_user.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.active .nav-msg {
+  color: var(--blue);
+}
+
+.footer-container .line {
+  width: 1rpx;
+  background: #ededed;
+}
+
+.footer-container.iphone-x-patcher-container {
+  flex-wrap: wrap;
+  height: auto;
+}
+
+.footer-container.iphone-x-patcher-container .component-iphone-x-patcher {
+  width: 100%;
+}
+.nav-cart-num{
+  display: inline-block;
+  position: absolute;
+  top: 8rpx;
+  left: 50%;
+  margin-left: 24rpx;
+  transform: translate3d(-50%, 0, 0) scale(.5);
+  transform-origin: center top;
+  min-width: 48rpx;
+  padding: 24rpx 16rpx;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 0rpx;
+  border: 2rpx solid #fff;
+  border-radius: 48rpx;
+  background: #FF4752;
+  color: #fff;
+}

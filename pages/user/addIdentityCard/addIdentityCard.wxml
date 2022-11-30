@@ -1,0 +1,102 @@
+<import src="/templates/global/global.wxml" />
+<form bindsubmit="saveInfo">
+    <view class="card-info-head">
+        <view class="item-info c-color"><text>身份信息</text>请确保身份证信息真实有效</view>
+        <view class="id-card-info">
+            <view>
+                <input class="r1bb" name="name" id="name" type="text" bindinput="inputChange" placeholder="请填写真实姓名" maxlength="20" value="{{docInfor && docInfor.name?docInfor.name:!customsDocId?name:''}}" disabled='{{docInfor.name?"disabled":""}}'></input>
+                <test class="s"></test>
+            </view>
+            <view>
+                <input type="text" name="idCard" id="idCard" bindinput="inputChange" placeholder="请填写身份证号(将加密处理)" maxlength="18" value="{{docInfor && docInfor.idCard?docInfor.idCard:!customsDocId?idCard:''}}" disabled='{{docInfor.idCard?"disabled":""}}'></input>
+                <test class="s"></test>
+            </view>
+        </view>
+    </view>
+    <view class="bg-space"></view>
+    <view class="add-card-info">
+        <view class="h3">身份证正反面照片</view>
+        <view class="id-card-img ui-flex">
+            <view class="id-card-positive cell cell2 r1br">
+                <view class="div pos-r">
+                    <view class="span auditing-tips pos-a {{docInfor && docInfor.idPhotoFront?'':'hide'}}"><image src="https://shgm.jjyyx.com/m/images/icon_water_mark.png"></image></view>
+                    <image class="card-img" src="{{docInfor && docInfor.idPhotoFront?docInfor.idPhotoFront:positive?positive:'https://shgm.jjyyx.com/m/images/cardzheng.png'}}"></image>
+                    <block wx:if="{{!!docInfor && docInfor.state == 1020}}"></block>
+                    <block wx:else>
+                        <view class="chooseimage" bindtap="chooseImage" id="card-positive" data-cur="0" name="file0" value="{{docInfor && docInfor.idPhotoFront?docInfor.idPhotoFront:positive?positive:'https://shgm.jjyyx.com/m/images/cardzheng.png'}}"></view>
+                        <view class="em need-add pos-a {{docInfor && docInfor.idPhotoFront || positive ? 'push':''}}">
+                        <block wx:if="{{docInfor && docInfor.idPhotoFront|| positive}}">点击图片更换</block>
+                        <block wx:else>+ 点击添加</block></view>
+                    </block>
+                </view>
+                正面
+            </view>
+            <view class="id-card-reverse cell cell2">
+                <view class="div pos-r">
+                    <view class="auditing-tips pos-a {{docInfor && docInfor.idPhotoRear?'':'hide'}}"><image src="https://shgm.jjyyx.com/m/images/icon_water_mark.png"></image></view>
+                    <image class="card-img" src="{{docInfor && docInfor.idPhotoRear?docInfor.idPhotoRear:reverse?reverse:'https://shgm.jjyyx.com/m/images/cardbei.png'}}"></image>
+                    <block wx:if="{{!!docInfor && docInfor.state == 1020}}"></block>
+                    <block wx:else>
+                        <view class="chooseimage" bindtap="chooseImage" id="card-reverse" data-cur="1" name="file1" value="{{docInfor && docInfor.idPhotoRear?docInfor.idPhotoRear:positive?positive:'https://shgm.jjyyx.com/m/images/cardzheng.png'}}"></view>
+                        <view class="need-add pos-a {{docInfor && docInfor.idPhotoRear|| reverse?'push':''}}">
+                        <block wx:if="{{docInfor && docInfor.idPhotoRear||reverse}}">点击图片更换</block>
+                        <block wx:else>+ 点击添加</block></view>
+                   </block>
+                </view>
+                背面
+            </view>
+        </view>
+    </view>
+    <view class="card-tips c-color">请拍摄身份证原件(确保图片焦点清晰建议横屏拍摄）</view>
+    <view class="card-reference clearfix">
+        <view class="li fl">
+            <image class="example-img" src="https://shgm.jjyyx.com/m/images/icon_card_standard.png"></image>
+            <view class="span"><image class="img" src="https://shgm.jjyyx.com/m/images/icon_card_right.png"></image>标准</view>
+        </view>
+        <view class="li fl">
+            <image class="example-img" src="https://shgm.jjyyx.com/m/images/icon_card_defect.png"></image>
+            <view class="span"><image class="img" src="https://shgm.jjyyx.com/m/images/icon_card_warring.png"></image>边角缺失</view>
+        </view>
+        <view class="li fl">
+            <image class="example-img" src="https://shgm.jjyyx.com/m/images/icon_card_vague.png"></image>
+            <view class="span"><image class="img" src="https://shgm.jjyyx.com/m/images/icon_card_warring.png"></image>模糊不清</view>
+        </view>
+        <view class="li fl">
+            <image class="example-img" src="https://shgm.jjyyx.com/m/images/icon_card_blink.png"></image>
+            <view class="span"><image class="img" src="https://shgm.jjyyx.com/m/images/icon_card_warring.png"></image>反光强烈</view>
+        </view>
+    </view>
+    <view class="bg-space"></view>
+    <view class="why-using-card">
+        <view class="h3">为什么需要上传身份证？</view>
+        <view>·根据海关规定，个人包裹需上传收件人身份证件，供海关记录及核对身份信息，请您配合上传，以确保您购买的商品能顺利通过海关检查。</view>
+        <view>·上传的个人身份证件仅用于个人包裹报关，并会加密保存。</view>
+        <view>·仅支持中国大陆地区的居民身份证。</view>
+    </view>
+    <block wx:if="{{!!docInfor && docInfor.state == 1020}}"></block><block wx:else>
+        <view class='save-info-warp'>
+            <button formType="submit" class="save-info">保存</button>
+        </view>
+    </block>
+</form>
+
+<template is="toast" data="{{...toastData}}"></template>
+
+<!-- 弹窗 - 绑定到我的账户 -->
+<component-global-modal
+        is-visible="{{modalConfig.isVisible}}"
+
+        header="{{modalConfig.header}}"
+        content="{{modalConfig.content}}"
+        content-style="{{modalConfig.contentStyle}}"
+        footer="{{modalConfig.footer}}"
+
+        bind:modalconfirm="modalCallbackHandler"
+        event-detail="{{modalConfig.eventDetail}}"
+>
+    <view slot="customContent" wx:if="{{modalConfig.slot}}">
+
+    </view>
+</component-global-modal>
+<!--loading 组件-->
+<loading id="globalLoading"></loading>

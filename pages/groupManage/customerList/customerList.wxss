@@ -1,0 +1,192 @@
+page {
+  background: #f4f4f4;
+}
+
+.list-box {
+  padding: 94rpx 0 0;
+}
+
+.edit-box {
+  height: 100vh;
+  background-color: #fff;
+  padding: 32rpx;
+}
+
+.edit-cnt {
+  padding: 32rpx;
+  border: 1rpx solid #e7e7e7;
+}
+
+.edit-cnt textarea {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 24rpx;
+}
+
+.edit-box-btn {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  width: 100%;
+  border-top:1rpx solid #f4f4f4;
+}
+
+.edit-confirm-btn {
+  float: left;
+  width: 50%;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #777777;
+  background-color: #fff;
+  border-left:1rpx solid #e7e7e7;
+}
+
+.edit-cancel-btn {
+  float: left;
+  width: 50%;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #777777;
+  background-color: #fff;
+}
+
+.search-mod {
+  display: flex;
+  padding: 32rpx;
+  line-height: 64rpx;
+  background: #fff;
+  border-top: 1rpx solid #e7e7e7;
+}
+
+.search-box {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 15rpx 32rpx;
+}
+
+.search-box .search-input {
+  border: 1rpx solid #f8f8f8;
+  padding: 0rpx 20rpx 0rpx 72rpx;
+  width: 100%;
+  border-radius: 4rpx;
+  height: 64rpx;
+  background:#f8f8f8 url("https://shgm.jjyyx.com/m/images/group/icon_search.png") no-repeat 16rpx center;
+  background-size: 33rpx;
+}
+
+.search-box .search-input input {
+  line-height: 62rpx;
+  height: 62rpx;
+  width: 100%;
+  font-size: 24rpx;
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.search-info {
+  flex: 1;
+  height: 64rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 32rpx;
+  padding: 0 48rpx;
+}
+
+.search-info input {
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.search-btn {
+  width: 96rpx;
+  height: 64rpx;
+  text-align: center;
+  background: #FF4752;
+  color: #fff;
+  margin-left: 16rpx;
+  border-radius: 32rpx;
+}
+
+.item {
+  background: #fff;
+  margin-top: 16rpx;
+  padding: 48rpx 32rpx 0;
+  font-size: 24rpx;
+  color: #777;
+}
+
+.customer-info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.customer-info .photo {
+  width: 80rpx;
+  height: 80rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/evaluate_default_avatar.png") no-repeat center;
+  background-size: 100%;
+}
+
+.customer-info .info {
+  flex: 1;
+  padding-left: 32rpx;
+}
+
+.customer-info .phone {
+  margin-top: 14rpx;
+}
+
+.remark {
+  position: relative;
+  justify-content: space-between;
+  min-height: 96rpx;
+  padding: 32rpx 130rpx 32rpx 80rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.remark label {
+  position: absolute;
+  top: 0rpx;
+  left: 0;
+  display: block;
+  height: 96rpx;
+  line-height: 96rpx;
+  min-height: auto;
+}
+
+.remark .remark-cnt {
+  line-height: 32rpx;
+  overflow: hidden;
+}
+
+.remark .edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 0 0 50rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: url('https://shgm.jjyyx.com/m/images/groupCustomer/icon-edit.png') no-repeat 0 center;
+  background-size: 34rpx;
+}
+
+.remark input {
+  flex: 1;
+}
+
+.last-create {
+  height: 96rpx;
+  font-weight: 400;
+  line-height: 96rpx;
+}

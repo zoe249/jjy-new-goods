@@ -1,0 +1,36 @@
+/**
+ * Created by Suxiaodi on 2022/3/8.
+ */
+// ************ Create a new filter written below *********************
+
+/**
+ * print
+ * @param data 
+ */
+function Hello(data) {
+  return 'filter'
+}
+
+function telText(data,isCommunity) {
+  if(isCommunity){
+    return '联系门店客服'
+  }else{
+    return data
+  }
+  
+}
+
+function telNum(data,addrMobile,isCommunity) {
+  if(isCommunity){
+    return addrMobile
+  }else{
+    return data
+  }
+}
+
+
+module.exports = {
+  Hello: Hello,
+  telText: telText,
+  telNum:telNum
+}

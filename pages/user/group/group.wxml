@@ -1,0 +1,82 @@
+<view class="user-page" id="Mygroup">
+    <block wx:if="{{showErrorPage}}">
+        <template is="empty" data="{{emptyMsg:errorData._msg||'网络请求错误，稍后重试！'}}"></template>
+    </block>
+    <view class="user-head pos-r">
+        <image class="login-bg head-bg" src="/images/icon_user_c_t.png" mode="aspectFit"></image>
+        <view class="user-info" bindtap="jumpToLogin">
+            <block wx:if="{{loginFlag == 0}}">
+                <view class="user-photo-image">
+                    <image class="user-photo" src="https://shgm.jjyyx.com/m/images/my_head_default.png?t=418"></image>
+                </view>
+            </block>
+            <block wx:if="{{loginFlag == 1}}">
+                <view class="user-photo-image">
+                    <block wx:if="{{allUserInfo.photo}}">
+                        <image class="user-photo" src="{{allUserInfo.photo}}" binderror="binderrorimg"></image>
+                    </block>
+                    <block wx:else>
+                        <image class="user-photo" src="https://shgm.jjyyx.com/m/images/my_head_default.png?t=418"></image>
+                    </block>
+                </view>
+             </block>
+            <block wx:if="{{loginFlag == 0}}">
+                <text>快速登录</text>
+            </block>
+            <block wx:if="{{loginFlag == 1}}">
+                <text>{{allUserInfo.nickName?allUserInfo.nickName:allUserInfo.mobile}}</text>
+                <!--<view class="user-hy">-->
+                    <!--<image src="https://shgm.jjyyx.com/m/images/icon_v0.png" mode="aspectFit"></image>-->
+                    <!--<button><text>{{allUserInfo.growthValue}}</text>成长值</button>-->
+                <!--</view>-->
+            </block>
+        </view>
+    </view>
+    <view class="bg-caitiao"></view>
+    <view class="my-item2 backgroundColor-fff">
+        <view class="item2-title">
+            <view class="my-order-title">我的拼团订单</view>
+            <view class="my-order forword" catchtap="autoJumpOrder" data-ordertype="">查看全部</view>
+        </view>
+        <view class="item2-content r1bt">
+            <view class="ui-flex order-state-list">
+                <view class="cell" catchtap="autoJumpOrder" data-ordertype="1852">
+                    <block wx:if="{{orderData.groupBuyCount||orderData.groupBuyCount>0}}">
+                        <text class="order-num bg-orange" catchtap="autoJumpOrder" data-ordertype="1852">{{orderData.groupBuyCount}}</text>
+                    </block>
+                    <image class="order-state-icon" src="https://shgm.jjyyx.com/m/images/userGroup/pintuanzhong.png" catchtap="autoJumpOrder" data-ordertype="1852"></image>
+                    <text catchtap="autoJumpOrder" data-ordertype="1852">拼团中</text>
+                </view>
+                <view class="cell" catchtap="autoJumpOrder" data-ordertype="51">
+                    <block wx:if="{{orderData.nonePayCount||orderData.nonePayCount>0}}">
+                        <text class="order-num bg-orange" catchtap="autoJumpOrder" data-ordertype="51">{{orderData.nonePayCount}}</text>
+                    </block>
+                    <image class="order-state-icon" src="https://shgm.jjyyx.com/m/images/userGroup/daifukuan.png" catchtap="autoJumpOrder" data-ordertype="51"></image>
+                    <text catchtap="autoJumpOrder" data-ordertype="51">待付款</text>
+                </view>
+                <view class="cell" catchtap="autoJumpOrder" data-ordertype="41">
+                    <block  wx:if="{{orderData.deliverCount||orderData.deliverCount>0}}">
+                        <text class="order-num bg-orange" catchtap="autoJumpOrder" data-ordertype="41">{{orderData.deliverCount}}</text>
+                    </block>
+                    <image class="order-state-icon" src="https://shgm.jjyyx.com/m/images/userGroup/daifahuo.png" catchtap="autoJumpOrder" data-ordertype="41"></image>
+                    <text catchtap="autoJumpOrder" data-ordertype="41">待发货</text>
+                </view>
+                <view class="cell" catchtap="autoJumpOrder" data-ordertype="44">
+                    <block wx:if="{{orderData.pickCount||orderData.pickCount>0}}">
+                        <text class="order-num bg-orange" catchtap="autoJumpOrder" data-ordertype="44">{{orderData.pickCount}}</text>
+                    </block>
+                    <image class="order-state-icon" src="https://shgm.jjyyx.com/m/images/userGroup/daiziti.png" catchtap="autoJumpOrder" data-ordertype="44"></image>
+                    <text catchtap="autoJumpOrder" data-ordertype="44">待自提</text>
+                </view>
+                <view class="cell" catchtap="autoJumpOrder" data-ordertype="45">
+                    <block wx:if="{{orderData.noneEatCount||orderData.noneEatCount>0}}">
+                        <text class="order-num bg-orange" catchtap="autoJumpOrder" data-ordertype="45">{{orderData.noneEatCount}}</text>
+                    </block>
+                    <image class="order-state-icon" src="https://shgm.jjyyx.com/m/images/userGroup/daitangshi.png" catchtap="autoJumpOrder" data-ordertype="45"></image>
+                    <text catchtap="autoJumpOrder" data-ordertype="45">待取餐</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <component-group-footer-nav current="1" form-type="{{formType}}"></component-group-footer-nav>
+    </view>

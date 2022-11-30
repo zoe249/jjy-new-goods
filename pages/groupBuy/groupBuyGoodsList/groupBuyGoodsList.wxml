@@ -1,0 +1,143 @@
+<!--pages/groupBuy/groupBuyGoodsList/groupBuyGoodsList.wxml-->
+<import src="/templates/global/global.wxml"/>
+
+<view class="main">
+  <view class="header-container" wx:if="{{focusImages.length}}">
+    <block wx:if="{{focusImages.length == 0}}">
+      <!-- <block wx:if="{{formType == 1}}">
+        <image mode="widthFix" src="https://shgm.jjyyx.com/m/images/kexuan/pintuan_header.png"
+               class="header-image"></image>
+      </block>
+      <block wx:else> -->
+        <image mode="widthFix" src="https://shgm.jjyyx.com/m/images/group_list_banner_default.png"
+               class="header-image"></image>
+      <!-- </block> -->
+    </block>
+    <block wx:elif="{{focusImages.length == 1}}">
+      <!-- <block wx:if="{{formType == 1}}">
+        <image mode="widthFix"
+               src="{{focusImages[0].imgUrl || 'https://shgm.jjyyx.com/m/images/kexuan/pintuan_header.png'}}"
+               class="header-image"></image>
+      </block>
+      <block wx:else> -->
+        <image mode="widthFix"
+               src="{{focusImages[0].imgUrl || 'https://shgm.jjyyx.com/m/images/group_list_banner_default.png'}}"
+               class="header-image"></image>
+      <!-- </block> -->
+    </block>
+    <block wx:else>
+      <swiper class="swiper-container">
+        <block wx:for="{{focusImages}}" wx:key="*this">
+          <swiper-item>
+            <image src="{{item.imgUrl}}" class="swiper-image"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </block>
+
+    <block wx:if="{{grouperList.length}}">
+      <component-grouper-animation grouper-list="{{grouperList}}"></component-grouper-animation>
+    </block>
+  </view>
+
+  <!-- <component-group-buy-step form-type="{{formType}}"></component-group-buy-step> -->
+
+  <block wx:if="{{proGoodsList.length}}">
+    <view class="group-goods-list-container">
+      <block wx:for="{{proGoodsList}}" wx:key="list">
+        <view class="goods-item-container {{item.surplusStock <= 0 ? 'group-sold-out' : ''}}" data-goods="{{item}}"
+              catchtap="jumpGroupGoods" data-bi-type="405">
+          <block wx:if="{{item.isNew == 1}}">
+            <image class="is-new" src="https://shgm.jjyyx.com/m/images/kexuan/icon_new.png"></image>
+          </block>
+          <image class="goods-cover-image"
+                 src="{{item.coverImage|| 'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+          <view class="goods-info-container">
+            <block wx:if="{{formType==1}}">
+              <view class="goods-name-container">
+                <block wx:if="{{item.produceIcon}}">
+                  <image src="{{item.produceIcon}}" class="goods-produce"></image>
+                </block>
+                {{item.shortTitle||item.goodsName||""}}
+              </view>
+              <view class="sale-msg-container">
+                <text class="need-count">{{item.needJoinCount}}人团</text>
+                <text class="sales-volume">已销售{{item.salesVolume}}个</text>
+              </view>
+
+              <view class="goods-price-container">
+                <text class="goods-prime-price">单买价￥{{item.goodsPrimePrice}}</text>
+                <text class="symbol">￥</text>
+                <text class="sale-price">{{item.goodsPrice}}</text>
+              </view>
+              <view class="group-msg-container">
+                <text class="sales-volume"> </text>
+                <text class="join-btn" data-goods="{{item}}" catchtap="jumpGroupGoods" data-bi-type="{{item.isMyGroup == 0?'406':'405'}}">{{item.isMyGroup == 0 ? '去拼团' : '查看我的团'}}</text>
+              </view>
+
+            </block>
+            <block wx:else>
+              <text class="goods-name">{{item.shortTitle||item.goodsName||""}}</text>
+              <text class="goods-tag">{{item.goodsTag}}</text>
+              <view class="goods-prime-price-container">
+                <text class="price-msg">单买价</text>
+                <text class="goods-prime-price">￥{{item.goodsPrimePrice}}</text>
+              </view>
+              <view class="sale-price-container">
+                <text class="need-count">{{item.needJoinCount}}人团</text>
+                <text class="symbol">￥</text>
+                <text class="sale-price">{{item.goodsPrice}}</text>
+                <text class="sale-unit">/{{item.salesUnit}}</text>
+              </view>
+              <view class="group-msg-container">
+                <text class="sales-volume">已拼{{item.salesVolume}}件</text>
+                <text class="join-btn" data-goods="{{item}}" catchtap="jumpGroupGoods" data-bi-type="{{item.isMyGroup == 0?'406':'405'}}">{{item.isMyGroup == 0 ? '去拼团' : '查看我的团'}}</text>
+              </view>
+            </block>
+          </view>
+
+        </view>
+        <block wx:if="{{item.surplusStock > 0 && item.isMyGroup == 0 && item.lastGroup}}">
+          <view class="last-group-container">
+            <text class="last-group-msg">TA的拼团快要过期了，快来拼团~</text>
+            <view class="grouper-list-container">
+              <block wx:for="{{item.lastGroup.memberList}}" wx:key="*this" wx:for-item="memberItem"
+                     wx:for-index="memberIndex">
+
+                <block wx:if="{{memberIndex < item.needJoinCount - item.lastGroup.oddJoinCount}}">
+                  <image src="{{memberItem ? memberItem : 'https://shgm.jjyyx.com/m/images/my_head_default.png?t=418'}}"
+                    class="member-item-header"></image>
+                </block>
+
+                <block wx:else>
+                  <image src="https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png"
+                         class="member-item-header"></image>
+                </block>
+
+              </block>
+              <text class="need-join-msg">还差</text>
+              <text class="need-join-num">{{item.lastGroup.oddJoinCount}}</text>
+              <text class="need-join-msg">人</text>
+
+              <view class="join-group-btn">
+                <text class="join-group-text" catchtap="joinLastGroup" data-goods="{{item}}">立即参团</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+
+    <template is="noMore" wx:if="{{proGoodsList.length > 3}}"></template>
+    <!-- <component-group-footer-nav current="0" form-type="{{formType}}"></component-group-footer-nav> -->
+
+  </block>
+  <block wx:elif="{{otherMes == 'empty'}}">
+    <template is="empty" data="{{emptyMsg:'当前门店暂无活动'}}"></template>
+  </block>
+
+  <template is="modal" data="{{...modalData}}"></template>
+
+</view>
+<template is="toast" data="{{...toastData}}"></template>
+<block wx:if='{{showPopGroupNum}}'><pop-group-num bind:confirm='confirmPopGroupNum' bind:cancel='cancelPopGroupNum' goodsGroupInfo='{{goodsGroupInfo}}'></pop-group-num></block>

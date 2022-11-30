@@ -1,0 +1,319 @@
+{
+  "pages": [
+    "pages/AA-RefactorProject/pages/wxAuth/wxAuth",
+    "pages/AA-RefactorProject/pages/index/index",
+	"pages/AA-RefactorProject/pages/Community/index",
+    "pages/index/index",
+    "pages/documents/documents",
+    "pages/storeList/storeList",
+    "pages/invoice/invoice",
+    "pages/shareImgDownload/shareImgDownload",
+    "pages/transferPage/transferPage",
+    "pages/laxin/index/index",
+    "pages/laxin/select/select",
+    "pages/invoiceDoc/invoiceDoc",
+    "pages/wxAuth/wxAuth"
+  ],
+  "subPackages": [
+	{
+	    "root": "pages/AA-RefactorProject/pagesSubcontract",
+	    "pages": [
+	     "Explosives/index",
+		 "Classification/index",
+		 "ArticleDetails/index",
+		 "CouponCenter/index",
+		 "RecipeDetails/index",
+		 "LivingHall/index"
+	    ]
+	},
+    {
+      "root": "pages/yunchao",
+      "pages": [
+        "activity/activity",
+        "extendList/extendList",
+        "cart/cart",
+        "detail/detail",
+        "fill/fill",
+        "home/home",
+        "index/index",
+        "qianggou/qianggou",
+        "storeList/storeList",
+        "storeHot/storeHot",
+        "user/user"
+      ]
+    },
+    {
+      "root": "pages/activity",
+      "pages": [
+        "activity",
+        "index/index",
+        "indexActivity/indexActivity",
+        "everyDayActivity/everyDayActivity",
+        "invitationGift/invitationGift",
+        "shareGift/shareGift",
+        "fission/fission",
+        "fission/notFoundShop/notFoundShop",
+        "futurePlanet/futurePlanet",
+        "ditui/index",
+        "couponActivity/couponActivity",
+        "homeActivity/homeActivity",
+        "bannerAndListActivity/bannerAndListActivity",
+        "ditui/comDitui/comDitui",
+        "limitBuy/limitBuy",
+        "babyActivity/babyActivity",
+        "shopActivity/shopActivity",
+        "luckDraw/index",
+        "coupon/index",
+        "community/community",
+        "game/arborDay/arborDay",
+        "game/arborDayRule/arborDayRule",
+        "game/Parkour/Parkour"
+      ]
+    },
+    {
+      "root": "pages/goods",
+      "pages": [
+        "searchList/searchList",
+        "classify/classify",
+        "classifyScreen/classifyScreen",
+        "search/search",
+        "shopInfo/shopInfo",
+        "detail/detail",
+        "shopDetail/shopDetail",
+        "qianggou/qianggou",
+        "classifyGood/classifyGood",
+        "classifyFood/classifyFood"
+      ]
+    },
+    {
+      "root": "pages/user",
+      "pages": [
+        "user",
+        "login/login",
+        "wxLogin/wxLogin",
+        "passwordRetrieval/passwordRetrieval",
+        "coupon/coupon",
+        "couponDetails/couponDetails",
+        "vipPayCode/vipPayCode",
+        "address/choice/choice",
+        "address/list/list",
+        "address/add/add",
+        "setting/setting",
+        "aboutUs/aboutUs",
+        "useAgreement/useAgreement",
+        "modifyPassword/modifyPassword",
+        "integral/integral",
+        "memberMall/memberMall",
+        "group/group",
+        "couponGoodsList/couponGoodsList",
+        "quickOrder/quickOrder",
+        "invitation/invitation",
+        "myEvaluate/myEvaluate",
+        "identityCards/identityCards",
+        "addIdentityCard/addIdentityCard",
+        "changeInfo/changeInfo",
+        "vipLevel/vipLevel",
+        "message/message",
+        "collectList/collectList",
+        "messageList/messageList",
+        "cropperImg/cropperImg",
+        "questionList/questionList"
+      ]
+   
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        "detail/detail",
+        "list/list",
+        "fill/fill",
+        "fillBill/fillBill",
+        "cashier/cashier",
+        "timePicker/timePicker",
+        "success/success",
+        "orderStoreIdCode/code",
+        "lightningPayStatus/lightningPayStatus",
+        "lookInvoice/lookInvoice",
+        "addEvaluate/addEvaluate",
+        "lookEvaluate/lookEvaluate",
+        "goodsEvaluateList/goodsEvaluateList",
+        "logisticsList/logisticsList",
+        "logisticDetail/logisticDetail",
+        "quickOrder/quickOrder",
+        "newFill/newFill"
+      ]
+    },
+    {
+      "root": "pages/refund",
+      "pages": [
+        "offlineSubmit/offlineSubmit",
+        "submit/submit",
+        "success/success",
+        "detail/detail",
+        "record/record",
+        "cancelWhole/cancelWhole",
+        "submitCommunity/submitCommunity"
+      ]
+    },
+    {
+      "root": "pages/cart",
+      "pages": [
+        "cart/cart",
+        "promotion/promotion",
+        "lightningPayCart/lightningPayCart",
+        "groupManageCart/groupManageCart"
+      ]
+    },
+    {
+      "root": "pages/groupBuy",
+      "pages": [
+        "groupBuyDetail/groupBuyDetail",
+        "groupBuyGoodsList/groupBuyGoodsList",
+        "joinGroup/joinGroup",
+        "createGroup/createGroup"
+      ]
+    },
+    {
+      "root": "pages/myCard",
+      "pages": [
+        "myCard",
+        "list/list",
+        "balanceDetails/balanceDetails",
+        "buyCards/buyCards",
+        "quickBuy/quickBuy",
+        "passwordBindCard/passwordBindCard",
+        "bindCard/bindCard",
+        "cardBag/cardBag"
+      ]
+    },
+    {
+      "root": "pages/groupManage",
+      "pages": [
+        "home/home",
+        "index/index",
+        "order/list/list",
+        "order/selfOrder/selfOrder",
+        "order/detail/detail",
+        "order/orderStoreIdCode/code",
+        "order/lightningPayStatus/lightningPayStatus",
+        "order/lookInvoice/lookInvoice",
+        "order/addEvaluate/addEvaluate",
+        "order/lookEvaluate/lookEvaluate",
+        "order/goodsEvaluateList/goodsEvaluateList",
+        "order/logisticsList/logisticsList",
+        "order/logisticDetail/logisticDetail",
+        "userCenter/userCenter",
+        "arrivalList/arrivalList",
+        "extractEdit/extractEdit",
+        "extractList/extractList",
+        "customerList/customerList",
+        "customerOrder/customerOrder",
+        "apply/fillInfo/fillInfo",
+        "apply/comfirm/comfirm",
+        "apply/invitingLeader/invitingLeader",
+        "refund/offlineSubmit/offlineSubmit",
+        "refund/submit/submit",
+        "refund/success/success",
+        "refund/detail/detail",
+        "refund/record/record",
+        "refund/cancelWhole/cancelWhole",
+        "shareGroupList/shareGroupList",
+        "fill/fill",
+        "fillBill/fillBill",
+        "writeOff/writeOff",
+        "commissionUser/commissionUser",
+        "commissionUserFinished/commissionUserFinished",
+        "commissionUserGet/commissionUserGet",
+        "commissionToWx/commissionToWx",
+        "commissionUserPre/commissionUserPre",
+        "commissionUserCanGet/commissionUserCanGet",
+        "card/card",
+        "rule/rule",
+        "userInfo/userInfo",
+        "buyCards/buyCards",
+        "poster/poster",
+        "joinGroup/joinGroup",
+        "detail/detail",
+        "shareWriteList/shareWriteList",
+        "groupBuyDetail/groupBuyDetail",
+        "shareHomeGoodsList/shareHomeGoodsList",
+        "userSelf/userSelf",
+        "chooseExtract/chooseExtract",
+        "search/search",
+        "searchGoods/searchGoods",
+        "switchSelfMentionPoint/switchSelfMentionPoint",
+        "heartElection/heartElection",
+        "groupBuyGoodsList/groupBuyGoodsList",
+        "commissionList/commissionList",
+        "zhiboDetail/zhiboDetail",
+        "queryStock/queryStock",
+        "reportDiff/reportDiff",
+        "reportDiffList/reportDiffList",
+        "reportDiffDetail/reportDiffDetail",
+        "reportSuc/reportSuc",
+        "batchList/batchList",
+        "new/new",
+        "hot/hot",
+        "panicBuying/panicBuying",
+        "groupList/groupList",
+        "extendSearch/extendSearch"
+      ]
+    },
+    {
+      "root": "pages/groupV2",
+      "pages": [
+        "classifyGood/classifyGood"
+      ]
+    },
+    {
+      "root": "pages/enrollActivity",
+      "pages": [
+        "list/list",
+        "detail/detail",
+        "cardPack/cardPack",
+        "enroll/enroll",
+        "invalid/invalid",
+        "order/order",
+        "record/record"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColor": "#FFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "家家悦优鲜",
+    "enablePullDownRefresh": false
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.3.5",
+      "provider": "wx2b03c6e691cd7370"
+    },
+    "sendCoupon": {
+      "version": "1.4.6",
+      "provider": "wxf3f436ba9bd4be7b"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseAddress",
+    "chooseLocation"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

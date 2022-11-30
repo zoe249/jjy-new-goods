@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "订单红包拼手气",
+  "usingComponents": {
+    "component-goods-item": "/component/activityGoodsItem/activityGoodsItem",
+    "component-full-goods-item": "/component/activityFullGoodsItem/activityFullGoodsItem",
+    "component-login-dialog": "/component/loginDialog/loginDialog"
+  }
+}

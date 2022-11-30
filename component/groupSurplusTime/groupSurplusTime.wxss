@@ -1,0 +1,24 @@
+/* component/groupSurplusTime/groupSurplusTime.wxss */
+
+.surplus-time {
+    display: inline-block;
+    align-items: center;
+    padding: 0 20rpx;
+}
+
+.surplus-time .time {
+    padding: 0rpx 4rpx;
+    line-height: 30rpx;
+    font-size: 26rpx;
+    text-align: center;
+    background: var(--blue);
+    color: #FFF;
+    border-radius: 5rpx;
+}
+
+.surplus-time .division {
+    padding: 15rpx 4rpx;
+    line-height: 0;
+    font-size: 26rpx;
+    color: #444;
+}

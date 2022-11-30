@@ -1,0 +1,9 @@
+<view class="draw-coupon-dialog {{sendVisible?'show':''}}">
+  <view class="draw-coupon-dialog-cont">
+    <send-coupon id="myComponent" suggest_immediate_use="{{false}}" bind:userconfirm="bindConfirm" bind:sendcoupon="getcoupon" send_coupon_params="{{sendCouponData.send_coupon_params}}"
+      sign="{{sendCouponData.sign}}" send_coupon_merchant="{{sendCouponData.send_coupon_merchant}}">
+      <image class="draw-img" src="https://shgm.jjyyx.com/m/images/activity/send_coupon.png">
+      </image>
+    </send-coupon>
+  </view>
+</view>

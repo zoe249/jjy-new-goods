@@ -1,0 +1,7 @@
+<import src="/templates/global/global.wxml" />
+<view class='container'>
+    <image mode="widthFix" src='https://shgm.jjyyx.com/m/images/group/activty/page_poster.png?t={{timer}}'></image>
+    <view class='apply-btn' bindtap='jumpApply'></view>
+</view>
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>

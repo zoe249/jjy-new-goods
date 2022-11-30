@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "客户订单",
+    "usingComponents": {
+      "component-group-manage-order-list": "/component/groupManageOrderList/groupManageOrderList"
+    }
+}

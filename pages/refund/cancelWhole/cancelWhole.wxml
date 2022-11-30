@@ -1,0 +1,163 @@
+<!--pages/refund/cancelWhole/cancelWhole.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view id="box">
+        <view class="apply_for_refund" id="apply_for_refund">
+            <!--<view class="head-tip">本次售后由<view class="span">{{forMPage=='applyForRefund'?'家家悦优鲜':'第三方卖家'}}</view>为您提供</view>-->
+            <!-- <view class="bg-caitiao"></view> -->
+            <view class="refund-submit-pro mb8 pro-box">
+                <block wx:for="{{detailData.storeGoodsList}}" wx:for-item="list">
+                    <block wx:for="{{list.goodsList}}" wx:for-item="product" wx:for-index='i' wx:key='product{{product.goodsId}}'>
+                        <view class="li{{i==0?'':' r1bt'}}">
+                            <view class="wrap">
+                                <view class="cart-item">
+                                    <view class="item-img">
+                                        <image src="{{product.goodsImage}}"></image>
+                                    </view>
+                                    <view class="item-info weigh-goods">
+                                        <view class="h3">
+                                            <block wx:if="{{product.isGift==1}}">
+                                                <view class="em">赠品</view>
+                                            </block>
+                                            <block wx:elif="{{product.isGift==2}}">
+                                                <view class="em">换购</view>
+                                            </block>
+                                            <block wx:elif="{{product.isGift==998||product.isGift==1640}}">
+                                                <view class="em">限时抢</view>
+                                            </block>
+                                            {{product.goodsName}}
+                                        </view>
+                                        <view class="h4 color-999">
+                                            <block wx:if="{{product.goodsSpec&&isB2C!=1037&&isB2C!=1634}}">
+                                                <view class="h4-view">规格：{{product.goodsSpec}}<block wx:if="{{product.pricingMethod==391&&offlineOrderType==0}}"><view class="icon-info" catchtap="weightPop"></view></block>
+                                                </view>
+                                            </block>
+                                            <view class="h4-view">
+                                                <block wx:if="{{product.pricingMethod==391}}">重量：{{product.weightStr}}</block>
+                                                <block wx:else>数量：{{product.goodsNum}}</block>
+                                                <view class="div-space3">\t</view>单价：￥<block wx:if="{{product.isGift&&product.isGift==3}}">{{product.memberPriceStr}}</block><block wx:else>{{product.goodsPriceStr}}</block><block wx:if="{{product.goodsUnit}}">/{{product.goodsUnit}}</block><block wx:if="{{(product.memberPriceStr!=product.goodsOriginPriceStr)&&product.isMember||product.goodsPriceStr!=product.goodsOriginPriceStr}}"><view class="detail-del"> ￥{{product.goodsOriginPriceStr}}</view></block>
+                                            </view>
+                                        </view>
+                                        <block wx:if="{{1||product.isGift!=1}}">
+                                            <view class="price"><block wx:if="{{product.isGift==3&&0}}"><view class="member-tag">会员价</view></block><view class="em">{{product.goodsAmountStr}}</view></view>
+                                        </block>
+                                    </view>
+                                </view>
+                            </view>
+                            <!-- <block wx:if="{{(offlineOrderType==1182||offlineOrderType==1184||offlineOrderType==1122||goodsSence>0)}}">
+                                <block wx:if="{{(product.isGift!=1&&product.isGift!=2)&&product.isReturnFlag==1&&isReturnFlag==1&&(product.goodsNum-product.returnCount)>=0&&(offlineOrderType==1182&&checkFlag==1||offlineOrderType==1184||offlineOrderType==1122||goodsSence>0)}}">
+                                    <block wx:if="{{isPromotionGoodsFlag==1&&returnStatus!=1}}">
+                                        <view class="refund-box">
+                                            <view class="refund-cnt"><view class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}" catchtap="phoneService" data-servicePhone="{{servicePhone}}">申请退货</view></view>
+                                        </view>
+                                    </block>
+                                    <block wx:else>
+                                        <view class="refund-box">
+                                            <view class="refund-cnt"><view catchtap="goodsToRefund" data-order-item-id="{{product.orderItemId}}" data-return-count="{{product.returnCount}}" data-goods-num="{{product.goodsNum}}" data-return-status="{{product.returnStatus}}" data-shop-id="{{shop.shopId}}" data-is-gift="{{product.isGift}}" data-store-id="{{shop.storeId}}" data-sku-id="{{product.goodsSkuId}}" data-goods-sence="{{goodsSence}}" data-offline-order-type="offlineOrderType" class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}">申请退货</view></view>
+                                        </view>
+                                    </block>
+                                </block>
+                            </block>
+                            <block wx:elif="{{(isB2C==0||isB2C==1||isB2C==1037||isB2C==1634)&&product.isReturnFlag==1&&(product.isGift!=1&&product.isGift!=2)&&isReturnFlag==1&&(product.goodsNum-product.returnCount)>=0&&(orderStatus==46||orderStatus==1088||orderStatus==952)}}">
+                                <block wx:if="{{isPromotionGoodsFlag==1&&returnStatus!=1}}">
+                                    <view class="refund-box">
+                                        <view class="refund-cnt"><view class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}" catchtap="phoneService" data-servicePhone="{{servicePhone}}">申请退货</view></view>
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <view class="refund-box">
+                                        <view class="refund-cnt"><view catchtap="goodsToRefund" data-order-item-id="{{product.orderItemId}}" data-return-count="{{product.returnCount}}" data-goods-num="{{product.goodsNum}}" data-return-status="{{product.returnStatus}}" data-shop-id="{{shop.shopId}}" data-is-gift="{{product.isGift}}" data-store-id="{{shop.storeId}}" data-sku-id="{{product.goodsSkuId}}" data-goods-sence="{{goodsSence}}" data-offline-order-type="offlineOrderType" class="refund-btn{{product.goodsNum==product.returnCount?' color-999':''}}">申请退货</view></view>
+                                    </view>
+                                </block>
+                            </block> -->
+                        </view>
+                    </block>
+                </block>
+            </view>
+            <view class="submit-reason">
+                <view class="text">退款原因</view>
+                <view class="refund-reason" catchtap="showRefundReason">
+                    <view class="refund-reason-text c-999" catchtap="showRefundReason">{{selectReason}}</view>
+                    <view id="btn-reason-arrow" class="btn-reason-arrow" catchtap="showRefundReason"></view>
+                </view>
+            </view>
+            <view class="text-cnt-box">
+                <view class="text-cnt">
+                    <block wx:if="{{showWeightPop||showRefundReason?false:true}}"><textarea class="textarea" placeholder="请您在此描述问题，至少{{minTextNum}}个字" value="{{remarks}}" bindblur="bindInputQuestion" maxlength="{{maxTextNum}}"></textarea></block>
+                    <block wx:if="{{remarks.length==0}}">
+                        <view class="textarea-tip">最多输入{{maxTextNum}}个字</view>
+                    </block>
+                    <block wx:else>
+                        <view class="textarea-tip">已输入{{remarks.length}}/{{maxTextNum}}个字</view>
+                    </block>
+                </view>
+            </view>
+            <view class="foot-tip">提交申请后，商家可能与您电话沟通，请保持手机畅通</view>
+            <view class="btn-summit" catchtap="submitRefund">提交申请</view>
+        </view>
+        <block wx:if="{{showRefundReason}}">
+            <view class="pop-refund-reason">
+                <view class="pop-cnt">
+                    <view class="btn-box clearfix"><view class="reason-cancel" catchtap="cancelSelectReason">取消</view><view class="reason-confirm" catchtap="confirmSelectReason">确认</view></view>
+                    <view class="ul">
+                        <block wx:for="{{refundReasonData}}" wx:for-item="item">
+                        <block wx:if='{{!detailData.groupMode&&detailData.proType!=1821&&item.value==1885}}'></block>
+                            <!--获取集单前取消订单售后申请原因-->
+                            <block wx:elif="{{forMPage=='applyForRefund'}}">
+                                <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                            </block>
+                            <!--保税仓发货 1022 海外直邮1023国内发货1024 -->
+                            <block wx:elif="{{detailData.isB2C==1634}}">
+                                <block wx:if="{{item.type==1||item.type==0}}">
+                                    <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{shippingTypeNow==1022}}">
+                                <block wx:if="{{item.type==0}}">
+                                    <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{shippingTypeNow==1023}}">
+                                <block wx:if="{{item.type==0||item.type==2}}">
+                                    <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{shippingTypeNow==1024}}">
+                                <block wx:if="{{item.type==0||item.type==1}}">
+                                    <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                                </block>
+                            </block>
+                            <block wx:else>
+                                <view class="li{{item.value==selectReasonValueNow?' active':''}}" catchtap="selectReason" data-refund-reason="{{item.value}}" data-refund-text="{{item.text}}">{{item.text}}</view>
+                            </block>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <!--称重商品提示-->
+        <block wx:if="{{showWeightPop}}">
+            <view class="fadeInUp-box">
+                <view class="fadeInUp-cont">
+                    <view class="fadeInUp-title r1bb">{{detailData.weightNotice.title}} <view class="span fr close"><image src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image></view></view>
+                    <view class="ul fadeInUp-list">
+                        <block wx:for="{{detailData.weightNotice.contentList}}" wx:for-item="li">
+                            <view class="li">{{li.content}}</view>
+                        </block>
+                    </view>
+                    <view class="fadeInUp-btn" catchtap="closeWeightClick">关闭</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>
+

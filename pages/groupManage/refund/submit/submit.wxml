@@ -1,0 +1,219 @@
+<!--pages/refund/submit.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view class="refund-submit-box">
+        <view class="refund-submit-box1">
+            <!--<view class="refund-submit-head">本次售后由 <view class="span color-ff5c33">{{shippingTypeNow==1022||shippingTypeNow==1023||shippingTypeNow==1024?'第三方卖家':'家家悦优鲜'}}</view> 为您提供</view>-->
+            <view class="bg-caitiao"></view>
+            <view class="refund-submit-pro mb8">
+                <view class="li r1bt">
+                    <view class="wrap">
+                        <view class="cart-item">
+                            <view class="item-img">
+                                <image src="{{refundSkuJson.goodsImage}}"></image>
+                            </view>
+                            <view class="item-info weigh-goods">
+                                <view class="h3">
+                                    <block wx:if="{{refundSkuJson.isGift==1}}">
+                                        <view class="em">赠品</view>
+                                    </block>
+                                    <block wx:elif="{{refundSkuJson.isGift==2}}">
+                                        <view class="em">换购</view>
+                                    </block>
+                                    <block wx:elif="{{refundSkuJson.isGift==998||refundSkuJson.isGift==1640}}">
+                                        <view class="em">限时抢</view>
+                                    </block>
+                                    {{refundSkuJson.goodsName}}
+                                </view>
+                                <view class="h4 color-999">
+                                    <block wx:if="{{refundSkuJson.goodsSpec&&detailData.isB2C!=1037&&detailData.isB2C!=1634}}">
+                                        <view class="h4-view">规格：{{refundSkuJson.goodsSpec}}</view>
+                                    </block>
+                                    <view class="h4-view">
+                                        <block wx:if="{{refundSkuJson.pricingMethod==391}}">重量：{{refundSkuJson.weightStr}}</block>
+                                        <block wx:else>数量：{{refundSkuJson.goodsNum}}</block>
+                                        <view class="div-space3">\t</view>单价：￥<block wx:if="{{refundSkuJson.isGift&&refundSkuJson.isGift==3}}">{{refundSkuJson.memberPriceStr}}</block><block wx:else>{{refundSkuJson.goodsPriceStr}}</block><block wx:if="{{refundSkuJson.goodsUnit}}">/{{refundSkuJson.goodsUnit}}</block><block wx:if="{{refundSkuJson.goodsPriceStr!=refundSkuJson.goodsOriginPriceStr||(refundSkuJson.isMember&&refundSkuJson.memberPriceStr!=refundSkuJson.goodsOriginPriceStr)}}"><view class="detail-del"> ￥{{refundSkuJson.goodsOriginPriceStr}}</view></block>
+                                    </view>
+                                </view>
+                                <block wx:if="{{1||refundSkuJson.isGift!=1}}">
+                                    <view class="price"><block wx:if="{{refundSkuJson.isGift==3&&0}}"><view class="member-tag">会员价</view></block><view class="em">{{refundSkuJson.goodsAmountStr}}</view></view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                  </view>
+            </view>
+            <view class="type-box mb8">
+                <view class="text">申请类型</view>
+                <view class="item-box clearfix">
+                    <view class="span">{{detailData.goodsSence>0?'退款':'退货'}}</view>
+                </view>
+            </view>
+            <block wx:if="{{detailData.isB2C==1037&&detailData.orderStatus==1088}}"></block>
+            <block wx:else>
+                <view class="pay-type-box mb8">
+                    <view class="text">退款方式</view>
+                    <view class="item-box clearfix">
+                        <view class="span">原支付返回</view>
+                    </view>
+                    <view class="remark">注：支付仅支持原路返回；生活卡支付，退款至生活卡账户。</view>
+                </view>
+            </block>
+            <block wx:if="{{refundSkuJson.goodsNum>1}}">
+            <view class="submit-num mb8">
+                <view class="text">申请数量</view>
+                <view class="num-box clearfix">
+                    <view class="minus span{{refundNum>1?' on':''}}" catchtap="minusCatchTap">-</view>
+                    <view class="num span">{{refundNum}}</view>
+                    <view class="plus span{{permitReturnCount>1&&permitReturnCount>refundNum?' on':''}}" data-max-num="{{permitReturnCount}}" catchtap="plusCatchTap">+</view>
+                </view>
+            </view>
+            </block>
+            <view class="submit-reason mb8">
+                <view class="text">退款原因</view>
+                <view class="refund-reason" catchtap="showRefundReason">
+                    <view class="refund-reason-text">{{refundReasonText}}</view>
+                    <view id="btn-reason-arrow" class="btn-reason-arrow"></view>
+                </view>
+            </view>
+            <view class="problem-des mb8">
+                <view class="text">问题描述</view>
+                <view class="text-cnt">
+                    <block wx:if="{{showPopDateBox||showRefundReason?false:true}}"><textarea class="textarea" placeholder="请您在此描述问题，至少{{minTextNum}}个字" value="{{remarks}}" bindblur="bindInputQuestion" maxlength="{{maxTextNum}}"></textarea></block>
+                    <block wx:if="{{remarks.length==0}}">
+                        <view class="textarea-tip">最多输入{{maxTextNum}}个字</view>
+                    </block>
+                    <block wx:else>
+                        <view class="textarea-tip">已输入{{remarks.length}}/{{maxTextNum}}个字</view>
+                    </block>
+                </view>
+                <view class="img-box clearfix">
+                    <block wx:if="{{commentImages.length>=maxImageNum}}">
+                        <view class="label update-btn update-btn{{maxImageNum}} off"></view>
+                    </block>
+                    <block wx:else>
+                        <view class="label update-btn update-btn{{maxImageNum}}" catchtap="updataImage"></view>
+                    </block>
+                    <block wx:for="{{commentImages}}" wx:for-item="imgItem" wx:for-index="imgIndex">
+                        <view class="img-li"><image src="{{imgItem.fileUrl}}" data-url="{{imgItem.fileUrl}}" class="img"></image><view class="del" catchtap="delImg" data-file-url="{{imgItem.fileUrl}}"></view></view>
+                    </block>
+                </view>
+            </view>
+
+            <block wx:if="{{detailData.orderType!=55}}">
+                <block wx:if="{{detailData.isB2C==1037}}">
+                    <view class="return-type mb8">
+                        <view class="text">商品退回方式</view>
+                        <view class="return-btn clearfix">
+                            <view class="span active" id="to-global-shop" data-is-need-pickup="1137">快递至第三方卖家</view>
+                        </view>
+                        <view class="global-shop-box">商家审核通过后，请在七个自然日内上传物流信息</view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="return-type mb8">
+                        <view class="text">商品退回方式</view>
+                        <view class="return-btn clearfix">
+                            <block wx:if="{{shippingTypeNow!=111}}">
+                                <block wx:if="{{canShowToHome}}">
+                                    <view class="span{{isNeedPickup==1135?' active':''}}" id="to-home" data-is-need-pickup="1135" catchtap="changeIsNeedPickup">上门取件</view>
+                                </block>
+                                <block wx:else>
+                                    <view class="span color-999" id="to-home" data-is-need-pickup="1135">上门取件</view>
+                                </block>
+                            </block>
+                            <view id="to-shop" class="span{{isNeedPickup==1136?' active':''}}" data-is-need-pickup="1136" catchtap="changeIsNeedPickup">送货至门店</view>
+                        </view>
+                        <block wx:if="{{isNeedPickup==1136}}">
+                            <view class="to-shop-box{{shippingTypeNow==111?' shippingTypeNow111':''}}">
+                                <view class="to-shop-name">请将商品送至<view class="span">【{{detailData.shopName}}】</view></view>
+                                <view class="addr">门店地址：{{detailData.shopAddr}}</view>
+                                <view class="arrow-up"></view>
+                            </view>
+                        </block>
+                        <block wx:if="{{isNeedPickup==1135}}">
+                            <view class="to-home-box">
+                                <view class="to-home-text">将在1-3天内上门取回商品</view>
+                                <block wx:if="{{shippingTypeNow!=1022&&shippingTypeNow!=1023&&shippingTypeNow!=1024&&(refundReason==1349||refundReason==1235||refundReason==1236||refundReason==1125||refundReason==568||refundReason==1300)}}">
+                                    <view class="to-home-tip">该方式收取{{detailData.newPickupChargeAmount}}元取件费</view>
+                                </block>
+                                <block wx:else>
+                                    <view class="to-home-tip">质量问题该方式不收取取件费</view>
+                                </block>
+                                <view class="to-home-text">取件时间：<view class="span">{{dateText}}</view></view>
+                                <view class="arrow-up"></view>
+                                <view class="data-btn" catchtap="showPopDateBoxHandler"></view>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+
+            </block>
+            <block wx:if="{{(shippingTypeNow!=1022&&shippingTypeNow!=1023&&shippingTypeNow!=1024)||detailData.orderType==55}}">
+                <view class="user-inf">
+                    <view class="inf clearfix r1bb"><view class="inf-l">联系人</view><view class="inf-r">{{userName}}</view></view>
+                    <view class="inf clearfix r1bb"><view class="inf-l">联系电话</view><view class="inf-r">{{userPhone}}</view></view>
+                    <block wx:if="{{shippingTypeNow!=111&&shippingTypeNow!=113&&detailData.orderType!=55}}">
+                        <view class="inf clearfix" id="get-addr"><view class="inf-l">取件地址</view><view class="inf-r">{{detailData.addrFull||detailData.shopAddr}}</view></view>
+                    </block>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="user-inf input">
+                    <view class="inf clearfix r1bb"><view class="inf-l">联系人</view><input class="inf-r" placeholder="请填写联系人姓名" bindblur="inputName" value="{{userName}}">{{userName}}</input></view>
+                    <view class="inf clearfix r1bb"><view class="inf-l">联系电话</view><input class="inf-r" type="number" maxlength="11" bindinput="inputPhone" placeholder="请填写联系人手机号" value="{{userPhone}}">{{userPhone}}</input></view>
+                </view>
+            </block>
+            <view class="bottom-tip">提交申请后，商家与您电话沟通，请保持手机畅通</view>
+            <view class="btn-submit active" catchtap="btnSubmit">提交</view>
+        </view>
+    </view>
+</block>
+
+<block wx:if="{{showPopDateBox}}">
+    <view id="pop-data-box">
+        <view class="pop-data">
+            <view class="btn-box">
+                <view class="cancel-data" catchtap="cancelDate">取消</view>
+                <view class="confirm-data" catchtap="confirmDate">确定</view>
+            </view>
+            <view class="ul">
+                <block wx:for="{{dateList}}" wx:for-item="item" wx:for-index="index" wx:key="*this">
+                    <view class="li{{item.dateTime==dateTimeNow?' active':''}}" data-date-time="{{item.dateTime}}" catchtap="selectDate">{{item.dateText}}  00:00-23:59</view>
+                </block>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{showRefundReason}}">
+    <view class="pop-refund-reason">
+        <view class="pop-cnt">
+            <view class="btn-box clearfix"><view class="reason-cancel" catchtap="cancelReason">取消</view><view class="reason-confirm" catchtap="confirmReason">确认</view></view>
+            <view class="ul">
+                <block wx:for="{{refundReasonList}}" wx:for-item="item" wx:for-index="index" wx:key="*this">
+                    <block wx:if="{{detailData.goodsSence>0}}">
+                        <view class="li{{item.value==refundReasonNow?' active':''}}" data-refund-reason="{{item.value}}" data-refund-reason-text="{{item.text}}" catchtap="selectRefundReason">{{item.text}}</view>
+                    </block>
+                    <block wx:elif="{{detailData.isB2C==1634&&refundSkuJson.is7Flag!=1&&(item.value==1349||item.value==1235||item.value==1236||item.value==1125||item.value==568||item.value==1300||item.value==1664)}}">
+                    </block>
+                    <block wx:elif="{{shippingTypeNow!=1022&&shippingTypeNow!=1023&&shippingTypeNow!=1024&&refundSkuJson.is7Flag!=1&&(item.value==1349||item.value==1235||item.value==1236||item.value==1125||item.value==568||item.value==1300||item.value==1664)}}">
+                    </block>
+                    <block wx:elif="{{detailData.isB2C==1037&&refundSkuJson.is7Flag!=1&&(item.value==1349||item.value==1235||item.value==1236||item.value==1125||item.value==568||item.value==1300||item.value==1664)}}">
+                    </block>
+                    <block wx:else>
+                        <view class="li{{item.value==refundReasonNow?' active':''}}" data-refund-reason="{{item.value}}" data-refund-reason-text="{{item.text}}" catchtap="selectRefundReason">{{item.text}}</view>
+                    </block>
+                </block>
+            </view>
+        </view>
+    </view>
+</block>

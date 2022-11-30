@@ -1,0 +1,23 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/purchases/purchases.wxml" />
+<block wx:if="{{valueCardCode}}">
+<view class="store_card_infor pos-r">
+    <!-- <image src="https://shgm.jjyyx.com/m/images/icon_store_card_bg.png" style='height:{{scrollFix}}rpx'></image> -->
+    <view class="p pos-a plr16 store_card_tips">
+        <view class="span">生活卡余额（元）：</view>
+        
+    </view>
+    <view class="pos-a detail">
+        <view class="strong">{{MyCardData.valueCardBalance?MyCardData.valueCardBalance:'0'}}</view>
+        <view class="span">生活卡号：{{MyCardData.valueCardCode?MyCardData.valueCardCode:'0'}}</view>
+    </view>
+</view>
+</block>
+<scroll-view class="integral_item">
+  <template is="purchases" data="{{list}}"></template>
+</scroll-view>
+<block wx:if="{{isNoData}}">
+  <view class="seat-container"></view>
+  <template is="noMore" data="{{...noMoreMes}}"></template>
+</block>
+<template wx:if="{{isEmpty}}" is="empty"></template>

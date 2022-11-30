@@ -1,0 +1,318 @@
+<view class="page box" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd"
+	style="padding-top:{{menuButtonInfo.top+menuButtonInfo.height+25}}px;background:{{BackColor}};min-height:100vh">
+	<import src="/templates/global/global.wxml" />
+	<!-- 顶部三张背景图 -->
+	<view class="ImageBg">
+		<image src="{{$.img_src}}/Explosives/Rectangle.png" mode="aspectFit" class="top"></image>
+		<image src="{{$.img_src}}/Explosives/Oval.png" mode="aspectFit" class="right"></image>
+		<image src="{{$.img_src}}/Explosives/Oval-2.png" mode="aspectFit" class="left"></image>
+	</view>
+	<!-- 顶部导航部分 -->
+	<view class="header"
+		style="padding:{{menuButtonInfo.top}}px 0 25rpx 25rpx;background:rgba(255,255,255,{{opacity}})">
+		<view class="dis_f_l_c" style="height:{{menuButtonInfo.height}}px;">
+			<image wx:if="{{fen_xiang==0}}" class="back" src="{{$.img_src}}{{opacity>0.8?'/Explosives/backB.png':'/Explosives/backW.png'}}"
+				mode="aspectFit" bindtap="back"></image>
+			<image wx:if="{{fen_xiang==1}}" class="back" src="{{$.img_src}}{{opacity>0.8?'/new_icon/go_index_b.png':'/new_icon/go_index_w.png'}}"
+					mode="aspectFit" style="margin-right: 20rpx;" bindtap="go_index"></image>
+			<!-- <image class="title" src="{{$.img_src}}/Explosives/ExplosivesTitle.png" mode="aspectFit"></image> -->
+			<text class="TitleWord"
+				style="{{opacity>0.8?'color:#000':''}}">{{listObj.hotTitle.recommendList[0].recommendTitle}}</text>
+		</view>
+	</view>
+	<!-- 顶部图片展示部分 -->
+	<view class="TopImg" wx:if="{{listObj.hotTitleImg.recommendList.length!=0}}">
+		<image src="{{listObj.hotTitleImg.recommendList[0].imgUrl}}" mode="widthFix"></image>
+	</view>
+	<!-- 正文显示部分 -->
+	<view class="section">
+		<!-- 商品列表部分 -->
+		<view wx:if="{{list.length>0}}">
+			<view class="list">
+				<block wx:for="{{list}}" wx:key="index">
+					<view class="li dis_f_l_c" wx:if="{{item.bizType==19}}" catchtap="goGoodsDetail"
+						data-goods="{{item.extendJson}}">
+						<view class="left">
+							<image wx:if="{{item.extendJson.coverImage}}" class="Bgicon"
+								src="{{item.extendJson.coverImage}}" mode="aspectFill"></image>
+							<view wx:else class="noGoodImg dis_f_co_c_c">
+								<image src="{{$.img_src}}/yx_index/logo.png" mode="aspectFit"></image>
+								<text>暂无图片</text>
+							</view>
+							<block wx:if="{{entrance==0}}">
+								<!-- 视频图标 -->
+								<block
+									wx:if="{{!(item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].ratio>=100||(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock>=1)}}">
+									<view class="videoIcon dis_f_c_c"
+										wx:if="{{item.extendJson.videoAddress!=null && item.extendJson.videoAddress!=''}}">
+										<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit">
+										</image>
+									</view>
+								</block>
+								<!-- 左上角促销图标 -->
+								<block
+									wx:if="{{item.extendJson.promotionList && item.extendJson.promotionList.length}}">
+									<image class="LeftIcon" src="{{item.extendJson.promotionList[0].proTag}}"
+										mode="widthFix">
+									</image>
+								</block>
+								<!-- 中间售完补货中 -->
+								<view class="SoldOut dis_f_c_c"
+									wx:if="{{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].ratio>=100||(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock>=1}}">
+									<view class="dis_f_c_c">
+										<text>售完补货中</text>
+									</view>
+								</view>
+								<!-- 商品售罄蒙白 -->
+								<view class="soldOutBg"
+									wx:if="{{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].ratio>=100||(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock>=1}}">
+								</view>
+							</block>
+							<block wx:else>
+								<!-- 视频图标 -->
+								<view class="videoIcon dis_f_c_c"
+									wx:if="{{item.extendJson.videoAddress!=null && item.extendJson.videoAddress!=''}}">
+									<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit">
+									</image>
+								</view>
+								<!-- 左上角促销图标 -->
+								<block wx:if="{{item.extendJson.proType == 1888}}">
+									<image class="LeftIcon" src="{{$.societyBongImg.group}}" mode="widthFix">
+									</image>
+								</block>
+								<block wx:if="{{item.extendJson.proType == 1178}}">
+									<image class="LeftIcon" src="{{$.societyBongImg.spike}}" mode="widthFix">
+									</image>
+								</block>
+								<!-- 中间售完补货中 -->
+								<view class="SoldOut dis_f_c_c"
+									wx:if="{{item.extendJson.proType == 1888 && item.extendJson.surplusStock<=0 || item.extendJson.ratio >= 100}}">
+									<view class="dis_f_c_c">
+										<text>售完补货中</text>
+									</view>
+								</view>
+								<!-- 商品售罄蒙白 -->
+								<view class="soldOutBg"
+									wx:if="{{item.extendJson.proType == 1888 && item.extendJson.surplusStock<=0 || item.extendJson.ratio >= 100}}">
+								</view>
+								<!-- 下方提货时间 -->
+								<view class="BottomTime dis_f_c_c"
+									wx:if="{{item.extendJson.proType == 1888 && item.extendJson.deliveryDate}}">
+									<text>提货时间 {{item.extendJson.deliveryDate}}</text>
+								</view>
+							</block>
+						</view>
+						<view class="right dis_f_co_sb">
+							<!-- 标题 -->
+							<text class="title slh_one">{{item.extendJson.materielParentName||item.extendJson.goodsPromotionName||item.extendJson.shortTitle||item.extendJson.goodsName||""}}</text>
+							<!-- 商品介绍 -->
+							<text class="content slh_one" wx:if="{{item.extendJson.goodsTag}}">{{item.extendJson.goodsTag||""}}</text>
+							<!-- 是否售罄 -->
+							<block wx:if="{{entrance==0}}">
+								<text class="num slh_one" wx:if="{{item.extendJson.goodsStock<=0}}">已售罄</text>
+								<!-- 拼团部分 -->
+								<!-- <block
+									wx:elif='{{(item.extendJson.proType == 1821 || item.extendJson.proType == 999)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1821)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==999)}}'>
+									<text
+										class="num slh_one">{{(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock*100 >= 100 ? '本品已售罄' : (item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock*100 > 85 ? '本品即将售罄' : (item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock*100 == 0 ? '本品热卖中' : '本品已拼'+(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)+'件'}}</text>
+								</block> -->
+
+								<block
+									wx:elif='{{(item.extendJson.proType == 1821 || item.extendJson.proType == 999)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1821)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==999)}}'>
+									<!-- <text class="num slh_one">{{item.extendJson.promotionList[0].groupBuyResultOutput.proVolume==0?'本品热卖中':item.extendJson.promotionList[0].groupBuyResultOutput.proVolume>=item.extendJson.promotionList[0].allProStock?'本品已售罄':'本品已拼'+item.extendJson.promotionList[0].groupBuyResultOutput.proVolume+item.extendJson.salesUnits}}</text> -->
+									<text
+										class="num slh_one">{{item.extendJson.promotionList[0].groupBuyResultOutput.proVolume==0?'本品热卖中':item.extendJson.promotionList[0].groupBuyResultOutput.proVolume>=item.extendJson.promotionList[0].allProStock?'本品已售罄':'本品已拼'+item.extendJson.promotionList[0].groupBuyResultOutput.proVolume+'件'}}</text>
+								</block>
+								<!-- 秒杀部分 -->
+								<block
+									wx:elif='{{(item.extendJson.proType == 1178 || item.extendJson.proType == 998)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1178)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==998)}}'>
+									<text
+										class="num slh_one">{{item.extendJson.promotionList[0].ratio >= 100 ? '本品已售罄' : item.extendJson.promotionList[0].ratio > 85 ? '本品即将售罄' : item.extendJson.promotionList[0].ratio == 0 ? '本品热卖中' : '本品已抢'+ ~~(item.extendJson.promotionList[0].buyStock/item.extendJson.promotionList[0].minEditCount) +'件'}}</text>
+								</block>
+								<!-- 进度条秒杀 -->
+								<block
+									wx:if='{{(item.extendJson.proType == 1178 || item.extendJson.proType == 998)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1178)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==998)}}'>
+									<view class="progress">
+										<view class="progressBar"
+											style="width: {{item.extendJson.promotionList[0].ratio}}%;"></view>
+									</view>
+								</block>
+								<!-- 拼团进度条 -->
+								<!-- 	<block
+									wx:if='{{(item.extendJson.proType == 1821 || item.extendJson.proType == 999)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1821)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==999)}}'>
+									<view class="progress">
+										<view class="progressBar"
+											style="width: {{(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock*100}}%;">
+										</view>
+									</view>
+								</block> -->
+								<block
+									wx:if='{{(item.extendJson.proType == 1821 || item.extendJson.proType == 999)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1821)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==999)}}'>
+									<view class="progress">
+										<view class="progressBar"
+											style="width: {{(item.extendJson.promotionList[0].groupBuyResultOutput.proVolume)/item.extendJson.promotionList[0].allProStock*100}}%;">
+										</view>
+									</view>
+								</block>
+								<!-- 拼团按钮 -->
+								<view class="Rbottom Rbottom2 dis_f_sb_c box"
+									wx:if='{{(item.extendJson.proType == 1821 || item.extendJson.proType == 999)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==1821)||(!item.extendJson.proType&&item.extendJson.promotionList&&item.extendJson.promotionList[0].proType==999)}}'>
+									<!-- 拼团时使用的背景图 -->
+									<!-- <image class="GroupBg" src="{{$.img_src}}/Explosives/GroupBgN.png" mode="aspectFill"
+										wx:if="{{item.extendJson.goodsStock<=0||(item.extendJson.promotionList[0].allProStock-item.extendJson.promotionList[0].proStock)/item.extendJson.promotionList[0].allProStock>=1}}">
+									</image> -->
+									<image class="GroupBg" src="{{$.img_src}}/Explosives/GroupBgN.png" mode="aspectFill"
+										wx:if="{{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].groupBuyResultOutput.proVolume>=item.extendJson.promotionList[0].allProStock}}">
+									</image>
+									<image class="GroupBg" src="{{$.img_src}}/Explosives/GroupBgY.png" wx:else></image>
+									<view class="shop dis_f_w_l_b">
+										<view
+											class="new {{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].groupBuyResultOutput.proVolume>=item.extendJson.promotionList[0].allProStock?'NoNew':''}}">
+											<text>￥</text>
+											<text
+												class="whole">{{item.extendJson.minPrice?item.extendJson.proPrice[0]:item.extendJson.salePrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.minPrice&&item.extendJson.proPrice[1]||!item.extendJson.minPrice&&item.extendJson.salePrice[1]}}">.{{item.extendJson.minPrice?item.extendJson.proPrice[1]:item.extendJson.salePrice[1]}}</text>
+											<text class="unit">/{{item.extendJson.salesUnit}}</text>
+										</view>
+										<!-- 划线价 -->
+										<view class="old dis_f_l_b" wx:if="{{item.extendJson.proTypes}}">
+											<text>￥{{item.extendJson.salePrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.salePrice[1]}}">.{{item.extendJson.salePrice[1]}}</text>
+										</view>
+									</view>
+									<view class="group dis_f_r_c" data-goods="{{item.extendJson}}" catchtap="GoGroup">
+										<text>去拼团</text>
+										<image src="{{$.img_src}}/Explosives/RightArrow.png" mode="aspectFit"></image>
+									</view>
+								</view>
+								<!-- 购买商品按钮 -->
+								<view class="Rbottom Rbottom1 dis_f_sb_c" wx:else>
+									<view class="shop dis_f_w_l_b">
+										<view
+											class="new {{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].ratio>=100?'NoNew':''}}">
+											<text>￥</text>
+											<text
+												class="whole">{{item.extendJson.minPrice?item.extendJson.proPrice[0]:item.extendJson.salePrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.minPrice&&item.extendJson.proPrice[1]||!item.extendJson.minPrice&&item.extendJson.salePrice[1]}}">.{{item.extendJson.minPrice?item.extendJson.proPrice[1]:item.extendJson.salePrice[1]}}</text>
+											<text class="unit">/{{item.extendJson.salesUnit}}</text>
+										</view>
+										<!-- 划线价 -->
+										<view class="old dis_f_l_b" wx:if="{{item.extendJson.proTypes}}">
+											<text>￥{{item.extendJson.salePrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.salePrice[1]}}">.{{item.extendJson.salePrice[1]}}</text>
+										</view>
+										<!-- <view class="old dis_f_l_b">
+											<text>{{(item.extendJson.primePrice && item.extendJson.primePrice != item.extendJson.salePrice&&item.extendJson.proType!=1888) ? ("￥" + item.extendJson.primePrice) :""}}</text>
+										</view> -->
+									</view>
+									<view
+										class="cart dis_f_c_c {{item.extendJson.goodsStock<=0||item.extendJson.promotionList[0].ratio>=100?'cartActive':''}}"
+										data-goods="{{item.extendJson}}" catchtap="addCart">
+										<text>加入购物车</text>
+										<image src="{{$.img_src}}/Explosives/CartIcon.png" mode="aspectFit"></image>
+									</view>
+								</view>
+
+							</block>
+							<block wx:else>
+								<text class="num slh_one"
+									wx:if="{{item.extendJson.proType == 1888 && item.extendJson.surplusStock<=0 || item.extendJson.ratio >= 100}}">已售罄</text>
+
+								<!-- 拼团部分 -->
+								<block wx:elif="{{item.extendJson.proType == 1888 && item.extendJson.surplusStock>0}}">
+									<text
+										class="num slh_one">{{item.extendJson.salesVolume==0? '本品热卖中' : '本品已拼'+item.extendJson.salesVolume+'件'}}</text>
+									<!-- 拼团进度条 -->
+									<view class="progress">
+										<view class="progressBar"
+											style="width:{{item.extendJson.salesVolume/(item.extendJson.salesVolume+item.extendJson.surplusStock)}}%;">
+										</view>
+									</view>
+								</block>
+								<!-- 秒杀部分 -->
+								<block wx:elif='{{item.extendJson.ratio < 100}}'>
+									<text
+										class="num slh_one">{{item.extendJson.buyStock==0? '本品热卖中' : '本品已抢'+(item.extendJson.buyStock)+'件'}}</text>
+									<!-- 进度条秒杀 -->
+									<view class="progress">
+										<view class="progressBar" style="width: {{item.extendJson.ratio}}%;"></view>
+									</view>
+								</block>
+								<!-- 拼团按钮 -->
+								<view class="Rbottom Rbottom2 dis_f_sb_c box"
+									wx:if='{{item.extendJson.proType == 1888}}'>
+									<!-- 拼团时使用的背景图 -->
+									<image class="GroupBg" src="{{$.img_src}}/Explosives/GroupBgN.png" mode="aspectFill"
+										wx:if="{{item.extendJson.surplusStock<=0}}">
+									</image>
+									<image class="GroupBg" src="{{$.img_src}}/Explosives/GroupBgY.png" wx:else></image>
+									<view class="shop dis_f_w_l_b">
+										<view class="new {{item.extendJson.surplusStock<=0?'NoNew':''}}">
+											<text>￥</text>
+											<text class="whole">{{item.extendJson.goodsPrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.goodsPrice[1]}}">.{{item.extendJson.goodsPrice[1]}}</text>
+											<text
+												class="unit">{{item.extendJson.salesUnit?'/'+item.extendJson.salesUnit:''}}</text>
+										</view>
+										<view class="old dis_f_l_b">
+											<text>￥{{item.extendJson.goodsPrimePrice}}</text>
+										</view>
+									</view>
+									<view class="group dis_f_r_c" data-goods="{{item.extendJson}}" catchtap="GoGroup">
+										<text>去拼团</text>
+										<image src="{{$.img_src}}/Explosives/RightArrow.png" mode="aspectFit"></image>
+									</view>
+								</view>
+								<!-- 购买商品按钮 -->
+								<view class="Rbottom Rbottom1 dis_f_sb_c" wx:else>
+									<view class="shop dis_f_w_l_b">
+										<view class="new {{item.extendJson.ratio >= 100?'NoNew':''}}">
+											<text>￥</text>
+											<text class="whole">{{item.extendJson.goodsPrice[0]}}</text>
+											<text
+												wx:if="{{item.extendJson.goodsPrice[1]}}">.{{item.extendJson.goodsPrice[1]}}</text>
+											<text
+												class="unit">{{item.extendJson.salesUnit?'/'+item.extendJson.salesUnit:''}}</text>
+										</view>
+										<view class="old dis_f_l_b">
+											<text>￥{{item.extendJson.goodsPrimePrice}}</text>
+										</view>
+									</view>
+									<view class="cart dis_f_c_c {{item.extendJson.ratio >= 100?'cartActive':''}}"
+										data-goods="{{item.extendJson}}" catchtap="STaddCart">
+										<text>加入购物车</text>
+										<image src="{{$.img_src}}/Explosives/CartIcon.png" mode="aspectFit"></image>
+									</view>
+								</view>
+							</block>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!-- 触底加载组件 -->
+			<MoreData more="{{more_data}}" type="{{3}}"></MoreData>
+		</view>
+        <view wx:elif="{{list.length == 0 && isFirstLoading}}">
+		    <NoList></NoList>
+        </view>
+	</view>
+	<!-- 底部部分 -->
+	<view class="footer">
+		<!-- 加载中动画 -->
+		<Loading wx:if="{{loadingShow}}"></Loading>
+        <!-- <template is="globalLoading" data="{{globalLoading}}"></template> -->
+		<!-- 购物车图标 -->
+		<view class="cart cartXF" bindtap="GoCart" animation="{{animationData}}">
+			<image src="{{$.img_src}}/components/cart.png" mode="aspectFill"></image>
+			<text class="dis_f_c_c">{{CartCount}}</text>
+		</view>
+		<CartAnimation id="cartAnimation" background="#FF4752"></CartAnimation>
+		<!-- 提示框组件 -->
+		<template is="toast" data="{{...toastData}}"></template>
+	</view>
+</view>

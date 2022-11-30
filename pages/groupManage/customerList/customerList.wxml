@@ -1,0 +1,58 @@
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+
+
+<block wx:if='{{showEdit}}'>
+  <view class='edit-box'>
+    <view class='edit-cnt'>
+      <textarea value='{{editValue}}' bindinput='bindinputEdit' placeholder='输入备注内容'></textarea>
+    </view>
+    <view class='edit-box-btn'>
+      <view class='edit-cancel-btn' catchtap='cancelEdit'>取消</view>
+      <view class='edit-confirm-btn' catchtap='confirmEdit'>保存</view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='list-box'>
+    <!-- <view class='search-mod'>
+      <view class='search-info'><input type='text' value='{{searchValue}}' bindinput='bindinputSearch'  placeholder='购买人姓名或手机号'></input></view>
+      <view class='search-btn' catchtap='searchConfirm'>搜索</view>
+  </view> -->
+    <view class='search-box'>
+      <view class='search-input'>
+        <input type='text' value='{{searchValue}}' bindconfirm='searchConfirm' bindinput='bindinputSearch' placeholder='购买人姓名或手机号' />
+      </view>
+    </view>
+    <block wx:if="{{showError}}">
+      <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+    </block>
+    <block wx:else>
+      <block wx:for='{{list}}' wx:for-item='li' wx:key='*this'>
+        <view class='item' catchtap='goInfoOrder' data-li='{{li}}'>
+          <view class='customer-info'>
+            <image class='photo' src='{{li.photo}}'></image>
+            <view class='info'>
+              <view class='name'>昵称：{{li.nickName||'无'}}</view>
+              <view class='phone'>手机：{{li.mobile||'无'}}</view>
+            </view>
+            <view class='earn'>赚：¥{{li.earningsStr||'0'}}</view>
+          </view>
+          <view class='remark'>
+            <label for='remark'>备注：</label>
+            <view class='remark-cnt'>{{li.remark||'暂无'}}</view>
+            <view class='edit' catchtap='clickTap' data-edit-id='{{li.id}}' data-remark='{{li.remark}}'>备注</view>
+          </view>
+          <view class='last-create'>最后购买时间：{{li.lastBuyTimeStr||'无'}}</view>
+        </view>
+      </block>
+      <!-- 提示层 - 没有更多了 -->
+      <block wx:if='{{showMore}}'>
+        <template is="noMore"></template>
+      </block>
+
+    </block>
+  </view>
+</block>

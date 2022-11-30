@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品分类",
+  "disableScroll": true,
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-go-cart": "/component/goCart/goCart",
+    "component-group-footer": "/component/communityGroupFooter/communityGroupFooter",
+    "component-goods-classify-item": "/component/goodsClassifyItem/goodsClassifyItem"
+  }
+}

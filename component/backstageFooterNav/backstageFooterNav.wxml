@@ -1,0 +1,15 @@
+<!--component/groupFooterNav/groupFooterNav.wxml-->
+<view class="footer-seat"></view>
+<view class="footer-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}" catchtap="jumpToMyGroup">
+  <view class="footer-item-container my-group-nav{{current == 0 ? ' active' : ''}}">
+    <text class="nav-msg">合伙人</text>
+  </view>
+  <view class="footer-item-container my-group-sheq{{current == 1 ? ' active' : ''}}" catchtap="jumpToGroupList">
+    <text class="nav-msg">社区</text>
+  </view>
+
+  <view class="footer-item-container my-group-yunchao{{current == 2 ? ' active' : ''}}" catchtap="jumpToYunChao">
+    <text class="nav-msg">云超</text>
+  </view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</view>

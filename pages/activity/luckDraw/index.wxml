@@ -1,0 +1,59 @@
+<import src="/templates/global/global.wxml" />
+<!-- 抽奖转盘 start -->
+<block wx:if="{{prizeList}}" wx:key="*this">
+<view class="cnt goods-list-container navTagClass luck-draw-container" id="sectionID_list">
+  <image style="width:100%;" src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/bg1@2x1.jpg?t={{t}}" mode="widthFix"></image>
+    <view class="wrapper">
+
+        <view class="head"></view>
+        <view class="body">
+            <view class="prize-container">
+                <view class="prize-mask"></view>
+                <view class="prize-led {{prizeLedRunning?'running':''}}"></view>
+                <view class="prize-inner-bg"></view>
+                <view class="prize-list">
+                    <block wx:for="{{prizeList}}" wx:key="his">
+                    <view id="prize-item-{{item.places}}" class="item item-{{item.places}} {{item.places == prizeDrawConfig.positionCurrent?'active':''}}" style="background-image: url('{{item.prizeIcon}}'); background-size:contain;"></view>
+                    </block>
+                    <view id="prize-item-10" class="item item-10 {{10 == prizeDrawConfig.positionCurrent?'active':''}}"></view>
+                    <view id="prize-item-22" class="item item-22 {{22 == prizeDrawConfig.positionCurrent?'active':''}}"></view>
+                </view>
+                <block wx:if="{{activityTemplateData && activityTemplateData.userInfo && activityTemplateData.userInfo.memberId != 0}}">
+                <view class="user-info">
+                    <view class="avatar" style="background-image: url('{{activityTemplateData.userInfo.photo || activityTemplateData.userInfo.photoDefault}}')"></view>
+                    <view class="nickname">{{activityTemplateData.userInfo.nickName || activityTemplateData.userInfo.tel}}</view>
+                    <view class="chance">您有 <text id="surplusCount" class="number">{{activityTemplateData.userInfo.surplusCount}}</text> 次抽奖机会</view>
+                </view>
+                </block>
+                <block wx:else>
+                <view class="award-info">
+                    <view class="coupon" style="background-image: url('{{awardInfo.winningIcon}}')"></view>
+                    <view class="award-tips">登录获得抽奖机会</view>
+                </view>
+                </block>
+            </view>
+            <view class="button-container">
+                <view id="btnStartDraw" bindtap="startPrizeDrawMachine" class="btn-start-draw {{ activityTemplateData.userInfo && activityTemplateData.userInfo.surplusCount <= 0 ? 'btn-start-draw-disabled': '' }} {{btnStartDrawDisabled?'btn-start-draw-disabled':''}}"></view>
+            </view>
+        </view>
+        <!-- <view class="foot">
+          <navigator id="jumpLuckDrawRules" url="luck_draw_rules.html">查看详细规则</navigator>
+        </view> <image class="gzh-code" src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/two_d_code.jpg"></image>-->
+        <view class="draw-rule-img"><image class="d-rule-img" src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/rl_lottery_rule.png?t={{t}}"></image></view>
+    </view>
+</view>
+<!-- <block wx:if="{{isIOS}}">
+<image src="./images/ios_rule.png" alt=""></image>
+</block> -->
+<view id="luck-draw-popup" class="luck-draw-popup" wx:if="{{luckDrawPopup.luckDrawPopupShow}}" bindtap="bindLuckDrawPopup">
+    <view class="box-lose J_box-lose" wx:if="{{luckDrawPopup.boxLose}}">
+        <text class="text">谢谢参与</text>
+    </view>
+    <view class="box-win J_box-win" wx:if="{{luckDrawPopup.boxWin}}">
+        <text class="coupon J_coupon" style="{{luckDrawPopup.couponConfig.style}}"></text>
+    </view>
+    <view class="extra-text J_extra-text" wx:if="{{luckDrawPopup.extraTextConfig.show}}">{{luckDrawPopup.extraTextConfig.extraText}}</view>
+</view>
+</block>
+<!-- 抽奖转盘 end -->
+<template is="toast" data="{{...toastData}}"></template>

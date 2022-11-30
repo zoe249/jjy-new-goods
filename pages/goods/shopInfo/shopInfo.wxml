@@ -1,0 +1,78 @@
+<!--pages/goods/shopInfo/shopInfo.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<scroll-view class="wrapper" scroll-y>
+  <!-- <view class="shop-top-container" bindtap="linkToShopDetail">
+    <view class="shop-image-cover" style="background-image: url({{shopInfo.storeCover || 'https://shgm.jjyyx.com/m/images/shop_top_img.png?t=418'}})"></view>
+    <view class="shop-info-container">
+      <view class="shop-icon-container">
+        <image class="shop-icon" src="{{shopInfo.storeIcon||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+        <image class="shop-icon-border" src="https://shgm.jjyyx.com/m/images/shopIcon_masker.png"></image>
+      </view>
+
+      
+      <view class="shop-msg-container">
+        <view class="shop-name">{{shopInfo.storeName}}（{{shopInfo.shopName}}）</view>
+        <view class="shop-scores-container">
+          <text class="scores {{shopInfo.storeStar > 1 ? 'full' : shopInfo.storeStar > 0.5 ? 'half' : ''}}"></text>
+          <text class="scores {{shopInfo.storeStar > 2 ? 'full' : shopInfo.storeStar > 1.5 ? 'half' : ''}}"></text>
+          <text class="scores {{shopInfo.storeStar > 3 ? 'full' : shopInfo.storeStar > 2.5 ? 'half' : ''}}"></text>
+          <text class="scores {{shopInfo.storeStar > 4 ? 'full' : shopInfo.storeStar > 3.5 ? 'half' : ''}}"></text>
+          <text class="scores {{shopInfo.storeStar > 5 ? 'full' : shopInfo.storeStar > 4.5 ? 'half' : ''}}"></text>
+          <text class="grade">({{shopInfo.storeGrade}})</text>
+          <text class="tags">{{shopInfo.tags}}</text>
+        </view>
+        <view class="shop-services-container">
+          <block wx:for="{{shopInfo.services}}" wx:for-item="servicesItem" wx:key="*this">
+            <view class="services-item {{servicesItem}}"></view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- bindtap="linkToShopDetail" -->
+  <view class="shop-head" >
+    <view class="shop-head-top">
+      <view class="shop-img">
+        <image mode="widthFix" src="{{shopInfo.storeIcon||'https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418'}}"></image>
+      </view>
+      <view class="shop-name">
+        {{shopInfo.storeName}}
+      </view>                                                                                                                                 
+
+      <view  data-phone="{{shopInfo.storeTel ? shopInfo.storeTel : shopInfo.storeMobile}}" bindtap="phoneService" class="shop-tell" wx:if="{{shopInfo.storeTel||shopInfo.storeMobile}}">
+        <view class="iconfont iconTell"></view>
+      </view>
+    </view>
+    <view class="shop-head-bot">
+      店铺简介：{{shopInfo.summary||'暂无'}}
+    </view>
+  </view>
+  <scroll-view class="nav-scroll-container" scroll-x>
+    <view class="nav-container">
+      <block wx:for="{{shopInfo.storeCateList}}" wx:key="*this">
+        <view class="nav-item {{currentCate == item ? 'active' : ''}}" data-cate="{{item}}" bindtap="changeCate">{{item}}</view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <block wx:if="{{shopInfo.goodsList.length}}">
+    <view class="goods-list-container">
+      <block wx:for="{{shopInfo.goodsList}}" wx:if="{{currentCate == '全部' || currentCate == item.storeCateName}}" wx:key="goodsId">
+        
+        <goods-item-yunchao goods="{{item}}" bind:bindPartakeGroup="jumpGoodsDetail" bind:change-cart="changeCartCount"></goods-item-yunchao>
+      </block>
+      <block wx:if="{{otherMes == 'noMore'}}">
+        <template is="{{otherMes}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{otherMes == 'empty'}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+  </block>
+  <template is="toast" data="{{...toastData}}"></template>
+  <component-go-cart cart-count="{{cartCount}}" groupType="2" positionStyle="{{positionStyle}}"></component-go-cart>
+</scroll-view>
+
+
+

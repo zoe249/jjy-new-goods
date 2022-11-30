@@ -1,0 +1,10 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.statusFixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}

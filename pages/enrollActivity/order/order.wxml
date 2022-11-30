@@ -1,0 +1,44 @@
+    <!-- <block wx:for="{{regroup}}" wx:for-item="storeList">
+        <view class="bg-caitiao"></view>
+        <view class="h3 fill-current-shop r1bb">精品超市-门店核销<text class="fr">{{regroup.shopName}}</text></view>
+        <block wx:for="{{regroup.goodsList}}" wx:for-item="list">
+        <view class="order-info">
+            <view class="ul">
+                <view class="li r1bb">活动名称<span class="fr">{{list.goodsName}}</span></view>
+                <view class="li r1bb">活动时间<span class="fr">{{list.startTime}}~{{list.endTime}}</span></view>
+                <view class="li r1bb">参加人数<span class="fr">{{list.joinPeople}}人</span></view>
+                <view class="li r1bb">使用次数<span class="fr">{{if list.useNumber == 0}}无限次{{else}}{{list.useNumber}}次{{/if}}</span></view>
+                <view class="li r1bb">有效时间<span class="fr">{{list.useDays}}天</span></view>
+            </view>
+        </view>
+    </block>
+    <view class="invoice-wrap">
+        发票
+        <span class="fr c-gray-color pos-r"><em class="invoice-tips {{if invoiceInfo && invoiceInfo.invoiceType != 446}}c-color{{/if}}" data-shopId="{{regroup.shopId}}" data-shopName="{{regroup.shopName}}">{{if !invoiceInfo}}不开发票{{else}}{{/if}}{{$invoiceTitle(invoiceInfo)}}</em></span><s class="forword"></s>
+    </view>
+   </block>
+    <view class="check-coupons pos-r bg-white {{couponDetails.moreCouponSelect==0?'selectable':''}}">优惠券 <em class="fr c-color"></em><span class="fr {{couponDetails.moreCouponSelect == 0?'c-gray-color':'c-color'}} ellipsis">{{couponDetails.couponTag}}</span><i class="forword mr16"></i></view>
+    <view class="fill-money bg-white">
+        <view class="ul">
+            <view class="li clearfix">
+                <text class="span fl">商品金额</text><text class="em fr c-default">￥<text class="i fill_goods_money">{{totalSrcPrice}}</text></text>
+            </view>
+            <view class="li clearfix">
+                <text class="span fl">促销优惠</text><text class="em fr">-￥<text class="i fill_goods_promotion">{{totalProPrice}}</text></text>
+            </view>
+            <view class="li clearfix">
+                <text class="span fl">优  惠  券</text><text class="em fr">-￥<text class="i fill_goods_couponPrice">{{couponPrice}}</text></text>
+            </view>
+        </view>
+    </view>
+    <view class="fill-footer r1bt bg-white r1bt">
+        <view class="wrap">
+            <view class="check-price clearfix">
+                <view class="total-price-wrapper">
+                    <text class="span total-price" id="total_price"><text class="i">实付：</text><text class="em">{{realPayPrice}}</text></text></text>
+                </view>
+            </view>
+            <button id="settle_accounts" class="settle-accounts">提交订单</button>
+        </view>
+    </view> -->
+    <button id="settle_accounts" class="settle-accounts" bindtap="createOrder">提交订单</button>

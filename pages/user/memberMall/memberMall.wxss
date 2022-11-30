@@ -1,0 +1,22 @@
+/* pages/user/memberMall/memberMall.wxss */
+.banner-swiper{
+  height: 390rpx;
+}
+.slide-image{
+  width: 100%;
+  height: 390rpx;
+}
+.member-goods{
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  padding: 0 16rpx;
+}
+
+
+/*占位用*/
+.seat-container{
+  display: block;
+  width: 100%;
+  height: 60rpx;
+}

@@ -1,0 +1,38 @@
+<import src="/templates/global/global.wxml" />
+
+<view class="batch-item" wx:for="{{list}}" wx:key="{{batchId}}" bindtap="jumpToReport" data-id="{{item.batchId}}">
+  <view class="batch-title pos-r forword"><view class="txt">到货批次</view>{{item.batchId}}</view>
+  <view class="batch-time"><view class="txt">一键签收时间：</view>{{item.receiveTime}}</view>
+</view>
+<block wx:if="{{list.length> 3}}">
+  <template is="noMore" data="{{noMoreMes}}"></template>
+</block>
+
+<!-- <view class="report-diff-container">
+  <block wx:for="{{list}}" wx:key="batchId">
+      <view class="diff-item pos-r" data-id="{{item.batchId}}" wx:for="{{item.goodsList}}" bindtap="jumpDetails" data-item="{{good}}" wx:for-item="good" wx:key='index'>
+        <view class="diff-item-top">
+          <view class="diff-item-img">
+            <image src="{{good.goodsImage}}"></image>
+          </view>
+          <view class="diff-item-info">
+            <view class="diff-goods-name">{{good.goodsSkuname}}</view>
+            <view class="diff-goods-bt">
+              <view class="diff-spc"><text
+                  wx:if="{{good.goodsUnit}}">规格：{{good.goodsUnit}}</text><text>单价：{{good.goodsPrice}}{{good.goodsUnit?'/'+good.goodsUnit:''}}</text>
+              </view>
+              <view class="diff-num"> 数量：{{item.goodsNumTotal}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="diff-state pos-a {{good.upStatus == 0?'':'diff-stated'}}">{{good.upStatus==0?'报差异':'已上报'}}</view>
+      </view>
+  </block>
+  <block wx:if="{{list.length> 3}}">
+    <template is="noMore" data="{{noMoreMes}}"></template>
+  </block>
+</view> -->
+
+<template is="empty" wx:if="{{empty}}" data="{{emptyMsg}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="toast" data="{{...toastData}}"></template>

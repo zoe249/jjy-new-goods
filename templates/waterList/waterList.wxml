@@ -1,0 +1,20 @@
+<template name="waterList">
+    <view class='water-list-container'>
+        <view class='store-name'>家家悦优鲜北京通州店</view>
+        <scroll-view class='water-goods-list' scroll-x="true">
+            <view bindtap='toWaterDetails' data-id='{{item.id}}'>
+                <view class='goods-wrap' wx:for="{{item.goodImgList}}" wx:key="w_{{index}}" wx:if="{{index < 5}}">
+                    <image class='goods-img' src='{{item}}'></image>
+                </view>
+            </view>
+        </scroll-view>
+        <view class='water-nums'>共{{item.goodImgList.length}}件商品</view>
+        <view class='water-list-bottom ui-flex'>
+            <view class='id'>{{item.id}}</view>
+            <view class='time'>{{item.createTime}}</view>
+        </view>
+        <view class='water-share-box'>
+            <button class='water-share-btn' catchtap='moreExtension' data-item="{{item}}" data-more="3">推广</button>
+        </view>
+    </view>
+</template>

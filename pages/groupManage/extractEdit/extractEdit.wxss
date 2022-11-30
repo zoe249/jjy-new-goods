@@ -1,0 +1,117 @@
+page {
+    background: #f4f4f4;
+}
+
+.forword::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2rpx solid #999;
+    border-bottom: 2rpx solid #999;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.address-container {
+    padding: 16rpx 32rpx 0;
+    border-top: 2rpx solid #e7e7e7;
+    background: #fff;
+}
+
+.address-item {
+    position: relative;
+    display: flex;
+    color: #777;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    padding: 23rpx 0 23rpx 16rpx;
+    border-bottom: 2rpx solid #e7e7e7;
+}
+
+.address-item:last-child {
+    border: 0;
+}
+
+.address-item .title {
+    width: 160rpx;
+}
+
+.no-set {
+    color: #e7e7e7;
+}
+
+.set-default {
+    margin-top: 16rpx;
+    background: #fff;
+    padding: 23rpx 0 23rpx 48rpx;
+    border: 0;
+    color: #313031;
+}
+
+.set-default text {
+    display: inline-block;
+    position: relative;
+    padding-left: 48rpx;
+    margin-left: 40rpx;
+}
+
+.set-default text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 32rpx;
+    border: 2rpx solid #707070;
+    transform: translateY(-50%);
+}
+
+.set-default text.act::before {
+    content: "";
+    position: absolute;
+    left: 14rpx;
+    top: 50%;
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 8rpx;
+    background: #313031;
+    transform: translateY(-50%);
+}
+
+.address-item input {
+    flex: 1;
+    display: inline-block;
+    line-height: 48rpx;
+    height: 48rpx;
+    min-height: 48rpx;
+}
+
+.address-item .choose-title {
+    flex: 1;
+    padding-right: 32rpx;
+}
+
+.address-item picker {
+    flex: 1;
+    display: inline-block;
+    line-height: 48rpx;
+    height: 48rpx;
+    min-height: 48rpx;
+}
+
+.btn-save {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 112rpx;
+    line-height: 112rpx;
+    background: #fff;
+    border-radius: 0;
+    color: var(--blue);
+    font-size: 30rpx;
+}

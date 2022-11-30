@@ -1,0 +1,144 @@
+<view class="page">
+	<!-- 顶部导航部分 -->
+	<view class="header">
+		<!-- 轮播 -->
+		<view class="swiper">
+			<swiper bindchange="swiper_change" circular>
+				<block wx:for="{{swiper_list}}" wx:key="index">
+					<swiper-item bindtap="swiper_fun" data-item="{{item}}">
+						<image src="{{item}}" mode="aspectFill" />
+					</swiper-item>
+				</block>
+			</swiper>
+			<view class="swiper_ul">
+				<view class="swiper_li dis_f_c_c">
+					<image class="bg" src="{{$.img_src}}/ArticleDetails/lbt_ym_bg.png" mode="aspectFit" />
+					<view class="left dis_f_c_c">
+						<image class="left_bg" src="{{$.img_src}}/ArticleDetails/lbt_ym_xz.png" mode="aspectFit" />
+						<text>{{swiper_index+1}}</text>
+					</view>
+					<view class="right dis_f_c_c">
+						<text>{{swiper_list.length}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 顶部标题部分 -->
+		<view class="top_title dis_f_co_sb_c box">
+			<view class="title slh_one">玉子虾仁</view>
+			<view class="content slh_one">广告语鲁花食用油5S压榨一级花生油5L广告语广告语广告语广告语广告语广告语广告语广告语广告语广告语</view>
+		</view>
+	</view>
+	<!-- 正文显示部分 -->
+	<view class="section">
+		<!-- 商品清单部分 -->
+		<view class="product_list">
+			<view class="top dis_f_sb_c">
+				<view class="top_left dis_f_l_c">
+					<view class="Wire"></view>
+					<view class="title">商品清单</view>
+					<view class="number">/共18件</view>
+				</view>
+				<view class="top_right dis_f_c_c">
+					<text>一键加购</text>
+				</view>
+			</view>
+			<view class="bottom">
+				<swiper bindchange="product_list_swiper_change" circular>
+					<block wx:for="{{7}}" wx:key="index">
+						<swiper-item>
+							<view class="ul dis_f_l_c">
+								<block wx:for="{{3}}" wx:key="index">
+									<view class="shop_li">
+										<view class="top_img">
+											<image class="shop_img" src="{{$.img_src}}/ArticleDetails/lbt_ym_xz.png"
+												mode="aspectFill" />
+										</view>
+										<view class="title slh_two">
+											和风什锦菜和风什锦菜和风什锦菜和风什锦菜
+										</view>
+										<view class="price_btn dis_f_sb_c">
+											<view class="price">
+												<text>￥</text>
+												<text class="whole">69.9</text>
+												<text class="unit">/盒</text>
+											</view>
+											<view class="btn">
+												<image src="{{$.img_src}}/ArticleDetails/lbt_ym_xz.png"
+													mode="aspectFit" />
+											</view>
+										</view>
+									</view>
+								</block>
+							</view>
+						</swiper-item>
+					</block>
+				</swiper>
+				<view class="shop_list_dian dis_f_c_c">
+					<block wx:for="{{7}}" wx:key="index">
+						<view class="li {{product_list_swiper_index==index?'active':''}}"></view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<!-- 文章详情部分 -->
+		<view class="article">
+			<rich-text nodes="{{content}}"></rich-text>
+		</view>
+		<!-- 相关推荐 -->
+		<view class="recommend">
+			<view class="top">
+				<view class="top_left dis_f_l_c">
+					<view class="Wire"></view>
+					<view class="title">相关推荐</view>
+				</view>
+			</view>
+			<view class="content">
+				<block wx:for="{{3}}" wx:key="index">
+					<view class="li dis_f_l_c">
+						<view class="li_left">
+							<image class="shop_img" src="{{$.img_src}}/ArticleDetails/lbt_ym_xz.png"
+								mode="aspectFill" />
+						</view>
+						<view class="li_right">
+							<view class="title slh_two">
+								文章文章素鲍鱼文章素鲍鱼文章
+								素鲍鱼文章素文章素鲍鱼文文章
+								素鲍鱼文章素文章素鲍鱼文文章
+							</view>
+							<view class="word slh_one">
+								文章广告语相关文章广告语文章文文
+								文章广告语相关文章广告语文章文文
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<component-iphone-x-patcher></component-iphone-x-patcher>
+	</view>
+	<!-- 底部部分 -->
+	<view class="footer">
+		<!-- 底部导航部分 -->
+		<view class="bottom_nav dis_f_sb_c">
+			<view class="left dis_f_l_c">
+				<view class="li dis_f_co_c_c">
+					<image class="shop_img" src="{{$.img_src}}/two_img/collect_yes.png" mode="aspectFill" />
+					<text>收藏</text>
+				</view>
+				<view class="li dis_f_co_c_c">
+					<image class="shop_img" src="{{$.img_src}}/ArticleDetails/share.png" mode="aspectFill" />
+					<text>分享</text>
+				</view>
+				<view class="li dis_f_co_c_c">
+					<image class="shop_img" src="{{$.img_src}}/ArticleDetails/cart.png" mode="aspectFill" />
+					<text>购物车</text>
+				</view>
+			</view>
+			<view class="right dis_f_c_c">
+				<text>相关商品</text>
+			</view>
+		</view>
+		<component-iphone-x-patcher></component-iphone-x-patcher>
+	</view>
+</view>

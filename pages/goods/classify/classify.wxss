@@ -1,0 +1,119 @@
+/* classify.wxss */
+
+page {
+    background-color: #fff;
+}
+
+.wrapper {
+    background: #fff;
+    min-height: 100vh;
+}
+
+.search-top-container {
+  z-index:99;
+    position:fixed;
+    top:0;
+    left:0;
+    width: 750rpx;
+    padding: 30rpx 32rpx;
+    background: #fff;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 4rpx;
+    background: #F4F4F4;
+    height:64rpx;
+    line-height:64rpx;
+}
+
+.search-container .search-key {
+    font-size: 26rpx;
+    line-height: 0;
+    color: #CCC;
+}
+
+.search-container:before {
+    display: inline-block;
+    content: '';
+    width: 56rpx;
+    height: 56rpx;
+    background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+    background-size: 30rpx 30rpx;
+}
+
+.search-top-container .search-cancel {
+    font-size: 30rpx;
+    color: #777;
+    line-height: 0;
+    padding: 28rpx 0;
+}
+
+.classify-container {
+    padding-top: 144rpx;
+}
+
+.classify-container .classify-title {
+    width: 750rpx;
+    height: 70rpx;
+    background: url('https://shgm.jjyyx.com/m/images/caoshi_title.png') no-repeat center;
+    background-size: contain;
+}
+
+.classify-container .restaurant-title {
+    background-image: url('https://shgm.jjyyx.com/m/images/canshi_title.png');
+}
+
+.classify-container .classify-list-container {
+    margin-top: 20rpx;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.classify-container .classify-list-container .classify-item {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 33%;
+    padding: 0 16rpx;
+    margin-bottom: 60rpx;
+    overflow: hidden;
+}
+
+.classify-container .classify-list-container .classify-item .classify-icon {
+    width: 140rpx;
+    height: 140rpx;
+    margin-bottom: 14rpx;
+}
+
+.classify-container .classify-list-container .classify-item .classify-name {
+    font-size: 24rpx;
+    color: #444;
+    line-height: 0;
+    padding: 16rpx 0;
+}
+
+.classify-container .classify-list-container .classify-item .restaurant-name {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #444;
+    text-align: center;
+}
+
+.classify-container .classify-list-container .classify-item .restaurant-master {
+    position: absolute;
+    bottom: -159%;
+    left: -19%;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 200%;
+    height: 200%;
+    border-top: 1px solid #999;
+    -webkit-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+}

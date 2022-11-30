@@ -1,0 +1,426 @@
+/* pages/groupBuy/createGroup/createGroup.wxss */
+page {
+    background-color: #fff;
+}
+.go-login-pop{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transform: translateZ(100rpx);
+}
+
+.go-login-pop .cnt{
+  width: 540rpx;
+  background: #FFF;
+  border-radius: 20rpx;
+}
+
+.go-login-pop .cnt .msg{
+  padding: 60rpx 20rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #464646;
+  text-align: center;
+}
+
+.go-login-pop .cnt .btn-cnt{
+  border-top: 2rpx solid #ededed;
+  width: 100%;
+  height: 96rpx;
+  font-size: 32rpx;
+  color: #464646;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.go-login-pop .cnt .btn-cnt view{
+  flex: 1;
+  text-align: center;
+  line-height: 0;
+  padding: 48rpx;
+}
+
+.go-login-pop .cnt .btn-cnt .btn-go-login{
+  color: #FF4752;
+
+}
+.go-login-pop .cnt .btn-cnt .btn-cancel{
+  border-right: 2rpx solid #ededed;
+}
+.main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.group-goods-container {
+    width: 100%;
+    border-top: 1rpx solid #ededed;
+    display: flex;
+    padding: 30rpx 0 30rpx 32rpx;
+}
+
+.group-goods-container .cover-image {
+    width: 240rpx;
+    height: 240rpx;
+    background: #FFF url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: cover;
+}
+
+.group-goods-container .goods-info-container {
+    margin-left: 20rpx;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    padding-right: 30rpx;
+}
+
+.group-goods-container .goods-info-container .goods-name-container {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    height: 80rpx;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    color: #444;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
+.group-goods-container .goods-info-container .goods-name-container .produce-icon {
+    display: inline-block;
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 10rpx;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container {
+    margin-top: 12rpx;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container .need-join {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container .sales-volume {
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .goods-prime-price {
+    line-height: 1;
+    color: #999;
+    font-size: 24rpx;
+    text-decoration: line-through;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .sale-price {
+    font-size: 32rpx;
+    color: #FF4752;
+    line-height: 1;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .sale-price:before {
+    content: '￥';
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    color: #FF4752;
+    line-height: 1;
+}
+
+.group-goods-container .goods-info-container .goods-name {
+    width: 100%;
+    height: 30rpx;
+    line-height: 1;
+    color: #444;
+    font-size: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.group-goods-container .goods-info-container .goods-tag {
+    margin-top: 20rpx;
+    width: 100%;
+    height: 24rpx;
+    line-height: 1;
+    color: #999;
+    font-size: 24rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.goods-prime-price-container {
+    margin-top: 20rpx;
+    width: 100%;
+}
+
+.group-goods-container .goods-info-container .goods-prime-price-container .goods-prime-price-msg {
+    color: #999;
+    line-height: 1;
+    font-size: 24rpx;
+}
+
+.group-goods-container .goods-info-container .goods-prime-price-container .goods-prime-price {
+    line-height: 1;
+    color: #999;
+    font-size: 24rpx;
+    text-decoration: line-through;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .sales-volume {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .need-join {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #444;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container {
+    margin-top: 26rpx;
+    display: flex;
+    align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sale-price {
+    font-size: 44rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sale-price:before {
+    content: '￥';
+    font-size: 32rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sales-unit {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.goods-labels-container {
+    width: 100%;
+    border-top: 1rpx solid #ededed;
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    width: 100%;
+    padding: 20rpx 30rpx;
+}
+
+.goods-labels-container .label-item {
+    min-width: 30%;
+    max-width: 40%;
+    padding: 14rpx 20rpx 14rpx 30rpx;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #777;
+    background: url('https://shgm.jjyyx.com/m/images/icon_good_flag_checked.png') left center no-repeat;
+    background-size: 22rpx 22rpx;
+    white-space: nowrap;
+}
+
+.group-promotion-alert {
+    margin-left: 32rpx;
+    width: auto;
+    height: 88rpx;
+    border-top: 1rpx solid #ededed;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.group-promotion-alert .tips {
+    width: 66rpx;
+    height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/groupBuy/group_alert.png") no-repeat center;
+    background-size: contain;
+}
+
+.group-promotion-alert .delivery-msg {
+    font-size: 24rpx;
+    color: #777;
+    line-height: 1;
+    margin-left: 20rpx;
+}
+
+.group-status-container {
+    border-top: 16rpx solid #ededed;
+    border-bottom: 16rpx solid #ededed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50rpx 0 40rpx 0;
+}
+
+.group-status-container .surplus-time-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-status-container .surplus-time-container .surplus-time-msg {
+    font-size: 26rpx;
+    color: #444;
+    line-height: 1;
+}
+
+.group-status-container .surplus-time-container:before {
+    content: '';
+    display: inline-block;
+    width: 100rpx;
+    height: 2rpx;
+    background: #ededed;
+    margin-right: 20rpx;
+}
+
+.group-status-container .surplus-time-container:after {
+    content: '';
+    display: inline-block;
+    width: 100rpx;
+    height: 2rpx;
+    background: #ededed;
+    margin-left: 20rpx;
+}
+
+.group-status-container .need-join-msg-container {
+    margin-top: 40rpx;
+}
+
+.group-status-container .need-join-msg-container .need-msg {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #777;
+}
+
+.group-status-container .need-join-msg-container .need-num {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-status-container .group-finished-container {
+    width: 100%;
+    height: 94rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-status-container .group-finished-container .result-msg {
+    font-size: 30rpx;
+    line-height: 1;
+    color: #FF4752;
+}
+
+.group-status-container .grouper-list-container {
+    margin-top: 40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grouper-list-container .grouper-item {
+    position: relative;
+    width: 90rpx;
+    height: 90rpx;
+    margin: 0 10rpx;
+    background: url("https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png") no-repeat center;
+    background-size: contain;
+    border-radius: 50%;
+}
+
+.grouper-list-container .grouper-item .member-photo {
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.footer-contaienr {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.footer-contaienr .more-group {
+    flex: 1;
+    background: #d4b871;
+    color: #FFF;
+    line-height: 0;
+    padding: 45rpx 0;
+    text-align: center;
+    font-size: 32rpx;
+}
+
+.footer-contaienr .join-group,
+.footer-contaienr .look-my-group {
+    flex: 1;
+    background: #FF4752;
+    color: #FFF;
+    line-height: 0;
+    padding: 45rpx 0;
+    text-align: center;
+    font-size: 32rpx;
+}
+
+.footer-contaienr .look-home {
+    flex: 1;
+    background: #FF4752;
+    color: #FFF;
+    line-height: 0;
+    padding: 45rpx 0;
+    text-align: center;
+    font-size: 32rpx;
+}

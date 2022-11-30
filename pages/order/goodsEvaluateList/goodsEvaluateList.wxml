@@ -1,0 +1,78 @@
+<!--pages/order/goodsEvaluateList/goodsEvaluateList.wxml-->
+<!--pages/order/lookInvoice/lookInvoice.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view id="container" class="container">
+        <view id="container" class="container">
+            <view class="evaluate-nav-box" id="evaluate-nav-box">
+                <view class="evaluate-nav clearfix">
+                    <view class="evaluate-nav-li{{type==allId?' active':''}}" data-type="{{allId}}" catchtap="changeNav">{{allName}}({{allCount}})</view>
+                    <view class="evaluate-nav-li{{type==contentId?' active':''}}" data-type="{{contentId}}" catchtap="changeNav">{{contentName}}({{contentCount}})</view>
+                    <view class="evaluate-nav-li{{type==imageId?' active':''}}" data-type="{{imageId}}" catchtap="changeNav">{{imageName}}({{imageCount}})</view>
+                </view>
+            </view>
+            <view class="evaluate-cnt-box" id="evaluate-cnt-box">
+                <block wx:if="{{countsList&&countsList.length>0}}">
+                    <view class="evaluate-cnt-nav clearfix">
+                        <block wx:for="{{countsList}}" wx:for-item="item">
+                            <view class="{{label==item.id?'active':''}}" data-label="{{item.id}}" catchtap="changeLabel">{{item.name}} {{item.count}}</view>
+                        </block>
+                    </view>
+                </block>
+                <block wx:if="{{commentListList&&commentListList.length>0}}">
+                <view class="ul evaluate-cnt-cnt evaluate-cnt-cnt0" id="evaluate-cnt-cnt">
+                    <block wx:for="{{commentListList}}" wx:for-item="list">
+                        <view class="li">
+                            <view class="evaluate-title clearfix">
+                                <image src="{{list.memberIcon}}" class="evaluate-avatar"></image>
+                                <!--<img src="../../images/v{{if list.level}}{{list.level+1}}{{else}}0{{/if}}.png" class="evaluate-level"/>-->
+                                <view class="evaluate-name">{{list.memberName}}</view>
+                                <block wx:if="{{list.commentGoodsStatus==362}}">
+                                    <view class="evaluate-bad">差评</view>
+                                </block>
+                                <block wx:else>
+                                    <view class="evaluate-good">好评</view>
+                                </block>
+                            </view>
+                            <view class="evaluate-time">{{list.createDate}}</view>
+                            <view class="evaluate-text">{{list.contentInfo}}</view>
+                            <block wx:if="{{list.imageList&&list.imageList.length>0}}">
+                                <view class="evaluate-img clearfix">
+                                    <block wx:for="{{list.imageList}}" wx:for-item="img">
+                                        <image src="{{img}}" data-url="{{img}}" data-url-list="{{list.imageList}}" catchtap="preImage"></image>
+                                    </block>
+                                </view>
+                            </block>
+                            <view class="evaluate-num clearfix">
+                                <!--  <view class="evaluate-browse">浏览1234次</view>
+                                  <view class="evaluate-comment">0</view>
+                                  <view class="evaluate-praise">0</view>-->
+                            </view>
+                        </view>
+                    </block>
+                </view>
+                </block>
+            </view>
+            <block wx:if="{{showNoData}}">
+                <view class="empty-box">
+                    <image class="empty-img" src="https://shgm.jjyyx.com/m/images/error_img3.png?20190704"></image>
+                    <view class="empty-text">{{showNoDataMsg}}</view>
+                </view>
+            </block>
+          <block wx:if="{{!haveNextpage&&commentListList&&commentListList.length>2}}">
+              <view class="tips">已经到底啦~</view>
+          </block>
+        </view>
+    </view>
+</block>
+
+

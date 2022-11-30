@@ -1,0 +1,94 @@
+/* pages/yunchao/storeList/storeList.wxss */
+page{
+  background: #F8F8F8;
+}
+.topba{
+  width: 100%;
+  height: 300rpx;
+  background: #009183;
+  border-radius: 0px 0px 56rpx 56rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.storelist{
+  width: 686rpx;
+  margin: 0 auto;
+}
+.storelist-item{
+  width: 100%;
+  margin-top:32rpx ;
+  padding: 32rpx;
+  background: #fff;
+  border-radius: 24px;
+}
+.storelist-item-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+.storelist-item-top .left{
+  display: flex;
+  align-items: center;
+}
+.store-icon{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: #f4f4f4;
+  margin-right: 32rpx;
+}
+.store-icon image{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
+.store-name{
+  font-size: 30rpx;
+  color: #313031;
+  line-height: 1.2;
+  width: 410rpx;
+}
+.bindbtn{
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 1.6;
+  border-radius: 20rpx;
+  background: #D4B871;
+  padding: 0 20rpx;
+}
+.store-goods{
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+}
+.store-goods>view{
+  background: #f4f4f4;
+  border-radius: 24rpx;
+  overflow: hidden;
+  position: absolute;
+}
+.store-goods>view:nth-child(1){
+  width: 400rpx;
+  height: 400rpx;
+  left: 0;
+  top: 0;
+}
+.store-goods>view:nth-child(2){
+  width: 192rpx;
+  height: 192rpx;
+  right: 0;
+  top: 0;
+}
+.store-goods>view:nth-child(3){
+  width: 192rpx;
+  height: 192rpx;
+  right: 0;
+  bottom: 0;
+}
+.store-goods>view image{
+  width: 100%;
+  height: 100%;
+}

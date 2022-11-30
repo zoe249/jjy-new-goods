@@ -1,0 +1,11 @@
+<view class="page-container">
+    <view class="auth-box">
+        <view class="icon-box"></view>
+        <view class="text-box">获取地理位置失败</view>
+        <view class="button-box">
+            <button open-type="openSetting">开启定位</button>
+        </view>
+        <view class="tips-box">若小程序定位已开启</view>
+        <view class="tips-box">请检查微信定位服务是否开启</view>
+    </view>
+</view>

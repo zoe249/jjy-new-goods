@@ -1,0 +1,46 @@
+<!--pages/order/lookInvoice/lookInvoice.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view class="look-invoice-box" id="look-invoice-box">
+        <view class="invoice-img-box">
+            <block wx:for="{{orderInvoiceOutputList}}" wx:for-item="item">
+                <block wx:if="{{item.invoiceUrl}}">
+                    <view class="li">
+                        <view class="a invoice-img"><image src="{{item.$imgUrlType}}"></image></view>
+                        <block wx:if="{{item.invoiceInvalidState==1}}"><view class="invoice-bad"><image src="https://shgm.jjyyx.com/m/images/yizuofei.png"></image></view></block>
+                    </view>
+                </block>
+            </block>
+        </view>
+        <block wx:if="{{showEmail}}">
+        <view class="invoice-btn">
+            <view id="to-email-btn" catchtap="showPopEmail">发送至邮箱</view>
+            <!--<a id="to-local-photo" href="https://app.eartharbor.com/index.html">保存至本地相册</a>-->
+        </view>
+        </block>
+        <block wx:else>
+            <view class="bad-head">温馨提示</view>
+            <view class="bad-text1">因订单发生售后，原有电子发票已作废。</view>
+            <view class="bad-text">如需重新开具发票，可自行到【{{options.shopName||'购买商品的店'}}】的服务台办理。</view>
+        </block>
+    </view>
+    <block wx:if="{{showPopEmail}}">
+        <view class="pop-email-box">
+            <view class="pop-email-cnt">
+                <view class="email-head r1bb">发送至邮箱</view>
+                <view class="email-close" catchtap="cancelSendEmail"></view>
+                <view class="email-cnt"><input placeholder="请输入邮箱地址" bindinput="emailTest" value="{{email}}" class="email-input"/></view>
+                <view id="btn-email-send" catchtap="confirmSendEmail">发送</view>
+            </view>
+        </view>
+    </block>
+</block>

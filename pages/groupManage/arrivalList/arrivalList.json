@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "到货接收",
+  "usingComponents": {
+    "cuModal": "/component/cuModal/cuModal"
+  }
+}

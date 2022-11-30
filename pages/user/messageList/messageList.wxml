@@ -1,0 +1,16 @@
+<!--pages/user/coupon/coupon.wxml  current="{{current}}"-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<block wx:if="{{showError}}">
+<template is="empty" data="{{emptyMsg}}"></template>
+</block>
+<block wx:else>
+  <view class='collect-box'>
+    <view class='list'>
+      <block wx:for='{{list}}' wx:for-item='item' wx:key='item'><component-message-item newstype='{{options.newstype||0}}' item='{{item}}'></component-message-item></block>
+    </view>
+    <block wx:if='{{showNoMore}}'><template is="noMore"></template></block>
+  </view>
+</block>

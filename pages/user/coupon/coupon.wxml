@@ -1,0 +1,53 @@
+<!--pages/user/coupon/coupon.wxml  current="{{current}}"-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+
+<scroll-view class="wrapper" scroll-top="{{scrollTop}}" scroll-y bindscrolltoupper="" bindscrolltolower="" scroll-with-animation bindscroll="scrollFunc" enable-back-to-top>
+
+  <form catchsubmit="formSubmit" class="search-area {{currentType?'hidden':''}}">
+    <view class="search-area-wrap">
+      <image src="https://shgm.jjyyx.com/m/images/icon_saoma.png" class="scan" mode="aspectFit" bindtap="scanQRCode"></image>
+      <view class="input-container">
+        <input type="text" name="grantPasswd" placeholder="请输入优惠券口令" value="{{grantPasswd}}" />
+      </view>
+      <button class="btn" formType="submit" id="bindCoupon">兑换</button>
+      <button class="btn" formType="submit" id="bindThirdCoupon">绑定</button>
+    </view>
+    <!-- <text class="btn" bindtap="bindCoupon">兑换</text>  bindtap="bindCoupon"  bindtap="bindThirdCoupon"-->
+  </form>
+
+  <view class="coupon-container">
+    <block wx:if="{{currentList.length}}">
+      <block wx:for="{{couponList}}" wx:key="*this">
+        <template is="couponItem" data="{{item, currentType}}"></template>
+      </block>
+    </block>
+    <block wx:elif="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+
+  </view>
+  <block wx:if="{{expireCouponList.length}}">
+    <view class="look-other {{currentType?'hidden':''}}" catchtap="scrollTolower"><text>查看历史优惠券</text><view class='guize fr' bindtap='jumpDoc' data-mod="youHuiQuanShuoMing">规则说明</view>
+  </view>
+  </block>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</scroll-view>
+<scroll-view class="wrapper expire-scroll-view {{expireShow?'expire-scroll-view-show':''}}" scroll-top="{{scrollTop}}" scroll-y  bindscrolltolower="" scroll-with-animation enable-back-to-top>
+<view class="look-other" bindtap="scrollToupper">
+  <text class="look-coupon">查看可用优惠券</text><view class='guize fr' bindtap='jumpDoc' data-mod="youHuiQuanShuoMing">规则说明</view>
+</view>
+<view class="coupon-container">
+  <block wx:if="{{currentList.length}}">
+    <block wx:for="{{expireCouponList}}" wx:key="*this">
+      <template is="couponItem" data="{{item, eCurrentType}}"></template>
+    </block>
+    <template is="noMore"></template>
+  </block>
+  <block wx:elif="{{otherMes == 'empty'}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+  </block>
+</view>
+<component-iphone-x-patcher></component-iphone-x-patcher>
+</scroll-view>
+<template is="toast" data="{{...toastData}}"></template>

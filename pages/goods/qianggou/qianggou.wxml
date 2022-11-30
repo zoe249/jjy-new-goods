@@ -1,0 +1,50 @@
+<import src="/templates/global/global.wxml" />
+
+<scroll-view class="wrapper" scroll-y scroll-top="{{scrollTop}}" enable-back-to-top>
+  <view class='content'>
+    <block wx:if="{{showHeaderNav}}">
+    <view class='header-container'>
+      <view class='nav-item {{status == 0 && "active"}}' bindtap='toggleStatus' data-status="0">
+        <text>抢购中</text>
+      </view>
+      <view class='nav-item {{status == 1 && "active"}}' bindtap='toggleStatus' data-status="1">
+        <text>即将开始</text>
+      </view>
+    </view>
+    </block>
+
+    <block wx:if="{{proList.length}}" wx:for="{{proList}}" wx:key="index" wx:for-item="proItem">
+      <block wx:if="{{!proItem.disableActivity && proItem.proGoodsList.length > 0}}">
+        <view class='qianggou-msg-container'>
+          <text class='msg'>{{proItem.msgInfo.qianggouMsg}}</text>
+          <text class='limit-time-msg'>{{proItem.msgInfo.timeMsg}}</text>
+          <view class='limit-time-container'>
+            <block wx:if="{{proItem.downTime.date}}">
+              <text class='time'>{{proItem.downTime.date}}</text>
+              <text class='division'>天</text>
+            </block>
+            <text class='time'>{{proItem.downTime.hour}}</text>
+            <text class='division'>:</text>
+            <text class='time'>{{proItem.downTime.minute}}</text>
+            <text class='division'>:</text>
+            <text class='time'>{{proItem.downTime.second}}</text>
+          </view>
+        </view>
+
+        <view class='goods-list-container'>
+          <block wx:for="{{proItem.proGoodsList}}" wx:key="goodsId">
+            <component-qianggou-goods-item goods="{{item}}" from="{{from}}" status="{{status}}" form-type="{{formType}}"
+              bi-type='qianggou'></component-qianggou-goods-item>
+          </block>
+
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{otherMes == 'empty'}}">
+      <template is="empty" data="{{...emptyObj}}"></template>
+    </block>
+    <block wx:if="{{proList && proList.length > 0}}">
+      <template is="noMore"></template>
+    </block>
+  </view>
+</scroll-view>

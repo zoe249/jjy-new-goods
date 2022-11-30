@@ -1,0 +1,385 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+.ImageBg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 1;
+}
+.ImageBg .top{
+	width: 228rpx;
+	height: 112rpx;
+	position: absolute;
+	top: 0;
+	left: 275rpx;
+}
+.ImageBg .left{
+	width: 31rpx;
+	height: 123rpx;
+	position: absolute;
+	top: 73rpx;
+	left: 0;
+}
+.ImageBg .right{
+	width: 47rpx;
+	height: 135rpx;
+	position: absolute;
+	top: 80rpx;
+	right: 0;
+}
+/* 顶部导航部分 */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.header .back {
+	width: 56rpx;
+	height: 56rpx;
+}
+
+.header .title {
+	width: 162rpx;
+	height: 46rpx;
+}
+
+.header .TitleWord {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 40rpx;
+}
+
+/* 顶部图片展示部分 */
+.TopImg {
+	position: relative;
+	z-index: 3;
+	padding: 0 20rpx;
+	margin-bottom: 28rpx;
+}
+
+.TopImg image {
+	width: 100%;
+	border-radius: 20rpx;
+}
+
+/* 商品列表部分 */
+.section {
+	position: relative;
+	z-index: 3;
+	padding: 0 20rpx 43rpx;
+}
+
+.section .list .li {
+	padding: 22rpx 20rpx 16rpx;
+	background: #ffffff;
+	border-radius: 24rpx;
+	margin-bottom: 20rpx;
+}
+
+.section .list .li:last-child {
+	margin-bottom: 0;
+}
+
+.section .list .li .left {
+	width: 223rpx;
+	height: 223rpx;
+	margin-right: 36rpx;
+	flex: 0 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+.section .list .li .left .Bgicon {
+	width: 100%;
+	height: 100%;
+	border-radius: 20rpx;
+}
+
+.section .list .li .left .noGoodImg {
+	width: 100%;
+	height: 100%;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #DCE0E6;
+}
+
+.section .list .li .left .noGoodImg image {
+	width: 111rpx;
+	height: 131rpx;
+	margin-bottom: 10rpx;
+}
+
+/* 视频图标 */
+.section .list .li .left .videoIcon {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.section .list .li .left .videoIcon image {
+	width: 58rpx;
+	height: 58rpx;
+}
+
+/* 爆炸贴 */
+.section .list .li .left .LeftIcon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 64rpx;
+	height: 64rpx;
+}
+
+/* 提货时间 */
+.section .list .li .left .BottomTime {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	bottom: 0;
+	background-image: linear-gradient(140deg, rgba(83, 191, 8, .6) 0%, rgba(63, 184, 9, .6) 100%);
+	width: 224rpx;
+	height: 39rpx;
+	border-radius: 0 0 20rpx 20rpx;
+}
+
+.section .list .li .left .BottomTime text {
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #FFFFFF;
+	font-weight: 400;
+}
+
+/* 中间售完补货中 */
+.section .list .li .left .SoldOut {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.section .list .li .left .SoldOut view {
+	background: rgba(0, 0, 0, .4);
+	border-radius: 22.5rpx;
+	padding: 4rpx 22rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #FFFFFF;
+	letter-spacing: 0;
+	font-weight: 400;
+}
+.section .list .li .left .soldOutBg{
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, .7);
+	border-radius: 20rpx;
+}
+
+.section .list .li .right {
+	width: 420rpx;
+	min-height: 195rpx;
+}
+
+.section .list .li .right .title {
+	font-family: PingFangSC-Semibold;
+	width: 100%;
+	font-size: 30rpx;
+	color: #333333;
+	letter-spacing: 0;
+	font-weight: 600;
+	margin-bottom: 13rpx;
+}
+
+.section .list .li .right .content {
+	font-family: PingFangSC-Light;
+	font-size: 26rpx;
+	color: #666666;
+	letter-spacing: 0;
+	font-weight: 200;
+	margin-bottom: 16rpx;
+}
+
+.section .list .li .right .num {
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #666666;
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-bottom: 10rpx;
+}
+
+.section .list .li .right .progress {
+	position: relative;
+	width: 192rpx;
+	height: 10rpx;
+	background: #FFE8E8;
+	border-radius: 5rpx;
+	overflow: hidden;
+	margin-bottom: 30rpx;
+}
+
+.section .list .li .right .progress .progressBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 10%;
+	height: 100%;
+	background: #F4081B;
+}
+
+.section .list .li .Rbottom .shop {
+	width: 100%;
+	position: relative;
+	z-index: 3;
+}
+
+.section .list .li .Rbottom .shop .new {
+	font-family: PingFangSC-Semibold;
+	font-size: 24rpx;
+	color: #FC0D1B;
+	font-weight: 600;
+}
+
+.section .list .li .Rbottom .shop .new .whole {
+	font-size: 34rpx;
+	color: #FC0D1B;
+}
+
+.section .list .li .Rbottom .shop .new .logo {
+	font-family: PingFangSC-Semibold;
+	color: #FC0D1B;
+	font-weight: 600;
+}
+
+.section .list .li .Rbottom .shop .new .unit {
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666666;
+	font-weight: 400;
+}
+
+.section .list .li .Rbottom .shop .NoNew {
+	color: #DFDDDC;
+}
+
+.section .list .li .Rbottom .shop .NoNew .whole {
+	color: #DFDDDC;
+}
+
+.section .list .li .Rbottom .shop .NoNew .logo {
+	color: #DFDDDC;
+}
+
+.section .list .li .Rbottom .shop .NoNew .unit {
+	color: #DFDDDC;
+}
+
+.section .list .li .Rbottom .shop .old {
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+	color: #999999;
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-left: 16rpx;
+	text-decoration: line-through
+}
+
+/* 加入购物车按钮 */
+.section .list .li .Rbottom1 .cart {
+	flex: 0 0 auto;
+	width: 192rpx;
+	height: 64rpx;
+	background: #F4081B;
+	border-radius: 35rpx;
+	font-family: PingFangSC-Medium;
+	font-size: 24rpx;
+	color: #FFFFFF;
+	letter-spacing: 0;
+	font-weight: 500;
+	margin-right: 10rpx;
+}
+
+.section .list .li .Rbottom1 .cartActive {
+	background: #DFDDDC;
+}
+
+.section .list .li .Rbottom1 .cart image {
+	width: 30rpx;
+	height: 30rpx;
+	margin-left: 10rpx;
+}
+
+/* 拼团按钮 */
+.section .list .li .Rbottom2 {
+	position: relative;
+	width: 405rpx;
+	height: 71rpx;
+	padding: 0 16rpx;
+}
+
+.GroupBg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+}
+
+.group {
+	flex: 0 0 auto;
+	position: relative;
+	z-index: 3;
+	color: #FFFFFF;
+	font-size: 27rpx;
+	width: 190rpx;
+	height: 100%;
+}
+
+.group image {
+	width: 10rpx;
+	height: 20rpx;
+	margin-left: 10rpx;
+}
+
+/* 悬浮的购物车按钮 */
+.footer .cart {
+	position: fixed;
+	bottom: 34rpx;
+	right: 34rpx;
+	z-index: 90;
+	width: 88rpx;
+	height: 88rpx;
+}
+
+.footer .cart image {
+	width: 100%;
+	height: 100%;
+}
+
+.footer .cart text {
+	position: absolute;
+	right: 0rpx;
+	top: -10rpx;
+	background: #FF4752;
+	font-size: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
+	color: #fff;
+	border-radius: 50%;
+}

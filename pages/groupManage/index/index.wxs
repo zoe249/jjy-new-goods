@@ -1,0 +1,8 @@
+
+function isDefine(para) {
+  if (typeof para == 'undefined' || para == '' || para == null || para == undefined) return false;
+  else return true;
+}
+module.exports = {
+  isDefine: isDefine
+}

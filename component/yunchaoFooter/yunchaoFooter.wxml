@@ -1,0 +1,21 @@
+<!--component/groupFooterNav/groupFooterNav.wxml-->
+<view class="footer-seat"></view>
+<view class="footer-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+  <view class="footer-item-container f-home{{tabStatus.yunchaoCurrent == 0 ? ' active' : ''}}" catchtap="{{tabStatus.yunchaoCurrent != 0?'jumpToPage':''}}" data-url="/pages/yunchao/home/home">
+  <image mode="widthFix" src="/images/tabBar/icon_1@2x.png" wx:if="{{tabStatus.yunchaoCurrent!==0}}"></image>
+  <image mode="widthFix" src="/images/tabBar/icon_1_focus@2x.png" wx:if="{{tabStatus.yunchaoCurrent==0}}"></image>
+    <text class="nav-msg">首页</text>
+  </view>
+  <view class="footer-item-container f-cart{{tabStatus.yunchaoCurrent == 1 ? ' active' : ''}}" catchtap="{{tabStatus.yunchaoCurrent != 1?'jumpToPage':''}}" data-url="/pages/yunchao/cart/cart">
+    <image mode="widthFix" src="/images/tabBar/icon_4@2x.png" wx:if="{{tabStatus.yunchaoCurrent!==1}}"></image>
+    <image mode="widthFix" src="/images/tabBar/icon_4_focus@2x.png" wx:if="{{tabStatus.yunchaoCurrent==1}}"></image>
+    <text class="nav-msg">购物车</text>
+    <block wx:if='{{tabStatus.yunchaoCartNum}}'><view class="nav-cart-num">{{tabStatus.yunchaoCartNum}}</view></block>
+  </view>
+  <view class="footer-item-container f-user{{tabStatus.yunchaoCurrent == 2 ? ' active' : ''}}" catchtap="{{tabStatus.yunchaoCurrent != 2?'jumpToPage':''}}" data-url="/pages/yunchao/user/user">
+    <image mode="widthFix" src="/images/tabBar/icon_5@2x.png"  wx:if="{{tabStatus.yunchaoCurrent!==2}}"></image>
+    <image mode="widthFix" src="/images/tabBar/icon_5_focus@2x.png" wx:if="{{tabStatus.yunchaoCurrent==2}}"></image>
+    <text class="nav-msg">我的</text>
+  </view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</view>

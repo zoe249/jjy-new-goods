@@ -1,0 +1,18 @@
+<import src="/templates/global/global.wxml" />
+<view class="index-body" wx:if="{{!noShop}}">
+  <view class="shop-info">
+    <view>当前门店：</view>
+    <view class="shop-name">{{shopName}}</view>
+    <view class="sw-shop" bindtap="selShop">切换门店</view>
+  </view>
+  <view class="laxin-info">
+    <image class="laxin-ba" mode="widthFix" src="{{initJson.baimg+'?'+t}}"></image>
+    <view class="ewmview" style="{{initJson.ewmcss}}">
+      <image class="ewmba" mode="widthFix" src="{{initJson.ewmba+'?'+t}}"></image>
+      <image class="laxin-ewm" mode="widthFix" src="{{workWxQrCode}}" show-menu-by-longpress="true"></image>
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <template is="empty" data=""></template>
+</view>

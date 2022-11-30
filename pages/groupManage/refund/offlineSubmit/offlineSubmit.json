@@ -1,0 +1,7 @@
+{  "backgroundColor":  "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "申请退款",
+  "enablePullDownRefresh": false
+}

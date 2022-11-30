@@ -1,0 +1,616 @@
+.page_content
+{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.all_bj
+{
+  width: 100vw;
+  height: 100vh;
+  
+}
+.right_view
+{
+  position: absolute;
+  top: 7.5vh;
+  right: 1.2vh;
+  width: 10.2vh;
+  height: 23.6vh;
+}
+
+.tree
+{
+  width:31.5vh;
+  height: auto;
+  position:absolute;
+  left: 50vw;
+  top: 57vh;
+  transform: translate(-50%,-50%);
+
+}
+/**
+水壶
+**/
+.kettle
+{
+  width:16.2vh;
+  height: auto;
+  position:absolute;
+  left: 83vw;
+  top: 77.2vh;
+  opacity: 0;
+  transform: translate(-50%,-50%);
+  
+}
+.kettleAnimation
+{
+  animation: kettle_tag_rotate   5s  ;
+}
+/**水壶效果
+
+   transform: rotate(-30deg)
+    left: 63vw;top: 67.2vh;
+**/
+
+@keyframes  kettle_tag_rotate
+{
+ 
+  0%{
+    left: 83vw;top: 77.2vh;opacity: 1;
+  }
+  30%{
+    left: 50vw;top: 61.0vh;opacity: 1; 
+    transform: rotate(0deg);
+  }
+  50%{
+    left: 50vw;top: 61.0vh;opacity: 1;
+    transform: rotate(-30deg);
+  }
+  60%{
+    left: 50vw;top: 61.0vh;opacity: 1;  
+    
+  }
+  100%{
+    left: 83vw;top: 77.2vh;opacity: 0;
+    transform: rotate(0deg);
+  }
+  
+}
+.event_information
+{ 
+  position:absolute;
+  top: 77.6vh;
+  width: 100vw;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+
+}
+.event_information .progress_view
+{
+ 
+ 
+ 
+  position: relative;
+  
+
+
+}
+.event_information .progress_view .progress_tag
+{
+  width: 35.9vh;
+
+}
+.event_information .progress_view .progress_transparent_bg
+{
+ height:2.8vh;
+ width: 26.04vh;
+ position: absolute;
+ right: 0.9vh;
+ top: 0; 
+
+ background: url(https://shgm.jjyyx.com/m/images/arborDay/progress_bg.png) center center no-repeat;
+ background-size: 100% 100%;
+}
+/**
+width: 25.44vh; var(--n_width--)
+进度条  background-color: rgb(199,227,114);
+**/
+.progress_transparent_bg .progress_progress
+{
+  margin: 0.3vh;
+  background-color: rgb(199,227,114);
+  height: 2.1vh;
+ 
+  border-radius: 1.4vh;
+  box-shadow: 0px 0px 5px 6rpx inset rgb(118,165,23);
+ 
+
+}
+.process_animation_none{
+  width:var(--n_width--); 
+}
+.process_animation{
+  animation: progress_tag 2s;
+   animation-fill-mode:forwards; 
+}
+@keyframes progress_tag
+{
+  0%{
+    /** 0rpx**/
+
+    width:var(--old_width--);
+    border-radius: 1.4vh;
+  }
+  100%{
+    width:var(--n_width--);
+    border-radius: 1.4vh;
+  }
+}
+.event_information .progress_view .progress_info
+{
+  position: absolute;
+    height: 100%;
+    width: 8.1vh;
+    top: 0.5vh;
+    left: 0.3vh;
+    font-size: 22rpx;
+    text-align: center;
+    color:rgb(111, 68, 0) ;
+
+}
+.event_information .info_toast
+{
+  color: white;
+  font-size: 23rpx;
+  margin-top: 0.3vh;
+  color: rgb(251, 255, 253);
+}
+.event_information .bottom_action_view
+{
+  width: 100vw;
+  height: 8.1vh;
+  display: flex;
+  margin-top: 2.1vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.num_watering
+{
+  border-radius: 15rpx;
+  padding-left: 7rpx;
+  padding-right: 7rpx;
+  height: 30rpx;
+    line-height: 30rpx;
+    color: white;
+    font-size: 22rpx;
+    position: absolute;
+    left: 58vw;
+    top: 0rpx;
+    background-color: rgba(255,8,68);
+    box-shadow: 0px 0px 2px 1rpx white;
+}
+
+.event_information .bottom_action_view .click_watering
+{
+  width: 20vh;
+  height: 6.37vh;
+ 
+}
+.event_information .bottom_action_view .click_watering.click_no_satrt
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_none_start.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.event_information .bottom_action_view .click_watering.click_no_satrt:active{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_none_start.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.event_information .bottom_action_view .click_watering.click_end
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_end.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.event_information .bottom_action_view .click_watering.click_end:active{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_end.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.event_information .bottom_action_view .click_watering.click_over
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_over.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.event_information .bottom_action_view .click_watering.click_over:active
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_over.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+.click_normal
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_none.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+
+.event_information  .water_drop_view
+{
+  position: absolute;
+  right: 2.8vh;
+  top: 9.4vh;
+  width: 6vh;
+  height: 7.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.event_information  .water_drop_view .bg_water_drop_circle
+{
+  position: absolute;
+  /* right: 2.8vh; */
+  bottom: 0rpx;
+  height: 6vh;
+  left: 0rpx;
+  
+  border-radius: 3vh;
+  box-shadow: 0rpx 0rpx 4rpx #ffffff99
+}
+.event_information  .water_drop_view .water_drop_bg
+{
+  width: 6.76vh;
+ height: 6.76vh;
+ bottom: 0rpx;
+ left: 0rpx;
+ position: absolute;
+
+
+
+ 
+}
+.event_information .bottom_action_view .click_watering:active
+{
+  background: url('https://shgm.jjyyx.com/m/images/arborDay/watering_choice.png') center center no-repeat; 
+  background-size: 100% 100%;
+}
+/*
+左右摆动--上下 alternate 奇偶  ease周期速度
+*/
+.event_information  .water_drop_view  .water_drop_icon
+{
+  width: 2.5vh;
+  margin-bottom: 5rpx;
+  animation: swing_tag 0.5s infinite alternate ease;
+  z-index: 2;
+}
+/**
+**/
+@keyframes  swing_tag
+{
+  0%{
+    margin-bottom: 5rpx;
+  }
+ 
+  100%{
+    margin-bottom: 10rpx;
+  }
+  
+}
+.event_information  .water_drop_view .drop_toast
+{
+  font-size: 20rpx;
+  color: white;
+  line-height: 22rpx;
+  z-index: 2;
+  text-shadow: 0px 0px 2px #4848de;
+}
+/**任务弹层-**/
+.alert_toast_black{
+  position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+  width: 100vw;
+  height: 100vh;
+  background-color:rgb(0, 0,0,0.3);
+  z-index: 100;
+}
+/**达成弹层-**/
+.end_tree_black{
+  position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+  width: 100vw;
+  height: 100vh;
+  background-color:rgb(0, 0,0,0);
+  z-index: 100;
+}
+.alert_toast
+{
+ width: 100vw;
+ height: 47.06vh;
+ position: absolute;
+ left: 0rpx;
+ z-index: 101;
+
+}
+.alert_MoRen{
+  bottom: -50vh;
+}
+
+.alert_show
+{
+  animation: alert_tag_show 1s   ;
+  animation-fill-mode:forwards;
+}
+.alert_hidden
+{
+  animation: alert_tag_hidden 1s;
+  animation-fill-mode:forwards;
+}
+.alert_toast .white_content
+{
+  width: 100vw;
+  height: 41.89vh;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  background-color: white;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+ 
+
+}
+@keyframes alert_tag_show
+{
+  0%{
+    bottom: -50vh;
+  }
+  100%{   
+    bottom: 0rpx;
+  }
+}
+@keyframes alert_tag_hidden
+{
+  0%{
+    bottom: 0rpx;
+  }
+  100%{   
+    bottom: -50vh;
+  }
+}
+.alert_toast .water_drop_view_alert
+{
+  width: 8.8vh;
+  height: 10.28vh;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/water_show_toast_bg.png) center center no-repeat;
+  background-size: 100% 85.6%;
+  position:absolute;
+  left: 50vw;
+  top: 0rpx;
+  transform: translate(-50%,0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+
+
+
+}
+.alert_toast .water_drop_view_alert .water_drop_icon_alert
+{
+  width:3.8vh;
+  margin-top: -25rpx;
+
+}
+.alert_toast .water_drop_view_alert .drop_toast_alert
+{
+  font-size: 20rpx;
+  color: white;
+  margin-top: 0.25vh;
+  line-height: 23rpx;
+}
+.white_content .tosat_container
+{
+
+  height: 5.4vh;
+  width: 100vw;
+  padding-left: 2.7vh;
+  display: flex;
+  justify-content: flex-end;
+
+  
+}
+.white_content .tosat_container .toast_title
+{
+  font-size: 17rpx;
+  margin-top: 3vh;
+
+}
+.white_content .tosat_container .close_btn
+{
+  height: 5.4vh;
+  width: 5.4vh;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/close_btn.png) center center no-repeat;
+  background-size: 40% 40%;
+}
+.white_content .gray_backgroud
+{
+  background-color:rgba(242,244,243) ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100vw;
+  height: 36.49vh;
+  padding-top: 1.35vh;
+ 
+}
+/**
+   width: 45.42vh;
+  height: 10.6vh;
+
+**/
+.white_content .gray_backgroud .show_pic
+{
+  width: 90vw;
+  
+
+ 
+  border-radius: 15rpx;
+}
+/**活动   width: 45.42vh;**/
+.gray_backgroud .activityList_container
+{
+  width: 90vw;
+  height: 25.89vh;
+
+
+
+}
+.gray_backgroud .activityList_container .activity_one
+{
+ height: 6.47vh;
+ width: 100%;
+
+ display: flex;
+ background-color: white;
+ margin-top: 0.7vh;
+ border-radius: 15rpx;
+ align-items: center;
+ 
+}
+.activity_one .activity_title
+{
+ 
+ margin-left: 7.94%;
+ width: 57.14%;
+ margin-right: 7.94%;
+ font-size: 25rpx;
+}
+.activity_one .toChoice
+{
+  font-size: 23rpx;
+
+ width: 20.63%;
+ height: 3.22vh;
+ line-height: 3.22vh;
+ text-align: center;
+ color: white;
+ border-radius: 1.66vh;
+}
+.activity_one .bg1{
+  background-color:teal;
+}
+.activity_one .bg2{
+  background-color:rgb(179, 179, 179);
+}
+.end_tree_container
+{
+  width: 92vw;
+  height: 58.32vw;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/tree_end_bg.png) center center no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 101;
+  margin-top: 2.8vh;
+
+}
+.end_tree_container .end_ts
+{
+  font-size: 32rpx;
+  color: rgb(108, 56, 43);
+  text-align: center;
+  font-weight: bold;
+  margin-top: 2.8vh;
+  line-height: 1.8rem;
+}
+
+
+.end_tree_container .btn_container
+{
+  margin-top: 3.2vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  
+
+}
+.end_tree_container .btn_container .left_btn
+{
+  width: 14.39vh;
+  height: 4.5vh;
+  line-height: 4.1vh;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/tree_end_left.png) center center no-repeat;
+  background-size: 100% 100%;
+  /* margin-left: 5%; */
+  text-align: center;
+}
+.end_tree_container .btn_container .right_btn
+{
+  width: 14.39vh;
+  height: 4.5vh;
+  line-height: 4.1vh;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/tree_end_right.png) center center no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  margin-left: 3.1vh;
+  align-content: normal;
+}
+.start_tree_container
+{
+  width: 40.7vh;
+  height: 44.18vh;
+  background: url(https://shgm.jjyyx.com/m/images/arborDay/tree_little_start_bg.png) center center no-repeat;
+  background-size: 100% 100%;
+  position:absolute;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  
+}
+.start_show_tree
+{
+  animation: start_show_tree_tag 6s;
+  animation-fill-mode:forwards;
+}
+
+@keyframes start_show_tree_tag
+{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  70%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+.start_ts
+{
+  margin-bottom: 2.8vh;
+  font-size: 26rpx;
+  color: rgb(108, 56, 43);
+  text-align: center;
+  font-weight: bold;
+  
+
+}

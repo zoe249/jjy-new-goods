@@ -1,0 +1,157 @@
+<block wx:if="{{TypeShow}}">
+		<view class="container" wx:if="{{dataList.length>0}}">
+				<view class="top">
+						<!-- <image class="top_bg" src="{{$.img_src}}/yx_index/baopin_bg.png" mode="widthFix"></image> -->
+						<!-- <view class="top_bg" style="background:url({{$.img_src}}/yx_index/baopin_bg.png);height:60rpx;background-size: 100% 100%;"></view> -->
+						<image class="top_bg" src="{{$.img_src}}/yx_index/baopin_bg.png" mode="widthFix"></image>
+						<image wx:if="{{headImg}}" class="bp_img" src="{{headImg}}" mode="heightFix"></image>
+						<view class="bp_text" wx:else>{{titleData}}</view>
+						<view class="tag_container" style="background:url({{subImg}}) no-repeat center center;background-size:cover">
+								<!-- <image class="bp_tag" src="{{$.img_src}}/yx_index/baopin_tag.png" mode="widthFix"></image> -->
+								<view class="slh_one">{{subtitle}}</view>
+						</view>
+						<view class="right_view" bindtap="toClassification" data-entrance="1">
+								<view>更多</view>
+								<image class="right_img" src="{{$.img_src}}/yx_index/baopin_right.png" mode="widthFix"></image>
+						</view>
+				</view>
+				<scroll-view class="scrollV" scroll-x="true" wx:if="{{dataList.length>0}}">
+						<view class="content">
+								<block wx:for="{{dataList}}" wx:key="id">
+										<view class="content_one" wx:if="{{item.data}}" bindtap="autoJump" data-url="/pages/goods/detail/detail?formType=0&goodsId={{item.data.goodsId}}&linkProId={{item.data.proId || 0}}&newYX=1" data-index="{{index+1}}" data-item="{{item}}">
+												<view class="left" wx:if="{{item.data.coverImage}}">
+														<image class="goods_img" src="{{item.data.coverImage}}" mode="scaleToFill"></image>
+														<!-- 视频图标 -->
+														<view class="videoIcon dis_f_c_c" wx:if="{{item.data.videoAddress!=null && item.data.videoAddress!=''}}">
+																<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit"></image>
+														</view>
+												</view>
+												<!-- <image wx:if="{{item.imgUrl}}" class="goods_img" src="{{item.imgUrl}}" mode="scaleToFill">
+						</image> -->
+												<view class="noImgContent" wx:else>
+														<image class="noImg" src="{{$.img_src}}/yx_index/logo.png" />
+														<view class="noImgText">暂无图片</view>
+												</view>
+												<view class="goods_name">
+														{{item.data.materielParentName||item.data.goodsPromotionName||item.data.shortTitle||item.data.goodsName||""}}
+												</view>
+												<view class="goods_old_price">
+														<view wx:if="{{item.sale}}">￥{{item.data.salePrice}}</view>
+												</view>
+												<view class="price_content">
+														<view class="price_container slh_one">
+																<view class="price_icon">¥</view>
+																<view class="new_price">{{item.data.int}}</view>
+																<view wx:if="{{item.data.dec}}" class="new_price_dec">.{{item.data.dec}}</view>
+																<view class="metering">/{{item.data.salesUnit}}</view>
+														</view>
+												</view>
+												<block wx:if="{{item.data.proType == 1821 || item.data.proType == 999 || item.data.promotionList[0].proType == 1821|| item.data.promotionList[0].proType == 1888}}">
+														<view wx:if="{{item.data.goodsStock<1||item.data.promotionList[0].proStock==0}}" class="shouqing-text">
+																售罄
+														</view>
+														<image wx:else class="pt_img" src="{{$.img_src}}/yx_index/baopin_pin.png" mode="aspectFit"></image>
+												</block>
+												<block wx:else="">
+														<view wx:if="{{item.data.goodsStock<1}}" class="shouqing-text">售罄</view>
+														<image wx:else catchtap="addCart" data-goods="{{item.data}}" class="pt_img" src="{{$.img_src}}/yx_index/baopin_gwc.png" mode="aspectFit"></image>
+												</block>
+										</view>
+										<view wx:elif="{{item.type==1}}" class="showMore" bindtap="toClassification">
+												<view>
+														<image class="showMoreImg" src="{{$.img_src}}/yx_index/showMore.png" />
+														<view class="showMoreText">查看更多</view>
+												</view>
+										</view>
+										<view wx:elif="{{item.type==2}}" class="showMore">
+												<view>
+														<image class="noProductImg" src="{{$.img_src}}/yx_index/logo.png" />
+														<view class="noImgText">暂无商品</view>
+												</view>
+										</view>
+								</block>
+						</view>
+				</scroll-view>
+				<CartAnimation id="cartAnimation" background="red"></CartAnimation>
+		</view>
+</block>
+<block wx:else>
+		<!-- 加载中动画 -->
+		<!-- <Loading wx:if="{{loadingShow}}"></Loading> -->
+		<view class="container" wx:if="{{dataList.length>0}}">
+				<view class="top">
+						<!-- <view class="top_bg" style="background:url({{$.img_src}}/yx_index/baopin_bg.png);height:60rpx;background-size: 100% 100%;"></view> -->
+						<image class="top_bg" src="{{$.img_src}}/yx_index/baopin_bg.png" mode="widthFix"></image>
+						<image wx:if="{{headImg}}" class="bp_img" src="{{headImg}}" mode="heightFix"></image>
+						<view class="bp_text" wx:else>{{titleData}}</view>
+						<view class="tag_container" style="background:url({{subImg}}) no-repeat center center;background-size:cover">
+								<!-- <image class="bp_tag" src="{{$.img_src}}/yx_index/baopin_tag.png" mode="widthFix"></image> -->
+								<view class="slh_one">{{subtitle}}</view>
+						</view>
+						<view class="right_view" bindtap="toClassification" data-entrance="2">
+								<view>更多</view>
+								<image class="right_img" src="{{$.img_src}}/yx_index/baopin_right.png" mode="widthFix"></image>
+						</view>
+				</view>
+				<scroll-view class="scrollV" scroll-x="true" wx:if="{{dataList.length>0}}">
+						<view class="content">
+								<block wx:for="{{dataList}}" wx:key="id">
+										<view class="content_one" wx:if="{{!item.type}}" catchtap="goGoodsDetail" data-goods="{{item.extendJson}}" data-index="{{index+1}}" data-item="{{item}}">
+												<block wx:if="{{item.bizType==19}}">
+														<view class="left" wx:if="{{item.extendJson.coverImage}}">
+																<image class="goods_img" src="{{item.extendJson.coverImage}}" mode="scaleToFill"></image>
+																<!-- 视频图标 -->
+																<view class="videoIcon dis_f_c_c" wx:if="{{item.extendJson.videoAddress!=null && item.extendJson.videoAddress!=''}}">
+																		<image src="{{$.img_src}}/Explosives/videoIcon.png" mode="aspectFit"></image>
+																</view>
+														</view>
+														<view class="noImgContent" wx:else>
+																<image class="noImg" src="{{$.img_src}}/yx_index/logo.png" />
+																<view class="noImgText">暂无图片</view>
+														</view>
+														<view class="goods_name">
+																{{item.extendJson.materielParentName||item.extendJson.goodsPromotionName||item.extendJson.shortTitle||item.extendJson.goodsName||""}}
+														</view>
+														<!-- 划线价格 -->
+														<view class="goods_old_price">
+																￥{{item.extendJson.goodsPrimePrice}}
+																<!-- {{item.extendJson.salesUnit?'/'+item.extendJson.salesUnit:''}} -->
+														</view>
+														<view class="price_content">
+																<view class="price_container">
+																		<view class="price_icon">¥</view>
+																		<view class="new_price">{{item.extendJson.int}}</view>
+																		<view wx:if="{{item.extendJson.dec}}" class="new_price_dec">
+																				.{{item.extendJson.dec}}
+																		</view>
+																		<view class="metering">/{{item.extendJson.salesUnit}}</view>
+																</view>
+														</view>
+														<block wx:if="{{item.extendJson.proType == 1888}}">
+																<view wx:if="{{item.extendJson.surplusStock<=0}}" class="shouqing-text">售罄</view>
+																<image wx:else class="pt_img" src="{{$.img_src}}/yx_index/baopin_pin.png" mode="aspectFit"></image>
+														</block>
+														<block wx:else>
+																<view wx:if="{{item.extendJson.ratio >= 100}}" class="shouqing-text">售罄</view>
+																<image wx:else catchtap="STaddCart" data-goods="{{item.extendJson}}" class="pt_img" src="{{$.img_src}}/yx_index/baopin_gwc.png" mode="aspectFit"></image>
+														</block>
+												</block>
+										</view>
+										<view wx:elif="{{item.type==1}}" class="showMore" bindtap="toClassification">
+												<view>
+														<image class="showMoreImg" src="{{$.img_src}}/yx_index/showMore.png" />
+														<view class="showMoreText">查看更多</view>
+												</view>
+										</view>
+										<view wx:elif="{{item.type==2}}" class="showMore">
+												<view>
+														<image class="noProductImg" src="{{$.img_src}}/yx_index/logo.png" />
+														<view class="noImgText">暂无商品</view>
+												</view>
+										</view>
+								</block>
+						</view>
+				</scroll-view>
+				<CartAnimation id="cartAnimation" background="red"></CartAnimation>
+		</view>
+</block>

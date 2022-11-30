@@ -1,0 +1,3 @@
+@import "../index/index.skeleton.wxss";
+/* 引入公用的css */
+@import '../../common/css/css.wxss';

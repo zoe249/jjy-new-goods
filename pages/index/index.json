@@ -1,0 +1,18 @@
+{
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100,
+  "backgroundColor": "#F4F4F4",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-goods-item": "/component/activityGoodsItem/activityGoodsItem",
+    "component-three-goods-item": "/component/threeGoodsItem/threeGoodsItem",
+    "layout-goods-item": "/component/waterfallLayoutGoodsItem/waterfallLayoutGoodsItem",
+    "component-two-goods-item": "/component/goodsItem/goodsItem",
+    "category-grid": "/component/categoryGrid/categoryGrid",
+    "image-modal": "/component/imageModal/imageModal",
+    "cuModal":"/component/cuModal/cuModal"
+  }
+}

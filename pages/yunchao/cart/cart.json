@@ -1,0 +1,13 @@
+{
+  "backgroundColor":  "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "购物车",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "component-yunchao-footer": "/component/yunchaoFooter/yunchaoFooter",
+    "component-bottom-modal": "/component/cuModal/cuModal",
+    "car-tab": "/component/carTab/carTab"
+  }
+}

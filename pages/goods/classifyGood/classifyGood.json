@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "component-go-cart": "/component/goCart/goCart",
+    "component-goods-classify-item": "/component/goodsClassifyItem/goodsClassifyItem"
+  }
+}

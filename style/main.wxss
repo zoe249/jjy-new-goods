@@ -1,0 +1,81 @@
+page {
+  /* 标准色 */
+  --thMain: #0f3f69;
+  --blue: #0f3f69;
+  --red: #ff4752;
+  --orange: #ffa601;
+  --golden: #d4b871;
+  --gray: #94969c;
+  --black: #444444;
+  --white: #fff;
+  --pale: #e7e7e7;
+  /* 浅色 */
+  --orangeLight: #FFFAEB;
+  --blueLight: #155c99;
+  --redLight: #FF4752;
+  --grayLight: #e7e7e7;
+  --grayWhite: #f4f4f4;
+  /* 背景色 */
+  --bgGrayWhite: #f4f4f4;
+  --bgGrayWhiteLight: #f8f8f8;
+  /* 渐变色 */
+
+  /* 阴影透明色 */
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 2450819 */
+  src: url('//at.alicdn.com/t/font_2450819_qdzer1budw.eot');
+  src: url('//at.alicdn.com/t/font_2450819_qdzer1budw.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2450819_qdzer1budw.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2450819_qdzer1budw.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2450819_qdzer1budw.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2450819_qdzer1budw.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+}
+/* 向右箭头 */
+.iconNext:after{
+  content: '\e610';
+}
+.iconClass:before{
+  content: '\e602';
+}
+
+
+/* -- 实线 -- */
+.mr1bt,.mr1bb,.mr1bl,.mr1br{
+  position: relative;
+}
+.mr1bt::before {
+  border-top: 1px solid var(--pale);
+}
+
+.mr1bb::before {
+  border-bottom: 1px solid var(--pale);
+}
+
+.mr1bl::before {
+  border-left: 1px solid var(--pale);
+}
+
+.mr1br::before {
+  border-right: 1px solid var(--pale);
+}
+
+.mr1bt::before,
+.mr1bb::before,
+.mr1bl::before,
+.mr1br::before {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}

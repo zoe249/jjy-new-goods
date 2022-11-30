@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "热卖榜单",
+  "usingComponents": {
+    "goods-item": "/component/rowGoodsItem/index"
+  }
+}

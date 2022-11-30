@@ -1,0 +1,109 @@
+<import src="/templates/global/global.wxml" />
+<!-- 提示层 - toast -->
+<template is="toast" data="{{...toastData}}"></template>
+
+<!--choice.wxml-->
+<scroll-view scroll-y style="height: 100vh;">
+  <view id="container" class="container">
+
+
+
+    <!-- 搜索框 -->
+    <view class="search-outer" id="search_outer">
+      <view class="search-outer-wrap">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcancel="bindMultiPickerCancel" bindcolumnchange="bindMultiPickerColumnChange" value="{{selectedMultiIndex}}" range="{{selectedMultiArray}}" range-key="{{'name'}}">
+          <view class="local_area">{{currentCity?currentCity:''}}</view>
+        </picker>
+        <view class="search-inner{{isSearchBoxActive ? ' active' : ''}}" id="search_form" name="search_form" action="" method="get">
+          <input class="input" id="key_word" type="text" value="{{searchText}}" confirm-type="search" bindconfirm="search" bindinput="onSearchBoxInput" bindfocus="onSearchBoxFocus" bindblur="onSearchBoxBlur" placeholder="请输入您的收货地址"></input>
+          <view class="i" id="del" bindtap="clearSearchBox" style="display:{{showClearSearchButton ? '' : 'none'}}"></view>
+        </view>
+      </view>
+    </view>
+
+    <!--  -->
+    <view class="choice-address default-bg{{showChoiceAddress ? '' : ' hidden'}}">
+      <!-- 当前地址 -->
+      <view class="top-pull-down"></view>
+      <view class="choice-address-index mb8">
+        <view class="h2">当前地址</view>
+        <view class="now-location pos-r clearfix" data-lat="" data-lng="">
+          <view class="em ellipsis" bindtap="jumpHome" data-location-info="{{currentUserRealLocation}}" data-from="{{'userRealLocation'}}">{{detailAddress}}</view>
+          <text class="a pos-a" wx:if="{{canAppGetUserLocation}}" bindtap="mapSelectLocation">精准定位</text>
+        </view>
+      </view>
+
+      <!-- 我的收货地址 -->
+      <view id="address_div" class="choice-address-item mb8" style="display: {{isLogin ? 'block' : 'none'}};">
+        <view class="h2">
+          我的收货地址
+          <view class="choice_address_add fr">
+            <text class="a" bindtap="autoJump" data-url="/pages/user/address/add/add">添加地址</text>
+          </view>
+        </view>
+        <view class="ul" id="address_list">
+          <view class="li pos-r {{(choiceddrId == item.addrId && locationInfo.longitude == item.longitude && locationInfo.latitude == item.latitude)?'cur':''}}" wx:for="{{shippingAddressList}}" wx:key="addrId" bindtap="jumpHome" data-location-info="{{item}}" data-addrid="{{item.addrId}}" data-from="{{'shippingListLocation'}}">
+            <view class="a r1bb">
+              <view class="div">
+                <view class="span span-first-child fl">{{item.addrName}}</view>
+                <view class="span fl">{{item.addrPhone}}</view>
+              </view>
+              <view class="p{{item.addrTag == 1 ? ' addr-company-tag' : item.addrTag == 2 ? ' addr-home-tag' : ' no_note'}}">
+                <view>{{item.provinceName != item.cityName ? item.provinceName + item.cityName : item.cityName}}{{item.areaName}}{{item.address}}{{item.poiAddr}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 历史地址列表 -->
+      <block wx:if="{{locateHistoryList.historyWords.length}}">
+        <view class="history-address-item pos-r" style="display: {{locateHistoryList.length === 0 ? 'none' : ''}}">
+          <view class="icon-clear" id="clear_btn" bindtap="clearLocateHistory">清空历史记录</view>
+          <view class="h2">历史地址</view>
+          <view class="ul" id="search_history">
+            <view class="li r1bb" wx:for="{{locateHistoryList.historyWords}}" wx:key="timeStamp" wx:if="{{index < 5}}">
+              <text class="a" bindtap="jumpHome" data-location-info="{{item}}" data-from="{{'historyListLocation'}}">
+                          <text>{{item.address}}</text>
+              </text>
+            </view>
+          </view>
+          <!--  <view class="more_address r1bt">
+                  <a href="javascript:;">更多地址</a>
+              </view> -->
+        </view>
+      </block>
+      
+
+    </view>
+
+    <!-- 错误提示 - 需要更精确的地址 -->
+    <view class="error keyword{{showSearchError ? '' : ' hidden'}}">
+      <image class="img" mode="aspectFit" src="https://shgm.jjyyx.com/m/images/error_img4.png"></image>
+      <view class="p">请输入更精确的地址</view>
+    </view>
+
+    <!-- 错误提示 - 定位失败 -->
+    <view class="error gps{{showGPSError ? '' : ' hidden'}}">
+      <images class="img" mode="aspectFit" src="https://shgm.jjyyx.com/m/images/error_img4.png"></images>
+      <view class="p">定位失败</view>
+    </view>
+
+    <!-- 搜索结果列表 -->
+    <view class="choice-address-result{{showSearchList ? '' : ' hidden'}}">
+      <view class="ul" id="search_list">
+        <view class="li r1bt" wx:for="{{searchList}}" wx:key="uid" wx:if="{{item.lng && item.lat}}">
+          <view class="a" bindtap="jumpHome" data-location-info="{{item}}" data-from="{{'searchListLocation'}}">
+            <view class="em">{{item.name}}</view>
+            <view class="p">{{item.city}} {{item.district}} {{item.name}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>
+
+<!-- 提示层 - toast -->
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>

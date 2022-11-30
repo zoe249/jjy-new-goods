@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "悦选",
+  "usingComponents": {
+    "component-group-footer": "/component/communityGroupFooter/communityGroupFooter"
+  }
+}

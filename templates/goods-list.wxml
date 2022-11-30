@@ -1,0 +1,10 @@
+<!-- 全局默认商品列表组件 -->
+<template name="goods-list">
+    <view class="goods-list">
+        <view class="goods-item">
+            <image class="goods-photo" src="{{url}}" width="100"></image>
+            <text class="goods-name" class="">{{name}}</text>
+            <text class="goods-price">{{price}}</text>
+        </view>
+    </view>
+</template>

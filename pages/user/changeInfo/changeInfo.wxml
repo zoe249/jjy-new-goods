@@ -1,0 +1,71 @@
+<import src="/templates/global/global.wxml" />
+<view class="change-info-cont">
+  <view class='change-info r1bt'>
+    <view class='weui-flex photo r1bb'>
+      <view>头像</view>
+      <view class='img-wrap' bindtap='toChangePhoto'>
+        <image src='{{allUserInfo.photo?allUserInfo.photo:""}}'></image>
+      </view>
+    </view>
+    <view class='weui-flex r1bb'>
+      <view>性别</view>
+      <view class='flex-rihgt'>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <text class="picker">{{array[index]}}</text>
+        </picker>
+      </view>
+      <text class='forword'></text>
+    </view>
+    <view class='weui-flex r1bb'>
+      <view>昵称</view>
+      <view class='flex-rihgt' bindtap='showNickNameModal'>
+        <view class='user-name'>
+          <block wx:if="{{allUserInfo.nickName}}">{{allUserInfo.nickName}}</block>
+          <block wx:else>请完善你的昵称</block>
+        </view>
+      </view>
+      <text class='forword'></text>
+    </view>
+    <view class='weui-flex r1bb'>
+      <view>出生日期</view>
+      <view class='flex-rihgt'>
+        <picker mode="date" value="{{birth}}" start="1900-01-01" end="{{endTime}}" bindchange="bindDateChange">
+          <text class="picker">{{birth?birth:'1900-01-01'}}</text>
+        </picker>
+      </view>
+      <text class='forword'></text>
+    </view>
+  </view>
+</view>
+<view class='nick-name-modal {{show?"show":""}}'>
+  <view class='mask' bindtap='closeNickNameModal'></view>
+  <view class='nick-name-wrap'>
+    <view class='nick-btn weui-flex r1bb'>
+      <view class='' bindtap='closeNickNameModal'>取消</view>
+      <view class="comfirm" bindtap='changeNickNameModal'>确定</view>
+    </view>
+    <input class="nick-name-input" type='text' placeholder='请输入您的昵称' value='{{allUserInfo.nickName?allUserInfo.nickName:""}}' bindinput="inputChange" cursor-spacing="40"></input>
+  </view>
+</view>
+<!-- <scroll-view scroll-y="true" scroll-x="true" class = "FilePath" bindtouchmove="scroll" bindtouchstart='scroll' bindtouchend='endTou'>
+    <image src='{{src}}' style="width: {{width}}px;height: {{height}}px;" bindtouchmove="touch"></image>
+  </scroll-view>
+
+<canvas canvas-id="myCanvas_A" style="width: {{width}}px;height: {{height}}px;"/>
+<template is="toast" data="{{...toastData}}"></template> -->
+<import src="/templates/we-cropper/we-cropper.wxml" />
+<block wx:if="{{showChooseImg}}">
+  <view class="cropper-wrapper">
+    <template is="we-cropper" data="{{...cropperOpt}}" />
+    <view class="cropper-buttons" style="color: {{cropperOpt.boundStyle.color}}">
+      <view class="upload btn" bindtap="uploadTap">上传图片</view>
+      <view class="getCropperImage btn" style="background-color: {{cropperOpt.boundStyle.color}};" bindtap="getCropperImage">
+        生成图片
+      </view>
+    </view>
+  </view>
+</block>
+<view class='wxAuth'>
+  <view></view>
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button>
+</view>

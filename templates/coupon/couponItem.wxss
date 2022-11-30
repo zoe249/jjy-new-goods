@@ -1,0 +1,179 @@
+/* couponItem.wxss */
+
+.coupon-item {
+  margin: 24rpx 32rpx 0 32rpx;
+  /* background: url('https://shgm.jjyyx.com/m/images/bgmanjian.png') no-repeat center; */
+  background-size: cover;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  background: #fff;
+}
+.unavailable{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+}
+/* .coupon-item.free {
+  background-image: url('https://shgm.jjyyx.com/m/images/bgbaoyou.png');
+}
+
+.coupon-item.expire {
+  background-image: url('https://shgm.jjyyx.com/m/images/bgguoqi.png') !important;
+}
+.coupon-item.machining{
+  background-image: url('https://shgm.jjyyx.com/m/images/bgjiagong.png');
+} */
+.coupon-item .item-left {
+  position: relative;
+  width: 200rpx;
+  padding: 80rpx 0 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #FF4752;
+}
+.coupon-item .item-left::after{
+  content: "";
+  position:absolute;
+  right: 0;
+  top: 16rpx;
+  width: 2rpx;
+  height: 176rpx;
+  background: #f8f8f8;
+  transform: scaleX(0.5);
+}
+.coupon-item.machining .item-left{
+  color: var(--blueLight);
+}
+.coupon-item.free .item-left{
+  color: #FFA601;
+}
+.coupon-item.expire .item-left,.coupon-item.expire .item-right,.coupon-item.expire .item-right .coupon-name,.coupon-item.expire  .item-right .coupon-desc{
+  color: #E7E7E7;
+}
+
+.coupon-item .item-left .xj-mj {
+  display: flex;
+  align-items: flex-end;
+  margin-top: -10rpx;
+  /* max-width: 160rpx; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coupon-item .item-left .baoyou {
+  font-size: 54rpx;
+  padding: 34rpx 0;
+  line-height: 0;
+}
+.coupon-item .item-left .jiagong{
+  font-size: 48rpx;
+}
+
+.coupon-item .item-left .xj-mj text {
+  font-size: 76rpx;
+  line-height: 0;
+  padding: 34rpx 0;
+}
+.coupon-item .item-left .xj-mj text.max{
+  font-size: 62rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.coupon-item .item-left .xj-mj .small {
+  font-size: 36rpx;
+  padding: 25rpx 0;
+}
+.coupon-item .item-left .coupon-tag {
+  max-width: 140rpx;
+  line-height: 0;
+  font-size: 26rpx;
+  padding: 20rpx 10rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 5rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coupon-item .item-right {
+  flex: 1;
+  max-width: 480rpx;
+  display: flex;
+  flex-flow: column;
+  margin: 0 0 24rpx 16rpx;
+  position: relative;
+}
+
+.coupon-item .item-right .coupon-name {
+  width: 80%;
+  font-size: 32rpx;
+  color: #777;
+  line-height: 0;
+  padding: 18rpx 0 17rpx;
+  margin-top: 25rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coupon-item .item-right .coupon-desc {
+  flex: 1;
+  width: 100%;
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  color: #94969C;
+  line-height: 35rpx;
+  min-height: 72rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.coupon-item .item-right .coupon-time {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  line-height: 0;
+  padding: 13rpx 0;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coupon-item.expire .item-right .coupon-time{
+  color: #E7E7E7;
+}
+.coupon-item .item-right .coupon-type {
+  position: absolute;
+  right: 16rpx;
+  top: 16rpx;
+  width: 48rpx;
+  height: 32rpx;
+}
+
+.coupon-item .item-right .coupon-expire-type {
+  position: absolute;
+  right: 30rpx;
+  top: 25rpx;
+  font-size: 24rpx;
+  line-height: 0;
+  padding: 12rpx 0;
+  color: #999;
+}
+
+.coupon-item .icon {
+  position: absolute;
+  right: 24rpx;
+  bottom: 24rpx;
+  width: 30rpx;
+  height: 30rpx !important;
+  background: url(https://shgm.jjyyx.com/m/images/icon_check_active.png) no-repeat center;
+  background-size: 100% 100%;
+}

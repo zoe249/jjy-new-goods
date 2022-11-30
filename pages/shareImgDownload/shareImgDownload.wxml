@@ -1,0 +1,15 @@
+<!--pages/shareImgDownload/shareImgDownload.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<view class="main">
+  <view class="share-image-container {{shareInfo.type != 5 ? 'no-padding' : ''}}">
+    <image class="share-image" src="{{shareImage}}" mode="widthFix"></image>
+  </view>
+
+  <view class="save-image-container">
+    <text class="save-image-btn" bindtap="downloadImage">保存图片</text>
+  </view>
+
+  <canvas canvas-id="shareCanvas" class="share-canvas"></canvas>
+  <template is="toast" data="{{...toastData}}"></template>
+</view>

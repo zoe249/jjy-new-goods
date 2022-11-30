@@ -1,0 +1,89 @@
+<section id="container" class="container future-box">
+    <view class="banner"><image src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/title.png"></image></view>
+    <view class="content">
+    <view class="li li10 has-btn li_maimai">
+        <view class="head">
+            <view class="title">麦麦星球</view>
+        </view>
+        <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/maimaixingqiu.png"></image></view>
+        <view class="bottom-tip">歌声说：想唱就唱，要唱的漂亮</view>
+    </view>
+    <view class="li li0 has-btn li_xiaopi">
+        <view class="head">
+            <view class="title">小啤星球</view>
+        </view>
+        <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/xiaopixingqiu.png"></image></view>
+        <view class="bottom-tip">啤酒说：别着急，总有让你冒泡的时候</view>
+    </view>
+        <view class="li li1 has-btn li_xiaohong">
+            <view class="head">
+                <view class="title">小红星球</view>
+                </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/xiaohongxingqiu.png"></image></view>
+            <view class="bottom-tip">红酒说：把深情装进酒里，才敢从心底去找你</view>
+        </view>
+        <view class="li li2 has-btn li_xiaobai">
+            <view class="head">
+                <view class="title">小白星球</view>
+               </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/xiaobaixingqiu.png"></image></view>
+            <view class="bottom-tip">白酒说：我装的不是酒，是醉后真实的朋友</view>
+        </view>
+        <view class="li li3 li_meimei">
+            <view class="head">
+                <view class="title">美美星球</view>
+            </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/meimeixingqiu.png"></image></view>
+            <view class="bottom-tip">岁月说：只有内心丰富，才不会被时间束缚</view>
+        </view>
+        <view class="li li9 no-coupon li_bingle">
+            <view class="head">
+                <view class="title">冰乐星球</view>
+                <view class="p9-1">自动智能冰淇淋，<view class="span">低脂新鲜</view>又健康</view>
+                 </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/binglexingqiu.png"></image></view>
+            <view class="bottom-tip">冰雪说：有多热爱，就有多爽快</view>
+        </view>
+        <view class="li li8 no-coupon li_chengai">
+            <view class="head">
+                <view class="title">橙爱星球</view>
+                <view class="p8-1"><view class="span">100%</view>鲜橙现榨，冷压无菌罐装</view>
+               </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/chengaixingqiu.png"></image></view>
+            <view class="bottom-tip">橙子说：路见不平一声吼，馋了渴了来一口</view>
+        </view>
+        <view class="li li6 li_zhuangzhuang">
+            <view class="head">
+                <view class="title">壮壮星球</view>
+                <view class="p6-1">注册会员后</view>
+                <view class="p6-2">查看测量报告</view>
+            </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/zhuangzhuangxingqiu.png"></image></view>
+            <view class="bottom-tip">测量仪说：长高长壮，才能触摸世界的高度</view>
+        </view>
+        <view class="li li4 li_zhuazhua">
+            <view class="head">
+                <view class="title">抓抓星球</view>
+                <!--<view class="p4-1">注册会员后，可免费抓娃娃</view>
+                <view class="p4-2"><view class="em">1</view><view class="span">次</span></view>-->
+            </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/zhuazhuaxingqiu.png"></image></view>
+            <view class="bottom-tip">机遇说：不是有付出就一定有回报，但不付出连机会都没有</view>
+        </view>
+       <!-- <view class="li li5 li_gongxiang">
+            <view class="head">
+                <view class="title">共享书舍</view>
+            </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/gongxiangshushe-2.jpg"></image></view>
+            <view class="bottom-tip">书说：读我，不如懂我</view>
+        </view>-->
+        <view class="li li7 li_nengliang">
+            <view class="head">
+                <view class="title">能量星球</view>
+               <!-- <view class="p7-1">每小时<view class="span">1元</view> 每天10元封顶</view>-->
+            </view>
+            <view class="img"><image class="img" src="https://shgm.jjyyx.com/m/html/activity/futurePlanet/images/nengliangxingqiu.png"></image></view>
+            <view class="bottom-tip">充电宝说：我的能量，维持手机持久浪荡</view>
+        </view>
+    </view>
+</section>

@@ -1,0 +1,12 @@
+{
+  "backgroundColor":  "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "购物车",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "cabinet-pop": "/component/cabinetPop/cabinetPop"
+  }
+}

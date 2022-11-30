@@ -1,0 +1,38 @@
+<!--pages/goods/classifyScreen/classifyScreen.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+
+<scroll-view class='container' id='box' style="background-color:{{banner.backgroundColor}};">
+  <!-- 提示层 - 暂无数据 -->
+  <block wx:if='{{showError}}'>
+    <template is="empty" data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:else>
+    <view class='container activity-list'>
+      <view class="banner-box"><image mode='widthFix' src="{{banner}}"></image></view>
+      <view class="cnt-box">
+        <view class="goods-list">
+          <block wx:for='{{list}}' wx:for-item='li'>
+          <view class="li" catchtap='goGoodsDetail' data-goods-property="{{li.goods.goodsProperty}}" data-sku-id="{{li.goods.skuId}}" data-pro-id="{{li.goods.proId}}" data-pro-type="{{li.goods.proType}}" data-shop-id="{{li.store.shopId}}" data-goods-id="{{li.goods.goodsId}}" data-store-id="{{li.store.storeId}}" data-store-type="{{li.store.storeType}}">
+            <image mode='widthFix' src="{{li.goods.coverImage}}"></image>
+            <view class="title">{{li.goods.shortTitle||li.goods.goodsName||""}}</view>
+            <view class="price-box">
+              <view class="sale-mark span">￥</view>
+              <view class="sale-price span">{{li.goods.salePrice}}</view>
+              <block wx:if='{{li.goods.primePrice&&li.goods.primePrice!=li.goods.salePrice}}'><view class="del-price span">￥{{li.goods.primePrice}}</view></block>
+            </view>
+            <block wx:if='{{li.goods.goodsStock==0}}'>				
+            <view class="sell-out">已售罄</view>
+            </block>
+            <block wx:else>
+            <view class="btn-buy" data-goods-property="{{li.goods.goodsProperty}}" data-sku-id="{{li.goods.skuId}}" data-pro-id="{{li.goods.proId}}" data-pro-type="{{li.goods.proType}}" data-shop-id="{{li.store.shopId}}" data-goods-id="{{li.goods.goodsId}}" data-store-id="{{li.store.storeId}}" data-store-type="{{li.store.storeType}}">立即购买</view>
+            </block>
+          </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+

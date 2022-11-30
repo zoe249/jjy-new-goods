@@ -1,0 +1,40 @@
+<block wx:if="{{startAction == 1}}">
+	<view class="section">
+		<view class="dis_f_c_c">
+			<image src="{{$.img_src}}/components/YXicon.png" mode="aspectFit"></image>
+		</view>
+		<view class="dis_f_c_c">
+			<view class="shadow"></view>
+		</view>
+	</view>
+</block>
+<block wx:elif="{{startAction == 2}}">
+	<view class="page-container">
+		<view class="auth-box">
+			<view class="icon-box"></view>
+			<view class="text-box">请授权位置服务</view>
+			<view class="tips-box">请打开系统设置中的微信的定位权限</view>
+			<view class="tips-box">同时在小程序中运行使用定位服务</view>
+			<view class="button-box1">
+				<button class='selectShop' open-type="openSetting">开启定位</button>
+			</view>
+			<!-- <view class="button-box1">
+				<button class="selectShop" bindtap="selectShopping">选择店铺</button>
+			</view> -->
+		</view>
+	</view>
+</block>
+<block wx:else>
+	<view class="page-container">
+		<view class="auth-box">
+			<view class="icon-box"></view>
+			<view class="tips-box">哎呀,定位失败啦！</view>
+			<view class="tips-box">请开启系统定位和微信APP位置权限</view>
+		</view>
+	</view>
+</block>
+<!-- <cuModal modalName ='centerModal'>
+  <view class="nowww" slot="customCenter">
+    
+  </view>
+</cuModal> -->

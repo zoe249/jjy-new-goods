@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "今日上新",
+  "usingComponents": {
+    "goods-item": "/component/rowGoodsItem/index"
+  }
+}

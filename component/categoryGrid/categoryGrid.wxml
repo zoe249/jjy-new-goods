@@ -1,0 +1,35 @@
+
+
+<block wx:if="{{cateArray && cateArray.length<=pageShowSize}}">
+  <view class="ma-category-grid" style="height:{{setGroupHeight}}rpx">
+    <view class="ma-category-grid-item {{gridItemClass}} col-{{colSize}}" wx:for="{{cateArray}}" wx:key="recommendId" bindtap="_autoJump" data-item="{{item}}">
+      <view class="ma-category-grid-item-wrap">
+        <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+        <text class="ma-category-value">{{item.recommendTitle}}</text>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:elif="{{cateArray && cateArray.length > pageShowSize}}">
+<swiper bindchange="groupSwiperChange" style="height: {{initSwiperHeight}};">
+  <swiper-item wx:for="{{cateArrayGroupList}}" style="height: {{initSwiperHeight}};" wx:for-item="groupItem" wx:for-index="groupIndex" wx:key="groupId">
+    <view class="ma-category-grid ma-category-grid-group">
+      <view class="ma-category-grid-item {{gridItemClass}} col-{{colSize}}" wx:for="{{groupItem.cateArray}}" wx:key="recommendId" bindtap="_autoJump" data-item="{{item}}">
+        <view class="ma-category-grid-item-wrap">
+          <image class="ma-category-grid-img" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+          <text class="ma-category-value">{{item.recommendTitle}}</text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+<view class="indicator-container" wx:if="{{cateArrayGroupList.length > 1 && indicatorShow}}">
+  <view class="indicator-container-wrap">
+    <block wx:for="{{cateArrayGroupList}}" wx:key="groupId">
+      <view class="indicator-item" style="{{indicatorStyle}};{{_swipperIndex == index ? indicatorActStyle:''}}"></view>
+    </block>
+  </view>
+</view>
+</block>
+
+

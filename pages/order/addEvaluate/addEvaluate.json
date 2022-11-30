@@ -1,0 +1,8 @@
+{
+  "backgroundColor": "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "添加评价",
+  "enablePullDownRefresh": false
+}

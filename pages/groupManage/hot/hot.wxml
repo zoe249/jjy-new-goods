@@ -1,0 +1,12 @@
+<import src="/templates/global/global.wxml" />
+<!-- 提示层 - 暂无数据 -->
+<block wx:if='{{showError}}'>
+  <template is="empty" data='{{emptyMsg:emptyMsg}}'></template>
+</block>
+<image class="banner" wx:if="{{bannerList.length>1 && bannerList[1].imgUrl}}" src="{{bannerList[1].imgUrl}}" mode="widthFix"></image>
+<view class="list">
+  <block wx:for="{{list}}" wx:for-item="goodsItem" wx:key="gIdx">
+    <goods-item goods="{{goodsItem.goods}}" isDetail="{{true}}" sortFlag="{{index}}" bind:bindPartakeGroup="jumpGoodsDetail"></goods-item>
+  </block>
+  <template wx:if="{{!showError && list.length > 3}}" is="noMore"></template>
+</view>

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "购卡记录",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 300,
+    "usingComponents": {
+        "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+        "component-global-modal": "/component/globalModal/globalModal"
+    }
+}

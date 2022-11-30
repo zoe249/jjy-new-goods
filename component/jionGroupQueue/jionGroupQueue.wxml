@@ -1,0 +1,58 @@
+<view class="grouper-wrap">
+  <block wx:for="{{memberList}}" wx:key="index">
+    <block wx:if="{{item && index<5}}">
+      <view class="grouper-item pos-r r1bb {{item.joinDateTime?'':' grouper-default-item'}}">
+        <image src="{{item.memberPhoto}}" class="member-photo {{'faces'+index}}"></image>
+        <view class="grouper-item-info">
+          <view class="grouper-item-name">{{item.memberName || item.memberTel}}<text class="grouper-master"
+              wx:if="{{index == 0}}">团长</text></view>
+          <view class="grouper-item-time">{{item.groupDateStr || item.joinDateTimeStr}}<text>{{index == 0?'拼团':'参团' }}</text></view>
+        </view>
+      </view>
+    </block>
+    <!-- <block wx:else>
+    <view class="grouper-default-item" bindtap="showMemberListDialog"></view>
+  </block> -->
+  </block>
+  <view class="more-grouper" wx:if="{{memberList.length > 5}}" bindtap="showMemberListDialog">查看更多</view>
+
+</view>
+
+
+<!-- 更多拼团列表 -->
+<!-- 退出登录 -->
+<global-modal modalName="{{modalName}}" dialogBoxStyle="{{dialogBoxStyle}}">
+  <view slot="customCenter" class="pos-r">
+    <view class="close-btn" catchtap="hideMemberListDialog"></view>
+    <view class="member-list-container">
+      <view class="grouper-header-container">
+        <block wx:if="{{memberList[0].memberPhoto}}">
+          <image src="{{memberList[0].memberPhoto}}" class="group-head-image"></image>
+        </block>
+      </view>
+      <text class="group-head-name">{{memberList[0].memberName||memberList[0].memberTel}}</text>
+      <text class="join-group-time">{{memberList[0].groupDateStr || memberList[0].joinDateTimeStr}} 开团</text>
+
+      <block wx:if="{{memberList.length > 1 && memberList[1]}}">
+        <view class="grouper-list-container">
+          <block wx:for="{{memberList}}" wx:key="index">
+            <block wx:if="{{item && index > 0}}">
+              <view class="grouper-item-container pos-r r1bb">
+                <view class="header-container">
+                  <image src="{{item.memberPhoto}}" class="header faces{{index>5?index%7:index}}"></image>
+                </view>
+                <view class="grouper-item-info">
+                  <text class="member-item-name">{{item.memberName||item.memberTel}}</text>
+                  <text class="join-time">{{item.groupDateStr || item.joinDateTimeStr}} 参团</text>
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </block>
+      <block wx:else>
+        <text class="no-grouper-msg">抢先成为第一个团员吧~</text>
+      </block>
+    </view>
+  </view>
+</global-modal>

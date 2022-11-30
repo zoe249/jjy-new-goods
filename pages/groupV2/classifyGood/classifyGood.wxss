@@ -1,0 +1,352 @@
+/* pages/goods/classifyScreen/classifyScreen.wxss */
+.container {
+	height: 100vh;
+}
+
+.iphonex-padding {
+	height: 68rpx;
+}
+
+.head-box {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 160rpx;
+	background-color: #fff;
+	/* box-shadow:0rpx 4rpx 4rpx rgba(206,206,206,0.2); */
+}
+
+.head-box .firstBox {
+	height: 160rpx;
+	white-space: nowrap;
+	width: 640rpx;
+}
+
+.head-box .firstBox .item {
+	display: inline-block;
+	text-align: center;
+	width: 144rpx;
+	padding: 32rpx 0 0;
+}
+
+.head-box .firstBox .item image {
+	width: 80rpx;
+	height: 80rpx;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+
+.head-box .firstBox .item .text {
+	text-align: center;
+	padding: 7rpx 0 0;
+	color: #818181;
+	font-size: 20rpx;
+	line-height: 30rpx;
+}
+
+.head-box .firstBox .item.on .text {
+	color: var(--blue);
+}
+
+.head-box .search {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 160rpx;
+	width: 110rpx;
+	text-align: center;
+	font-size: 21rpx;
+	color: #373737;
+	padding: 112rpx 0 0;
+	line-height: 48rpx;
+	background: url("https://shgm.jjyyx.com/m/images/class-search.png") no-repeat center 32rpx;
+	background-size: 80rpx auto;
+
+}
+
+.ul-no-data {
+	text-align: center;
+	padding: 30% 0 0;
+}
+
+.ul-no-data image {
+	display: block;
+	width: 200rpx;
+	margin: 0 auto;
+}
+
+.ul-no-data .text {
+	padding: 20rpx 0 0;
+	line-height: 32rpx;
+	font-size: 24rpx;
+}
+
+.wrapper {
+	height: 100vh;
+}
+
+.cart-ico {
+	position: fixed;
+	z-index: 99;
+	bottom: 50rpx;
+	right: 37rpx;
+	width: 114rpx;
+	height: 114rpx;
+	background: url("https://shgm.jjyyx.com/m/images/icon-fixed-cart.png") center no-repeat;
+	background-size: 100%;
+}
+
+.cart-ico .cart-num {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 10rpx;
+	border-radius: 16rpx;
+	color: #fff;
+	font-size: 24rpx;
+	line-height: 32rpx;
+	background-color: #CF2231;
+}
+
+/* .search-top-container {
+  width: 750rpx;
+  margin-top: 0rpx;
+  padding: 16rpx 15rpx;
+  background: #fff;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 9;
+  box-shadow: 0 8rpx 8rpx rgba(230, 230, 230, 0.4);
+}
+
+.search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 4rpx;
+  background: #F4F4F4;
+}
+
+.search-container .search-key{
+  font-size: 26rpx;
+  line-height: 0;
+  color: #CCC;
+}
+
+.search-container:before {
+  display: inline-block;
+  content: '';
+  width: 56rpx;
+  height: 56rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+  background-size: 30rpx 30rpx;
+}
+
+.search-top-container .search-cancel {
+  font-size: 30rpx;
+  color: #777;
+  line-height: 0;
+  padding: 28rpx 0;
+} */
+.cnt {
+	position: relative;
+	padding: 160rpx 0 130rpx 192rpx;
+	background-color: #fff;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.cnt-left {
+	position: absolute;
+	left: 0;
+	top: 160rpx;
+	width: 192rpx;
+	background-color: #F8F8F8;
+	overflow-y: auto;
+}
+
+.left-scroll {
+	height: 100%;
+}
+
+.left-list {
+	padding-bottom: 96rpx;
+}
+
+.left-list .li {
+	position: relative;
+	padding: 0 0 0 30rpx;
+	line-height: 96rpx;
+	height: 96rpx;
+	color: #818181;
+	font-size: 24rpx;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: right 8rpx top 12rpx;
+	background-size: auto 36rpx;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	border-left: 6rpx solid var(--grayLigh);
+}
+
+.left-list .li::before {
+	content: '';
+	position: absolute;
+	bottom: 1rpx;
+	left: 32rpx;
+	width: 144rpx;
+	height: 1rpx;
+	background-color: var(--grayLigh);
+}
+
+.left-list .li.on {
+	background-color: #fff;
+	color: var(--blue);
+	font-size: 30rpx;
+	font-weight: bold;
+	border-left: 6rpx solid var(--blue);
+}
+
+.left-list .li.on::before {
+	background-color: var(--grayLigh);
+}
+
+.cnt-right {
+	height: 100%;
+	padding: 0 15rpx 20rpx;
+	background: #fff;
+}
+
+.right-scroll {
+	height: 100%;
+	/* padding:0 0 290rpx; */
+}
+
+.right-scroll .top-banner {
+	width: 527rpx;
+	height: 224rpx;
+}
+
+.right-scroll .top-banner image {
+	width: 527rpx;
+	height: 224rpx;
+	background: url("https://shgm.jjyyx.com/m/images/class-default-banner.png") no-repeat center;
+	background-size: cover;
+}
+
+.right-scroll .sort-wrap {
+	height: 68rpx;
+	padding: 10rpx 0;
+}
+
+.right-scroll .sort-wrap .sort-box {
+	height: 68rpx;
+	padding: 10rpx 0;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+.right-scroll .sort-wrap .sort-box.fixed {
+	z-index: 9;
+	position: fixed;
+	top: 160rpx;
+	left: 204rpx;
+	width: 530rpx;
+	height: 68rpx;
+	padding: 10rpx 0;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+	background-color: #fff;
+}
+
+.right-scroll .sort-wrap .sort-box .sort {
+	line-height: 48rpx;
+	border: 1rpx solid #f4f4f4;
+	border-radius: 24rpx;
+	color: #94969C;
+	font-size: 24rpx;
+	padding: 0 30rpx;
+}
+
+.right-scroll .sort-wrap .sort-box .sort.on {
+	color: #444;
+	font-weight: bold;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-num {
+	padding: 0 42rpx 0 20rpx;
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-num.up {
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales_up.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-num.down {
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales_down.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-price {
+	padding: 0 42rpx 0 20rpx;
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-price.up {
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales_up.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+.right-scroll .sort-wrap .sort-box .sort-price.down {
+	background: url('https://shgm.jjyyx.com/m/images/icon_sales_down.png') no-repeat 78rpx center;
+	-webkit-background-size: 12rpx auto;
+	background-size: 12rpx auto;
+}
+
+
+.cnt-right .no-more {
+	text-align: center;
+}
+
+/* 悬浮的购物车按钮 */
+.footer .cart {
+	position: fixed;
+	bottom: 34rpx;
+	right: 34rpx;
+	z-index: 90;
+	width: 88rpx;
+	height: 88rpx;
+}
+
+.footer .cart image {
+	width: 100%;
+	height: 100%;
+}
+
+.footer .cart text {
+	position: absolute;
+	right: 0rpx;
+	top: -10rpx;
+	background: #FF4752;
+	font-size: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
+	color: #fff;
+	border-radius: 50%;
+}
+

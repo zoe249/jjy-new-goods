@@ -1,0 +1,15 @@
+<view class="goods-pro-labal" wx:if="{{totalSalesVolumeMsg}}">
+  <view class="u-icon-list">
+    <block wx:if="{{totalSalesVolume >= 3}}">
+      <view class="u-icon-img" wx:for="{{uiconList}}" wx:key="index" data-ii="{{index}}" wx:if="{{index < 3}}">
+        <image class="image"src="{{item.photo}}"></image>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="u-icon-img" wx:for="{{uiconList}}" data-iij="{{index}}" wx:key="index" wx:if="{{index < totalSalesVolume}}">
+        <image class="image" src="{{item.photo}}"></image>
+      </view>
+    </block>
+  </view>
+  <view class="sales-volume">{{totalSalesVolume > 3?'...':''}}{{totalSalesVolumeMsg}}</view>
+</view>

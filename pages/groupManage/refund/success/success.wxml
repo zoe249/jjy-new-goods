@@ -1,0 +1,32 @@
+<!--pages/refund/success/success.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view class="refund-success">
+    <view class="head">
+        <view class="text1">退款申请成功</view>
+        <view class="text2">
+            <block wx:if="{{dataJson.from=='applyForRefund'}}">退款金额将原路退还</block>
+            <block wx:else>
+                <block wx:if="{{dataJson.shippingTypeNow==1022||dataJson.shippingTypeNow==1023||dataJson.shippingTypeNow==1024}}">商家</block>
+                <block wx:else>客服人员</block>
+                将在1个工作日内确认您的退款申请，<view>退款金额将原路退还</view>
+            </block>
+          </view>
+    </view>
+    <view class="cnt">
+        <view class="li clearfix r1bb"><view class="li-l">申请类型</view><view class="li-r">
+            <block wx:if="{{dataJson.goodsSence==1116||goodsSence==1209||goodsSence==1210}}">退款</block>
+            <block wx:elif="{{dataJson.from=='applyForRefund'}}">取消订单</block>
+            <block wx:elif="{{dataJson.aftermarketType==1168}}">换货</block>
+            <block wx:elif="{{dataJson.aftermarketType==1258}}">取消订单</block>
+            <block wx:else>退货</block>
+           </view>
+        </view>
+        <view class="li clearfix r1bb"><view class="li-l">退款单号</view><view class="li-r">{{dataJson.id}}</view></view>
+        <view class="li clearfix r1bb"><view class="li-l">申请时间</view><view class="li-r">{{dataJson.newTime}}</view></view>
+    </view>
+    <view class="btn-box clearfix">
+        <view class="a btn-query" catchtap="toDetail">进度查询</view>
+        <view href="tel:{{servicePhone}}" catchtap="servicePhone" class="a btn-service-phone">联系客服</view>
+    </view>
+</view>

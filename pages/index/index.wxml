@@ -1,0 +1,372 @@
+<import src="/templates/global/global.wxml" /> 
+<!-- pages/index/index.wxml -->
+<!-- <view class="add-my-tpplets" wx:if="{{!myTpplets}}">添加到我的小程序，下次访问更便捷 <text bindtap="hideAddMyTpplets"></text></view> -->
+
+<view class="page-container">
+	<!-- 集市专有模块 -->
+	<view class="thame pos-r">
+		<view class="thame-bg" style="background:{{theme.themeBg}}"></view>
+		<view class="page-header"
+			wx:if="{{(canAppGetUserLocation || locatePositionByManual) && tabStatus.isInDeliveryArea}}">
+			<view class='search-mod'>
+				<view class='cur-location' bindtap="autoJump" data-url="/pages/user/address/choice/choice">
+					<image src='https://shgm.jjyyx.com/m/images/icon_location{{theme.themeBg?"_w":""}}.png'></image>
+				</view>
+				<view class='search-info'>
+					<view class='input' bindtap="autoJump" data-url="/pages/goods/search/search">
+						<view class='text'>请输入商品名称</view>
+					</view>
+				</view>
+				<view class='scan-btn' bindtap="scanQRCode">
+					<image src='https://shgm.jjyyx.com/m/images/icon_saoma{{theme.themeBg?"_w":""}}.png'></image>
+				</view>
+			</view>
+		</view>
+		<!-- 门头 -->
+		<block wx:if="{{doorHead.sectionType && doorHead.sectionType == 909 && doorHead.recommendList.length > 0}}">
+			<view class="tipsShopBanner">
+				<image src="{{doorHead.recommendList[0].imgUrl}}" mode="widthFix" bindtap="autoJump"
+					data-url="{{doorHead.recommendList[0].linkUrl}}" data-item="{{doorHead.recommendList[0]}}" />
+			</view>
+		</block>
+		<!-- 频道tabs -->
+		<view class='index-tab-nav-container pos-r'
+			wx:if="{{channelTabs.sectionType && channelTabs.sectionType == 1925 && channelTabs.recommendList.length > 0}}">
+			<scroll-view class="index-tab-nav" scroll-x>
+				<view class='scroll-nav-wrap'>
+					<block wx:for="{{channelTabs.recommendList}}" wx:key="rkey">
+						<view style="color: {{theme.themeBg?'#fff':''}}"
+							class='{{index == 0?"act":""}} {{theme.themeBg?"theme-act":""}}'
+							bindtap='{{item.linkUrl != "/pages/index/index"?"autoJump":""}}' data-item="{{item}}"
+							data-url="{{item.linkUrl}}" data-nav-title="{{item.sortFlag}}">
+							{{item.recommendTitle}}
+						</view>
+					</block>
+				</view>
+			</scroll-view>
+			<view class='jump-cls' bindtap='switchTab' data-current-tab-index="0" data-next-tab-index="1">
+				<image src='https://shgm.jjyyx.com/m/images/icon_to_cates{{theme.themeBg?"_w":""}}.png'></image>
+			</view>
+		</view>
+		<!-- 首页轮播 -->
+		<view class="banner"
+			wx:if="{{banner.sectionType && banner.sectionType == 25 && banner.recommendList.length > 0}}">
+			<swiper autoplay interval="3000" duration="400" circular bindchange="defaultSwiperChange">
+				<swiper-item wx:for="{{banner.recommendList}}" wx:key="recommendId" bindtap="autoJump" data-goback="{{true}}"
+					data-item="{{item}}">
+					<image src="{{item.imgUrl}}" mode="aspectFill" />
+				</swiper-item>
+			</swiper>
+		</view>
+		<!-- 扫一扫, 闪电付, 会员码 -->
+		<view class="fast-entry-container"
+			wx:if="{{tabStatus.isInDeliveryArea && fastTab.sectionType && fastTab.sectionType == 1903 && fastTab.recommendList && fastTab.recommendList.length > 0 && entryCurrentShop}}">
+			<block wx:for="{{fastTab.recommendList}}" wx:key="rlist">
+				<view
+					class="dao-dian-chi scan-qr-code fast-entry-item {{index < fastTab.recommendList.length -1 ?'right-btr':''}}"
+					bindtap="autoJump" data-url="{{item.linkUrl}}" data-item="{{item}}" data-fe="{{index+1}}">
+					<view class="icon">
+						<image src='{{item.imgUrl}}'></image>
+					</view>
+					<view class="text" style="color: {{theme.themeBg?'#fff':''}}">{{item.recommendTitle}}</view>
+				</view>
+			</block>
+		</view>
+		<!-- 首页快速分类 -->
+		<view class="category"
+			wx:if="{{tabStatus.isInDeliveryArea && cateTab.sectionType && cateTab.sectionType == 27 && cateTab.recommendList && cateTab.recommendList.length > 0}}">
+			<view class="category-module">
+				<category-grid cateArray="{{cateTab.recommendList}}" bind:autoJump="autoJump" indicatorActStyle="background:#FF4752;" indicatorStyle="background: #F4F4F4;" indicatorShow="{{true}}"></category-grid>
+			</view>
+		</view>
+		<!-- 首页独播信息 -->
+		<view class="announcement"
+			wx:if="{{tabStatus.isInDeliveryArea && headLines.sectionType && headLines.sectionType == 26 && headLines.recommendList.length > 0}}">
+			<view class='announcement-title'>
+				<text>悦报</text>
+				<text class='jjy-color-red'>头条</text>
+			</view>
+			<swiper autoplay interval="3000" duration="400" vertical circular>
+				<swiper-item wx:for="{{headLines.recommendList}}" wx:key="recommendId" bindtap="autoJump"
+					data-item="{{item}}" catchtouchmove="preventDefaultEvent">
+					<view class="photo"></view>
+					<view class="title">
+						<text>{{item.recommendTitle}}</text>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+
+	</view>
+	<!-- 限时秒杀 ， 拼团活动 -->
+	<view class='activity-module'
+		wx:if="{{tabStatus.isInDeliveryArea && limitedActivities.sectionType == 1900 && limitedActivities.children.length > 0}}">
+		<block wx:if="{{tabStatus.isInDeliveryArea && limitedActivities.sectionType == 1900}}">
+			<block wx:for="{{limitedActivities.children}}" wx:for-item="childrenItem" wx:key="childrenKeys">
+				<block wx:if="{{limitedActivities.children.length > 1}}">
+					<block wx:if="{{childrenItem.sectionType == 1227}}">
+						<view class='activity-module-item activity-module-limit' bindtap="jumpGoodsDetail"
+							data-status="{{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}"
+							data-url="/pages/goods/qianggou/qianggou?status={{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}">
+							<view class='plate-title jjy-color-blue'>
+								今日秒杀
+								<view class='time-value'>
+									<text class='time'>{{surplusTime.hour?surplusTime.hour:'00'}}</text>
+									<text class='time division'>{{surplusTime.minute?surplusTime.minute:'00'}}</text>
+									<text class='time division'>{{surplusTime.second?surplusTime.second:'00'}}</text>
+								</view>
+							</view>
+							<view class='plate-hot'>
+								<view class='plate-hot-item' wx:for="{{childrenItem.contentJson}}" wx:key="ekey"
+									wx:if="{{index < 2}}">
+									<image class='plate-hot-g-img' src='{{item.coverImage}}'></image>
+									<view class='pro-price'>
+										¥{{item.goodsPrice || item.goodsPrimePrice}}
+										<text>{{item.salesUnit?"/"+item.salesUnit:""}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+					<block wx:if="{{childrenItem.sectionType == 1831}}">
+						<view class='activity-module-item activity-module-group' bindtap="jumpGoodsDetail"
+							data-url="/pages/groupBuy/groupBuyGoodsList/groupBuyGoodsList">
+							<view class='plate-title jjy-color-blue'>特价拼团</view>
+							<view class='plate-hot plate-hot-l-0'>
+								<view class='plate-hot-item' wx:for="{{childrenItem.contentJson}}" wx:if="{{index < 2}}"
+									wx:key="ckey">
+									<image class='plate-hot-g-img' src='{{item.coverImage}}'></image>
+									<view class='pro-price'>
+										¥{{item.goodsPrice || item.goodsPrimePrice}}
+										<text>{{item.salesUnit?"/"+item.salesUnit:""}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+				</block>
+				<block wx:else>
+					<block wx:if="{{childrenItem.sectionType == 1227}}">
+						<view class='activity-module-item activity-module-limit' bindtap="jumpGoodsDetail"
+							data-status="{{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}"
+							data-url="/pages/goods/qianggou/qianggou?status={{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}">
+							<view class='plate-title jjy-color-blue'>
+								今日秒杀
+								<view class='time-value'>
+									<block wx:if="{{surplusTime.date}}">
+										<text class='time'>{{surplusTime.date}}天</text>
+										<text class='time'>{{surplusTime.hour}}小时</text>
+									</block>
+									<block wx:else>
+										<text class='time'>{{surplusTime.hour}}</text>
+										<text class='time division'>{{surplusTime.minute}}</text>
+										<text class='time division'>{{surplusTime.second}}</text>
+									</block>
+								</view>
+							</view>
+							<view class='plate-hot plate-hot-l-0'>
+								<view class='plate-hot-item' wx:for="{{childrenItem.contentJson}}" wx:key="mkey"
+									wx:if="{{index < 2}}">
+									<image class='plate-hot-g-img' src='{{item.coverImage}}'></image>
+									<view class='pro-price'>
+										¥{{item.goodsPrice || item.goodsPrimePrice}}
+										<text>{{item.salesUnit?"/"+item.salesUnit:""}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class='activity-module-item activity-module-group' bindtap="jumpGoodsDetail"
+							data-url="/pages/groupBuy/groupBuyGoodsList/groupBuyGoodsList">
+							<view class='plate-title jjy-color-blue'>特价拼团</view>
+							<view class='plate-hot plate-hot-l-0'>
+								<view class="no-activity-data">暂无活动</view>
+							</view>
+						</view>
+					</block>
+					<block wx:if="{{childrenItem.sectionType == 1831}}">
+						<view class='activity-module-item activity-module-limit' bindtap="jumpGoodsDetail"
+							data-status="{{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}"
+							data-url="/pages/goods/qianggou/qianggou?status={{childrenItem.contentJson[0].ongoingAtOnceOrBeginAtOnceFlag}}">
+							<view class='plate-title jjy-color-blue'>
+								今日秒杀
+							</view>
+							<view class='plate-hot'>
+								<view class="no-activity-data">暂无活动</view>
+							</view>
+						</view>
+						<view class='activity-module-item activity-module-group' bindtap="jumpGoodsDetail"
+							data-url="/pages/groupBuy/groupBuyGoodsList/groupBuyGoodsList">
+							<view class='plate-title jjy-color-blue'>特价拼团</view>
+							<view class='plate-hot'>
+								<view class='plate-hot-item' wx:for="{{childrenItem.contentJson}}" wx:if="{{index < 2}}"
+									wx:key="mkey">
+									<image class='plate-hot-g-img' src='{{item.coverImage}}'></image>
+									<view class='pro-price'>
+										¥{{item.goodsPrice || item.goodsPrimePrice}}
+										<text>{{item.salesUnit?"/"+item.salesUnit:""}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+				</block>
+			</block>
+		</block>
+		<view class="activity-gutter"></view>
+	</view>
+	<!-- 每日活动 第二件半价 -->
+	<view class="the-second-half-price"
+		wx:if="{{tabStatus.isInDeliveryArea && dailyActivities.sectionType && dailyActivities.sectionType == 1904 && dailyActivities.recommendList.length > 0}}"
+		style="">
+		<!-- 图片维护 -->
+		<view bindtap="autoJump" data-item='{{dailyActivities.recommendList[0]}}' wx:key="halfKey" data-bival="275">
+			<image mode="widthFix" src='{{dailyActivities.recommendList[0].imgUrl}}'></image>
+		</view>
+		<!-- 运营可配 -->
+		<!-- <view class='second-half-price-wrap'>
+      <view class='second-half-price-left'>
+        <view class='second-half-price-time'>
+          <view class='second-half-price-en'><text>{{moduleItem.extendJson.dayOfWeekEn}}</text><text>{{moduleItem.extendJson.date}}</text></view>
+          <view class='second-half-price-cn'>{{moduleItem.extendJson.dayOfWeekCn}}</view>
+          <view class='second-half-name'>{{moduleItem.sectionName}}</view>
+          <view class='tomorrow-activity'>
+            <text>明日预告</text>
+            <view>{{moduleItem.extendJson.tomorrowPromotion}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='second-half-price-right'>
+        <view class='second-half-goods' bindtap="autoJump" data-item='{{item}}' wx:for="{{moduleItem.recommendList}}" wx:key="halfKey"><image src='{{item.imgUrl||"https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418"}}'></image><view class='second-half-goods-tag typo-ellipsis'>{{item.describle}}</view><view class='second-half-goods-name typo-ellipsis'>{{item.recommendTitle}}</view></view>
+      </view>
+    </view> -->
+	</view>
+	<!-- 单品 -->
+	<view class='single-product'
+		wx:if="{{tabStatus.isInDeliveryArea && singleProductActivity.sectionType && singleProductActivity.sectionType == 1906 && singleProductActivity.recommendList.length > 0}}">
+		<view wx:for="{{singleProductActivity.recommendList}}" style='margin-top:16rpx;' wx:key="itemkeys"
+			bindtap="autoJump" data-item='{{item}}' data-bival="279">
+			<image mode="widthFix" src='{{item.imgUrl}}'></image>
+		</view>
+	</view>
+	<!-- 家家悦优选 -->
+	<view class='optimization'
+		wx:if="{{tabStatus.isInDeliveryArea && optimization.sectionType == 1907 && optimization.children.length > 0}}">
+		<image class='optimization-title-img' src='{{optimization.sectionTitleimg}}'></image>
+		<view class='optimization-wrapper' wx:for="{{optimization.children}}" wx:key="thiskey">
+			<block wx:if="{{item.rBanner && item.rBanner.imgUrl}}">
+				<view class="optimization-hd" data-bizType="{{item.rBanner.bizType == 17}}">
+					<image mode='widthFix' src='{{item.rBanner.imgUrl}}' bindtap="autoJump"
+						data-item="{{item.rBanner}}"></image>
+				</view>
+			</block>
+			<view class="optimization-bd" wx:if="{{item.rGoodsList && item.rGoodsList.length > 0}}">
+				<block wx:for="{{item.rGoodsList}}" wx:for-item="items" wx:key="recKey" bindtap="autoJump"
+					data-item='{{items}}' wx:for-index="itemIndex">
+					<view class="op-item" wx:if="{{itemIndex < 6}}">
+						<component-three-goods-item goods="{{items.extendJson}}" current-page="home"
+							form-type="{{formType}}" log-type-detail="371" log-type="384"
+							bind:change-cart="changeCartCount"></component-three-goods-item>
+					</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<!--猜你喜欢-->
+	<view class='guess-you-like'
+		wx:if="{{guessYouLikeIt.sectionType == 1940 && guessYouLikeIt.recommendList.length > 0}}">
+		<block wx:if="{{guessYouLikeIt.pBanner}}">
+			<view class='guess-you-like-banner'>
+				<image src='{{guessYouLikeIt.pBanner.imgUrl}}'></image>
+			</view>
+		</block>
+		<view class='guess-you-like-list' wx:if="{{guessYouLikeIt.pGoodsList && guessYouLikeIt.pGoodsList.length > 0}}">
+			<block wx:for="{{guessYouLikeIt.pGoodsList}}" wx:for-item="recommendListItems" wx:key="ckitem"
+				wx:for-index="rIndex">
+				<view class="guess-like-item" wx:if="{{guessYouLikeIt.len > rIndex}}">
+					<component-two-goods-item goods="{{recommendListItems.extendJson}}" current-page="home"
+						form-type="{{formType}}" log-type-detail="44" log-type="45" bind:change-cart="changeCartCount">
+					</component-two-goods-item>
+				</view>
+			</block>
+		</view>
+	</view>
+
+	<!--新用户注册弹窗-->
+	<view class="to-reg-win {{showToRegisterPage?'to-reg-win-show':''}}" wx:if="{{!selShopShow}}">
+		<view class="to-reg-win-mask" bindtap="closeToRegisterPage"></view>
+		<view class="to-reg-win-img">
+			<view class='to-reg-win-img-wrap'>
+				<image class="to-reg-win-img-bg" bindtap="toRegisterPage"
+					src="https://shgm.jjyyx.com/m/images/index/index_register.png" mode="widthFix"></image>
+				<image class="to-reg-win-img-close" src='https://shgm.jjyyx.com/m/images/index/icon_close.png'
+					bindtap="closeToRegisterPage"></image>
+			</view>
+		</view>
+	</view>
+	<!-- 定位异常获取不到数据 -->
+	<block wx:if="{{isNoAllowLoaction}}">
+		<view class="indx-error-page-tpl">
+			<image src="https://shgm.jjyyx.com/m/images/error_img4.png?20190704" mode="aspectFit"></image>
+			<text class="indx-error-tpl-msg">哎呀,定位失败啦！</text>
+			<text class="indx-error-tpl-msg">请开启系统定位和微信APP位置权限</text>
+			<!-- <navigator url='/pages/storeList/storeList'>选择门店</navigator> -->
+		</view>
+	</block>
+
+	<!--抽奖入口 -->
+	<block wx:if="{{luckDrawShopId}}">
+		<navigator class="to-luck-draw-page" url="/pages/activity/luckDraw/index?shopId={{luckDrawShopId}}">
+			<image src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/luck-draw.gif"></image>
+		</navigator>
+	</block>
+	<!-- 植树节入口 -->
+	<!-- <block wx:if="{{arborDayShow}}"> -->
+	<block wx:if="{{false}}">
+		<navigator class="to-arborday-page" url="/pages/activity/game/arborDay/arborDay">
+			<image src="https://shgm.jjyyx.com/m/images/arborDay/arborDayIndex_2.png"></image>
+		</navigator>
+	</block>
+	<!-- 植树节计时器 -->
+	<!-- <block wx:if="{{arborDayTimerShow&&arborDaySecond>0&&arborDaySecond<15}}"> -->
+	<block wx:if="{{false}}">
+		<view class="to-arborday-time-page">
+			<view class="arborday-normal">再浏览<span class="arborday-second">{{15-arborDaySecond}}</span>秒\n即可获得水滴</view>
+		</view>
+	</block>
+	<!-- 2022-04-25 新增周年庆跑酷活动开始 -->
+	<block wx:if="{{ParkourShow}}">
+		<navigator class="go_parkour_page" url="/pages/activity/game/Parkour/Parkour" bindtap="ParkourClick">
+			<image src="https://7463-tcb-vrjlezstm3hz5hn0ea4d2-49b4be-1304468250.tcb.qcloud.la/indexPK.png"></image>
+		</navigator>
+	</block>
+	<!-- 2022-04-25 新增周年庆跑酷活动结束 -->
+	
+	<!-- 首页定位不到任何店铺时, 显示的推荐店铺列表 end -->
+	<!-- 提示层 - toast -->
+	<template is="toast" data="{{...toastData}}"></template>
+	<template is="modal" data="{{...modalData}}"></template>
+	<template is="globalLoading" data="{{globalLoading}}"></template>
+	<!-- 底部全局导航条(tabBar) -->
+	<template wx:if="{{(canAppGetUserLocation || locatePositionByManual)}}" is="navigation-bar"
+		data="{{...tabStatus}}"></template>
+	<component-iphone-x-patcher></component-iphone-x-patcher>
+</view>
+
+<block wx:show="{{!showToRegisterPage && modalName != ''}}">
+	<image-modal modalName="{{modalName}}" modalDate="{{modalDate}}" bind:closeModalEvent="_closeModalEvent"
+		bind:jumpLinkUrl="_jumpLinkUrl"></image-modal>
+</block>
+
+<!-- 配送范围重叠门店选择 -->
+<cuModal modalName ="{{selShopShow?'centerModal':''}}" dialogBoxStyle="width:656rpx;">
+ <view slot="customCenter" class="sel-shop-list">
+    <view class="sel-shop-title r1bb pos-r">请选择门店</view>
+    <view class="sel-shop-item-wrap">
+      <block wx:if="{{shopArr.length>1}}">
+        <view class="sel-shop-item {{selShopIndex == index?'act':''}}" bindtap="switchSelShop" data-idx="{{index}}" wx:for="{{shopArr}}">{{item.shopName}}</view>
+      </block>
+    </view>
+    <view class="sel-shop-btn" bindtap="bindSelShop">确定</view>
+  </view>
+
+</cuModal>

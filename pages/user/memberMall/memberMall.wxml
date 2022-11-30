@@ -1,0 +1,32 @@
+<import src="/templates/global/global.wxml" />
+
+<block wx:if="{{mallInfo.sectionList.length >0}}">
+<swiper class='banner-swiper'>
+  <block wx:for="{{mallInfo.sectionList}}" wx:for-item="items" wx:key="thisitems">
+    <block  wx:for="{{items.recommendList}}" wx:for-item="list" wx:key="thisitems">
+      <swiper-item>
+        <image class="slide-image" src="{{list.imgUrl}}" mode='aspectFit' />
+      </swiper-item>
+    </block>
+  </block>
+</swiper>
+</block>
+<view class='member-goods'>
+<block wx:for="{{mallInfo.memberGoodsList}}" wx:for-item="items" wx:key="thisitems">
+  <block wx:for="{{items.goodsList}}" wx:key="{{item.goodsId}}">
+    <component-goods-item goods="{{item}}" bind:change-cart="changeCartCount"></component-goods-item>
+  </block>
+</block>
+</view>
+<block wx:if="{{!isNoData}}">
+  <view class="seat-container"></view>
+  <template is="noMore" data="{{...noMoreMes}}"></template>
+</block>
+<block wx:if="{{isNoData}}">
+  <template is="empty" data="{{...emptyObj}}"></template>
+</block>
+<block wx:else>
+  <component-go-cart cart-count="{{cartCount}}"></component-go-cart>
+</block>
+
+<template is="toast" data="{{...toastData}}"></template>

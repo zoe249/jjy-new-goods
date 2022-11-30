@@ -1,0 +1,8 @@
+<!--component/groupSurplusTime/groupSurplusTime.wxml-->
+<view class="surplus-time">
+  <text class='time'>{{hour}}</text>
+  <text class='division'>:</text>
+  <text class='time'>{{minute}}</text>
+  <text class='division'>:</text>
+  <text class='time'>{{second}}</text>
+</view>

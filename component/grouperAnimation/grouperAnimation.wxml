@@ -1,0 +1,10 @@
+<!--component/grouperAnimation/grouperAnimation.wxml-->
+<block wx:if="{{grouperList.length}}">
+  <view class="animation-container" animation="{{animationData}}" style="top:{{top}}rpx">
+    <image class="user-header"
+           src="{{grouperList[barrageIndex].photo || 'https://shgm.jjyyx.com/m/images/my_head_default.png?t=418'}}"></image>
+    <view class="barrage-container">
+      <text class="group-msg">{{grouperList[barrageIndex].name}}：{{grouperList[barrageIndex].gbInfo}}</text>
+    </view>
+  </view>
+</block>

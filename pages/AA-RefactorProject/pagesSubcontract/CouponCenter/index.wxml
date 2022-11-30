@@ -1,0 +1,143 @@
+<view class="page">
+	<image class="titleImg" src="{{$.img_src}}/CouponCenter/titleImg.png" />
+	<view class="topContent" style="height:{{capsuleBottomHeight+10}}px;width:750rpx;position:{{scrollOn?'fixed':'absolute'}};left:0;z-index:15;padding-top:{{capsuleTopHeight}}px;background-color:{{scrollOn?'white':''}}">
+		<image class="goHomeButton" bindtap="goBack" wx:if="{{fromShare}}" src="{{scrollOn?$.img_src+'/new_icon/go_index_b.png':$.img_src+'/new_icon/go_index_w.png'}}" />
+		<view style="width:80rpx;height:72rpx" wx:else bindtap="goBack">
+			<view bindtap="goBack" class="goBack" style="border-left:{{scrollOn?'4rpx solid black':'4rpx solid white'}};border-top:{{scrollOn?'4rpx solid black':'4rpx solid white'}}"></view>
+		</view>
+		<view class="topTitle" style="color:{{scrollOn?'black':'white'}}">领券中心</view>
+	</view>
+	<view style="height:417rpx" />
+	<view class="titleContent topShadow" style="{{topFixed?'padding:0 21rpx;width:100%;position:fixed;z-index:15;top:'+(capsuleBottomHeight+10)+'px':titleIsOpen?'margin:0 21rpx;border-radius:24rpx 24rpx 0 0;position:relative':'margin:0 21rpx;border-radius:24rpx;position:relative'}}">
+		<view class="titleScrollContent">
+			<scroll-view class="titleScroll" scroll-x="{{true}}" scroll-into-view="title_{{selectTitle}}" scroll-with-animation>
+				<block wx:for="{{couponTitleArr}}" wx:key="index">
+					<view class="titleWrap" id="title_{{index}}">
+						<view class="titleMenu{{selectTitle==index?' selectMenu':''}}" bindtap="gotoScroll" data-index="{{index}}" data-item="{{item}}">
+							<view>{{item}}</view>
+							<image src="{{$.img_src}}/CouponCenter/dibiao.png" wx:if="{{selectTitle==index}}" class="dibiaoIcon"></image>
+							<image src="{{$.img_src}}/CouponCenter/xiaolian.png" wx:if="{{selectTitle==index}}" class="selectMenuIcon"></image>
+						</view>
+					</view>
+				</block>
+				<view style="width:20rpx;height:10rpx;display:inline-block" />
+			</scroll-view>
+			<view wx:if="{{couponData.length>4}}" bindtap="openTitle" class="titleScrollRight"><image class="titleScrollRightImg" style="transform:rotate({{titleIsOpen?'180deg':'0deg'}})" src="{{$.img_src}}/CouponCenter/xiala.png" /></view>
+		</view>
+		<view class="titleInfo" wx:if="{{titleIsOpen}}">
+			<block wx:for="{{couponData}}" wx:key="index">
+				<view bindtap="gotoScroll" data-item="{{item}}" data-index="{{index}}" class="infoTerm{{selectTitle==index?' selectInfoTerm':''}}">
+					{{item}}
+				</view>
+			</block>
+		</view>
+	</view>
+	<view style="height:{{scrollViewHeight}}px" wx:if="{{topFixed}}" />
+	<Loading wx:if="{{couponData.length<1}}" />
+	<view class="contentWrap">
+		<block wx:for="{{couponData}}" wx:key="index">
+			<view class="quanContent" id="quan_{{index}}">
+				<view class="quanTitle">
+					<image class="zuoStar" src="{{$.img_src}}/CouponCenter/zuoStar.png"/>
+					<view class="quanTitleWord">
+						{{item.name}}
+						<image class="wordBottom" src="{{$.img_src}}/CouponCenter/wordBottom.png"/>
+					</view>
+					<image class="youStar" src="{{$.img_src}}/CouponCenter/youStar.png"/>
+				</view>
+				<view class="commodityList">
+					<block wx:for="{{item.info}}" wx:for-index="infoIndex" wx:for-item="infoItem" wx:key="infoIndex">
+						<view class="typeContent shadow" wx:if="{{infoItem.couponCommodity&&infoItem.couponCommodity.recommendList.length>0}}">
+							<view class="firstTypeContent {{infoIndex==item.info.length-1?'lastFirstTypeContent':''}} {{index==firstIndex&&infoIndex==secondIndex?'infoShadow':''}}">
+								<view style="width: 20rpx; height: 10rpx; position: absolute; background-color: {{index==firstIndex&&infoIndex==secondIndex?'rgba(0,0,0,0.09)':'rgba(0,0,0,0.05)'}};  left: 503rpx; bottom: 0; z-index: 3; border-top-left-radius: 20rpx; border-top-right-radius: 20rpx;"></view>    
+								<view style="width: 20rpx; height: 10rpx;  position: absolute;  left: 503rpx; bottom: 0rpx; z-index: 2; background-color: #fff; display:{{index==firstIndex&&infoIndex==secondIndex?'block':'none'}};border-top-left-radius: 20rpx; border-top-right-radius: 20rpx; " ></view>
+								<view style="width: 20rpx; height: 10rpx; position: absolute; left: 503rpx; top: 0; z-index: 2; border-bottom-left-radius: 20rpx; border-bottom-right-radius: 20rpx; background-color: rgba(0,0,0,0.05);"></view>
+								<image class="backgroundImg {{index==firstIndex&&infoIndex==secondIndex?'openBackgroundImg':''}}" src="{{infoItem.coupon.recommendList[0].extendObj[0].status==2?$.img_src+'/CouponCenter/huiBackground.png':$.img_src+'/CouponCenter/quanBeijing.png'}}" />
+								<image class="sealImg" wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status!=1}}" src="{{$.img_src}}/CouponCenter/{{infoItem.coupon.recommendList[0].extendObj[0].status==3||infoItem.coupon.recommendList[0].extendObj[0].status==4?'yiling':infoItem.coupon.recommendList[0].extendObj[0].status==2?'yiqiangguang':'1'}}.png" />
+								<view class="cornerMark {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCornerMark':''}}">{{infoItem.coupon.recommendList[0].extendObj[0].label}}</view>
+								<view class="maskContent" wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status==3||infoItem.coupon.recommendList[0].extendObj[0].status==4}}">
+									<view class='maskWrap'>
+										<view class='maskInfo'>
+											<view class='startTime' wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status==3}}">开始时间：{{infoItem.coupon.recommendList[0].extendObj[0].time}}</view>
+											<view class="status" bindtap='clickButton' data-infoIndex="{{infoIndex}}" data-index="{{index}}" data-show="{{((infoItem.coupon.recommendList[0].extendJson[0].couponType==266||infoItem.coupon.recommendList[0].extendJson[0].couponType==267)&&infoItem.coupon.recommendList[0].extendObj[0].label=='线下券')||infoItem.coupon.recommendList[0].extendJson[0].couponType ==1351?1:0}}" data-coupon="{{infoItem.coupon.recommendList[0]}}">{{infoItem.coupon.recommendList[0].extendObj[0].status==3?'已领取':infoItem.coupon.recommendList[0].extendObj[0].status==4?
+												((infoItem.coupon.recommendList[0].extendJson[0].couponType==266||infoItem.coupon.recommendList[0].extendJson[0].couponType==267)&&infoItem.coupon.recommendList[0].extendObj[0].label=='线下券')||infoItem.coupon.recommendList[0].extendJson[0].couponType ==1351?'展示券码':
+												'立即使用':''}}</view>
+										</view>
+									</view>
+								</view>
+								<view class="left">
+									<view class="couponTitle {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCouponTitle':''}}">{{infoItem.coupon.recommendList?infoItem.coupon.recommendList[0].recommendTitle:''}}</view>
+									<view class="commodity">
+										<block wx:for="{{infoItem.couponCommodity.recommendList}}" wx:key="index" wx:if="{{index<3}}">
+											<view class="commodityInfo {{index==0?'firstCommodityInfo':''}}">
+												<image class="commodityImg" src="{{item.imgUrl}}" />
+												<text class="commodityText {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCommodityText':''}}">￥{{entrance==0?item.extendJson.proPrice<item.extendJson.salePrice?item.extendJson.proPrice:item.extendJson.salePrice:item.extendJson.goodsPrice}}/{{item.extendJson.salesUnit}}</text>
+											</view>
+										</block>
+									</view>
+									<image class="hengxuxian" src="{{$.img_src}}/CouponCenter/hengxuxian.png" />
+									<view class="rules {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiRules':''}}" bindtap="openRules" data-firstIndex="{{index}}" data-secondIndex="{{infoIndex}}">{{infoItem.coupon.recommendList[0].extendObj[0].status==2?'开始时间：'+infoItem.coupon.recommendList[0].extendObj[0].time:'使用规则'}}</view>
+									<image class="zhankai" style="transform:rotate({{index==firstIndex&&infoIndex==secondIndex?'180deg':'0deg'}})" bindtap="openRules" data-firstIndex="{{index}}" data-secondIndex="{{infoIndex}}" src="{{$.img_src}}/CouponCenter/zhankai.png" />
+								</view>
+								<image class="xuxian" src="{{infoItem.coupon.recommendList[0].extendObj[0].status==2?$.img_src+'/CouponCenter/huishuxian.png':$.img_src+'/CouponCenter/xuxian.png'}}" />
+								<view class="right">
+									<view class="right_price">
+										<!-- <view class="price_symbol">￥</view> -->
+										<view class="price_price {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiRightPrice':''}}">{{infoItem.coupon.recommendList[0].extendJson[0].couponType==269?'免邮':infoItem.coupon.recommendList[0].extendJson[0].templateRule.discount?infoItem.coupon.recommendList[0].extendJson[0].templateRule.discount+'折':'￥'+infoItem.coupon.recommendList[0].extendJson[0].templateRule.deductionAmount/100}}</view>
+									</view>
+									<view class="right_condition {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiRightCondition':''}}">
+										{{infoItem.coupon.recommendList[0].extendJson[0].templateRule.couponLimitType==1?'满'+infoItem.coupon.recommendList[0].extendJson[0].templateRule.amountReached/100+'可用':'无门槛'}}
+									</view>
+									<view class="right_button {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiRightButton':''}} {{infoItem.coupon.recommendList[0].extendObj[0].status==3||infoItem.coupon.recommendList[0].extendObj[0].status==4?'opacityRightButton':''}}"  bindtap="clickButton" data-infoIndex="{{infoIndex}}" data-index="{{index}}" data-coupon="{{infoItem.coupon.recommendList[0]}}">{{infoItem.coupon.recommendList[0].extendObj[0].status==1||infoItem.coupon.recommendList[0].extendObj[0].status==2?'立即领取':infoItem.coupon.recommendList[0].extendObj[0].status==3?'已领取':infoItem.coupon.recommendList[0].extendObj[0].status==4?'立即使用':''}}</view>
+								</view>
+							</view>
+							<view wx:if="{{index==firstIndex&&infoIndex==secondIndex}}" class="rulesInfo">
+								{{infoItem.coupon.recommendList[0].extendJson[0].label}}
+							</view>
+						</view>
+						<view wx:else class="secondWrap shadow">
+							<view class="secondTypeContent">
+								<view style="width: 10rpx; height: 8rpx; position: absolute; background-color: rgba(0,0,0,0.05);  left: 244rpx; bottom: 0; z-index: 3; border-top-left-radius: 20rpx; border-top-right-radius: 20rpx;"></view>
+								<view style="width: 10rpx; height: 8rpx; position: absolute; left: 244rpx; top: 0; z-index: 2; border-bottom-left-radius: 20rpx; border-bottom-right-radius: 20rpx; background-color: rgba(0,0,0,0.05);"></view>
+								<image class="secondBackgroundImg" src="{{infoItem.coupon.recommendList[0].extendObj[0].status==2?$.img_src+'/CouponCenter/huiBackground.png':$.img_src+'/CouponCenter/quanBeijing.png'}}" />
+								<image class="secondSealImg" wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status!=1}}" src="{{$.img_src}}/CouponCenter/{{infoItem.coupon.recommendList[0].extendObj[0].status==3||infoItem.coupon.recommendList[0].extendObj[0].status==4?'yiling':infoItem.coupon.recommendList[0].extendObj[0].status==2?'yiqiangguang':'1'}}.png" />
+								<view class="secondMaskContent" wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status==3||infoItem.coupon.recommendList[0].extendObj[0].status==4}}">
+									<view class='secondMaskWrap'>
+										<view class='maskInfo'>
+											<view class='startTime' wx:if="{{infoItem.coupon.recommendList[0].extendObj[0].status==3}}">开始时间：{{infoItem.coupon.recommendList[0].extendObj[0].time}}</view>
+											<view class="status" bindtap='clickButton' data-infoIndex="{{infoIndex}}" data-index="{{index}}" data-show="{{((infoItem.coupon.recommendList[0].extendJson[0].couponType==266||infoItem.coupon.recommendList[0].extendJson[0].couponType==267)&&infoItem.coupon.recommendList[0].extendObj[0].label=='线下券')||infoItem.coupon.recommendList[0].extendJson[0].couponType ==1351?1:0}}" data-coupon="{{infoItem.coupon.recommendList[0]}}">{{infoItem.coupon.recommendList[0].extendObj[0].status==3?'已领取':infoItem.coupon.recommendList[0].extendObj[0].status==4?((infoItem.coupon.recommendList[0].extendJson[0].couponType==266||infoItem.coupon.recommendList[0].extendJson[0].couponType==267)&&infoItem.coupon.recommendList[0].extendObj[0].label=='线下券')||infoItem.coupon.recommendList[0].extendJson[0].couponType ==1351?'展示券码':'立即使用':''}}</view>
+										</view>
+									</view>
+								</view>
+								<view class="secondLeft">
+									<view class="secondCouponTitle">
+										<view class="secondCouponPrice {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCommodityText':''}}">{{infoItem.coupon.recommendList[0].extendJson[0].couponType==269?'免邮':infoItem.coupon.recommendList[0].extendJson[0].templateRule.discount?infoItem.coupon.recommendList[0].extendJson[0].templateRule.discount+'折':'￥'+infoItem.coupon.recommendList[0].extendJson[0].templateRule.deductionAmount/100}}</view>
+										<view class="secondCouponType {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiSecondCouponType':''}}">{{infoItem.coupon.recommendList[0].extendObj[0].label}}</view>
+									</view>
+									<view class="secondRules {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCommodityText':''}}">{{infoItem.coupon.recommendList[0].extendJson[0].templateRule.couponLimitType==1?'满'+infoItem.coupon.recommendList[0].extendJson[0].templateRule.amountReached/100+'可用':'无门槛'}}</view>
+									<view class="secondFullName slh_one {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiCommodityText':''}}">{{infoItem.coupon.recommendList?infoItem.coupon.recommendList[0].recommendTitle:''}}</view>
+								</view>
+								<image class="secondXuxian" src="{{infoItem.coupon.recommendList[0].extendObj[0].status==2?$.img_src+'/CouponCenter/huishuxian.png':$.img_src+'/CouponCenter/xuxian.png'}}" />
+								<view class="secondRight" bindtap="clickButton"  data-infoIndex="{{infoIndex}}" data-index="{{index}}" data-coupon="{{infoItem.coupon.recommendList[0]}}">
+									<view class="second_right_button {{infoItem.coupon.recommendList[0].extendObj[0].status==2?'huiSecondButton':''}}">{{infoItem.coupon.recommendList[0].extendObj[0].status==1||infoItem.coupon.recommendList[0].extendObj[0].status==2?'立即领取':infoItem.coupon.recommendList[0].extendObj[0].status==3?'已领取':infoItem.coupon.recommendList[0].extendObj[0].status==4?'立即使用':''}}</view>
+								</view>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view wx:if="{{couponData.length>=couponTitleArr.length}}" class="noMoreData">
+		<div style="margin-right:29rpx">——————</div>
+		<div style="margin-right:29rpx">已经到底啦</div>
+		<div>——————</div>
+	</view>
+	<view wx:elif="{{couponData.length>0&&couponData.length<couponTitleArr.length}}" class="noMoreData">
+		<view class="dis_f_c_c">
+			<image class="icon" src="{{$.img_src}}/components/more-data/loading.png" mode="aspectFit"></image>
+			<text>加载中...</text>
+		</view>
+	</view>
+</view>
+

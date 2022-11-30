@@ -1,0 +1,133 @@
+/* pages/activity/ditui/index.wxss */
+
+.container {
+  height: 100vh;
+  width: 100%;
+}
+
+.container .header-container image {
+    width: 100%;
+}
+
+.container .content-container {
+    margin: 16rpx 16rpx 0;
+    border-radius: 16rpx;
+    background: #fff;
+}
+
+.container .content-container .goods-list-container .goods-item {
+    border-top: 1rpx solid #ededed;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 210rpx;
+    padding: 40rpx 32rpx 0 32rpx;
+}
+
+.container .content-container .goods-list-container .goods-item .image-cover {
+    width: 130rpx;
+    height: 130rpx;
+    background: #FFF url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: contain;
+}
+
+.container .content-container .goods-list-container .goods-item .image-cover image {
+    width: 130rpx;
+    height: 130rpx;
+    border: 1rpx solid #ededed;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    margin-left: 20rpx;
+    padding-bottom: 40rpx;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-name {
+    width: 536rpx;
+    height: 30rpx;
+    font-size: 28rpx;
+    color: #444;
+    line-height: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-label {
+    max-width: 536rpx;
+    height: 26rpx;
+    margin-top: 10rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 26rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-price {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    color: #FF4752;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-price .price-symbol {
+    font-size: 24rpx;
+    line-height: 0;
+    padding: 12rpx 0;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-price .price {
+    font-size: 30rpx;
+    line-height: 0;
+    padding: 14rpx 0;
+}
+
+.container .content-container .goods-list-container .goods-item .goods-info-container .goods-price .prime-price {
+    font-size: 20rpx;
+    line-height: 0;
+    padding: 10rpx;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.container .content-container .goods-list-container .goods-item .buy-btn {
+    position: absolute;
+    right: 32rpx;
+    bottom: 24rpx;
+    width: 360rpx;
+    border-radius: 50rpx;
+    text-align: center;
+    background: #FF4752;
+    color: #FFF;
+    font-size: 56rpx;
+    line-height: 0;
+    padding: 50rpx 0;
+    transform-origin: 100% 100%;
+    transform: scale(0.5);
+}
+
+.container .content-container .goods-list-container .goods-item .sell-out {
+    position: absolute;
+    right: 32rpx;
+    bottom: 45rpx;
+    text-align: right;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.container .content-container .goods-list-container .goods-item:first-child {
+    border-top: none;
+}
+
+.container .footer-container {
+    border-top: 16rpx solid transparent;
+}
+
+.container .footer-container image {
+    width: 100%;
+}

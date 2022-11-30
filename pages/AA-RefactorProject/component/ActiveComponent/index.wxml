@@ -1,0 +1,7 @@
+<view class="section">
+	<view class="li dis_f_co_l_c {{isBlack?'blackWhite':''}}" animation="{{animationData}}">
+		<!-- 需要新增活动时 判断ActivityShow是否为true 然后改下方注销的图片就行 -->
+		<!-- <image wx:if="{{ActivityShow}}" class="icon" src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/luck-draw.gif" mode="widthFix"></image> -->
+		<image data-url="/pages/activity/luckDraw/index?shopId={{luckDrawShopId}}"  bindtap="open" data-buried-id="D1007" class="icon" src="https://shgm.jjyyx.com/m/html/activity/luckDraw/images/luck-draw.gif" mode="widthFix"></image>
+	</view>
+</view>

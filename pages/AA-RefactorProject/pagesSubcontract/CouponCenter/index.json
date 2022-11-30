@@ -1,0 +1,11 @@
+{
+	"navigationStyle": "custom",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#F4F4F4",
+    "backgroundTextStyle": "dark",
+	"usingComponents": {
+		"Ceiling": "../../component/Ceiling/index",
+		"Loading":"../../component/Loading/index",
+		"MoreData":"../../component/MoreData/index"
+	}
+}

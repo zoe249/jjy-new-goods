@@ -1,0 +1,5 @@
+<!-- 加入购物车动画 -->
+<view>
+	<view class="good_box" wx:if="{{!hide_good_box}}"
+		style="left:{{bus_x}}px;top:{{bus_y}}px;background:{{background}}"></view>
+</view>

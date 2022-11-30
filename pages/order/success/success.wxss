@@ -1,0 +1,115 @@
+
+.pay-s-top {
+  padding-bottom: 56rpx;
+}
+.pay-s-tips {
+  top: 46%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  transform: translateY(-50%);
+}
+.pay-s-tips .img {
+  display: inline-block;
+  width:160rpx;
+  height: 160rpx;
+}
+.pay-s-tips .h3 {
+  margin-top: 40rpx;
+  font-size: 38rpx;
+}
+.pay-s-tips .p {
+  line-height: 1.6;
+  font-size: 34rpx;
+}
+.jump-pages{
+  display: flex;
+  text-align: center;
+  margin-top: 56rpx;
+  padding: 0 160rpx;
+}
+.jump-pages .a{
+  display: inline-block;
+  height: 64rpx;
+  line-height: 64rpx;
+  width: 210rpx;
+  font-size: 28rpx;
+  border: 1px solid #e6e6e6;
+  -webkit-border-radius: 32rpx;
+  border-radius: 32rpx;
+}
+.jump-pages .goto-home{
+  color: #FF4752;
+  border: 1px solid #FF4752;
+  margin-left: 64rpx;
+}
+.guess-like-title {
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  padding-top: 16rpx;
+}
+.guess-like-title image{
+  margin: 0 auto;
+  width: 355rpx;
+  height: 66rpx;
+}
+.guess-like-title .title-text {
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  font-size: 24rpx;
+}
+.guess-like-title .title-text .div {
+  position: absolute;
+  top: 50%;
+  height:2rpx;
+  background-color: #999999;
+  width: 160rpx;
+}
+.guess-like-title .title-text .left {
+  left: -200rpx;
+}
+.guess-like-title .title-text .left::before {
+  position: absolute;
+  right: 0;
+  content: "";
+  top: -6rpx;
+  width: 14rpx;
+  height:14rpx;
+  display: block;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-color: #999999;
+}
+.guess-like-title .title-text .right {
+right: -200rpx;
+}
+.guess-like-title .title-text .right::before {
+position: absolute;
+left: 0;
+content: "";
+top: -6rpx;
+width: 14rpx;
+height: 14rpx;
+display: block;
+-webkit-transform: rotate(45deg);
+transform: rotate(45deg);
+background-color: #999999;
+}
+.space-box{
+  background: #ededed;
+  height: 20rpx;
+  width: 100%;
+}
+.goods-list-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  padding: 0 16rpx;
+}
+.error-page-tpl{
+  position: static;
+  transform: none;
+  top:20%;
+}

@@ -1,0 +1,96 @@
+/* component/patcher/patcher.wxss */
+.iphone-patcher-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.patcher-placeholder{
+  box-sizing: content-box;
+}
+.patcher-placeholder, .iphone-x-patcher {
+  width: 750rpx;
+  min-height: 16rpx;
+  height: calc(16rpx + env(safe-area-inset-bottom) / 2);
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+  padding-bottom: calc(constant(safe-area-inset-bottom)/ 2); 
+}
+.iphone-patcher-slot{
+  width: 100%;
+  padding: 16rpx 0 0;
+  /* min-height: 112rpx; */
+}
+.patcher-slot{
+  display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
+  align-items: center;
+  -ms-align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -ms-justify-content: center;
+  -webkit-justify-content: center;
+}
+.patcher-slot-item{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 40rpx;
+}
+.patcher-slot-item{
+  background: var(--red);
+  color: #fff;
+}
+.seat__{
+  position: static;
+}
+.seat__bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+}
+.cu-item{
+  width: 686rpx;
+  margin: 0 auto;
+  transition: all 0.2s;
+}
+.cu-item__disable{
+  background: var(--bgGrey);
+  color: var(--darkGray);
+}
+.content{
+  width:688rpx;
+  margin: 0 auto;
+  color: var(--white);
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: var(--red);
+}
+.cu-item__btn-default{
+  background: var(--bgGray);
+  color: var(--darkGray);
+  font-size: 28rpx;
+}
+.cu-item__btn-thMain {
+  background: var(--thMain);
+  color: var(--white);
+}
+.cu-item__btn-thMain {
+  background: var(--golden);
+  color: var(--white);
+}
+
+/* footer 默认按钮、取消订单按钮 */
+
+.cu-item-size__2{
+  width: 336rpx !important;
+  border-radius: 40rpx;
+}
+.cu-item-size__3{
+  width: 218rpx !important;
+  border-radius: 40rpx;
+}

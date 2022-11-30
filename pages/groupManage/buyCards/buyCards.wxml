@@ -1,0 +1,39 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/fillgoods/fillgoods.wxml" />
+<block wx:for="{{resData.storeList}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
+    <view class='bg-white'>
+        <template is="goodslist" data="{{...storeData,quickOrder,buyCard}}"></template>
+    </view>
+</block>
+<block wx:if="{{resData.invoiceSupportType>0}}">
+    <view class="invoice-nav bg-white" bindtap='jumpInvoice'>发票
+        <text class="invoice-select-state {{invoiceInfoDetail?'c-color':'c-color-9'}}">{{invoiceInfoDetail?invoiceInfoDetail:'不开发票'}}</text>
+        <text class="forword"></text>
+    </view>
+    <view class="bg-jiange"></view>
+</block>
+
+<view class="fill-money bg-white">
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>商品金额</text>
+        <text class="fr">￥{{resData.totalSrcPrice}}</text>
+    </view>
+    <view class="fill-money-item clearfix">
+        <text class='cls-name'>促销优惠</text>
+        <text class="fr c-color">-￥{{resData.totalProPrice}}</text>
+    </view>
+</view>
+<view class="footer r1bt{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
+    <view id="total_price">实付：
+        <view id="total_money">
+            <text>￥</text>{{totalPay}}</view>
+    </view>
+    <botton class="settle_accounts" catchtap="createOrder">提交订单</botton>
+    <component-iphone-x-patcher></component-iphone-x-patcher>
+</view>
+
+
+<template is="toast" data="{{...toastData}}"></template>
+
+
+<loading id="globalLoading"></loading>

@@ -1,0 +1,270 @@
+/* 右侧二级分类滚动 */
+.classify-right-nav{
+  z-index: 100;
+  padding:0rpx 0;
+  height:52rpx;
+  position: relative;
+  background-color: #fff;
+}
+.classify-right-nav .right-nav-box{
+  z-index:100;
+  position:absolute;
+  height:52rpx;
+  padding:10rpx 32rpx 10rpx 0;
+  width:530rpx;
+  top:0;
+  left:0;
+}
+.right-nav-scroll{
+  width:490rpx;
+  height:32rpx;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.right-nav-scroll .nav{
+  display: inline-block;
+  line-height: 32rpx;
+  padding:0 30rpx 0 0;
+  font-size:24rpx;
+  color:#94969C;
+}
+.right-nav-scroll .nav.on{
+  color:#444444;
+}
+.right-nav-all{
+  z-index: 100;
+  position:absolute;
+  top:52rpx;
+  left:0;
+  display: -webkit-flex;
+  justify-items: self-start;
+  background-color: #fff;
+  flex-wrap:wrap;
+  padding:10rpx 0 10rpx;
+  width:530rpx;
+}
+.right-nav-all .nav{
+  padding:0 15rpx;
+  line-height:40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background-color: #F8F8F8;
+  margin:0 20rpx 20rpx 0;
+  border-radius: 8rpx;
+}
+.right-nav-all .nav.on{
+  background-color: var(--blue);
+  color:#fff;
+}
+.right-nav-toggle{
+  position: absolute;
+  top:10rpx;
+  right:0;
+  width:32rpx;
+  height:32rpx;
+  background-color: #444444;
+}
+cnt-right .ul{
+  position:relative;
+}
+.masker-ul{
+  z-index:99;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.ul-no-data{
+  text-align: center;
+  padding:30% 0 0;
+}
+.ul-no-data image{
+  display: block;
+  width:200rpx;
+  margin:0 auto;
+}
+.ul-no-data .text{
+  padding:20rpx 0 0;
+  line-height:32rpx;
+  font-size:24rpx;
+}
+.wrapper {
+  height: 100vh;
+}
+.cart-ico{
+  position:fixed;
+  z-index:99;
+  bottom:50rpx;
+  right:37rpx;
+  width:114rpx;
+  height:114rpx;
+  background: url("https://shgm.jjyyx.com/m/images/icon-fixed-cart.png") center no-repeat;
+  background-size: 100%;
+}
+.cart-ico .cart-num{
+  position:absolute;
+  right:0;
+  top:0;
+  padding:0 10rpx;
+  border-radius:16rpx;
+  color:#fff;
+  font-size:24rpx;
+  line-height:32rpx; 
+  background-color: #FF4752;
+}
+.search-top-container {
+  width: 750rpx;
+  margin-top: 0rpx;
+  padding: 16rpx 15rpx;
+  background: #fff;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 9;
+  box-shadow: 0 8rpx 8rpx rgba(230, 230, 230, 0.4);
+}
+
+.search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 4rpx;
+  background: #F4F4F4;
+}
+
+.search-container .search-key{
+  font-size: 26rpx;
+  line-height: 0;
+  color: #CCC;
+}
+
+.search-container:before {
+  display: inline-block;
+  content: '';
+  width: 56rpx;
+  height: 56rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_gray_search.png') no-repeat center;
+  background-size: 30rpx 30rpx;
+}
+
+.search-top-container .search-cancel {
+  font-size: 30rpx;
+  color: #777;
+  line-height: 0;
+  padding: 28rpx 0;
+}
+.cnt{
+  position: relative;
+  padding:90rpx 0 0 192rpx;
+  background-color: #fff;
+  height:100vh;
+  overflow: hidden;
+}
+.cnt-left{
+  position: absolute;
+  left:0;
+  width:192rpx;
+  background-color:#F8F8F8;
+  height:100%;
+  padding:0 0 120rpx;
+  overflow-y: auto;
+}
+.left-scroll{
+  height:100%;
+}
+.left-list .li{
+  position: relative;
+  padding:0 0 0 30rpx;
+  line-height:96rpx;
+  height:96rpx;
+  color:#94969C;
+  font-size:24rpx;
+  width:100%;
+  background-repeat: no-repeat;
+ background-position: right 8rpx top 12rpx;
+  background-size:auto 36rpx;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+}
+.left-list .li::before{
+  content: '';
+  position: absolute;
+  bottom:1rpx;
+  left:32rpx;
+  width:144rpx;
+  height:1rpx;
+  background-color: #e7e7e7;
+}
+.left-list .li.on{
+  background-color:#fff;
+  border-left:6rpx solid var(--blueLight);
+  color:var(--blueLight);
+  font-size:30rpx;
+  font-weight:bold;
+}
+.left-list .li.on::before{
+  background-color:#fff;
+}
+.cnt-right{
+  padding:0 15rpx 10rpx;
+  background: #fff;
+  position: relative;
+}
+.right-scroll{
+  height:100vh;
+  padding:0 0 90rpx;
+}
+.right-scroll .top-banner{
+  z-index:100;
+  width:527rpx;
+  height:224rpx;
+}
+.right-scroll .top-banner image{
+  width:527rpx;
+  height:224rpx;
+  background: url("https://shgm.jjyyx.com/m/images/class-default-banner.png?t=418") no-repeat center;
+  background-size: cover;
+}
+.right-scroll .sort-wrap{
+  height:68rpx;
+  padding:10rpx 0;
+}
+.right-scroll .sort-wrap .sort-box{
+  height:68rpx;
+  padding:10rpx 0;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+}
+.right-scroll .sort-wrap .sort-box.fixed{
+  z-index:9;
+  position:fixed;
+  top:90rpx;
+  left:207rpx;
+  width:530rpx;
+  height:68rpx;
+  padding:10rpx 0;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.right-scroll .sort-wrap .sort-box .sort{
+  line-height:48rpx;
+  border:1rpx solid #EDEDED;
+  border-radius: 24rpx;
+  color:#94969C;
+  font-size:20rpx;
+  padding:0 20rpx;
+}
+.right-scroll .sort-wrap .sort-box .sort.on{
+  color:#444;
+  font-weight: bold;
+}
+.cnt-right .no-more{
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "MoreData":"../MoreData/index",
+    "CartAnimation":"../../component/CartAnimation/index",
+    "no-list":"../../component/NoList/index"
+  },
+  "onReachBottomDistance":50
+}

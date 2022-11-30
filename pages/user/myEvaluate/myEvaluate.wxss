@@ -1,0 +1,498 @@
+/* pages/user/myEvaluate/myEvaluate.wxss */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.s,
+.span,
+.em {
+    display: inline-block;
+}
+
+
+/*loading*/
+
+#loading {
+    z-index: 999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#loading .loading-cnt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 9999999;
+}
+
+#loading .loading-cnt image {
+    width: 180rpx;
+    height: 180rpx;
+}
+
+.empty-box {
+    padding: 35% 0 0;
+    text-align: center;
+}
+
+.empty-box .empty-img {
+    width:400rpx;
+    height:400rpx;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.empty-box .empty-text {
+    padding: 20rpx 0 0;
+    text-align: center;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    color: #999;
+}
+
+#no-data-box {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+#no-data-box .no-data-cnt {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin: -200rpx auto 0;
+    text-align: center;
+}
+
+#no-data-box .no-data-cnt image {
+    display: block;
+    width: 220rpx;
+    height: auto;
+    margin: 0 auto
+}
+
+#no-data-box .no-data-cnt .no-data-text {
+    padding: 20rpx 32rpx 0;
+    color: #999;
+    font-size: 28rpx;
+    line-height: 36rpx;
+}
+
+#pop-pagination-box {
+    position: fixed;
+    bottom: 20rpx;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#pop-pagination-box .span {
+    display: inline-block;
+    width: 12rpx;
+    height: 12rpx;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 0 4rpx;
+}
+
+#pop-pagination-box .span.active {
+    background-color: #ff5c33;
+}
+
+image {
+    object-fit: cover;
+}
+
+.evaluate-nav {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.evaluate-nav .nav {
+    float: left;
+    width: 50%;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    color: #444;
+    text-align: center;
+}
+
+.evaluate-nav .nav.active {
+    color: #ff5c33;
+    background: url("https://shgm.jjyyx.com/m/images/ico_secondCate_active.png") no-repeat bottom center;
+    background-size: 60% 4rpx;
+}
+
+.evaluate-already-box {
+    padding: 90rpx 0 20rpx;
+}
+
+.evaluate-already-box .li {
+    border-bottom: 1rpx solid #ededed;
+    padding: 0 0 0 32rpx;
+    background-color: #fff;
+}
+
+.evaluate-already-box .li .title {
+    position: relative;
+    padding: 18rpx 32rpx 18rpx 70rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    border-bottom: 1rpx solid #ededed;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.evaluate-already-box .li .title image {
+    display: block;
+    position: absolute;
+    top: 18rpx;
+    left: 0;
+    height: 52rpx;
+    width: 52rpx;
+    background: url("https://shgm.jjyyx.com/m/images/jisuchaoshi.png") no-repeat center;
+    background-size: 100%;
+}
+
+.evaluate-already-box .li .title .span {
+    width: 100%;
+    display: block;
+    line-height: 52rpx;
+    height: 52rpx;
+    font-size: 30rpx;
+    padding: 0 0 0 20rpx;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score {
+    padding: 38rpx 0 32rpx 0;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .s {
+    float: left;
+    width: 24rpx;
+    height: 28rpx;
+    margin-right: 4rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_star0.png") no-repeat center;
+    background-size: 100%;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .s.star0-5 {
+    background: url("https://shgm.jjyyx.com/m/images/icon_star0.5.png") no-repeat center;
+    background-size: 100%;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .s.star1 {
+    background: url("https://shgm.jjyyx.com/m/images/icon_star1.png") no-repeat center;
+    background-size: 100%;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .score {
+    float: left;
+    padding: 0 0 0 12rpx;
+    line-height: 28rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .distribution {
+    float: left;
+    position: relative;
+    padding: 0 0 0 40rpx;
+    height: 28rpx;
+    line-height: 28rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.evaluate-already-box .li .evaluate-cnt .evaluate-score .distribution:before {
+    display: block;
+    content: '';
+    width: 2rpx;
+    height: 20rpx;
+    background-color: #999;
+    position: absolute;
+    top: 6rpx;
+    left: 20rpx;
+}
+
+.evaluate-already-box .li .evaluate-cnt .text {
+    word-wrap: break-word;
+    padding: 0 32rpx 20rpx 0;
+    color: #444;
+    font-size: 28rpx;
+    line-height: 40rpx;
+}
+
+.evaluate-already-box .li .evaluate-cnt .good {
+    padding: 4rpx 32rpx 10rpx 42rpx;
+    color: #999;
+    font-size: 24rpx;
+    line-height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_zan.png") no-repeat 0 2rpx;
+    background-size: auto 32rpx;
+}
+
+.evaluate-already-box .li .evaluate-cnt .bad {
+    padding: 4rpx 32rpx 10rpx 42rpx;
+    color: #999;
+    font-size: 24rpx;
+    line-height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_low.png") no-repeat 0 2rpx;
+    background-size: auto 32rpx;
+}
+
+.evaluate-already-box .li .evaluate-cnt .tags {
+    padding: 4rpx 32rpx 10rpx 42rpx;
+    color: #999;
+    font-size: 24rpx;
+    line-height: 28rpx;
+    background: url("https://shgm.jjyyx.com/m/images/icon_tag.png") no-repeat 0 2rpx;
+    background-size: auto 32rpx;
+}
+
+.evaluate-already-box .li .evaluate-cnt .images-box {
+    padding: 0 32rpx 0 0;
+}
+
+.evaluate-already-box .li .evaluate-cnt .images {
+    white-space: nowrap;
+    height: 160rpx;
+    padding: 30rpx 0 0 0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.evaluate-already-box .li .evaluate-cnt .images image {
+    white-space: nowrap;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    display: inline-block;
+    padding: 0 16rpx 0 0;
+    width: 160rpx;
+    height: 160rpx;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.evaluate-already-box .li .evaluate-cnt .time {
+    padding: 0 0 16rpx;
+    color: #999;
+    font-size: 24rpx;
+    line-height: 72rpx;
+}
+
+.evaluate-no-box {
+    padding: 90rpx 0 20rpx;
+}
+
+.evaluate-no-box .li {
+    background-color: #fff;
+    margin: 0 0 16rpx;
+}
+
+.evaluate-no-box .li .title {
+    display: block;
+    position: relative;
+    min-height: 92rpx;
+    padding: 20rpx 52rpx 20rpx 100rpx;
+}
+
+.evaluate-no-box .li .title image {
+    display: block;
+    position: absolute;
+    top: 20rpx;
+    left: 32rpx;
+    width: 52rpx;
+    height: 52rpx;
+    background: url("https://shgm.jjyyx.com/m/images/jisuchaoshi.png") no-repeat center;
+    background-size: 100%;
+}
+
+.evaluate-no-box .li .title .shop-name {
+    height: 52rpx;
+    line-height: 52rpx;
+    font-size: 28rpx;
+}
+
+.evaluate-no-box .li .title .forword {
+    right: 32rpx
+}
+
+.evaluate-no-box .li .all-img-box {
+    display: block;
+    padding: 20rpx 32rpx;
+    background-color: #fff9f5;
+}
+
+.evaluate-no-box .li .all-img-box .all-img {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 130rpx;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.evaluate-no-box .li .all-img-box .all-img .images {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    display: inline-block;
+    width: 130rpx;
+    height: 130rpx;
+    padding: 0 20rpx 0 0;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.evaluate-no-box .li .all-img-box .all-img .images image {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1rpx solid #f8ddca;
+    display: block;
+    width: 130rpx;
+    height: 130rpx;
+}
+
+.evaluate-no-box .li .one-img {
+    padding: 20rpx 32rpx;
+    background-color: #fff9f5;
+    display: table;
+    width: 100%;
+    height: 170rpx;
+}
+
+.evaluate-no-box .li .one-img image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 130rpx;
+    height: 130rpx;
+    white-space: nowrap;
+    border: 1rpx solid #f8ddca;
+    background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.evaluate-no-box .li .one-img .span {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 0 0 20rpx;
+    font-size: 28rpx;
+}
+
+.evaluate-no-box .li .text1 {
+    height: 66rpx;
+    padding: 14rpx 32rpx 0;
+    line-height: 44rpx;
+}
+
+.evaluate-no-box .li .text1 .total-num {
+    float: left;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.evaluate-no-box .li .text1 .total-num .em {
+    color: #444;
+}
+
+.evaluate-no-box .li .text1 .state {
+    font-size: 28rpx;
+    float: right;
+}
+
+.evaluate-no-box .li .text2 {
+    height: 66rpx;
+    padding: 0 32rpx 14rpx;
+    line-height: 52rpx;
+}
+
+.evaluate-no-box .li .text2 .time {
+    float: left;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.evaluate-no-box .li .text2 .money {
+    font-size: 26rpx;
+    float: right
+}
+
+.evaluate-no-box .li .text2 .money .em {
+    font-size: 28rpx
+}
+
+.evaluate-no-box .li .evaluate-btn {
+    border-top: 1rpx solid #ededed;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    color: #444;
+    font-size: 26rpx;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.evaluate-no-box .li .evaluate-btn .again {
+    width: 50%;
+    float: left;
+    border-right: 1rpx solid #ededed;
+}
+
+.evaluate-no-box .li .evaluate-btn .go-evaluate {
+    float: right;
+    width: 50%;
+}
+
+.forword {
+    position: absolute;
+    right: 4rpx;
+    top: 50%;
+    width: 16rpx;
+    height: 16rpx;
+    content: "";
+    border-left: 2rpx solid #ededed;
+    border-bottom: 2rpx solid #ededed;
+    -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+    -ms-transform: translateY(-50%) scaleY(1) rotate(-135deg);
+    transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}

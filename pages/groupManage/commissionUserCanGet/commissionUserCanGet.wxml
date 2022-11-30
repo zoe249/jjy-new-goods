@@ -1,0 +1,30 @@
+<!--pages/groupManage/customerOrder/customerOrder.wxml-->
+<import src="/templates/global/global.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is='globalLoading' data='{{globalLoading:globalLoading}}'></template>
+<view class='list-box'>
+  <block wx:if="{{showError}}">
+    <template is='empty' data='{{emptyMsg:emptyMsg}}'></template>
+  </block>
+  <block wx:elif='{{list.length}}'>
+    <view class='list-cnt'>
+      <template is="list" data="{{list:list}}"></template>
+      <!-- 提示层 - 没有更多了 -->
+      <block wx:if='{{!hasNext&&list.length}}'>
+        <template is="noMore"></template>
+      </block>
+    </view>
+  </block>
+</view>
+<template name="list">
+  <view class='list-ul'>
+    <block wx:for='{{list}}' wx:for-item='li' wx:key='*this'>
+      <view class='li'>
+        <block wx:if='{{li.status==0||li.status==1||li.status==2}}'><view class='li-text1'>提现单号：{{li.id}}</view></block>
+        <block wx:else><view class='li-text1'>佣金单号：{{li.id}}</view></block>
+        <view class='li-text2'>{{li.statusStr}}：¥{{li.brokerages}}</view>
+        <view class='li-text3'>{{li.createTimeStr}}</view>
+      </view>
+    </block>
+  </view>
+</template>

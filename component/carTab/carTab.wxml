@@ -1,0 +1,8 @@
+<view class="cartab">
+	<block wx:for="{{carTab}}">
+    <view class="item {{selId==item.id?'on':''}}" data-bindUrl="{{item.bindUrl}}"  data-id="{{item.id}}" bindtap="bindCarTab">
+      <view class="tabname">{{item.tabname}}</view>
+      <view class="tabtip">{{item.tabtip}}</view>
+    </view>
+  </block>
+</view>

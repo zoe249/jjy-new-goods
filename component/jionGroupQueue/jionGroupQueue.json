@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "component-group-queue": "/component/jionGroupQueue/jionGroupQueue",
+    "global-modal": "/component/cuModal/cuModal"
+  }
+}

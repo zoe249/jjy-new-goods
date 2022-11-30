@@ -1,0 +1,114 @@
+/* component/groupFooterNav/groupFooterNav.wxss */
+
+.footer-seat {
+  width: 100%;
+  height: 112rpx;
+}
+
+.footer-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: stretch;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container .footer-item-container {
+  flex: 1;
+  height: 112rpx;
+  /* padding: 60rpx 0 0; */
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+}
+.footer-container .footer-item-container image{
+  width: 48rpx;
+  margin-bottom: 14rpx;
+}
+.footer-container .footer-item-container .nav-msg {
+  font-size: 20rpx;
+  color: #0F3F69;
+  line-height: 1;
+}
+/*
+.footer-container .footer-item-container.f-home {
+  background: url("/images/tabBar/icon_1@2x.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-home.active {
+  background: url("/images/tabBar/icon_1_focus@2x.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-heart {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_heart.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-heart.active {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_heart_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-cart {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_cart.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-cart.active {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_cart_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-user.active {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_user_active.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+
+.footer-container .footer-item-container.f-user {
+  background: url("https://shgm.jjyyx.com/m/images/footer/icon_user.png") no-repeat center 14rpx;
+  background-size: 48rpx;
+}
+*/
+.footer-container .footer-item-container.active .nav-msg {
+  color: #12284E;
+}
+
+.footer-container .line {
+  width: 1rpx;
+  background: #ededed;
+}
+
+.footer-container.iphone-x-patcher-container {
+  flex-wrap: wrap;
+  height: auto;
+}
+
+.footer-container.iphone-x-patcher-container component-iphone-x-patcher {
+  width: 100%;
+}
+.nav-cart-num{
+  display: inline-block;
+  position: absolute;
+  top: 4rpx;
+  left: 34%;
+  transform: translate3d(50%, 0, 0) scale(.5);
+  transform-origin: center top;
+  min-width: 48rpx;
+  padding: 24rpx 16rpx;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 0rpx;
+  border: 2rpx solid #fff;
+  border-radius: 48rpx;
+  background: #FF2D63;
+  color: #fff;
+}

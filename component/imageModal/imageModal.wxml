@@ -1,0 +1,18 @@
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-close-bg" wx:if="{{!!modalName && modalName=='Image'}}" bindtap=""></view>
+  <view class="cu-dialog" style="background:transparent;">
+    <view class="bg-img">
+      <image src="{{modalDate.imgUrl || ''}}" mode="widthFix" bindtap="_jumpLinkUrl"></image>
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+      <view class="close-icon" bindtap="_closeModalEvent"></view>
+    </view>
+   
+    <!-- <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    </view> -->
+  </view>
+</view>

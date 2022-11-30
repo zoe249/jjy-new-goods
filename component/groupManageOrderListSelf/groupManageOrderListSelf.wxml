@@ -1,0 +1,101 @@
+<!--component/goodsItem/goodsItem.wxml-->
+<view class="li">
+  <view class="head">
+    <!-- <image class="shopIcon" src="{{li.storeIcon}}"></image> -->
+    <view class="text">
+      {{li.storeName}}
+      <!-- proType (integer, optional): 拼团类型，1821-O2O拼团、1889-B2C拼团、1888-社区拼团 , -->
+      <block wx:if='{{li.proType==1888}}'>
+        <view class="span">拼团</view>
+      </block>
+      <block wx:elif='{{li.proType==1821}}'>
+        <view class="span">拼团</view>
+      </block>
+      <block wx:elif='{{li.proType==1889}}'>
+        <view class="span">拼团</view>
+      </block>
+      <block wx:elif='{{li.proType==1178}}'>
+        <view class="span">秒杀</view>
+      </block>
+      <block wx:elif='{{li.proType==1}}'>
+        <view class="span">生活卡</view>
+      </block>
+       <block wx:elif='{{li.proType>0}}'>
+        <view class="span">社区</view>
+      </block>
+    </view>
+    <!-- <block wx:if="{{li.distributeType==80}}">
+      <view class="icon-light">
+        <image src="https://shgm.jjyyx.com/m/images/icon_lightning.png"></image>
+      </view>
+    </block> -->
+    <view class="phone" catchtap="phoneService" data-servicephone="{{li.memberMobileOpen}}">联系购买人</view>
+  </view>
+  <view class="cnt" data-li='{{li}}' data-order-status='{{orderStatus}}' data-set-group-now-order-type='{{setGroupNowOrderType}}' catchtap="detailUrl">
+    <block wx:if="{{li.goodsInfoList.length>1}}">
+      <scroll-view class="more" scroll-x>
+        <block wx:key="li{{li.orderId}}{{li.orderStoreId}}" wx:for="{{li.goodsInfoList}}" wx:for-item="goodsList" wx:for-index="goodsIndex">
+          <view class="image">
+            <block wx:if="{{goodsList.isGift==1}}">
+              <view class="i">赠品</view>
+            </block>
+            <block wx:elif="{{goodsList.isGift==2}}">
+              <view class="i">换购</view>
+            </block>
+            <image class="scroll-view-item" src="{{goodsList.goodsImage}}"></image>
+          </view>
+        </block>
+      </scroll-view>
+    </block>
+    <block wx:else>
+      <view class="one">
+        <view class="image">
+          <block wx:if="{{goodsList.isGift==1}}">
+            <view class="i">赠品</view>
+          </block>
+          <block wx:elif="{{goodsList.isGift==2}}">
+            <view class="i">换购</view>
+          </block>
+          <image src="{{li.goodsInfoList[0].goodsImage}}"></image>
+        </view>
+        <text>{{li.goodsInfoList[0].goodsName}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="total-item">
+    <view class="total-item1 clearfix">
+      <text class="fl">共<text>{{li.goodsNum}}</text>件商品</text>
+      <block wx:if="{{li.offlineOrderType==1182}}">
+        <block wx:if="{{li.checkFlag==0}}">
+          <text class="fr color-7dc825">待核验</text>
+        </block>
+        <block wx:elif="{{li.checkFlag==1}}">
+          <text class="fr color-7dc825">已完成</text>
+        </block>
+        <block wx:elif="{{li.checkFlag==2}}">
+          <text class="fr c-color">核验失败</text>
+        </block>
+      </block>
+      <block wx:elif="{{li.offlineOrderType==1184||li.offlineOrderType==1122}}">
+        <text class="fr color-7dc825">已完成</text>
+      </block>
+      <block wx:else>
+        <text class="fr{{li.orderStatus==1088||li.orderStatus==46||li.orderStatus==45||li.orderStatus==44||li.orderStatus==42||li.orderStatus==41||li.orderStatus==4||li.orderStatus==1?' color-7dc825':''}}{{li.orderStatus==952||li.orderStatus==439?' color-3B9DF0':''}}{{li.orderStatus==47||li.orderStatus==48||li.orderStatus==51||li.orderStatus==49||li.orderStatus==115||li.orderStatus==116?' color-ffa601':''}}">{{li.statusName}}</text>
+      </block>
+    </view>
+    <view class="total-item2 clearfix">
+      <text class="fl time">{{li.createTimeStr}}</text>
+      <text class="fr color-464646">实付款：￥{{li.payAmountStr}}</text>
+    </view>
+  </view>
+  <block wx:if='{{li.orderStatus==44&&li.preSelfTime}}'>
+    <view class='get-time-box'>
+      <view class='get-time'>预计{{li.preSelfTime}} 可提货</view>
+    </view>
+  </block>
+  <block wx:if='{{li.orderStatus==51&&li.remainingTime}}'>
+    <view class='get-time-box'>
+      <view class='get-time'>订单将于{{li.remainingTime}}后启动关闭</view>
+    </view>
+  </block>
+</view>

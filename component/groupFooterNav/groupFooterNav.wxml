@@ -1,0 +1,12 @@
+<!--component/groupFooterNav/groupFooterNav.wxml-->
+<view class="footer-seat"></view>
+<view class="footer-container{{isIphoneX ? ' iphone-x-patcher-container' : ''}}" catchtap="jumpToGroupList">
+  <view class="footer-item-container{{current == 0 ? ' active' : ''}}">
+    <text class="nav-msg">{{formType==1 ? '全球拼团' : '超级拼团'}}</text>
+  </view>
+  <view class="line"></view>
+  <view class="footer-item-container my-group-nav{{current == 1 ? ' active' : ''}}" catchtap="jumpToMyGroup">
+    <text class="nav-msg">我的拼团</text>
+  </view>
+  <component-iphone-x-patcher></component-iphone-x-patcher>
+</view>

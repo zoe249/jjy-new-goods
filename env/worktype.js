@@ -1,0 +1,5 @@
+
+module.exports = {
+    DISTRIBUTE_ENVIROMENT:'PROD',
+    // DISTRIBUTE_ENVIROMENT:'DEV',
+}

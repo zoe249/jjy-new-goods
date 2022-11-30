@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "component-arborDayTabBtn":"../../../../component/arborDayTagBtn/arborDayTagBtn"
+  },
+  "disableScroll": true,
+  "navigationBarTitleText": "植树节"
+}

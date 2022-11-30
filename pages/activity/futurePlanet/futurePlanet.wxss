@@ -1,0 +1,145 @@
+page,.future-box {
+    background-color: #190f32;
+}
+
+.empty {
+    width: 100%;
+}
+
+.span,.em,.i {
+    display: inline-block;
+}
+.future-box .banner {
+    width: 100%;
+}
+
+.future-box .content {
+    padding: 0 32rpx 62rpx;
+}
+
+.future-box .content .li {
+    padding: 10rpx 24rpx 0;
+    border-radius: 10rpx;
+    background-color: #fff;
+    background-size: 100% auto;
+    margin: 0 auto 24rpx;
+}
+
+.future-box .content .li.li3 .head {
+}
+
+.future-box .content .li.li3 .head .p1 {
+    height: 120rpx;
+}
+
+.future-box .content .li.li3 .head .p1 .em {
+    line-height: 120rpx;
+    font-size: 64rpx;
+}
+
+.future-box .content .li .head {
+    position: relative;
+}
+
+.future-box .content .li .head .title {
+    font-size: 32rpx;
+    line-height: 80rpx;
+}
+
+.future-box .content .li .head .p1 {
+    vertical-align: bottom;
+}
+
+.future-box .content .li .head .p1 .span {
+    color: #FF4752;
+    font-size: 48rpx;
+}
+
+.future-box .content .li .head .p1 .em {
+    color: #FF4752;
+    font-size: 72rpx;
+}
+
+.future-box .content .li .head .p1 .i {
+    font-size: 24rpx;
+    color: #969696;
+    position: relative;
+}
+
+.p2 {
+    font-size: 30rpx;
+}
+
+.p3-1 {
+    padding: 36rpx 0 0;
+    font-size: 30rpx;
+}
+
+.p3-2 {
+    font-size: 60rpx;
+    color: #FF4752;
+    vertical-align: bottom;
+}
+
+.p3-2 .em {
+    font-size: 72rpx;
+}
+
+.p4-1 {
+    padding: 36rpx 0 0;
+    font-size: 30rpx;
+}
+
+.p4-2 {
+    vertical-align: bottom;
+    font-size: 60rpx;
+    color: #FF4752;
+}
+
+.p4-2 .em {
+    font-size: 72rpx;
+}
+
+.p5-1 {
+    vertical-align: bottom;
+    padding: 60rpx 0 0;
+    font-size: 30rpx;
+}
+
+.p5-1 .span {
+    color: #FF4752;
+    font-size: 60rpx;
+}
+
+.p6-1 {
+    font-size: 30rpx;
+    line-height:36rpx;
+}
+
+.p6-2 {
+    font-size: 40rpx;
+    color: #FF4752;
+    line-height:60rpx;
+}
+
+.p7-1, .p8-1, .p9-1 {
+    vertical-align: bottom;
+    font-size: 30rpx;
+    line-height:60rpx;
+}
+
+.p7-1 .span, .p8-1 .span, .p9-1 .span {
+    color: #FF4752;
+    font-size: 40rpx;
+}
+
+.img {
+    width: 640rpx;
+    height: 400rpx;
+}
+
+.bottom-tip {
+    line-height: 48rpx;
+    font-size: 28rpx;
+    padding: 20rpx 0;
+}

@@ -1,0 +1,8 @@
+{
+  "backgroundColor": "#ededed",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "申请记录",
+  "enablePullDownRefresh": false
+}

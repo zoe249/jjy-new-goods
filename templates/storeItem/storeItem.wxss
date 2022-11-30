@@ -1,0 +1,32 @@
+/* templates/storeItem/storeItem.wxss */
+
+.store-item-container {
+    width: 100%;
+    margin-top: 30rpx;
+}
+
+.store-item-container .shop-name {
+    display: block;
+    width: 100%;
+    font-size: 28rpx;
+    color: var(--blueLight);
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 0 32rpx;
+}
+
+.store-item-container .address {
+    display: block;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1.5;
+    padding: 0 32rpx;
+}
+
+.store-item-container .cover-image {
+    margin: 30rpx auto;
+    width: 688rpx;
+    border-radius: 16rpx;
+    /* background: #F8F8F8 url("https://shgm.jjyyx.com/m/images/icon-bg-default.png?t=418") no-repeat center; */
+    background-size: cover;
+}

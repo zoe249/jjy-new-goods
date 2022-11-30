@@ -1,0 +1,86 @@
+/* pages/user/vipPayCode/vipPayCode.wxss */
+
+page {
+    font-size: 32rpx;
+}
+
+.container{
+    height: 100vh;
+}
+/*覆盖一层解决长按bug*/
+.cover-masker{
+    position:fixed;
+    z-index:999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(255,255,255,0);
+}
+/*订单条码*/
+.orderId-code-box {
+    text-align: center;
+}
+.orderId-code-box .title {
+    padding: 40rpx 32rpx 0;
+    font-size: 28rpx;
+    color: #ffa602;
+}
+.orderId-code-box .bar_code {
+    position: relative;
+    padding: 30rpx 0;
+    margin: 0 auto;
+    width:600rpx;
+
+}
+.orderId-code-box .orderId {
+    position: relative;
+    display: inline-block;
+    padding: 0 60 rpx;
+    font-size: 28 rpx;
+    line-height: 56 rpx;
+    margin: 0 auto;
+}
+.orderId-code-box .orderId:after {
+     content: "";
+     position: absolute;
+     left: -44rpx;
+     top: 14rpx;
+     height: 1rpx;
+     background-color: #999;
+     width: 40rpx;
+ }
+.orderId-code-box .orderId:before {
+     content: "";
+     position: absolute;
+     right: -44rpx;
+     top: 14rpx;
+     height: 1rpx;
+     background-color: #999;
+     width:40rpx;
+ }
+
+.orderId-code-box .qr_code {
+    position: relative;
+    width: 750rpx;
+    border-radius: 56rpx;
+    margin: 40rpx auto 0;
+}
+.orderId-span{
+    display:inline-block ;
+}
+.bar_code canvas{
+    text-align: center;
+    margin:0 auto;
+}
+.qr_code canvas{
+    text-align: center;
+    margin:0 auto;
+}
+.img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none
+}

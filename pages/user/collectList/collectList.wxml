@@ -1,0 +1,68 @@
+<!--pages/user/coupon/coupon.wxml  current="{{current}}"-->
+<import src="/templates/global/global.wxml" />
+<import src="/templates/coupon/couponItem.wxml" />
+<template is="toast" data="{{...toastData}}"></template>
+<template is="globalLoading" data="{{globalLoading}}"></template>
+<template is="modal" data="{{...modalData}}"></template>
+<view class="collectionContent">
+  <view class="collection" bindtap="selectTab" data-index="{{1}}">
+    <view class="collectionName" style="color:{{tabIndex==1?'red':'black'}};font-weight:{{tabIndex==1?'bold':'400'}}">商品收藏</view>
+    <image class="xiaolian" src="{{$.img_src}}/CouponCenter/xiaolian.png" wx:if="{{tabIndex==1}}" />
+  </view>
+  <view class="collection" bindtap="selectTab" data-index="{{2}}">
+    <view class="collectionName" style="color:{{tabIndex==2?'red':'black'}};font-weight:{{tabIndex==2?'bold':'400'}}">内容收藏</view>
+    <image class="xiaolian" src="{{$.img_src}}/CouponCenter/xiaolian.png" wx:if="{{tabIndex==2}}" />
+  </view>
+</view>
+<view class="space" />
+<view wx:if="{{tabIndex == 1}}">
+  <block wx:if="{{showError}}">
+    <template is="empty" data="{{emptyMsg:emptyMsg}}"></template>
+  </block>
+  <block wx:else>
+    <view class='collect-box'>
+      <view class='list'>
+        <block wx:for='{{list}}' wx:for-item='item' wx:key='item' wx:for-index='i'>
+          <view class="top" wx:if="{{!item.hideDelCollect}}">
+            <movable-area class="movableArea">
+              <movable-view class="movableView" out-of-bounds="false" direction="horizontal" x="{{item.hideDelCollect?0:item.xmove}}" inertia="true" 
+              data-index="{{i}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd"bindchange="handleMovableChange">  
+                <component-collect-Item listLength='{{list.length}}' currentIndex='{{i}}' item='{{item}}' />
+              </movable-view>
+            </movable-area>
+            <view class="movable_delete_btn" data-item="{{item}}" bindtap="delCollect">删除</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:else class="contentCollection" style="background:{{collectionData.length==0?null:'#fff'}}">
+  <block wx:if="{{collectionData.length==0}}">
+    <template is="empty" data="{{emptyMsg:'暂无数据'}}"></template>
+  </block>
+  <block wx:else>
+    <block wx:for="{{collectionData}}" wx:key="index">
+      <view class="contentTop" bindtap="goToInfo" data-item="{{item}}" style="margin-bottom:{{index==collectionData.length-1?'0':'30rpx'}}">
+        <movable-area class="contentMovable">
+          <movable-view class="contentMovableView" out-of-bounds="true" direction="horizontal" x="{{item.xmove}}" inertia="true" 
+          data-index="{{index}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd"bindchange="handleMovableChange">  
+            <view class="collectionWrap">
+              <image class="collectionImg" src="{{item.imageCover}}" mode="aspectFill" />
+              <view class="collectionInfo">
+                <view class="contentBigTitle slh_two">{{item.title}}</view>
+                <view class="contentSmallTitle slh_one">{{item.type==603?item.smallTitle:item.introduce}}</view>
+              </view>
+            </view>
+          </movable-view>
+        </movable-area>
+        <view class="contentMovableDel" data-item="{{item}}" catchtap="deleteContentCollection">删除</view>
+      </view>
+    </block>
+  </block>
+</view>
+<view class="noMoreData" wx:if="{{(tabIndex==1&&!showError)||(tabIndex==2&&collectionData.length>0)}}">
+  <div style="margin-right:29rpx;color:#909090">-------------</div>
+  <div style="margin-right:29rpx">已经到底啦</div>
+  <div style="color:#909090">-------------</div>
+</view>

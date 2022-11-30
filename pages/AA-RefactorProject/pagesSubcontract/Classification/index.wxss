@@ -1,0 +1,515 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+/* 去掉滚动条 */
+::-webkit-scrollbar {
+	display: none;
+}
+
+/* 顶部导航部分 */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	background-image: linear-gradient(60deg, #FEF9F9 0%, #FFF5F7 100%);
+	box-shadow: 0px 2rpx 15rpx 0px rgba(211, 208, 208, 0.5);
+	border-radius: 0px 0px 24rpx 24rpx;
+	padding-bottom: 30rpx;
+}
+
+.header .input {
+	position: relative;
+	z-index: 12;
+	background-image: linear-gradient(60deg, #FEF9F9 0%, #FFF5F7 100%);
+}
+
+.header .input .back {
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.header .input .search {
+	width: 436rpx;
+	height: 60rpx;
+	background: #FFFFFF;
+	border-radius: 44rpx;
+	padding: 0 21rpx;
+}
+
+.header .input .search image {
+	width: 25rpx;
+	height: 25rpx;
+	margin-right: 20rpx;
+	flex: 0 0 auto;
+}
+
+.header .input .search input {
+	width: 100%;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #323232;
+	font-weight: 400;
+}
+
+/* 滚动导航部分 */
+.header .nav {
+	width: 100%;
+	height: 100%;
+}
+
+.header .scroll_navs {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.header .scroll_navs .ul {
+	padding-left: 10rpx;
+}
+
+.header .scroll_navs .ul .li {
+	flex: 0 0 auto;
+	display: inline-block;
+	height: 100%;
+	padding: 0 15rpx;
+	font-size: 22rpx;
+	color: #333333;
+}
+
+.header .scroll_navs .ul .li image {
+	width: 96rpx;
+	height: 96rpx;
+	border-radius: 50%;
+	margin-bottom: 10rpx;
+
+}
+
+.header .scroll_navs .ul .li text {
+	padding: 7rpx 12rpx;
+	border-radius: 25rpx;
+}
+
+.header .scroll_navs .ul .active image {
+	border: 4rpx solid rgba(235, 43, 58, 1);
+}
+
+.header .scroll_navs .ul .active text {
+	color: #FFFFFF;
+	background: #FC0D1B;
+}
+
+/* 展开部分样式 */
+.header .navsZK {
+	position: absolute;
+	top: 189rpx;
+	z-index: 10;
+	height: auto;
+}
+
+.header .navsZK .scroll_navs {
+	position: relative;
+	z-index: 3;
+	padding-top: 20rpx;
+	background-image: linear-gradient(60deg, #FEF9F9 0%, #FFF5F7 100%);
+	border-radius: 0px 0px 24rpx 24rpx;
+}
+
+.header .navsZK .ul {
+	padding-left: 25rpx;
+	border-bottom: 1px solid #E9D5D5;
+}
+
+.header .navsZK .ul .li {
+	margin-bottom: 26rpx;
+}
+
+.header .navsZK .BotBtn {
+	padding: 20rpx 0;
+	font-size: 24rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #666666;
+}
+
+.header .navsZK .BotBtn image {
+	width: 26rpx;
+	height: 26rpx;
+	margin-left: 11rpx;
+}
+
+/* 遮盖部分 */
+.header .ZG {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, .6);
+	z-index: 5;
+}
+
+@keyframes nextshow {
+	from {
+		transform: translateY(-860rpx);
+	}
+
+	to {
+		transform: translateY(0rpx);
+	}
+}
+
+@keyframes nexthide {
+	from {
+		transform: translateY(0rpx);
+	}
+
+	to {
+		transform: translateY(-900rpx);
+	}
+}
+
+.header .hide {
+	animation: nexthide;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.header .show {
+	animation: nextshow;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+/* 全部按钮 */
+.header .nav .allBtn {
+	width: 74rpx;
+	height: 136rpx;
+	/* background: linear-gradient(0deg, #FCF1F3 5%, #FCF1F3 92%); */
+	font-family: PingFangSC-Semibold;
+	font-size: 26rpx;
+	color: #FC0D1B;
+	font-weight: 600;
+	flex: 0 0 auto;
+	box-shadow: -9rpx 0px 4rpx -4rpx rgba(211, 208, 208, 0.5);
+}
+
+.header .nav .allBtn text {
+	letter-spacing: 16rpx;
+	writing-mode: vertical-lr;
+}
+
+.header .nav .allBtn image {
+	width: 30rpx;
+	height: 30rpx;
+	border-radius: 50%;
+}
+
+/* 正文展示部分 */
+.section {
+	height: 100vh;
+}
+
+.section .left {
+	width: 210rpx;
+	height: 100%;
+	background: #F3F5F7;
+	flex: 0 0 auto;
+}
+
+.section .left .li {
+	width: 100%;
+	height: 102rpx;
+	padding: 0 7rpx 0 26rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #333333;
+	font-weight: 400;
+	position: relative;
+}
+
+.section .left .li .LeftIcon {
+	width: 6rpx;
+	height: 60rpx;
+	background: #FC0D1B;
+	border-radius: 0px 9rpx 9rpx 0px;
+	position: absolute;
+	left: 0;
+}
+
+.section .left .active {
+	background: #FFFFFF;
+	color: #FC0D1B;
+	font-size: 28rpx;
+	font-weight: 600;
+}
+/* 推荐爆炸贴 */
+.section .left .li .Label{
+	position: relative;
+	width: 29rpx;
+	height: 25rpx;
+	font-size: 18rpx;
+	color: #FFFFFF;
+	font-weight: 400;
+	flex: 0 0 auto;
+	margin-left: 5rpx;
+}
+.section .left .li .Label image{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+.section .left .li .Label text{
+	position: relative;
+	z-index: 3;
+	line-height: 0;
+}
+
+
+
+.section .right {
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+	position: relative;
+}
+
+/* 顶部筛选部分 */
+.filter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 89rpx;
+	padding: 0 43rpx 0 23rpx;
+}
+
+.Tleft {
+	font-family: PingFangSC-Semibold;
+	font-size: 24rpx;
+	color: #333333;
+	font-weight: 400;
+}
+
+.Tright .sales {
+	font-family: PingFangSC-Medium;
+	font-size: 24rpx;
+	color: #000000;
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-right: 45rpx;
+}
+
+.Tright .price {
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666666;
+	font-weight: 400;
+}
+.fow_blod{
+	font-weight: 600!important;
+}
+
+.rotate {
+	transform: rotate(180deg);
+}
+
+.Tright image {
+	width: 16rpx;
+	height: 20rpx;
+	margin-left: 10rpx;
+}
+
+.TopList {
+	position: absolute;
+	top: 89rpx;
+	left: 0;
+	width: 100%;
+	height: 100rpx;
+	z-index: 2;
+	color: #f0f0f0;
+	font-size: 24rpx;
+}
+
+/* 商品列表展示部分 */
+.ShopList {
+	position: relative;
+	z-index: 3;
+	padding-top: 89rpx;
+	height: 100%;
+}
+
+.ShopList .li {
+	padding: 15rpx 25rpx 15rpx 0;
+	margin: 0 25rpx 0 12rpx;
+	border-bottom: 1px solid #F6F6F6;
+	background: #FFFFFF;
+}
+
+.ShopList .li .Sleft {
+	width: 170rpx;
+	height: 170rpx;
+	margin-right: 15rpx;
+	flex: 0 0 auto;
+	position: relative;
+}
+
+.ShopList .li .Sleft .shopImg {
+	width: 100%;
+	height: 100%;
+}
+
+.ShopList .li .Sleft .icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 64rpx;
+	height: 64rpx;
+}
+
+.ShopList .li .Sright {
+	width: 100%;
+}
+
+.ShopList .li .Sright .title {
+	font-family: PingFangSC-Semibold;
+	font-size: 26rpx;
+	color: #333333;
+	line-height: 36rpx;
+	font-weight: 600;
+	margin-bottom: 12rpx;
+}
+
+.ShopList .li .Sright .content {
+	font-family: PingFangSC-Light;
+	font-size: 22rpx;
+	color: #666666;
+	line-height: 32rpx;
+	font-weight: 500;
+	margin-bottom: 20rpx;
+}
+
+.ShopList .li .Sright .nearby {
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #FC0D1B;
+	font-weight: 400;
+	line-height: 22rpx;
+	margin-bottom: 18rpx;
+}
+
+.ShopList .li .Sright .nearby .icon {
+	width: 70rpx;
+	margin-right: 12rpx;
+	position: relative;
+}
+
+.ShopList .li .Sright .nearby .icon image {
+	width: 28rpx;
+	height: 28rpx;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.ShopList .li .Sright .nearby .icon image:nth-child(2) {
+	position: absolute;
+	left: 21rpx;
+	z-index: 2;
+}
+
+.ShopList .li .Sright .nearby .icon image:nth-child(3) {
+	position: absolute;
+	left: 40rpx;
+	z-index: 3;
+}
+
+.ShopList .li .Sright .Rbottom {}
+
+
+
+.ShopList .li .Sright .Rbottom .shop .new {
+	font-family: PingFangSC-Semibold;
+	font-size: 24rpx;
+	color: #FC0D1B;
+	font-weight: 500;
+}
+
+.ShopList .li .Sright .Rbottom .shop .new .whole {
+	font-size: 34rpx;
+	color: #FC0D1B;
+}
+
+.ShopList .li .Sright .Rbottom .shop .new .unit {
+	font-family: PingFangSC-Regular;
+	color: #666666;
+	font-weight: 400;
+}
+
+.ShopList .li .Sright .Rbottom .shop .old {
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+	color: #999999;
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-left: 16rpx;
+	text-decoration: line-through;
+	line-height: 28rpx;
+}
+
+.group {
+	padding: 7rpx 10rpx;
+	background: #FC0D1B;
+	border-radius: 22rpx;
+	font-size: 24rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFFFFF;
+}
+.groupActive{
+	background: #DFDDDC;
+}
+
+.addCart {
+	color: #94969C;
+	font-size: 22rpx;
+}
+
+.addCart image {
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 50%;
+}
+
+/* 悬浮的购物车按钮 */
+.cart {
+	position: fixed;
+	bottom: 34rpx;
+	right: 34rpx;
+	z-index: 90;
+	width: 88rpx;
+	height: 88rpx;
+}
+
+.cart image {
+	width: 100%;
+	height: 100%;
+}
+
+.cart text {
+	position: absolute;
+	right: 0rpx;
+	top: -10rpx;
+	background: #FF4752;
+	font-size: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
+	color: #fff;
+	border-radius: 50%;
+}

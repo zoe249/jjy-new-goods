@@ -1,0 +1,110 @@
+<view class="page_content">
+  <image class="all_bj" src="https://shgm.jjyyx.com/m/images/arborDay/all_bg.jpg" mode="aspectFill"></image>
+  <!--右侧三个按钮-->
+  <view class="right_view">
+    <block wx:for="{{tabBtnListHome}}" wx:key="title">
+      <component-arborDayTabBtn class="tab_btn_one " tabBtnObj="{{tabBtnListHome[index]}}" indexTag="{{index}}" bindTagClick="TagClickHone"></component-arborDayTabBtn>
+    </block>
+  </view>
+  <!--树-->
+  <image wx:if="{{water_consumed<40}}" class="tree" src="https://shgm.jjyyx.com/m/images/arborDay/tree1.png" mode="widthFix"></image>
+  <image wx:elif="{{water_consumed<70}}" class="tree" src="https://shgm.jjyyx.com/m/images/arborDay/tree2.png" mode="widthFix"></image>
+  <image wx:else class="tree" src="https://shgm.jjyyx.com/m/images/arborDay/tree3.png" mode="widthFix"></image>
+  <!--水壶-->
+  <image class="kettle {{ kettleAnimartionSate==1?'kettleAnimation':''}}" src="https://shgm.jjyyx.com/m/images/arborDay/kettle.png" mode="widthFix"></image>
+  <!--底部组件（进度条、浇水按钮、做任务按钮） style="--n_width--:{{25.44*water_consumed/100}}vh"-->
+  <view class="event_information">
+    <view class="progress_view">
+      <image class="progress_tag" src="https://shgm.jjyyx.com/m/images/arborDay/progress.png" mode="widthFix"></image>
+      <view class="progress_transparent_bg">
+        <view class="progress_progress  {{ progressAnimartionSate==1?'process_animation':'process_animation_none'}}  " style="--n_width--:{{25.44*water_consumed/100}}vh;--old_width--:{{25.44*old_water_consumed/100}}vh;"></view>
+      </view>
+      <text class="progress_info">成长进度</text>
+    </view>
+    <view wx:if="{{water_consumed<100}}" class="info_toast">再浇水{{100-water_consumed}}%就可以领取优惠券啦！</view>
+    <view wx:else class="info_toast">恭喜！点击收获，领取优惠券</view>
+    <!--浇水 按钮-->
+    <view class="bottom_action_view">
+
+      <view wx:if="{{activity_state==0 }}" class="click_watering click_no_satrt" bindtap="WateringAction"></view>
+      <view wx:elif="{{activity_state==1&&water_consumed==100 }}" class="click_watering click_over" bindtap="WateringAction"></view>
+      <view wx:elif="{{activity_state==1 }}" class="click_watering click_normal" bindtap="WateringAction"></view>
+      <view wx:elif="{{activity_state==2 }}" class="click_watering click_end" bindtap="WateringAction"></view>
+
+      <view class="num_watering" hidden="{{(water_total-water_consumed)==0||water_consumed==100}}"> {{water_total-water_consumed}}</view>
+    </view>
+    <!--水滴 动画-->
+    <view class="water_drop_view" bindtap="dropWaterAction">
+      <image class="bg_water_drop_circle" src="https://shgm.jjyyx.com/m/images/arborDay/water_show_toast_bg.png" mode="heightFix"></image>
+      <image class="water_drop_icon" src="https://shgm.jjyyx.com/m/images/arborDay/water.png" mode="widthFix"></image>
+      <text class="drop_toast">做任务\n集水滴</text>
+    </view>
+  </view>
+  <!--任务弹层   -->
+  <view class="alert_toast_black " hidden="{{isHiddenAnnimation_doTaskList==0||isHiddenAnnimation_doTaskList==2}}" bindtap="clickHiddenToastAction"></view>
+  <view class="alert_toast {{m1.comStateAnimation(isHiddenAnnimation_doTaskList)}}">
+    <view class="white_content">
+      <view class="tosat_container">
+        <!-- <view class="toast_title">做任务集水滴</view> -->
+        <view class="close_btn" bindtap="clickHiddenToastAction"></view>
+      </view>
+      <view class="gray_backgroud">
+        <image class="show_pic" mode="widthFix" src="https://shgm.jjyyx.com/m/images/arborDay/water_show_toast_pic.png"></image>
+        <!--活动列表-->
+        <view class="activityList_container">
+          <block wx:for="{{activityList}}" wx:key="state">
+            <view class="activity_one">
+              <view class="activity_title">{{activityList[index].title}}</view>
+              <view wx:if="{{item.state==0&&index==0}}" class="toChoice bg1" bindtap="joinActivityAction" data-index="{{index}}">去签到</view>
+              <view wx:elif="{{item.state==0||item.state==4}}" class="toChoice bg1" bindtap="joinActivityAction" data-index="{{index}}">去领取</view>
+              <view wx:elif="{{item.state==1}}" class="toChoice bg2" bindtap="joinActivityAction" data-index="{{index}}">已完成</view>
+              <view wx:elif="{{item.state==2}}" class="toChoice bg1" bindtap="joinActivityAction" data-index="{{index}}">去浏览</view> 
+              <view wx:elif="{{item.state==3}}" class="toChoice bg1" bindtap="joinActivityAction" data-index="{{index}}">去挑选</view>
+
+            </view>
+          </block>
+        </view>
+
+      </view>
+
+
+    </view>
+    <view class="water_drop_view_alert">
+      <image class="water_drop_icon_alert" src="https://shgm.jjyyx.com/m/images/arborDay/water.png" mode="widthFix"></image>
+      <text class="drop_toast_alert">做任务\n集水滴</text>
+    </view>
+  </view>
+  <!--小树苗 弹层   -->
+
+  <view class="start_tree_container start_show_tree" hidden="{{start_tree_hidden}}">
+    <text class="start_ts">{{activity_start_ts}}</text>
+  </view>
+  <!--达成 弹层   -->
+  <view class="end_tree_black" hidden="{{end_tree_hidden&&end_tree_hidden}}" ></view>
+  <view class="end_tree_container" hidden="{{end_tree_hidden}}">
+    <text class="end_ts">{{activity_end_ts}}</text>
+    <view class="btn_container">
+      <view class="left_btn" bindtap="overGoToResultAction">确定</view>
+      <view class="right_btn" bindtap="cancleGtoToResultAction">取消</view>
+    </view>
+  </view>
+  <!--测试用-->
+  <!-- <text style="position: absolute;left: 10rpx;top: 10rpx;width: 500rpx; height: 20rpx;line-height: 20rpx;">去掉接口日期限制：</text>
+  <input style="position: absolute;left: 10rpx;top: 40rpx;width: 500rpx; height: 50rpx;line-height: 50rpx; background-color: red;"  placeholder="格式：2022-01-01" value='{{date_ceshi}}' bindinput="bindKeyInput" /> -->
+
+</view>
+
+
+
+<wxs module="m1">
+  var comStateAnimation = function (state) {
+    if (state == 2) {
+      return 'alert_hidden';
+    } else if (state == 1) {
+      return 'alert_show';
+    } else {
+      return 'alert_MoRen';
+    }
+  }
+  module.exports.comStateAnimation = comStateAnimation;
+</wxs>

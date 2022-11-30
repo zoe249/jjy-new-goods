@@ -1,0 +1,72 @@
+/* 引入公用的css */
+@import '../../common/css/css.wxss';
+
+/* 遮盖部分 */
+.section {
+	position: fixed;
+	z-index: 100;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+.section .li {
+	width: 240rpx;
+	height: 240rpx;
+	background: rgba(255, 255, 255);
+	border: 1px solid rgba(0, 0, 0, .1);
+	border-radius: 30rpx;
+	padding: 30rpx 0 30rpx;
+}
+
+.section .li image {
+	margin-bottom: 20rpx;
+	animation: ImgAnimation 1.2s infinite;
+}
+
+.section .li .shadow {
+	background: rgba(0, 0, 0, .1);
+	border-radius: 50%;
+	margin-bottom: 10rpx;
+	animation: ShadowAnimation 1.2s infinite;
+}
+
+
+
+@keyframes ImgAnimation {
+	0% {
+		width: 70rpx;
+		height: 70rpx;
+		transform: translate(0, 0);
+	}
+
+	50% {
+		width: 80rpx;
+		height: 80rpx;
+		transform: translate(0, 60rpx);
+	}
+
+	100% {
+		width: 70rpx;
+		height: 70rpx;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes ShadowAnimation {
+	0% {
+		width: 30rpx;
+		height: 10rpx;
+	}
+
+	50% {
+		width: 50rpx;
+		height: 8rpx;
+	}
+
+	100% {
+		width: 30rpx;
+		height: 10rpx;
+	}
+}

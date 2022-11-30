@@ -1,0 +1,62 @@
+<import src="/templates/global/global.wxml" />
+<view class="city-sel-box">
+  <view class="city-sel">
+    <!-- <view> -->
+    <picker class="cur-select-value" bindchange="bindAreaChange" value="{{area_index}}" range="{{areaCityList}}"
+      range-key="cityName">
+      <view>
+        {{areaCityList[area_index].cityName}}
+      </view>
+    </picker>
+    <!-- </view> -->
+    <view class="input-wrap">
+      <input bindconfirm="search" type="text" placeholder="输入门店附近地址" />
+    </view>
+  </view>
+</view>
+<view class="choice-address">
+  <view class="tit">当前地址</view>
+  <view class="now-location" bindtap="goshop" data-shopId="{{locationData.findShopId}}">
+    <view class="my_address_jump">{{locationData.detailAddress}}</view>
+    <view class="relodpos">精准定位</view>
+  </view>
+</view>
+<view class="shop-wrap">
+  <block wx:for="{{areaShop}}" wx:if="{{item.city==curCityName}}">
+    <view class="shop-list">
+      <view class="shop-area">{{item.area}}</view>
+      <view class="shop-item-flex">
+        <block wx:for="{{item.areaList}}">
+          <view bindtap="goshop" data-shopId="{{item.shopId}}" class="shop-item">{{item.shopName}}</view>
+        </block>
+      </view>
+    </view>
+
+  </block>
+</view>
+
+<scroll-view class="seach_scroll" scroll-y style="height: 100vh;" wx:if="{{showseach_scroll}}">
+  <!-- 搜索结果列表 -->
+  <view class="choice-address-result{{showSearchList ? '' : ' hidden'}}">
+    <view class="ul" id="search_list">
+      <view class="li pos-r r1bt" wx:for="{{searchList}}" wx:key="uid" wx:if="{{item.lng && item.lat}}">
+        <view class="a" bindtap="bindarea" data-location-info="{{item}}" data-from="{{'searchListLocation'}}">
+          <view class="em">{{item.name}}</view>
+          <view class="p">{{item.city}} {{item.district}} {{item.name}}</view>
+        </view>
+      </view>
+      <template wx:if="{{searchList && searchList.length>0}}" is="noMore"></template>
+    </view>
+  </view>
+
+  <!-- 错误提示 - 需要更精确的地址 -->
+  <view class="error keyword{{showSearchError ? '' : ' hidden'}}">
+    <image class="img" mode="aspectFit" src="https://shgm.jjyyx.com/m/images/error_img4.png"></image>
+    <view class="p">请输入更精确的地址</view>
+  </view>
+
+  <view class="search_shop" wx:if="{{showsearch_shop}}" bindtap="goshop" data-shopId="{{qureyShopData.shopId}}">
+    <view class="search_shop_name">{{qureyShopData.shopName}}</view>
+    <view class="search_shop_dec">{{qureyShopData.shopAddress}}</view>
+  </view>
+</scroll-view>

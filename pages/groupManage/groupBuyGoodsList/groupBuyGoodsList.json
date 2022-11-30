@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "超级拼团",
+  "usingComponents": {
+    "component-group-buy-step": "/component/groupBuyStep/groupBuyStep",
+    "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+    "component-group-footer-nav": "/component/groupFooterNav/groupFooterNav"
+  }
+}

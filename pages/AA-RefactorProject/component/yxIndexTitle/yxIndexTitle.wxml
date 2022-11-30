@@ -1,0 +1,138 @@
+<!-- pages/AA-RefactorProject/component/yxIndexTitle/yxIndexTitle.wxml -->
+<view class="content">
+    <!-- 专门用于盛放背景的dom，由于背景需要虚化，所以得单独放 -->
+    <view style="width:750rpx;height:{{menuHeight+searchLineHeight+scrollContentHeight+swiperContentHeight}}px;overflow: hidden;opacity:{{bgTheme!=='null'?0:1}}">
+        <view wx:if="{{isBlack}}" style="background: #999999;width:100%;height:100%"></view>
+        <view wx:else style="background:{{themeBg}};background-size:100% 100%;filter:{{vague?'blur(70rpx)':''}};width:100%;height:100%"></view>
+    </view>
+    <!-- 顶部全部 -->
+    <view class="textContent  ">
+        <!-- 固定定位部分 -->
+        <view class="{{isBlack?'blackWhite':''}}" style="{{titleOpacity?'position:fixed;top:0;z-index:997;width:100%':''}}">
+            <view class="fixWrap">
+                <!-- 放置固定定位的背景，背景需要变化的透明度，需要单独放 -->
+                <view wx:if="{{titleOpacity}}" style="width:750rpx;height:{{menuHeight+searchLineHeight}}px;background: #ed222d no-repeat;background-size:100% 100%;opacity:{{titleOpacity}}"></view>
+                <!-- 固定定位内容 -->
+                <view style="{{titleOpacity?'position:fixed;top:0;z-index:997;width:100%':''}}">
+                    <!-- 优鲜 切换店铺部分 -->
+                    <view class="title" style="height:{{menuHeight}}px" wx:if="{{TypeShow}}">
+                        <view id="titletwo" data-url="/pages/storeList/storeList" data-buried-id="D1001" bindtap="autoJump">
+                            <view class="logo">
+                                <image src="{{$.img_src}}/components/YXicon.png" />
+                            </view>
+                            <text>{{shopName}}</text>
+                            <text>丨</text>
+                            <text>切换</text>
+                            <image src="{{$.img_src}}/Explosives/RightArrow.png" />
+                        </view>
+                    </view>
+                    <!-- 社团 切换自提点部分 -->
+                    <view class="title" style="height:{{menuHeight}}px" wx:else>
+                        <view class="dis_f_l_c" id="titletwo" data-url="/pages/groupManage/chooseExtract/chooseExtract" data-buried-id="D1013" bindtap="autoJump">
+                            <view class="STlogo">
+                                <image src="{{$.img_src}}/yx_index/address.png" />
+                            </view>
+                            <text>{{shopName}}</text>
+                            <text>丨</text>
+                            <text>切换</text>
+                            <image src="{{$.img_src}}/Explosives/RightArrow.png" />
+                        </view>
+                    </view>
+                    <!-- 搜索框、扫码、定位部分 -->
+                    <view class="searchLine" wx:if="{{TypeShow}}" bindtap="autoJump" disabled data-url="/pages/goods/search/search" data-buried-id="D1003">
+                        <view class="scanningCode">
+                            <image catchtap="scanCodeEvent" data-buried-id="D1002" class="saoma" data-type='1' src="{{$.img_src}}/yx_index/sao.png" />
+                            <image class="searchImg" src="{{$.img_src}}/yx_index/search.png" />
+                            <view class="line"></view>
+                            <view class="searchText">寻找称心商品</view>
+                            <view />
+                        </view>
+                        <!-- <input  placeholder="寻找称心商品" bindtap="autoJump" disabled data-url="/pages/goods/search/search"  data-buried-id="D1003">
+						</input> -->
+                        <image bindtap="autoJump" data-url="/pages/user/vipPayCode/vipPayCode" data-buried-id="D1004" src="{{$.img_src}}/yx_index/QRcode.png" data-needLogin="{{true}}" />
+                        <view class="member">会员</view>
+                        <view class="position" bindtap="autoJump" data-buried-id="D1005" data-url="/pages/user/address/choice/choice">
+                            <image src="{{$.img_src}}/yx_index/position.png" />
+                            <view>{{formattedAddress}}</view>
+                        </view>
+                    </view>
+                    <!-- 社团部分 -->
+                    <view class="searchLine dis_f_sb_c" wx:else>
+                        <input class="STinput box" placeholder="寻找称心商品" bindtap="autoJump" data-buried-id="D1014" disabled data-url="/pages/goods/search/search?cGroupType=1">
+                            <image src="{{$.img_src}}/yx_index/search.png" />
+                        </input>
+                        <view class="TopName">
+                            <image src="{{$.img_src}}/yx_index/STtitle.png" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 顶部固定定位的占位 -->
+        <view wx:if="{{titleOpacity}}" class="seizeSeat {{isBlack?'blackWhite':''}}" style="height:{{menuHeight+searchLineHeight}}px"></view>
+        <!-- 菜单列表滚动框 -->
+        <view class="titleScrollContent {{isBlack?'blackWhite':''}}">
+            <scroll-view class="titleScroll" scroll-x="{{true}}">
+                <block wx:for="{{titleArr}}" wx:key="index">
+                    <view class="titleMenu{{selectTtile==index?' selectMenu':''}}" data-url="{{item.linkUrl}}" data-index="{{index}}" data-item="{{item}}" bindtap="GetInformation" data-buried-type="yx-titleScroll">
+                        <view bindtap="checkTitle" data-index="{{index}}">
+                            {{item.recommendTitle}}
+                        </view>
+                        <image src="{{$.img_src}}/yx_index/yuanhu.png" wx:if="{{selectTtile==index}}" class="selectMenuIcon"></image>
+                    </view>
+                </block>
+            </scroll-view>
+            <view data-url="{{TypeShow?'/pages/AA-RefactorProject/pagesSubcontract/Classification/index':'/pages/groupV2/classifyGood/classifyGood'}}" bindtap="autoJump" data-buried-id="{{TypeShow?'D1006':'D1015'}}" class="titleScroll_imgContent">
+                <image class="titleScroll_img" src="{{$.img_src}}/yx_index/class.png" />
+            </view>
+        </view>
+        <!-- 轮播图 -->
+        <view class="swiperContent {{isBlack?'blackWhite':''}}">
+            <swiper circular class="swiperBar" style="{{TypeShow?'height:256rpx':'height:200rpx'}}" bindchange="swiperChange" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
+                <block wx:key="index" wx:for="{{titleSwiperData}}">
+                    <swiper-item bindtap="autoJump" data-goback="{{true}}" data-url="{{item.linkUrl}}" data-item="{{item}}" data-index="{{index}}" data-buried-type="yx-swiper">
+                        <image lazy-load class="swiper-image" src="{{item.imgUrl}}" style="height:100%" />
+                    </swiper-item>
+                </block>
+            </swiper>
+            <!-- 重写的轮播图按钮 -->
+            <view class="bannerdots flex alignC flexC">
+                <block wx:for="{{titleSwiperData}}" wx:key="index">
+                    <view class="bannerdot{{index == currentSwiper ? ' banneractive' : ''}}"></view>
+                </block>
+            </view>
+            <block wx:if="{{!TypeShow&&barrageList.length!=0}}">
+                <view class="barrage-box">
+                    <component-grouper-animation top="0" grouper-list="{{barrageList}}"></component-grouper-animation>
+                </view>
+            </block>
+        </view>
+        <image style="opacity:{{bgTheme!=='null'?0:1}}" class="backgroundWhite" src="{{$.img_src}}/yx_index/background-white.png" />
+    </view>
+    <!-- 没有优鲜或社区团购弹窗提示 -->
+    <view class="PopUpsBg dis_f_c_c" wx:if="{{JumpPopupShow!=0}}">
+        <view class="PopUps">
+            <view class="title dis_f_c_c">温馨提示</view>
+            <view class="content dis_f_c_c">
+                <view wx:if="{{JumpPopupShow==1}}" class="dis_f_co_c_c">
+                    <text>您当前位置无门店，</text>
+                    <text>不支持使用优鲜到家</text>
+                </view>
+                <view wx:if="{{JumpPopupShow==2}}" class="dis_f_co_c_c">
+                    <text>您当前位置无自提点，</text>
+                    <text>不支持社区团购</text>
+                </view>
+            </view>
+            <view class="btn dis_f_sb_c">
+                <view class="left dis_f_c_c" bindtap="autoJump" data-url="{{JumpPopupShow==1?'/pages/storeList/storeList':'/pages/groupManage/chooseExtract/chooseExtract?noShow=1'}}">
+                    <text class="slh_one" wx:if="{{JumpPopupShow==1}}">手动选择门店</text>
+                    <text class="slh_one" wx:if="{{JumpPopupShow==2}}">手动选择自提点</text>
+                </view>
+                <view class="right dis_f_c_c" bindtap="PopUpNo">
+                    <text class="slh_one" wx:if="{{JumpPopupShow==1}}">返回社区团购({{endTime}}s)</text>
+                    <text class="slh_one" wx:if="{{JumpPopupShow==2}}">返回优鲜到家({{endTime}}s)</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

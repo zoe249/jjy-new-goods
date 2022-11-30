@@ -1,0 +1,46 @@
+
+<!--  DIY 次卡报名 -->
+<view> ---------- ----------  DIY 次卡报名 ----------</view>
+
+<view class="activity-title">
+  <view>#阿斯蒂芬#阿士大夫撒地方了科技拉水电费看见金卡士大夫可接受的</view>
+</view>
+
+<view><view>参加时间</view> <picker>活动时间：</picker></view>
+
+<view><view>手机号码</view><input type="text" placeholder="请输入手机号码"/></view>
+
+<view>
+  <view>宝宝口味</view> 
+  <checkbox-group bindchange="checkboxChange">
+    <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+      <view class="weui-cell__hd">
+        <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+      </view>
+      <view class="weui-cell__bd">{{item.name}}</view>
+    </label>
+  </checkbox-group>
+</view>
+
+<view><view>宝宝年龄</view> <picker>活动时间：</picker></view>
+
+<view><view>宝宝星座</view> <picker>活动时间：</picker></view>
+
+
+<view>
+  <view bindtap="toOrderComfirm">立即报名</view>
+  <component-patcher></component-patcher>
+</view>
+
+
+<!-- 儿童乐园 -->
+<view> ---------- ---------- 儿童乐园 ----------</view>
+
+<view class="activity-title">#看见好看了#萨克的积分哈萨克了解到卢卡斯交电话费了客家话</view>
+
+
+<view><view>手机号码</view><input type="text" placeholder="请输入手机号码"/></view>
+
+<view><view>参加宝宝人数：</view> <picker>请选择参加人数</picker></view>
+
+<view><view>宝宝年龄：</view> <picker>请选择宝宝的年龄</picker></view>

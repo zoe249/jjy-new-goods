@@ -1,0 +1,139 @@
+<view class="global-modal-container" wx:if="{{isVisible}}">
+
+    <view class="modal-mask"></view>
+    <view class="modal-body-container">
+        <view class="modal-header" wx:if="{{header}}">{{header}}</view>
+        <view class="modal-content" wx:if="{{content}}" style="{{contentStyle}}">{{content}}</view>
+        <slot name="customContent" wx:if="{{slot}}"></slot>
+        <view class="modal-footer" wx:if="{{footer}}">
+            <view
+                    wx:if="{{footer[0] && footer[0].text}}"
+                    class="btn-cancel"
+                    bindtap="modalCancel"
+                    data-callback-name="{{footer[0].callbackName}}"
+                    data-event-detail="{{eventDetail}}"
+                    data-event-option="{{eventOption}}">
+                {{footer[0].text}}
+            </view>
+            <view
+                    wx:if="{{footer[1] && footer[1].text}}"
+                    class="btn-confirm"
+                    bindtap="modalConfirm"
+                    data-callback-name="{{footer[1].callbackName}}"
+                    data-event-detail="{{eventDetail}}"
+                    data-event-option="{{eventOption}}">
+                {{footer[1].text}}
+            </view>
+        </view>
+    </view>
+
+</view>
+
+
+
+<!-- 模态窗口 -->
+<view class="cu-modal modal {{modalName == 'Modal'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog">
+    <!-- 关闭按钮 -->
+    <view class="action" bindtap="_hideModal">
+      <text class="cu-modal-close"></text>
+    </view>
+    <!-- 头部 -->
+    <view class="modal-header" wx:if="{{header}}">{{header}}</view>
+    <slot name="customHeader"></slot>
+
+    <!-- 内容 -->
+    <view class="modal-content" wx:if="{{content}}" style="{{contentStyle}}">{{content}}</view>
+    <slot name="customContent"></slot>
+
+    <!-- 底部 -->
+    <view class="cu-modal-footer" wx:if="{{footer}}">
+      <view wx:for="{{footer}}" wx:if="{{footer && footer.length}}" wx:key="text" class="footer-item {{item.className}}"
+        style="{{item.style}}">
+        <view class="text-wrap" bindtap="{{item.bindClick}}" data-callback-name="{{item.callbackName}}"
+          data-event-detail="{{eventDetail}}" data-event-option="{{eventOption}}">
+          <image class="text-l-icon" wx:if="{{item.iconPath}}" style="{{item.iconStyle}}" src="{{item.iconPath}}">
+          </image>
+          <text class="text-value">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <slot name="customFooter"></slot>
+  </view>
+</view>
+
+
+<!-- 自定义内容区域 组件-->
+
+<!-- 顶部显示 bindtap="_ showModal" data-target="topModal" -->
+<view class="cu-modal top-modal {{modalName == 'topModal'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog">
+    <!-- 自定义内容区域 -->
+    <slot name="customTop"></slot>
+  </view>
+</view>
+
+<!-- 中部显示 bindtap="_ showModal" data-target="centerModal" -->
+<view class="cu-modal center-modal {{modalName == 'centerModal'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog" style="{{dialogBoxStyle}}">
+    <!-- 自定义内容区域 -->
+    <slot name="customCenter"></slot>
+  </view>
+</view>
+
+<!-- 底部显示 bindtap="_ showModal" data-target="bottomModal" -->
+<view class="cu-modal bottom-modal {{modalName == 'bottomModal'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog" style="{{dialogBoxStyle}}">
+    <!-- 自定义内容区域 -->
+    <slot name="customBottom"></slot>
+  </view>
+</view>
+
+<!-- 左侧 抽屉显示 bindtap="_ showModal" data-target="DrawerModalL" -->
+<view class="cu-modal drawer-modal justify-start {{modalName=='DrawerModalL'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog">
+    <!-- 自定义内容区域 -->
+    <slot name="customDrawerLeft"></slot>
+  </view>
+</view>
+
+<!-- 右侧 抽屉显示 bindtap="_ showModal" data-target="DrawerModalR" -->
+<view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}">
+  <view class="cu-modal-mask" bindtap="{{bgAllowClickHide?'_hideModal':''}}"></view>
+  <view class="cu-dialog">
+    <!-- 自定义内容区域 -->
+    <slot name="customDrawerRight"></slot>
+  </view>
+</view>
+
+
+<!-- 左侧 抽屉 bindtap="_ showModal" data-target="DrawerModalL" -->
+<!-- <view class="cu-modal drawer-modal justify-start {{modalName=='DrawerModalL'?'show':''}}" bindtap="_hideModal">
+  <view class="cu-dialog basis-lg" catchtap style="">
+    <view class="cu-list menu text-left">
+      <view class="cu-item arrow" wx:for="{{5}}" wx:key>
+        <view class="content">
+          <view>Item {{index +1}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<!-- 右侧 抽屉 bindtap="_ showModal" data-target="DrawerModalR" calc(100vh - {{CustomBar}}px)-->
+<!-- <view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}" bindtap="_hideModal">
+  <view class="cu-dialog basis-lg" catchtap style="">
+    <view class="cu-list menu text-right">
+      <view class="cu-item arrow" wx:for="{{5}}" wx:key>
+        <view class="content">
+          <view>Item {{index +1}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> -->

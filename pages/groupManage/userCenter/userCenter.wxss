@@ -1,0 +1,204 @@
+page{
+    background-color: var(--white);
+}
+.forword::after {
+  position: absolute;
+  right: 32rpx;
+  top: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  content: "";
+  border-left: 2rpx solid var(--gray);
+  border-bottom: 2rpx solid var(--gray);
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+/* 用户基础信息 */
+.user-info-box{
+  position: absolute;
+  top:240rpx;
+  left:0;
+  width:100%;
+  height: 180rpx;
+  padding:0rpx 0 0;
+  background-color: rgba(248,248,248,0.2);
+  border-radius: 32rpx 32rpx 0 0;
+  color:var(--white);
+  padding-top: 16rpx;
+}
+.user-info-box .user-info-image{
+  display:inline-block;
+  margin:15rpx 32rpx 0 48rpx;
+  width:66rpx;
+  height:66rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: top;
+}
+.user-info-name{
+  margin-top:15rpx;
+  display:inline-block;
+  line-height:66rpx;
+  vertical-align: top;
+}
+.user-info-box .user-info-image .img{
+  width:66rpx;
+  height:66rpx;
+  border-radius: 50%;
+}
+.user-info-phone{
+  margin:15rpx 0 0 32rpx;
+  display:inline-block;
+  line-height:66rpx;
+  vertical-align: top;
+  font-size:24rpx;
+}
+.user-info-button{
+  width:132rpx;
+  height:96rpx;
+  position: absolute;
+  right:0;
+  top:12rpx;
+  background: url("https://shgm.jjyyx.com/m/images/user/circlr-right-arrow.png") no-repeat center;
+  background-size: 42rpx 42rpx;
+}
+/* 我的佣金 收入*/
+.user-head{
+  background-color:var(--blue);
+  height:570rpx;
+}
+.user-head-flex{
+  flex: 1;
+}
+.user-head-title{
+  padding: 20rpx 0;
+}
+.user-head-text{
+ padding: 48rpx 20rpx 64rpx;
+ text-align: center;
+ color:var(--white);
+ display: -webkit-flex;
+ display: flex;
+ align-items: stretch;
+}
+.user-head-text .user-head-item{
+  flex: 1;
+  text-align: center;
+}
+.user-head-text .user-head-item:first-child{
+  border-right:2rpx solid #285378;
+}
+.user-head-text .user-head-item .title{
+  font-size: 24rpx;
+  margin-bottom: 25rpx;
+  color:var(--white);
+}
+.user-head-item-pic{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: var(--golden);
+  margin-bottom: 20rpx;
+}
+.user-head-item-pic view:first-child{
+  font-size: 22rpx;
+  color:var(--white);
+  margin-right: 20rpx;
+}
+.user-head-text .user-text-item{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  padding: 16rpx 0;
+}
+.user-head-text .user-text-item0{
+  border-right:2rpx solid #285378;
+}
+.user-head-text .user-text-item .title{
+  background:rgba(255,255,255,0.1);
+  color:var(--white);
+  font-size: 22rpx;
+  /* line-height: 50rpx; */
+  /* height: 50rpx;
+  width:176rpx; */
+  border-radius: 30rpx;
+  margin:0 auto;
+  display: block;
+  padding: 6rpx 16rpx;
+  margin-bottom: 30rpx;
+}
+.user-head-text .user-text-item .money{
+  color: var(--golden);
+  font-size: 48rpx;
+  padding-left: 20rpx;
+  /* line-height: 80rpx; */
+  /* padding-top:20rpx; */
+}
+/* 拼团、秒杀、特惠tab*/
+.user-nav{
+  z-index: 10;
+  position:absolute;
+  top:368rpx;
+  left:0;
+  padding:18rpx 32rpx 0;
+  border-radius: 32rpx 32rpx 0 0;
+  background-color: var(--white);
+  display: -webkit-flex;
+  display: flex;
+  width:100%;
+  height:208rpx;
+}
+.user-nav-wrap{
+  width: 100%;
+}
+
+.my-item2{
+  width:686rpx;
+  margin:32rpx auto 0;
+  background: var(--bgGrayWhiteLight);
+  border-radius: 16rpx;
+}
+.my-item2 .item2-title {
+    position: relative;
+    margin: 0 0 0 0rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    padding:0rpx 0 0 32rpx;
+    border-bottom:1rpx solid var(--grayLigh);
+}
+.my-order-title{
+    font-size:24rpx;
+    color:var(--blue);
+    font-weight:bold;
+}
+.item2-title .my-order {
+    position: absolute;
+    right: 0rpx;
+    top: 0rpx;
+    padding-right: 60rpx;
+    font-size: 24rpx;
+    color: var(--gray);
+}
+
+/*表格显式*/
+.multi-grid-box{
+  margin:16rpx 32rpx 0;
+  border-radius: 14rpx;
+  background-color: var(--bgGrayWhiteLight);
+}
+.multi-grid-title{
+  font-size:24rpx;
+  line-height:40rpx;
+  padding:20rpx 32rpx 10rpx;
+  color:var(--blue);
+  font-weight:bold;
+  border-bottom:1rpx solid var(--grayLigh);
+}
+.multi-grid{
+  padding:0 0 30rpx;
+}

@@ -1,0 +1,150 @@
+/* pages/user/address/list/list.wxss */
+
+.wrapper {
+  background: #fff;
+  height: 100vh;
+}
+
+.address-item {
+  width: 750rpx;
+  padding: 0 32rpx;
+  border-bottom: 2rpx solid #ededed;
+  background: #fff;
+}
+
+.address-item.is-default {
+  border-bottom: 2rpx solid #7aa6cc;
+}
+
+.address-item .address-msg-container {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  padding: 40rpx 0 30rpx 0;
+}
+
+.address-item .address-msg-container .name-and-phone {
+  font-size: 32rpx;
+  color: #444;
+  line-height: 0;
+  padding: 17rpx 0 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.address-item .address-msg-container .name-and-phone text {
+  margin-right: 20rpx;
+}
+
+.address-item .address-msg-container .name-and-phone text,
+.address-item .address-msg-container .name-and-phone .id-no-verified,
+.address-item .address-msg-container .name-and-phone .id-verified {
+  vertical-align: middle;
+}
+
+.address-item .address-msg-container .name-and-phone .id-no-verified,
+.address-item .address-msg-container .name-and-phone .id-verified {
+  display: inline-block;
+  width: 104rpx;
+  height: 32rpx;
+  text-indent: -9999em;
+  color: #fff;
+  background: url("https://shgm.jjyyx.com/m/images/icon_rz.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.address-item .address-msg-container .name-and-phone .id-no-verified {
+  background: url("https://shgm.jjyyx.com/m/images/icon_weirenzheng.png") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.address-item .address-msg-container .address-detail {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #444;
+}
+
+.address-item .address-msg-container .selected-icon {
+  position: absolute;
+  right: 16rpx;
+  top: 50%;
+  width: 32rpx;
+  height: 32rpx;
+  background: url('https://shgm.jjyyx.com/m/images/icon_check_active.png') no-repeat center;
+  background-size: 100% 100%;
+  transform: translate(0, -50%);
+}
+
+.address-item .edit-address-container {
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+}
+
+.address-item .edit-address-container .edit-address-def {
+  font-size: 24rpx;
+  color: #94969c;
+}
+
+.address-item .edit-address-container .edit-address-def.is-def {
+  color: #ff4752;
+}
+
+.address-item .edit-address-container view {
+  display: flex;
+  align-items: center;
+}
+
+.address-item .edit-address-container image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.address-item .edit-address-container .edit-btn {
+  margin-right: 50rpx;
+}
+
+.address-item .edit-address-container .delete-btn {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 2rpx;
+  vertical-align: top;
+}
+
+.add-address-container {
+  position: relative;
+  z-index: 1;
+  width: 750rpx;
+  height: 96rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-address-container image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  vertical-align: top;
+  margin-top: -4rpx;
+}
+
+.add-address-container text {
+  font-size: 32rpx;
+  line-height: 0;
+  padding: 16rpx 0;
+}
+
+.address-not-optional .name-and-phone, .address-not-optional .address-detail {
+  color: #999 !important;
+  opacity: 0.6;
+}
+
+.no-address {
+  border-bottom: 2rpx solid #7aa6cc;
+  margin-top: 16rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "panic-item": "/component/rowPanicItem/index",
+    "actionSheet": "/component/actionSheet/actionSheet",
+    "painter":"/component/painter/painter"
+  }
+}

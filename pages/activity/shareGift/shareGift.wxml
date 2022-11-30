@@ -1,0 +1,212 @@
+<!--pages/activity/shareGift/shareGift.wxml-->
+<import src="/templates/global/global.wxml"/>
+
+<scroll-view class='container' id="container" bindscroll="scrollFunc" scroll-into-view="{{scrollIntoViewId}}"
+             scroll-y="{{!showLoginDialog}}">
+  <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+    <!-- 头图 start -->
+    <block wx:if="{{moduleItem.sectionType == 1326 && moduleItem.recommendList.length}}">
+      <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId" wx:for-item="recommendItem">
+        <block wx:if="{{index < 1}}">
+          <view class='activity-title' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+            <image class='title-image' src='{{recommendItem.imgUrl}}' mode="widthFix"></image>
+          </view>
+        </block>
+      </block>
+    </block>
+    <!-- 头图 end -->
+
+    <block wx:if="{{moduleItem.sectionType == 1737 && moduleItem.recommendList.length}}">
+      <view class="luck-draw-container">
+        <block wx:for="{{prizePositionList}}" wx:key="sort" wx:for-index="idx">
+          <block wx:if="{{prizeStatus && selectIndex < 0}}">
+            <view class="luck-draw-item click-me" animation="{{animationDataList[idx]}}" data-index="{{idx}}"
+                  style="left: {{item.left}}; top: {{item.top}}" bindtap="luckDraw"></view>
+          </block>
+          <block wx:else>
+            <block wx:if="{{prizeData.couponBatchList[idx]}}">
+              <view class="luck-draw-item {{prizeData.prizeIndex != -1 ? (selectIndex >= 0 ? (selectIndex === idx ? '' : 'not-choose') : (prizeData.prizeIndex === idx ? '' : 'not-choose')) : ''}}" data-index="{{idx}}" style="left: {{item.left}}; top: {{item.top}}">
+                <text class="prize-title">{{prizeData.couponBatchList[idx].couponTitle}}</text>
+                <block wx:if="{{prizeData.couponBatchList[idx].couponType == 3}}">
+                  <block wx:if="{{prizeData.couponBatchList[idx].isFloat}}">
+                    <text class="prize-value discount float">{{prizeData.couponBatchList[idx].couponValue}}</text>
+                  </block>
+                  <block wx:else>
+                    <text class="prize-value discount">{{prizeData.couponBatchList[idx].couponValue}}</text>
+                  </block>
+                </block>
+                <block wx:elif="{{prizeData.couponBatchList[idx].couponType == 4}}">
+                  <text class="prize-value freeShip">包邮券</text>
+                </block>
+                <block wx:else>
+                  <text class="prize-value">{{prizeData.couponBatchList[idx].couponValue}}</text>
+                </block>
+
+                <text class="prize-label">{{prizeData.couponBatchList[idx].couponTag}}</text>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="luck-draw-item no-prize {{prizeData.prizeIndex != -1 ? (selectIndex >= 0 ? (selectIndex === idx ? '' : 'not-choose') : (prizeData.prizeIndex === idx ? '' : 'not-choose')) : ''}}" data-index="{{idx}}" style="left: {{item.left}}; top: {{item.top}}">
+                <text class="thanks">谢谢</text>
+                <text class="thanks">参与</text>
+                <text class="prize-label">THANKS</text>
+              </view>
+            </block>
+          </block>
+        </block>
+        <block wx:if="{{prizeStatus}}">
+          <view class="center-btn-container przing"></view>
+        </block>
+        <block wx:elif="{{prizeData.prizeIndex > -1}}">
+          <view class="center-btn-container">
+            <block wx:if="{{prizeData.couponBatchList[selectIndex > -1 ? selectIndex : prizeData.prizeIndex] && prizeData.couponBatchList[selectIndex > -1 ? selectIndex : prizeData.prizeIndex].batchId}}">
+              <navigator class="center-btn" url="/pages/index/index" open-type="reLaunch">
+                <text class="center-text">立即使用</text>
+              </navigator>
+              <view class="center-msg-container">
+                <text class="center-msg">红包已放入账号</text>
+                <text class="center-msg">{{mobile || dialogMsg.mobile}}</text>
+              </view>
+            </block>
+            <block wx:else>
+              <navigator class="center-btn no-prize" url="/pages/index/index" open-type="reLaunch">
+                <text class="center-text">去逛逛</text>
+              </navigator>
+              <view class="center-msg-container">
+                <text class="center-msg">啊哦~</text>
+                <text class="center-msg">很遗憾未中奖</text>
+              </view>
+            </block>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="center-btn-container" bindtap="immediatelyBtnTap">
+            <view class="center-btn">
+              <text class="center-text">点击开始</text>
+            </view>
+            <view class="center-msg-container">
+              <text class="center-msg">抽红包，拼手气！</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+
+  <!-- 导航 start  -->
+  <block wx:if="{{!navStyle.noNav && navList.length > 1}}">
+    <view class='nav-seat-container {{fiexdFlag ? "" : "no-height"}}'></view>
+    <scroll-view class='nav-container {{fiexdFlag ? "fixed_class" : ""}}' scroll-x="true"
+                 style='background-color: {{navStyle.bgItemColor}}'>
+      <view class='nav-list-container'>
+        <block wx:for="{{navList}}" wx:for-index="index" wx:key="sectionId" wx:for-item="navItem">
+          <block wx:if="{{navItem.sectionId == currSectionId || (currSectionId == 0 && index == 0)}}">
+            <text class='nav-item active' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}"
+                  style='background-color:{{navStyle.bgActiveColor||""}}; color: {{navStyle.activeColor||""}}'>
+              {{navItem.sectionName}}
+            </text>
+          </block>
+          <block wx:else>
+            <text class='nav-item' catchtap='changeActiveNav' data-section-id="{{navItem.sectionId}}"
+                  style='background-color:{{navStyle.bgItemColor||""}}; color: {{navStyle.color||""}}'>
+              {{navItem.sectionName}}
+            </text>
+          </block>
+        </block>
+      </view>
+    </scroll-view>
+
+  </block>
+  <!-- 导航 end  -->
+
+  <view class='module-goods-list'>
+    <block wx:for="{{moduleList}}" wx:key="sectionId" wx:for-item="moduleItem">
+      <block wx:if="{{moduleItem.sectionType == 1370 && moduleItem.recommendList.length}}">
+        <block wx:for="{{moduleItem.recommendList}}" wx:key="recommendId">
+          <view class='bottom-link' data-link="{{item.linkUrl}}" bindtap='goOtherLink'>
+            <image src="{{item.imgUrl}}" mode="widthFix"></image>
+          </view>
+        </block>
+      </block>
+
+      <block wx:elif="{{moduleItem.sectionType == 909 && moduleItem.recommendList.length}}">
+        <view class='goods-list-container' id="section_{{moduleItem.sectionId}}"
+              style='background-color: {{moduleItem.sectionBgcolor}}'>
+          <block wx:for="{{moduleItem.recommendList}}" wx:for-item="recommentItem" wx:key="recommendId">
+            <block wx:if="{{recommentItem.bizType == 17}}">
+              <view class='module-header-image' data-link="{{recommendItem.linkUrl}}" bindtap='goOtherLink'>
+                <image src='{{recommentItem.imgUrl}}' mode='widthFix'></image>
+              </view>
+            </block>
+            <block wx:else>
+              <block wx:if="{{moduleItem.sectionStyle == 1261}}">
+                <component-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"></component-goods-item>
+              </block>
+              <block wx:elif="{{moduleItem.sectionStyle == 1259}}">
+                <component-full-goods-item describle="{{recommentItem.describle}}" goods="{{recommentItem.newExtendJson}}"></component-full-goods-item>
+              </block>
+            </block>
+          </block>
+        </view>
+        <navigator class="look-more-btn" url="/pages/index/index" open-type="reLaunch">查看更多 ></navigator>
+      </block>
+      <block wx:elif="{{moduleItem.sectionType == 1740}}">
+        <view class="prizer-list-container" id="prizerListContainer">
+          <view class="prize-list-header-container">
+            <text class="header-text">查看朋友们的手气</text>
+          </view>
+          <block wx:if="{{moduleItem.contentObj && moduleItem.contentObj.length}}">
+            <view class="prizer-list">
+              <block wx:for="{{moduleItem.contentObj}}" wx:key="index">
+                <view class="prizer-item-container">
+                  <view class="prizer-header">
+                    <image src="{{item.headImg || 'https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418'}}"
+                           mode="widthFix"></image>
+                  </view>
+                  <view class="prizer-msg-container">
+                    <view class="prizer-msg">
+                      <text class="nickname">{{item.nickName}}</text>
+                      <text class="time">{{item.dateStr}}</text>
+
+                      <block wx:if="{{item.couponType == 4}}">
+                        <text class="symbol">包邮券</text>
+                      </block>
+                      <block wx:elif="{{item.couponType == 3}}">
+                        <text class="value">{{item.couponValue}}</text>
+                        <text class="symbol">折</text>
+                      </block>
+                      <block wx:else>
+                        <text class="symbol">￥</text>
+                        <text class="value">{{item.couponValue}}</text>
+                      </block>
+                    </view>
+                    <view class="prize-label">
+                      <text class="user-desc">{{item.userDesc}}</text>
+                      <text class="label"></text>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+
+          </block>
+          <block wx:else>
+            <view class="no-prizer-container">
+              <text class="no-prizer-text">快来领取家家悦优鲜大红包~</text>
+            </view>
+          </block>
+        </view>
+
+      </block>
+    </block>
+  </view>
+
+  <block wx:if="{{!isLogin && showLoginDialog}}">
+    <component-login-dialog title="{{loginDialogTitle}}" share-member-id="{{shareMemberId}}"
+                            activity-id="{{activityId}}"
+                            bind:close-dialog-callback="closeDialogCallback"></component-login-dialog>
+  </block>
+
+  <template is="toast" data="{{...toastData}}"></template>
+  <view class='gutter-bottom'></view>
+</scroll-view>

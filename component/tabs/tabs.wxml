@@ -1,0 +1,15 @@
+<view class="ma-tabs {{partClass?partClass:''}} {{isSticky?'ma-sticky':''}}">
+  <view class="ma-tabs-bar-wrp">
+    <scroll-view scroll-x scroll-into-view="item_{{currentView}}">
+      <view class="ma-tabs-bar-content {{isFlex?'flex-tab':''}}">
+        <block wx:for="{{tabs}}" wx:key="title">
+          <view id="item_{{index}}" class="ma-tabs-bar-item" style="background-color: {{tabBackgroundColor}}; color: {{activeTab === index ? tabActiveTextColor : tabInactiveTextColor}};" bindtap="handleTabClick" data-index="{{index}}" data-item="{{item}}">
+            <view class="ma-tabs-bar-title {{tabClass}} {{activeTab === index ? activeClass : ''}}">
+                <text class="ma-tabs-bar-value">{{item[setTitle] || item.title }}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view>

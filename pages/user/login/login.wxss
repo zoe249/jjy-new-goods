@@ -1,0 +1,184 @@
+page{ 
+  background: #fff;
+}
+.c-blue{
+   color: #3d9bf0 !important; 
+}
+.bg-orange{
+    background:var(--blueLight) !important;
+}
+.fr{
+    float: right !important;
+}
+.r1bl{
+    border-left: 1px solid #ededed !important;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clear-icon-btn{
+   position: absolute;
+   right:0;
+   top:50%;
+   width: 28rpx;
+   height: 28rpx;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); 
+}
+.clear-icon-btn::after{
+  content: "";
+  position: absolute;
+  left: -40rpx;
+  top:-20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+.hidden{
+    display: none !important;
+}
+.login-logo-page{
+    color: #464646;
+    font-size:32rpx;
+}
+.login-logo image{
+    display: block;
+    width: 260rpx;
+    height: 260rpx;
+    margin: 100rpx auto 30rpx;
+}
+.ed-border-b{
+    border-bottom: 1rpx solid #ededed;
+}
+.login-nav {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size:32rpx;
+}
+.login-nav .item-col2 {
+  flex: 1;
+  max-width: 50%;
+}
+.login-nav view{
+    padding:28rpx 24rpx;
+}
+.login-nav .cur{
+    position: relative;
+    display: block;
+    color: #FF2D63;
+}
+.login-nav .cur::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1rpx;
+    height: 5rpx;
+    width: 200rpx;
+    margin-left: -100rpx;
+    background: #FF2D63;
+}
+.login-swiper{
+    padding-top:30rpx;
+}
+.login-swiper swiper{
+    height: 310rpx;
+}
+.login-swiper-box{
+    padding: 0 52rpx 0 53rpx;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.input-row{
+    position: relative;
+    padding: 32rpx 20rpx 26rpx 110rpx;
+}
+.input-row input{
+    margin-right: 30rpx;
+}
+.quick-phone{
+    background: transparent url(https://shgm.jjyyx.com/m/images/icon_username.png) no-repeat left;
+    -webkit-background-size: 34rpx auto;
+    background-size: 34rpx auto;
+}
+.login-phone{
+    background: transparent url(https://shgm.jjyyx.com/m/images/icon_username.png) no-repeat left;
+    -webkit-background-size: 34rpx auto;
+    background-size: 34rpx auto;
+}
+.verification-code{
+    background: transparent url(https://shgm.jjyyx.com/m/images/icon_code.png) no-repeat left;
+    -webkit-background-size: 34rpx auto;
+    background-size: 34rpx auto;
+}
+.verification-code input{
+    margin-right:240rpx;
+}
+.verification-code .clear-icon-btn{
+    right: 230rpx;
+}
+.password-input{
+    background: transparent url(https://shgm.jjyyx.com/m/images/icon_pwd.png) no-repeat left;
+    -webkit-background-size: 34rpx 40rpx;
+    background-size: 34rpx 40rpx;
+}
+.protocol-tips{
+    margin-top:46rpx;
+    text-align: center;
+    font-size:30rpx;
+}
+.protocol-tips text{
+    color: var(--blueLight);
+}
+.forget-pwd-tips{
+    margin-top: 40rpx;
+    font-size:30rpx;
+}
+.login-btn{
+    width:646rpx;
+    margin-top: 40rpx;
+    -webkit-border-radius: 10rpx;
+    border-radius: 10rpx;
+    background:#ccc;
+    color:#fff;
+    font-size: 38rpx;
+}
+.login-btn:after{
+    -webkit-border-radius: 10rpx;
+    border-radius: 10rpx;
+}
+.button-hover{
+    background:#999;
+}
+.get_code{
+    position:absolute;
+    right:0;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width:220rpx;
+    font-size:30rpx;
+    text-align: center;
+    padding-left:16rpx;
+    color: var(--blueLight);
+}
+.code-sending{
+    color:#ccc;
+}
+.no-login-back{
+  color: #bfbebf !important;
+  background: #fcfbfd;
+}

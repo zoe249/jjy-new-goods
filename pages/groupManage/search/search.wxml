@@ -1,0 +1,40 @@
+<!--pages/goods/search/search.wxml-->
+<import src="/templates/global/global.wxml" />
+
+<view class="wrapper">
+  <view class="search-top-container">
+    <form class="search-container {{focusClass}}">
+      <input type="text" value="{{value}}" class="search-input" placeholder="{{placeholderValue}}" focus confirm-type="search" bindinput="searchInput" bindfocus="searchFocus" bindblur="searchBlur" bindconfirm="doSearch" />
+      <view class="clear-search-btn {{value ? '' : 'hidden'}}" bindtap="clearSearch"></view>
+    </form>
+    <view class="search-cancel" bindtap="goBack">取消</view>
+  </view>
+</view>
+<scroll-view scroll-y style="" class='histroy-scroll-view' enable-back-to-top>
+  <!-- <view class="hot-search-container">
+    <block wx:if="{{hotList.length}}">
+      <view class="hot-search-title">热门搜索</view>
+      <view class="hot-label-container">
+        <block wx:for="{{hotList}}" wx:key="*this">
+          <view class="hot-label" data-item="{{item}}" bindtap="doSearch">{{item}}</view>
+        </block>
+      </view>
+    </block>
+  </view> -->
+
+  <block wx:if="{{historyList.length}}">
+    <view class="search-history-container">
+      <view class="history-title-container">
+        <text>搜索历史</text>
+        <image src="https://shgm.jjyyx.com/m/images/icon_clear.png" class="clear-history-icon" bindtap="clearHistory"></image>
+      </view>
+      <block wx:for="{{historyList}}" wx:key="*this">
+        <view class="history-item" data-item="{{item}}" bindtap="doSearch"><image src='https://shgm.jjyyx.com/m/images/icon_history.png'></image><text>{{item}}</text></view>
+      </block>
+    </view>
+  </block>
+
+</scroll-view>
+
+<template is="toast" data="{{...toastData}}"></template>
+<template is="modal" data="{{...modalData}}"></template>

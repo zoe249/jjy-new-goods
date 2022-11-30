@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "component-goods-item": "/component/goodsItem/goodsItem",
+    "component-full-goods-item": "/component/activityFullGoodsItem/activityFullGoodsItem",
+    "component-three-goods-item": "/component/threeGoodsItem/threeGoodsItem",
+    "component-min-goods": "/component/minGoodsItem/minGoodsItem",
+    "component-go-cart": "/component/goCart/goCart",
+    "draw-coupon": "/component/drawCoupon/drawCoupon"
+  }
+}

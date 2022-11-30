@@ -1,0 +1,80 @@
+<!--pages/order/lookInvoice/lookInvoice.wxml-->
+<import src="/templates/global/global.wxml"/>
+<template is="toast" data="{{...toastData}}"></template>
+<view id="loading" hidden="{{loadingHidden}}">
+    <view class="loading-cnt">
+        <image src="https://shgm.jjyyx.com/m/images/loadings.gif"></image>
+    </view>
+</view>
+<block wx:if="{{showErrorPage}}">
+    <template is="empty" data="{{emptyMsg:errorPageMsg||'网络请求错误，稍后重试！'}}"></template>
+</block>
+<block wx:else>
+    <view id="container" class="container">
+        <template is="addEvaluate" data="{{...result}}"></template>
+    </view>
+</block>
+<template name="addEvaluate"><view class="add-evaluate" id="add-evaluate">
+    <block wx:if="{{shippingType==112||shippingType==110}}">
+        <view class="evaluate-score evaluate-distribution">
+            <view class="avatar clearfix">
+                <image src="{{distributionPhoto}}"></image>
+                <view class="span">骑士服务评价</view>
+                <view class="span">送达时间 {{distributeTime}}</view>
+            </view>
+            <view class="evaluate clearfix">
+                <view class="span">配送服务</view>
+                <view class="em{{distributionStar>0?' active':''}}"></view>
+                <view class="em{{distributionStar>1?' active':''}}"></view>
+                <view class="em{{distributionStar>2?' active':''}}"></view>
+                <view class="em{{distributionStar>3?' active':''}}"></view>
+                <view class="em{{distributionStar>4?' active':''}}"></view>
+                <view class="i"></view>
+            </view>
+        </view>
+    </block>
+    <view class="evaluate-score evaluate-shop">
+        <view class="avatar clearfix">
+            <image src="{{storeIcon}}"></image>
+            <view class="span">{{storeName}}</view>
+        </view>
+        <view class="evaluate clearfix">
+            <view class="span">综合评分</view>
+            <view class="em{{storeStar>0?' active':''}}"></view>
+            <view class="em{{storeStar>1?' active':''}}"></view>
+            <view class="em{{storeStar>2?' active':''}}"></view>
+            <view class="em{{storeStar>3?' active':''}}"></view>
+            <view class="em{{storeStar>4?' active':''}}"></view>
+            <view class="i"></view>
+        </view>
+        <block wx:if="{{commentLabels&&commentLabels.length>0}}">
+            <view class="label clearfix">
+                <block wx:for="{{commentLabels}}" wx:for-item="label"><view class="span active">{{label}}</view></block>
+            </view>
+        </block>
+    </view>
+    <block wx:for="{{commentGoodsInputList}}" wx:for-item="list">
+        <view class="evaluate-goods clearfix">
+            <view class="text">{{list.goodsName}}</view>
+            <view class="evaluate-result clearfix">
+                <view class="span bad{{list.commentGoodsStatus==362?' active':''}}">差评</view>
+                <view class="span good{{list.commentGoodsStatus==361?' active':''}}">好评</view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{contentInfo}}">
+        <view class="evaluate-input">
+            <view class="evaluate-text">{{contentInfo}}</view>
+        </view>
+    </block>
+    <block wx:if="{{imageList}}">
+        <view class="upload-img clearfix">
+
+            <view class="ul images clearfix">
+                <block wx:for="{{imageList}}" wx:for-item="img">
+                    <view class="li"><image src="{{img}}" data-url="{{img}}" data-url-list="{{imageList}}" catchtap="preImage"></image></view>
+                </block>
+            </view>
+        </view>
+    </block>
+</view></template>

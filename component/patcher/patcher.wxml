@@ -1,0 +1,28 @@
+<!--component/patcher/patcher.wxml-->
+
+<wxs module="setPlaceholder">
+    var set = function (placeholderHeight,content, footer){
+        if (placeholderHeight) {
+            return placeholderHeight
+        } else if (content || footer.length> 0) {
+            return '112'
+        }
+    }
+
+    module.exports = {
+        set : set,
+    }
+</wxs>
+
+<view class="patcher-placeholder" style="height: {{setPlaceholder.set(placeholderHeight,content, footer)}}rpx;"></view>
+<view class="iphone-patcher-container seat__{{position}}" style="background: {{patcherBg}};">
+    <view class="iphone-patcher-slot" style="{{slotStyle}}" wx:if="{{isSlot || content}}"><!-- -->
+        <slot></slot>
+        <view class="patcher-slot" wx:if="{{footer.length}}">
+            <view class="patcher-slot-item cu-item cu-item-size__{{footer.length}} {{item.class?'cu-item__'+item.class:''}}" wx:for="{{footer}}" data-evt="{{item}}" style="{{item.style}}"
+                bindtap="_bindEvt" wx:for="{{footer}}" wx:key="title"><text>{{item.title}}</text></view>
+        </view>
+        <view class="content" wx:if="{{content}}" bindtap="_bindComfirm">{{content}}</view>
+    </view>
+    <view class="iphone-x-patcher"></view>
+</view>

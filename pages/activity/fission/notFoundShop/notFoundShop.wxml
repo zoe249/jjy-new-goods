@@ -1,0 +1,6 @@
+<!--pages/activity/fission/notFoundShop/notFoundShop.wxml-->
+<view class="main">
+  <image src="https://shgm.jjyyx.com/m/images/share/look_more.png" class="look-more"
+         mode="widthFix" bindtap="toHome"></image>
+  <view class="position-fail-msg"></view>
+</view>

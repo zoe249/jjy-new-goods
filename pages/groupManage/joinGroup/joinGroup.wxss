@@ -1,0 +1,1508 @@
+/* pages/groupBuy/joinGroup/joinGroup.wxss */
+
+page {
+  background: #fff;
+}
+
+.paddingfoot {
+  width: 100%;
+  height: 120rpx;
+}
+
+.group-goods-tip {
+  position: relative;
+  padding: 0 32rpx;
+  background: #fff;
+}
+
+.group-goods-tip .tip-cnt {
+  border-top: 1rpx solid #e7e7e7;
+  padding: 20rpx 0 20rpx 96rpx;
+  font-size: 24rpx;
+  color: #94969c;
+  line-height: 32rpx;
+}
+
+.group-goods-tip .tip-tag {
+  position: absolute;
+  top: 19rpx;
+  left: 32rpx;
+  line-height: 32rpx;
+  color: var(--blue);
+  border: 1rpx solid var(--blue);
+  background-color: rgba(15, 63, 105, 0.08);
+  width: 64rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 4rpx;
+}
+
+/* 抽奖团 */
+
+.draw-group-box {
+}
+
+.draw-group-box .draw-group-head {
+  padding: 32rpx;
+  text-align: center;
+}
+
+.draw-group-head .draw-success-title {
+  padding: 112rpx 0 0;
+  font-size: 32rpx;
+  color: #444;
+  line-height: 60rpx;
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/ico-success-right.png') no-repeat center top;
+  background-size: 98rpx auto;
+}
+
+.draw-group-head .draw-success-des {
+  padding: 10rpx 0rpx 20rpx;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  color: #94969c;
+}
+
+.draw-group-success .draw-success-btn {
+  width: 464rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  margin: 0 auto;
+  border-radius: 36rpx;
+  color: #fff;
+  background-color: #ff4752;
+  font-size: 32rpx;
+}
+
+.draw-group-ing {
+  padding: 0rpx 0 0;
+}
+
+.draw-group-ing .draw-ing-title {
+  font-size: 24rpx;
+  color: #313031;
+  line-height: 32rpx;
+}
+
+.draw-group-ing .draw-ing-title .time {
+  font-size: 24rpx;
+  color: #313031;
+  line-height: 32rpx;
+  color: #fff;
+  background-color: #313031;
+  display: inline-block;
+  padding: 0 4rpx;
+  margin: 0 5rpx;
+}
+
+.draw-group-ing .draw-ing-des {
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 24rpx 0 0;
+}
+
+.draw-group-ing {
+  line-height: 40rpx;
+  color: #94969c;
+  font-size: 30rpx;
+}
+
+.draw-group-portrait {
+  padding: 0;
+  text-align: center;
+}
+
+.draw-group-portrait .draw-portrait-li {
+  display: inline-block;
+  padding: 44rpx 0;
+  margin: 0 10rpx;
+  vertical-align: top;
+  width: 100rpx;
+  height: 146rpx;
+  position: relative;
+}
+
+.draw-group-portrait .draw-portrait-li image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center;
+  background-size: 100%;
+}
+
+.draw-group-portrait .draw-portrait-li .draw-tag-red {
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  color: #fff;
+  background-color: #ff4752;
+  font-size: 18rpx;
+  border-radius: 12rpx;
+}
+
+.draw-group-portrait .draw-portrait-li .draw-tag-oragin {
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  color: #fff;
+  background-color: #ffa601;
+  font-size: 18rpx;
+  border-radius: 12rpx;
+}
+
+.draw-cnt {
+  border-top: 16rpx solid #f4f4f4;
+}
+
+.draw-cnt .draw-cnt-des {
+  padding: 20rpx 0 50rpx;
+  font-size: 24rpx;
+  color: #444;
+  text-align: center;
+  line-height: 32rpx;
+}
+
+.draw-cnt .draw-cnt-des .draw-cnt-num {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #ff4752;
+  margin: 0 5rpx;
+  line-height: 32rpx;
+}
+
+.draw-cnt .draw-goods {
+  position: relative;
+  padding: 0 32rpx 30rpx 220rpx;
+  height: 190rpx;
+}
+
+.draw-cnt .draw-goods .draw-img {
+  position: absolute;
+  top: 0;
+  left: 32rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border: 1rpx solid #ccc;
+}
+
+.draw-cnt .draw-goods .draw-img image {
+  width: 158rpx;
+  height: 158rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: cover;
+}
+
+.draw-cnt .draw-goods .draw-title {
+  color: #444;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.draw-cnt .draw-goods .draw-spec {
+  color: #777;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-cnt .draw-goods .draw-date {
+  position: absolute;
+  right: 32rpx;
+  top: 60rpx;
+  color: #777;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.draw-cnt .draw-goods .draw-date .draw-date-item {
+  display: inline-block;
+  padding-left: 20rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code {
+  position: absolute;
+  bottom: 32rpx;
+  left: 220rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code .award-code-title {
+  display: inline-block;
+  line-height: 34rpx;
+  color: #ffa601;
+  border: 1rpx solid #ffa601;
+  font-size: 24rpx;
+  padding: 0 4rpx;
+}
+
+.draw-cnt .draw-goods .draw-award-code .award-code-num {
+  display: inline-block;
+  line-height: 34rpx;
+  color: #444;
+  font-size: 24rpx;
+  padding: 0 0 0 15rpx;
+}
+
+.draw-group-receiving {
+  padding: 0 32rpx 0rpx;
+}
+
+.draw-group-receiving .draw-receiving-li {
+  border-top: 1rpx solid #efefef;
+  position: relative;
+}
+
+.draw-group-receiving .draw-receiving-li .draw-receiving-left {
+  color: #777;
+  font-size: 30rpx;
+  line-height: 94rpx;
+}
+
+.draw-group-receiving .draw-receiving-li .draw-receiving-right {
+  position: absolute;
+  right: 0;
+  top: 32rpx;
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  width: 530rpx;
+  text-align: right;
+}
+
+.draw-info {
+  border-top: 16rpx solid #ededed;
+}
+
+.draw-info .draw-rule {
+  position: relative;
+  padding: 0 32rpx;
+  line-height: 96rpx;
+}
+
+.draw-rule-title {
+  color: #313031;
+  font-size: 30rpx;
+  line-height: 96rpx;
+}
+
+.draw-rule-btn {
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  line-height: 96rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 0 28rpx 0 0;
+}
+
+.draw-rule-btn::after {
+  content: '';
+  position: absolute;
+  right: 0rpx;
+  top: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.draw-process-box {
+}
+
+.draw-process-box .draw-process-title {
+  font-size: 24rpx;
+  color: #94969c;
+  text-align: center;
+  background-color: #fff9f5;
+  line-height: 48rpx;
+  border-top: 1rpx solid #fafbfc;
+  border-bottom: 1rpx solid #fafbfc;
+}
+
+.draw-process-list {
+  position: relative;
+  padding: 0 32rpx;
+}
+
+.draw-process-ul {
+  padding: 52rpx 0 0rpx;
+  position: relative;
+}
+
+.draw-process-li {
+  width: 110rpx;
+  padding: 88rpx 0;
+  height: 158rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #777;
+  text-align: center;
+  margin: 0 10rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.draw-process-li1 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-creat.png') no-repeat left top;
+  background-size: 68rpx auto;
+  margin: 0;
+  text-align: left;
+  text-indent: 10rpx;
+}
+
+.draw-process-li2 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-invitation.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-li3 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/draw-proccess-draw.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-li4 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-get.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.draw-process-code {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  width: 200rpx;
+  height: 160rpx;
+  border-left: 1rpx solid #efefef;
+}
+
+.draw-process-code image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.draw-process-code .draw-process-des {
+  width: 150rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin: 20rpx auto 0;
+}
+
+.draw-btn-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0rpx 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.draw-btn-yellow {
+  flex: 1;
+  line-height: 112rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #d4b871;
+}
+
+.draw-btn-red {
+  flex: 1;
+  line-height: 112rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #ff4752;
+}
+
+/* 帮帮团 */
+
+.help-box {
+}
+
+.help-box .help-head {
+  background-color: #ff4752;
+  padding: 36rpx 15rpx 15rpx;
+}
+
+.help-box .help-head .help-head-cnt {
+  width: 720rpx;
+  height: 480rpx;
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-bg.png') no-repeat center top;
+  background-size: 100% auto;
+  padding: 0 16rpx;
+}
+
+.help-box .help-head .help-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 128rpx;
+  padding: 16rpx 0 0;
+}
+
+.help-box .help-head .help-img-wrap image {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center;
+  background-size: 100%;
+}
+
+.help-box .help-head .help-name {
+  text-align: center;
+  line-height: 48rpx;
+  color: #313031;
+  font-size: 30rpx;
+}
+
+.help-box .help-head .help-des {
+  padding: 10rpx 0 20rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 32rpx;
+  color: #313031;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.help-goods {
+  padding: 16rpx 0 0 226rpx;
+  position: relative;
+  height: 190rpx;
+}
+
+.help-goods .help-goods-img {
+  position: absolute;
+  top: 16rpx;
+  left: 18rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border: 1rpx solid #ccc;
+}
+
+.help-goods .help-goods-img image {
+  width: 178rpx;
+  height: 178rpx;
+  background: url('https://shgm.jjyyx.com/m/images/detail_goods_b.png?t=418') no-repeat center;
+  background-size: 100%;
+}
+
+.help-goods-title {
+  color: #444;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  max-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.help-goods-saleprice {
+  line-height: 46rpx;
+  color: #777;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.help-goods-des {
+  position: absolute;
+  bottom: 0;
+  left: 226rpx;
+}
+
+.help-goods-des .help-goods-price {
+  display: inline-block;
+  color: #ff4752;
+  font-size: 32rpx;
+}
+
+.help-goods-des .help-goods-people {
+  display: inline-block;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.help-status {
+  padding: 30rpx;
+  text-align: center;
+}
+
+.help-status .help-status-ing {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status .help-status-ing .time {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  background-color: #707070;
+  padding: 0 2rpx;
+  margin: 0 4rpx;
+}
+
+.help-status .help-status-ing .num-box {
+  display: inline-block;
+  padding-left: 24rpx;
+}
+
+.help-status .help-status-ing .num {
+  color: #ff4752;
+  display: inline-block;
+  margin: 0 4rpx;
+  font-size: 26rpx;
+}
+
+.help-status .help-status-fail {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status .help-status-des {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #777;
+  text-align: center;
+}
+
+.help-status-img {
+  text-align: center;
+  padding: 0rpx 0 0;
+}
+
+.help-status-img .portrait-has image {
+  width: 96rpx;
+  height: 96rpx;
+}
+
+.help-status-img .portrait-has {
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  width: 96rpx;
+  height: 136rpx;
+  margin: 0rpx 10rpx 0;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center 30rpx;
+  background-size: 100% auto;
+}
+
+.help-status-img .portrait-no {
+  vertical-align: top;
+  display: inline-block;
+  width: 96rpx;
+  height: 136rpx;
+  margin: 0rpx 10rpx 0;
+  background: url('https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418') no-repeat center 30rpx;
+  background-size: 100% auto;
+}
+
+.help-status-img .portrait-has .portrait-shafa {
+  position: absolute;
+  right: 0;
+  top: 20rpx;
+  color: #fff;
+  background-color: #ffa601;
+  padding: 0 10rpx;
+  line-height: 24rpx;
+  font-size: 20rpx;
+  border-radius: 12rpx;
+}
+
+.help-info {
+  border-top: 16rpx solid #ededed;
+}
+
+.help-info .help-rule {
+  position: relative;
+  padding: 0 32rpx;
+  line-height: 96rpx;
+}
+
+.help-rule-title {
+  color: #313031;
+  font-size: 30rpx;
+  line-height: 96rpx;
+}
+
+.help-rule-btn {
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  line-height: 96rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  padding: 0 28rpx 0 0;
+}
+
+.help-rule-btn::after {
+  content: '';
+  position: absolute;
+  right: 0rpx;
+  top: 50%;
+  width: 16rpx;
+  height: 16rpx;
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+
+.help-process-box {
+}
+
+.help-process-box .help-process-title {
+  font-size: 24rpx;
+  color: #94969c;
+  text-align: center;
+  background-color: #fff9f5;
+  line-height: 48rpx;
+  border-top: 1rpx solid #fafbfc;
+  border-bottom: 1rpx solid #fafbfc;
+}
+
+.help-process-list {
+  position: relative;
+  padding: 0 32rpx;
+}
+
+.help-process-ul {
+  padding: 32rpx 0;
+  position: relative;
+}
+
+.help-process-li {
+  width: 110rpx;
+  padding: 88rpx 0;
+  height: 158rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #777;
+  text-align: center;
+  margin: 0 10rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.help-process-li1 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-creat.png') no-repeat left top;
+  background-size: 68rpx auto;
+  margin: 0;
+  text-align: left;
+  text-indent: 10rpx;
+}
+
+.help-process-li2 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-invitation.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-li3 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-group-finished.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-li4 {
+  background: url('https://shgm.jjyyx.com/m/images/joinGroup/help-get.png') no-repeat center top;
+  background-size: 68rpx auto;
+}
+
+.help-process-code {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  width: 200rpx;
+  height: 160rpx;
+  border-left: 1rpx solid #efefef;
+}
+
+.help-process-code image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.help-process-code .help-process-des {
+  width: 150rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin: 20rpx auto 0;
+}
+
+.help-group-receiving {
+  padding: 0 32rpx 20rpx;
+}
+
+.help-group-receiving .help-receiving-li {
+  border-top: 1rpx solid #efefef;
+  position: relative;
+}
+
+.help-group-receiving .help-receiving-li .help-receiving-left {
+  color: #777;
+  font-size: 30rpx;
+  line-height: 94rpx;
+}
+
+.help-group-receiving .help-receiving-li .help-receiving-right {
+  position: absolute;
+  right: 0;
+  top: 32rpx;
+  line-height: 32rpx;
+  color: #94969c;
+  font-size: 24rpx;
+  width: 530rpx;
+  text-align: right;
+}
+
+.help-btn-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0rpx 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.help-btn-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0rpx 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.help-btn-box .help-btn-red {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #ff4752;
+}
+
+.help-btn-box .help-btn-oragin {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #d4b871;
+}
+
+.help-btn-box .help-btn-gray {
+  flex: 1;
+  text-align: center;
+  line-height: 112rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #e7e7e7;
+}
+
+.help-btn-box .help-pay-btn {
+  font-size: 27rpx;
+}
+
+.member-list-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate3d(0, 0, 1000rpx);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-list-dialog-container .member-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 670rpx;
+  background: #fff;
+  padding: 70rpx 132rpx;
+  border-radius: 10rpx;
+}
+
+.member-list-dialog-container .member-list-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container:after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.member-list-dialog-container .member-list-container .grouper-header-container .group-head-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-list-dialog-container .member-list-container .group-head-name {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.member-list-dialog-container .member-list-container .join-group-time {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container {
+  margin-top: 36rpx;
+  width: 100%;
+}
+
+.member-list-dialog-container .member-list-container .grouper-list-container .grouper-item-container {
+  position: relative;
+  width: 100%;
+  height: 122rpx;
+  padding: 32rpx 0 0 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grouper-item-container .header-container {
+  position: absolute;
+  left: 0;
+  top: 32rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+}
+
+.grouper-item-container .header-container .header {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-item-container .member-item-name {
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.grouper-item-container .join-time {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.no-grouper-msg {
+  margin-top: 72rpx;
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.share-dialog-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transform: translate3d(0, 0, 100rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container {
+  position: relative;
+  width: 670rpx;
+  padding: 70rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-dialog-container .share-info-container .share-header {
+  font-size: 32rpx;
+  color: #444;
+  line-height: 1;
+}
+
+.share-dialog-container .share-info-container .share-msg-container {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.share-dialog-container .share-info-container .share-msg-container.mgt-30 {
+  margin-top: 30rpx;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .black {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.share-dialog-container .share-info-container .share-msg-container .gray {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.share-dialog-container .share-info-container .share-btn-container {
+  padding-top: 68rpx;
+}
+
+.share-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.share-btn-container .share-item-container {
+  width: 148rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-btn-container .share-item-container .share-btn {
+  width: 100rpx;
+  height: 100rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.share-btn-container .share-item-container .share-btn:after {
+  border: none;
+}
+
+.share-btn-container .share-item-container .share-btn .share-image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.share-btn-container .share-item-container .share-msg-container {
+  margin-top: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.share-btn-container .share-item-container .share-msg-container .share-msg {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #444;
+  text-align: center;
+}
+
+.share-dialog-container .close-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/close_dialog_btn.png") no-repeat center;
+  background-size: contain;
+}
+
+.share-canvas {
+  position: absolute;
+  left: 0;
+  top: -99999rpx;
+  width: 1500rpx;
+  height: 2668rpx;
+  z-index: -1;
+  transform: translate3d(0, 0, -1000rpx);
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-goods-container {
+  width: 100%;
+  /* border-top: 1rpx solid #ededed; */
+  display: flex;
+  padding: 30rpx 0 30rpx 32rpx;
+  background: #fff;
+}
+
+.group-goods-container .cover-image {
+  width: 240rpx;
+  height: 240rpx;
+  background: #fff url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: cover;
+}
+
+.group-goods-container .goods-info-container {
+  margin-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  padding-right: 30rpx;
+}
+
+.group-goods-container .goods-info-container .goods-name-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #444;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+.group-goods-container .goods-info-container .goods-name-container .produce-icon {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container {
+  margin-top: 12rpx;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container .need-join {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.group-goods-container .goods-info-container>.group-msg-container .sales-volume {
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .goods-prime-price {
+  line-height: 1;
+  color: #999;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .sale-price {
+  font-size: 32rpx;
+  color: #ff4752;
+  line-height: 1;
+}
+
+.group-goods-container .goods-info-container .goods-price-msg-container .sale-price:before {
+  content: '￥';
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  color: #ff4752;
+  line-height: 1;
+}
+
+.group-goods-container .goods-info-container .goods-name {
+  width: 100%;
+  height: 30rpx;
+  line-height: 1;
+  color: #444;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group-goods-container .goods-info-container .goods-tag {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 24rpx;
+  line-height: 1;
+  color: #94969c;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.goods-prime-price-container {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.group-goods-container .goods-info-container .goods-prime-price-container .goods-prime-price-msg {
+  color: #94969c;
+  line-height: 1;
+  font-size: 24rpx;
+}
+
+.group-goods-container .goods-info-container .goods-prime-price-container .goods-prime-price {
+  line-height: 1;
+  color: #94969c;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .sales-volume {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #94969c;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .need-join {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #444;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container {
+  margin-top: 26rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sale-price {
+  font-size: 44rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sale-price:before {
+  content: '￥';
+  font-size: 32rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.group-goods-container .goods-info-container .goods-sale-msg-container .group-msg-container .sale-price-container .sales-unit {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+
+.goods-labels-container {
+  width: 100%;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 20rpx 30rpx;
+}
+
+.goods-labels-container .label-item {
+  min-width: 30%;
+  max-width: 40%;
+  padding: 14rpx 20rpx 14rpx 30rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  color: #777;
+  background: url('https://shgm.jjyyx.com/m/images/icon_good_flag_checked.png') left center no-repeat;
+  background-size: 22rpx 22rpx;
+  white-space: nowrap;
+}
+
+.group-promotion-alert {
+  margin-left: 32rpx;
+  width: auto;
+  height: 88rpx;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.group-promotion-alert .tips {
+  width: 66rpx;
+  height: 28rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/group_alert.png") no-repeat center;
+  background-size: contain;
+}
+
+.group-promotion-alert .delivery-msg {
+  font-size: 24rpx;
+  color: #777;
+  line-height: 1;
+  margin-left: 20rpx;
+}
+
+.group-status-container {
+  border-top: 16rpx solid #f4f4f4;
+  border-bottom: 16rpx solid #f4f4f4;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx 0 40rpx 0;
+  background: #fff;
+}
+
+.group-status-container .surplus-time-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-status-container .surplus-time-container .surplus-time-msg {
+  font-size: 26rpx;
+  color: #313031;
+  line-height: 1;
+}
+
+.group-status-container .surplus-time-container:before {
+  content: '';
+  display: inline-block;
+  width: 100rpx;
+  height: 2rpx;
+  background: #ededed;
+  margin-right: 20rpx;
+}
+
+.group-status-container .surplus-time-container:after {
+  content: '';
+  display: inline-block;
+  width: 100rpx;
+  height: 2rpx;
+  background: #ededed;
+  margin-left: 20rpx;
+}
+
+.group-status-container .need-join-msg-container {
+  margin-top: 40rpx;
+}
+
+.group-status-container .need-join-msg-container .need-msg {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #777;
+}
+
+.group-status-container .need-join-msg-container .need-num {
+  font-size: 24rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.group-status-container .group-finished-container {
+  width: 100%;
+  height: 94rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-status-container .group-finished-container .result-msg {
+  font-size: 30rpx;
+  line-height: 1;
+  color: #ff4752;
+}
+
+.group-status-container .grouper-list-container {
+  margin-top: 40rpx;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 100%;
+  padding:  0 32rpx;
+}
+
+.grouper-list-container .grouper-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/comment_user_img.png?t=418") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-default-item {
+  position: relative;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 10rpx;
+  background: url("https://shgm.jjyyx.com/m/images/groupBuy/no_grouper_icon.png") no-repeat center;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.grouper-list-container .grouper-item .member-photo {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grouper-list-container .grouper-item:nth-child(1):after {
+  content:'团长';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#FF4752;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.grouper-list-container .grouper-item:nth-child(2):after {
+  content:'沙发';
+  width: 56rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height:26rpx;
+  background:#CBAD7E;
+  text-align: center;
+  color:#fff;
+  font-size:18rpx;
+  border-radius: 13rpx;
+  padding:0;
+  margin:0;
+  outline: none;
+}
+
+.footer-contaienr {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer-contaienr .more-group {
+  flex: 1;
+  background: #cbad7e;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.footer-contaienr .join-group, .footer-contaienr .look-my-group {
+  flex: 1;
+  background: #ff4752;
+  color: #fff;
+  line-height: 0;
+  padding: 56rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}

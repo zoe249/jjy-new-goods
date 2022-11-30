@@ -1,0 +1,162 @@
+/* pages/order/lookInvoice/lookInvoice.wxss */
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.clearfix:after{clear: both;}
+.clearfix {zoom:1;}
+/*loading*/
+#loading {
+    z-index: 999999;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+#loading .loading-cnt{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    -webkit-transform: translate(-90rpx, -90rpx);
+    transform: translate(-90rpx, -90rpx);
+    z-index: 9999999;
+}
+#loading .loading-cnt image{
+    width:180rpx;
+    height:180rpx;
+}
+/*查看发票页面*/
+#look-invoice-box .bad-head {
+    font-size: 28rpx;
+    padding: 10rpx 80rpx;
+    line-height: 36rpx;
+    color: #999;
+}
+#look-invoice-box .bad-text1 {
+    font-size: 28rpx;
+    padding: 10rpx 80rpx;
+    line-height: 36rpx;
+    color: #999;
+}
+#look-invoice-box .bad-text {
+    padding: 10rpx 80rpx;
+    font-size: 28rpx;
+    line-height: 36rpx;
+    color: #999;
+}
+#look-invoice-box .invoice-img-box {
+    padding: 80rpx 80rpx 0;
+}
+#look-invoice-box .li {
+    position: relative;
+    padding: 0 0 40rpx 0;
+}
+
+#look-invoice-box .invoice-bad {
+    position: absolute;
+    top: -5%;
+    right: 5%;
+    width: 20%;
+}
+#look-invoice-box image {
+    width: 100%;
+}
+#look-invoice-box .invoice-bad image{
+    width:100rpx;
+    height:100rpx;  
+}
+.invoice-btn {
+    padding: 20rpx 52rpx 40rpx;
+    text-align: center;
+}
+#to-email-btn {
+    margin: 0 auto;
+    line-height: 96rpx;
+    color: #FF4752;
+    font-size: 32rpx;
+    background-color: #fff;
+    border-radius: 50rpx;
+    border:1rpx solid #FF4752;
+    border:none;
+    display: block;
+    line-height: 96rpx;
+    color: #fff;
+    font-size: 32rpx;
+    background-color: #FF4752;
+    border-radius: 50rpx;
+}
+#to-local-photo {
+    display: block;
+    margin: 40rpx auto 0;
+    line-height: 96rpx;
+    color: #fff;
+    font-size: 32rpx;
+    background-color: #FF4752;
+    border-radius: 50rpx;
+}
+
+
+.pop-email-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+}
+.pop-email-box .pop-email-cnt {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 560rpx;
+    margin: -220rpx 0 0 -280rpx;
+    background: #fff;
+    -webkit-border-radius:8rpx;
+    border-radius:8rpx;
+}
+.pop-email-box .email-head {
+    line-height: 96rpx;
+    text-align: center;
+    font-size:32rpx;
+}
+.pop-email-box .email-close {
+    position: absolute;
+    right:4rpx;
+    top: 4rpx;
+    height: 88rpx;
+    width: 60rpx;
+    border-radius:8rpx;
+    background: url("https://shgm.jjyyx.com/m/images/cart_close.png") no-repeat center;
+    background-size: 28rpx 28rpx;
+}
+.pop-email-box .email-cnt {
+    padding: 80rpx 20rpx;
+}
+.pop-email-box input {
+    display: block;
+    width: 100%;
+    padding: 0 20rpx;
+    height: 80rpx;
+    font-size: 28rpx;
+    border-radius:20rpx;
+    border: 1rpx solid #ccc;
+    margin: 0;
+    outline: 0;
+}
+#btn-email-send {
+    line-height:96rpx;
+    color: #fff;
+    font-size: 32rpx;
+    text-align: center;
+    background-color: #FF4752;
+    border-radius: 0 0 8rpx 4rpx;
+}

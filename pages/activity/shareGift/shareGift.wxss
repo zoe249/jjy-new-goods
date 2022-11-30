@@ -1,0 +1,415 @@
+/* pages/activity/shareGift/shareGift.wxss */
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: #fe7d4e url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_prize_body1.png") no-repeat top;
+    background-size: 100% auto;
+}
+.gutter-bottom{
+  height: 40rpx;
+}
+.activity-title {
+    width: 100%;
+    height: auto;
+}
+
+.activity-title .title-image {
+    width: 100%;
+}
+
+
+/** 领红包 */
+
+.container .luck-draw-container {
+    position: relative;
+    width: auto;
+    padding-top: 120%;
+    margin: 40rpx 35rpx;
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_prize_container.png") no-repeat center;
+    background-size: cover;
+}
+
+.container .luck-draw-container .luck-draw-item {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 200rpx;
+    height: 260rpx;
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_prize.png") no-repeat center;
+    background-size: cover;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-title {
+    margin-bottom: 39rpx;
+    font-size: 22rpx;
+    color: #FFF;
+    line-height: 1.2;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value {
+    width: 100%;
+    height: 64rpx;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 64rpx;
+    line-height: 0.9;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value:before {
+    content: '￥';
+    font-weight: bold;
+    color: #FFF;
+    font-size: 36rpx;
+    line-height: 1;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value.freeShip {
+    font-size: 36rpx;
+    line-height: 1.5;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value.discount.float {
+    font-size: 48rpx;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value.discount:before,
+.container .luck-draw-container .luck-draw-item .prize-value.freeShip:before {
+    content: '';
+}
+
+.container .luck-draw-container .luck-draw-item .prize-value.discount:after {
+    content: '折';
+    font-size: 30rpx;
+    line-height: 1;
+    color: #FFF;
+    margin-left: 8rpx;
+}
+
+.container .luck-draw-container .luck-draw-item .prize-label {
+    font-size: 24rpx;
+    color: #FF4752;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+    margin: 71rpx 0 8rpx 0;
+    text-align: center;
+}
+
+.container .luck-draw-container .luck-draw-item.no-prize {
+    background-image: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_no_prize_chosed.png");
+}
+
+.container .luck-draw-container .luck-draw-item.not-choose {
+    background-image: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_not_choose.png");
+}
+
+.container .luck-draw-container .luck-draw-item.no-prize.not-choose {
+    background-image: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_no_prize.png");
+}
+
+.container .luck-draw-container .luck-draw-item.not-choose .prize-label {
+    color: #999;
+}
+
+.container .luck-draw-container .luck-draw-item .thanks {
+    font-size: 37rpx;
+    line-height: 40rpx;
+    color: #FFF;
+}
+
+.container .luck-draw-container .luck-draw-item.click-me {
+    background-image: url('https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_click_me1.png');
+}
+
+.container .luck-draw-container .center-btn-container {
+    position: absolute;
+    left: 240rpx;
+    top: 320rpx;
+    width: 200rpx;
+    height: 260rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container .luck-draw-container .center-btn-container.przing {
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_center1.png") no-repeat center;
+    background-size: 142rpx;
+}
+
+.container .luck-draw-container .center-btn-container .center-btn {
+    width: 200rpx;
+    height: 200rpx;
+    background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/btn_center.png") no-repeat center;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .luck-draw-container .center-btn-container .center-btn.no-prize {
+    background-image: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/bg_center1_no_prize.png");
+}
+
+.container .luck-draw-container .center-btn-container .center-btn .center-text {
+    font-size: 36rpx;
+    line-height: 1;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.container .luck-draw-container .center-btn-container .center-msg-container {
+    margin-top: 8rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 48rpx;
+}
+
+.container .luck-draw-container .center-btn-container .center-msg-container .center-msg {
+    font-size: 20rpx;
+    color: #444;
+    line-height: 24rpx;
+}
+
+
+/** 无商品默认图 */
+
+.null-goods-default {
+    flex: 1;
+    width: 100%;
+    min-height: 180rpx;
+    /*background: url("https://shgm.jjyyx.com/m/html/activity/shareGift/images/default_bg.png") no-repeat bottom;*/
+    background-size: 100% auto;
+}
+
+.nav-seat-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 90rpx;
+    overflow: hidden;
+    overflow-x: auto;
+    padding: 0 8rpx;
+}
+
+.nav-seat-container.no-height {
+    height: 0;
+}
+
+.nav-container {
+    display: block;
+    width: 100%;
+    height: 90rpx;
+    padding: 0 8rpx;
+    background: #FFEDCB;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.nav-list-container {
+    height: 90rpx;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: #BE9B56;
+    padding: 0 16rpx;
+}
+
+.nav-container.fixed_class {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.nav-list-container .nav-item {
+    flex: none;
+    padding: 10rpx 24rpx;
+    font-size: 28rpx;
+    line-height: 1;
+    margin-left: 20rpx;
+    background: transparent;
+    color: #BE9B56;
+    border-radius: 24rpx;
+}
+
+.nav-list-container .nav-item:first-child {
+    margin-left: 0;
+}
+
+.nav-list-container .nav-item.active {
+    color: #9A6F19;
+}
+
+.module-goods-list .goods-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 16rpx;
+}
+
+.module-goods-list .goods-list-container .goods-item {
+    margin-left: 16rpx;
+}
+
+.module-header-image {
+    width: 100%;
+}
+
+.bottom-link {
+    width: 100%;
+    margin-top: 8rpx;
+}
+
+.look-more-btn {
+    padding: 40rpx 0;
+    color: #FFF;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+
+/*中奖纪录*/
+
+.prizer-list-container {
+    margin: 0 16rpx 40rpx;
+    width: 718rpx;
+    background: #FFF;
+    border-radius: 20rpx;
+    padding: 40rpx 30rpx 0 30rpx;
+}
+
+.prizer-list-container .prize-list-header-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.prizer-list-container .prize-list-header-container .header-text {
+    flex: none;
+    font-size: 28rpx;
+    color: #FF4752;
+    line-height: 1;
+    padding: 0 30rpx;
+}
+
+.prizer-list-container .prize-list-header-container:before,
+.prizer-list-container .prize-list-header-container:after {
+    flex: 1;
+    content: '';
+    display: inline-block;
+    height: 2rpx;
+    background: #FF4752;
+}
+
+.prizer-list-container .prizer-list {
+    padding-bottom: 40rpx;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container {
+    padding-top: 40rpx;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-header {
+    flex: none;
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container {
+    flex: 1;
+    overflow: hidden;
+    padding-left: 20rpx;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container .prizer-msg {
+    display: flex;
+    align-items: flex-end;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container .prizer-msg .nickname {
+    font-size: 28rpx;
+    line-height: 1;
+    color: #444;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container .prizer-msg .time {
+    margin-left: 24rpx;
+    font-size: 20rpx;
+    color: #777;
+    line-height: 1;
+    flex: 1;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container .prizer-msg .symbol {
+    font-size: 24rpx;
+    line-height: 1;
+    color: #FF5C33;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prizer-msg-container .prizer-msg .value {
+    font-size: 38rpx;
+    line-height: 0;
+    color: #FF5C33;
+    padding: 18rpx 8rpx;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prize-label {
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prize-label .user-desc {
+    flex: 1;
+    font-size: 24rpx;
+    line-height: 1;
+    color: #777;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prizer-list-container .prizer-list .prizer-item-container .prize-label .label {
+    width: 104rpx;
+    height: 26rpx;
+    margin-left: 16rpx;
+}
+
+.prizer-list-container .no-prizer-container {
+    width: 100%;
+    text-align: center;
+    padding: 100rpx 0;
+}
+
+.prizer-list-container .no-prizer-container .no-prizer-text {
+    font-size: 28rpx;
+    color: #777;
+    line-height: 1;
+}

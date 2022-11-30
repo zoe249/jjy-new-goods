@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "component-grouper-animation": "/component/grouperAnimation/grouperAnimation",
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher",
+    "component-group-buy-step":"/component/groupBuyStep/groupBuyStep",
+    "pop-group-num":"/component/popGroupNum/popGroupNum",
+    "nearbyBuyers": "/component/nearbyBuyers/nearbyBuyers",
+    "select-sku":"/component/selectSKU/selectSKU"
+  }
+}

@@ -1,0 +1,73 @@
+/* pages/user/integral/integral.wxss */
+@import '/templates/purchases/purchases.wxss';
+page{
+  background: #FFF;
+}
+.store_card_infor {
+  font-size: 24rpx;
+  line-height: 1;
+  height:272rpx;
+  color: #fff;
+  margin: 16rpx;
+  border-radius: 16rpx;
+  background: #FFBD4F;
+  overflow: hidden;
+}
+
+.store_card_infor image {
+  height: 244rpx;
+}
+
+.store_card_tips {
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 12rpx;
+  line-height: 30rpx;
+}
+
+.store_card_tips text {
+  font-size: 20rpx;
+  margin-right: 16rpx;
+}
+
+.span-tips {
+  display: block;
+}
+
+.detail {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.detail .strong {
+  display: inline-block;
+  font-size: 76rpx;
+  padding-bottom: 30rpx;
+  margin-left: -40rpx;
+}
+
+.detail .strong::after {
+  content: "积分";
+  position: absolute;
+  right: -52rpx;
+  bottom: 39rpx;
+  font-size: 24rpx;
+}
+
+.detail .span {
+  display: block;
+  font-size: 28rpx;
+  color: #69bf9a;
+}
+
+.c-green-color {
+  color: #7dc81d !important;
+}
+.error-page-tpl {
+  top: 50%;
+}

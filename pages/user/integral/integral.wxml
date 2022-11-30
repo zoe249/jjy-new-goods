@@ -1,0 +1,20 @@
+<import src="/templates/global/global.wxml" />
+<import src="/templates/purchases/purchases.wxml" />
+<view class="store_card_infor pos-r">
+  <!-- <image src="https://shgm.jjyyx.com/m/images/icon_store_card_bg.png"></image> -->
+  <view class="pos-a plr16 store_card_tips"><text class="fr c-gray-color" bindtap="jumpDocument" data-mod="jifen">查看规则</text></view>
+  <view class="pos-a detail">
+      <view class="strong pos-r">{{account.scores?(account.scores> 0? account.scores: 0):0}}</view>
+      <view class="span-tips">可以当钱花哦!</view>
+  </view>
+</view>
+<scroll-view class="integral_item" wx:if="{{list.length > 0}}">
+<view class="h3">积分明细</view>
+  <template is="purchases" data="{{list}}"></template>
+  <block wx:if="{{list.length > 6}}">
+  <template is="noMore"></template>
+  </block>
+</scroll-view>
+<block wx:if="{{otherMes == 'empty'}}">
+    <template is="empty" data="{{...emptyObj}}"></template>
+</block>

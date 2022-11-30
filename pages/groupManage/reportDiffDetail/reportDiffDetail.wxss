@@ -1,0 +1,251 @@
+/* pages/groupManage/reportDiffDetail/reportDiffDetail.wxss */
+.report-info{
+  margin: 32rpx 16rpx 0;
+  background:#fff;
+  border-radius: 16rpx;
+}
+.report-item{
+  display: flex;
+  padding: 32rpx;
+  line-height: 44rpx;
+}
+.lable{
+  font-size: 30rpx;
+  width: 192rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.lable text{
+  font-size: 48rpx;
+  height: 0;
+  width: 0;
+  vertical-align: middle;
+}
+.input-wrap{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+.input-wrap picker{
+  flex: 1;
+}
+.report-dec{
+  margin: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+.report-dec .lable{
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  line-height: 42rpx;
+  padding: 25rpx 32rpx 13rpx;
+}
+.textarea-wrap{
+  padding: 16rpx 32rpx;
+}
+.textarea-wrap .textarea{
+  width: 100%;
+  height: 220rpx;
+}
+
+.forword::after {
+  position: absolute;
+  right: 32rpx;
+  top: 50%;
+  width: 12rpx;
+  height: 12rpx;
+  content: "";
+  border-left: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  -webkit-transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+  transform: translateY(-50%) scaleY(1) rotateZ(-135deg);
+}
+.submite-btn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 112rpx;
+  line-height: 112rpx;
+  background: #E1E1E1;
+  font-size: 34rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 0;
+}
+.submite-btn.allow{
+  background: var(--blue);
+}
+.report-process{
+  margin: 32rpx 16rpx 0;
+  background:#fff;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  padding: 16rpx 32rpx;
+}
+.process-item{
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+.process-title{
+  width: 180rpx;
+}
+.process-value{
+  flex:1
+}
+.txt-len{
+  right: 32rpx;
+  bottom: 16rpx;
+  color: var(--gray);
+}
+
+
+/**
+新增
+**/
+#loading {
+  z-index: 999999;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#loading .loading-cnt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180rpx;
+  height: 180rpx;
+  -webkit-transform: translate(-90rpx, -90rpx);
+  transform: translate(-90rpx, -90rpx);
+  z-index: 9999999;
+}
+#loading .loading-cnt image {
+  width: 180rpx;
+  height: 180rpx;
+}
+.pic-dec-show{
+  margin: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+.pic-dec{
+  margin: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 120rpx;
+}
+.pic-dec .lable{
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  line-height: 42rpx;
+  padding: 25rpx 32rpx 13rpx;
+}
+.color-red-pic
+{
+  font-size: 48rpx;
+    height: 0;
+    width: 60rpx;
+    vertical-align: middle;
+    color: #FF4752;
+}
+.pic_title
+{
+  width: 100%;
+  height: 80rpx;
+  line-height: 42rpx;
+  padding: 25rpx 32rpx 13rpx;
+}
+.pic_toast
+{
+  color: darkgray;
+  margin-left: 30rpx;
+}
+.upload-text {
+  background-color: #fff;
+  float: left;
+  height: 160rpx;
+  line-height: 160rpx;
+  margin: 0 0 32rpx 0;
+  padding: 0 0 0 20rpx;
+  font-size: 28rpx;
+  color: #4e4e4e;
+}
+.upload-btn {
+  width: 160rpx;
+  height: 160rpx;
+  float: left;
+  margin: 0 0 32rpx 0;
+  background: url("https://shgm.jjyyx.com/m/images/upload_img.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+.clearfix {
+  zoom: 1;
+  overflow: auto;
+}
+ .upload-img {
+  border-bottom: 1rpx solid #ededed;
+  padding: 32rpx 16rpx 0 16rpx;
+  box-sizing: content-box;
+}
+
+ .upload-img .images {
+  float: left;
+}
+
+ .upload-img .li {
+  float: left;
+  position: relative;
+  padding: 0 15rpx 32rpx 0;
+}
+ .upload-img .li:nth-child(2) {
+  float: left;
+  position: relative;
+  padding: 0 15rpx 32rpx 15rpx;
+}
+
+ .upload-img .li:nth-child(4),
+ .upload-img .li:nth-child(8) {
+  padding: 0 0 32rpx 0;
+}
+
+.upload-img .del-img {
+  position: absolute;
+  top: -16rpx;
+  right: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background: url("https://shgm.jjyyx.com/m/images/ico_upload_close.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+ .upload-img image {
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  object-fit: cover;
+  background: url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+  background-size: 100% 100%;
+}
+.span {
+  float: left;
+  padding: 0 0 0 20rpx;
+  font-size: 28rpx;
+}
+.canvas
+{
+  width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+    z-index: -1;
+    opacity: 0;
+}

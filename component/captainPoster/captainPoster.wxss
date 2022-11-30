@@ -1,0 +1,37 @@
+.poster-container,.mask{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    visibility: hidden; 
+}
+.isVisible{
+    visibility: visible
+}
+.mask{
+    background: rgba(0, 0, 0, 0.6);
+}
+.poster-wrap{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    width: 560rpx;
+    transform: translate(-50%, -50%);
+    z-index:99999;
+}
+.poster-info{
+    position: relative;
+}
+.poster-info button{
+    padding: 0;
+    border: 0;
+}
+.poster-info button::after{
+    border: 0;
+}
+.poster-info image{
+    width: 560rpx;
+    height: 695rpx;
+}

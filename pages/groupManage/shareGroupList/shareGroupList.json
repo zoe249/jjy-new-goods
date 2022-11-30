@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "component-share-popup": "/component/sharePopup/sharePopup"
+  }
+}

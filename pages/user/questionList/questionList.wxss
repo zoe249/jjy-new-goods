@@ -1,0 +1,138 @@
+.bg_container
+{
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+.page_container
+{
+   
+    position: relative;
+    height: calc( 92vh - env(safe-area-inset-bottom));
+    width: 100vw;
+    overflow: scroll;
+    min-height:  calc( 85vh - env(safe-area-inset-bottom));
+    background-color: rgb(244, 244, 244);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.list
+{
+   
+    overflow: auto;
+    /* padding-bottom: calc(env(safe-area-inset-bottom) + 40rpx);
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 40rpx); */
+    padding-top: 10rpx;
+    padding-bottom: 40rpx; 
+}
+.btn_container
+{
+    width: 100%;
+    background-color: white;
+}
+.toast_container
+{
+    width: 100vw;
+    height: 7vh;
+    background-color: rgb(244, 244, 244);
+    padding-top: 10rpx;
+    
+}
+.toast_bottom
+{
+    font-size: 20rpx;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  
+   
+  
+    /* position: absolute;
+    left: 0rpx;
+    bottom: calc(env(safe-area-inset-bottom) + 8vh);
+    bottom: calc(constant(safe-area-inset-bottom) + 8vh); */
+}
+.bottom_customer_service
+{
+    height: 8vh;
+    line-height: 8vh;
+    background-color: white;
+    text-align: center;
+    color: rgb(14, 62, 102);
+    position: absolute;
+    left: 0rpx;
+    bottom: env(safe-area-inset-bottom);
+    bottom: constant(safe-area-inset-bottom);
+    width: 100vw;
+}
+.item_container
+{
+    background-color: white;
+    width: 96vw;
+    margin-left: 2vw;
+    border-radius: 20rpx;
+    margin-top: 10rpx;
+    border-width: 1rpx;
+    border-style: solid;
+    border-color: rgb(222, 222, 222);
+}
+.item_container .title_container
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    min-height: 100rpx;
+
+}
+.item_container .title_container .title
+{
+    margin-left: 30rpx;
+    width: 85%;
+    color: rgb(136,136,136);
+    font-size: 28rpx;
+    padding: 20rpx 0rpx;
+}
+.item_container .title_container .icon
+{
+    width: 80rpx;
+    height: 80rpx;
+  
+}
+.icon_down
+{
+    background: url(https://shgm.jjyyx.com/m/images/arrow_down.png) center center no-repeat;
+    background-size: auto 16%;
+
+}
+.icon_up
+{
+    background: url(https://shgm.jjyyx.com/m/images/arrow_up.png) center center no-repeat;
+    background-size: auto 16%;
+
+}
+.item_container .h_line
+{
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    height: 3rpx;
+    background-color: rgb(229, 229, 229);
+    
+
+}
+.item_container .answer_constainer
+{
+    margin: 15rpx 50rpx;
+}
+.item_container .answer_constainer .content
+{
+    color: rgb(136,136,136);
+    font-size: 25rpx;
+    line-height: 1.5rem;
+
+}
+

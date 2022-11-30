@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "生活卡",
+  "usingComponents": {
+    "component-iphone-x-patcher": "/component/iPhoneXPatcher/iPhoneXPatcher"
+  }
+}

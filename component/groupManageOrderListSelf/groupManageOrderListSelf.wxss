@@ -1,0 +1,316 @@
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.bl {
+    border-left: 1rpx solid #e6e6e6;
+}
+
+.color-ff5d3d {
+    color: #FF4752!important;
+}
+
+.color-5db1ff {
+    color: #5db1ff !important;
+}
+
+.color-7dc825 {
+    color: #FF4752 !important;
+}
+
+.color-3B9DF0 {
+    color: #3B9DF0 !important;
+}
+
+.color-ffa601 {
+    color: #ffa601 !important;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.color-999 {
+    color: #999 !important;
+}
+
+.color-464646 {
+    color: #444 !important;
+}
+
+.li {
+    margin-bottom: 16rpx;
+    background-color: #fff;
+    padding: 0 32rpx 32rpx;
+    border-radius: 16rpx;
+}
+
+.li .head {
+    position: relative;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 0rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-size: 16rpx auto;
+}
+
+.li .head .phone{
+    position: absolute;
+    right: 0;
+    top: 16rpx;
+    border: 1rpx solid #F0F3F6;
+    padding: 0 20rpx 0 48rpx;
+    line-height: 48rpx;
+    height: 48rpx;
+    color: var(--blue);
+    background: #F0F3F6 url(https://shgm.jjyyx.com/m/images/groupOrder/icon-phone.png) no-repeat 4rpx center;
+    background-size: 40rpx 40rpx;
+}
+
+.li .head image.shopIcon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 64rpx;
+    height: 64rpx;
+    margin-right: 20rpx;
+    border-radius: 50%;
+    border: 1rpx solid #E7E7E7;
+}
+
+.li .head .text {
+    width: 580rpx;
+    display: inline-block;
+    height: 88rpx;
+    vertical-align: middle;
+    line-height: 88rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 26rpx;
+    color: var(--blueLight);
+    font-weight: bold;
+}
+
+.li .head .text .icon-pintuan {
+    position: absolute;
+    right: 90rpx;
+    top: 0;
+    background: url("https://shgm.jjyyx.com/m/images/icon_pintuan.png") no-repeat center;
+    width: 80rpx;
+    height: 80rpx;
+    background-size: 100%;
+}
+
+.li .head .text .icon-global {
+    display: inline-block;
+    height: 32rpx;
+    width: 110rpx;
+    vertical-align: middle;
+    border-radius: 0;
+    margin: 0 0 0 12rpx;
+}
+
+.li .head .text .span {
+    display: inline-block;
+    margin-left: 8rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    color: var(--blueLight);
+    background-color: #F0F3F6;
+    padding: 0 6rpx;
+    border-radius: 4rpx;
+    font-weight: normal;
+}
+
+.li .head .text .customer-service {
+    border: 1rpx solid #94969C;
+    color: #94969C;
+    background-color: #fff;
+}
+
+.li .cnt {
+    padding: 15rpx 0rpx 15rpx 15rpx;
+    background-color: #F9FAFB;
+    border-radius: 4rpx;
+}
+
+.li .cnt .one {
+    white-space: nowrap;
+    min-height: 132rpx;
+}
+
+.li .cnt .one .image {
+    display: table-cell;
+    position: relative;
+    height: 132rpx;
+    width: 130rpx;
+    border: 1rpx solid #E7E7E7;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100% auto;
+    float: left;
+}
+
+.li .cnt .one .image .i {
+    position: absolute;
+    top: 4rpx;
+    left: 4rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    background-color: #FF4752;
+    font-size: 20rpx;
+    border-radius: 16rpx;
+    padding: 0 8rpx;
+    color: #fff;
+}
+
+.li .cnt .one .image image {
+    display: block;
+    height: 128rpx;
+    width: 128rpx;
+    border: none;
+}
+
+.li .cnt .one text {
+    white-space: normal;
+    width: 550rpx;
+    padding: 0 0 0 20rpx;
+    line-height: 30rpx;
+    font-size: 26rpx;
+    display: table-cell;
+    vertical-align: middle;
+    height: 130rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #313031;
+}
+
+.li .cnt .more {
+    white-space: nowrap;
+}
+
+.li .cnt .more .image {
+    position: relative;
+    display: inline-block;
+    height: 132rpx;
+    width: 130rpx;
+    margin: 0 0 0 20rpx;
+    border: 1rpx solid #E7E7E7;
+    background: #fcfcfc url("https://shgm.jjyyx.com/m/images/detail_goods_s.png?t=418") no-repeat center;
+    background-size: 100%;
+}
+
+.li .cnt .more .image .i {
+    position: absolute;
+    top: 4rpx;
+    left: 4rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    background-color: #FF4752;
+    font-size: 20rpx;
+    border-radius: 16rpx;
+    padding: 0 8rpx;
+    color: fff;
+}
+
+.li .cnt .more .image image {
+    display: block;
+    height: 128rpx;
+    width: 128rpx;
+    border: none;
+}
+
+.li .total-item {
+    padding: 10rpx 0rpx;
+    color: #94969C;
+    font-size: 24rpx;
+}
+
+.li .total-item .total-item1 text,
+.li .total-item .total-item2 text {
+    height: 42rpx;
+    line-height: 42rpx;
+}
+
+.li .time-tip {
+    position: relative;
+    height: 64rpx;
+}
+
+.li .time-tip .time-tip-text {
+    position: absolute;
+    right: 32rpx;
+    top: 0;
+    background-color: #FFF2F6;
+    color: #FF4752;
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    padding: 0 20rpx;
+    border-radius: 10rpx;
+}
+
+.li .time-tip .time-tip-text icon {
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 50%;
+    bottom: -14rpx;
+    font-size: 0;
+    border-width: 8rpx;
+    border-style: solid;
+    border-color: #FFF2F6 transparent transparent;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.li .btn {
+    display: flex;
+    display: -webkit-flex;
+    line-height: 64rpx;
+    text-align: center;
+    font-size: 28rpx;
+    border: 1rpx solid #E7E7E7;
+    border-radius: 4rpx;
+}
+
+.li .btn view {
+    flex: 1;
+    color: #777777;
+    line-height: 64rpx;
+}
+
+.li .btn view:nth-child(2) {
+    border-left: 1rpx solid #e6e6e6;
+}
+
+.get-time-box {
+    padding: 0 0rpx;
+}
+
+.get-time-box .get-time {
+    border-top: 1rpx solid #E7E7E7;
+    padding: 20rpx 0;
+    font-size: 24rpx;
+    line-height: 32rpx;
+    color: #94969C;
+}

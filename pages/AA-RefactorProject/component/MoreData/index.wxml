@@ -1,0 +1,20 @@
+<view class="more_data dis_f_co_c_c">
+	<view wx:if="{{more}}">
+		<view class="dis_f_c_c">
+			<image class="icon" src="{{$.img_src}}/components/more-data/loading.png" mode="aspectFit"></image>
+			<text>加载中...</text>
+		</view>
+	</view>
+	<view wx:else>
+		<text style="font-size: 20rpx;" wx:if="{{type==1}}">长按上滑可进入下一分类哟~</text>
+		<text style="font-size: 20rpx;" wx:elif="{{type==2}}">抬手进入下一分类哟~</text>
+		<view class="Explosives dis_f_c_c" wx:elif="{{type==3}}">
+			<view class="xian"></view>
+			<view class="zi">
+				已经到底了
+			</view>
+			<view class="xian"></view>
+		</view>
+		<image class="no_more" src="{{$.img_src}}/components/more-data/no_more.png" mode="aspectFit" wx:else></image>
+	</view>
+</view>
