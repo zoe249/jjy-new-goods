@@ -156,5 +156,122 @@ appid： wxde44b26e4ca915b3
 
 | 页面(名称、路径)               | 主要字段                                                     | 逻辑 / 功能                                                  | 使用组件(红色为公共组件)                                     |      |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| 购物车<br>pages/cart/cart/cart | tabStatus<br>loadingHidden<br>addressId<br>cartInputJson<br>cartOutputJson<br>currentDelivery<br>editCartCan<br> | 1.动态新增底部全局导航栏<br/>2.调用接口，校验商品，计算订单金额<br>3.商品选择，删除功能<br>4.全选，取消全选<br>5.门店全选<br>6.送货，自提，自提柜<br>7.根据当前地址判断门店是否可配送<br>8.库存不足提示<br>9.其他活动<br>10......... | <font color="red">cabinet-pop 自提点选择</font><br><font color="red">component-iphone-x-patcher(适配iPhone异形屏)</font><br/> |      |
+| 购物车<br>pages/cart/cart/cart | tabStatus<br>loadingHidden<br>addressId<br>cartInputJson<br>cartOutputJson<br>currentDelivery<br>editCartCan<br>newCartJson<br><br>foodDelivery<br>goodsDelivery<br>goodsB2CDelivery<br><br>goods<br> | 1.动态新增底部全局导航栏<br/>2.调用接口，校验商品，计算订单金额<br>3.商品选择，删除功能<br>4.全选，取消全选<br>5.门店全选<br>6.送货，自提，自提柜<br>7.根据当前地址判断门店是否可配送<br>8.库存不足提示<br>9.其他活动<br>10......... | <font color="red">cabinet-pop 自提点选择</font><br><font color="red">component-iphone-x-patcher(适配iPhone异形屏)</font><br/> |      |
+
+**字段解释**
+
+1. foodDelivery 熟食配送方式
+2. goodsDelivery   超市商品配送方式
+3. goodsB2CDelivery 超市商品配送方式
+
+
+
+
+
+1. goods 商品信息
+
+   | 属性               | 注释                                                   |
+   | :----------------- | ------------------------------------------------------ |
+   | canBuy             | 失效商品:3                                             |
+   | goodsId            | 商品id                                                 |
+   | goodsName          | 商品名                                                 |
+   | goodsName          | 商品单价                                               |
+   | goodsPrimePrice    | 商品原价                                               |
+   | goodsTotalPrice    | 当前商品总价格(单价 * 数量)                            |
+   | goodsTotalProPrice | 优惠价格                                               |
+   | goodsTotalSrcPrice | 优惠券价格                                             |
+   | goodsStock         | 商品库存                                               |
+   | isAddPriceGoods    |                                                        |
+   | num                | 数量                                                   |
+   | pricingMethod      | 商品类型(391:称重类，390：计件类)                      |
+   | proId              | 促销id                                                 |
+   | proName            | 促销名称                                               |
+   | proPrice           | 促销价格                                               |
+   | proType            | 活动类型（抢购 ：1178	直降 ：289    海购抢价：998） |
+   | purchaseAmount     |                                                        |
+   | purchaseAmounts    | 步长                                                   |
+   | purchaseBegin      | 起购量                                                 |
+   | purchaseUnit       | 商品单位                                               |
+   | salesUnit          | <font color="red">销售单位(不确定)</font>              |
+   | shopId             | 店铺id                                                 |
+   | skuId              | 商品skuid                                              |
+   | skuName            | 商品sku名称                                            |
+   | specName           | 规格                                                   |
+   | startTime          | 开始时间                                               |
+   | storeId            |                                                        |
+   | storeStatus        | 门店状态                                               |
+   | storeType          |                                                        |
+   | useDays            |                                                        |
+   | useNumber          |                                                        |
+   | usePro             |                                                        |
+   | weightValue        |                                                        |
+   | newPresentArr      | 赠品                                                   |
+   | promotionList      | <font color="red">活动列表(不确定）</font>，内容见下表 |
+
+2. promotionList 商品活动列表 [Object Array]
+
+   | 属性                | 注释                                      |
+   | ------------------- | ----------------------------------------- |
+   | alreadyBuyCount     | <font color="red">已购买量(不确定)</font> |
+   | promotionCountLimit | 历史商品数量                              |
+   | minBuyCount         | 最小起购量                                |
+   | orderCountLimit     | 已购买数量                                |
+   | proDesc             | 促销内容                                  |
+   | proBeginTime        | 促销开始时间                              |
+   | proEndTime          | 促销结束时间                              |
+   | proId               | 促销id                                    |
+   | proInfo             | 促销信息                                  |
+   | proPrice            | 促销价格                                  |
+   | proStatus           |                                           |
+   | proStock            |                                           |
+   | proTag              | 促销标签图片                              |
+
+
+**函数**
+
+1. onShow() 页面显示，缓存购物车中是否有信息 ，没有就显示空页面
+   
+2. onShow() 校验购物车地址是否正确
+
+3. onShow() 调用renderCartPage() 渲染购物车列表数据 
+
+   * 根据用户定位信息查询地址信息列表，判断是否有范围内<font color="red">可以配送</font>的门店
+
+   * 判断缓存中是否有购物车商品，没有则return，有则门店商品是否为空
+
+   * 调用接口，商品校验，计算订单金额 URL_CART_GOODSVALID
+
+   * 更新 data 中的商品配送方式列表
+
+   * 同步本地库存和接口返回库存(超过最大库存的以返回库存为准)
+
+     * 多层循环，判断本地的商品是否跟返回的商品一致
+
+     * 判断购买量是否大于库存，大于则将库存数赋值给商品
+
+     * 判断是否限购
+
+     * 称重类商品通过下面公式计算购买数量
+
+       ```js
+       // 限购    购买量 = (已购买数量 - 起购量) / 步长 + 1
+       let surplusWeight = totalWeight - prItem.alreadyBuyCount - purchaseBegin;
+       let limitNum = parseInt(surplusWeight / outputGoodsItem.purchaseAmounts) + 1;
+       // 不限购     最小购买量  /  步长  + 1 
+       let limitNum = parseInt(minBuyCount / outputGoodsItem.purchaseAmounts) + 1;
+       ```
+
+   * 判断加价购和非加价购的商品.......
+
+   * 挑选满足条件的赠品（赠品属于哪个店，赠品属于哪个商品)
+
+   * 判断店铺的选择状态和全选
+
+   * 判断商品是否可以购买
+
+   * 补充....
+
+# 完善更新中.............
+
+
 

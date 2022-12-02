@@ -1603,7 +1603,9 @@ var forDeepClone = (function () {
 		getType: getType
 	}
 })();
-
+/**
+ * 深拷贝
+ */
 function deepClone(obj) {
 	//如果obj不是对象，那么直接返回值就可以了
 	var deep = deep || true;
@@ -2572,12 +2574,12 @@ function filterEmoji(emojireg) {
 	emojireg = emojireg.replace(new RegExp(ranges.join('|'), 'g'), '');
 	return emojireg
 }
-/*
-	购物车商品配送方式判断项
-	typearr 配送类型数组
-	typenum 配送返回值
-	arr 配送展示json
-*/
+/**
+ * 购物车商品配送方式判断项
+ * @typearr 配送类型数组
+ * 	@typenum 配送返回值
+ * 	@arr 配送展示json
+ */
 function deliveryValidFun(typearr, typenum, arr) {
 	let dataArr = typearr.filter(item => item & typenum)
 	for (let i in arr) {

@@ -581,6 +581,7 @@ Page({
 				UTIL.ajaxCommon(API.URL_CART_GOODSVALID, cartInputJson, {
 					"complete": (res) => {
 						// 限制购买商品库存
+						console.log('接口返回的信息', res)
 						if (res && res._code == '003017') {
 							console.log('状态码003017', res)
 							// 1.没理解
@@ -620,25 +621,29 @@ Page({
 						let loseIsAddPriceGoods = [];
 						let changeStockArr = [];
 						let undercarriageFlag = false; // 是否显示下架按钮
-						/*同步本地和返回库存超过最大库存的以返回库存为准*/
+						/*同步本地和返回库存   超过最大库存的以返回库存为准*/
 						console.log('打印本地库存', newlocalList)
-						console.log('打印不知道是什么东西', cartOutputJson)
+						console.log('返回的库存', cartOutputJson)
 						for (let i = 0; i < newlocalList.length; i++) {
-							// 1.这一层是单个门店
+							// 1.遍历：这一层是循环本地单个门店
 							for (let j = 0; j < newlocalList[i].goodsList.length; j++) {
-								// 2.这一层是单个商品
+								// 2.遍历：这一层是循环本地门店下的单个商品
 								for (let m = 0; m < cartOutputJson._data.storeList.length; m++) {
-									// 3.这一层是遍历cartOutputJson 里的门店
+									// 3.遍历：这一层是循环 cartOutputJson 返回的门店
 									if (newlocalList[i].storeId == cartOutputJson._data.storeList[m].storeId) {
-										// console.log('过滤第一次后的数据', cartOutputJson)
+										// 4.判断：本地门店是否跟返回的门店一致
 										for (let n = 0; n < cartOutputJson._data.storeList[m].goodsList.length; n++) {
+											// 5.遍历：这一层是循环返回门店下的商品
 											let outputGoodsItem = cartOutputJson._data.storeList[m].goodsList[n]; // 
-											console.log('过滤出的商品', outputGoodsItem)
+											// 6.判断：本地的商品是否跟返回的商品一致
 											if (newlocalList[i].goodsList[j].goodsId == outputGoodsItem.goodsId && newlocalList[i].goodsList[j].skuId == outputGoodsItem.skuId && newlocalList[i].goodsList[j].isAddPriceGoods == outputGoodsItem.isAddPriceGoods) {
 												// 判断同一类型的商品
 												console.log('统一类型的商品', newlocalList[i].goodsList[j])
+												// 7.判断： 商品购买数是否大于库存
 												if (newlocalList[i].goodsList[j].num > outputGoodsItem.goodsStock) {
 													// 购买数量大于校验返回库存
+
+													// 8.没有库存标识，不可选
 													if (outputGoodsItem.goodsStock == 0 && newlocalList[i].goodsList[j].isSelect == 1) {
 														// 没有库存标识不可选	(没有库存，标识不可选)
 														newlocalList[i].goodsList[j].isSelect = 0;
@@ -652,19 +657,22 @@ Page({
 															isAddPriceGoods: newlocalList[i].goodsList[j].isAddPriceGoods
 														};
 														changeStockArr.push(stockChangeJson); // 选择商品大于库存的商品数组
-														newlocalList[i].goodsList[j].num = outputGoodsItem.goodsStock;
+														newlocalList[i].goodsList[j].num = outputGoodsItem.goodsStock;  // 商品选择数量大于库存时，将库存数量赋值给商品数
 														reloadProId = true;
 													}
 												} else {
-
+													// 商品购买数小于库存
 													// 促销限购promotionCountLimitNum > 0 && (289|| 1178)
 													outputGoodsItem.promotionList.map((prItem) => {
 														let promotionCountLimitNum = prItem.promotionCountLimit || 0; // 历史商品数量，超出限购数量，取最大限购量
 														let minBuyCount = prItem.minBuyCount || 0; // 最小起购量
 														let purchaseBegin = outputGoodsItem.purchaseBegin; // 起购量
-														let validLimitGoods = newlocalList[i].goodsList[j];
+														let validLimitGoods = newlocalList[i].goodsList[j]; // 商品的选中信息
+														// 抢购 proType：1178
+														// 直降 proType：289
+														// 商品被选中 && 商品属于抢购类或直接类
 														if ((validLimitGoods.proId == prItem.proId) && (prItem.proType == 289 || prItem.proType == 1178)) {
-															// 称重类
+															// 称重类 pricingMethodL:391
 															if (outputGoodsItem.pricingMethod == 391) {
 																let compareweightValue = outputGoodsItem.weightValue; // 比较限购量
 																// 起购
@@ -673,11 +681,12 @@ Page({
 																}
 																// 限购
 																if (!!promotionCountLimitNum && (prItem.alreadyBuyCount < promotionCountLimitNum)) {
-																	if (compareweightValue > promotionCountLimitNum) {
+																	if (compareweightValue > promotionCountLimitNum) {  // 限购量大于购买量
 																		// 3300 - 1500(已买) -1000(起购量)/步长（取整）+1（起购量）
 																		let totalWeight = promotionCountLimitNum;
 																		let surplusWeight = totalWeight - prItem.alreadyBuyCount - purchaseBegin;
 																		if (surplusWeight > 0) {
+																			// 计算购买数量 limitNum
 																			let limitNum = parseInt(surplusWeight / outputGoodsItem.purchaseAmounts) + 1;
 																			if (limitNum > outputGoodsItem.goodsStock && minBuyCount > 0 && prItem.proType == 1178) {
 																				newlocalList[i].goodsList[j].isSelect = 0;
@@ -748,14 +757,15 @@ Page({
 						if (changeStockArr.length > 0) {
 							wx.setStorageSync("changeStockArr", JSON.stringify(changeStockArr));
 						}
-						// 1、判断加价购和非加价购商品；2、
-						// 非加价购商品对照本地和返回数据的促销
+						// 1、判断加价购和非加价购商品；
+						// 2、非加价购商品对照本地和返回数据的促销
+						console.log('非加价购商品对本地和数据返回的促销', newData)
 						for (var n = 0; n < newData.storeList.length; n++) {
 							for (var i = 0; i < newlocalList.length; i++) {
 								if (newData.storeList[n].storeId == newlocalList[i].storeId && newData.storeList[n].storeType == newlocalList[i].storeType) {
 									for (var m = 0; m < newData.storeList[n].goodsList.length; m++) {
 										if (newData.storeList[n].goodsList[m].canBuy == 0 && newData.storeList[n].goodsList[m].goodsStock > 0) {
-											undercarriageFlag = true;
+											undercarriageFlag = true; // 显示按钮（清除已下架商品）
 										}
 										for (var j = 0; j < newlocalList[i].goodsList.length; j++) {
 											if (newData.storeList[n].goodsList[m].skuId == newlocalList[i].goodsList[j].skuId && newData.storeList[n].goodsList[m].isAddPriceGoods == newlocalList[i].goodsList[j].isAddPriceGoods && !newlocalList[i].goodsList[j].isAddPriceGoods) {
@@ -815,7 +825,6 @@ Page({
 								}
 							}
 						}
-
 						if (reloadProId) {
 							/*加价购失效的时候清除加价购商品*/
 							if (loseIsAddPriceGoods.length > 0) {
@@ -2090,6 +2099,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow(options) {
+		console.log('生命周期函数-----监听页面显示', options)
 		if (APP && APP.globalData && APP.globalData.wxVersion) wx.hideHomeButton();
 		UTIL.clearFillData();
 		removeCartZT();
@@ -2134,6 +2144,7 @@ Page({
 
 				UTIL.ajaxCommon(API.URL_ADDRESS_LISTBYLOCATION, {}, {
 					"complete": (res) => {
+						console.log('定位返回的位置信息', res)
 						let addressRecommendJson = res;
 						if (addressRecommendJson && addressRecommendJson._code != API.SUCCESS_CODE || addressRecommendJson._data.length < 0) { }
 						if (addressRecommendJson && addressRecommendJson._code == API.SUCCESS_CODE && addressRecommendJson._data.length > 0) {
