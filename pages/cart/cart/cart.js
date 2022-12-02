@@ -1089,6 +1089,7 @@ Page({
 	},
 	// 店铺选择、商品选择、全选
 	checkedGoodsHandler(event) {
+    console.log('店铺选择', event)
 		let that = this;
 		let canSelect = event.currentTarget.dataset.canSelect == 1 ? true : false;
 		let storeId = event.currentTarget.dataset.storeId || 0;
@@ -1199,7 +1200,7 @@ Page({
 		});
 	},
 	/**
-	 * 删除选中商品弹窗
+	 * 单击顶部删除按钮的回调
 	 */
 	batchDelGoods() {
 		let newCartJson = this.data.newCartJson
@@ -1325,6 +1326,7 @@ Page({
 	},
 	/*确认删除购物车商品*/
 	modalCallback(event) {
+    console.log('确定删除的回调函数', event)
 		if (modalResult(event)) {
 			let that = this;
 			let editCartList = JSON.parse(wx.getStorageSync("cartList"));
@@ -1339,6 +1341,7 @@ Page({
 						if (editCartList[i].goodsList[j].skuId == that.data.delData.skuId && editCartList[i].goodsList[j].isAddPriceGoods == that.data.delData.isAddPriceGoods) {
 
 						} else {
+              console.log('删除的商品-----------------',editCartList[i].goodsList[j])
 							goodList.push(editCartList[i].goodsList[j]);
 						}
 					}
@@ -1508,8 +1511,11 @@ Page({
 		});
 
 	},
-	// 改变购买商品数量
+	/**
+   *  改变购买商品数量
+   */
 	cartNumChangeAdd(event) {
+    console.log('购物车加数量', event)
 		let that = this;
 		let {
 			num,
@@ -1563,7 +1569,10 @@ Page({
 		} else {
 			APP.showToast("抱歉，该商品库存不足");
 		}
-	},
+  },
+  /**
+   * 购物车减数量
+   */
 	cartNumChangeDecrease(event) {
 		let that = this;
 		let {

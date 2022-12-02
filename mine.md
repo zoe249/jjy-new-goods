@@ -226,33 +226,32 @@ appid： wxde44b26e4ca915b3
    | proStock            |                                           |
    | proTag              | 促销标签图片                              |
 
-
-**函数**
+**生命周期、方法**
 
 1. onShow() 页面显示，缓存购物车中是否有信息 ，没有就显示空页面
    
-2. onShow() 校验购物车地址是否正确
-
-3. onShow() 调用renderCartPage() 渲染购物车列表数据 
-
+   onShow() 校验购物车地址是否正确
+   
+   onShow() 调用renderCartPage() 渲染购物车列表数据 
+   
    * 根据用户定位信息查询地址信息列表，判断是否有范围内<font color="red">可以配送</font>的门店
-
+   
    * 判断缓存中是否有购物车商品，没有则return，有则门店商品是否为空
-
+   
    * 调用接口，商品校验，计算订单金额 URL_CART_GOODSVALID
-
+   
    * 更新 data 中的商品配送方式列表
-
+   
    * 同步本地库存和接口返回库存(超过最大库存的以返回库存为准)
-
+   
      * 多层循环，判断本地的商品是否跟返回的商品一致
-
+   
      * 判断购买量是否大于库存，大于则将库存数赋值给商品
-
+   
      * 判断是否限购
-
+   
      * 称重类商品通过下面公式计算购买数量
-
+   
        ```js
        // 限购    购买量 = (已购买数量 - 起购量) / 步长 + 1
        let surplusWeight = totalWeight - prItem.alreadyBuyCount - purchaseBegin;
@@ -260,16 +259,22 @@ appid： wxde44b26e4ca915b3
        // 不限购     最小购买量  /  步长  + 1 
        let limitNum = parseInt(minBuyCount / outputGoodsItem.purchaseAmounts) + 1;
        ```
-
+   
    * 判断加价购和非加价购的商品.......
-
+   
    * 挑选满足条件的赠品（赠品属于哪个店，赠品属于哪个商品)
-
+   
    * 判断店铺的选择状态和全选
-
+   
    * 判断商品是否可以购买
-
+   
    * 补充....
+   
+2. checkedGoodsHandler()  店铺选择、商品选择、全选
+
+   * selectType 值为one：单个商品，all：全选（或者全部选择），store：店铺的选择
+
+3. 促销类回调.....
 
 # 完善更新中.............
 
