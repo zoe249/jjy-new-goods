@@ -1089,7 +1089,7 @@ Page({
 	},
 	// 店铺选择、商品选择、全选
 	checkedGoodsHandler(event) {
-    console.log('店铺选择', event)
+		console.log('店铺选择', event)
 		let that = this;
 		let canSelect = event.currentTarget.dataset.canSelect == 1 ? true : false;
 		let storeId = event.currentTarget.dataset.storeId || 0;
@@ -1283,9 +1283,11 @@ Page({
 		that.renderCartPage();
 	},
 	/**
+	 * modal 弹出层点击确定后触发,
 	 * 批量删除购物车选择商品
 	 */
 	confirmBatchDelGoods() {
+		console.log('批量删除购物车选择商品')
 		APP.hideModal();
 		let that = this;
 		let editCartList = JSON.parse(wx.getStorageSync("cartList"));
@@ -1324,9 +1326,11 @@ Page({
 		});
 		that.renderCartPage();
 	},
-	/*确认删除购物车商品*/
+	/**
+	 * 左滑确认删除购物车商品
+	 */
 	modalCallback(event) {
-    console.log('确定删除的回调函数', event)
+		console.log('确定删除的回调函数', event)
 		if (modalResult(event)) {
 			let that = this;
 			let editCartList = JSON.parse(wx.getStorageSync("cartList"));
@@ -1339,9 +1343,9 @@ Page({
 					let goodList = [];
 					for (var j = 0; j < editCartList[i].goodsList.length; j++) {
 						if (editCartList[i].goodsList[j].skuId == that.data.delData.skuId && editCartList[i].goodsList[j].isAddPriceGoods == that.data.delData.isAddPriceGoods) {
-
+							console.log('删除的商品-----------------', editCartList[i].goodsList[j])
 						} else {
-              console.log('删除的商品-----------------',editCartList[i].goodsList[j])
+							// 非删除的商品，重新存储到缓存中
 							goodList.push(editCartList[i].goodsList[j]);
 						}
 					}
@@ -1372,7 +1376,12 @@ Page({
 			that.renderCartPage();
 		}
 	},
+	/**
+	 * 不触发
+	 * @param {*} event 
+	 */
 	confirmDelGoods(event) {
+		console.log('确认删除的回调函数----------111111111111111111')
 		let that = this;
 		let editCartList = JSON.parse(wx.getStorageSync("cartList"));
 		let nowCartList = [];
@@ -1414,8 +1423,13 @@ Page({
 		});
 		that.renderCartPage();
 	},
-	/*取消删除购物车商品*/
+	/**
+	 * 不触发
+	 * @param {*} event 
+	 * 取消删除购物车商品
+	 */
 	cancelDelGoods(event) {
+		console.log('取消删除购物车商品------')
 		this.setData({
 			popDel: false
 		});
@@ -1512,10 +1526,10 @@ Page({
 
 	},
 	/**
-   *  改变购买商品数量
-   */
+	 *  改变购买商品数量
+	 */
 	cartNumChangeAdd(event) {
-    console.log('购物车加数量', event)
+		console.log('购物车加数量', event)
 		let that = this;
 		let {
 			num,
@@ -1569,10 +1583,10 @@ Page({
 		} else {
 			APP.showToast("抱歉，该商品库存不足");
 		}
-  },
-  /**
-   * 购物车减数量
-   */
+	},
+	/**
+	 * 购物车减数量
+	 */
 	cartNumChangeDecrease(event) {
 		let that = this;
 		let {
@@ -1621,6 +1635,7 @@ Page({
 								// 	newlocalList[i].goodsList[j].num = returnLimitNum
 								// } else {
 								--newlocalList[i].goodsList[j].num;
+								console.log('减少数量', newlocalList[i].goodsList[j].num)
 								// }
 							} else {
 								newlocalList[i].goodsList[j].num = 1;
@@ -1698,6 +1713,7 @@ Page({
 	},
 	/*跳到店铺主页*/
 	toStoreIndex(event) {
+		console.log('跳转打店铺首页')
 		// let goodsId = event.currentTarget.dataset.goodsId;
 		// let storeId = event.currentTarget.dataset.storeId;
 		// let skuId = event.currentTarget.dataset.skuId;
@@ -1729,7 +1745,9 @@ Page({
 			url: `/pages/cart/promotion/promotion?storeId=${storeId}&from=cart&proId=${proId}&goodsB2CDelivery=${goodsB2CDelivery}&foodDelivery=${foodDelivery}&goodsDelivery=${goodsDelivery}`,
 		});
 	},
-	/*去结算*/
+  /**
+   * 去结算
+   */
 	settleAccounts() {
 		let that = this;
 
@@ -1798,6 +1816,7 @@ Page({
 				});
 				UTIL.ajaxCommon(API.URL_CART_GOODSVALID, inputJson, {
 					"complete": (res) => {
+						console.log('判断是否有被限制数量的商品--------------------------', res._data)
 						getPayJson = res || {};
 						localForCallbackProId(JSON.parse(wx.getStorageSync('cartList')), getPayJson._data);
 						that.setData({
@@ -1822,6 +1841,7 @@ Page({
 											// 判断是否有限制数量的商品
 											if (getPayJson._data.storeList[i].goodsList[m].errMsg && getPayJson._data.storeList[i].goodsList[m].errMsg !== null) {
 												limitErrMsgArr = [];
+
 												limitErrMsgJson = {
 													"goodsName": getPayJson._data.storeList[i].goodsList[m].goodsName || '商品',
 													"errMsg": getPayJson._data.storeList[i].goodsList[m].errMsg || ''
@@ -1996,6 +2016,7 @@ Page({
 	 * 切换送货方式
 	 */
 	switchDeliveryFood(event) {
+
 		let that = this;
 		// 切换"堂食"和"外卖"
 		if (that.data.foodDelivery != event.target.dataset.foodDelivery) {
@@ -2037,6 +2058,7 @@ Page({
 	},
 	// 切换"送货"和"自提"
 	switchDeliveryMarket(event) {
+    console.log('切换配送方式', event)
 		let that = this;
 		let noSelectPeisong = event.target.dataset.noSelectPeisong == 1 ? 0 : 1;
 		let goodsDelivery = event.target.dataset.goodsDelivery;
@@ -2231,6 +2253,13 @@ function globalOverPriceF(dataList) {
  * type筛选的类型
  * GOODS_TYPE_GLOBAL全球购
  * */
+/**
+ * 
+ * 全球购和普通商品同时存在的时候筛选出，传到结算的商品
+ * @data  传过来的storeList
+ * @type  筛选的类型
+ * @returns 
+ */
 function filterGlobalOrDiqiugang(data, type) {
 	var data = data || [];
 	if (data.length == 0) {
@@ -2322,13 +2351,12 @@ function reSetPorId(proOutputMap) {
 	});
 	wx.setStorageSync("forFillCartList", JSON.stringify(cartList4Fill));
 }
-/*订单填写页面forFillCartList
- *  * @param {Object} goodsObj需要传得结构
- * goodsObj{
- * skuId,
- * goodsId
- }
- * storeType所传商品的类型*/
+/**
+ * 订单填写页面forFillCartList
+ * @param {*} goodsObj goodsObj需要传得结构
+ * @param {*} storeType storeType所传商品的类型
+ * @param goodsObj  skuId, goodsId 
+ */
 function setForFillCartList(goodsObj, storeType) {
 	let storeTypeForFill = goodsObj.storeType || storeType;
 	let forFillCartList = wx.getStorageSync('forFillCartList') ? JSON.parse(wx.getStorageSync('forFillCartList')) : [];
@@ -2402,7 +2430,4 @@ function setForFillCartList(goodsObj, storeType) {
 		}
 	}
 	wx.setStorageSync('forFillCartList', JSON.stringify(forFillCartList));
-
-
-
 }

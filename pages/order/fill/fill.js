@@ -128,7 +128,7 @@ Page({
    *  goodsDelivery超市商品配送方式：[0 - 自提；1 - 送货(默认)
    *  orderType //下单类型: 不传或传 0为普通下单, 1-积分商品下单,2-闪电付下单，3-1元购 
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     var foodDelivery = !!options.foodDelivery ? options.foodDelivery : 1;
     var goodsDelivery = !!options.goodsDelivery ? options.goodsDelivery : 1;
@@ -137,7 +137,7 @@ Page({
     var orderType = options.orderType ? options.orderType : 0;
     var isGroup = options.isGroup ? options.isGroup : 0;
     var orderFlag = options.orderFlag ? options.orderFlag : false;
-    var isCabinet=goodsDelivery==3?1:2 //自提柜弹窗
+    var isCabinet = goodsDelivery == 3 ? 1 : 2 //自提柜弹窗
     let gorupData = wx.getStorageSync("groupInfo") ? wx.getStorageSync("groupInfo") : {};
     let limitBuyFlag = options.limitBuyFlag ? options.limitBuyFlag : false;
     //抽奖、帮帮
@@ -165,7 +165,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onHide: function() {
+  onHide: function () {
     clearInterval(this.data.orderInterval);
   },
   /**
@@ -181,7 +181,7 @@ Page({
   //     getReportArray
   //   })
   // },
-  onUnload: function() {
+  onUnload: function () {
     let that = this;
     clearInterval(this.data.orderInterval);
     UTIL.jjyBILog({
@@ -353,7 +353,7 @@ Page({
   /**
    * 跳转去凑单
    */
-  jumpRigUp: function() {
+  jumpRigUp: function () {
     wx.redirectTo({
       url: '/pages/index/index',
     })
@@ -361,7 +361,7 @@ Page({
   /**
    * 发票
    */
-  jumpInvoice: function(e) {
+  jumpInvoice: function (e) {
 
     let {
       totalPay,
@@ -425,7 +425,7 @@ Page({
    * foodDelivery(integer, optional): 熟食配送方式：[0 - 堂食；1 - 外卖(默认)；2 - 自提],
    * goodsDelivery(integer, optional): 超市商品配送方式：[0 - 自提；1 - 送货(默认)
    */
-  onShow: function() {
+  onShow: function () {
     var _that = this;
     UTIL.jjyBILog({
       e: 'page_view',
@@ -484,7 +484,7 @@ Page({
       wx.navigateBack(); //购物车为空，返回上一页
       return false;
     } else {
-      cartList.map(function(cl_item) {
+      cartList.map(function (cl_item) {
         if (cl_item.storeType == API.GOODS_TYPE_MARKET || cl_item.storeType == API.GOODS_TYPE_MEMBER) {
           has_g = true;
         } else if (cl_item.storeType == API.GOODS_TYPE_FOOD) {
@@ -496,7 +496,7 @@ Page({
       var result = UTIL.ajaxCommon(API.URL_MEMBER_GETMEMBERINFO, {
         'channel': API.CHANNERL_220
       }, {
-        "success": function(res) {
+        "success": function (res) {
           if (res._code == API.SUCCESS_CODE) {
             if (res._data.valueCard <= 0) {
               isCardPay = 2;
@@ -522,7 +522,7 @@ Page({
                 "shopId": UTIL.getShopId()
               }
               UTIL.ajaxCommon(API.URL_ADDRESS_LISTBYLOCATION, data, {
-                "success": function(ares) {
+                "success": function (ares) {
                   if (ares && ares._code == API.SUCCESS_CODE) {
                     if (ares._data.length > 0) {
                       var selNoFar = false;
@@ -533,7 +533,7 @@ Page({
                       let noFarAddress = {} // 第一个最近可用地址
                       let validAddress = {} // 当前地址
                       let isUseAddress = {}
-                      ares._data.map(function(item) {
+                      ares._data.map(function (item) {
                         //拼团校验 地址校验
                         if (item.isFar != 1) {
                           if (!selNoFar && curAddrId == item.addrId) {
@@ -609,21 +609,21 @@ Page({
     var orderType = this.data.orderType ? this.data.orderType : 0;
     wx.navigateTo({
       url: '/pages/order/fillBill/fillBill?orderType=' + orderType,
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
   /**
    * 配送时间 
    */
-  bindDeliveryPickerChange: function(e) {
+  bindDeliveryPickerChange: function (e) {
     var _that = this;
     goodsCouponValid(_that);
     var pickTimesList = _that.data.cartAllData._data.orderTimes;
     if (_that.data.hasDelivery) {
       this.setData({
-        pickTimesTitle: pickTimesList.timeTitle=='请选择配送时间'?'':pickTimesList.timeTitle,
+        pickTimesTitle: pickTimesList.timeTitle == '请选择配送时间' ? '' : pickTimesList.timeTitle,
         pickTimes: pickTimesList.timeList,
         disableReason: pickTimesList.disableReason
       })
@@ -636,7 +636,7 @@ Page({
   /**
    * 自提时间
    */
-  bindSincePickerChange: function(e) {
+  bindSincePickerChange: function (e) {
     var _that = this;
     goodsCouponValid(_that);
     var pickTimesList = _that.data.cartAllData._data.shopPickUpTimes;
@@ -644,7 +644,7 @@ Page({
     for (var key in pickTimesList) {
       if (currentShopId == key) {
         this.setData({
-          sinceTimesTitle: pickTimesList[key].timeTitle=='请选择自提时间'?'': pickTimesList[key].timeTitle,
+          sinceTimesTitle: pickTimesList[key].timeTitle == '请选择自提时间' ? '' : pickTimesList[key].timeTitle,
           sinceTimes: pickTimesList[key].timeList,
           selectShopId: currentShopId
         })
@@ -669,14 +669,14 @@ Page({
     if (psOrderTime && psOrderTime.timeList) {
       // 配送默认选择时间
       that.setData({
-        pickTimesTitle: psOrderTime.timeTitle=='请选择配送时间'?'':psOrderTime.timeTitle,
+        pickTimesTitle: psOrderTime.timeTitle == '请选择配送时间' ? '' : psOrderTime.timeTitle,
         pickTimes: psOrderTime.timeList
       })
       that.onSelectTime(toclick, nomarlSelectTime.isPreSale)
     } else if (ztOrderTime && ztOrderTime[shopKey]) {
       // 自提默认选择时间
       that.setData({
-        sinceTimesTitle: ztOrderTime[shopKey].timeTitle=='请选择自提时间'?'':ztOrderTime[shopKey].timeTitle,
+        sinceTimesTitle: ztOrderTime[shopKey].timeTitle == '请选择自提时间' ? '' : ztOrderTime[shopKey].timeTitle,
         sinceTimes: ztOrderTime[shopKey].timeList,
         selectShopId: shopKey
       })
@@ -686,7 +686,7 @@ Page({
   /**
    * 优惠券列表显示隐藏
    */
-  toggleCoupon: function(event) {
+  toggleCoupon: function (event) {
     var that = this;
     that.setData({
       counponPicker: true,
@@ -697,7 +697,7 @@ Page({
   /**
    * 选择优惠券
    */
-  selectCoupon: function(event) {
+  selectCoupon: function (event) {
     var that = this;
     const {
       item
@@ -716,7 +716,7 @@ Page({
   /**
    * 清除优惠券选择
    */
-  clearSelectCoupon: function() {
+  clearSelectCoupon: function () {
     var that = this;
     that.setData({
       allowScroll: false,
@@ -728,7 +728,7 @@ Page({
   /**
    * 优惠券列表显示隐藏
    */
-  toggleUnUseCoupon: function(event) {
+  toggleUnUseCoupon: function (event) {
     var that = this;
     wx.navigateTo({
       url: '/pages/user/coupon/coupon?unavailable=true',
@@ -737,7 +737,7 @@ Page({
   /**
    * 选择支付方式
    */
-  onPayWay: function(e) {
+  onPayWay: function (e) {
     var isOptional = e.target.dataset.isoptional;
     if (isOptional == 2) return false; //不可选
     var that = this;
@@ -833,7 +833,7 @@ Page({
       //海沟发票数据清除
       if (that.data.orderType == 5) {
         let cartAllData = that.data.cartAllData;
-        cartAllData.storeList.map(function(item) {
+        cartAllData.storeList.map(function (item) {
           item.invoiceData = false
         })
         that.setData({
@@ -852,7 +852,7 @@ Page({
    * 配送时间选择
    * defaultSel 如果有值则不是绑定事件操作
    */
-  onSelectTime: function(e, defaultSel) {
+  onSelectTime: function (e, defaultSel) {
     var that = this;
     let index = 0;
     let isSel = '';
@@ -890,7 +890,7 @@ Page({
    * 自提时间选择
    * defaultSel 如果有值则不是绑定事件操作
    */
-  onSinceSelectTime: function(e, defaultSel) {
+  onSinceSelectTime: function (e, defaultSel) {
     var that = this;
     let index = 0;
     let isSel = '';
@@ -910,7 +910,7 @@ Page({
     if (info.isSelect == 0) {
       APP.showToast(info.reason);
     } else {
-      sincePushTime.map(function(v) {
+      sincePushTime.map(function (v) {
         if (v.shopId == id) {
           v.since = info //自提时间设定
         }
@@ -921,7 +921,7 @@ Page({
       }
       if (sinceSelectTimeArray && sinceSelectTimeArray.length > 0) {
         var ispush = true;
-        sinceSelectTimeArray.map(function(v) {
+        sinceSelectTimeArray.map(function (v) {
           if (v.id == id) {
             v.info = info;
             ispush = false;
@@ -948,7 +948,7 @@ Page({
   /**
    * 打包服务
    */
-  onSwiperBtn: function(e) {
+  onSwiperBtn: function (e) {
     var that = this;
     var id = e.currentTarget.dataset.storeid;
     var isPackageStore = that.data.isPackageStore;
@@ -959,7 +959,7 @@ Page({
     }
     if (isPackageStore && isPackageStore.length > 0) {
       var ispush = true;
-      isPackageStore.map(function(v, k) {
+      isPackageStore.map(function (v, k) {
         if (v.id == id) {
           if (v.isPackage == 1) {
             v.isPackage = 0;
@@ -984,15 +984,15 @@ Page({
   /**
    * 餐食时间
    */
-  expectMakeTime: function(e) {
+  expectMakeTime: function (e) {
     var _that = this;
     goodsCouponValid(_that);
     var id = e.target.dataset.id;
     var commonPickeTitle = e.target.dataset.timeobj.timeTitle;
     var commonPickeData = e.target.dataset.timeobj.timeList;
     var commonPickeTime = _that.data.commonPickeTime;
-    commonPickeTime.map(function(v) {
-      commonPickeData.map(function(val) {
+    commonPickeTime.map(function (v) {
+      commonPickeData.map(function (val) {
         if (v.expectTime.startTime == val.startTime && v.id == id) {
           val.curSel = 1;
           // val.timeTitle = commonPickeTitle
@@ -1008,7 +1008,7 @@ Page({
       commonPickeId: id
     });
   },
-  onCommonTime: function(e) {
+  onCommonTime: function (e) {
     var that = this;
     var index = e.target.dataset.item;
     var id = that.data.commonPickeId;
@@ -1026,10 +1026,10 @@ Page({
       }
       var ispush = true;
       if (commonPickeTime && commonPickeTime.length > 0) {
-        commonPickeTime.map(function(v) {
+        commonPickeTime.map(function (v) {
           if (v.id == id) {
-            commonPushTime.map(function(item) {
-              item.data.map(function(val) {
+            commonPushTime.map(function (item) {
+              item.data.map(function (val) {
                 if (val.storeId == id) {
                   val.expectTime = info;
                   v.expectTime = info;
@@ -1055,7 +1055,7 @@ Page({
     }
     goodsCouponValid(that);
   },
-  hidePicker: function() {
+  hidePicker: function () {
     var _that = this;
     this.setData({
       allowScroll: false,
@@ -1069,7 +1069,8 @@ Page({
   /**
    * 处理（保存）用户备注
    */
-  remarkInfo: function(e) {
+  remarkInfo: function (e) {
+    console.log('保存用户备注', e)
     var that = this;
     var id = e.target.dataset.storeid;
     var custremark = e.detail.value.trim();
@@ -1080,7 +1081,7 @@ Page({
     }
     if (storeRemark && storeRemark.length > 0) {
       var ispush = true;
-      storeRemark.map(function(v) {
+      storeRemark.map(function (v) {
         if (v.id == id) {
           v.custremark = custremark;
           ispush = false;
@@ -1098,7 +1099,7 @@ Page({
   /**
    * 促销不符合重置数据
    */
-  reSetPorId: function(proOutputMap) {
+  reSetPorId: function (proOutputMap) {
     var that = this;
     var proOutputMap = proOutputMap;
     var cartList4Fill = wx.getStorageSync('forFillCartList') ? JSON.parse(wx.getStorageSync('forFillCartList')) : [];
@@ -1110,12 +1111,12 @@ Page({
       cartList4Fill = wx.getStorageSync('groupInfoCartList') ? wx.getStorageSync('groupInfoCartList') : [];
       var reSetGroupInfo = wx.getStorageSync('groupInfo') ? wx.getStorageSync('groupInfo') : {};
     }
-    cartList4Fill.map(function(val) {
-      val.goodsList.map(function(v) {
+    cartList4Fill.map(function (val) {
+      val.goodsList.map(function (v) {
         // 	//1、不存在						|  都执行修改本地存储购物车促销id
         // 	// 2、conform是否为零			|
-        proOutputMap.map(function(p_val) {
-          p_val.goodsList.map(function(s_val) {
+        proOutputMap.map(function (p_val) {
+          p_val.goodsList.map(function (s_val) {
             if (v.goodsId == s_val.goodsId) {
               v.proId = !!s_val.proId ? s_val.proId : 0;
               v.proType = !!s_val.proType ? s_val.proType : 0;
@@ -1124,8 +1125,8 @@ Page({
         })
       });
     });
-    that.data.cartList.map(function(item) {
-      cartList4Fill.map(function(list) {
+    that.data.cartList.map(function (item) {
+      cartList4Fill.map(function (list) {
         item.goodsList = list.goodsList
       })
     });
@@ -1151,7 +1152,7 @@ Page({
     goodsCouponValid(that);
   },
   /**
-   * 
+   * 海购，苛选
    */
   saveAddressToCustomsDoc(e) {
     var that = this;
@@ -1176,32 +1177,32 @@ Page({
     })
 
   },
-  
+
 
   /**
    * 创建订单
    */
-  createOrder: UTIL.throttle( function(e) {
+  createOrder: UTIL.throttle(function (e) {
     var that = this;
     var o2oInvoice = that.data.o2oInvoice ? that.data.o2oInvoice : {}; //发票信息
     var couponId = that.data.couponCodeId;
     var couponSn = that.data.couponCodeValue;
-    var cardValue = that.data.cardPay;
+    var cardValue = that.data.cardPay;  // 生活卡支付金额
     var orderStoreInfoList = that.data.orderStoreInfoList;
-    var memberAddrId = that.data.curAddrId;
+    var memberAddrId = that.data.curAddrId; // 当前地址id
     var remainMoney = 0;
-    var score = that.data.isScorePay == 1 ? that.data.score : 0;
-    var scorePay = that.data.isScorePay == 1 ? that.data.scorePay : 0;
-    var scoreAmount = 0;
+    var score = that.data.isScorePay == 1 ? that.data.score : 0;  // 积分支付
+    var scorePay = that.data.isScorePay == 1 ? that.data.scorePay : 0;  // 积分金额
+    var scoreAmount = 0;  
     var thirdPayAmount = 0;
     var total = that.data.cartAllData._data;
     //payAmount [必需]应付总额, 订单商品金额-优惠券金额-促销金额+配送金额+打包金额
     var payAmount = UTIL.FloatSub(UTIL.FloatAdd(UTIL.FloatAdd(UTIL.FloatSub(UTIL.FloatSub(total.totalSrcPrice, total.couponPrice), total.totalProPrice), total.freight), total.totalPackageCost), scorePay);
-    var payType = API.PAYTYPE_34;
+    var payType = API.PAYTYPE_34; // 34-微信支付
     /*支付方式 34-微信支付PAYTYPE_34,496-积分兑换PAYTYPE_496，497-生活卡支付 PAYTYPE_497，498-混合支付*/
-    var isCardPay = that.data.isCardPay == 4 ? 0 : that.data.isCardPay;
-    var isScorePay = that.data.isScorePay;
-    var isWXPay = that.data.isWXPay;
+    var isCardPay = that.data.isCardPay == 4 ? 0 : that.data.isCardPay; // 生活卡支付
+    var isScorePay = that.data.isScorePay;  // 是否积分支付
+    var isWXPay = that.data.isWXPay;  // 是否微信支付
     var deliveryTimeArray = that.data.deliveryTimeArray;
     var myFirstAddress = that.data.myFirstAddress; //wx.getStorageSync('fillAddress');
     var isPreSale = total.isPreSale; // 预售标识
@@ -1234,7 +1235,7 @@ Page({
     //地址是否为空,同时判断是否有商品
     var g = false;
     var f = false;
-    total.storeList.map(function(item) {
+    total.storeList.map(function (item) {
       if (item.storeType == API.GOODS_TYPE_MARKET || item.storeType == API.GOODS_TYPE_MEMBER) {
         g = true;
       } else if (item.storeType == API.GOODS_TYPE_FOOD) {
@@ -1247,7 +1248,8 @@ Page({
      * 处理异常事件丢失
      */
     var deliveryTimeArray = that.data.deliveryTimeArray;
-    orderStoreInfoList.map(function(v) {
+    orderStoreInfoList.map(function (v) {
+      /* 商品配送 */ 
       if (goodsDelivery == "1" && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
         v.shippingEndTime = isDefine(deliveryTimeArray.endTime) ? deliveryTimeArray.endTime : "";
         v.shippingStartTime = isDefine(deliveryTimeArray.startTime) ? deliveryTimeArray.startTime : "";
@@ -1280,7 +1282,7 @@ Page({
     }
     //判断配送时间是否赋值
     var noPushTime = true;
-    orderStoreInfoList.map(function(v) {
+    orderStoreInfoList.map(function (v) {
       /* 超市配送 */
       /*餐食配送*/
       if ((g && goodsDelivery == "1" && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) || (f && foodDelivery == "1" && v.storeType == API.GOODS_TYPE_FOOD)) {
@@ -1305,9 +1307,9 @@ Page({
       return;
     }
     /*自提时间*/
-    if (goodsDelivery == "0"||goodsDelivery=="3" || foodDelivery == "2") {
+    if (goodsDelivery == "0" || goodsDelivery == "3" || foodDelivery == "2") {
       var hasTimes = false;
-      orderStoreInfoList.map(function(v) {
+      orderStoreInfoList.map(function (v) {
         if (v.shippingStartTime == '' || v.shippingEndTime == '') {
           if (g && goodsDelivery == "0") {
             hasTimes = true;
@@ -1331,8 +1333,8 @@ Page({
     //餐食
     if (f && foodDelivery == "0") {
       var hasTimes = false;
-      that.data.regroupShopData.map(function(item) {
-        item.food.map(function(key_v) {
+      that.data.regroupShopData.map(function (item) {
+        item.food.map(function (key_v) {
           if (!key_v.expectTime && !hasTimes) {
             hasTimes = true;
           }
@@ -1349,7 +1351,7 @@ Page({
     }
     //o2o发票
     if (that.data.invoiceInfoDetail && orderType != 5) {
-      orderStoreInfoList.map(function(item) {
+      orderStoreInfoList.map(function (item) {
         item.invoiceContentType = o2oInvoice.invoiceContentType;
         item.invoiceNo = o2oInvoice.invoiceNo;
         item.invoiceTitle = o2oInvoice.invoiceTitle;
@@ -1372,7 +1374,7 @@ Page({
     }
     var createOrderData = {
       "cardValue": UTIL.FloatDiv(cardValue, proportion), //存储卡支付金额
-      "channel": API.CHANNERL_220,
+      "channel": API.CHANNERL_220,  // 渠道来源 220-小程序
       "couponId": couponId,
       "couponSn": couponSn,
       "memberAddrId": memberAddrId,
@@ -1385,12 +1387,12 @@ Page({
       "score": score, // 用户积分
       // "scoreAmount": "",//scoreAmount 
       "shippingAmount": shippingAmount, //配送费，单位：分,
-      "shopId": that.data.validShopId,
+      "shopId": that.data.validShopId,  // 店铺ID
       "thirdPayAmount": UTIL.FloatDiv(that.data.totalPay, proportion) //需要第三方支付金额，指需要调用支付宝/微信的金额，单位：分 ,
     };
-    if(goodsDelivery=="3"){
-      createOrderData.cabinetAddrId=APP.globalData.cabinetData.id
-      createOrderData.cabinetAddress=APP.globalData.cabinetData.address
+    if (goodsDelivery == "3") {
+      createOrderData.cabinetAddrId = APP.globalData.cabinetData.id
+      createOrderData.cabinetAddress = APP.globalData.cabinetData.address
     }
     if (that.data.comRequest) {
       that.setData({
@@ -1398,10 +1400,10 @@ Page({
       });
 
       let subscribeMessageArray = [];
-      var createUrl = API.URL_ORDER_CREATE;
+      var createUrl = API.URL_ORDER_CREATE; // 下单接口
       if (that.data.isGroup == 1) {
         subscribeMessageArray.push('group') // 拼团
-        createUrl = API.URL_ORDER_CREATEGROUPBUYINGO2O;
+        createUrl = API.URL_ORDER_CREATEGROUPBUYINGO2O; // O2O拼团下单接口
         createOrderData.groupId = that.data.groupInfo.groupId;
         let groupMode = that.data.groupInfo.groupMode; //帮帮团，抽奖团
         if (groupMode == 1886 || groupMode == 1887 || groupMode == 1937) {
@@ -1416,23 +1418,23 @@ Page({
         // delete createOrderData.couponSn;
         createOrderData.isSubscription = isPreSale
       }
-      if (goodsDelivery=="3"){
+      if (goodsDelivery == "3") {
         subscribeMessageArray.push('cabinet')
       }
       //海购下单
       if (that.data.orderType == 5) {
-        createUrl = API.URL_ORDER_CREATEGLOBAL;
-        createOrderData.taxPrice = taxPrice;
+        createUrl = API.URL_ORDER_CREATEGLOBAL; // 海购接口
+        createOrderData.taxPrice = taxPrice;  // 税费
       }
-      if(that.data.isCabinet==1){
+      if (that.data.isCabinet == 1) {
         that.setData({
-          comfirmOrderBoxShow:true
+          comfirmOrderBoxShow: true
         })
         return false
       }
       APP.showGlobalLoading()
       UTIL.ajaxCommon(createUrl, createOrderData, {
-        "success": function(res) {
+        "success": function (res) {
           if (res && res._code == API.SUCCESS_CODE) {
             UTIL.jjyBILog({
               e: 'click', //事件代码
@@ -1450,74 +1452,74 @@ Page({
               return;
             }
             //一次性订阅消息
-            UTIL.subscribeMsg(subscribeMessageArray).then(function(){
+            UTIL.subscribeMsg(subscribeMessageArray).then(function () {
               APP.showGlobalLoading();
-                if (that.data.orderType == 2) {
-                  that.clearLightningCart();
-                } else if (that.data.isGroup == 1) {
-                  that.clearGroupCartData();
-                } else {
-                  reSetLocalCartList();
-                }
-                that.clearCartShoppingType();
-                wx.removeStorageSync("isGiftIssue");
-                wx.removeStorageSync("checkOrderId");
-                wx.removeStorageSync("redBagOrderId");
-                wx.removeStorageSync("redBagIsShareFlag");
-                wx.removeStorageSync("redBagWarehouseId");
-                wx.removeStorageSync("redBagShopId");
-                wx.setStorageSync("redBagOrderId", res._data.orderId);
-                wx.setStorageSync("redBagWarehouseId", UTIL.getWarehouseId());
-                wx.setStorageSync("redBagShopId", that.data.validShopId);
-                wx.setStorageSync("redBagIsShareFlag", !!res._data.isShareFlag ? res._data.isShareFlag : 0);
-                if (res._data.isGiftIssue == 1) {
-                  //订单是否有赠品
-                  wx.setStorageSync("isGiftIssue", 1);
-                  wx.setStorageSync("checkOrderId", res._data.orderId);
-                }
-                if (payType == API.PAYTYPE_497 && UTIL.FloatDiv(that.data.totalPay, proportion) == 0 || payType == API.PAYTYPE_498 && UTIL.FloatDiv(that.data.totalPay, proportion) == 0 || UTIL.FloatDiv(that.data.totalPay, proportion) == 0) {
-                  UTIL.jjyBILog({
-                    e: 'click', //事件代码
-                    oi: '', //点击对象type，Excel表
-                    obi: 240,
-                    currentLogId: 8,
-                    ajaxAtOnce: true
-                  });
-                  wx.redirectTo({
-                    url: that.data.orderUrlLink
-                  })
-                } else {
-                  //支付倒计时
-                  let urlParam = `/pages/order/cashier/cashier?payTimeLeft=${res._data.payTimeLeft}&payType=${payType}&thirdPayAmount=${that.data.totalPay}&orderId=${res._data.orderId}&proportion=${proportion}`;
-                  //扫码购
-                  if (that.data.orderType != 5) {
-                    let takeType = 'STORE';
-                    if (f && foodDelivery == 1 || g && goodsDelivery == 1) {
-                      takeType = 'DELIVERY';
-                    }
-                    // 提交订单, 请在创建商户订单成功后即可上报, 不需要等待微信支付成功
-                    // APP.actionReport('REQUEST_PAYMENT', {
-                    //   // 商户订单号(必须)
-                    //   // 后台调用"微信支付统一下单"接口时传入的商户订单号 out_trade_no, 详情参考 :
-                    //   // https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1
-                    //   out_trade_no: res._data.orderId,
-                    //   // 提货方式(可选, DELIVERY - 送货到家, STORE - 门店自提)
-                    //   take_type: /*根据用户选择的送货类型判断*/ takeType,
-                    // })
-                    urlParam += '&orderType=2';
+              if (that.data.orderType == 2) {
+                that.clearLightningCart();
+              } else if (that.data.isGroup == 1) {
+                that.clearGroupCartData();
+              } else {
+                reSetLocalCartList();
+              }
+              that.clearCartShoppingType();
+              wx.removeStorageSync("isGiftIssue");
+              wx.removeStorageSync("checkOrderId");
+              wx.removeStorageSync("redBagOrderId");
+              wx.removeStorageSync("redBagIsShareFlag");
+              wx.removeStorageSync("redBagWarehouseId");
+              wx.removeStorageSync("redBagShopId");
+              wx.setStorageSync("redBagOrderId", res._data.orderId);
+              wx.setStorageSync("redBagWarehouseId", UTIL.getWarehouseId());
+              wx.setStorageSync("redBagShopId", that.data.validShopId);
+              wx.setStorageSync("redBagIsShareFlag", !!res._data.isShareFlag ? res._data.isShareFlag : 0);
+              if (res._data.isGiftIssue == 1) {
+                //订单是否有赠品
+                wx.setStorageSync("isGiftIssue", 1);
+                wx.setStorageSync("checkOrderId", res._data.orderId);
+              }
+              if (payType == API.PAYTYPE_497 && UTIL.FloatDiv(that.data.totalPay, proportion) == 0 || payType == API.PAYTYPE_498 && UTIL.FloatDiv(that.data.totalPay, proportion) == 0 || UTIL.FloatDiv(that.data.totalPay, proportion) == 0) {
+                UTIL.jjyBILog({
+                  e: 'click', //事件代码
+                  oi: '', //点击对象type，Excel表
+                  obi: 240,
+                  currentLogId: 8,
+                  ajaxAtOnce: true
+                });
+                wx.redirectTo({
+                  url: that.data.orderUrlLink
+                })
+              } else {
+                //支付倒计时
+                let urlParam = `/pages/order/cashier/cashier?payTimeLeft=${res._data.payTimeLeft}&payType=${payType}&thirdPayAmount=${that.data.totalPay}&orderId=${res._data.orderId}&proportion=${proportion}`;
+                //扫码购
+                if (that.data.orderType != 5) {
+                  let takeType = 'STORE';
+                  if (f && foodDelivery == 1 || g && goodsDelivery == 1) {
+                    takeType = 'DELIVERY';
                   }
-
-                  wx.redirectTo({
-                    url: urlParam
-                  })
+                  // 提交订单, 请在创建商户订单成功后即可上报, 不需要等待微信支付成功
+                  // APP.actionReport('REQUEST_PAYMENT', {
+                  //   // 商户订单号(必须)
+                  //   // 后台调用"微信支付统一下单"接口时传入的商户订单号 out_trade_no, 详情参考 :
+                  //   // https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1
+                  //   out_trade_no: res._data.orderId,
+                  //   // 提货方式(可选, DELIVERY - 送货到家, STORE - 门店自提)
+                  //   take_type: /*根据用户选择的送货类型判断*/ takeType,
+                  // })
+                  urlParam += '&orderType=2';
                 }
-                APP.hideGlobalLoading();
+
+                wx.redirectTo({
+                  url: urlParam
+                })
+              }
+              APP.hideGlobalLoading();
             })
           } else {
             APP.showToast(res._msg);
           }
         },
-        complete: function(res) {
+        complete: function (res) {
           APP.hideGlobalLoading();
           that.setData({
             comRequest: true
@@ -1525,24 +1527,24 @@ Page({
         }
       });
     }
-  }, 1000, {leading: true, trailing:false}),
-    /**
-   * 隐藏确认信息弹窗
-   */
-     hideComfirmOrderBox:function() {
-      this.setData({
-        comfirmOrderBoxShow: false,
-        comRequest: true
-      })
-    },
-    // 自提柜确认信息弹窗支付
-    cabinetCreateOrder:function(){
-      this.setData({
-        isCabinet: 2,
-        comRequest: true
-      })
-      this.createOrder()
-    },
+  }, 1000, { leading: true, trailing: false }),
+  /**
+ * 隐藏确认信息弹窗
+ */
+  hideComfirmOrderBox: function () {
+    this.setData({
+      comfirmOrderBoxShow: false,
+      comRequest: true
+    })
+  },
+  // 自提柜确认信息弹窗支付
+  cabinetCreateOrder: function () {
+    this.setData({
+      isCabinet: 2,
+      comRequest: true
+    })
+    this.createOrder()
+  },
 
   /**
    * 清除购物车当前所选类型
@@ -1567,9 +1569,9 @@ Page({
   /**
    * 清除闪电付购物车数据
    */
-  clearLightningCart: function() {
+  clearLightningCart: function () {
     var storageSyncArray = ["unSelectCounpon", "ps", "zt", "invoiceInfo", "lightningPayComfirm", "storageLightningPayCartList", "storageShoppingBagGoods", "usableList", "couponInfo", "storeRemark", "couponsCartList", "localIsPackage", "valueCard", "scoreMoney", "localMealsTime", "isScorePay", "isCardPay", "cartFoodDelivery", "cartGoodsDelivery", "cartGoodsB2CDelivery", "localInvoiceInfo"];
-    storageSyncArray.map(function(item) {
+    storageSyncArray.map(function (item) {
       wx.removeStorageSync(item);
     });
     for (let i = 0; i < wx.getStorageInfoSync.length; i++) {
@@ -1582,9 +1584,9 @@ Page({
   /**
    * 清除o2o抢购购物车数据
    */
-  clearGroupCartData: function() {
+  clearGroupCartData: function () {
     var groupStorageSyncArray = ["unSelectCounpon", "ps", "zt", "invoiceInfo", "storageShoppingBagGoods", "usableList", "couponInfo", "storeRemark", "couponsCartList", "localIsPackage", "valueCard", "scoreMoney", "localMealsTime", "isScorePay", "isCardPay", "cartFoodDelivery", "cartGoodsDelivery", "cartGoodsB2CDelivery", "groupInfoCartList", "groupInfo", "localInvoiceInfo"];
-    groupStorageSyncArray.map(function(item) {
+    groupStorageSyncArray.map(function (item) {
       wx.removeStorageSync(item);
     });
     for (let i = 0; i < wx.getStorageInfoSync.length; i++) {
@@ -1702,7 +1704,7 @@ Page({
    * 区分拼团类型
    * groupMode (integer, optional): 拼团方式，1882-o2o拉新拼团、1883-老带新、1884-团长免单、1885-普通拼团、1886-帮帮团、1887-抽奖团，1888-社区拼团，1937-老带新团长免单
    */
-  isCommunityCluster(groupMode ) {
+  isCommunityCluster(groupMode) {
     if (groupMode == 1882 || groupMode == 1883 || groupMode == 1884 || groupMode == 1886 || groupMode == 1887) {
       return true
     }
@@ -1729,14 +1731,15 @@ function goodsCouponValid(_that) {
   var goodsDelivery = _that.data.goodsDelivery; //超市配送方式
   var goodsB2CDelivery = _that.data.goodsB2CDelivery; //B2C配送方式
   var addressId = _that.data.curAddrId; //配送地址id
-  var storeList = _that.data.cartList;
-  var storeRemark = _that.data.storeRemark;
+  var storeList = _that.data.cartList;  // 购物车列表
+  var storeRemark = _that.data.storeRemark; // 备注
   let groupInfo = _that.data.groupInfo ? _that.data.groupInfo : {};
   //商店是否打包
   var isPackageStore = _that.data.isPackageStore;
   var commonPickeTime = _that.data.commonPickeTime;
-  storeList.map(function(item) {
-    isPackageStore.map(function(v) {
+  storeList.map(function (item) {
+    isPackageStore.map(function (v) {
+      console.log('打包是商品的内容', v)
       if (parseInt(item.storeId) == v.id) {
         item.isPackage = v.isPackage;
       }
@@ -1782,7 +1785,7 @@ function goodsCouponValid(_that) {
     data = _that.data.groupInfo
   }
   UTIL.ajaxCommon(requireUrl, data, {
-    "success": function(res) {
+    "success": function (res) {
       if (res._code == API.SUCCESS_CODE) {
         //库存不足
         if (!!res._data.stockLessGoodsList && res._data.stockLessGoodsList.length > 0) {
@@ -1816,7 +1819,7 @@ function goodsCouponValid(_that) {
 
           var proOutputMap = res._data.storeList;
           APP.showToast(res._data.errMsg); //商品信息变更
-          setTimeout(function() {
+          setTimeout(function () {
             _that.reSetPorId(proOutputMap);
           }, 1000)
         }
@@ -1833,14 +1836,14 @@ function goodsCouponValid(_that) {
         var needIDcardInfo = true; //是否显示需要身份证信息
         var isNoReasonReturn = true; //是否显示原因
         let validShopId = _that.data.validShopId ? _that.data.validShopId : UTIL.getShopId();
-        res._data.storeList.map(function(item, k) {
+        res._data.storeList.map(function (item, k) {
           //跨境配送类型：[1022 - 保税仓发货；1023 - 海外直邮；1024 - 国内发货]
           if (item.deliveryWay != API.DELIVERYWAY_1024 && needIDcardInfo) {
             needIDcardInfo = false;
           }
           if (item.canBuy == 1 || _that.data.orderType == 2 || _that.data.orderType == 5) {
             var newgoodsList = [];
-            item.goodsList.map(function(list) {
+            item.goodsList.map(function (list) {
               if (_that.data.orderType == 5 && list.isNoReasonReturn == 0) {
                 isNoReasonReturn = false
               }
@@ -1852,7 +1855,7 @@ function goodsCouponValid(_that) {
             item.isNoReasonReturn = isNoReasonReturn;
             item.goodsList = newgoodsList;
             //备注
-            storeRemark.map(function(list) {
+            storeRemark.map(function (list) {
               if (item.storeId == list.id) {
                 item.storeRemark = list.custremark
               }
@@ -1868,8 +1871,8 @@ function goodsCouponValid(_that) {
           validShopId = item.shopId;
           _that.data.validShopId = validShopId;
         });
-        newlocalCartList.map(function(value) {
-          commonPickeTime.map(function(val) {
+        newlocalCartList.map(function (value) {
+          commonPickeTime.map(function (val) {
             if (parseInt(value.storeId) == val.id) {
               value.expectTime = val.expectTime;
             }
@@ -1879,7 +1882,7 @@ function goodsCouponValid(_that) {
         res.storeList = newlocalCartList;
         var g = false;
         var f = false;
-        newlocalCartList.map(function(item) {
+        newlocalCartList.map(function (item) {
           if (item.storeType == API.GOODS_TYPE_MARKET || item.storeType == API.GOODS_TYPE_MEMBER) {
             g = true;
           } else if (item.storeType == API.GOODS_TYPE_FOOD) {
@@ -1894,10 +1897,10 @@ function goodsCouponValid(_that) {
         var CouponListCartList = newlocalCartList;
         pushProGoods(res, newlocalCartList);
         var resetCartList = regroupShopData(newlocalCartList);
-        resetCartList.map(function(v_i) {
-          v_i.food.map(function(v_f) {
+        resetCartList.map(function (v_i) {
+          v_i.food.map(function (v_f) {
             var itemTotalNum = 0;
-            v_f.goodsList.map(function(v_f_n) {
+            v_f.goodsList.map(function (v_f_n) {
               if (v_f_n.num) {
                 itemTotalNum += v_f_n.num;
               } else if (v_f_n.zengpinNum) {
@@ -1906,9 +1909,9 @@ function goodsCouponValid(_that) {
             });
             v_f.itemTotalNum = itemTotalNum;
           });
-          v_i.goods.map(function(v_g) {
+          v_i.goods.map(function (v_g) {
             var itemTotalNum = 0;
-            v_g.goodsList.map(function(v_g_n) {
+            v_g.goodsList.map(function (v_g_n) {
               if (v_g_n.num) {
                 itemTotalNum += v_g_n.num;
               } else if (v_g_n.zengpinNum) {
@@ -1924,7 +1927,7 @@ function goodsCouponValid(_that) {
         var weightNotice = [];
         if (_that.data.orderType != 2 && _that.data.orderType != 5) {
           var payPromotionResultList = res._data.payPromotionResultList;
-          payPromotionResultList.map(function(v) {
+          payPromotionResultList.map(function (v) {
             if (v.payType == 34) {
               advertisement = v.advertisement
             }
@@ -1972,7 +1975,7 @@ function goodsCouponValid(_that) {
         APP.showToast(res._msg);
       }
     },
-    "complete": function(res) {
+    "complete": function (res) {
       APP.hideGlobalLoading();
     }
   })
@@ -2007,10 +2010,10 @@ function regroupShopData(shopdata) {
       }
     }
   }
-  dest.map(function(d_val) {
+  dest.map(function (d_val) {
     var f_delivery = "no";
     var g_delivery = "no";
-    d_val.data.map(function(m_val) {
+    d_val.data.map(function (m_val) {
       if (m_val.storeType == API.GOODS_TYPE_MARKET || m_val.storeType == API.GOODS_TYPE_MEMBER) {
         d_val.goods.push(m_val);
         g_delivery = "yes";
@@ -2051,9 +2054,9 @@ function fillCouponList(_that, resDate) {
   }
   let ishasChaoshi = false;
   let ishasCanshi = false;
-  usableListData.map(function(v, k) {
+  usableListData.map(function (v, k) {
     var goodsInputList = [];
-    v.goodsList.map(function(item, key) {
+    v.goodsList.map(function (item, key) {
       if (!item.zengpin) {
         var goodsInputListItem = {
           "buyCount": item.num,
@@ -2113,7 +2116,7 @@ function fillCouponList(_that, resDate) {
     "quickPass": _that.data.orderType == 2 ? true : false
   }
   UTIL.ajaxCommon(API.URL_COUPON_USABLELIST, data, {
-    "success": function(res) {
+    "success": function (res) {
       if (res && res._code == API.SUCCESS_CODE) {
         var couponBackData = !!convertData(res._data) ? convertData(res._data) : [];
         var unUserCoupon = _that.data.unUserCoupon;
@@ -2176,7 +2179,7 @@ function fillCouponList(_that, resDate) {
  * @return {[type]} [description]
  */
 function pushProGoods(res, resetCartList) {
-  resetCartList.map(function(cartItem) {
+  resetCartList.map(function (cartItem) {
     var goodsList = cartItem.goodsList;
     var newGoodsList = goodsList;
     var presentMap = res._data.presentMap;
@@ -2184,12 +2187,12 @@ function pushProGoods(res, resetCartList) {
     if (presentMap) {
       //挂载项
       for (var item in presentMap) {
-        goodsList.map(function(gl, gkey) {
+        goodsList.map(function (gl, gkey) {
           if (!gl.zengpin) {
             var mount = gl.storeId + "_" + gl.skuId;
             if (item == mount) {
               for (var i in presentMap[item]) {
-                proList.map(function(cur) { //促销商品列表
+                proList.map(function (cur) { //促销商品列表
                   if (i == cur.skuId) {
                     cur.zengpin = 1; //表示是否为赠品
                     cur.zengpinNum = cur.goodsStock > presentMap[item][i] ? presentMap[item][i] : cur.goodsStock; //赠品数量
@@ -2215,11 +2218,11 @@ function updataOrderData(_that, res) {
   var deliveryTimeArray = _that.data.deliveryTimeArray;
   for (var order_li in orderfillCartList) {
     var _delivery;
-    orderfillCartList[order_li].data.map(function(v) {
+    orderfillCartList[order_li].data.map(function (v) {
       var remark;
       var shippingType = 0;
       var goodsList = [];
-      v.goodsList.map(function(item, key) {
+      v.goodsList.map(function (item, key) {
         if (!item.zengpin) {
           var itemDatas = {
             "fareType": item.isAddPriceGoods,
@@ -2244,7 +2247,7 @@ function updataOrderData(_that, res) {
       });
       //push remark
       var storeRemark = _that.data.storeRemark;
-      storeRemark.map(function(val) {
+      storeRemark.map(function (val) {
         if (parseInt(val.id) == v.storeId) {
           remark = val.custremark;
         }
@@ -2260,21 +2263,21 @@ function updataOrderData(_that, res) {
         shippingStartTime = isDefine(deliveryTimeArray.startTime) ? deliveryTimeArray.startTime : "";
       }
 
-            /*超市自提*/
+      /*超市自提*/
       if (goodsDelivery == "0" && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER) && orderfillCartList[order_li].since) {
         shippingStartTime = orderfillCartList[order_li].since.startTime ? orderfillCartList[order_li].since.startTime : "";
         shippingEndTime = orderfillCartList[order_li].since.endTime ? orderfillCartList[order_li].since.endTime : "";
         _delivery = -1
       }
-            /*超市自提柜*/
+      /*超市自提柜*/
       if (goodsDelivery == "3" && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER) && orderfillCartList[order_li].since) {
-              shippingStartTime = orderfillCartList[order_li].since.startTime ? orderfillCartList[order_li].since.startTime : "";
-              shippingEndTime = orderfillCartList[order_li].since.endTime ? orderfillCartList[order_li].since.endTime : "";
-              _delivery = -1
-              _that.setData({
-                cabinetData:APP.globalData.cabinetData
-              })
-            }
+        shippingStartTime = orderfillCartList[order_li].since.startTime ? orderfillCartList[order_li].since.startTime : "";
+        shippingEndTime = orderfillCartList[order_li].since.endTime ? orderfillCartList[order_li].since.endTime : "";
+        _delivery = -1
+        _that.setData({
+          cabinetData: APP.globalData.cabinetData
+        })
+      }
       /*餐食配送*/
       if (foodDelivery == 1 && v.storeType == API.GOODS_TYPE_FOOD) {
         shippingEndTime = isDefine(deliveryTimeArray.endTime) ? deliveryTimeArray.endTime : "";
@@ -2284,7 +2287,7 @@ function updataOrderData(_that, res) {
       if (foodDelivery == "0" && v.storeType == API.GOODS_TYPE_FOOD) {
         var localMealsTime = _that.data.commonPickeTime;
         _delivery = 0;
-        localMealsTime.map(function(v_t) {
+        localMealsTime.map(function (v_t) {
           if (parseInt(v_t.id) == v.storeId) {
             shippingEndTime = v_t.expectTime.endTime;
             shippingStartTime = v_t.expectTime.startTime;
@@ -2307,9 +2310,9 @@ function updataOrderData(_that, res) {
         _delivery = 0;
       }
       // /*shippingType 配送方式 / 用餐方式: 110 - 送货上门, 111 - 自提, 112 - 外卖, 113 - 堂食 SHIPPINGTYPE_110*/
-      var g = false;
-      var f = false;
-      orderfillCartList[order_li].data.map(function(item) {
+      var g = false;  // 商品
+      var f = false;  // 熟食
+      orderfillCartList[order_li].data.map(function (item) {
         if (item.storeType == API.GOODS_TYPE_MARKET || item.storeType == API.GOODS_TYPE_MEMBER) {
           g = true;
         } else if (item.storeType == API.GOODS_TYPE_FOOD) {
@@ -2318,21 +2321,21 @@ function updataOrderData(_that, res) {
       });
       if (f) {
         if (parseInt(foodDelivery) == 1 && (v.storeType == API.GOODS_TYPE_FOOD)) {
-          shippingType = API.SHIPPINGTYPE_112;
+          shippingType = API.SHIPPINGTYPE_112;  // 外卖 
         } else if (parseInt(foodDelivery) == 0 && (v.storeType == API.GOODS_TYPE_FOOD)) {
-          shippingType = API.SHIPPINGTYPE_113;
+          shippingType = API.SHIPPINGTYPE_113;  // 堂食
         } else if (parseInt(foodDelivery) == 2 && (v.storeType == API.GOODS_TYPE_FOOD)) {
-          shippingType = API.SHIPPINGTYPE_111;
+          shippingType = API.SHIPPINGTYPE_111;  // 自提
           _delivery = -1
         }
       }
       if (g) {
         if (parseInt(goodsDelivery) == 1 && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
-          shippingType = API.SHIPPINGTYPE_110;
-        }else if (parseInt(goodsDelivery) == 3 && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
-          shippingType = API.SHIPPINGTYPE_111;
+          shippingType = API.SHIPPINGTYPE_110;  // 送货上门
+        } else if (parseInt(goodsDelivery) == 3 && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
+          shippingType = API.SHIPPINGTYPE_111;  // 自提
         } else if (parseInt(goodsDelivery) == 0 && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
-          shippingType = API.SHIPPINGTYPE_111;
+          shippingType = API.SHIPPINGTYPE_111;  // 自提
           _delivery = -1
         }
       }
@@ -2543,7 +2546,7 @@ function isDefine(para) {
 /*清空订单里面的内容*/
 function clearFillData() {
   var storageSyncArray = ["unSelectCounpon", "ps", "zt", "invoiceInfo", "fillCartList", "usableList", "couponInfo", "storeRemark", "couponsCartList", "localIsPackage", "valueCard", "scoreMoney", "localMealsTime", "isScorePay", "isCardPay", "cartFoodDelivery", "cartGoodsDelivery", "cartGoodsB2CDelivery", "localInvoiceInfo"];
-  storageSyncArray.map(function(item) {
+  storageSyncArray.map(function (item) {
     wx.removeStorageSync(item);
   })
   removeCartZT();

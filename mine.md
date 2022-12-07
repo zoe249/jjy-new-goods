@@ -33,7 +33,6 @@ appid： wxde44b26e4ca915b3
 ## pages
 
 * AA-RefactorProject	优鲜新首页
-
 * activity            活动页-subpackage
 * cart                购物车分包-subpackage
 * documents           文档web-view配置
@@ -53,6 +52,73 @@ appid： wxde44b26e4ca915b3
 * user                用户中心-subpackage
 * wxAuth              定位授权
 
+
+
+# Template全局模板使用
+
+**模板**
+
+WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用
+
+### 1.定义模板
+
+使用 name 属性，作为模板的名字。然后在`<template/>`内定义代码片段，如：
+
+```html
+<!--
+  index: int
+  msg: string
+  time: string
+-->
+<template name="msgItem">
+  <view>
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+  </view>
+</template>
+```
+
+### 2.模板使用
+
+使用name属性，作为模板的名字，然后在<template>中将模板所需要的 data 传入
+
+```html
+<template is="msgItem" data="...item"></template>
+```
+
+```js
+page({
+  data:{
+      item:{
+          index:0,
+          msg:'template模板',
+          time:'2022-12-06'
+	  }
+  }  
+})
+```
+
+is 属性可以使用 Mustache 语法，来动态决定具体需要渲染哪个模板：
+
+```html
+<template name="old">
+	<view>old</view>
+</template>
+<template name="new">
+	<view>new</view>
+</template>
+
+<block>
+    <template is="{{ item === 'old' ? 'old' : 'new' }}"></template>
+</block>
+```
+
+
+
+### 3.模板作用域
+
+模板拥有自己的作用域，只能使用 data 传入的数据以及模板定义文件中定义的 `<wxs />` 模块。
+
 # 页面梳理
 
 **优先级：优先梳理需求可能涉及到的页面，依次往下**
@@ -65,9 +131,11 @@ appid： wxde44b26e4ca915b3
 >
 > 4.购物车页面
 >
-> 5.登录页
+> 5.结算页
 >
 > 6.....
+>
+> 7.登录页
 
 ### 优鲜首页
 
@@ -156,21 +224,25 @@ appid： wxde44b26e4ca915b3
 
 | 页面(名称、路径)               | 主要字段                                                     | 逻辑 / 功能                                                  | 使用组件(红色为公共组件)                                     |      |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| 购物车<br>pages/cart/cart/cart | tabStatus<br>loadingHidden<br>addressId<br>cartInputJson<br>cartOutputJson<br>currentDelivery<br>editCartCan<br>newCartJson<br><br>foodDelivery<br>goodsDelivery<br>goodsB2CDelivery<br><br>goods<br> | 1.动态新增底部全局导航栏<br/>2.调用接口，校验商品，计算订单金额<br>3.商品选择，删除功能<br>4.全选，取消全选<br>5.门店全选<br>6.送货，自提，自提柜<br>7.根据当前地址判断门店是否可配送<br>8.库存不足提示<br>9.其他活动<br>10......... | <font color="red">cabinet-pop 自提点选择</font><br><font color="red">component-iphone-x-patcher(适配iPhone异形屏)</font><br/> |      |
+| 购物车<br>pages/cart/cart/cart | tabStatus<br>loadingHidden<br>addressId<br>cartInputJson<br>cartOutputJson<br>currentDelivery<br>editCartCan<br>newCartJson<br><br>foodDelivery<br>goodsDelivery<br>goodsB2CDelivery<br><br>goods<br> | 1.动态新增底部全局导航栏<br/>2.调用接口，校验商品，计算订单金额<br>3.商品选择，删除功能<br>4.全选，取消全选<br>5.门店全选<br>6.送货，自提，自提柜<br>7.根据当前地址判断门店是否可配送<br>8.库存不足提示<br>9.其他活动<br>10.商品称重与计量<br> | <font color="red">cabinet-pop 自提点选择</font><br><font color="red">component-iphone-x-patcher(适配iPhone异形屏)</font><br/> |      |
 
 **字段解释**
 
 1. foodDelivery 熟食配送方式
 2. goodsDelivery   超市商品配送方式
 3. goodsB2CDelivery 超市商品配送方式
-
-
-
-
+4. tabStatus  用于保存全局导航条中的状态数据
+5. loadingHidden  是否显示加载动画
+6. addressId  地址id
+7. cartInputJson   请求接口的参数(<font color="red">不确定</font>)
+8. cartOutputJson  接口请求到的购物车数据(<font color="red">不确定</font>)
+9. currentDelivery   结算选择的配送方式：-1(默认)无选择方式；0-B2C；79-极速达；80-闪电达 ,
+10. editCartCan   编辑购物车状态
+11. newCartJson  购物车数据
 
 1. goods 商品信息
 
-   | 属性               | 注释                                                   |
+   | 属性(商品信息)     | 注释                                                   |
    | :----------------- | ------------------------------------------------------ |
    | canBuy             | 失效商品:3                                             |
    | goodsId            | 商品id                                                 |
@@ -206,7 +278,7 @@ appid： wxde44b26e4ca915b3
    | usePro             |                                                        |
    | weightValue        |                                                        |
    | newPresentArr      | 赠品                                                   |
-   | promotionList      | <font color="red">活动列表(不确定）</font>，内容见下表 |
+   | promotionList      | <font color="red">优惠列表(不确定）</font>，内容见下表 |
 
 2. promotionList 商品活动列表 [Object Array]
 
@@ -274,7 +346,101 @@ appid： wxde44b26e4ca915b3
 
    * selectType 值为one：单个商品，all：全选（或者全部选择），store：店铺的选择
 
-3. 促销类回调.....
+3. 去结算
+
+   * 判断是否登录，没有则跳转到登陆
+
+   * 判断是否可以结算（店铺可以购买 && 商品勾选 && 收货地址）
+
+   * 调用接口，订单金额校验 URL_CART_GOODSVALID
+
+   * 判断配送方式 goodsDelivery    1:送货     0：自提        3：自提柜
+
+   * 判断选择的业态，苛选或者海购，020
+
+   * 判断商品的类型
+
+     | GOODS_TYPE | 类型     |
+     | ---------- | -------- |
+     | 62         | 超市     |
+     | 63         | 聚餐     |
+     | 382        | 积分     |
+     | 383        | 会员     |
+     | 751        | 全国B2C  |
+     | 840        | 同城B2C  |
+     | 1037       | 全球苛选 |
+     | 1634       | HI苛选   |
+
+     
+
+4. 促销类回调.....
+
+
+
+### 结算页
+
+**发票业务暂时关闭**
+
+| 路径                   | 主要字段                                                     | 逻辑/功能                                                    | 组件                                                         |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| /pages/order/list/list | realPayPrice<br>myFirstAddress<br>couponCodeId<br>couponCodeValue<br>isSelectCoupon<br>couponTag<br>unUserCoupon<br><br><br>orderType<br> | 1.结算选择的配送方式，配送方式，下单类型<br>2.选择配送时间<br>3.选择优惠券 | <font color="red">component-iphone-x-patcher(适配iPhone异形屏)</font><br/><font color="red">component-global-modal（全局弹窗）</font> |
+
+**字段解释**
+
+1. orderType 	订单类型
+
+   | orderType | 注释           |
+   | --------- | -------------- |
+   | 2         | 闪电付下单     |
+   | 5         | 海外订单，海购 |
+   | 6         | 苛选           |
+   | 0         | 普通下单       |
+   | 1         | 积分商品下单   |
+   | 3         | 1元购          |
+
+2. storeType 商品类型
+
+   | storeType       | 注释     |
+   | --------------- | -------- |
+   | 62---MARKET     | 超市     |
+   | 63---FOOD       | 聚餐     |
+   | 382---SCORE     | 积分     |
+   | 383---MEMBER    | 会员     |
+   | 751---B2C       | 全国B2C  |
+   | 840---CITYB2C   | 同城B2C  |
+   | 1037---GLOBAL   | 全国苛选 |
+   | 1634---HIGLOBAL | HI苛选   |
+
+**生命周期、方法**
+
+1. onShow()	从缓存中获取基本信息（登录,生活卡,门店地址等);<font color="#fffff">发票选择数据(发票业务暂时关闭)</font>;判断是熟食还是商品;调用接口`URL_MEMBER_GETMEMBERINFO`,获取会员的基本信息,
+   * 根据定位查询地址信息列表`URL_ADDRESS_LISTBYLOCATION`
+     * 默认选择第一个地址，没有就提示无苛选体质
+2. 1
+3. 选择配送时间 || 选择自提时间
+4. 选择优惠券  && 优惠券列表显示隐藏
+5. 选择支付方式
+6. 计算勾选支付方式之后支付金额   
+   * 生活卡	只选生活卡
+   * 积分     只选积分
+   * 生活卡 && 积分     两种都选
+   * ！生活卡 && ！积分     都不选
+   * 0元订单不给予开发票
+7. 打包服务949
+8. createOrder() 创建订单
+   * 判断数据是否为空
+   * 判断支付方式
+   * 判断地址是否为空 && 判断是否有商品
+   * 判断配送时间
+     * 选择配送时间
+   * 自提时间
+     * 超市自提柜
+     * 餐食自提
+   * 是否餐食
+   * o2o发票(发票业务暂时关闭)
+   * 海购，团购，抢购
+   * 集成数据，发送请求生成订单
+     *  一次性订阅消息
 
 # 完善更新中.............
 

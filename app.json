@@ -2,7 +2,7 @@
   "pages": [
     "pages/AA-RefactorProject/pages/wxAuth/wxAuth",
     "pages/AA-RefactorProject/pages/index/index",
-	"pages/AA-RefactorProject/pages/Community/index",
+    "pages/AA-RefactorProject/pages/Community/index",
     "pages/index/index",
     "pages/documents/documents",
     "pages/storeList/storeList",
@@ -12,20 +12,21 @@
     "pages/laxin/index/index",
     "pages/laxin/select/select",
     "pages/invoiceDoc/invoiceDoc",
-    "pages/wxAuth/wxAuth"
+    "pages/wxAuth/wxAuth",
+    "pages/test/test"
   ],
   "subPackages": [
-	{
-	    "root": "pages/AA-RefactorProject/pagesSubcontract",
-	    "pages": [
-	     "Explosives/index",
-		 "Classification/index",
-		 "ArticleDetails/index",
-		 "CouponCenter/index",
-		 "RecipeDetails/index",
-		 "LivingHall/index"
-	    ]
-	},
+    {
+      "root": "pages/AA-RefactorProject/pagesSubcontract",
+      "pages": [
+        "Explosives/index",
+        "Classification/index",
+        "ArticleDetails/index",
+        "CouponCenter/index",
+        "RecipeDetails/index",
+        "LivingHall/index"
+      ]
+    },
     {
       "root": "pages/yunchao",
       "pages": [
@@ -119,7 +120,6 @@
         "cropperImg/cropperImg",
         "questionList/questionList"
       ]
-   
     },
     {
       "root": "pages/order",
