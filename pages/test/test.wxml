@@ -1,47 +1,15 @@
-<import src="/templates/global/global.wxml" />
-<button type="primary" size="mini" bindtap="showToast">购物车为空</button>
-<!-- showStockLessGoodsList弹窗 库存不足商品列表 -->
-<block wx:if='{{showStockLessGoodsList}}'>
-  <template is="pop-stockLessGoodsList-tpl" data="{{stockLessGoodsList:stockLessGoodsList}}"></template>
-</block>
-<!-- showStockLessGoodsList弹窗 库存不足商品列表 -->
-<template name="pop-stockLessGoodsList-tpl">
-  <view id="pop-stockLessGoodsList">
-    <view class="pop-stockLessGoodsList-cnt">
-      <view class="pop-stockLessGoodsList-head r1bb">以下商品库存不足</view>
-      <view class="ul">
-        <block wx:for="{{stockLessGoodsList}}" wx:for-item="item" wx:for-index="index" wx:key='stockLessGoodsList{{index}}'>
-          <view class="li">{{item.skuName||item.goodsName}}</view>
-        </block>
-      </view>
-      <view class="btn-close-box">
-        <view class="btn-close" catchtap="hideStockLessGoodsList">关闭</view>
+<view>
+  广告
+  <view class="tips-mod">
+    <view class="icon">uicon</view>
+    <view class="tip-swiper">
+      <view class="content">
+        <text class="text">还差15</text>
+      <text style="display: inline-block; width: 5em;"></text>
+      <text class="text">还差15</text>
+      <text style="display: inline-block; width: 5em;"></text>
       </view>
     </view>
+    <view class="coudan-a">去凑单</view>
   </view>
-</template>
-
-<button type="primary" size="mini" bindtap="delHandle">删除某件商品</button>
-<!-- 删除某件商品 -->
-<block wx:if="{{popDel}}">
-  <template is="cart-del-pop" data="{{delData}}"></template>
-</block>
-
-<!-- 删除当前商品弹窗 -->
-<template name="cart-del-pop">
-  <view class="cart-del-pop" id="cart-del-pop">
-    <view class="box">
-      <view class="p">您确定删除当前商品吗？</view>
-      <view class="pop-cart-btn">
-        <view class="cancel-del-btn div" catchtap="cancelDelGoods" id="cancel-del-btn">取消</view>
-        <view class="confirm-del-btn div" catchtap="confirmDelGoods" id="confirm-del-btn">确认</view>
-      </view>
-    </view>
-  </view>
-</template>
-
-
-<!-- 全局底部导航栏 -->
-<template is="navigation-bar" >
-  全局导航条
-</template>
+</view>

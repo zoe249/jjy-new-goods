@@ -228,8 +228,16 @@ is 属性可以使用 Mustache 语法，来动态决定具体需要渲染哪个�
 
 **字段解释**
 
-1. foodDelivery 熟食配送方式
+1. foodDelivery 熟食配送方式   
+
+   * 0 餐饮聚餐
+   * 1 餐食配送
+   * 2 餐食自提
 2. goodsDelivery   超市商品配送方式
+
+   * 0 超市自提
+   * 1 超市配送时间
+   * 3 超市自提柜
 3. goodsB2CDelivery 超市商品配送方式
 4. tabStatus  用于保存全局导航条中的状态数据
 5. loadingHidden  是否显示加载动画
@@ -240,63 +248,63 @@ is 属性可以使用 Mustache 语法，来动态决定具体需要渲染哪个�
 10. editCartCan   编辑购物车状态
 11. newCartJson  购物车数据
 
-1. goods 商品信息
+12. goods 商品信息
 
-   | 属性(商品信息)     | 注释                                                   |
-   | :----------------- | ------------------------------------------------------ |
-   | canBuy             | 失效商品:3                                             |
-   | goodsId            | 商品id                                                 |
-   | goodsName          | 商品名                                                 |
-   | goodsName          | 商品单价                                               |
-   | goodsPrimePrice    | 商品原价                                               |
-   | goodsTotalPrice    | 当前商品总价格(单价 * 数量)                            |
-   | goodsTotalProPrice | 优惠价格                                               |
-   | goodsTotalSrcPrice | 优惠券价格                                             |
-   | goodsStock         | 商品库存                                               |
-   | isAddPriceGoods    |                                                        |
-   | num                | 数量                                                   |
-   | pricingMethod      | 商品类型(391:称重类，390：计件类)                      |
-   | proId              | 促销id                                                 |
-   | proName            | 促销名称                                               |
-   | proPrice           | 促销价格                                               |
-   | proType            | 活动类型（抢购 ：1178	直降 ：289    海购抢价：998） |
-   | purchaseAmount     |                                                        |
-   | purchaseAmounts    | 步长                                                   |
-   | purchaseBegin      | 起购量                                                 |
-   | purchaseUnit       | 商品单位                                               |
-   | salesUnit          | <font color="red">销售单位(不确定)</font>              |
-   | shopId             | 店铺id                                                 |
-   | skuId              | 商品skuid                                              |
-   | skuName            | 商品sku名称                                            |
-   | specName           | 规格                                                   |
-   | startTime          | 开始时间                                               |
-   | storeId            |                                                        |
-   | storeStatus        | 门店状态                                               |
-   | storeType          |                                                        |
-   | useDays            |                                                        |
-   | useNumber          |                                                        |
-   | usePro             |                                                        |
-   | weightValue        |                                                        |
-   | newPresentArr      | 赠品                                                   |
-   | promotionList      | <font color="red">优惠列表(不确定）</font>，内容见下表 |
+    | 属性(商品信息)     | 注释                                                   |
+    | :----------------- | ------------------------------------------------------ |
+    | canBuy             | 失效商品:3                                             |
+    | goodsId            | 商品id                                                 |
+    | goodsName          | 商品名                                                 |
+    | goodsName          | 商品单价                                               |
+    | goodsPrimePrice    | 商品原价                                               |
+    | goodsTotalPrice    | 当前商品总价格(单价 * 数量)                            |
+    | goodsTotalProPrice | 优惠价格                                               |
+    | goodsTotalSrcPrice | 优惠券价格                                             |
+    | goodsStock         | 商品库存                                               |
+    | isAddPriceGoods    |                                                        |
+    | num                | 数量                                                   |
+    | pricingMethod      | 商品类型(391:称重类，390：计件类)                      |
+    | proId              | 促销id                                                 |
+    | proName            | 促销名称                                               |
+    | proPrice           | 促销价格                                               |
+    | proType            | 活动类型（抢购 ：1178	直降 ：289    海购抢价：998） |
+    | purchaseAmount     |                                                        |
+    | purchaseAmounts    | 步长                                                   |
+    | purchaseBegin      | 起购量                                                 |
+    | purchaseUnit       | 商品单位                                               |
+    | salesUnit          | <font color="red">销售单位(不确定)</font>              |
+    | shopId             | 店铺id                                                 |
+    | skuId              | 商品skuid                                              |
+    | skuName            | 商品sku名称                                            |
+    | specName           | 规格                                                   |
+    | startTime          | 开始时间                                               |
+    | storeId            |                                                        |
+    | storeStatus        | 门店状态                                               |
+    | storeType          |                                                        |
+    | useDays            |                                                        |
+    | useNumber          |                                                        |
+    | usePro             |                                                        |
+    | weightValue        |                                                        |
+    | newPresentArr      | 赠品                                                   |
+    | promotionList      | <font color="red">优惠列表(不确定）</font>，内容见下表 |
 
-2. promotionList 商品活动列表 [Object Array]
+13. promotionList 商品活动列表 [Object Array]
 
-   | 属性                | 注释                                      |
-   | ------------------- | ----------------------------------------- |
-   | alreadyBuyCount     | <font color="red">已购买量(不确定)</font> |
-   | promotionCountLimit | 历史商品数量                              |
-   | minBuyCount         | 最小起购量                                |
-   | orderCountLimit     | 已购买数量                                |
-   | proDesc             | 促销内容                                  |
-   | proBeginTime        | 促销开始时间                              |
-   | proEndTime          | 促销结束时间                              |
-   | proId               | 促销id                                    |
-   | proInfo             | 促销信息                                  |
-   | proPrice            | 促销价格                                  |
-   | proStatus           |                                           |
-   | proStock            |                                           |
-   | proTag              | 促销标签图片                              |
+    | 属性                | 注释                                      |
+    | ------------------- | ----------------------------------------- |
+    | alreadyBuyCount     | <font color="red">已购买量(不确定)</font> |
+    | promotionCountLimit | 历史商品数量                              |
+    | minBuyCount         | 最小起购量                                |
+    | orderCountLimit     | 已购买数量                                |
+    | proDesc             | 促销内容                                  |
+    | proBeginTime        | 促销开始时间                              |
+    | proEndTime          | 促销结束时间                              |
+    | proId               | 促销id                                    |
+    | proInfo             | 促销信息                                  |
+    | proPrice            | 促销价格                                  |
+    | proStatus           |                                           |
+    | proStock            |                                           |
+    | proTag              | 促销标签图片                              |
 
 **生命周期、方法**
 
@@ -410,6 +418,8 @@ is 属性可以使用 Mustache 语法，来动态决定具体需要渲染哪个�
    | 840---CITYB2C   | 同城B2C  |
    | 1037---GLOBAL   | 全国苛选 |
    | 1634---HIGLOBAL | HI苛选   |
+   
+3. isGroup 是否拼团
 
 **生命周期、方法**
 

@@ -1193,7 +1193,7 @@ Page({
     var remainMoney = 0;
     var score = that.data.isScorePay == 1 ? that.data.score : 0;  // 积分支付
     var scorePay = that.data.isScorePay == 1 ? that.data.scorePay : 0;  // 积分金额
-    var scoreAmount = 0;  
+    var scoreAmount = 0;
     var thirdPayAmount = 0;
     var total = that.data.cartAllData._data;
     //payAmount [必需]应付总额, 订单商品金额-优惠券金额-促销金额+配送金额+打包金额
@@ -1249,7 +1249,7 @@ Page({
      */
     var deliveryTimeArray = that.data.deliveryTimeArray;
     orderStoreInfoList.map(function (v) {
-      /* 商品配送 */ 
+      /* 商品配送 */
       if (goodsDelivery == "1" && (v.storeType == API.GOODS_TYPE_MARKET || v.storeType == API.GOODS_TYPE_MEMBER)) {
         v.shippingEndTime = isDefine(deliveryTimeArray.endTime) ? deliveryTimeArray.endTime : "";
         v.shippingStartTime = isDefine(deliveryTimeArray.startTime) ? deliveryTimeArray.startTime : "";
@@ -1537,7 +1537,9 @@ Page({
       comRequest: true
     })
   },
-  // 自提柜确认信息弹窗支付
+  /**
+   * 自提柜确认信息弹窗支付
+   */
   cabinetCreateOrder: function () {
     this.setData({
       isCabinet: 2,
@@ -1665,12 +1667,13 @@ Page({
 
   /**
    * 可用积分比例换算
+   * 2022-12-8 没理解
    */
   getScoreData() {
     var that = this;
     var data = that.data.cartAllData._data;
     var userInfo = that.data.allUserInfo;
-    var isScorePay = that.data.isScorePay;
+    var isScorePay = that.data.isScorePay;  // 积分支付
     //积分换算比例
     var scoreProportion = userInfo.scoreProportion;
     //订单金额转换积分
@@ -1736,7 +1739,7 @@ function goodsCouponValid(_that) {
   let groupInfo = _that.data.groupInfo ? _that.data.groupInfo : {};
   //商店是否打包
   var isPackageStore = _that.data.isPackageStore;
-  var commonPickeTime = _that.data.commonPickeTime;
+  var commonPickeTime = _that.data.commonPickeTime; // 预计餐食时间
   storeList.map(function (item) {
     isPackageStore.map(function (v) {
       console.log('打包是商品的内容', v)
@@ -1769,7 +1772,7 @@ function goodsCouponValid(_that) {
     delete data.goodsB2CDelivery;
     delete data.addressId;
   }
-  if (_that.data.isGroup == 1) {
+  if (_that.data.isGroup == 1) {  // 是否拼团
     var groupData = _that.data.groupInfo;
     data.groupId = groupData.groupId;
     data.proId = groupData.proId;
@@ -1781,7 +1784,7 @@ function goodsCouponValid(_that) {
   }
   //海购
   if (_that.data.orderType == 5 && _that.data.isGroup == 1) {
-    requireUrl = API.URL_CART_ORDERCONFIRM;
+    requireUrl = API.URL_CART_ORDERCONFIRM; // 跨境下单确认页
     data = _that.data.groupInfo
   }
   UTIL.ajaxCommon(requireUrl, data, {
@@ -1823,7 +1826,7 @@ function goodsCouponValid(_that) {
             _that.reSetPorId(proOutputMap);
           }, 1000)
         }
-        //广告语
+        //广告语 --- 屏幕上方广告
         if (!!res._data.noticeBoard) {
           var noticeBoardData = {
             noticeBoard: res._data.noticeBoard,
@@ -1951,7 +1954,7 @@ function goodsCouponValid(_that) {
           needIDcardInfo: needIDcardInfo, //是否需要身份证信息
           isNoReasonReturn: isNoReasonReturn, //七天无理由
           shopName: res._data.storeList[0].shopName,
-          validShopId,
+          validShopId,  // 当前定位的shopid
         });
 
         /**是否是拼团 选择配送方式 */
@@ -2029,6 +2032,9 @@ function regroupShopData(shopdata) {
   return dest;
 };
 
+/**
+ * 优惠券
+ */
 function fillCouponList(_that, resDate) {
   var that = _that;
   var usableListData = resDate.storeList;
@@ -2104,7 +2110,7 @@ function fillCouponList(_that, resDate) {
     }
   }
   var data = {
-    "channel": API.CHANNERL_220,
+    "channel": API.CHANNERL_220,  // 小程序
     "freight": _that.data.isFreight,
     "proFreight": _that.data.proFreight,
     "proOrder": !!_that.data.proOrder ? _that.data.proOrder : false,
@@ -2118,6 +2124,7 @@ function fillCouponList(_that, resDate) {
   UTIL.ajaxCommon(API.URL_COUPON_USABLELIST, data, {
     "success": function (res) {
       if (res && res._code == API.SUCCESS_CODE) {
+        console.log('res._data_2127', res._data)
         var couponBackData = !!convertData(res._data) ? convertData(res._data) : [];
         var unUserCoupon = _that.data.unUserCoupon;
         if (res._data && res._data.length > 0) {
@@ -2179,6 +2186,7 @@ function fillCouponList(_that, resDate) {
  * @return {[type]} [description]
  */
 function pushProGoods(res, resetCartList) {
+  console.log('插入促销图片', res)
   resetCartList.map(function (cartItem) {
     var goodsList = cartItem.goodsList;
     var newGoodsList = goodsList;
@@ -2217,6 +2225,7 @@ function updataOrderData(_that, res) {
   var orderStoreInfoList = [];
   var deliveryTimeArray = _that.data.deliveryTimeArray;
   for (var order_li in orderfillCartList) {
+    console.log('不知道是什么东西', orderfillCartList, order_li)
     var _delivery;
     orderfillCartList[order_li].data.map(function (v) {
       var remark;

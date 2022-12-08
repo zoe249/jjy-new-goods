@@ -1,4 +1,4 @@
-<!--pages/order/fill/fill.wxml-->
+<!-- pages/order/fill/fill.wxml -->
 <import src="/templates/global/global.wxml" />
 <import src="/templates/coupon/couponItem.wxml" />
 <import src="/templates/fillgoods/fillgoods.wxml" />
@@ -22,7 +22,6 @@
       </block>
     </view>
   </block>
-
   <block wx:if="{{!!cartAllData._data.hasNotNoReasonReturn && orderType == 5}}">
     <view class="tips-mod">
       <view class="tips-swiper">
@@ -49,23 +48,29 @@
     <view class='extract-area'>
       <view class='extract-flex extract-user-info'>
         <view class='extract-flex-title'>提货人：</view>
-        <view class='extract-flex-box' wx:if="{{allUserInfo.nickName}}">{{allUserInfo.nickName}}</view>
+        <view class='extract-flex-box' wx:if="{{allUserInfo.nickName}}">
+          {{allUserInfo.nickName}}
+        </view>
         <view class='extract-flex-box'>{{allUserInfo.mobile}}</view>
       </view>
       <view class='extract-flex extract-point'>
         <view class='extract-flex-title'>门店地址：</view>
-        <view class='extract-flex-box' bindtap=''>{{shopAddress}}
+        <view class='extract-flex-box' bindtap=''>
+          {{shopAddress}}
           <view class='select-extract-area'>
             <!-- <text class='forword'></text> -->
           </view>
         </view>
       </view>
     </view>
-    <view class="delivery-time forword">自提时间
+    <view class="delivery-time forword">
+      自提时间
       <text class="isSelect-time fr" bindtap="bindSincePickerChange" data-shopid="{{validShopId}}">
         <block wx:for="{{regroupShopData}}" wx:key="timekey">
-        <block wx:if="{{item.since != undefined}}">{{sinceTimesTitle}} {{item.since.timeInfo}}</block>
-        <block wx:else>请您选择预计自提时间</block>
+          <block wx:if="{{item.since != undefined}}">
+            {{sinceTimesTitle}} {{item.since.timeInfo}}
+          </block>
+          <block wx:else>请您选择预计自提时间</block>
         </block>
       </text>
     </view>
@@ -79,13 +84,23 @@
           <view class="switch-toggle">
             <view class="aside wrap">
               <block wx:if="{{groupInfo.storeList[0].storeType == 62}}">
-                <view class="a {{goodsDelivery == 1?'active':''}} {{goodsDeliveryValid == 0 || goodsDeliveryValid ==1 ?'disabled':''}}" catchtap="switchDeliveryGoods" data-delivery="1" data-enabled="{{goodsDeliveryValid == 0 || goodsDeliveryValid ==1?'1':0}}">送货</view>
-                <view class="a {{goodsDelivery == 0?'active':''}} {{goodsDeliveryValid == 0 || goodsDeliveryValid ==2 ?'disabled':''}}" catchtap="switchDeliveryGoods" data-delivery="0" data-enabled="{{goodsDeliveryValid == 0 || goodsDeliveryValid ==2?'1':0}}">自提</view>
+                <view class="a {{goodsDelivery == 1?'active':''}} {{goodsDeliveryValid == 0 || goodsDeliveryValid ==1 ?'disabled':''}}" catchtap="switchDeliveryGoods" data-delivery="1" data-enabled="{{goodsDeliveryValid == 0 || goodsDeliveryValid ==1?'1':0}}">
+                  送货
+                </view>
+                <view class="a {{goodsDelivery == 0?'active':''}} {{goodsDeliveryValid == 0 || goodsDeliveryValid ==2 ?'disabled':''}}" catchtap="switchDeliveryGoods" data-delivery="0" data-enabled="{{goodsDeliveryValid == 0 || goodsDeliveryValid ==2?'1':0}}">
+                  自提
+                </view>
               </block>
               <block wx:else>
-                <view class="a {{foodDelivery == 1?'active':''}} {{foodDeliveryValid == 2 || foodDeliveryValid ==3 || foodDeliveryValid ==6 || foodDeliveryValid == 7  ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="1" data-enabled="{{foodDeliveryValid == 2 || foodDeliveryValid ==3 || foodDeliveryValid ==6 || foodDeliveryValid == 7 ?'0':'1'}}">外卖</view>
-                <view class="a {{foodDelivery == 0?'active':''}} {{foodDeliveryValid >= 4 ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="0" data-enabled="{{foodDeliveryValid >= 4 ?'0':'1'}}">堂食</view>
-                <view class="a {{foodDelivery == 2?'active':''}} {{foodDeliveryValid%2 == 1 ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="2" data-enabled="{{foodDeliveryValid%2 == 1 ?'0':'1'}}">自提</view>
+                <view class="a {{foodDelivery == 1?'active':''}} {{foodDeliveryValid == 2 || foodDeliveryValid ==3 || foodDeliveryValid ==6 || foodDeliveryValid == 7  ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="1" data-enabled="{{foodDeliveryValid == 2 || foodDeliveryValid ==3 || foodDeliveryValid ==6 || foodDeliveryValid == 7 ?'0':'1'}}">
+                  外卖
+                </view>
+                <view class="a {{foodDelivery == 0?'active':''}} {{foodDeliveryValid >= 4 ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="0" data-enabled="{{foodDeliveryValid >= 4 ?'0':'1'}}">
+                  堂食
+                </view>
+                <view class="a {{foodDelivery == 2?'active':''}} {{foodDeliveryValid%2 == 1 ?'':'disabled'}}" catchtap="switchDeliveryFood" data-delivery="2" data-enabled="{{foodDeliveryValid%2 == 1 ?'0':'1'}}">
+                  自提
+                </view>
               </block>
             </view>
           </view>
@@ -93,7 +108,7 @@
       </view>
     </block>
   </block>
-  <!--配送地址-->
+  <!-- 配送地址 -->
   <block wx:if="{{orderType !=5}}">
     <block wx:for="{{regroupShopData}}" wx:for-item="itemData" wx:key="itemDataIndex" wx:for-index="index">
       <block wx:if="{{hasDelivery && !collageDelivery}}">
@@ -104,13 +119,21 @@
                 <view class='user-no-address c-color-9'>请您填写完整的收货地址</view>
               </block>
               <block wx:elif="{{userNoAddress == 2}}">
-                <view class='user-no-address c-color-9'>{{shopAddress?shopAddress:'您暂无可用收货地址,请新增收货地址'}}</view>
+                <view class='user-no-address c-color-9'>
+                  {{shopAddress?shopAddress:'您暂无可用收货地址,请新增收货地址'}}
+                </view>
               </block>
               <block wx:else>
-                <view class="delivery-user">收件人：{{myFirstAddress.addrName}} {{myFirstAddress.addrPhone}}</view>
+                <view class="delivery-user">
+                  收件人：{{myFirstAddress.addrName}} {{myFirstAddress.addrPhone}}
+                </view>
                 <view class="delivery-address">
-                  <block wx:if="{{myFirstAddress.provinceName}} == {{myFirstAddress.cityName}}">{{myFirstAddress.cityName}}</block>
-                  <block wx:else>{{myFirstAddress.provinceName}}{{myFirstAddress.cityName}}</block>{{myFirstAddress.areaName}}{{myFirstAddress.address}} {{myFirstAddress.poiAddr}}</view>
+                  <block wx:if="{{myFirstAddress.provinceName}} == {{myFirstAddress.cityName}}">
+                    {{myFirstAddress.cityName}}
+                  </block>
+                  <block wx:else>{{myFirstAddress.provinceName}}{{myFirstAddress.cityName}}</block>
+                  {{myFirstAddress.areaName}}{{myFirstAddress.address}} {{myFirstAddress.poiAddr}}
+                </view>
               </block>
               <block wx:if="{{!!isGroup}}">
                 <text class='forword'></text>
@@ -119,19 +142,22 @@
           </view>
         </view>
         <view class='bg-jiange'></view>
-        <view class="delivery-time r1bb forword">期望送达时间
+        <view class="delivery-time r1bb forword">
+          期望送达时间
           <view class="isSelect-time fr" bindtap="bindDeliveryPickerChange" data-shopid="{{itemData.shopId}}">
-            <block wx:if="{{pickSelectTime !='请您选择期望送达时间'}}">{{pickTimesTitle}} </block>
+            <block wx:if="{{pickSelectTime !='请您选择期望送达时间'}}">{{pickTimesTitle}}</block>
             <block wx:if="{{pickSelectTimeType == 80}}">
               <image class="blitz-img" mode="scaleToFill" src="https://shgm.jjyyx.com/m/images/icon_lightning.png"></image>
-            </block> {{pickSelectTime}}</view>
+            </block>
+            {{pickSelectTime}}
+          </view>
         </view>
         <block wx:if="{{hasDelivery}}">
           <view class="bg-jiange"></view>
         </block>
-        <!--按液态大店分 start-->
+        <!-- 按液态大店分 start -->
         <!-- 配送模块 -->
-        <!--餐食配送-->
+        <!-- 餐食配送 -->
         <block wx:if="{{foodDelivery == 1}}">
           <block wx:if="{{itemData.food.length > 0 }}">
             <block wx:for="{{itemData.food}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
@@ -139,7 +165,7 @@
             </block>
           </block>
         </block>
-        <!--超市配送模块-->
+        <!-- 超市配送模块 -->
         <block wx:if="{{goodsDelivery == 1}}">
           <block wx:if="{{itemData.goods.length > 0 }}">
             <block wx:for="{{itemData.goods}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
@@ -148,7 +174,7 @@
           </block>
         </block>
       </block>
-      <!--餐食堂食-->
+      <!-- 餐食堂食 -->
       <block wx:if="{{foodDelivery == 0}}">
         <block wx:if="{{itemData.food.length > 0 }}">
           <block wx:for="{{itemData.food}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
@@ -156,17 +182,16 @@
           </block>
         </block>
       </block>
-      <!--餐食自提-->
+      <!-- 餐食自提 -->
       <block wx:if="{{foodDelivery == 2}}">
         <block wx:if="{{itemData.food.length > 0 }}">
           <block wx:for="{{itemData.food}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
             <template is="goodslist" data="{{...storeData,...itemData,storeRemark,goodsDelivery,foodDelivery,weightNotice,childIndex,isGroup,groupMode}}"></template>
-            <block wx:if="{{itemData.food.length - 1 >  index}}">
-            </block>
+            <block wx:if="{{itemData.food.length - 1 >  index}}"></block>
           </block>
         </block>
       </block>
-      <!--超市自提模块-->
+      <!-- 超市自提模块 -->
       <block wx:if="{{goodsDelivery == 0}}">
         <block wx:if="{{itemData.goods.length > 0 }}">
           <block wx:for="{{itemData.goods}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
@@ -177,8 +202,7 @@
           </block>
         </block>
       </block>
-
-      <!--超市自提柜模块-->
+      <!-- 超市自提柜模块 -->
       <block wx:if="{{goodsDelivery == 3}}">
         <block wx:if="{{itemData.goods.length > 0 }}">
           <block wx:for="{{itemData.goods}}" wx:for-item="storeData" wx:key="goodsIndex" wx:for-index="childIndex">
@@ -189,14 +213,16 @@
           </block>
         </block>
       </block>
-
       <block wx:if="{{!groupMode}}">
         <block wx:if="{{itemData.goods.length > 0 && goodsDelivery == 0||itemData.goods.length > 0 && goodsDelivery == 3 || itemData.food.length > 0 && foodDelivery == 2}}">
-          <view class="delivery-time r1bt forword">自提时间
+          <view class="delivery-time r1bt forword">
+            自提时间
             <text class="isSelect-time fr" bindtap="bindSincePickerChange" data-shopid="{{itemData.shopId}}">
-                    <block wx:if="{{itemData.since != undefined}}">{{sinceTimesTitle}} {{itemData.since.timeInfo}}</block>
-                    <block wx:else>请您选择预计自提时间</block>
-                </text>
+              <block wx:if="{{itemData.since != undefined}}">
+                {{sinceTimesTitle}} {{itemData.since.timeInfo}}
+              </block>
+              <block wx:else>请您选择预计自提时间</block>
+            </text>
           </view>
           <view class="bg-jiange"></view>
         </block>
@@ -220,7 +246,7 @@
       </block>
     </block>
   </block>
-  <!--海购，苛选-->
+  <!-- 海购，苛选 -->
   <block wx:else>
     <form class="delivery-view r1bb" bindsubmit='saveAddressToCustomsDoc'>
       <view class="bg-caitiao"></view>
@@ -230,16 +256,23 @@
             <view class='user-no-address c-color-9'>请您填写完整的收货地址</view>
           </block>
           <block wx:elif="{{userNoAddress == 2}}">
-            <view class='user-no-address c-color-9'>{{shopAddress?shopAddress:'您暂无可用收货地址,请新增收货地址'}}</view>
+            <view class='user-no-address c-color-9'>
+              {{shopAddress?shopAddress:'您暂无可用收货地址,请新增收货地址'}}
+            </view>
           </block>
           <block wx:else>
-            <view class="delivery-user">收件人：{{myFirstAddress.addrName}} {{myFirstAddress.addrPhone}}
+            <view class="delivery-user">
+              收件人：{{myFirstAddress.addrName}} {{myFirstAddress.addrPhone}}
               <block wx:if=""></block>
               <image class="customs-doc-state" src="{{myFirstAddress.customsDocState == 1020?'https://shgm.jjyyx.com/m/images/icon_yirenzheng.png':'https://shgm.jjyyx.com/m/images/icon_weirenzheng.png'}}"></image>
             </view>
             <view class="delivery-address">
-              <block wx:if="{{myFirstAddress.provinceName}} == {{myFirstAddress.cityName}}">{{myFirstAddress.cityName}}</block>
-              <block wx:else>{{myFirstAddress.provinceName}}{{myFirstAddress.cityName}}</block>{{myFirstAddress.areaName}}{{myFirstAddress.address}} {{myFirstAddress.poiAddr}}</view>
+              <block wx:if="{{myFirstAddress.provinceName}} == {{myFirstAddress.cityName}}">
+                {{myFirstAddress.cityName}}
+              </block>
+              <block wx:else>{{myFirstAddress.provinceName}}{{myFirstAddress.cityName}}</block>
+              {{myFirstAddress.areaName}}{{myFirstAddress.address}} {{myFirstAddress.poiAddr}}
+            </view>
           </block>
           <text class='forword'></text>
         </view>
@@ -255,7 +288,9 @@
             </block>
             <input name="name" value='{{myFirstAddress.addrName}}' style="display:none"></input>
             <block wx:if="{{!myFirstAddress.idCard}}">
-              <button formType="submit" class="span r1bl {{regularId?'c-color':''}}" id="saveiDCard">保存</button>
+              <button formType="submit" class="span r1bl {{regularId?'c-color':''}}" id="saveiDCard">
+                保存
+              </button>
             </block>
           </view>
         </view>
@@ -263,13 +298,15 @@
     </form>
     <block wx:if="{{userNoAddress !=0 && userNoAddress !=2 }}">
       <block wx:if="{{myFirstAddress.customsDocState != 1020 && !needIDcardInfo && !myFirstAddress.idCard}}">
-        <view class="f-t-h">为了您能正常收到商品，请确保
+        <view class="f-t-h">
+          为了您能正常收到商品，请确保
           <text>收货人姓名和身份证号码与身份证上的保持一致</text>
         </view>
       </block>
     </block>
     <block wx:else>
-      <view class="f-t-h">为了您能正常收到商品，请确保
+      <view class="f-t-h">
+        为了您能正常收到商品，请确保
         <text>收货人姓名和身份证号码与身份证上的保持一致</text>
       </view>
     </block>
@@ -279,21 +316,19 @@
         <template is="goodslist" data="{{...storeData,orderType,storeRemark,goodsDelivery,foodDelivery,weightNotice,childIndex}}"></template>
       </block>
     </block>
-
-
   </block>
-
-
   <!-- 发票业务暂时关闭 -->
   <block wx:if="{{0&&invoiceSupportType>0 && orderType != 5}}">
-    <view class="invoice-nav" bindtap='jumpInvoice'>发票
-      <text class="invoice-select-state {{invoiceInfoDetail?'c-color':'c-color-9'}}" data-shopname='{{shopName}}'>{{invoiceInfoDetail?invoiceInfoDetail:'不开发票'}}</text>
+    <view class="invoice-nav" bindtap='jumpInvoice'>
+      发票
+      <text class="invoice-select-state {{invoiceInfoDetail?'c-color':'c-color-9'}}" data-shopname='{{shopName}}'>
+        {{invoiceInfoDetail?invoiceInfoDetail:'不开发票'}}
+      </text>
       <text class="forword"></text>
     </view>
     <view class="bg-jiange"></view>
   </block>
-
-  <!--按液态大店分 end-->
+  <!-- 按液态大店分 end -->
   <view class="fill-coupon-total">
     <block wx:if="{{orderType != 5}}">
       <block wx:if="{{isGroup == 1 && isNoAllowToSelectCoupon}}">
@@ -353,13 +388,17 @@
         <view class="cardvalue pay-type-btn">
           <view class="pay-btn-wrap">
             <view>生活卡</view>
-            <view class="c-color-9">（余额
-              <text class="yg-jin-color">￥{{allUserInfo.valueCard}}</text>）
+            <view class="c-color-9">
+              （余额
+              <text class="yg-jin-color">￥{{allUserInfo.valueCard}}</text>
+              ）
             </view>
           </view>
           <block wx:if="{{allUserInfo.recommendCardTitle}}">
             <view class='recommend-card-title'>
-              <text class='pos-r forword' bindtap='jumpQuickBuyCard'>{{allUserInfo.recommendCardTitle}}</text>
+              <text class='pos-r forword' bindtap='jumpQuickBuyCard'>
+                {{allUserInfo.recommendCardTitle}}
+              </text>
             </view>
           </block>
           <label class="fr pos-a tfY50 pay-way unSelect" data-paytype="card"></label>
@@ -368,10 +407,13 @@
       <block wx:else>
         <view class="cardvalue pay-type-btn" catchtap="onPayWay" data-paytype="card">
           <view class="pay-btn-wrap">
-            <view>生活卡 </view>
-            <view class="c-color-9">（余额
-              <text class="yg-jin-color">￥{{allUserInfo.valueCard}}</text>, 抵
-              <text class="yg-jin-color">￥{{cardPay}}</text>）
+            <view>生活卡</view>
+            <view class="c-color-9">
+              （余额
+              <text class="yg-jin-color">￥{{allUserInfo.valueCard}}</text>
+              , 抵
+              <text class="yg-jin-color">￥{{cardPay}}</text>
+              ）
               <block wx:if="{{isCardPay == 1 && orderType != 5}}">
                 <image class="tips-img" bindtap="useingCardLimit" src="https://shgm.jjyyx.com/m/images/icon_info.png"></image>
               </block>
@@ -379,7 +421,9 @@
           </view>
           <block wx:if="{{allUserInfo.recommendCardTitle}}">
             <view class='recommend-card-title'>
-              <text class='pos-r forword' bindtap='jumpQuickBuyCard'>{{allUserInfo.recommendCardTitle}}</text>
+              <text class='pos-r forword' bindtap='jumpQuickBuyCard'>
+                {{allUserInfo.recommendCardTitle}}
+              </text>
             </view>
           </block>
           <label class="fr pos-a tfY50 pay-way" data-paytype="card"></label>
@@ -447,7 +491,9 @@
             <text class='cls-name'>运费</text>
             <text class="fr">￥{{cartAllData._data.freight}}</text>
           </view>
-          <view class="fill-money-item charges-msg clearfix" wx:if="{{cartAllData._data && cartAllData._data.shippingSurchargesMsg}}">{{cartAllData._data.shippingSurchargesMsg}}</view>
+          <view class="fill-money-item charges-msg clearfix" wx:if="{{cartAllData._data && cartAllData._data.shippingSurchargesMsg}}">
+            {{cartAllData._data.shippingSurchargesMsg}}
+          </view>
           <view class="fill-money-item clearfix" wx:if="{{orderType != 5}}">
             <text class='cls-name'>运费优惠</text>
             <text class="fr c-color">-￥{{cartAllData._data.proFreight}}</text>
@@ -459,7 +505,9 @@
           <text class='cls-name'>运费</text>
           <text class="fr">￥{{cartAllData._data.freight}}</text>
         </view>
-        <view class="fill-money-item charges-msg clearfix" wx:if="{{cartAllData._data && cartAllData._data.shippingSurchargesMsg}}">{{cartAllData._data.shippingSurchargesMsg}}</view>
+        <view class="fill-money-item charges-msg clearfix" wx:if="{{cartAllData._data && cartAllData._data.shippingSurchargesMsg}}">
+          {{cartAllData._data.shippingSurchargesMsg}}
+        </view>
         <view class="fill-money-item clearfix" wx:if="{{orderType != 5}}">
           <text class='cls-name'>运费优惠</text>
           <text class="fr c-color">-￥{{cartAllData._data.proFreight}}</text>
@@ -469,12 +517,12 @@
   </view>
   <block wx:if="{{orderType == 5}}">
     <navigator class="kexuan-xieyi" url="/pages/documents/documents?mod=haigouxieyi">
-      <text class='em'></text>本人已同意并接受以下用户协议</navigator>
+      <text class='em'></text>
+      本人已同意并接受以下用户协议
+    </navigator>
   </block>
   <view class="bg-jiange"></view>
-
   <component-iphone-x-patcher></component-iphone-x-patcher>
-
 </view>
 <block wx:if="{{!allowScroll}}">
   <view class="footer r1bt{{isIphoneX ? ' iphone-x-patcher-container' : ''}}">
@@ -493,19 +541,18 @@
       </view>
       <block wx:if="{{limitBuyFlag}}">
         <view class="settle_accounts limit-to-buy" bindtap="toastLimitBuyMsg">
-          <text>去支付</text>                                                                     
+          <text>去支付</text>
         </view>
       </block>
       <block wx:else>
         <view class="settle_accounts" bindtap="createOrder">
-          <text>去支付</text>                                                                     
+          <text>去支付</text>
           <!-- <form class='getForm' bindsubmit="getReportSubmit" report-submit="{{reportSubmit}}">
             <button form-type="submit">
             </button>
           </form> -->
         </view>
       </block>
-      
     </view>
     <component-iphone-x-patcher></component-iphone-x-patcher>
   </view>
@@ -515,8 +562,9 @@
   <view class="coupon-layer-cont">
     <view class="coupon-layer-head">
       <view class="coupon-layer-title">请选择优惠券</view>
-      <view class="un-select-counpon {{unUserCoupon == 3?'un-user-counpon':''}}" bindtap="clearSelectCoupon">不使用优惠券</view>
-
+      <view class="un-select-counpon {{unUserCoupon == 3?'un-user-counpon':''}}" bindtap="clearSelectCoupon">
+        不使用优惠券
+      </view>
     </view>
     <scroll-view scroll-y style="height: 584rpx;">
       <block wx:for="{{getCouponListCartList}}" wx:for-item="coupon" wx:key="thisItems">
@@ -526,7 +574,7 @@
     </scroll-view>
   </view>
 </view>
-<!--配送时间-->
+<!-- 配送时间 -->
 <view class="picker-layer {{addressPicker?'':'hide'}}">
   <view class="shade" bindtap="hidePicker"></view>
   <view class="delivery-picker">
@@ -540,16 +588,19 @@
     <view class="time-items time_items" id="time_items">
       <scroll-view class="time-group time_group select" scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{pickTimes}}" wx:for-item="pickItem" wx:for-index="index" wx:key="pickItemKey">
-          <view class="operable r1bb {{pickItem.isSelect?'':'b-gray-color'}}" data-reason="{{pickItem.reason}}" data-freight="{{pickItem.freight}}" data-distributetype="{{pickItem.distributeType}}" data-timeinfo="{{pickItem.timeInfo}}" data-startTime="{{pickItem.starttime}}"
-            data-endTime="{{pickItem.endtime}}" data-isselect="{{pickItem.isSelect}}">
+          <view class="operable r1bb {{pickItem.isSelect?'':'b-gray-color'}}" data-reason="{{pickItem.reason}}" data-freight="{{pickItem.freight}}" data-distributetype="{{pickItem.distributeType}}" data-timeinfo="{{pickItem.timeInfo}}" data-startTime="{{pickItem.starttime}}" data-endTime="{{pickItem.endtime}}" data-isselect="{{pickItem.isSelect}}">
             <view class="time  {{pickSelectInfo == pickItem.timeInfo?'current-time':''}}" bindtap="onSelectTime" data-item="{{index}}">
               <block wx:if="{{pickItem.distributeType == 80}}">
                 <image class="blitz-img" mode="scaleToFill" src="https://shgm.jjyyx.com/m/images/icon_lightning.png"></image>
               </block>
-              <block wx:if="{{pickItem.distributeType == 80}}"> 30分钟必达</block>
+              <block wx:if="{{pickItem.distributeType == 80}}">30分钟必达</block>
               <block wx:else>{{pickItem.timeInfo}}</block>
               <block wx:if="{{pickItem.freight > 0}}">
-                <text class="yunfei"><block wx:if="{{pickItem.distributeType == 79 || pickItem.distributeType == 80}}">￥{{pickItem.freight}}</block></text>
+                <text class="yunfei">
+                  <block wx:if="{{pickItem.distributeType == 79 || pickItem.distributeType == 80}}">
+                    ￥{{pickItem.freight}}
+                  </block>
+                </text>
               </block>
             </view>
           </view>
@@ -559,7 +610,7 @@
     </view>
   </view>
 </view>
-<!--堂食时间-->
+<!-- 堂食时间 -->
 <view class="picker-layer {{eatPicke?'':'hide'}}">
   <view class="shade" bindtap="hidePicker"></view>
   <view class="delivery-picker">
@@ -573,8 +624,7 @@
     <view class="time-items time_items" id="time_items">
       <scroll-view class="time-group time_group select" scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{commonPickeData}}" wx:for-item="Item" wx:for-index="index" wx:key="pickItemKey">
-          <view class="operable r1bb {{Item.isSelect?'':'b-gray-color'}}" data-reason="{{Item.reason}}" data-freight="{{Item.freight}}" data-distributetype="{{Item.distributeType}}" data-timeinfo="{{Item.timeInfo}}" data-startTime="{{Item.starttime}}" data-endTime="{{Item.endtime}}"
-            data-isselect="{{Item.isSelect}}">
+          <view class="operable r1bb {{Item.isSelect?'':'b-gray-color'}}" data-reason="{{Item.reason}}" data-freight="{{Item.freight}}" data-distributetype="{{Item.distributeType}}" data-timeinfo="{{Item.timeInfo}}" data-startTime="{{Item.starttime}}" data-endTime="{{Item.endtime}}" data-isselect="{{Item.isSelect}}">
             <view class="time {{Item.curSel?'current-time':''}}" bindtap="onCommonTime" data-item="{{index}}">
               {{Item.timeInfo}}
             </view>
@@ -585,7 +635,7 @@
     </view>
   </view>
 </view>
-<!--自提时间-->
+<!-- 自提时间 -->
 <view class="picker-layer {{sincePicke?'':'hide'}}">
   <view class="shade" bindtap="hidePicker"></view>
   <view class="delivery-picker">
@@ -599,8 +649,7 @@
     <view class="time-items time_items" id="time_items">
       <scroll-view class="time-group time_group select" scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{sinceTimes}}" wx:for-item="sinceItem" wx:for-index="index" wx:key="pickItemKey">
-          <view class="operable r1bb {{sinceItem.isSelect?'':'b-gray-color'}}" data-reason="{{pickItem.reason}}" data-freight="{{sinceItem.freight}}" data-distributetype="{{sinceItem.distributeType}}" data-timeinfo="{{sinceItem.timeInfo}}" data-startTime="{{sinceItem.starttime}}"
-            data-endTime="{{sinceItem.endtime}}" data-isselect="{{sinceItem.isSelect}}">
+          <view class="operable r1bb {{sinceItem.isSelect?'':'b-gray-color'}}" data-reason="{{pickItem.reason}}" data-freight="{{sinceItem.freight}}" data-distributetype="{{sinceItem.distributeType}}" data-timeinfo="{{sinceItem.timeInfo}}" data-startTime="{{sinceItem.starttime}}" data-endTime="{{sinceItem.endtime}}" data-isselect="{{sinceItem.isSelect}}">
             <view class="time" bindtap="onSinceSelectTime" data-item="{{index}}" data-commonitem="sinceItem">
               {{sinceItem.timeInfo}}
             </view>
@@ -613,7 +662,8 @@
 </view>
 <view class="fadeInUp-box {{showNotice?'show':''}} pos-f close" bindtap='hideWeightNotice'>
   <view class="fadeInUp-cont pos-a">
-    <view class="fadeInUp-title r1bb">{{weightNotice.title}}
+    <view class="fadeInUp-title r1bb">
+      {{weightNotice.title}}
       <view class="fr close" bindtap='hideWeightNotice'>
         <image class="close-img" src="https://shgm.jjyyx.com/m/images/tips-pic2.png"></image>
       </view>
@@ -626,11 +676,9 @@
     <view class="fadeInUp-btn close" bindtap='hideWeightNotice'>关闭</view>
   </view>
 </view>
-<!--时间控件 end-->
+<!-- 时间控件 end -->
 <template is="toast" data="{{...toastData}}"></template>
-
 <template is="globalLoading" data="{{globalLoading}}"></template>
-
 <!-- 弹窗 - 绑定到我的账户 -->
 <component-global-modal is-visible="{{modalConfig.isVisible}}" header="{{modalConfig.header}}" content="{{modalConfig.content}}" content-style="{{modalConfig.contentStyle}}" footer="{{modalConfig.footer}}" bind:modalconfirm="modalCallbackHandler" event-detail="{{modalConfig.eventDetail}}">
   <view slot="customContent" wx:if="{{modalConfig.slot}}">
@@ -675,18 +723,18 @@
             </block>
           </view>
         </view>
-        <view class="taxation">税费:
+        <view class="taxation">
+          税费:
           <view class="span c-color">
-            <text class='i'>￥</text>{{cartAllData._data.taxPrice}}</view>
+            <text class='i'>￥</text>
+            {{cartAllData._data.taxPrice}}
+          </view>
         </view>
       </view>
       <view class="taxation-tips">注: 根据国家政策规定需缴纳跨境电商综合税</view>
     </block>
   </view>
 </component-global-modal>
-
-
-
 <view class='group-order-infor-container {{comfirmOrderBoxShow?"show":""}}'>
   <view class='mask' catchtap='hideComfirmOrderBox'></view>
   <view class='group-order-infor-wrap'>
@@ -696,26 +744,34 @@
         <view>请确认提货信息</view>
       </view>
       <block wx:if="{{isfrom != 'fission'}}">
-      <view class='group-order-infor-time'>预计{{sinceTimesTitle}} {{regroupShopData[0].since.timeInfo}}可自提</view>
+        <view class='group-order-infor-time'>
+          预计{{sinceTimesTitle}} {{regroupShopData[0].since.timeInfo}}可自提
+        </view>
       </block>
       <block wx:else>
-      <view class='group-order-infor-time'>预计{{sinceTimesTitle}} {{regroupShopData[0].since.timeInfo}}</view>
+        <view class='group-order-infor-time'>
+          预计{{sinceTimesTitle}} {{regroupShopData[0].since.timeInfo}}
+        </view>
       </block>
       <view class='group-order-infor-fill'>
         <view class='group-order-infor-fill-detail'>
           <text>提货人： {{allUserInfo.nickName?allUserInfo.nickName:""}} {{allUserInfo.mobile}}</text>
           <block wx:if="{{isfrom != 'fission'}}">
-          <text>门店： {{shopAddress}}</text>
-          <text>自提柜地址：{{cabinetData.address}} </text>
+            <text>门店： {{shopAddress}}</text>
+            <text>自提柜地址：{{cabinetData.address}}</text>
           </block>
           <block wx:else>
-          <text>门店地址：{{shopAddress}}</text>
+            <text>门店地址：{{shopAddress}}</text>
           </block>
           <text>商品金额： ¥{{cartAllData._data.totalSrcPrice}}</text>
           <text>促销优惠： -¥{{cartAllData._data.totalProPrice}}</text>
           <text wx:if="{{cartAllData._data.freight > 0}}">运费： ¥{{cartAllData._data.freight}}</text>
-          <text wx:if="{{cartAllData._data.proFreight > 0}}">运费优惠： -¥{{cartAllData._data.proFreight}}</text>
-          <text wx:if="{{cartAllData._data.couponPrice > 0}}">优惠券： -¥{{cartAllData._data.couponPrice}}</text>
+          <text wx:if="{{cartAllData._data.proFreight > 0}}">
+            运费优惠： -¥{{cartAllData._data.proFreight}}
+          </text>
+          <text wx:if="{{cartAllData._data.couponPrice > 0}}">
+            优惠券： -¥{{cartAllData._data.couponPrice}}
+          </text>
           <text wx:if="{{isCardPay == 1}}">生活卡： -¥{{cardPay}}</text>
           <text wx:if="{{isScorePay == 1}}">积分抵扣： -¥{{scorePay}}</text>
         </view>
@@ -727,7 +783,8 @@
     </view>
     <view class='group-order-infor-btn'>
       <view catchtap='hideComfirmOrderBox'>取消</view>
-      <view class='group-order-infor-comfirm' bindtap="cabinetCreateOrder">确认支付
+      <view class='group-order-infor-comfirm' bindtap="cabinetCreateOrder">
+        确认支付
         <!-- <form class='getForm' bindsubmit="getReportSubmit" report-submit="{{reportSubmit}}">
           <button form-type="submit">
           </button>

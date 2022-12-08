@@ -1,81 +1,81 @@
-<!--gloabl.wxml-->
-
+<!-- gloabl.wxml -->
 <!-- 底部 全局导航条 -->
 <template name="navigation-bar">
-    <view class="navigation-bar">
-        <view class="nav-placeholder"></view>
-        <view class="nav-container">
-            <view class="nav-list {{is_black?'blackWhite':''}}">
-                <view class="nav-item{{currentTabIndex == 0 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="0"  data-buried-id="D1009">
-                    <view class="nav-icon">
-                        <image src="/images/tabBar/icon_1{{currentTabIndex == 0 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
-                    </view>
-                    <view class="nav-text">首页</view>
-                </view>
-                <!-- <view wx:if="{{isInDeliveryArea}}" class="nav-item{{currentTabIndex == 1 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="1">
+  <view class="navigation-bar">
+    <view class="nav-placeholder"></view>
+    <view class="nav-container">
+      <view class="nav-list {{is_black?'blackWhite':''}}">
+        <view class="nav-item{{currentTabIndex == 0 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="0" data-buried-id="D1009">
+          <view class="nav-icon">
+            <image src="/images/tabBar/icon_1{{currentTabIndex == 0 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
+          </view>
+          <view class="nav-text">首页</view>
+        </view>
+        <!-- <view wx:if="{{isInDeliveryArea}}" class="nav-item{{currentTabIndex == 1 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="1">
                     <view class="nav-icon">
                         <image src="/images/tabBar/icon_2{{currentTabIndex == 1 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
                     </view>
                     <view class="nav-text">分类{{app.globalData.shopInfo.shopId}}</view>
                 </view> -->
-                <block wx:for="{{isAddNavigation}}" wx:key="index" >
-                  <view wx:if="{{item.channel_type == '2171'}}"  class="nav-item {{currentTabIndex == 1 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="1" data-nav-link-url="{{item}}" data-buried-id="D1010">
-                    <view class="nav-icon">
-                        <image src="{{item.img_url}}" mode="aspectFit"></image>
-                    </view>
-                    <view class="nav-text">{{item.title}}</view>
-                  </view>
-                </block>
-
-                <view class="nav-shoppingCart nav-item{{currentTabIndex == 2 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="2"  data-buried-id="D1011">
-                    <view class="nav-icon">
-                        <image src="/images/tabBar/icon_4{{currentTabIndex == 2 ? '_focus' : ''}}@2x.png" mode="aspectFit">
-                            <text class="cart-goods-total-number" style="display: {{cartGoodsTotalNumber <= 0 ? 'none' : ''}};">{{cartGoodsTotalNumber}}</text>
-                        </image>
-                    </view>
-                    <view class="nav-text">购物车</view>
-                </view>
-                <view class="nav-item{{currentTabIndex == 3 ? ' active' : ''}}" bindtap="switchTab" data-submsg="{{true}}" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="3"   data-buried-id="D1012">
-                    <view class="nav-icon">
-                        <image src="/images/tabBar/icon_5{{currentTabIndex == 3 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
-                    </view>
-                    <view class="nav-text">我的</view>
-                </view>
+        <block wx:for="{{isAddNavigation}}" wx:key="index">
+          <view wx:if="{{item.channel_type == '2171'}}" class="nav-item {{currentTabIndex == 1 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="1" data-nav-link-url="{{item}}" data-buried-id="D1010">
+            <view class="nav-icon">
+              <image src="{{item.img_url}}" mode="aspectFit"></image>
             </view>
-            <component-iphone-x-patcher></component-iphone-x-patcher>
+            <view class="nav-text">{{item.title}}</view>
+          </view>
+        </block>
+        <view class="nav-shoppingCart nav-item{{currentTabIndex == 2 ? ' active' : ''}}" bindtap="switchTab" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="2" data-buried-id="D1011">
+          <view class="nav-icon">
+            <image src="/images/tabBar/icon_4{{currentTabIndex == 2 ? '_focus' : ''}}@2x.png" mode="aspectFit">
+              <text class="cart-goods-total-number" style="display: {{cartGoodsTotalNumber <= 0 ? 'none' : ''}};">
+                {{cartGoodsTotalNumber}}
+              </text>
+            </image>
+          </view>
+          <view class="nav-text">购物车</view>
         </view>
+        <view class="nav-item{{currentTabIndex == 3 ? ' active' : ''}}" bindtap="switchTab" data-submsg="{{true}}" data-current-tab-index="{{currentTabIndex}}" data-next-tab-index="3" data-buried-id="D1012">
+          <view class="nav-icon">
+            <image src="/images/tabBar/icon_5{{currentTabIndex == 3 ? '_focus' : ''}}@2x.png" mode="aspectFit"></image>
+          </view>
+          <view class="nav-text">我的</view>
+        </view>
+      </view>
+      <component-iphone-x-patcher></component-iphone-x-patcher>
     </view>
+  </view>
 </template>
-
 <!-- 提示层 - 没有更多了 -->
 <template name="noMore">
-    <view class="noMore">{{noMoreMes||'已经到底啦~'}}</view>
+  <view class="noMore">{{noMoreMes||'已经到底啦~'}}</view>
 </template>
-
 <!-- 提示层 - 暂无数据 -->
 <template name="empty">
-    <view class="error-page-tpl">
-        <image src="https://shgm.jjyyx.com/m/images/{{errorImageName||'error_img3.png'}}?20190704" mode="aspectFit"></image>
-        <text class="error-tpl-msg">{{emptyMsg||'暂无数据'}}</text>
-        <block wx:if="{{backBtnState && backBtnState >= 1 && !exitBtn}}">
-            <view class="zb-back-live" bindtap="{{backBtnState >= 1?'allowToBack': ''}}">{{backBtnMsg}}</view>
-        </block>
-        <block wx:if="{{exitBtn}}">
-          <navigator class="zb-back-live" open-type="exit" target="miniProgram">{{backBtnMsg}}</navigator>
-        </block>
-    </view>
+  <view class="error-page-tpl">
+    <image src="https://shgm.jjyyx.com/m/images/{{errorImageName||'error_img3.png'}}?20190704" mode="aspectFit"></image>
+    <text class="error-tpl-msg">{{emptyMsg||'暂无数据'}}</text>
+    <block wx:if="{{backBtnState && backBtnState >= 1 && !exitBtn}}">
+      <view class="zb-back-live" bindtap="{{backBtnState >= 1?'allowToBack': ''}}">
+        {{backBtnMsg}}
+      </view>
+    </block>
+    <block wx:if="{{exitBtn}}">
+      <navigator class="zb-back-live" open-type="exit" target="miniProgram">
+        {{backBtnMsg}}
+      </navigator>
+    </block>
+  </view>
 </template>
-
 <!-- 全局 toast 提示层 -->
 <template name="toast">
-    <block wx:if="{{showFlag}}">
-        <view class="toast-container {{selfClass}}">
-          <text>{{toastMsg}}</text>
-        </view>
-    </block>
+  <block wx:if="{{showFlag}}">
+    <view class="toast-container {{selfClass}}">
+      <text>{{toastMsg}}</text>
+    </view>
+  </block>
 </template>
-
-<!-- 全局 modal 弹框  -->
+<!-- 全局 modal 弹框 -->
 <template name="modal">
   <block wx:if="{{showFlag}}">
     <view class="modal-container">
@@ -83,18 +83,19 @@
         <view class="modal-msg">{{content}}</view>
         <view class="modal-btn-container">
           <block wx:if="{{showCancel}}">
-            <view class="cancel-btn" data-result="0" bindtap="modalCallback">{{cancelText||'取消'}}</view>
+            <view class="cancel-btn" data-result="0" bindtap="modalCallback">
+              {{cancelText||'取消'}}
+            </view>
           </block>
-          <view class="confirm-btn" data-result="1" bindtap="{{myCallBack?myCallBack:'modalCallback'}}">{{confirmText||'确定'}}</view>
+          <view class="confirm-btn" data-result="1" bindtap="{{myCallBack?myCallBack:'modalCallback'}}">
+            {{confirmText||'确定'}}
+          </view>
         </view>
       </view>
-      
     </view>
   </block>
 </template>
-
-<!-- 全局 弹窗loading 小图提示-->
-
+<!-- 全局 弹窗loading 小图提示 -->
 <template name='globalLoading'>
   <block wx:if="{{globalLoading}}">
     <view id='global-loading' class="{{globalLoading.hideMask ? 'hide-mask' : '' }}">
